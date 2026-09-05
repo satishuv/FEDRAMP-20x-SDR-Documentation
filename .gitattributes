@@ -1,0 +1,14 @@
+# Line endings are part of the determinism contract.
+#
+# The continuous integration gate regenerates every deliverable and then runs
+# git diff, so a byte that differs between a Windows checkout and the Linux
+# runner fails the build for no real reason. Every pipeline script already
+# pins its text writers to newline="\n"; these rules make git agree, so the
+# committed blob is LF no matter which platform produced it.
+* text=auto eol=lf
+
+# Word documents are zip containers. Never touch their bytes.
+*.docx binary
+*.xlsx binary
+*.pptx binary
+*.pdf binary

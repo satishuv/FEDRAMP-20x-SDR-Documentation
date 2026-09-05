@@ -85,7 +85,7 @@ def main():
 
     os.makedirs(FACTS_DIR, exist_ok=True)
     out = os.path.join(FACTS_DIR, f"facts-{region}.json")
-    with open(out, "w", encoding="utf-8") as f:
+    with open(out, "w", encoding="utf-8", newline="\n") as f:
         json.dump({
             "meta": {
                 "collected_at": now,

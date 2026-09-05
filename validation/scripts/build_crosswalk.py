@@ -52,7 +52,7 @@ def main():
     ordered = dict(sorted(control_map.items(), key=lambda kv: sort_key(kv[0])))
 
     out_json = os.path.join(BASE, "traceability", "rev5-to-20x-crosswalk.json")
-    with open(out_json, "w", encoding="utf-8") as f:
+    with open(out_json, "w", encoding="utf-8", newline="\n") as f:
         json.dump(
             {
                 "note": (
@@ -74,7 +74,7 @@ def main():
 
     out_csv = os.path.join(BASE, "traceability", "rev5-to-20x-crosswalk.csv")
     with open(out_csv, "w", newline="", encoding="utf-8") as f:
-        w = csv.writer(f)
+        w = csv.writer(f, lineterminator="\n")
         w.writerow(["Rev5 Control", "KSI ID", "KSI Name", "KSI Family",
                     "KSI Family Name"])
         for ctrl, entries in ordered.items():

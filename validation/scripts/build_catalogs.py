@@ -131,9 +131,14 @@ def main():
     ksis = walk_ksi(ds["KSI"])
 
     os.makedirs(OUT_DIR, exist_ok=True)
-    with open(os.path.join(OUT_DIR, "rule-catalog.json"), "w", encoding="utf-8") as f:
+    # newline="\n" on every text writer: without it Windows translates the
+    # newlines json.dump emits to CRLF, and the CI regenerate-then-diff gate
+    # on Linux can then never match the committed blobs.
+    with open(os.path.join(OUT_DIR, "rule-catalog.json"), "w", encoding="utf-8",
+              newline="\n") as f:
         json.dump({"meta": meta, "count": len(rules), "rules": rules}, f, indent=1)
-    with open(os.path.join(OUT_DIR, "ksi-catalog.json"), "w", encoding="utf-8") as f:
+    with open(os.path.join(OUT_DIR, "ksi-catalog.json"), "w", encoding="utf-8",
+              newline="\n") as f:
         json.dump({"meta": meta, "count": len(ksis), "indicators": ksis}, f, indent=1)
 
     fams = {}

@@ -106,7 +106,7 @@ def main():
         "ksis": registry,
     }
     os.makedirs(OUT_DIR, exist_ok=True)
-    with open(OUT, "w", encoding="utf-8") as f:
+    with open(OUT, "w", encoding="utf-8", newline="\n") as f:
         json.dump(doc, f, indent=1)
     collectable = sum(1 for k in registry.values()
                       for c in k["checks"] if c["collectable_now"])

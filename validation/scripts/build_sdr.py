@@ -37,7 +37,7 @@ def load(path):
 
 def dump(obj, path):
     os.makedirs(os.path.dirname(path), exist_ok=True)
-    with open(path, "w", encoding="utf-8") as f:
+    with open(path, "w", encoding="utf-8", newline="\n") as f:
         json.dump(obj, f, indent=1)
 
 
@@ -415,7 +415,7 @@ def main():
     dump(ext, os.path.join(BASE, "sdr", "json", f"sdr-class-{cls}-extensions.json"))
     txt_path = os.path.join(BASE, "sdr", "human-readable", f"sdr-class-{cls}.txt")
     os.makedirs(os.path.dirname(txt_path), exist_ok=True)
-    with open(txt_path, "w", encoding="utf-8") as f:
+    with open(txt_path, "w", encoding="utf-8", newline="\n") as f:
         f.write(text)
 
     print(f"class: {cls.upper()}")

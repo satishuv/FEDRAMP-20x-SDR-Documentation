@@ -191,14 +191,14 @@ def main():
         },
     }
     out3 = os.path.join(BASE, "traceability", "family-names.json")
-    with open(out3, "w", encoding="utf-8") as f:
+    with open(out3, "w", encoding="utf-8", newline="\n") as f:
         json.dump(family_names, f, indent=1)
 
     out1 = os.path.join(BASE, "traceability", "rule-notes.json")
     out2 = os.path.join(BASE, "traceability", "ksi-notes.json")
-    with open(out1, "w", encoding="utf-8") as f:
+    with open(out1, "w", encoding="utf-8", newline="\n") as f:
         json.dump({"note": "Explainer layer for FRR rules.", "rules": rule_notes}, f, indent=1)
-    with open(out2, "w", encoding="utf-8") as f:
+    with open(out2, "w", encoding="utf-8", newline="\n") as f:
         json.dump({"note": "Explainer layer for KSIs.", "indicators": ksi_notes}, f, indent=1)
 
     missing_guidance = [k for k in ksi_notes if "No guidance authored" in ksi_notes[k]["how_to_comply_guidance"]]

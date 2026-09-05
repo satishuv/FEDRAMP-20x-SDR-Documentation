@@ -320,9 +320,11 @@ def main():
         report["fidelity_problems"] = fidelity_problems[:50]
 
     os.makedirs(REPORTS, exist_ok=True)
-    with open(os.path.join(REPORTS, "validation-report.json"), "w", encoding="utf-8") as f:
+    with open(os.path.join(REPORTS, "validation-report.json"), "w",
+              encoding="utf-8", newline="\n") as f:
         json.dump(report, f, indent=1)
-    with open(os.path.join(REPORTS, "ksi-test-results.json"), "w", encoding="utf-8") as f:
+    with open(os.path.join(REPORTS, "ksi-test-results.json"), "w",
+              encoding="utf-8", newline="\n") as f:
         json.dump({"generated": stamp, "class": cls.upper(), "results": ksi_results}, f, indent=1)
 
     for c in report["checks"]:

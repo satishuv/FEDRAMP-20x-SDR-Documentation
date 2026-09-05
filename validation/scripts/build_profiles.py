@@ -421,7 +421,8 @@ def main():
         os.makedirs(os.path.join(PROFILES, sub), exist_ok=True)
 
     def dump(obj, *parts):
-        with open(os.path.join(PROFILES, *parts), "w", encoding="utf-8") as f:
+        with open(os.path.join(PROFILES, *parts), "w", encoding="utf-8",
+                  newline="\n") as f:
             json.dump(obj, f, indent=1)
 
     dump(
