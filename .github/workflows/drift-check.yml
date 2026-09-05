@@ -1,0 +1,53 @@
+# Daily upstream drift check, GitHub Actions edition. Hash-compares the
+# pinned FedRAMP sources against the live copies (FedRAMP updates schema
+# files in place without renaming, so hashes are the only reliable signal).
+# On drift the job fails and opens an issue so the change is visible even to
+# watchers who ignore CI emails.
+name: fedramp-drift-check
+
+on:
+  schedule:
+    - cron: "17 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  drift:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+      - name: Compare pinned sources against upstream
+        id: check
+        run: |
+          set -e
+          DRIFT=""
+          check () {
+            NAME="$1"; URL="$2"; PINNED="$3"
+            LIVE=$(curl -sL --max-time 30 "$URL" | sha256sum | cut -d' ' -f1)
+            LOCAL=$(sha256sum "$PINNED" | cut -d' ' -f1)
+            if [ "$LIVE" = "$LOCAL" ]; then
+              echo "$NAME: unchanged"
+            else
+              echo "$NAME: CHANGED upstream (live $LIVE vs pinned $LOCAL)"
+              DRIFT="$DRIFT $NAME;"
+            fi
+          }
+          check "CR26-dataset" "https://raw.githubusercontent.com/FedRAMP/rules/main/fedramp-consolidated-rules.json" "references/fedramp-consolidated-rules.json"
+          check "SDR-schema" "https://www.fedramp.gov/schemas/fedramp-security-decision-record-schema-2026-06-24.json" "artifacts/schemas/official/fedramp-security-decision-record-schema-2026-06-24.json"
+          check "common-definitions-schema" "https://www.fedramp.gov/schemas/fedramp-common-definitions-schema-2026-06-24.json" "artifacts/schemas/official/fedramp-common-definitions-schema-2026-06-24.json"
+          echo "drift=$DRIFT" >> "$GITHUB_OUTPUT"
+          [ -z "$DRIFT" ]
+      - name: Open an issue on drift
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DRIFT: ${{ steps.check.outputs.drift }}
+        run: |
+          TITLE="FedRAMP upstream sources changed: $DRIFT"
+          EXISTING=$(gh issue list --state open --search "$TITLE in:title" --json number --jq length)
+          if [ "$EXISTING" = "0" ]; then
+            gh issue create --title "$TITLE" --body "Upstream FedRAMP sources changed. Re-pull the changed sources, diff against the pinned copies, re-run the pipeline and validation, and review before relying on the pinned copies. Detected by the scheduled drift-check workflow."
+          fi

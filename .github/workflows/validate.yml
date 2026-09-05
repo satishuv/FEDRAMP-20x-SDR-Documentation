@@ -1,0 +1,50 @@
+# CI gate, GitHub Actions edition. Same three checks as the AWS CodeBuild
+# buildspec (automation/pipeline/buildspec-validate.yml):
+#   1. Regenerate every deliverable from the record store and pinned dataset.
+#   2. Refuse hand-edited generated files (regenerate-then-diff; docx excluded
+#      because its zip container embeds timestamps).
+#   3. validate_sdr.py must pass with 0 hard failures.
+# Actions are pinned to full commit SHAs for supply-chain integrity.
+name: validate-sdr
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: pip install --quiet jsonschema referencing python-docx
+      - name: Regenerate all deliverables
+        run: |
+          python validation/scripts/build_catalogs.py
+          python validation/scripts/build_notes.py
+          python validation/scripts/build_profiles.py
+          python validation/scripts/build_sdr.py
+          python validation/scripts/build_docx.py
+          python validation/scripts/build_crosswalk.py
+      - name: Refuse hand-edited generated files
+        run: |
+          git diff --exit-code -- . ':(exclude)*.docx' || {
+            echo "FAIL. Generated outputs differ from committed files."
+            echo "Never edit generated files by hand; edit sdr/records/records-store.json and regenerate."
+            exit 1
+          }
+      - name: Validate (schema, coverage, minimums, hygiene, content fidelity)
+        run: python validation/scripts/validate_sdr.py
+      - name: Upload validation reports
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: validation-reports
+          path: validation/reports/

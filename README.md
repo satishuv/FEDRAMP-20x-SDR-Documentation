@@ -19,6 +19,65 @@ FedRAMP 20x expects the SDR to be machine-readable, schema-valid, and backed by 
 3. A deterministic pipeline regenerates every deliverable (JSON, plain text, Word) from those two inputs.
 4. A validator refuses to trust the builders: it re-derives everything from the dataset independently and fails on any mismatch.
 
+## Architecture
+
+Two views: how a Security Decision Record is built, and how it runs day to day.
+
+### Document build flow
+
+```mermaid
+flowchart LR
+    subgraph upstream["FedRAMP upstream"]
+        DS["CR26 dataset<br/>github.com/FedRAMP/rules"]
+        SCH["Official SDR schemas<br/>fedramp.gov"]
+    end
+    subgraph pinned["Pinned in repo, hash-verified"]
+        REF["references/"]
+        ART["artifacts/schemas/official/"]
+    end
+    RS["sdr/records/records-store.json<br/>THE ONLY FILE HUMANS EDIT"]
+    subgraph pipeline["Deterministic pipeline"]
+        B1["build_catalogs"] --> B2["build_notes"] --> B3["build_profiles"] --> B4["build_sdr"] --> B5["build_docx"]
+        B3 --> B6["build_crosswalk"]
+    end
+    subgraph out["Deliverables"]
+        J["Official SDR JSON<br/>plus extensions"]
+        T["Plain-text SDR"]
+        D["Authoring docx"]
+        X["Rev5 to 20x crosswalk"]
+    end
+    V["validate_sdr.py<br/>schema, coverage, minimums,<br/>hygiene, content fidelity"]
+    DS -- "sha256 compare" --> REF
+    SCH -- "sha256 compare" --> ART
+    REF --> B1
+    RS --> B4
+    B4 --> J
+    B4 --> T
+    B5 --> D
+    B6 --> X
+    out --> V
+    REF --> V
+```
+
+### Operational pipeline
+
+```mermaid
+flowchart LR
+    DEVX["Provider or advisor<br/>edits records-store.json"] --> GIT["git push to<br/>private SDR repo"]
+    GIT --> CI["CI gate<br/>GitHub Actions or CodePipeline:<br/>1 regenerate everything<br/>2 fail on hand-edited outputs<br/>3 validate with 0 hard failures"]
+    CI -- pass --> HUM["Human approval<br/>SNS email or protected environment"]
+    CI -- fail --> DEVX
+    HUM --> PUB["Publish package<br/>versioned encrypted S3<br/>trust center or delivery"]
+    SCHED["Daily schedule<br/>EventBridge or cron"] --> DRIFT["Drift check<br/>hash pinned sources<br/>vs fedramp.gov"]
+    DRIFT -- changed --> ALERT["Alert: email or issue<br/>re-pin, rebuild, review"]
+    SCHED --> COLL["Facts collector<br/>read-only AWS calls"]
+    COLL --> EV["Evidence bucket<br/>timestamped facts store"]
+    EV -- "feeds KSI tests,<br/>metrics clock" --> DEVX
+    LLM["Layer 2, planned:<br/>Bedrock drafter and interview agent<br/>drafts narratives FROM facts"] -. "proposes diffs,<br/>human approves" .-> DEVX
+```
+
+Statuses never change without a human decision. The collector produces telemetry; the planned generative layer only drafts text from that telemetry and can never flip a status or fabricate evidence.
+
 ## Quickstart
 
 Requirements: Python 3.10 or later with the `jsonschema`, `referencing`, and `python-docx` packages.
@@ -87,7 +146,11 @@ The 20x Program path for Class D is listed by FedRAMP as coming in 2027, with sp
 
 ## Running it as a pipeline in AWS (CI/CD for the SDR)
 
-The `automation/pipeline/` directory contains a deployable AWS CodePipeline reference, modeled on the AWS DevSecOps pipeline pattern but with SDR-specific gates instead of SCA/SAST/DAST scanners. It lets a provider manage the SDR like production code inside their own AWS environment.
+Two interchangeable implementations ship in this repository, enforcing the same gates. Pick whichever fits your environment; the security comes from the gates, not the vendor.
+
+1. GitHub Actions (free tier friendly): `.github/workflows/validate.yml` runs the regenerate, diff, and validate gate on every push and pull request, and `.github/workflows/drift-check.yml` checks upstream FedRAMP sources daily and opens an issue on drift. Actions are pinned to full commit SHAs for supply-chain integrity. No AWS account is needed for the CI gate itself.
+
+2. AWS-native: the `automation/pipeline/` directory contains a deployable AWS CodePipeline reference, modeled on the AWS DevSecOps pipeline pattern but with SDR-specific gates instead of SCA/SAST/DAST scanners. Use this when the provider wants approval, publication, evidence storage, and scheduled collection inside their own AWS environment.
 
 | Stage | What happens | FedRAMP rule it supports |
 |-------|--------------|--------------------------|
