@@ -8,7 +8,7 @@ A generic, reusable framework for producing FedRAMP 20x Security Decision Record
 - Advisory and security assurance teams guiding a provider through 20x, who need a defensible, regenerable SDR rather than a hand-maintained document.
 - Assessors and reviewers who want to trace every statement in an SDR back to the official dataset.
 
-This repository is a template. It ships with a synthetic placeholder offering ("Example PaaS Foundation") and honest placeholder statuses: every KSI and rule starts as Not Implemented or TBD until a real provider fills in real facts. It never claims compliance for anyone. Per-customer work belongs in separate private repositories. No customer data, credentials, account numbers, or restricted report content may ever enter this repository.
+This repository is a template. It ships with a synthetic placeholder offering and honest placeholder statuses: every KSI and rule starts as Not Implemented or TBD until a real provider fills in real facts. It never claims compliance for anyone. Per-customer work belongs in separate private repositories. No customer data, credentials, account numbers, or restricted report content may ever enter this repository.
 
 ## Why it is built this way
 
