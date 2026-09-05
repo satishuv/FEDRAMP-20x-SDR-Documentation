@@ -1,0 +1,415 @@
+{
+ "meta": {
+  "derived_from": "rule-catalog.json / ksi-catalog.json",
+  "dataset_version": "2026.07.14.01",
+  "generated": "deterministic build from dataset 2026.07.14.01",
+  "path": "FedRAMP 20x Program Certification",
+  "filter": "rules whose affects includes Providers"
+ },
+ "overlay": {
+  "added": [],
+  "changed": [
+   {
+    "rule_id": "CCM-QTR-MTG",
+    "name": "Quarterly Review Meeting",
+    "class_b": {
+     "force": "SHOULD",
+     "statement": "Providers with Class B Certifications SHOULD host a synchronous Quarterly Review every 3 months, open to all necessary parties, to review aspects of the most recent Ongoing Certification Reports that the provider determines are of the most relevance to agencies.",
+     "timeframe_num": 3,
+     "timeframe_type": "months"
+    },
+    "class_c": {
+     "force": "MUST",
+     "statement": "Providers with Class C Certifications MUST host a synchronous Quarterly Review every 3 months, open to all necessary parties, to review aspects of the most recent Ongoing Certification Reports that the provider determines are of the most relevance to agencies.",
+     "timeframe_num": 3,
+     "timeframe_type": "months"
+    }
+   },
+   {
+    "rule_id": "CDS-CSO-AVR",
+    "name": "Availability Reporting",
+    "class_b": {
+     "force": "MUST",
+     "statement": "Providers with Class B Certifications MUST maintain a web service, available to all necessary parties, that indicates current and historical availability of core services within the cloud service offering over at least the past 30 days, including availability incidents, in both human-readable and machine-readable formats; this service MUST be available even if the primary cloud service offering is unavailable.",
+     "timeframe_num": null,
+     "timeframe_type": null
+    },
+    "class_c": {
+     "force": "MUST",
+     "statement": "Providers with Class C Certifications MUST maintain a web service, available to all necessary parties, that indicates current and historical availability of core services within the cloud service offering over at least the past 30 days, including availability incidents, in both human-readable and machine-readable formats; this service MUST be available even if the primary cloud service offering is unavailable.",
+     "timeframe_num": null,
+     "timeframe_type": null
+    }
+   },
+   {
+    "rule_id": "CDS-CSO-PSM",
+    "name": "Per-Service Certification Materials",
+    "class_b": {
+     "force": "MAY",
+     "statement": "Providers with Class B Certifications MAY supply per-service FedRAMP Certification materials.",
+     "timeframe_num": null,
+     "timeframe_type": null
+    },
+    "class_c": {
+     "force": "MAY",
+     "statement": "Providers with Class C Certifications MAY supply per-service FedRAMP Certification materials.",
+     "timeframe_num": null,
+     "timeframe_type": null
+    }
+   },
+   {
+    "rule_id": "CMU-CSO-UVM",
+    "name": "Using Validated Cryptographic Modules",
+    "class_b": {
+     "force": "MAY",
+     "statement": "Providers with Class B Certifications MAY use cryptographic modules or update streams of cryptographic modules with active validations under the NIST Cryptographic Module Validation Program when using cryptographic services to protect federal customer data.",
+     "timeframe_num": null,
+     "timeframe_type": null
+    },
+    "class_c": {
+     "force": "SHOULD",
+     "statement": "Providers with Class C Certifications SHOULD use cryptographic modules or update streams of cryptographic modules with active validations under the NIST Cryptographic Module Validation Program when using cryptographic services to protect federal customer data.",
+     "timeframe_num": null,
+     "timeframe_type": null
+    }
+   },
+   {
+    "rule_id": "CPO-CSO-OSA",
+    "name": "Overall Summary of Assessment in Certification Package",
+    "class_b": {
+     "force": "MUST",
+     "statement": "Providers seeking Class B Certification MUST also include the overall summary of their FedRAMP independent assessment, supplied by the assessor per IVV-IAS-OSA (Overall Summary of Assessment), in their Certification Package Overview.",
+     "timeframe_num": null,
+     "timeframe_type": null
+    },
+    "class_c": {
+     "force": "MUST",
+     "statement": "Providers seeking Class C Certification MUST also include the overall summary of their FedRAMP independent assessment, supplied by the assessor per IVV-IAS-OSA (Overall Summary of Assessment), in their Certification Package Overview.",
+     "timeframe_num": null,
+     "timeframe_type": null
+    }
+   },
+   {
+    "rule_id": "CPO-CSX-CPM",
+    "name": "Certification Package Maintenance for 20x",
+    "class_b": {
+     "force": "MUST",
+     "statement": "Providers with 20x Class B Certifications MUST persistently maintain their FedRAMP Certification Package to ensure it is up to date and complete at least once every month.",
+     "timeframe_num": 1,
+     "timeframe_type": "months"
+    },
+    "class_c": {
+     "force": "MUST",
+     "statement": "Providers with 20x Class C Certifications MUST persistently maintain their FedRAMP Certification Package to ensure it is up to date and complete at least once every 2 weeks.",
+     "timeframe_num": 2,
+     "timeframe_type": "weeks"
+    }
+   },
+   {
+    "rule_id": "FRC-APP-FIA",
+    "name": "Fresh Independent Assessment",
+    "class_b": {
+     "force": "MUST",
+     "statement": "Providers seeking Class B Certification MUST supply a fresh initial FedRAMP independent assessment that was completed by a FedRAMP Recognized independent assessment service within the previous 3 months.",
+     "timeframe_num": 3,
+     "timeframe_type": "months"
+    },
+    "class_c": {
+     "force": "MUST",
+     "statement": "Providers seeking Class C Certification MUST supply a fresh initial FedRAMP independent assessment that was completed by a FedRAMP Recognized independent assessment service within the previous 3 months.",
+     "timeframe_num": 3,
+     "timeframe_type": "months"
+    }
+   },
+   {
+    "rule_id": "FRC-CSX-VVK",
+    "name": "Automated Verification and Validation of Key Security Indicators",
+    "class_b": {
+     "force": "SHOULD",
+     "statement": "Providers seeking 20x Class B Certification SHOULD implement automated methods to persistently verify and validate the accuracy and completeness of Key Security Indicators with at least 1 automated method for each Key Security Indicator.",
+     "timeframe_num": null,
+     "timeframe_type": null
+    },
+    "class_c": {
+     "force": "MUST",
+     "statement": "Providers seeking 20x Class C Certification MUST implement automated methods to persistently verify and validate the accuracy and completeness of Key Security Indicators with at least 2 automated methods for each Key Security Indicator.",
+     "timeframe_num": null,
+     "timeframe_type": null
+    }
+   },
+   {
+    "rule_id": "FRC-CSX-MOT",
+    "name": "Metrics Over Time for Key Security Indicators",
+    "class_b": {
+     "force": "SHOULD",
+     "statement": "Providers seeking 20x Class B Certification SHOULD supply historical metrics for Key Security Indicators.",
+     "timeframe_num": null,
+     "timeframe_type": null
+    },
+    "class_c": {
+     "force": "MUST",
+     "statement": "Providers seeking 20x Class C Certification MUST supply historical metrics including status from persistent validation over at least the past 6 months for all Key Security Indicators.",
+     "timeframe_num": null,
+     "timeframe_type": null
+    }
+   },
+   {
+    "rule_id": "FRC-CSX-VVR",
+    "name": "Automated Verification and Validation of FedRAMP Rules",
+    "class_b": {
+     "force": "SHOULD",
+     "statement": "Providers seeking 20x Class B Certification SHOULD implement automated methods to persistently verify and validate the accuracy and completeness of the Security Decision Record for FedRAMP rules when applicable.",
+     "timeframe_num": null,
+     "timeframe_type": null
+    },
+    "class_c": {
+     "force": "SHOULD",
+     "statement": "Providers seeking 20x Class C Certification SHOULD implement automated methods to persistently verify and validate the accuracy and completeness of the Security Decision Record for FedRAMP rules when applicable.",
+     "timeframe_num": null,
+     "timeframe_type": null
+    }
+   },
+   {
+    "rule_id": "IEC-CSO-IIR",
+    "name": "Initial Incident Report",
+    "class_b": {
+     "force": "MUST",
+     "statement": "Providers with Class B Certifications MUST responsibly notify all affected parties after identifying FedRAMP Reportable Incidents by providing an Initial Incident Report with as much of the following information that is available at the time of reporting and/or the current relevant status for each item:",
+     "timeframe_num": null,
+     "timeframe_type": null
+    },
+    "class_c": {
+     "force": "MUST",
+     "statement": "Providers with Class C Certifications MUST responsibly notify all affected parties after identifying FedRAMP Reportable Incidents by providing an Initial Incident Report with as much of the following information that is available at the time of reporting and/or the current relevant status for each item:",
+     "timeframe_num": null,
+     "timeframe_type": null
+    }
+   },
+   {
+    "rule_id": "IEC-CSO-OIR",
+    "name": "Ongoing Incident Reports",
+    "class_b": {
+     "force": "MUST",
+     "statement": "Providers with Class B Certifications MUST responsibly notify all affected parties of ongoing activity as new information becomes available during incident response for FedRAMP Reportable Incidents, including updates (or lack of updates) to all previously reported information and as much of the the following additional information that is available and/or the current relevant status for each item:",
+     "timeframe_num": null,
+     "timeframe_type": null
+    },
+    "class_c": {
+     "force": "MUST",
+     "statement": "Providers with Class C Certifications MUST responsibly notify all affected parties of ongoing activity as new information becomes available during incident response for FedRAMP Reportable Incidents, including updates (or lack of updates) to all previously reported information and as much of the the following additional information that is available and/or the current relevant status for each item:",
+     "timeframe_num": null,
+     "timeframe_type": null
+    }
+   },
+   {
+    "rule_id": "IEC-CSO-FIR",
+    "name": "Final Incident Report",
+    "class_b": {
+     "force": "MUST",
+     "statement": "Providers with Class B Certifications MUST responsibly notify all affected parties by providing a Final Incident Report once the incident has been resolved and recovery is complete, including final updates to all previously reported information.",
+     "timeframe_num": null,
+     "timeframe_type": null
+    },
+    "class_c": {
+     "force": "MUST",
+     "statement": "Providers with Class C Certifications MUST responsibly notify all affected parties by providing a Final Incident Report once the incident has been resolved and recovery is complete, including final updates to all previously reported information.",
+     "timeframe_num": null,
+     "timeframe_type": null
+    }
+   },
+   {
+    "rule_id": "IVV-CSO-FIA",
+    "name": "FedRAMP Independent Assessments",
+    "class_b": {
+     "force": "MUST",
+     "statement": "Providers with Class B Certifications MUST persistently complete an independent verification and validation assessment of all applicable FedRAMP rules with a FedRAMP Recognized independent assessment service OR FedRAMP at least once per year; this is a FedRAMP independent assessment.",
+     "timeframe_num": 1,
+     "timeframe_type": "years"
+    },
+    "class_c": {
+     "force": "MUST",
+     "statement": "Providers with Class C Certifications MUST persistently complete an independent verification and validation assessment of all applicable FedRAMP rules with a FedRAMP Recognized independent assessment service OR FedRAMP at least once per year; this is a FedRAMP independent assessment.",
+     "timeframe_num": 1,
+     "timeframe_type": "years"
+    }
+   },
+   {
+    "rule_id": "IVV-CSX-AIA",
+    "name": "Annual Independent Assessments for 20x",
+    "class_b": {
+     "force": "MUST",
+     "statement": "Providers with 20x Class B Certifications MUST include all Key Security Indicators in a FedRAMP independent assessment at least once per year.",
+     "timeframe_num": 1,
+     "timeframe_type": "years"
+    },
+    "class_c": {
+     "force": "MUST",
+     "statement": "Providers with 20x Class C Certifications MUST include all Key Security Indicators in a FedRAMP independent assessment at least once per year.",
+     "timeframe_num": 1,
+     "timeframe_type": "years"
+    }
+   },
+   {
+    "rule_id": "SDR-CSX-KMT",
+    "name": "Key Security Indicator Metrics",
+    "class_b": {
+     "force": "MUST",
+     "statement": "Providers with 20x Class B Certifications MUST also include historical metrics in their Security Decision Record, supplying at least the following information for each applicable Key Security Indicator:",
+     "timeframe_num": null,
+     "timeframe_type": null
+    },
+    "class_c": {
+     "force": "MUST",
+     "statement": "Providers with 20x Class C Certifications MUST also include historical metrics in their Security Decision Record, supplying at least the following information for each applicable Key Security Indicator:",
+     "timeframe_num": null,
+     "timeframe_type": null
+    }
+   },
+   {
+    "rule_id": "VDR-TFR-PDD",
+    "name": "Persistent Drift Detection",
+    "class_b": {
+     "force": "SHOULD",
+     "statement": "Providers with Class B Certifications SHOULD persistently perform vulnerability detection on all information resources that are likely to drift, at least once every month.",
+     "timeframe_num": 1,
+     "timeframe_type": "months"
+    },
+    "class_c": {
+     "force": "SHOULD",
+     "statement": "Providers with Class C Certifications SHOULD persistently perform vulnerability detection on all information resources that are likely to drift, at least once every 14 days.",
+     "timeframe_num": 14,
+     "timeframe_type": "days"
+    }
+   },
+   {
+    "rule_id": "VDR-TFR-PCD",
+    "name": "Persistently Complete Detection",
+    "class_b": {
+     "force": "SHOULD",
+     "statement": "Providers with Class B Certifications SHOULD persistently perform vulnerability detection on all information resources that are NOT likely to drift, at least once every 6 months.",
+     "timeframe_num": 6,
+     "timeframe_type": "months"
+    },
+    "class_c": {
+     "force": "SHOULD",
+     "statement": "Providers with Class C Certifications SHOULD persistently perform vulnerability detection on all information resources that are NOT likely to drift, at least once every month.",
+     "timeframe_num": 1,
+     "timeframe_type": "months"
+    }
+   },
+   {
+    "rule_id": "VDR-TFR-PVR",
+    "name": "Mitigation and Remediation Expectations",
+    "class_b": {
+     "force": "SHOULD",
+     "statement": "Providers with Class B Certifications SHOULD partially mitigate vulnerabilities, fully mitigate vulnerabilities, or remediate vulnerabilities to a lower potential agency impact within the timeframes from evaluation shown below, factoring for the current Potential Agency Impact N-rating as defined in VER-EVA-EPA (Estimate Potential Agency Impact), internet reachability, and likely exploitability:",
+     "timeframe_num": null,
+     "timeframe_type": null
+    },
+    "class_c": {
+     "force": "SHOULD",
+     "statement": "Providers with Class C Certifications SHOULD partially mitigate vulnerabilities, fully mitigate vulnerabilities, or remediate vulnerabilities to a lower Potential Agency Impact N-rating within the timeframes from evaluation shown below, factoring for the current Potential Agency Impact N-rating as defined in VER-EVA-EPA (Estimate Potential Agency Impact), internet reachability, and likely exploitability:",
+     "timeframe_num": null,
+     "timeframe_type": null
+    }
+   },
+   {
+    "rule_id": "VDR-TFR-PSD",
+    "name": "Persistent Sample Detection",
+    "class_b": {
+     "force": "SHOULD",
+     "statement": "Providers with Class B Certifications SHOULD persistently perform vulnerability detection on representative samples of similar machine-based information resources, at least once every 7 days.",
+     "timeframe_num": 7,
+     "timeframe_type": "days"
+    },
+    "class_c": {
+     "force": "SHOULD",
+     "statement": "Providers with Class C Certifications SHOULD persistently perform vulnerability detection on representative samples of similar machine-based information resources, at least once every 3 days.",
+     "timeframe_num": 3,
+     "timeframe_type": "days"
+    }
+   },
+   {
+    "rule_id": "VDR-TFR-MVX",
+    "name": "Persistent Machine Verification and Validation for 20x",
+    "class_b": {
+     "force": "MUST",
+     "statement": "Providers of FedRAMP 20x Class B offerings MUST verify and validate the status of machine-based information resources at least once every 7 days.",
+     "timeframe_num": 7,
+     "timeframe_type": "days"
+    },
+    "class_c": {
+     "force": "MUST",
+     "statement": "Providers of FedRAMP 20x Class C offerings MUST verify and validate the status of machine-based information resources at least once every 3 days.",
+     "timeframe_num": 3,
+     "timeframe_type": "days"
+    }
+   },
+   {
+    "rule_id": "VER-TFR-MRH",
+    "name": "Historical Activity",
+    "class_b": {
+     "force": "SHOULD",
+     "statement": "Providers with Class B Certifications SHOULD make all recent historical vulnerability detection and response activity available in JSON format for automated retrieval by all necessary parties (e.g. using an API service or similar); this information SHOULD be updated persistently, at least once every month.",
+     "timeframe_num": 1,
+     "timeframe_type": "months"
+    },
+    "class_c": {
+     "force": "SHOULD",
+     "statement": "Providers with Class C Certifications SHOULD make all recent historical vulnerability detection and response activity available in JSON format for automated retrieval by all necessary parties (e.g. using an API service or similar); this information SHOULD be updated persistently, at least once every 14 days.",
+     "timeframe_num": 14,
+     "timeframe_type": "days"
+    }
+   },
+   {
+    "rule_id": "VER-TFR-EVU",
+    "name": "Evaluate Vulnerabilities Quickly",
+    "class_b": {
+     "force": "SHOULD",
+     "statement": "Providers with Class B Certifications SHOULD evaluate ALL vulnerabilities as required by VER-EVA (Evaluation) within 7 days of detection.",
+     "timeframe_num": 7,
+     "timeframe_type": "days"
+    },
+    "class_c": {
+     "force": "SHOULD",
+     "statement": "Providers with Class C Certifications SHOULD evaluate ALL vulnerabilities as required by VER-EVA (Evaluation) within 5 days of detection.",
+     "timeframe_num": 5,
+     "timeframe_type": "days"
+    }
+   },
+   {
+    "rule_id": "VER-TFR-IRI",
+    "name": "Internet-Reachable Incidents",
+    "class_b": {
+     "force": "MAY",
+     "statement": "Providers with Class B Certifications MAY treat internet-reachable likely exploitable vulnerabilities where Potential Agency Impact N-rating > 3 as a FedRAMP Reportable Incident until they are partially mitigated vulnerabilities at N3 or below.",
+     "timeframe_num": null,
+     "timeframe_type": null
+    },
+    "class_c": {
+     "force": "SHOULD",
+     "statement": "Providers with Class C Certifications SHOULD treat internet-reachable likely exploitable vulnerabilities where Potential Agency Impact N-rating > 3 as a FedRAMP Reportable Incident until they are partially mitigated vulnerabilities at N3 or below.",
+     "timeframe_num": null,
+     "timeframe_type": null
+    }
+   },
+   {
+    "rule_id": "VER-TFR-NRI",
+    "name": "Non-Internet-Reachable Incidents",
+    "class_b": {
+     "force": "MAY",
+     "statement": "Providers with Class B Certifications MAY treat likely exploitable vulnerabilities that are NOT internet-reachable where Potential Agency Impact N-rating = 5 as a FedRAMP Reportable Incident until they are partially mitigated vulnerabilities at N4 or below.",
+     "timeframe_num": null,
+     "timeframe_type": null
+    },
+    "class_c": {
+     "force": "MAY",
+     "statement": "Providers with Class C Certifications MAY treat likely exploitable vulnerabilities that are NOT internet-reachable where Potential Agency Impact N-rating = 5 as a FedRAMP Reportable Incident until they are partially mitigated vulnerabilities at N4 or below.",
+     "timeframe_num": null,
+     "timeframe_type": null
+    }
+   }
+  ],
+  "removed": []
+ }
+}

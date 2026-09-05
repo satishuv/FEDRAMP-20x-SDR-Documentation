@@ -1,0 +1,561 @@
+{
+ "meta": {
+  "derived_from": "rule-catalog.json / ksi-catalog.json",
+  "dataset_version": "2026.07.14.01",
+  "generated": "deterministic build from dataset 2026.07.14.01",
+  "path": "FedRAMP 20x Program Certification",
+  "filter": "rules whose affects includes Providers"
+ },
+ "note": "Rules in the catalog that do not affect Providers; retained for traceability only.",
+ "count": 66,
+ "rules": [
+  {
+   "rule_id": "AFC-FRP-VRE",
+   "family": "AFC",
+   "affects": [
+    "FedRAMP"
+   ]
+  },
+  {
+   "rule_id": "AFC-FRP-CDS",
+   "family": "AFC",
+   "affects": [
+    "FedRAMP"
+   ]
+  },
+  {
+   "rule_id": "AFC-FRP-UFS",
+   "family": "AFC",
+   "affects": [
+    "FedRAMP"
+   ]
+  },
+  {
+   "rule_id": "AFC-FRP-PNT",
+   "family": "AFC",
+   "affects": [
+    "FedRAMP"
+   ]
+  },
+  {
+   "rule_id": "AFC-FRP-RQA",
+   "family": "AFC",
+   "affects": [
+    "FedRAMP"
+   ]
+  },
+  {
+   "rule_id": "AFC-FRP-ERT",
+   "family": "AFC",
+   "affects": [
+    "FedRAMP"
+   ]
+  },
+  {
+   "rule_id": "AFC-FRP-COR",
+   "family": "AFC",
+   "affects": [
+    "FedRAMP"
+   ]
+  },
+  {
+   "rule_id": "AFC-FRP-RPM",
+   "family": "AFC",
+   "affects": [
+    "FedRAMP"
+   ]
+  },
+  {
+   "rule_id": "AGU-AGC-AIP",
+   "family": "AGU",
+   "affects": [
+    "Agencies"
+   ]
+  },
+  {
+   "rule_id": "AGU-AGC-NAA",
+   "family": "AGU",
+   "affects": [
+    "Agencies"
+   ]
+  },
+  {
+   "rule_id": "AGU-AGC-GRC",
+   "family": "AGU",
+   "affects": [
+    "Agencies"
+   ]
+  },
+  {
+   "rule_id": "AGU-AGC-NAI",
+   "family": "AGU",
+   "affects": [
+    "Agencies"
+   ]
+  },
+  {
+   "rule_id": "AGU-AGC-NAR",
+   "family": "AGU",
+   "affects": [
+    "Agencies"
+   ]
+  },
+  {
+   "rule_id": "AGU-AGC-TPP",
+   "family": "AGU",
+   "affects": [
+    "Agencies"
+   ]
+  },
+  {
+   "rule_id": "AGU-AGC-WKG",
+   "family": "AGU",
+   "affects": [
+    "Agencies"
+   ]
+  },
+  {
+   "rule_id": "AGU-AGC-LIA",
+   "family": "AGU",
+   "affects": [
+    "Agencies"
+   ]
+  },
+  {
+   "rule_id": "AGU-AGC-SIN",
+   "family": "AGU",
+   "affects": [
+    "Agencies"
+   ]
+  },
+  {
+   "rule_id": "AGU-USE-ABU",
+   "family": "AGU",
+   "affects": [
+    "Agencies"
+   ]
+  },
+  {
+   "rule_id": "AGU-USE-RCF",
+   "family": "AGU",
+   "affects": [
+    "Agencies"
+   ]
+  },
+  {
+   "rule_id": "AGU-USE-RSG",
+   "family": "AGU",
+   "affects": [
+    "Agencies"
+   ]
+  },
+  {
+   "rule_id": "AGU-USE-AFR",
+   "family": "AGU",
+   "affects": [
+    "Agencies"
+   ]
+  },
+  {
+   "rule_id": "AGU-USE-NFC",
+   "family": "AGU",
+   "affects": [
+    "Agencies"
+   ]
+  },
+  {
+   "rule_id": "AGU-USE-ROR",
+   "family": "AGU",
+   "affects": [
+    "Agencies"
+   ]
+  },
+  {
+   "rule_id": "AGU-USE-DSO",
+   "family": "AGU",
+   "affects": [
+    "Agencies"
+   ]
+  },
+  {
+   "rule_id": "AGU-USE-NPC",
+   "family": "AGU",
+   "affects": [
+    "Agencies"
+   ]
+  },
+  {
+   "rule_id": "AGU-USE-RIR",
+   "family": "AGU",
+   "affects": [
+    "Agencies"
+   ]
+  },
+  {
+   "rule_id": "AGU-USE-CLA",
+   "family": "AGU",
+   "affects": [
+    "Agencies"
+   ]
+  },
+  {
+   "rule_id": "AGU-SPN-MRC",
+   "family": "AGU",
+   "affects": [
+    "Agencies"
+   ]
+  },
+  {
+   "rule_id": "CCM-AGM-ROR",
+   "family": "CCM",
+   "affects": [
+    "Agencies"
+   ]
+  },
+  {
+   "rule_id": "CCM-AGM-CSC",
+   "family": "CCM",
+   "affects": [
+    "Agencies"
+   ]
+  },
+  {
+   "rule_id": "IEC-FRP-ORV",
+   "family": "IEC",
+   "affects": [
+    "FedRAMP"
+   ]
+  },
+  {
+   "rule_id": "IVV-IAS-VIM",
+   "family": "IVV",
+   "affects": [
+    "Assessors"
+   ]
+  },
+  {
+   "rule_id": "IVV-IAS-VEF",
+   "family": "IVV",
+   "affects": [
+    "Assessors"
+   ]
+  },
+  {
+   "rule_id": "IVV-IAS-SUM",
+   "family": "IVV",
+   "affects": [
+    "Assessors"
+   ]
+  },
+  {
+   "rule_id": "IVV-IAS-OSA",
+   "family": "IVV",
+   "affects": [
+    "Assessors"
+   ]
+  },
+  {
+   "rule_id": "IVV-IAS-VIP",
+   "family": "IVV",
+   "affects": [
+    "Assessors"
+   ]
+  },
+  {
+   "rule_id": "IVV-IAS-EPX",
+   "family": "IVV",
+   "affects": [
+    "Assessors"
+   ]
+  },
+  {
+   "rule_id": "IVV-IAS-SHA",
+   "family": "IVV",
+   "affects": [
+    "Assessors"
+   ]
+  },
+  {
+   "rule_id": "MKT-FRP-SOF",
+   "family": "MKT",
+   "affects": [
+    "FedRAMP"
+   ]
+  },
+  {
+   "rule_id": "MKT-IAS-OFR",
+   "family": "MKT",
+   "affects": [
+    "Assessors"
+   ]
+  },
+  {
+   "rule_id": "MKT-IAS-WEB",
+   "family": "MKT",
+   "affects": [
+    "Assessors"
+   ]
+  },
+  {
+   "rule_id": "MKT-IAS-LRQ",
+   "family": "MKT",
+   "affects": [
+    "Assessors"
+   ]
+  },
+  {
+   "rule_id": "MKT-CAS-WEB",
+   "family": "MKT",
+   "affects": [
+    "Advisors"
+   ]
+  },
+  {
+   "rule_id": "MKT-CAS-LRQ",
+   "family": "MKT",
+   "affects": [
+    "Advisors"
+   ]
+  },
+  {
+   "rule_id": "MKT-CAS-RFR",
+   "family": "MKT",
+   "affects": [
+    "Advisors"
+   ]
+  },
+  {
+   "rule_id": "REC-FRP-FOC",
+   "family": "REC",
+   "affects": [
+    "FedRAMP"
+   ]
+  },
+  {
+   "rule_id": "REC-FRP-RAO",
+   "family": "REC",
+   "affects": [
+    "FedRAMP"
+   ]
+  },
+  {
+   "rule_id": "REC-FRP-DRD",
+   "family": "REC",
+   "affects": [
+    "FedRAMP"
+   ]
+  },
+  {
+   "rule_id": "REC-IAS-ACC",
+   "family": "REC",
+   "affects": [
+    "Assessors"
+   ]
+  },
+  {
+   "rule_id": "REC-IAS-ADA",
+   "family": "REC",
+   "affects": [
+    "Assessors"
+   ]
+  },
+  {
+   "rule_id": "REC-IAS-PSC",
+   "family": "REC",
+   "affects": [
+    "Assessors"
+   ]
+  },
+  {
+   "rule_id": "REC-IAS-ANR",
+   "family": "REC",
+   "affects": [
+    "Assessors"
+   ]
+  },
+  {
+   "rule_id": "REC-IAS-RAS",
+   "family": "REC",
+   "affects": [
+    "Assessors"
+   ]
+  },
+  {
+   "rule_id": "REC-IAS-RAR",
+   "family": "REC",
+   "affects": [
+    "Assessors"
+   ]
+  },
+  {
+   "rule_id": "REC-IAS-RQU",
+   "family": "REC",
+   "affects": [
+    "Assessors"
+   ]
+  },
+  {
+   "rule_id": "REC-IAS-AFI",
+   "family": "REC",
+   "affects": [
+    "Assessors"
+   ]
+  },
+  {
+   "rule_id": "REC-IAS-CFI",
+   "family": "REC",
+   "affects": [
+    "Assessors"
+   ]
+  },
+  {
+   "rule_id": "REC-IAS-PST",
+   "family": "REC",
+   "affects": [
+    "Assessors"
+   ]
+  },
+  {
+   "rule_id": "REC-IAS-CAP",
+   "family": "REC",
+   "affects": [
+    "Assessors"
+   ]
+  },
+  {
+   "rule_id": "REC-IAS-INV",
+   "family": "REC",
+   "affects": [
+    "Assessors"
+   ]
+  },
+  {
+   "rule_id": "REC-IAS-SEP",
+   "family": "REC",
+   "affects": [
+    "Assessors"
+   ]
+  },
+  {
+   "rule_id": "SCN-FRP-CAP",
+   "family": "SCN",
+   "affects": [
+    "FedRAMP"
+   ]
+  },
+  {
+   "rule_id": "VER-FRP-ARP",
+   "family": "VER",
+   "affects": [
+    "FedRAMP"
+   ]
+  },
+  {
+   "rule_id": "VER-FRP-ADV",
+   "family": "VER",
+   "affects": [
+    "FedRAMP"
+   ]
+  },
+  {
+   "rule_id": "VER-AGM-RVR",
+   "family": "VER",
+   "affects": [
+    "Agencies"
+   ]
+  },
+  {
+   "rule_id": "VER-AGM-MAP",
+   "family": "VER",
+   "affects": [
+    "Agencies"
+   ]
+  }
+ ],
+ "subset_applicability_excluded_note": "Provider rules excluded because their subset applicability (types/paths/classes) does not match the target profile of 20x Program Certification. Found via validation against the live fedramp.gov per-class ruleset reference on 2026-09-03.",
+ "subset_applicability_excluded_class_a": [],
+ "subset_applicability_excluded_class_b": [
+  {
+   "rule_id": "FRC-APS-ATO",
+   "family": "FRC",
+   "subset": "APS",
+   "reason": "subset types ['Rev5'] exclude 20x"
+  },
+  {
+   "rule_id": "FRC-CCL-UCC",
+   "family": "FRC",
+   "subset": "CCL",
+   "reason": "subset types ['Rev5'] exclude 20x"
+  },
+  {
+   "rule_id": "FRC-CCL-DCC",
+   "family": "FRC",
+   "subset": "CCL",
+   "reason": "subset types ['Rev5'] exclude 20x"
+  },
+  {
+   "rule_id": "FRC-CCL-DNP",
+   "family": "FRC",
+   "subset": "CCL",
+   "reason": "subset types ['Rev5'] exclude 20x"
+  }
+ ],
+ "subset_applicability_excluded_class_c": [
+  {
+   "rule_id": "FRC-APS-ATO",
+   "family": "FRC",
+   "subset": "APS",
+   "reason": "subset types ['Rev5'] exclude 20x"
+  },
+  {
+   "rule_id": "FRC-CCL-UCC",
+   "family": "FRC",
+   "subset": "CCL",
+   "reason": "subset types ['Rev5'] exclude 20x"
+  },
+  {
+   "rule_id": "FRC-CCL-DCC",
+   "family": "FRC",
+   "subset": "CCL",
+   "reason": "subset types ['Rev5'] exclude 20x"
+  },
+  {
+   "rule_id": "FRC-CCL-DNP",
+   "family": "FRC",
+   "subset": "CCL",
+   "reason": "subset types ['Rev5'] exclude 20x"
+  }
+ ],
+ "subset_applicability_excluded_class_d": [
+  {
+   "rule_id": "FRC-APS-ATO",
+   "family": "FRC",
+   "subset": "APS",
+   "reason": "subset types ['Rev5'] exclude 20x"
+  },
+  {
+   "rule_id": "FRC-CCL-UCC",
+   "family": "FRC",
+   "subset": "CCL",
+   "reason": "subset types ['Rev5'] exclude 20x"
+  },
+  {
+   "rule_id": "FRC-CCL-DCC",
+   "family": "FRC",
+   "subset": "CCL",
+   "reason": "subset types ['Rev5'] exclude 20x"
+  },
+  {
+   "rule_id": "FRC-CCL-DNP",
+   "family": "FRC",
+   "subset": "CCL",
+   "reason": "subset types ['Rev5'] exclude 20x"
+  },
+  {
+   "rule_id": "VDR-TFR-MVX",
+   "family": "VDR",
+   "subset": "TFR",
+   "reason": "no statement resolvable for class D: varies_by_class defines a/b/c only and there is no top-level statement"
+  }
+ ]
+}
