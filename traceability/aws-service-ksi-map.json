@@ -1,0 +1,1312 @@
+{
+ "meta": {
+  "title": "AWS service to Key Security Indicator (KSI) implementation map",
+  "provenance": "Seeded from AWS Security Assurance Services internal implementation guidance (2026-09); KSI identifiers, names, families, and canonical control lists verified against the canonical CR26 dataset. Guidance text is example reference architecture, not a compliance claim.",
+  "dataset_version": "2026.07.14.01",
+  "count": 46,
+  "missing_ksis": [],
+  "name_or_id_problems": [],
+  "note_on_controls": "rev5_controls_workbook is the guidance author's mapping; rev5_controls_canonical is the official controls field from the dataset. Where they differ, the canonical list governs."
+ },
+ "ksis": {
+  "KSI-CED-RAT": {
+   "name": "Reviewing All Training",
+   "family": "CED",
+   "family_name": "Cybersecurity Education",
+   "aws_implementation": "Store training completion records and curriculum artifacts in Amazon Simple Storage Service (Amazon S3) with versioning and AWS Key Management Service (AWS KMS) encryption. Use an Amazon EventBridge schedule plus an AWS Lambda function to check record freshness against the review cadence and to write a result to Amazon S3. Tag high-risk-role and developer accounts in AWS IAM Identity Center so training coverage can be reconciled against the workforce roster.",
+   "verify_method": "AWS Config custom rule (backed by AWS Lambda) that evaluates whether the training-records object in Amazon S3 exists, is current within the defined review interval, and covers each required audience; reports COMPLIANT or NON_COMPLIANT.",
+   "validate_method": "Amazon EventBridge scheduled AWS Lambda check that compares completion records to the AWS IAM Identity Center workforce roster, emits an Amazon CloudWatch metric for coverage percentage and staleness, and raises an AWS Security Hub finding when coverage drops below the threshold.",
+   "rev5_controls_workbook": [
+    "at-2",
+    "at-2.2",
+    "at-2.3",
+    "at-3",
+    "at-3.5",
+    "at-4",
+    "cp-3",
+    "ir-2",
+    "ir-2.3",
+    "ps-6",
+    "sr-11.1"
+   ],
+   "rev5_controls_canonical": [
+    "cp-3",
+    "ir-2",
+    "ps-6",
+    "at-2",
+    "at-2.2",
+    "at-2.3",
+    "at-3.5",
+    "at-4",
+    "ir-2.3",
+    "at-3",
+    "sr-11.1"
+   ]
+  },
+  "KSI-CMT-LMC": {
+   "name": "Logging Changes",
+   "family": "CMT",
+   "family_name": "Change Management",
+   "aws_implementation": "Turn on AWS CloudTrail (management and data events) organization-wide and AWS Config recording for all supported resource types. Route change events through Amazon EventBridge to Amazon CloudWatch and AWS Security Hub. Deliver logs to Amazon Simple Storage Service (Amazon S3) with an AWS Key Management Service (AWS KMS) customer managed key.",
+   "verify_method": "AWS Config managed rules `cloudtrail-enabled`, `multi-region-cloudtrail-enabled`, and `cloud-trail-log-file-validation-enabled` confirm logging is configured and immutable.",
+   "validate_method": "Amazon EventBridge rule on AWS CloudTrail change events raises an Amazon CloudWatch metric and an AWS Security Hub finding when a change lands, proving change events are captured and observable in near real time.",
+   "rev5_controls_workbook": [
+    "au-2",
+    "cm-3",
+    "cm-3.2",
+    "cm-4.2",
+    "cm-6",
+    "cm-8.3",
+    "ma-2"
+   ],
+   "rev5_controls_canonical": [
+    "au-2",
+    "cm-3",
+    "cm-3.2",
+    "cm-4.2",
+    "cm-6",
+    "cm-8.3",
+    "ma-2"
+   ]
+  },
+  "KSI-CMT-RMV": {
+   "name": "Redeploying vs Modifying",
+   "family": "CMT",
+   "family_name": "Change Management",
+   "aws_implementation": "Define infrastructure as code in AWS CloudFormation (or the AWS Cloud Development Kit) stored in a version-controlled repository. Deploy through AWS CodePipeline and AWS CodeBuild. Restrict console and API mutation with AWS Identity and Access Management (IAM) permission boundaries so changes flow through the pipeline. Prefer immutable AWS Fargate task definitions and AWS Lambda versions over in-place edits.",
+   "verify_method": "AWS Config detects drift by comparing deployed resources to the AWS CloudFormation stack template and flags manually modified resources as NON_COMPLIANT.",
+   "validate_method": "AWS CloudTrail plus Amazon EventBridge detects mutating API calls made outside the deployment role and raises an AWS Security Hub finding, showing that live modification is caught.",
+   "rev5_controls_workbook": [
+    "cm-2",
+    "cm-3",
+    "cm-5",
+    "cm-6",
+    "cm-7",
+    "cm-8.1",
+    "si-3"
+   ],
+   "rev5_controls_canonical": [
+    "cm-2",
+    "cm-3",
+    "cm-5",
+    "cm-6",
+    "cm-7",
+    "cm-8.1",
+    "si-3"
+   ]
+  },
+  "KSI-CMT-RVP": {
+   "name": "Reviewing Change Procedures",
+   "family": "CMT",
+   "family_name": "Change Management",
+   "aws_implementation": "Keep the change management procedure in Amazon S3 with versioning. Record change approvals and reviews in the pipeline. Use an Amazon EventBridge schedule and AWS Lambda to check the procedure's review date and to summarize change metrics from AWS CloudTrail.",
+   "verify_method": "AWS Config custom rule (AWS Lambda backed) confirms the change management procedure document exists and was reviewed within the defined interval.",
+   "validate_method": "Amazon EventBridge scheduled AWS Lambda job aggregates change success, rollback, and unauthorized-change counts from AWS CloudTrail into an Amazon CloudWatch dashboard used in the periodic review.",
+   "rev5_controls_workbook": [
+    "cm-3",
+    "cm-3.2",
+    "cm-3.4",
+    "cm-5",
+    "cm-7.1",
+    "cm-9"
+   ],
+   "rev5_controls_canonical": [
+    "cm-3",
+    "cm-3.2",
+    "cm-3.4",
+    "cm-5",
+    "cm-7.1",
+    "cm-9"
+   ]
+  },
+  "KSI-CMT-VTD": {
+   "name": "Validating Throughout Deployment",
+   "family": "CMT",
+   "family_name": "Change Management",
+   "aws_implementation": "Add automated test, security scan, and validation stages to AWS CodePipeline using AWS CodeBuild. Run Amazon Inspector scans on container images in Amazon Elastic Container Registry (Amazon ECR). Gate promotion on stage success and use AWS CloudFormation change sets before applying.",
+   "verify_method": "AWS Config confirms AWS CodePipeline stages and required approval and test gates are present in the pipeline definition.",
+   "validate_method": "AWS CodePipeline and AWS CodeBuild run automated tests and Amazon Inspector scans on each change; results and pass or fail gate outcomes are emitted to Amazon CloudWatch and AWS Security Hub, proving validation runs on every deployment.",
+   "rev5_controls_workbook": [
+    "cm-3",
+    "cm-3.2",
+    "cm-4.2",
+    "si-2"
+   ],
+   "rev5_controls_canonical": [
+    "cm-3",
+    "cm-3.2",
+    "cm-4.2",
+    "si-2"
+   ]
+  },
+  "KSI-CNA-DFP": {
+   "name": "Defining Functionality and Privileges",
+   "family": "CNA",
+   "family_name": "Cloud Native Architecture",
+   "aws_implementation": "Define each workload role and service permission as least-privilege AWS Identity and Access Management (IAM) policies and AWS Organizations service control policies. Constrain compute to purpose-specific AWS Fargate task roles and AWS Lambda execution roles. Codify the definitions in AWS CloudFormation.",
+   "verify_method": "AWS Config managed rules `iam-policy-no-statements-with-admin-access` and `ecs-task-definition-user-for-host-mode-check` confirm privileges match the defined baseline.",
+   "validate_method": "AWS CloudTrail with Amazon EventBridge and IAM Access Analyzer surface use of privileges outside the defined set, raising an AWS Security Hub finding.",
+   "rev5_controls_workbook": [
+    "cm-2",
+    "si-3"
+   ],
+   "rev5_controls_canonical": [
+    "cm-2",
+    "si-3"
+   ]
+  },
+  "KSI-CNA-EIS": {
+   "name": "Enforcing Intended State",
+   "family": "CNA",
+   "family_name": "Cloud Native Architecture",
+   "aws_implementation": "Deploy resources from AWS CloudFormation and remediate drift automatically with AWS Config rules plus AWS Systems Manager Automation runbooks. Use AWS CloudFormation drift detection and stack policies to hold state.",
+   "verify_method": "AWS Config detects configuration drift against the AWS CloudFormation baseline and reports NON_COMPLIANT resources.",
+   "validate_method": "AWS Config automatic remediation via AWS Systems Manager Automation returns drifted resources to the intended state and records the correction in AWS Security Hub.",
+   "rev5_controls_workbook": [
+    "ca-2.1",
+    "ca-7.1"
+   ],
+   "rev5_controls_canonical": [
+    "ca-2.1",
+    "ca-7.1"
+   ]
+  },
+  "KSI-CNA-IBP": {
+   "name": "Implementing Best Practices",
+   "family": "CNA",
+   "family_name": "Cloud Native Architecture",
+   "aws_implementation": "Enable AWS Security Hub security standards, including the AWS Foundational Security Best Practices standard and the Center for Internet Security (CIS) AWS Foundations Benchmark. Deploy AWS Config conformance packs mapped to vendor and FedRAMP guidance.",
+   "verify_method": "AWS Config conformance pack evaluates resource configurations against the codified best-practice ruleset.",
+   "validate_method": "AWS Security Hub continuously scores resources against the AWS Foundational Security Best Practices and CIS standards and reports deviations as findings.",
+   "rev5_controls_workbook": [
+    "ac-17.3",
+    "cm-2",
+    "pl-10"
+   ],
+   "rev5_controls_canonical": [
+    "ac-17.3",
+    "cm-2",
+    "pl-10"
+   ]
+  },
+  "KSI-CNA-MAT": {
+   "name": "Minimizing Attack Surface",
+   "family": "CNA",
+   "family_name": "Cloud Native Architecture",
+   "aws_implementation": "Segment workloads across Amazon VPC subnets with tight security groups and network access control lists. Terminate inbound traffic at AWS WAF and an Application Load Balancer. Use AWS PrivateLink for service access, disable public access on Amazon Simple Storage Service (Amazon S3), and encrypt in transit with Transport Layer Security (TLS).",
+   "verify_method": "AWS Config managed rules such as `restricted-ssh`, `s3-bucket-public-read-prohibited`, `vpc-sg-open-only-to-authorized-ports`, and `alb-http-to-https-redirection-check` confirm the surface is constrained.",
+   "validate_method": "Amazon GuardDuty detects lateral movement, reconnaissance, and unexpected connections at runtime and raises AWS Security Hub findings.",
+   "rev5_controls_workbook": [
+    "ac-17.3",
+    "ac-18.1",
+    "ac-18.3",
+    "ac-20.1",
+    "ca-9",
+    "sc-7.3",
+    "sc-7.4",
+    "sc-7.5",
+    "sc-7.8",
+    "sc-8",
+    "sc-10",
+    "si-10",
+    "si-11",
+    "si-16"
+   ],
+   "rev5_controls_canonical": [
+    "ac-17.3",
+    "ac-18.1",
+    "ac-18.3",
+    "ac-20.1",
+    "ca-9",
+    "sc-7.3",
+    "sc-7.4",
+    "sc-7.5",
+    "sc-7.8",
+    "sc-8",
+    "sc-10",
+    "si-10",
+    "si-11",
+    "si-16"
+   ]
+  },
+  "KSI-CNA-OFA": {
+   "name": "Optimizing for Availability",
+   "family": "CNA",
+   "family_name": "Cloud Native Architecture",
+   "aws_implementation": "Run AWS Fargate services across multiple Availability Zones behind an Application Load Balancer with health checks. Use Amazon Aurora Serverless with Multi-AZ, and Amazon S3 for durable object storage. Front the offering with Amazon Route 53 health checks and AWS Auto Scaling.",
+   "verify_method": "AWS Config managed rules `elb-cross-zone-load-balancing-enabled` and `rds-multi-az-support` (or `aurora` equivalents) confirm multi-Availability-Zone configuration.",
+   "validate_method": "Amazon CloudWatch alarms on Application Load Balancer health and Amazon Route 53 health checks demonstrate failover and availability behavior at runtime, surfaced in AWS Security Hub.",
+   "rev5_controls_workbook": [
+    "cp-6",
+    "cp-10 (associated through the recovery planning theme; see note)"
+   ],
+   "rev5_controls_canonical": []
+  },
+  "KSI-CNA-RNT": {
+   "name": "Restricting Network Traffic",
+   "family": "CNA",
+   "family_name": "Cloud Native Architecture",
+   "aws_implementation": "Use Amazon VPC security groups, network access control lists, and route tables to restrict traffic. Filter web traffic with AWS WAF and egress with AWS Network Firewall. Keep private workloads in private subnets reached through AWS PrivateLink.",
+   "verify_method": "AWS Config managed rules `vpc-default-security-group-closed`, `vpc-sg-open-only-to-authorized-ports`, and `restricted-common-ports` confirm traffic restrictions.",
+   "validate_method": "Amazon VPC Flow Logs analyzed through Amazon CloudWatch Logs and Amazon GuardDuty reveal traffic that violates the intended flow and raise AWS Security Hub findings.",
+   "rev5_controls_workbook": [
+    "ac-17.3",
+    "ca-9",
+    "cm-7.1",
+    "sc-7.5",
+    "si-8"
+   ],
+   "rev5_controls_canonical": [
+    "ac-17.3",
+    "ca-9",
+    "cm-7.1",
+    "sc-7.5",
+    "si-8"
+   ]
+  },
+  "KSI-CNA-RVP": {
+   "name": "Reviewing Protections",
+   "family": "CNA",
+   "family_name": "Cloud Native Architecture",
+   "aws_implementation": "Enable AWS Shield and AWS WAF rate-based and managed rule groups on internet-facing endpoints. Monitor with Amazon CloudWatch and AWS WAF logging.",
+   "verify_method": "AWS Config confirms AWS WAF web access control lists and rate-based rules are associated with the Application Load Balancer and Amazon CloudFront distributions.",
+   "validate_method": "AWS WAF and AWS Shield metrics in Amazon CloudWatch show blocked and rate-limited requests, and AWS Security Hub records anomalies, demonstrating the protections work.",
+   "rev5_controls_workbook": [
+    "sc-5",
+    "si-8",
+    "si-8.2"
+   ],
+   "rev5_controls_canonical": [
+    "sc-5",
+    "si-8",
+    "si-8.2"
+   ]
+  },
+  "KSI-CNA-ULN": {
+   "name": "Using Logical Networking",
+   "family": "CNA",
+   "family_name": "Cloud Native Architecture",
+   "aws_implementation": "Enforce flow controls with Amazon VPC subnet segmentation, security groups, network access control lists, AWS Transit Gateway for controlled inter-network routing, and AWS PrivateLink for private service connectivity. Encrypt traffic with TLS and session timeouts.",
+   "verify_method": "AWS Config managed rules for security group and network access control list posture confirm logical segmentation is in place.",
+   "validate_method": "Amazon VPC Flow Logs plus Amazon GuardDuty validate that traffic follows the intended logical paths and flag deviations to AWS Security Hub.",
+   "rev5_controls_workbook": [
+    "ac-12",
+    "ac-17.3",
+    "ca-9",
+    "sc-4",
+    "sc-7",
+    "sc-7.7",
+    "sc-8",
+    "sc-10"
+   ],
+   "rev5_controls_canonical": [
+    "ac-12",
+    "ac-17.3",
+    "ca-9",
+    "sc-4",
+    "sc-7",
+    "sc-7.7",
+    "sc-8",
+    "sc-10"
+   ]
+  },
+  "KSI-IAM-AAM": {
+   "name": "Automating Account Management",
+   "family": "IAM",
+   "family_name": "Identity and Access Management",
+   "aws_implementation": "Provision and deprovision workforce identities in AWS IAM Identity Center through System for Cross-domain Identity Management (SCIM) from the identity provider. Manage IAM roles, permission sets, and groups as code in AWS CloudFormation. Deploy through AWS CodePipeline. Use IAM Access Analyzer for unused-access findings.",
+   "verify_method": "AWS Config managed rules `iam-user-no-policies-check`, `access-keys-rotated`, and `iam-user-unused-credentials-check` confirm account and privilege state, and a custom rule confirms AWS IAM Identity Center SCIM provisioning is enabled.",
+   "validate_method": "AWS CloudTrail plus Amazon EventBridge detect account create, modify, and disable events and IAM Access Analyzer unused-access findings, raising AWS Security Hub findings that show lifecycle automation operating.",
+   "rev5_controls_workbook": [
+    "ac-2.2",
+    "ac-2.3",
+    "ac-2.13",
+    "ac-6.7",
+    "ia-4.4",
+    "ia-12",
+    "ia-12.2",
+    "ia-12.3",
+    "ia-12.5"
+   ],
+   "rev5_controls_canonical": [
+    "ac-2.2",
+    "ac-2.3",
+    "ac-2.13",
+    "ac-6.7",
+    "ia-4.4",
+    "ia-12",
+    "ia-12.2",
+    "ia-12.3",
+    "ia-12.5"
+   ]
+  },
+  "KSI-IAM-APM": {
+   "name": "Adopting Passwordless Methods",
+   "family": "IAM",
+   "family_name": "Identity and Access Management",
+   "aws_implementation": "Configure AWS IAM Identity Center to require FIDO2 or WebAuthn passwordless authenticators, or phishing-resistant MFA with a strong password policy. Federate human access so credentials never live in AWS. Enforce a strong IAM account password policy for any residual local credentials.",
+   "verify_method": "AWS Config managed rules `iam-password-policy` and `mfa-enabled-for-iam-console-access` (and `root-account-mfa-enabled`) confirm MFA and password strength are enforced.",
+   "validate_method": "AWS CloudTrail records authentication events in AWS IAM Identity Center; an Amazon EventBridge rule raises an AWS Security Hub finding on any non-MFA or password-only sign-in, showing phishing-resistant methods are in force.",
+   "rev5_controls_workbook": [
+    "ac-2",
+    "ac-3",
+    "ia-2",
+    "ia-2.1",
+    "ia-2.2",
+    "ia-2.8",
+    "ia-5",
+    "ia-5.1",
+    "ia-5.2",
+    "ia-5.6",
+    "ia-6",
+    "ia-8",
+    "sc-23"
+   ],
+   "rev5_controls_canonical": [
+    "ac-3",
+    "ia-5.1",
+    "ia-5.2",
+    "ia-5.6",
+    "ia-6",
+    "ac-2",
+    "ia-2",
+    "ia-2.1",
+    "ia-2.2",
+    "ia-2.8",
+    "ia-5",
+    "ia-8",
+    "sc-23"
+   ]
+  },
+  "KSI-IAM-ELP": {
+   "name": "Ensuring Least Privilege",
+   "family": "IAM",
+   "family_name": "Identity and Access Management",
+   "aws_implementation": "Scope AWS IAM Identity Center permission sets and IAM policies to least privilege. Bound them with AWS Organizations service control policies and IAM permission boundaries. Review with IAM Access Analyzer and AWS IAM Access Analyzer policy generation.",
+   "verify_method": "AWS Config managed rules `iam-policy-no-statements-with-admin-access` and `iam-policy-no-statements-with-full-access` confirm policies avoid broad grants.",
+   "validate_method": "IAM Access Analyzer continuously identifies unused permissions, roles, and external access and raises AWS Security Hub findings, demonstrating privilege is actively pruned.",
+   "rev5_controls_workbook": [
+    "ac-2.5",
+    "ac-2.6",
+    "ac-3",
+    "ac-4",
+    "ac-6",
+    "ac-12",
+    "ac-14",
+    "ac-17",
+    "ac-17.1",
+    "ac-17.2",
+    "ac-17.3",
+    "ac-20",
+    "ac-20.1",
+    "cm-2.7",
+    "cm-9",
+    "ia-2",
+    "ia-3",
+    "ia-4",
+    "ia-4.4",
+    "ia-5.2",
+    "ia-5.6",
+    "ia-11",
+    "ps-2",
+    "ps-3",
+    "ps-4",
+    "ps-5",
+    "ps-6",
+    "sc-4",
+    "sc-20",
+    "sc-21",
+    "sc-22",
+    "sc-23",
+    "sc-39",
+    "si-3"
+   ],
+   "rev5_controls_canonical": [
+    "ac-2.5",
+    "ac-2.6",
+    "ac-3",
+    "ac-4",
+    "ac-6",
+    "ac-12",
+    "ac-14",
+    "ac-17",
+    "ac-17.1",
+    "ac-17.2",
+    "ac-17.3",
+    "ac-20",
+    "ac-20.1",
+    "cm-2.7",
+    "cm-9",
+    "ia-2",
+    "ia-3",
+    "ia-4",
+    "ia-4.4",
+    "ia-5.2",
+    "ia-5.6",
+    "ia-11",
+    "ps-2",
+    "ps-3",
+    "ps-4",
+    "ps-5",
+    "ps-6",
+    "sc-4",
+    "sc-20",
+    "sc-21",
+    "sc-22",
+    "sc-23",
+    "sc-39",
+    "si-3"
+   ]
+  },
+  "KSI-IAM-JIT": {
+   "name": "Authorizing Just-in-Time",
+   "family": "IAM",
+   "family_name": "Identity and Access Management",
+   "aws_implementation": "Grant human access just in time with AWS IAM Identity Center permission sets that issue short-lived credentials on assumption; avoid standing access. Use attribute-based access control with session tags. Use IAM roles with short session durations for workloads. Approve elevated access through a request workflow (for example AWS Systems Manager Change Manager or a ticketed AWS Step Functions flow).",
+   "verify_method": "AWS Config confirms IAM roles and AWS IAM Identity Center permission sets set short maximum session durations and that no long-lived access keys exist for privileged principals.",
+   "validate_method": "AWS CloudTrail plus Amazon EventBridge validate that elevated sessions are short-lived and tied to approvals, raising an AWS Security Hub finding when standing or long-duration privileged sessions appear.",
+   "rev5_controls_workbook": [
+    "ac-2",
+    "ac-2.1",
+    "ac-2.2",
+    "ac-2.3",
+    "ac-2.4",
+    "ac-2.6",
+    "ac-3",
+    "ac-4",
+    "ac-5",
+    "ac-6",
+    "ac-6.1",
+    "ac-6.2",
+    "ac-6.5",
+    "ac-6.7",
+    "ac-6.9",
+    "ac-6.10",
+    "ac-7",
+    "ac-17",
+    "ac-20.1",
+    "au-9.4",
+    "cm-5",
+    "cm-7",
+    "cm-7.2",
+    "cm-7.5",
+    "cm-9",
+    "ia-4",
+    "ia-4.4",
+    "ia-7",
+    "ps-2",
+    "ps-3",
+    "ps-4",
+    "ps-5",
+    "ps-6",
+    "ps-9",
+    "ra-5.5",
+    "sc-2",
+    "sc-23",
+    "sc-39"
+   ],
+   "rev5_controls_canonical": [
+    "ac-2",
+    "ac-2.1",
+    "ac-2.2",
+    "ac-2.3",
+    "ac-2.4",
+    "ac-2.6",
+    "ac-3",
+    "ac-4",
+    "ac-5",
+    "ac-6",
+    "ac-6.1",
+    "ac-6.2",
+    "ac-6.5",
+    "ac-6.7",
+    "ac-6.9",
+    "ac-6.10",
+    "ac-7",
+    "ac-20.1",
+    "ac-17",
+    "au-9.4",
+    "cm-5",
+    "cm-7",
+    "cm-7.2",
+    "cm-7.5",
+    "cm-9",
+    "ia-4",
+    "ia-4.4",
+    "ia-7",
+    "ps-2",
+    "ps-3",
+    "ps-4",
+    "ps-5",
+    "ps-6",
+    "ps-9",
+    "ra-5.5",
+    "sc-2",
+    "sc-23",
+    "sc-39"
+   ]
+  },
+  "KSI-IAM-SNU": {
+   "name": "Securing Non-User Authentication",
+   "family": "IAM",
+   "family_name": "Identity and Access Management",
+   "aws_implementation": "Authenticate workloads with IAM roles (AWS Fargate task roles, AWS Lambda execution roles) and IAM Roles Anywhere using short-lived credentials. Store any unavoidable service secrets in AWS Secrets Manager with AWS KMS encryption and automatic rotation. Avoid static access keys.",
+   "verify_method": "AWS Config managed rules `access-keys-rotated`, `iam-user-no-policies-check`, and `secretsmanager-rotation-enabled-check` confirm non-user credentials are role-based or rotated.",
+   "validate_method": "AWS CloudTrail plus Amazon EventBridge detect use of static access keys or unrotated secrets by service principals and raise an AWS Security Hub finding, showing secure non-user authentication is enforced.",
+   "rev5_controls_workbook": [
+    "ac-2",
+    "ac-2.2",
+    "ac-4",
+    "ac-6.5",
+    "ia-3",
+    "ia-5.2",
+    "ra-5.5"
+   ],
+   "rev5_controls_canonical": [
+    "ac-2",
+    "ac-2.2",
+    "ac-4",
+    "ac-6.5",
+    "ia-3",
+    "ia-5.2",
+    "ra-5.5"
+   ]
+  },
+  "KSI-IAM-SUS": {
+   "name": "Responding to Suspicious Activity",
+   "family": "IAM",
+   "family_name": "Identity and Access Management",
+   "aws_implementation": "Detect suspicious identity behavior with Amazon GuardDuty (including the IAM finding types) and AWS Security Hub. Trigger automated containment with Amazon EventBridge and AWS Lambda to disable AWS IAM Identity Center access, detach IAM policies, or revoke active sessions. Alert responders through Amazon Simple Notification Service (Amazon SNS).",
+   "verify_method": "AWS Config confirms the Amazon EventBridge rules, AWS Lambda containment functions, and Amazon GuardDuty are enabled and wired to identity findings.",
+   "validate_method": "Amazon GuardDuty raises an identity finding, and the Amazon EventBridge and AWS Lambda automation disables or secures the account and records the action in AWS Security Hub and AWS CloudTrail, proving the response works end to end.",
+   "rev5_controls_workbook": [
+    "ac-2",
+    "ac-2.1",
+    "ac-2.3",
+    "ac-2.13",
+    "ac-7",
+    "ps-4",
+    "ps-8"
+   ],
+   "rev5_controls_canonical": [
+    "ac-2",
+    "ac-2.1",
+    "ac-2.3",
+    "ac-2.13",
+    "ac-7",
+    "ps-4",
+    "ps-8"
+   ]
+  },
+  "KSI-INR-AAR": {
+   "name": "Generating After Action Reports",
+   "family": "INR",
+   "family_name": "Incident Response",
+   "aws_implementation": "Track incidents in AWS Security Hub and a case system. Store after action reports in Amazon S3 with versioning and AWS Key Management Service (AWS KMS) encryption. Use Amazon EventBridge and AWS Lambda to open a report task when an incident closes and to check that a report was filed.",
+   "verify_method": "AWS Config custom rule (AWS Lambda backed) confirms an after action report object exists in Amazon S3 for each closed incident within the required interval.",
+   "validate_method": "Amazon EventBridge and AWS Lambda track incident-close events from AWS Security Hub and emit an Amazon CloudWatch metric for report completion rate, raising a finding when a report is overdue.",
+   "rev5_controls_workbook": [
+    "ir-3",
+    "ir-4",
+    "ir-4.1",
+    "ir-8"
+   ],
+   "rev5_controls_canonical": [
+    "ir-3",
+    "ir-4",
+    "ir-4.1",
+    "ir-8"
+   ]
+  },
+  "KSI-INR-RIR": {
+   "name": "Reviewing Incident Response Procedures",
+   "family": "INR",
+   "family_name": "Incident Response",
+   "aws_implementation": "Keep the incident response procedure and points of contact in versioned Amazon S3. Run periodic tabletop and automated exercises. Use Amazon EventBridge scheduling and AWS Lambda to check procedure freshness and exercise cadence.",
+   "verify_method": "AWS Config custom rule confirms the incident response procedure and contact list exist and were reviewed within the defined interval.",
+   "validate_method": "Amazon EventBridge scheduled AWS Lambda job confirms exercises ran on cadence and summarizes AWS Security Hub incident-handling metrics into an Amazon CloudWatch dashboard for the review.",
+   "rev5_controls_workbook": [
+    "ir-4",
+    "ir-4.1",
+    "ir-6",
+    "ir-6.1",
+    "ir-6.3",
+    "ir-7",
+    "ir-7.1",
+    "ir-8",
+    "ir-8.1",
+    "si-4.5"
+   ],
+   "rev5_controls_canonical": [
+    "ir-4",
+    "ir-4.1",
+    "ir-6",
+    "ir-6.1",
+    "ir-6.3",
+    "ir-7",
+    "ir-7.1",
+    "ir-8",
+    "ir-8.1",
+    "si-4.5"
+   ]
+  },
+  "KSI-INR-RPI": {
+   "name": "Reviewing Past Incidents",
+   "family": "INR",
+   "family_name": "Incident Response",
+   "aws_implementation": "Aggregate historical findings in AWS Security Hub and query long-term event history with AWS CloudTrail Lake and Amazon CloudWatch Logs Insights over logs in Amazon S3. Use scheduled analysis to surface recurring patterns.",
+   "verify_method": "AWS Config custom rule confirms the incident history data store (AWS CloudTrail Lake or the Amazon S3 log archive) is configured with the required retention.",
+   "validate_method": "Amazon EventBridge scheduled AWS Lambda runs AWS CloudTrail Lake or Amazon CloudWatch Logs Insights queries across past incidents, emits pattern metrics, and raises a finding when a recurring pattern is detected.",
+   "rev5_controls_workbook": [
+    "ir-3",
+    "ir-4",
+    "ir-4.1",
+    "ir-5",
+    "ir-8"
+   ],
+   "rev5_controls_canonical": [
+    "ir-3",
+    "ir-4",
+    "ir-4.1",
+    "ir-5",
+    "ir-8"
+   ]
+  },
+  "KSI-MLA-ALA": {
+   "name": "Authorizing Log Access",
+   "family": "MLA",
+   "family_name": "Monitoring, Logging, and Auditing",
+   "aws_implementation": "Store logs in a dedicated, access-restricted Amazon S3 bucket with AWS Key Management Service (AWS KMS) encryption, bucket policies, and AWS Organizations service control policies. Grant read access only through least-privilege AWS Identity and Access Management (IAM) roles. Turn on AWS CloudTrail log file validation.",
+   "verify_method": "AWS Config managed rules `s3-bucket-public-read-prohibited`, `s3-bucket-server-side-encryption-enabled`, and `cloud-trail-log-file-validation-enabled` confirm log access is restricted and logs are tamper-evident.",
+   "validate_method": "AWS CloudTrail data events plus Amazon EventBridge detect access to the log store by principals outside the authorized set and raise an AWS Security Hub finding.",
+   "rev5_controls_workbook": [
+    "si-11"
+   ],
+   "rev5_controls_canonical": [
+    "si-11"
+   ]
+  },
+  "KSI-MLA-EVC": {
+   "name": "Evaluating Configurations",
+   "family": "MLA",
+   "family_name": "Monitoring, Logging, and Auditing",
+   "aws_implementation": "Evaluate live configuration with AWS Config rules and conformance packs. Scan infrastructure as code before deployment in AWS CodeBuild. Track configuration state in AWS Config and score in AWS Security Hub.",
+   "verify_method": "AWS Config conformance pack continuously evaluates resource configurations against the baseline and reports NON_COMPLIANT resources.",
+   "validate_method": "AWS CodeBuild infrastructure-as-code scanning on each change, plus AWS Security Hub configuration findings, validate that configurations are tested before and after deployment.",
+   "rev5_controls_workbook": [
+    "ca-7",
+    "cm-2",
+    "cm-6",
+    "si-7.7"
+   ],
+   "rev5_controls_canonical": [
+    "ca-7",
+    "cm-2",
+    "cm-6",
+    "si-7.7"
+   ]
+  },
+  "KSI-MLA-LET": {
+   "name": "Logging Event Types",
+   "family": "MLA",
+   "family_name": "Monitoring, Logging, and Auditing",
+   "aws_implementation": "Enable AWS CloudTrail management and data events, Amazon VPC Flow Logs, Amazon CloudWatch application and access logs, and service logs. Maintain the logged-event-type list as code and confirm coverage with AWS Config.",
+   "verify_method": "AWS Config managed rules `cloudtrail-enabled`, `vpc-flow-logs-enabled`, and `cloudwatch-log-group-encrypted` confirm the defined event types are being logged.",
+   "validate_method": "Amazon CloudWatch metric filters and Amazon EventBridge confirm each defined event type is arriving, and AWS Security Hub raises a finding when an expected log source goes silent.",
+   "rev5_controls_workbook": [
+    "ac-2.4",
+    "ac-6.9",
+    "ac-17.1",
+    "ac-20.1",
+    "au-2",
+    "au-7.1",
+    "au-12",
+    "si-4.4",
+    "si-4.5",
+    "si-7.7"
+   ],
+   "rev5_controls_canonical": [
+    "ac-2.4",
+    "ac-6.9",
+    "ac-17.1",
+    "ac-20.1",
+    "au-2",
+    "au-7.1",
+    "au-12",
+    "si-4.4",
+    "si-4.5",
+    "si-7.7"
+   ]
+  },
+  "KSI-MLA-OSM": {
+   "name": "Operating SIEM Capability",
+   "family": "MLA",
+   "family_name": "Monitoring, Logging, and Auditing",
+   "aws_implementation": "Centralize findings in AWS Security Hub and events in AWS CloudTrail and Amazon CloudWatch Logs. Query long-term history in AWS CloudTrail Lake. Correlate with Amazon GuardDuty. Deliver to an access-restricted, immutable Amazon S3 archive with AWS KMS and object lock.",
+   "verify_method": "AWS Config confirms centralized logging is configured: organization AWS CloudTrail on, Amazon S3 archive with object lock, and AWS Security Hub enabled across accounts.",
+   "validate_method": "AWS Security Hub and Amazon GuardDuty continuously correlate and surface events, and an Amazon CloudWatch alarm on log-delivery gaps validates the SIEM capability is receiving data.",
+   "rev5_controls_workbook": [
+    "ac-17.1",
+    "ac-20.1",
+    "au-2",
+    "au-3",
+    "au-3.1",
+    "au-4",
+    "au-5",
+    "au-6.1",
+    "au-6.3",
+    "au-7",
+    "au-7.1",
+    "au-8",
+    "au-9",
+    "au-11",
+    "ir-4.1",
+    "si-4.2",
+    "si-4.4",
+    "si-7.7"
+   ],
+   "rev5_controls_canonical": [
+    "ac-17.1",
+    "ac-20.1",
+    "au-2",
+    "au-3",
+    "au-3.1",
+    "au-4",
+    "au-5",
+    "au-6.1",
+    "au-6.3",
+    "au-7",
+    "au-7.1",
+    "au-8",
+    "au-9",
+    "au-11",
+    "ir-4.1",
+    "si-4.2",
+    "si-4.4",
+    "si-7.7"
+   ]
+  },
+  "KSI-MLA-RVL": {
+   "name": "Reviewing Logs",
+   "family": "MLA",
+   "family_name": "Monitoring, Logging, and Auditing",
+   "aws_implementation": "Review logs through AWS Security Hub, Amazon CloudWatch Logs Insights, and AWS CloudTrail Lake queries. Automate recurring review queries and alerting with Amazon EventBridge and AWS Lambda.",
+   "verify_method": "AWS Config custom rule confirms the scheduled review queries and alerting rules exist and are enabled.",
+   "validate_method": "Amazon EventBridge scheduled AWS Lambda runs the review queries, emits an Amazon CloudWatch metric for review completion, and raises AWS Security Hub findings on anomalies, showing reviews occur.",
+   "rev5_controls_workbook": [
+    "ac-2.4",
+    "ac-6.9",
+    "au-2",
+    "au-6",
+    "au-6.1",
+    "si-4",
+    "si-4.4"
+   ],
+   "rev5_controls_canonical": [
+    "ac-2.4",
+    "ac-6.9",
+    "au-2",
+    "au-6",
+    "au-6.1",
+    "si-4",
+    "si-4.4"
+   ]
+  },
+  "KSI-PIY-GIV": {
+   "name": "Generating Inventories",
+   "family": "PIY",
+   "family_name": "Policy and Inventory",
+   "aws_implementation": "Generate inventory from AWS Config resource recording, AWS Systems Manager Inventory, and the AWS resource groups tagging application programming interface. Store snapshots in Amazon Simple Storage Service (Amazon S3). Require tagging through AWS Organizations tag policies.",
+   "verify_method": "AWS Config managed rules `required-tags` and resource-recording coverage confirm all supported resources are tracked and tagged.",
+   "validate_method": "Amazon EventBridge and AWS Lambda generate an on-demand inventory from AWS Config and AWS Systems Manager, compare it to the expected baseline, and raise an AWS Security Hub finding on untracked resources.",
+   "rev5_controls_workbook": [
+    "cm-2.2",
+    "cm-7.5",
+    "cm-8",
+    "cm-8.1",
+    "cm-12",
+    "cm-12.1",
+    "cp-2.8"
+   ],
+   "rev5_controls_canonical": [
+    "cm-2.2",
+    "cm-7.5",
+    "cm-8",
+    "cm-8.1",
+    "cm-12",
+    "cm-12.1",
+    "cp-2.8"
+   ]
+  },
+  "KSI-PIY-RES": {
+   "name": "Reviewing Executive Support",
+   "family": "PIY",
+   "family_name": "Policy and Inventory",
+   "aws_implementation": "Store executive review artifacts (signed security goals, meeting records, resourcing decisions) in versioned Amazon S3 with AWS Key Management Service (AWS KMS) encryption. Track review cadence with Amazon EventBridge scheduling.",
+   "verify_method": "AWS Config custom rule (AWS Lambda backed) confirms the executive review artifact exists and was updated within the defined interval.",
+   "validate_method": "Amazon EventBridge scheduled AWS Lambda checks the review cadence and emits an Amazon CloudWatch metric and AWS Security Hub finding when an executive review is overdue.",
+   "rev5_controls_workbook": [
+    "not associated with specific controls in cr26 (see note)"
+   ],
+   "rev5_controls_canonical": []
+  },
+  "KSI-PIY-RIS": {
+   "name": "Reviewing Investments in Security",
+   "family": "PIY",
+   "family_name": "Policy and Inventory",
+   "aws_implementation": "Track security investments and their outcomes in versioned Amazon S3 artifacts and dashboards. Correlate control coverage from AWS Security Hub security-standard scores over time to show investment effect.",
+   "verify_method": "AWS Config custom rule confirms the investment review artifact exists and is current within the defined interval.",
+   "validate_method": "Amazon CloudWatch dashboard trends AWS Security Hub security-standard scores over time, and a scheduled AWS Lambda raises a finding when scores regress, validating investment effectiveness is reviewed.",
+   "rev5_controls_workbook": [
+    "ac-5",
+    "ca-2",
+    "cp-2.1",
+    "cp-4.1",
+    "ir-3.2",
+    "pm-3",
+    "sa-2",
+    "sa-3",
+    "sr-2.1"
+   ],
+   "rev5_controls_canonical": [
+    "ac-5",
+    "ca-2",
+    "cp-2.1",
+    "cp-4.1",
+    "ir-3.2",
+    "pm-3",
+    "sa-2",
+    "sa-3",
+    "sr-2.1"
+   ]
+  },
+  "KSI-PIY-RSD": {
+   "name": "Reviewing Security in the SDLC",
+   "family": "PIY",
+   "family_name": "Policy and Inventory",
+   "aws_implementation": "Embed security in AWS CodePipeline and AWS CodeBuild with automated tests, static analysis, and Amazon Inspector scanning. Use Kiro for code review in the pipeline, not the Amazon Q Developer integrated development environment plugin. Store SDLC review records in versioned Amazon S3.",
+   "verify_method": "AWS Config confirms the AWS CodePipeline security stages (test, static analysis, scan) are present in the pipeline definition.",
+   "validate_method": "AWS CodePipeline and Amazon Inspector run security stages on each build; pass or fail outcomes and coverage trends feed Amazon CloudWatch and AWS Security Hub, validating security is built into the SDLC.",
+   "rev5_controls_workbook": [
+    "ac-5",
+    "au-3.3",
+    "cm-3.4",
+    "pl-8",
+    "pm-7",
+    "sa-3",
+    "sa-8",
+    "sc-4",
+    "sc-18",
+    "si-10",
+    "si-11",
+    "si-16"
+   ],
+   "rev5_controls_canonical": [
+    "ac-5",
+    "au-3.3",
+    "cm-3.4",
+    "pl-8",
+    "pm-7",
+    "sa-3",
+    "sa-8",
+    "sc-4",
+    "sc-18",
+    "si-10",
+    "si-11",
+    "si-16"
+   ]
+  },
+  "KSI-PIY-RVD": {
+   "name": "Reviewing Vulnerability Disclosures",
+   "family": "PIY",
+   "family_name": "Policy and Inventory",
+   "aws_implementation": "Run a vulnerability disclosure intake (for example a monitored inbox or intake form) feeding a tracking system. Store disclosure records and program documentation in versioned Amazon S3. Track intake-to-resolution metrics with Amazon EventBridge and AWS Lambda.",
+   "verify_method": "AWS Config custom rule confirms the vulnerability disclosure program document and intake configuration exist and are current.",
+   "validate_method": "Amazon EventBridge and AWS Lambda track disclosure intake and resolution timeliness, emit Amazon CloudWatch metrics, and raise an AWS Security Hub finding when disclosures age past the target.",
+   "rev5_controls_workbook": [
+    "ra-5.11"
+   ],
+   "rev5_controls_canonical": [
+    "ra-5.11"
+   ]
+  },
+  "KSI-RPL-ABO": {
+   "name": "Aligning Backups with Objectives",
+   "family": "RPL",
+   "family_name": "Recovery Planning",
+   "aws_implementation": "Centralize backups with AWS Backup policies for Amazon Aurora, Amazon DynamoDB, and Amazon Elastic Block Store. Use Amazon S3 versioning and cross-Region replication for documents. Encrypt backups with AWS Key Management Service (AWS KMS). Set backup frequency and retention to meet the Recovery Point Objective (RPO).",
+   "verify_method": "AWS Config managed rules `backup-plan-min-frequency-and-min-retention-check`, `s3-bucket-versioning-enabled`, and `db-instance-backup-enabled` confirm backups meet the defined frequency and retention.",
+   "validate_method": "AWS Backup job events through Amazon EventBridge confirm backups complete on schedule and emit an Amazon CloudWatch metric, raising an AWS Security Hub finding on failed or missed backups.",
+   "rev5_controls_workbook": [
+    "cm-2.3",
+    "cp-6",
+    "cp-9",
+    "cp-10",
+    "cp-10.2",
+    "si-12"
+   ],
+   "rev5_controls_canonical": [
+    "cm-2.3",
+    "cp-6",
+    "cp-9",
+    "cp-10",
+    "cp-10.2",
+    "si-12"
+   ]
+  },
+  "KSI-RPL-ARP": {
+   "name": "Aligning Recovery Plan",
+   "family": "RPL",
+   "family_name": "Recovery Planning",
+   "aws_implementation": "Keep the recovery plan in versioned Amazon S3. Design cross-Region or cross-Availability-Zone recovery using AWS Backup copy jobs, Amazon Aurora replicas, and Amazon Route 53 failover. Track plan review cadence with Amazon EventBridge.",
+   "verify_method": "AWS Config custom rule (AWS Lambda backed) confirms the recovery plan artifact exists and was reviewed within the defined interval, and that recovery infrastructure (replicas, copy jobs) is configured.",
+   "validate_method": "Amazon EventBridge scheduled AWS Lambda confirms the plan review cadence and validates recovery infrastructure health, raising an AWS Security Hub finding when the plan is stale or infrastructure is missing.",
+   "rev5_controls_workbook": [
+    "cp-2",
+    "cp-2.1",
+    "cp-2.3",
+    "cp-4.1",
+    "cp-6",
+    "cp-6.1",
+    "cp-6.3",
+    "cp-7",
+    "cp-7.1",
+    "cp-7.2",
+    "cp-7.3",
+    "cp-8",
+    "cp-8.1",
+    "cp-8.2",
+    "cp-10",
+    "cp-10.2"
+   ],
+   "rev5_controls_canonical": [
+    "cp-2",
+    "cp-2.1",
+    "cp-2.3",
+    "cp-4.1",
+    "cp-6",
+    "cp-6.1",
+    "cp-6.3",
+    "cp-7",
+    "cp-7.1",
+    "cp-7.2",
+    "cp-7.3",
+    "cp-8",
+    "cp-8.1",
+    "cp-8.2",
+    "cp-10",
+    "cp-10.2"
+   ]
+  },
+  "KSI-RPL-RRO": {
+   "name": "Reviewing Recovery Objectives",
+   "family": "RPL",
+   "family_name": "Recovery Planning",
+   "aws_implementation": "Record RTO and RPO targets in the recovery plan in versioned Amazon S3. Configure AWS Backup and replication settings to the defined RPO. Track review cadence with Amazon EventBridge and AWS Lambda.",
+   "verify_method": "AWS Config custom rule confirms the documented RTO and RPO exist and were reviewed within the interval, and that backup settings match the stated RPO.",
+   "validate_method": "Amazon EventBridge scheduled AWS Lambda compares actual backup and replication intervals against the stated RPO, emits an Amazon CloudWatch metric, and raises an AWS Security Hub finding on misalignment.",
+   "rev5_controls_workbook": [
+    "cp-2.3",
+    "cp-10"
+   ],
+   "rev5_controls_canonical": [
+    "cp-2.3",
+    "cp-10"
+   ]
+  },
+  "KSI-RPL-TRC": {
+   "name": "Testing Recovery Capabilities",
+   "family": "RPL",
+   "family_name": "Recovery Planning",
+   "aws_implementation": "Run restore tests with AWS Backup restore-testing plans and periodic recovery exercises in an isolated Amazon Virtual Private Cloud (Amazon VPC). Measure actual recovery time against the RTO. Record results in versioned Amazon S3.",
+   "verify_method": "AWS Config confirms an AWS Backup restore-testing plan is configured and scheduled.",
+   "validate_method": "AWS Backup restore-testing jobs run on schedule; Amazon EventBridge captures pass or fail and measured recovery time, emits an Amazon CloudWatch metric, and raises an AWS Security Hub finding on a failed restore or an RTO breach.",
+   "rev5_controls_workbook": [
+    "cp-2.1",
+    "cp-2.3",
+    "cp-4",
+    "cp-4.1",
+    "cp-6",
+    "cp-6.1",
+    "cp-9.1",
+    "cp-10",
+    "ir-3",
+    "ir-3.2"
+   ],
+   "rev5_controls_canonical": [
+    "cp-2.1",
+    "cp-2.3",
+    "cp-4",
+    "cp-4.1",
+    "cp-6",
+    "cp-6.1",
+    "cp-9.1",
+    "cp-10",
+    "ir-3",
+    "ir-3.2"
+   ]
+  },
+  "KSI-SCR-MIT": {
+   "name": "Mitigating Supply Chain Risk",
+   "family": "SCR",
+   "family_name": "Supply Chain Risk",
+   "aws_implementation": "Scan software composition and dependencies with Amazon Inspector across AWS Lambda and Amazon ECR container images. Generate and retain a software bill of materials (SBOM) from Amazon Inspector in Amazon Simple Storage Service (Amazon S3). Restrict sources to approved registries and vet suppliers. Gate builds in AWS CodePipeline on scan results.",
+   "verify_method": "AWS Config confirms Amazon Inspector scanning is enabled for Amazon ECR and AWS Lambda and that image sources are restricted to approved registries.",
+   "validate_method": "Amazon Inspector continuously produces vulnerability and SBOM findings routed to AWS Security Hub; a build gate in AWS CodePipeline blocks components that fail the risk threshold, showing mitigation in action.",
+   "rev5_controls_workbook": [
+    "ac-20",
+    "ca-7.4",
+    "ra-3.1",
+    "sa-9",
+    "sa-10",
+    "sa-11",
+    "sa-15.3",
+    "sa-22",
+    "sc-18",
+    "si-7.1",
+    "sr-5",
+    "sr-6"
+   ],
+   "rev5_controls_canonical": [
+    "ac-20",
+    "ra-3.1",
+    "sa-9",
+    "sa-10",
+    "sa-11",
+    "sa-15.3",
+    "sa-22",
+    "si-7.1",
+    "sr-5",
+    "sr-6",
+    "ca-7.4",
+    "sc-18"
+   ]
+  },
+  "KSI-SCR-MON": {
+   "name": "Monitoring Supply Chain Risk",
+   "family": "SCR",
+   "family_name": "Supply Chain Risk",
+   "aws_implementation": "Continuously monitor dependencies and images with Amazon Inspector. Track upstream advisories and correlate with the SBOM. Route notifications through Amazon EventBridge and Amazon Simple Notification Service (Amazon SNS). Record supplier notification requirements in supplier agreements.",
+   "verify_method": "AWS Config confirms Amazon Inspector continuous scanning and the alerting pipeline (Amazon EventBridge to Amazon SNS) are enabled.",
+   "validate_method": "Amazon Inspector raises a new finding when an upstream vulnerability affects a monitored dependency, Amazon EventBridge notifies responders, and AWS Security Hub records it, validating active monitoring.",
+   "rev5_controls_workbook": [
+    "ac-20",
+    "ca-3",
+    "ir-6.3",
+    "ps-7",
+    "ra-5",
+    "sa-9",
+    "si-5",
+    "sr-5",
+    "sr-6",
+    "sr-8"
+   ],
+   "rev5_controls_canonical": [
+    "ac-20",
+    "ca-3",
+    "ir-6.3",
+    "ps-7",
+    "ra-5",
+    "sa-9",
+    "si-5",
+    "sr-5",
+    "sr-6",
+    "sr-8"
+   ]
+  },
+  "KSI-SVC-ACM": {
+   "name": "Automating Configuration Management",
+   "family": "SVC",
+   "family_name": "Service Configuration",
+   "aws_implementation": "Define configuration as code in AWS CloudFormation and deploy through AWS CodePipeline. Detect drift with AWS Config and remediate with AWS Systems Manager Automation. Baseline against AWS Config conformance packs.",
+   "verify_method": "AWS Config detects drift against the AWS CloudFormation baseline and reports NON_COMPLIANT resources.",
+   "validate_method": "AWS Config automatic remediation via AWS Systems Manager Automation corrects drift and records the correction in AWS Security Hub, validating configuration management operates.",
+   "rev5_controls_workbook": [
+    "ac-2.4",
+    "cm-2",
+    "cm-2.2",
+    "cm-2.3",
+    "cm-6",
+    "cm-7.1",
+    "pl-9",
+    "pl-10",
+    "sa-5",
+    "si-5",
+    "sr-10"
+   ],
+   "rev5_controls_canonical": [
+    "ac-2.4",
+    "cm-2",
+    "cm-2.2",
+    "cm-2.3",
+    "cm-6",
+    "cm-7.1",
+    "pl-9",
+    "pl-10",
+    "sa-5",
+    "si-5",
+    "sr-10"
+   ]
+  },
+  "KSI-SVC-ASM": {
+   "name": "Automating Secret Management",
+   "family": "SVC",
+   "family_name": "Service Configuration",
+   "aws_implementation": "Store secrets in AWS Secrets Manager and parameters in AWS Systems Manager Parameter Store, encrypted with AWS KMS customer managed keys, with automatic rotation. Manage certificates with AWS Certificate Manager.",
+   "verify_method": "AWS Config managed rules `secretsmanager-rotation-enabled-check`, `secretsmanager-scheduled-rotation-success-check`, and `acm-certificate-expiration-check` confirm rotation and expiry management.",
+   "validate_method": "AWS CloudTrail plus Amazon EventBridge confirm rotation events occur on schedule and raise an AWS Security Hub finding on a rotation failure or a stale secret, validating automation works.",
+   "rev5_controls_workbook": [
+    "ac-17.2",
+    "ia-5.2",
+    "ia-5.6",
+    "sc-12",
+    "sc-17"
+   ],
+   "rev5_controls_canonical": [
+    "ac-17.2",
+    "ia-5.2",
+    "ia-5.6",
+    "sc-12",
+    "sc-17"
+   ]
+  },
+  "KSI-SVC-EIS": {
+   "name": "Evaluating and Improving Security",
+   "family": "SVC",
+   "family_name": "Service Configuration",
+   "aws_implementation": "Score posture continuously with AWS Security Hub security standards and Amazon Inspector. Track improvement actions in a backlog. Baseline with AWS Config conformance packs.",
+   "verify_method": "AWS Config conformance pack evaluates resources against the security baseline and reports gaps.",
+   "validate_method": "AWS Security Hub security-standard scores trended in Amazon CloudWatch show improvements over time, and a scheduled AWS Lambda raises a finding when scores regress, validating continuous improvement.",
+   "rev5_controls_workbook": [
+    "cm-7.1",
+    "cm-12.1",
+    "ma-2",
+    "pl-8",
+    "sc-7",
+    "sc-39",
+    "si-2.2",
+    "si-4",
+    "sr-10"
+   ],
+   "rev5_controls_canonical": [
+    "cm-7.1",
+    "cm-12.1",
+    "ma-2",
+    "pl-8",
+    "sc-7",
+    "sc-39",
+    "si-2.2",
+    "si-4",
+    "sr-10"
+   ]
+  },
+  "KSI-SVC-PRR": {
+   "name": "Preventing Residual Risk",
+   "family": "SVC",
+   "family_name": "Service Configuration",
+   "aws_implementation": "Isolate tenants and workloads with dedicated AWS Key Management Service keys, separate Amazon Simple Storage Service (Amazon S3) prefixes or buckets, and Amazon Virtual Private Cloud (Amazon VPC) segmentation. Use memory and storage isolation provided by AWS Fargate and AWS Lambda. Sanitize storage on decommission.",
+   "verify_method": "AWS Config confirms encryption, isolation settings, and public-access blocks on data stores.",
+   "validate_method": "AWS CloudTrail plus Amazon EventBridge and Amazon Macie detect unexpected access to residual or shared data and raise an AWS Security Hub finding.",
+   "rev5_controls_workbook": [
+    "sc-4"
+   ],
+   "rev5_controls_canonical": [
+    "sc-4"
+   ]
+  },
+  "KSI-SVC-RUD": {
+   "name": "Removing Unwanted Data",
+   "family": "SVC",
+   "family_name": "Service Configuration",
+   "aws_implementation": "Apply Amazon S3 lifecycle policies and object expiration, Amazon DynamoDB time to live, and defined retention on backups in AWS Backup. Use cryptographic erasure through AWS KMS key deletion for data removal.",
+   "verify_method": "AWS Config confirms Amazon S3 lifecycle policies, Amazon DynamoDB time to live, and backup retention settings are configured to the defined retention.",
+   "validate_method": "Amazon EventBridge scheduled AWS Lambda verifies expired data is removed on schedule, emits an Amazon CloudWatch metric, and raises an AWS Security Hub finding on retention violations.",
+   "rev5_controls_workbook": [
+    "si-12.3",
+    "si-18.4"
+   ],
+   "rev5_controls_canonical": [
+    "si-12.3",
+    "si-18.4"
+   ]
+  },
+  "KSI-SVC-SIN": {
+   "name": "Securing Information",
+   "family": "SVC",
+   "family_name": "Service Configuration",
+   "aws_implementation": "Encrypt data at rest with AWS KMS customer managed keys across Amazon S3, Amazon Aurora, and Amazon DynamoDB. Encrypt data in transit with Transport Layer Security (TLS). Block public access and enforce least-privilege access.",
+   "verify_method": "AWS Config managed rules `s3-bucket-server-side-encryption-enabled`, `encrypted-volumes`, `rds-storage-encrypted`, and `s3-bucket-ssl-requests-only` confirm encryption at rest and in transit.",
+   "validate_method": "AWS CloudTrail plus Amazon EventBridge detect unencrypted resource creation or non-TLS access attempts and raise an AWS Security Hub finding, validating encryption is enforced.",
+   "rev5_controls_workbook": [
+    "ac-1",
+    "ac-17.2",
+    "cp-9.8",
+    "sc-8",
+    "sc-8.1",
+    "sc-13",
+    "sc-20",
+    "sc-21",
+    "sc-22",
+    "sc-23",
+    "sc-28",
+    "sc-28.1"
+   ],
+   "rev5_controls_canonical": [
+    "ac-1",
+    "ac-17.2",
+    "cp-9.8",
+    "sc-8",
+    "sc-8.1",
+    "sc-13",
+    "sc-20",
+    "sc-21",
+    "sc-22",
+    "sc-23",
+    "sc-28",
+    "sc-28.1"
+   ]
+  },
+  "KSI-SVC-VCM": {
+   "name": "Validating Communications",
+   "family": "SVC",
+   "family_name": "Service Configuration",
+   "aws_implementation": "Enforce mutual Transport Layer Security and certificate validation with AWS Certificate Manager and AWS PrivateLink. Validate service-to-service identity with AWS Identity and Access Management (IAM) roles and signed requests.",
+   "verify_method": "AWS Config managed rules for TLS enforcement (for example `alb-http-to-https-redirection-check` and `elb-tls-https-listeners-only`) confirm communications are encrypted and validated.",
+   "validate_method": "AWS CloudTrail plus Amazon EventBridge detect non-TLS or unauthenticated communication attempts and raise an AWS Security Hub finding, validating communications integrity.",
+   "rev5_controls_workbook": [
+    "sc-23",
+    "si-7.1"
+   ],
+   "rev5_controls_canonical": [
+    "sc-23",
+    "si-7.1"
+   ]
+  },
+  "KSI-SVC-VRI": {
+   "name": "Validating Resource Integrity",
+   "family": "SVC",
+   "family_name": "Service Configuration",
+   "aws_implementation": "Sign container images with AWS Signer and verify at deployment. Use AWS CloudTrail log file validation, Amazon S3 object integrity checks, and immutable Amazon ECR image tags. Verify infrastructure-as-code integrity in the pipeline.",
+   "verify_method": "AWS Config confirms image signing, immutable tags on Amazon ECR, and AWS CloudTrail log file validation are enabled.",
+   "validate_method": "AWS CodePipeline signature verification at deployment fails and raises an AWS Security Hub finding when an artifact fails its integrity check, validating integrity enforcement.",
+   "rev5_controls_workbook": [
+    "cm-2.2",
+    "cm-8.3",
+    "sc-13",
+    "sc-23",
+    "si-7",
+    "si-7.1",
+    "sr-10"
+   ],
+   "rev5_controls_canonical": [
+    "cm-2.2",
+    "cm-8.3",
+    "sc-13",
+    "sc-23",
+    "si-7",
+    "si-7.1",
+    "sr-10"
+   ]
+  }
+ }
+}
