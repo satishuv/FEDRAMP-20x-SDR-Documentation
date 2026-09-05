@@ -1,0 +1,899 @@
+{
+ "certificationPackageOverviewUri": "https://example.provider.gov-placeholder/cpo.json",
+ "metadata": {
+  "version": "0.1.0",
+  "lastUpdated": "2026-07-14T00:00:00+00:00",
+  "updateSource": "build_sdr.py generator"
+ },
+ "fedRampRequirements": [
+  {
+   "frrID": "AFC-CSO-CRA",
+   "frrImplementationStatus": "Not Implemented",
+   "frrImplementation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrValidation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrAssessment": [
+    "TBD: Independent assessment has not been performed."
+   ],
+   "providerExtensions": {
+    "ruleName": "Complete Required Actions",
+    "family": "AFC",
+    "familyName": "Addressing FedRAMP Communication"
+   }
+  },
+  {
+   "frrID": "AFC-CSO-INB",
+   "frrImplementationStatus": "Not Implemented",
+   "frrImplementation": [
+    "Example (reference architecture, replace with your real implementation): A dedicated FedRAMP security inbox is maintained as a monitored distribution list reaching the security on-call rotation, separate from customer support channels. The address is registered with FedRAMP and published in the certification data."
+   ],
+   "frrValidation": [
+    "Example (reference architecture, replace with your real implementation): A monthly synthetic test email is sent to the inbox; the on-call rotation must acknowledge within the documented response window. Delivery, spam-filter, and distribution-list membership checks run monthly and after any mail-system change."
+   ],
+   "frrAssessment": [
+    "TBD: Independent assessment has not been performed."
+   ],
+   "providerExtensions": {
+    "ruleName": "Maintain a FedRAMP Security Inbox",
+    "family": "AFC",
+    "familyName": "Addressing FedRAMP Communication"
+   }
+  },
+  {
+   "frrID": "AFC-CSO-RCV",
+   "frrImplementationStatus": "Not Implemented",
+   "frrImplementation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrValidation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrAssessment": [
+    "TBD: Independent assessment has not been performed."
+   ],
+   "providerExtensions": {
+    "ruleName": "Receive Email Without Disruption",
+    "family": "AFC",
+    "familyName": "Addressing FedRAMP Communication"
+   }
+  },
+  {
+   "frrID": "CCM-OCR-AVL",
+   "frrImplementationStatus": "Not Implemented",
+   "frrImplementation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrValidation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrAssessment": [
+    "TBD: Independent assessment has not been performed."
+   ],
+   "providerExtensions": {
+    "ruleName": "Report Availability",
+    "family": "CCM",
+    "familyName": "Collaborative Continuous Monitoring"
+   }
+  },
+  {
+   "frrID": "CCM-OCR-NRD",
+   "frrImplementationStatus": "Not Implemented",
+   "frrImplementation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrValidation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrAssessment": [
+    "TBD: Independent assessment has not been performed."
+   ],
+   "providerExtensions": {
+    "ruleName": "Next Report Date",
+    "family": "CCM",
+    "familyName": "Collaborative Continuous Monitoring"
+   }
+  },
+  {
+   "frrID": "CCM-QTR-MTG",
+   "frrImplementationStatus": "Not Implemented",
+   "frrImplementation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrValidation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrAssessment": [
+    "TBD: Independent assessment has not been performed."
+   ],
+   "providerExtensions": {
+    "ruleName": "Quarterly Review Meeting",
+    "family": "CCM",
+    "familyName": "Collaborative Continuous Monitoring"
+   }
+  },
+  {
+   "frrID": "CDS-CSO-AVR",
+   "frrImplementationStatus": "Not Implemented",
+   "frrImplementation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrValidation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrAssessment": [
+    "TBD: Independent assessment has not been performed."
+   ],
+   "providerExtensions": {
+    "ruleName": "Availability Reporting",
+    "family": "CDS",
+    "familyName": "Certification Data Sharing"
+   }
+  },
+  {
+   "frrID": "CDS-CSO-PSM",
+   "frrImplementationStatus": "Not Implemented",
+   "frrImplementation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrValidation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrAssessment": [
+    "TBD: Independent assessment has not been performed."
+   ],
+   "providerExtensions": {
+    "ruleName": "Per-Service Certification Materials",
+    "family": "CDS",
+    "familyName": "Certification Data Sharing"
+   }
+  },
+  {
+   "frrID": "CDS-CSO-PUB",
+   "frrImplementationStatus": "Not Implemented",
+   "frrImplementation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrValidation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrAssessment": [
+    "TBD: Independent assessment has not been performed."
+   ],
+   "providerExtensions": {
+    "ruleName": "Public Information",
+    "family": "CDS",
+    "familyName": "Certification Data Sharing"
+   }
+  },
+  {
+   "frrID": "CDS-CSO-UTC",
+   "frrImplementationStatus": "Not Implemented",
+   "frrImplementation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrValidation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrAssessment": [
+    "TBD: Independent assessment has not been performed."
+   ],
+   "providerExtensions": {
+    "ruleName": "Use Trust Centers",
+    "family": "CDS",
+    "familyName": "Certification Data Sharing"
+   }
+  },
+  {
+   "frrID": "CDS-UTC-AAD",
+   "frrImplementationStatus": "Not Implemented",
+   "frrImplementation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrValidation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrAssessment": [
+    "TBD: Independent assessment has not been performed."
+   ],
+   "providerExtensions": {
+    "ruleName": "Agency Access Denial",
+    "family": "CDS",
+    "familyName": "Certification Data Sharing"
+   }
+  },
+  {
+   "frrID": "CMU-CSO-UVM",
+   "frrImplementationStatus": "Not Implemented",
+   "frrImplementation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrValidation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrAssessment": [
+    "TBD: Independent assessment has not been performed."
+   ],
+   "providerExtensions": {
+    "ruleName": "Using Validated Cryptographic Modules",
+    "family": "CMU",
+    "familyName": "Cryptographic Module Use"
+   }
+  },
+  {
+   "frrID": "CPO-CSX-CPM",
+   "frrImplementationStatus": "Not Implemented",
+   "frrImplementation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrValidation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrAssessment": [
+    "TBD: Independent assessment has not been performed."
+   ],
+   "providerExtensions": {
+    "ruleName": "Certification Package Maintenance for 20x",
+    "family": "CPO",
+    "familyName": "Certification Package Overview"
+   }
+  },
+  {
+   "frrID": "FRC-APP-FIA",
+   "frrImplementationStatus": "Not Implemented",
+   "frrImplementation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrValidation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrAssessment": [
+    "TBD: Independent assessment has not been performed."
+   ],
+   "providerExtensions": {
+    "ruleName": "Fresh Independent Assessment",
+    "family": "FRC",
+    "familyName": "FedRAMP Certification"
+   }
+  },
+  {
+   "frrID": "FRC-CLA-ASF",
+   "frrImplementationStatus": "Not Implemented",
+   "frrImplementation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrValidation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrAssessment": [
+    "TBD: Independent assessment has not been performed."
+   ],
+   "providerExtensions": {
+    "ruleName": "Approved Alternative Security Frameworks",
+    "family": "FRC",
+    "familyName": "FedRAMP Certification"
+   }
+  },
+  {
+   "frrID": "FRC-CLA-EAM",
+   "frrImplementationStatus": "Not Implemented",
+   "frrImplementation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrValidation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrAssessment": [
+    "TBD: Independent assessment has not been performed."
+   ],
+   "providerExtensions": {
+    "ruleName": "External Assessment Materials",
+    "family": "FRC",
+    "familyName": "FedRAMP Certification"
+   }
+  },
+  {
+   "frrID": "FRC-CLA-IVV",
+   "frrImplementationStatus": "Not Implemented",
+   "frrImplementation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrValidation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrAssessment": [
+    "TBD: Independent assessment has not been performed."
+   ],
+   "providerExtensions": {
+    "ruleName": "Optional Independent Verification and Validation",
+    "family": "FRC",
+    "familyName": "FedRAMP Certification"
+   }
+  },
+  {
+   "frrID": "FRC-CLA-MFR",
+   "frrImplementationStatus": "Not Implemented",
+   "frrImplementation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrValidation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrAssessment": [
+    "TBD: Independent assessment has not been performed."
+   ],
+   "providerExtensions": {
+    "ruleName": "Mandatory FedRAMP Rules for Class A",
+    "family": "FRC",
+    "familyName": "FedRAMP Certification"
+   }
+  },
+  {
+   "frrID": "FRC-CLA-OFR",
+   "frrImplementationStatus": "Not Implemented",
+   "frrImplementation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrValidation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrAssessment": [
+    "TBD: Independent assessment has not been performed."
+   ],
+   "providerExtensions": {
+    "ruleName": "Address Optional FedRAMP Rules for Class A",
+    "family": "FRC",
+    "familyName": "FedRAMP Certification"
+   }
+  },
+  {
+   "frrID": "FRC-CLA-RFR",
+   "frrImplementationStatus": "Not Implemented",
+   "frrImplementation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrValidation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrAssessment": [
+    "TBD: Independent assessment has not been performed."
+   ],
+   "providerExtensions": {
+    "ruleName": "Recommended FedRAMP Rules for Class A",
+    "family": "FRC",
+    "familyName": "FedRAMP Certification"
+   }
+  },
+  {
+   "frrID": "FRC-CSO-JSN",
+   "frrImplementationStatus": "Not Implemented",
+   "frrImplementation": [
+    "Example (reference architecture, replace with your real implementation): All machine-readable certification information is produced as JSON validated against the corresponding published FedRAMP JSON schema before release. The generation pipeline pins the current official schema, hash-compares it against the live published schema at each run, and fails the build on any validation error."
+   ],
+   "frrValidation": [
+    "Example (reference architecture, replace with your real implementation): Schema validation runs in CI on every change to certification data; results are retained with the build record. A scheduled job re-validates published artifacts weekly against the live schema to catch in-place schema updates."
+   ],
+   "frrAssessment": [
+    "TBD: Independent assessment has not been performed."
+   ],
+   "providerExtensions": {
+    "ruleName": "FedRAMP JSON Schemas",
+    "family": "FRC",
+    "familyName": "FedRAMP Certification"
+   }
+  },
+  {
+   "frrID": "FRC-CSO-PKG",
+   "frrImplementationStatus": "Not Implemented",
+   "frrImplementation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrValidation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrAssessment": [
+    "TBD: Independent assessment has not been performed."
+   ],
+   "providerExtensions": {
+    "ruleName": "FedRAMP Certification Package",
+    "family": "FRC",
+    "familyName": "FedRAMP Certification"
+   }
+  },
+  {
+   "frrID": "FRC-CSO-POP",
+   "frrImplementationStatus": "Not Implemented",
+   "frrImplementation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrValidation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrAssessment": [
+    "TBD: Independent assessment has not been performed."
+   ],
+   "providerExtensions": {
+    "ruleName": "Pick One Program Certification Type",
+    "family": "FRC",
+    "familyName": "FedRAMP Certification"
+   }
+  },
+  {
+   "frrID": "IEC-CSO-EFR",
+   "frrImplementationStatus": "Not Implemented",
+   "frrImplementation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrValidation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrAssessment": [
+    "TBD: Independent assessment has not been performed."
+   ],
+   "providerExtensions": {
+    "ruleName": "Evaluate FedRAMP Reportability",
+    "family": "IEC",
+    "familyName": "Incident Evaluation and Communication"
+   }
+  },
+  {
+   "frrID": "IEC-CSO-FIR",
+   "frrImplementationStatus": "Not Implemented",
+   "frrImplementation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrValidation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrAssessment": [
+    "TBD: Independent assessment has not been performed."
+   ],
+   "providerExtensions": {
+    "ruleName": "Final Incident Report",
+    "family": "IEC",
+    "familyName": "Incident Evaluation and Communication"
+   }
+  },
+  {
+   "frrID": "IEC-CSO-IIR",
+   "frrImplementationStatus": "Not Implemented",
+   "frrImplementation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrValidation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrAssessment": [
+    "TBD: Independent assessment has not been performed."
+   ],
+   "providerExtensions": {
+    "ruleName": "Initial Incident Report",
+    "family": "IEC",
+    "familyName": "Incident Evaluation and Communication"
+   }
+  },
+  {
+   "frrID": "IEC-CSO-OIR",
+   "frrImplementationStatus": "Not Implemented",
+   "frrImplementation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrValidation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrAssessment": [
+    "TBD: Independent assessment has not been performed."
+   ],
+   "providerExtensions": {
+    "ruleName": "Ongoing Incident Reports",
+    "family": "IEC",
+    "familyName": "Incident Evaluation and Communication"
+   }
+  },
+  {
+   "frrID": "IVV-CSO-FIA",
+   "frrImplementationStatus": "Not Implemented",
+   "frrImplementation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrValidation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrAssessment": [
+    "TBD: Independent assessment has not been performed."
+   ],
+   "providerExtensions": {
+    "ruleName": "FedRAMP Independent Assessments",
+    "family": "IVV",
+    "familyName": "Independent Verification and Validation"
+   }
+  },
+  {
+   "frrID": "IVV-CSX-AIA",
+   "frrImplementationStatus": "Not Implemented",
+   "frrImplementation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrValidation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrAssessment": [
+    "TBD: Independent assessment has not been performed."
+   ],
+   "providerExtensions": {
+    "ruleName": "Annual Independent Assessments for 20x",
+    "family": "IVV",
+    "familyName": "Independent Verification and Validation"
+   }
+  },
+  {
+   "frrID": "MAS-CSO-IIR",
+   "frrImplementationStatus": "Not Implemented",
+   "frrImplementation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrValidation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrAssessment": [
+    "TBD: Independent assessment has not been performed."
+   ],
+   "providerExtensions": {
+    "ruleName": "Identify Information Resources",
+    "family": "MAS",
+    "familyName": "Minimum Assessment Scope"
+   }
+  },
+  {
+   "frrID": "SDR-CSX-KMT",
+   "frrImplementationStatus": "Not Implemented",
+   "frrImplementation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrValidation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrAssessment": [
+    "TBD: Independent assessment has not been performed."
+   ],
+   "providerExtensions": {
+    "ruleName": "Key Security Indicator Metrics",
+    "family": "SDR",
+    "familyName": "Security Decision Record"
+   }
+  },
+  {
+   "frrID": "VDR-CSO-DET",
+   "frrImplementationStatus": "Not Implemented",
+   "frrImplementation": [
+    "Example (reference architecture, replace with your real implementation): Amazon Inspector continuously scans EC2 instances, ECR container images, and Lambda functions for software vulnerabilities across all in-scope accounts. Findings aggregate to Security Hub in the security tooling account. Coverage is verified against the asset inventory so every in-scope machine-based resource has an active scanning source."
+   ],
+   "frrValidation": [
+    "Example (reference architecture, replace with your real implementation): A daily job compares Inspector coverage status against the resource inventory from AWS Config; any in-scope resource without coverage opens a ticket. Finding ingestion freshness is checked daily so no source is silent for more than 24 hours."
+   ],
+   "frrAssessment": [
+    "TBD: Independent assessment has not been performed."
+   ],
+   "providerExtensions": {
+    "ruleName": "Vulnerability Detection",
+    "family": "VDR",
+    "familyName": "Vulnerability Detection and Response"
+   }
+  },
+  {
+   "frrID": "VDR-TFR-MVX",
+   "frrImplementationStatus": "Not Implemented",
+   "frrImplementation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrValidation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrAssessment": [
+    "TBD: Independent assessment has not been performed."
+   ],
+   "providerExtensions": {
+    "ruleName": "Persistent Machine Verification and Validation for 20x",
+    "family": "VDR",
+    "familyName": "Vulnerability Detection and Response"
+   }
+  },
+  {
+   "frrID": "VDR-TFR-PCD",
+   "frrImplementationStatus": "Not Implemented",
+   "frrImplementation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrValidation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrAssessment": [
+    "TBD: Independent assessment has not been performed."
+   ],
+   "providerExtensions": {
+    "ruleName": "Persistently Complete Detection",
+    "family": "VDR",
+    "familyName": "Vulnerability Detection and Response"
+   }
+  },
+  {
+   "frrID": "VDR-TFR-PDD",
+   "frrImplementationStatus": "Not Implemented",
+   "frrImplementation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrValidation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrAssessment": [
+    "TBD: Independent assessment has not been performed."
+   ],
+   "providerExtensions": {
+    "ruleName": "Persistent Drift Detection",
+    "family": "VDR",
+    "familyName": "Vulnerability Detection and Response"
+   }
+  },
+  {
+   "frrID": "VDR-TFR-PSD",
+   "frrImplementationStatus": "Not Implemented",
+   "frrImplementation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrValidation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrAssessment": [
+    "TBD: Independent assessment has not been performed."
+   ],
+   "providerExtensions": {
+    "ruleName": "Persistent Sample Detection",
+    "family": "VDR",
+    "familyName": "Vulnerability Detection and Response"
+   }
+  },
+  {
+   "frrID": "VDR-TFR-PVR",
+   "frrImplementationStatus": "Not Implemented",
+   "frrImplementation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrValidation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrAssessment": [
+    "TBD: Independent assessment has not been performed."
+   ],
+   "providerExtensions": {
+    "ruleName": "Mitigation and Remediation Expectations",
+    "family": "VDR",
+    "familyName": "Vulnerability Detection and Response"
+   }
+  },
+  {
+   "frrID": "VER-TFR-EVU",
+   "frrImplementationStatus": "Not Implemented",
+   "frrImplementation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrValidation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrAssessment": [
+    "TBD: Independent assessment has not been performed."
+   ],
+   "providerExtensions": {
+    "ruleName": "Evaluate Vulnerabilities Quickly",
+    "family": "VER",
+    "familyName": "Vulnerability Evaluation and Reporting"
+   }
+  },
+  {
+   "frrID": "VER-TFR-IRI",
+   "frrImplementationStatus": "Not Implemented",
+   "frrImplementation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrValidation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrAssessment": [
+    "TBD: Independent assessment has not been performed."
+   ],
+   "providerExtensions": {
+    "ruleName": "Internet-Reachable Incidents",
+    "family": "VER",
+    "familyName": "Vulnerability Evaluation and Reporting"
+   }
+  },
+  {
+   "frrID": "VER-TFR-MRH",
+   "frrImplementationStatus": "Not Implemented",
+   "frrImplementation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrValidation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrAssessment": [
+    "TBD: Independent assessment has not been performed."
+   ],
+   "providerExtensions": {
+    "ruleName": "Historical Activity",
+    "family": "VER",
+    "familyName": "Vulnerability Evaluation and Reporting"
+   }
+  },
+  {
+   "frrID": "VER-TFR-NRI",
+   "frrImplementationStatus": "Not Implemented",
+   "frrImplementation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrValidation": [
+    "TBD: Information has not been provided."
+   ],
+   "frrAssessment": [
+    "TBD: Independent assessment has not been performed."
+   ],
+   "providerExtensions": {
+    "ruleName": "Non-Internet-Reachable Incidents",
+    "family": "VER",
+    "familyName": "Vulnerability Evaluation and Reporting"
+   }
+  }
+ ],
+ "keySecurityIndicators": [
+  {
+   "ksiId": "KSI-CED-RAT",
+   "ksiImplementationStatus": "Not Implemented",
+   "ksiImplementation": [
+    "TBD: Information has not been provided."
+   ],
+   "ksiValidation": [
+    "TBD: Information has not been provided."
+   ],
+   "ksiAssessment": [
+    "TBD: Independent assessment has not been performed."
+   ],
+   "ksiTests": [],
+   "ksiEvidence": [],
+   "providerExtensions": {
+    "ksiName": "Reviewing All Training",
+    "family": "CED",
+    "familyName": "Cybersecurity Education"
+   }
+  },
+  {
+   "ksiId": "KSI-CMT-LMC",
+   "ksiImplementationStatus": "Not Implemented",
+   "ksiImplementation": [
+    "Example (reference architecture, replace with your real implementation): All modifications to the cloud service offering are made through version-controlled infrastructure as code deployed by the CI/CD pipeline. AWS CloudTrail organization trail records all management events in every account and region. AWS Config records configuration changes for all supported resource types. Manual changes are detected by comparing CloudTrail write events against pipeline deployment windows."
+   ],
+   "ksiValidation": [
+    "Example (reference architecture, replace with your real implementation): A scheduled validation confirms the organization trail is logging, multi-region, and log-file validated, and that AWS Config recorders are running in every in-scope account and region. An EventBridge rule alerts on any out-of-pipeline write event by a non-pipeline principal."
+   ],
+   "ksiAssessment": [
+    "TBD: Independent assessment has not been performed."
+   ],
+   "ksiTests": [
+    "Example test 1: describe-trails confirms multi-region and log file validation are enabled and the trail is logging (every 6 hours).",
+    "Example test 2: Config aggregator query confirms recorder status is recording in 100 percent of in-scope accounts (daily)."
+   ],
+   "ksiEvidence": [],
+   "providerExtensions": {
+    "ksiName": "Logging Changes",
+    "family": "CMT",
+    "familyName": "Change Management"
+   }
+  },
+  {
+   "ksiId": "KSI-CNA-RNT",
+   "ksiImplementationStatus": "Not Implemented",
+   "ksiImplementation": [
+    "TBD: Information has not been provided."
+   ],
+   "ksiValidation": [
+    "TBD: Information has not been provided."
+   ],
+   "ksiAssessment": [
+    "TBD: Independent assessment has not been performed."
+   ],
+   "ksiTests": [],
+   "ksiEvidence": [],
+   "providerExtensions": {
+    "ksiName": "Restricting Network Traffic",
+    "family": "CNA",
+    "familyName": "Cloud Native Architecture"
+   }
+  },
+  {
+   "ksiId": "KSI-IAM-AAM",
+   "ksiImplementationStatus": "Not Implemented",
+   "ksiImplementation": [
+    "TBD: Information has not been provided."
+   ],
+   "ksiValidation": [
+    "TBD: Information has not been provided."
+   ],
+   "ksiAssessment": [
+    "TBD: Independent assessment has not been performed."
+   ],
+   "ksiTests": [],
+   "ksiEvidence": [],
+   "providerExtensions": {
+    "ksiName": "Automating Account Management",
+    "family": "IAM",
+    "familyName": "Identity and Access Management"
+   }
+  },
+  {
+   "ksiId": "KSI-IAM-APM",
+   "ksiImplementationStatus": "Not Implemented",
+   "ksiImplementation": [
+    "Example (reference architecture, replace with your real implementation): Workforce access uses AWS IAM Identity Center federated to the corporate identity provider. Passwordless FIDO2 security keys are the primary authentication method; where passwordless is not feasible, strong passwords with phishing-resistant MFA (FIDO2/WebAuthn) are enforced by the identity provider conditional access policy. Console password login without MFA is blocked. Programmatic access uses short-lived STS credentials only; no long-lived IAM user access keys exist."
+   ],
+   "ksiValidation": [
+    "Example (reference architecture, replace with your real implementation): A daily AWS Config custom rule checks that no IAM users have console passwords or active access keys. A daily Identity Center API check confirms MFA enforcement is active for every permission set. A CloudTrail Lake query detects any console login event without MFA; any hit creates a high-priority ticket within 15 minutes."
+   ],
+   "ksiAssessment": [
+    "TBD: Independent assessment has not been performed."
+   ],
+   "ksiTests": [
+    "Example test 1: config rule iam-user-no-passwords-or-keys returns COMPLIANT for all accounts (daily).",
+    "Example test 2: CloudTrail Lake query for console login events without MFA returns zero rows (daily)."
+   ],
+   "ksiEvidence": [],
+   "providerExtensions": {
+    "ksiName": "Adopting Passwordless Methods",
+    "family": "IAM",
+    "familyName": "Identity and Access Management"
+   }
+  },
+  {
+   "ksiId": "KSI-INR-RIR",
+   "ksiImplementationStatus": "Not Implemented",
+   "ksiImplementation": [
+    "TBD: Information has not been provided."
+   ],
+   "ksiValidation": [
+    "TBD: Information has not been provided."
+   ],
+   "ksiAssessment": [
+    "TBD: Independent assessment has not been performed."
+   ],
+   "ksiTests": [],
+   "ksiEvidence": [],
+   "providerExtensions": {
+    "ksiName": "Reviewing Incident Response Procedures",
+    "family": "INR",
+    "familyName": "Incident Response"
+   }
+  },
+  {
+   "ksiId": "KSI-SVC-SIN",
+   "ksiImplementationStatus": "Not Implemented",
+   "ksiImplementation": [
+    "Example (reference architecture, replace with your real implementation): All federal information is encrypted in transit with TLS 1.2 or higher using FIPS-validated endpoints where required, and at rest with AWS KMS customer managed keys. S3 buckets enforce bucket-level encryption and deny unencrypted uploads by bucket policy. EBS volumes and RDS storage use KMS CMKs by default via account-level settings. Public access is blocked account-wide for S3."
+   ],
+   "ksiValidation": [
+    "Example (reference architecture, replace with your real implementation): AWS Config managed rules check encrypted-volumes, rds-storage-encrypted, and S3 default encryption continuously. A daily query confirms account-level EBS default encryption and S3 Block Public Access remain enabled in every account."
+   ],
+   "ksiAssessment": [
+    "TBD: Independent assessment has not been performed."
+   ],
+   "ksiTests": [
+    "Example test 1: Config rules encrypted-volumes and rds-storage-encrypted are COMPLIANT for all resources (continuous).",
+    "Example test 2: EBS default encryption and S3 Block Public Access report enabled for every in-scope account (daily)."
+   ],
+   "ksiEvidence": [],
+   "providerExtensions": {
+    "ksiName": "Securing Information",
+    "family": "SVC",
+    "familyName": "Service Configuration"
+   }
+  }
+ ]
+}

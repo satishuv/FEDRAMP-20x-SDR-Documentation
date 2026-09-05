@@ -1,0 +1,562 @@
+SECURITY DECISION RECORD
+Example PaaS Foundation (EPF)
+
+Certification type: FedRAMP 20x
+Certification class: Class A
+Certification path: Program Certification
+AWS partition: aws (AWS Commercial)
+Primary region: us-east-1
+Disaster recovery region: us-west-2
+SDR version: 0.1.0
+Generated from dataset version: 2026.07.14.01
+Source of update: build_sdr.py generator
+
+This is a generic template record. Statements marked TBD require real
+implementation facts before this record can support an assessment.
+Reference architecture content is an assumption, not a confirmed system.
+
+1. FedRAMP Requirements
+
+1.1 AFC-CSO-CRA Complete Required Actions
+FedRAMP rule: AFC-CSO-CRA
+Rule family: AFC (Addressing FedRAMP Communication)
+Force: MUST
+Class A obligation: mandatory (per FRC-CLA-MFR, RFR, or OFR)
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.2 AFC-CSO-INB Maintain a FedRAMP Security Inbox
+FedRAMP rule: AFC-CSO-INB
+Rule family: AFC (Addressing FedRAMP Communication)
+Force: MUST
+Class A obligation: mandatory (per FRC-CLA-MFR, RFR, or OFR)
+Status: Not Implemented
+Implementation: Example (reference architecture, replace with your real implementation): A dedicated FedRAMP security inbox is maintained as a monitored distribution list reaching the security on-call rotation, separate from customer support channels. The address is registered with FedRAMP and published in the certification data.
+Validation: Example (reference architecture, replace with your real implementation): A monthly synthetic test email is sent to the inbox; the on-call rotation must acknowledge within the documented response window. Delivery, spam-filter, and distribution-list membership checks run monthly and after any mail-system change.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: Example: Security Operations Manager
+
+1.3 AFC-CSO-RCV Receive Email Without Disruption
+FedRAMP rule: AFC-CSO-RCV
+Rule family: AFC (Addressing FedRAMP Communication)
+Force: MUST
+Class A obligation: mandatory (per FRC-CLA-MFR, RFR, or OFR)
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.4 CCM-OCR-AVL Report Availability
+FedRAMP rule: CCM-OCR-AVL
+Rule family: CCM (Collaborative Continuous Monitoring)
+Force: MUST
+Class A obligation: mandatory (per FRC-CLA-MFR, RFR, or OFR)
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.5 CCM-OCR-NRD Next Report Date
+FedRAMP rule: CCM-OCR-NRD
+Rule family: CCM (Collaborative Continuous Monitoring)
+Force: MUST
+Class A obligation: mandatory (per FRC-CLA-MFR, RFR, or OFR)
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.6 CCM-QTR-MTG Quarterly Review Meeting
+FedRAMP rule: CCM-QTR-MTG
+Rule family: CCM (Collaborative Continuous Monitoring)
+Force: MAY
+Class A obligation: optional (per FRC-CLA-MFR, RFR, or OFR)
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.7 CDS-CSO-AVR Availability Reporting
+FedRAMP rule: CDS-CSO-AVR
+Rule family: CDS (Certification Data Sharing)
+Force: SHOULD
+Class A obligation: recommended (per FRC-CLA-MFR, RFR, or OFR)
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.8 CDS-CSO-PSM Per-Service Certification Materials
+FedRAMP rule: CDS-CSO-PSM
+Rule family: CDS (Certification Data Sharing)
+Force: MAY
+Class A obligation: optional (per FRC-CLA-MFR, RFR, or OFR)
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.9 CDS-CSO-PUB Public Information
+FedRAMP rule: CDS-CSO-PUB
+Rule family: CDS (Certification Data Sharing)
+Force: MUST
+Class A obligation: mandatory (per FRC-CLA-MFR, RFR, or OFR)
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.10 CDS-CSO-UTC Use Trust Centers
+FedRAMP rule: CDS-CSO-UTC
+Rule family: CDS (Certification Data Sharing)
+Force: MUST
+Class A obligation: mandatory (per FRC-CLA-MFR, RFR, or OFR)
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.11 CDS-UTC-AAD Agency Access Denial
+FedRAMP rule: CDS-UTC-AAD
+Rule family: CDS (Certification Data Sharing)
+Force: MUST
+Class A obligation: mandatory (per FRC-CLA-MFR, RFR, or OFR)
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.12 CMU-CSO-UVM Using Validated Cryptographic Modules
+FedRAMP rule: CMU-CSO-UVM
+Rule family: CMU (Cryptographic Module Use)
+Force: MAY
+Class A obligation: optional (per FRC-CLA-MFR, RFR, or OFR)
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.13 CPO-CSX-CPM Certification Package Maintenance for 20x
+FedRAMP rule: CPO-CSX-CPM
+Rule family: CPO (Certification Package Overview)
+Force: SHOULD
+Class A obligation: recommended (per FRC-CLA-MFR, RFR, or OFR)
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.14 FRC-APP-FIA Fresh Independent Assessment
+FedRAMP rule: FRC-APP-FIA
+Rule family: FRC (FedRAMP Certification)
+Force: MAY
+Class A obligation: optional (per FRC-CLA-MFR, RFR, or OFR)
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.15 FRC-CLA-ASF Approved Alternative Security Frameworks
+FedRAMP rule: FRC-CLA-ASF
+Rule family: FRC (FedRAMP Certification)
+Force: MUST
+Class A obligation: mandatory (per FRC-CLA-MFR, RFR, or OFR)
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.16 FRC-CLA-EAM External Assessment Materials
+FedRAMP rule: FRC-CLA-EAM
+Rule family: FRC (FedRAMP Certification)
+Force: MUST
+Class A obligation: mandatory (per FRC-CLA-MFR, RFR, or OFR)
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.17 FRC-CLA-IVV Optional Independent Verification and Validation
+FedRAMP rule: FRC-CLA-IVV
+Rule family: FRC (FedRAMP Certification)
+Force: MAY
+Class A obligation: mandatory (per FRC-CLA-MFR, RFR, or OFR)
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.18 FRC-CLA-MFR Mandatory FedRAMP Rules for Class A
+FedRAMP rule: FRC-CLA-MFR
+Rule family: FRC (FedRAMP Certification)
+Force: MUST
+Class A obligation: mandatory (per FRC-CLA-MFR, RFR, or OFR)
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.19 FRC-CLA-OFR Address Optional FedRAMP Rules for Class A
+FedRAMP rule: FRC-CLA-OFR
+Rule family: FRC (FedRAMP Certification)
+Force: MAY
+Class A obligation: mandatory (per FRC-CLA-MFR, RFR, or OFR)
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.20 FRC-CLA-RFR Recommended FedRAMP Rules for Class A
+FedRAMP rule: FRC-CLA-RFR
+Rule family: FRC (FedRAMP Certification)
+Force: SHOULD
+Class A obligation: mandatory (per FRC-CLA-MFR, RFR, or OFR)
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.21 FRC-CSO-JSN FedRAMP JSON Schemas
+FedRAMP rule: FRC-CSO-JSN
+Rule family: FRC (FedRAMP Certification)
+Force: MUST
+Class A obligation: mandatory (per FRC-CLA-MFR, RFR, or OFR)
+Status: Not Implemented
+Implementation: Example (reference architecture, replace with your real implementation): All machine-readable certification information is produced as JSON validated against the corresponding published FedRAMP JSON schema before release. The generation pipeline pins the current official schema, hash-compares it against the live published schema at each run, and fails the build on any validation error.
+Validation: Example (reference architecture, replace with your real implementation): Schema validation runs in CI on every change to certification data; results are retained with the build record. A scheduled job re-validates published artifacts weekly against the live schema to catch in-place schema updates.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: Example: Compliance Engineering Lead
+
+1.22 FRC-CSO-PKG FedRAMP Certification Package
+FedRAMP rule: FRC-CSO-PKG
+Rule family: FRC (FedRAMP Certification)
+Force: MUST
+Class A obligation: mandatory (per FRC-CLA-MFR, RFR, or OFR)
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.23 FRC-CSO-POP Pick One Program Certification Type
+FedRAMP rule: FRC-CSO-POP
+Rule family: FRC (FedRAMP Certification)
+Force: MUST NOT
+Class A obligation: mandatory (per FRC-CLA-MFR, RFR, or OFR)
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.24 IEC-CSO-EFR Evaluate FedRAMP Reportability
+FedRAMP rule: IEC-CSO-EFR
+Rule family: IEC (Incident Evaluation and Communication)
+Force: MUST
+Class A obligation: mandatory (per FRC-CLA-MFR, RFR, or OFR)
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.25 IEC-CSO-FIR Final Incident Report
+FedRAMP rule: IEC-CSO-FIR
+Rule family: IEC (Incident Evaluation and Communication)
+Force: MUST
+Class A obligation: mandatory (per FRC-CLA-MFR, RFR, or OFR)
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.26 IEC-CSO-IIR Initial Incident Report
+FedRAMP rule: IEC-CSO-IIR
+Rule family: IEC (Incident Evaluation and Communication)
+Force: SHOULD
+Class A obligation: recommended (per FRC-CLA-MFR, RFR, or OFR)
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.27 IEC-CSO-OIR Ongoing Incident Reports
+FedRAMP rule: IEC-CSO-OIR
+Rule family: IEC (Incident Evaluation and Communication)
+Force: SHOULD
+Class A obligation: recommended (per FRC-CLA-MFR, RFR, or OFR)
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.28 IVV-CSO-FIA FedRAMP Independent Assessments
+FedRAMP rule: IVV-CSO-FIA
+Rule family: IVV (Independent Verification and Validation)
+Force: MAY
+Class A obligation: optional (per FRC-CLA-MFR, RFR, or OFR)
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.29 IVV-CSX-AIA Annual Independent Assessments for 20x
+FedRAMP rule: IVV-CSX-AIA
+Rule family: IVV (Independent Verification and Validation)
+Force: MUST
+Class A obligation: mandatory (per FRC-CLA-MFR, RFR, or OFR)
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.30 MAS-CSO-IIR Identify Information Resources
+FedRAMP rule: MAS-CSO-IIR
+Rule family: MAS (Minimum Assessment Scope)
+Force: MUST
+Class A obligation: mandatory (per FRC-CLA-MFR, RFR, or OFR)
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.31 SDR-CSX-KMT Key Security Indicator Metrics
+FedRAMP rule: SDR-CSX-KMT
+Rule family: SDR (Security Decision Record)
+Force: MAY
+Class A obligation: optional (per FRC-CLA-MFR, RFR, or OFR)
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.32 VDR-CSO-DET Vulnerability Detection
+FedRAMP rule: VDR-CSO-DET
+Rule family: VDR (Vulnerability Detection and Response)
+Force: MUST
+Class A obligation: mandatory (per FRC-CLA-MFR, RFR, or OFR)
+Status: Not Implemented
+Implementation: Example (reference architecture, replace with your real implementation): Amazon Inspector continuously scans EC2 instances, ECR container images, and Lambda functions for software vulnerabilities across all in-scope accounts. Findings aggregate to Security Hub in the security tooling account. Coverage is verified against the asset inventory so every in-scope machine-based resource has an active scanning source.
+Validation: Example (reference architecture, replace with your real implementation): A daily job compares Inspector coverage status against the resource inventory from AWS Config; any in-scope resource without coverage opens a ticket. Finding ingestion freshness is checked daily so no source is silent for more than 24 hours.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: Example: Vulnerability Management Lead
+
+1.33 VDR-TFR-MVX Persistent Machine Verification and Validation for 20x
+FedRAMP rule: VDR-TFR-MVX
+Rule family: VDR (Vulnerability Detection and Response)
+Force: SHOULD
+Class A obligation: recommended (per FRC-CLA-MFR, RFR, or OFR)
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.34 VDR-TFR-PCD Persistently Complete Detection
+FedRAMP rule: VDR-TFR-PCD
+Rule family: VDR (Vulnerability Detection and Response)
+Force: SHOULD
+Class A obligation: recommended (per FRC-CLA-MFR, RFR, or OFR)
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.35 VDR-TFR-PDD Persistent Drift Detection
+FedRAMP rule: VDR-TFR-PDD
+Rule family: VDR (Vulnerability Detection and Response)
+Force: SHOULD
+Class A obligation: recommended (per FRC-CLA-MFR, RFR, or OFR)
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.36 VDR-TFR-PSD Persistent Sample Detection
+FedRAMP rule: VDR-TFR-PSD
+Rule family: VDR (Vulnerability Detection and Response)
+Force: SHOULD
+Class A obligation: recommended (per FRC-CLA-MFR, RFR, or OFR)
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.37 VDR-TFR-PVR Mitigation and Remediation Expectations
+FedRAMP rule: VDR-TFR-PVR
+Rule family: VDR (Vulnerability Detection and Response)
+Force: SHOULD
+Class A obligation: recommended (per FRC-CLA-MFR, RFR, or OFR)
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.38 VER-TFR-EVU Evaluate Vulnerabilities Quickly
+FedRAMP rule: VER-TFR-EVU
+Rule family: VER (Vulnerability Evaluation and Reporting)
+Force: SHOULD
+Class A obligation: recommended (per FRC-CLA-MFR, RFR, or OFR)
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.39 VER-TFR-IRI Internet-Reachable Incidents
+FedRAMP rule: VER-TFR-IRI
+Rule family: VER (Vulnerability Evaluation and Reporting)
+Force: MAY
+Class A obligation: optional (per FRC-CLA-MFR, RFR, or OFR)
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.40 VER-TFR-MRH Historical Activity
+FedRAMP rule: VER-TFR-MRH
+Rule family: VER (Vulnerability Evaluation and Reporting)
+Force: MAY
+Class A obligation: optional (per FRC-CLA-MFR, RFR, or OFR)
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.41 VER-TFR-NRI Non-Internet-Reachable Incidents
+FedRAMP rule: VER-TFR-NRI
+Rule family: VER (Vulnerability Evaluation and Reporting)
+Force: MAY
+Class A obligation: optional (per FRC-CLA-MFR, RFR, or OFR)
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+2. Key Security Indicators
+
+2.1 KSI-CED-RAT Reviewing All Training
+KSI: KSI-CED-RAT
+Family: CED (Cybersecurity Education)
+Security outcome: The effectiveness of relevant cybersecurity education and training is persistently reviewed, including at least general training for all employees, role-specific training for employees in high risk roles, training for development and engineering staff on secure software delivery, and training for staff involved with incident response or disaster recovery.
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 0
+Historical metrics required: Optional under SDR-CSX-KMT: Class A providers MAY include historical metrics; none are required.
+Tests: None defined yet
+Owner: TBD: Information has not been provided.
+
+2.2 KSI-CMT-LMC Logging Changes
+KSI: KSI-CMT-LMC
+Family: CMT (Change Management)
+Security outcome: Modifications to the cloud service offering are logged and monitored.
+Status: Not Implemented
+Implementation: Example (reference architecture, replace with your real implementation): All modifications to the cloud service offering are made through version-controlled infrastructure as code deployed by the CI/CD pipeline. AWS CloudTrail organization trail records all management events in every account and region. AWS Config records configuration changes for all supported resource types. Manual changes are detected by comparing CloudTrail write events against pipeline deployment windows.
+Validation: Example (reference architecture, replace with your real implementation): A scheduled validation confirms the organization trail is logging, multi-region, and log-file validated, and that AWS Config recorders are running in every in-scope account and region. An EventBridge rule alerts on any out-of-pipeline write event by a non-pipeline principal.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 0
+Historical metrics required: Optional under SDR-CSX-KMT: Class A providers MAY include historical metrics; none are required.
+Tests: Example test 1: describe-trails confirms multi-region and log file validation are enabled and the trail is logging (every 6 hours).; Example test 2: Config aggregator query confirms recorder status is recording in 100 percent of in-scope accounts (daily).
+Owner: Example: Platform Engineering Lead
+
+2.3 KSI-CNA-RNT Restricting Network Traffic
+KSI: KSI-CNA-RNT
+Family: CNA (Cloud Native Architecture)
+Security outcome: Machine-based information resources are persistently reviewed to ensure they are appropriately configured to limit inbound and outbound network traffic.
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 0
+Historical metrics required: Optional under SDR-CSX-KMT: Class A providers MAY include historical metrics; none are required.
+Tests: None defined yet
+Owner: TBD: Information has not been provided.
+
+2.4 KSI-IAM-AAM Automating Account Management
+KSI: KSI-IAM-AAM
+Family: IAM (Identity and Access Management)
+Security outcome: The lifecycle and privileges of all accounts, roles, and groups are securely managed using automation.
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 0
+Historical metrics required: Optional under SDR-CSX-KMT: Class A providers MAY include historical metrics; none are required.
+Tests: None defined yet
+Owner: TBD: Information has not been provided.
+
+2.5 KSI-IAM-APM Adopting Passwordless Methods
+KSI: KSI-IAM-APM
+Family: IAM (Identity and Access Management)
+Security outcome: Secure passwordless methods are used for user authentication and authorization when feasible, otherwise strong passwords with phishing-resistant MFA is used.
+Status: Not Implemented
+Implementation: Example (reference architecture, replace with your real implementation): Workforce access uses AWS IAM Identity Center federated to the corporate identity provider. Passwordless FIDO2 security keys are the primary authentication method; where passwordless is not feasible, strong passwords with phishing-resistant MFA (FIDO2/WebAuthn) are enforced by the identity provider conditional access policy. Console password login without MFA is blocked. Programmatic access uses short-lived STS credentials only; no long-lived IAM user access keys exist.
+Validation: Example (reference architecture, replace with your real implementation): A daily AWS Config custom rule checks that no IAM users have console passwords or active access keys. A daily Identity Center API check confirms MFA enforcement is active for every permission set. A CloudTrail Lake query detects any console login event without MFA; any hit creates a high-priority ticket within 15 minutes.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 0
+Historical metrics required: Optional under SDR-CSX-KMT: Class A providers MAY include historical metrics; none are required.
+Tests: Example test 1: config rule iam-user-no-passwords-or-keys returns COMPLIANT for all accounts (daily).; Example test 2: CloudTrail Lake query for console login events without MFA returns zero rows (daily).
+Owner: Example: Identity and Access Lead
+
+2.6 KSI-INR-RIR Reviewing Incident Response Procedures
+KSI: KSI-INR-RIR
+Family: INR (Incident Response)
+Security outcome: The effectiveness of documented incident response procedures is persistently reviewed.
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 0
+Historical metrics required: Optional under SDR-CSX-KMT: Class A providers MAY include historical metrics; none are required.
+Tests: None defined yet
+Owner: TBD: Information has not been provided.
+
+2.7 KSI-SVC-SIN Securing Information
+KSI: KSI-SVC-SIN
+Family: SVC (Service Configuration)
+Security outcome: Information is encrypted or otherwise secured from unwanted access or modification.
+Status: Not Implemented
+Implementation: Example (reference architecture, replace with your real implementation): All federal information is encrypted in transit with TLS 1.2 or higher using FIPS-validated endpoints where required, and at rest with AWS KMS customer managed keys. S3 buckets enforce bucket-level encryption and deny unencrypted uploads by bucket policy. EBS volumes and RDS storage use KMS CMKs by default via account-level settings. Public access is blocked account-wide for S3.
+Validation: Example (reference architecture, replace with your real implementation): AWS Config managed rules check encrypted-volumes, rds-storage-encrypted, and S3 default encryption continuously. A daily query confirms account-level EBS default encryption and S3 Block Public Access remain enabled in every account.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 0
+Historical metrics required: Optional under SDR-CSX-KMT: Class A providers MAY include historical metrics; none are required.
+Tests: Example test 1: Config rules encrypted-volumes and rds-storage-encrypted are COMPLIANT for all resources (continuous).; Example test 2: EBS default encryption and S3 Block Public Access report enabled for every in-scope account (daily).
+Owner: Example: Security Engineering Lead

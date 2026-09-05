@@ -1,0 +1,2198 @@
+SECURITY DECISION RECORD
+Example PaaS Foundation (EPF)
+
+Certification type: FedRAMP 20x
+Certification class: Class B
+Certification path: Program Certification
+AWS partition: aws (AWS Commercial)
+Primary region: us-east-1
+Disaster recovery region: us-west-2
+SDR version: 0.1.0
+Generated from dataset version: 2026.07.14.01
+Source of update: build_sdr.py generator
+
+This is a generic template record. Statements marked TBD require real
+implementation facts before this record can support an assessment.
+Reference architecture content is an assumption, not a confirmed system.
+
+1. FedRAMP Requirements
+
+1.1 AFC-CSO-INB Maintain a FedRAMP Security Inbox
+FedRAMP rule: AFC-CSO-INB
+Rule family: AFC (Addressing FedRAMP Communication)
+Force: MUST
+Status: Not Implemented
+Implementation: Example (reference architecture, replace with your real implementation): A dedicated FedRAMP security inbox is maintained as a monitored distribution list reaching the security on-call rotation, separate from customer support channels. The address is registered with FedRAMP and published in the certification data.
+Validation: Example (reference architecture, replace with your real implementation): A monthly synthetic test email is sent to the inbox; the on-call rotation must acknowledge within the documented response window. Delivery, spam-filter, and distribution-list membership checks run monthly and after any mail-system change.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: Example: Security Operations Manager
+
+1.2 AFC-CSO-NOC Notification of Changes
+FedRAMP rule: AFC-CSO-NOC
+Rule family: AFC (Addressing FedRAMP Communication)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.3 AFC-CSO-TFG Trust @fedramp.gov and @gsa.gov
+FedRAMP rule: AFC-CSO-TFG
+Rule family: AFC (Addressing FedRAMP Communication)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.4 AFC-CSO-RCV Receive Email Without Disruption
+FedRAMP rule: AFC-CSO-RCV
+Rule family: AFC (Addressing FedRAMP Communication)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.5 AFC-CSO-CRA Complete Required Actions
+FedRAMP rule: AFC-CSO-CRA
+Rule family: AFC (Addressing FedRAMP Communication)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.6 AFC-CSO-EMR Emergency Message Routing
+FedRAMP rule: AFC-CSO-EMR
+Rule family: AFC (Addressing FedRAMP Communication)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.7 AFC-CSO-IMA Important Message Actions
+FedRAMP rule: AFC-CSO-IMA
+Rule family: AFC (Addressing FedRAMP Communication)
+Force: SHOULD
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.8 AFC-CSO-ACK Acknowledge Receipt
+FedRAMP rule: AFC-CSO-ACK
+Rule family: AFC (Addressing FedRAMP Communication)
+Force: SHOULD
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.9 CCM-OCR-AVL Report Availability
+FedRAMP rule: CCM-OCR-AVL
+Rule family: CCM (Collaborative Continuous Monitoring)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.10 CCM-OCR-NRD Next Report Date
+FedRAMP rule: CCM-OCR-NRD
+Rule family: CCM (Collaborative Continuous Monitoring)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.11 CCM-OCR-FBM Feedback Mechanism
+FedRAMP rule: CCM-OCR-FBM
+Rule family: CCM (Collaborative Continuous Monitoring)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.12 CCM-OCR-AFS Anonymized Feedback Summary
+FedRAMP rule: CCM-OCR-AFS
+Rule family: CCM (Collaborative Continuous Monitoring)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.13 CCM-OCR-LSI Limit Sensitive Information
+FedRAMP rule: CCM-OCR-LSI
+Rule family: CCM (Collaborative Continuous Monitoring)
+Force: MUST NOT
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.14 CCM-OCR-SOR Spread Out Reports
+FedRAMP rule: CCM-OCR-SOR
+Rule family: CCM (Collaborative Continuous Monitoring)
+Force: SHOULD
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.15 CCM-OCR-RPS Responsible Public Certification Report Sharing
+FedRAMP rule: CCM-OCR-RPS
+Rule family: CCM (Collaborative Continuous Monitoring)
+Force: MAY
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.16 CCM-QTR-MTG Quarterly Review Meeting
+FedRAMP rule: CCM-QTR-MTG
+Rule family: CCM (Collaborative Continuous Monitoring)
+Force: SHOULD
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.17 CCM-QTR-REG Meeting Registration Info
+FedRAMP rule: CCM-QTR-REG
+Rule family: CCM (Collaborative Continuous Monitoring)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.18 CCM-QTR-NRD Next Review Date
+FedRAMP rule: CCM-QTR-NRD
+Rule family: CCM (Collaborative Continuous Monitoring)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.19 CCM-QTR-NID No Irresponsible Disclosure
+FedRAMP rule: CCM-QTR-NID
+Rule family: CCM (Collaborative Continuous Monitoring)
+Force: MUST NOT
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.20 CCM-QTR-SAR Schedule Around Reports
+FedRAMP rule: CCM-QTR-SAR
+Rule family: CCM (Collaborative Continuous Monitoring)
+Force: SHOULD
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.21 CCM-QTR-ACT Additional Content
+FedRAMP rule: CCM-QTR-ACT
+Rule family: CCM (Collaborative Continuous Monitoring)
+Force: SHOULD
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.22 CCM-QTR-RTR Record/Transcribe Reviews
+FedRAMP rule: CCM-QTR-RTR
+Rule family: CCM (Collaborative Continuous Monitoring)
+Force: SHOULD
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.23 CCM-QTR-RTP Restrict Third Parties
+FedRAMP rule: CCM-QTR-RTP
+Rule family: CCM (Collaborative Continuous Monitoring)
+Force: SHOULD NOT
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.24 CCM-QTR-SRR Share Recordings Responsibly
+FedRAMP rule: CCM-QTR-SRR
+Rule family: CCM (Collaborative Continuous Monitoring)
+Force: MAY
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.25 CCM-QTR-SCR Share Content Responsibly
+FedRAMP rule: CCM-QTR-SCR
+Rule family: CCM (Collaborative Continuous Monitoring)
+Force: MAY
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.26 CDS-CSO-PUB Public Information
+FedRAMP rule: CDS-CSO-PUB
+Rule family: CDS (Certification Data Sharing)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.27 CDS-CSO-SVC Public Service List
+FedRAMP rule: CDS-CSO-SVC
+Rule family: CDS (Certification Data Sharing)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.28 CDS-CSO-FID Always Include FedRAMP ID
+FedRAMP rule: CDS-CSO-FID
+Rule family: CDS (Certification Data Sharing)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.29 CDS-CSO-FRC FedRAMP Certification Reports
+FedRAMP rule: CDS-CSO-FRC
+Rule family: CDS (Certification Data Sharing)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.30 CDS-CSO-AVR Availability Reporting
+FedRAMP rule: CDS-CSO-AVR
+Rule family: CDS (Certification Data Sharing)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.31 CDS-CSO-UTC Use Trust Centers
+FedRAMP rule: CDS-CSO-UTC
+Rule family: CDS (Certification Data Sharing)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.32 CDS-CSO-CBF Consistency Between Formats
+FedRAMP rule: CDS-CSO-CBF
+Rule family: CDS (Certification Data Sharing)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.33 CDS-CSO-RIS Responsible Information Sharing
+FedRAMP rule: CDS-CSO-RIS
+Rule family: CDS (Certification Data Sharing)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.34 CDS-CSO-IRP Include Relevant Policies
+FedRAMP rule: CDS-CSO-IRP
+Rule family: CDS (Certification Data Sharing)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.35 CDS-CSO-HAD Historical FedRAMP Certification Data
+FedRAMP rule: CDS-CSO-HAD
+Rule family: CDS (Certification Data Sharing)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.36 CDS-CSO-PSM Per-Service Certification Materials
+FedRAMP rule: CDS-CSO-PSM
+Rule family: CDS (Certification Data Sharing)
+Force: MAY
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.37 CDS-CSO-RPS Responsible Public Package Sharing
+FedRAMP rule: CDS-CSO-RPS
+Rule family: CDS (Certification Data Sharing)
+Force: MAY
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.38 CDS-TRC-USH Uninterrupted Sharing
+FedRAMP rule: CDS-TRC-USH
+Rule family: CDS (Certification Data Sharing)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.39 CDS-TRC-PAC Programmatic Access
+FedRAMP rule: CDS-TRC-PAC
+Rule family: CDS (Certification Data Sharing)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.40 CDS-TRC-AAI Agency Access Inventory
+FedRAMP rule: CDS-TRC-AAI
+Rule family: CDS (Certification Data Sharing)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.41 CDS-TRC-ACL Access Logging
+FedRAMP rule: CDS-TRC-ACL
+Rule family: CDS (Certification Data Sharing)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.42 CDS-TRC-HMR Human and Machine-Readable Certification Data
+FedRAMP rule: CDS-TRC-HMR
+Rule family: CDS (Certification Data Sharing)
+Force: SHOULD
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.43 CDS-TRC-SSM Self-Service Access Management
+FedRAMP rule: CDS-TRC-SSM
+Rule family: CDS (Certification Data Sharing)
+Force: SHOULD
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.44 CDS-UTC-AAD Agency Access Denial
+FedRAMP rule: CDS-UTC-AAD
+Rule family: CDS (Certification Data Sharing)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.45 CDS-UTC-AGA Agency Access
+FedRAMP rule: CDS-UTC-AGA
+Rule family: CDS (Certification Data Sharing)
+Force: SHOULD
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.46 CMU-CSO-CMD Cryptographic Module Documentation
+FedRAMP rule: CMU-CSO-CMD
+Rule family: CMU (Cryptographic Module Use)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.47 CMU-CSO-UVM Using Validated Cryptographic Modules
+FedRAMP rule: CMU-CSO-UVM
+Rule family: CMU (Cryptographic Module Use)
+Force: MAY
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.48 CMU-CSO-CAT Configuration of Agency Tenants
+FedRAMP rule: CMU-CSO-CAT
+Rule family: CMU (Cryptographic Module Use)
+Force: SHOULD
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.49 CPO-CSO-OVR Overview of the Cloud Service Offering
+FedRAMP rule: CPO-CSO-OVR
+Rule family: CPO (Certification Package Overview)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.50 CPO-CSO-MTD Certification Package Overview Metadata
+FedRAMP rule: CPO-CSO-MTD
+Rule family: CPO (Certification Package Overview)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.51 CPO-CSO-OSA Overall Summary of Assessment in Certification Package
+FedRAMP rule: CPO-CSO-OSA
+Rule family: CPO (Certification Package Overview)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.52 CPO-CSX-CPM Certification Package Maintenance for 20x
+FedRAMP rule: CPO-CSX-CPM
+Rule family: CPO (Certification Package Overview)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.53 FRC-CSO-FCP FedRAMP Certification Profile
+FedRAMP rule: FRC-CSO-FCP
+Rule family: FRC (FedRAMP Certification)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.54 FRC-CSO-PKG FedRAMP Certification Package
+FedRAMP rule: FRC-CSO-PKG
+Rule family: FRC (FedRAMP Certification)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.55 FRC-CSO-JSN FedRAMP JSON Schemas
+FedRAMP rule: FRC-CSO-JSN
+Rule family: FRC (FedRAMP Certification)
+Force: MUST
+Status: Not Implemented
+Implementation: Example (reference architecture, replace with your real implementation): All machine-readable certification information is produced as JSON validated against the corresponding published FedRAMP JSON schema before release. The generation pipeline pins the current official schema, hash-compares it against the live published schema at each run, and fails the build on any validation error.
+Validation: Example (reference architecture, replace with your real implementation): Schema validation runs in CI on every change to certification data; results are retained with the build record. A scheduled job re-validates published artifacts weekly against the live schema to catch in-place schema updates.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: Example: Compliance Engineering Lead
+
+1.56 FRC-CSO-MRA Maintain Responsibility and Accountability
+FedRAMP rule: FRC-CSO-MRA
+Rule family: FRC (FedRAMP Certification)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.57 FRC-CSO-POP Pick One Program Certification Type
+FedRAMP rule: FRC-CSO-POP
+Rule family: FRC (FedRAMP Certification)
+Force: MUST NOT
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.58 FRC-APP-MLF Marketplace Listing First
+FedRAMP rule: FRC-APP-MLF
+Rule family: FRC (FedRAMP Certification)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.59 FRC-APP-AFC Applying for FedRAMP Certification
+FedRAMP rule: FRC-APP-AFC
+Rule family: FRC (FedRAMP Certification)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.60 FRC-APP-FCP Fresh FedRAMP Certification Package
+FedRAMP rule: FRC-APP-FCP
+Rule family: FRC (FedRAMP Certification)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.61 FRC-APP-FIA Fresh Independent Assessment
+FedRAMP rule: FRC-APP-FIA
+Rule family: FRC (FedRAMP Certification)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.62 FRC-APP-NTP No Third-Party Applicants
+FedRAMP rule: FRC-APP-NTP
+Rule family: FRC (FedRAMP Certification)
+Force: MUST NOT
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.63 FRC-APP-USA Updating Stale Assessments
+FedRAMP rule: FRC-APP-USA
+Rule family: FRC (FedRAMP Certification)
+Force: MAY
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.64 FRC-CSX-VVK Automated Verification and Validation of Key Security Indicators
+FedRAMP rule: FRC-CSX-VVK
+Rule family: FRC (FedRAMP Certification)
+Force: SHOULD
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.65 FRC-CSX-MOT Metrics Over Time for Key Security Indicators
+FedRAMP rule: FRC-CSX-MOT
+Rule family: FRC (FedRAMP Certification)
+Force: SHOULD
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.66 FRC-CSX-VVR Automated Verification and Validation of FedRAMP Rules
+FedRAMP rule: FRC-CSX-VVR
+Rule family: FRC (FedRAMP Certification)
+Force: SHOULD
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.67 FRC-CSX-MAS Application within MAS
+FedRAMP rule: FRC-CSX-MAS
+Rule family: FRC (FedRAMP Certification)
+Force: SHOULD
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.68 IEC-CSO-EFR Evaluate FedRAMP Reportability
+FedRAMP rule: IEC-CSO-EFR
+Rule family: IEC (Incident Evaluation and Communication)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.69 IEC-CSO-DPR Default PAIN Rating
+FedRAMP rule: IEC-CSO-DPR
+Rule family: IEC (Incident Evaluation and Communication)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.70 IEC-CSO-IIR Initial Incident Report
+FedRAMP rule: IEC-CSO-IIR
+Rule family: IEC (Incident Evaluation and Communication)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.71 IEC-CSO-OIR Ongoing Incident Reports
+FedRAMP rule: IEC-CSO-OIR
+Rule family: IEC (Incident Evaluation and Communication)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.72 IEC-CSO-FIR Final Incident Report
+FedRAMP rule: IEC-CSO-FIR
+Rule family: IEC (Incident Evaluation and Communication)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.73 IEC-CSO-EFI Estimate Federal Impact
+FedRAMP rule: IEC-CSO-EFI
+Rule family: IEC (Incident Evaluation and Communication)
+Force: SHOULD
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.74 IEC-CSO-AIR Automated Incident Reporting
+FedRAMP rule: IEC-CSO-AIR
+Rule family: IEC (Incident Evaluation and Communication)
+Force: SHOULD
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.75 IVV-CSO-FIA FedRAMP Independent Assessments
+FedRAMP rule: IVV-CSO-FIA
+Rule family: IVV (Independent Verification and Validation)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.76 IVV-CSO-SEI Supply Evidence of Implementation
+FedRAMP rule: IVV-CSO-SEI
+Rule family: IVV (Independent Verification and Validation)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.77 IVV-CSO-SEE Supply Evidence of Effectiveness
+FedRAMP rule: IVV-CSO-SEE
+Rule family: IVV (Independent Verification and Validation)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.78 IVV-CSO-ICP Inclusion in Certification Package
+FedRAMP rule: IVV-CSO-ICP
+Rule family: IVV (Independent Verification and Validation)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.79 IVV-CSO-DUS Document Use of Representative Samples
+FedRAMP rule: IVV-CSO-DUS
+Rule family: IVV (Independent Verification and Validation)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.80 IVV-CSO-STE Supply Technical Explanations
+FedRAMP rule: IVV-CSO-STE
+Rule family: IVV (Independent Verification and Validation)
+Force: SHOULD
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.81 IVV-CSO-USR Use Representative Samples
+FedRAMP rule: IVV-CSO-USR
+Rule family: IVV (Independent Verification and Validation)
+Force: MAY
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.82 IVV-CSO-RAA Receiving Assessor Advice
+FedRAMP rule: IVV-CSO-RAA
+Rule family: IVV (Independent Verification and Validation)
+Force: MAY
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.83 IVV-CSX-AIA Annual Independent Assessments for 20x
+FedRAMP rule: IVV-CSX-AIA
+Rule family: IVV (Independent Verification and Validation)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.84 MAS-CSO-IIR Identify Information Resources
+FedRAMP rule: MAS-CSO-IIR
+Rule family: MAS (Minimum Assessment Scope)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.85 MAS-CSO-FLO Information Flows and Security Categories
+FedRAMP rule: MAS-CSO-FLO
+Rule family: MAS (Minimum Assessment Scope)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.86 MAS-CSO-TPR Third-Party Information Resources
+FedRAMP rule: MAS-CSO-TPR
+Rule family: MAS (Minimum Assessment Scope)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.87 MAS-CSO-MDI Metadata Inclusion
+FedRAMP rule: MAS-CSO-MDI
+Rule family: MAS (Minimum Assessment Scope)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.88 MAS-CSO-SUP Supplemental Information
+FedRAMP rule: MAS-CSO-SUP
+Rule family: MAS (Minimum Assessment Scope)
+Force: MAY
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.89 MKT-CSO-MLR Marketplace Listing Requirements
+FedRAMP rule: MKT-CSO-MLR
+Rule family: MKT (Marketplace Listing)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.90 MKT-CSO-PML Provider Marketplace Listing Requests
+FedRAMP rule: MKT-CSO-PML
+Rule family: MKT (Marketplace Listing)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.91 MKT-IIP-AGU Agency Use Cases
+FedRAMP rule: MKT-IIP-AGU
+Rule family: MKT (Marketplace Listing)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.92 MKT-IIP-DCP Demonstrating Continuous Progress
+FedRAMP rule: MKT-IIP-DCP
+Rule family: MKT (Marketplace Listing)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.93 MKT-IIP-DLA Deadline for Assessment
+FedRAMP rule: MKT-IIP-DLA
+Rule family: MKT (Marketplace Listing)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.94 SCG-CSO-RSC Recommended Secure Configuration
+FedRAMP rule: SCG-CSO-RSC
+Rule family: SCG (Secure Configuration Guide)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.95 SCG-CSO-AUP Use Instructions
+FedRAMP rule: SCG-CSO-AUP
+Rule family: SCG (Secure Configuration Guide)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.96 SCG-CSO-PUB Public Secure Configuration Guidance
+FedRAMP rule: SCG-CSO-PUB
+Rule family: SCG (Secure Configuration Guide)
+Force: SHOULD
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.97 SCG-CSO-SDF Secure Defaults
+FedRAMP rule: SCG-CSO-SDF
+Rule family: SCG (Secure Configuration Guide)
+Force: SHOULD
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.98 SCG-ENH-CMP Comparison Capability
+FedRAMP rule: SCG-ENH-CMP
+Rule family: SCG (Secure Configuration Guide)
+Force: SHOULD
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.99 SCG-ENH-EXP Export Capability
+FedRAMP rule: SCG-ENH-EXP
+Rule family: SCG (Secure Configuration Guide)
+Force: SHOULD
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.100 SCG-ENH-API API Capability
+FedRAMP rule: SCG-ENH-API
+Rule family: SCG (Secure Configuration Guide)
+Force: SHOULD
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.101 SCG-ENH-MRG Machine-Readable Guidance
+FedRAMP rule: SCG-ENH-MRG
+Rule family: SCG (Secure Configuration Guide)
+Force: SHOULD
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.102 SCG-ENH-VRH Versioning and Release History
+FedRAMP rule: SCG-ENH-VRH
+Rule family: SCG (Secure Configuration Guide)
+Force: SHOULD
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.103 SCN-CSO-EVA Evaluate Changes
+FedRAMP rule: SCN-CSO-EVA
+Rule family: SCN (Significant Change Notification)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.104 SCN-CSO-MAR Maintain Audit Records
+FedRAMP rule: SCN-CSO-MAR
+Rule family: SCN (Significant Change Notification)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.105 SCN-CSO-INF Required Information
+FedRAMP rule: SCN-CSO-INF
+Rule family: SCN (Significant Change Notification)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.106 SCN-CSO-HIS Historical Notifications
+FedRAMP rule: SCN-CSO-HIS
+Rule family: SCN (Significant Change Notification)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.107 SCN-CSO-HRM Human and Machine-Readable Notifications
+FedRAMP rule: SCN-CSO-HRM
+Rule family: SCN (Significant Change Notification)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.108 SCN-CSO-ARI Additional Relevant Information
+FedRAMP rule: SCN-CSO-ARI
+Rule family: SCN (Significant Change Notification)
+Force: MAY
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.109 SCN-CSO-NOM Notification Mechanisms
+FedRAMP rule: SCN-CSO-NOM
+Rule family: SCN (Significant Change Notification)
+Force: MAY
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.110 SCN-CSO-EMG Emergency Changes
+FedRAMP rule: SCN-CSO-EMG
+Rule family: SCN (Significant Change Notification)
+Force: MAY
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.111 SCN-ADP-NTF Notification Requirements
+FedRAMP rule: SCN-ADP-NTF
+Rule family: SCN (Significant Change Notification)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.112 SCN-RTR-NNR No Notification Requirements
+FedRAMP rule: SCN-RTR-NNR
+Rule family: SCN (Significant Change Notification)
+Force: SHOULD NOT
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.113 SCN-TRF-NIP Notification of Initial Plans
+FedRAMP rule: SCN-TRF-NIP
+Rule family: SCN (Significant Change Notification)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.114 SCN-TRF-NFP Notification of Final Plans
+FedRAMP rule: SCN-TRF-NFP
+Rule family: SCN (Significant Change Notification)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.115 SCN-TRF-NAF Notification After Finishing
+FedRAMP rule: SCN-TRF-NAF
+Rule family: SCN (Significant Change Notification)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.116 SCN-TRF-NAV Notification After Verification
+FedRAMP rule: SCN-TRF-NAV
+Rule family: SCN (Significant Change Notification)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.117 SCN-TRF-UPD Update Documentation
+FedRAMP rule: SCN-TRF-UPD
+Rule family: SCN (Significant Change Notification)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.118 SCN-TRF-TPR Third-Party Review
+FedRAMP rule: SCN-TRF-TPR
+Rule family: SCN (Significant Change Notification)
+Force: SHOULD
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.119 SDR-CSO-FRR FedRAMP Rules
+FedRAMP rule: SDR-CSO-FRR
+Rule family: SDR (Security Decision Record)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.120 SDR-CSO-MTD Security Decision Record Metadata
+FedRAMP rule: SDR-CSO-MTD
+Rule family: SDR (Security Decision Record)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.121 SDR-CSX-KSI Key Security Indicators
+FedRAMP rule: SDR-CSX-KSI
+Rule family: SDR (Security Decision Record)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.122 SDR-CSX-KMT Key Security Indicator Metrics
+FedRAMP rule: SDR-CSX-KMT
+Rule family: SDR (Security Decision Record)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.123 VDR-CSO-DET Vulnerability Detection
+FedRAMP rule: VDR-CSO-DET
+Rule family: VDR (Vulnerability Detection and Response)
+Force: MUST
+Status: Not Implemented
+Implementation: Example (reference architecture, replace with your real implementation): Amazon Inspector continuously scans EC2 instances, ECR container images, and Lambda functions for software vulnerabilities across all in-scope accounts. Findings aggregate to Security Hub in the security tooling account. Coverage is verified against the asset inventory so every in-scope machine-based resource has an active scanning source.
+Validation: Example (reference architecture, replace with your real implementation): A daily job compares Inspector coverage status against the resource inventory from AWS Config; any in-scope resource without coverage opens a ticket. Finding ingestion freshness is checked daily so no source is silent for more than 24 hours.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: Example: Vulnerability Management Lead
+
+1.124 VDR-CSO-RES Vulnerability Response
+FedRAMP rule: VDR-CSO-RES
+Rule family: VDR (Vulnerability Detection and Response)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.125 VDR-CSO-FAV Failures Are Vulnerabilities
+FedRAMP rule: VDR-CSO-FAV
+Rule family: VDR (Vulnerability Detection and Response)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.126 VDR-CSO-DFR Design For Resilience
+FedRAMP rule: VDR-CSO-DFR
+Rule family: VDR (Vulnerability Detection and Response)
+Force: SHOULD
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.127 VDR-CSO-ADT Automate Detection
+FedRAMP rule: VDR-CSO-ADT
+Rule family: VDR (Vulnerability Detection and Response)
+Force: SHOULD
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.128 VDR-CSO-DAC Detect After Changes
+FedRAMP rule: VDR-CSO-DAC
+Rule family: VDR (Vulnerability Detection and Response)
+Force: SHOULD
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.129 VDR-CSO-MSP Maintain Security
+FedRAMP rule: VDR-CSO-MSP
+Rule family: VDR (Vulnerability Detection and Response)
+Force: SHOULD NOT
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.130 VDR-CSO-AKE Avoid KEVs
+FedRAMP rule: VDR-CSO-AKE
+Rule family: VDR (Vulnerability Detection and Response)
+Force: SHOULD NOT
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.131 VDR-CSO-SIR Sampling
+FedRAMP rule: VDR-CSO-SIR
+Rule family: VDR (Vulnerability Detection and Response)
+Force: MAY
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.132 VDR-TFR-NMV Non-Machine Verification and Validation
+FedRAMP rule: VDR-TFR-NMV
+Rule family: VDR (Vulnerability Detection and Response)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.133 VDR-TFR-PDD Persistent Drift Detection
+FedRAMP rule: VDR-TFR-PDD
+Rule family: VDR (Vulnerability Detection and Response)
+Force: SHOULD
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.134 VDR-TFR-PCD Persistently Complete Detection
+FedRAMP rule: VDR-TFR-PCD
+Rule family: VDR (Vulnerability Detection and Response)
+Force: SHOULD
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.135 VDR-TFR-PVR Mitigation and Remediation Expectations
+FedRAMP rule: VDR-TFR-PVR
+Rule family: VDR (Vulnerability Detection and Response)
+Force: SHOULD
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.136 VDR-TFR-RMN Remaining Vulnerabilities
+FedRAMP rule: VDR-TFR-RMN
+Rule family: VDR (Vulnerability Detection and Response)
+Force: SHOULD
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.137 VDR-TFR-KEV Remediate KEVs
+FedRAMP rule: VDR-TFR-KEV
+Rule family: VDR (Vulnerability Detection and Response)
+Force: SHOULD
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.138 VDR-TFR-PSD Persistent Sample Detection
+FedRAMP rule: VDR-TFR-PSD
+Rule family: VDR (Vulnerability Detection and Response)
+Force: SHOULD
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.139 VDR-TFR-MVX Persistent Machine Verification and Validation for 20x
+FedRAMP rule: VDR-TFR-MVX
+Rule family: VDR (Vulnerability Detection and Response)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.140 VER-EVA-ELX Evaluate Exploitability
+FedRAMP rule: VER-EVA-ELX
+Rule family: VER (Vulnerability Evaluation and Reporting)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.141 VER-EVA-EIR Evaluate Internet-Reachability
+FedRAMP rule: VER-EVA-EIR
+Rule family: VER (Vulnerability Evaluation and Reporting)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.142 VER-EVA-EPA Estimate Potential Agency Impact
+FedRAMP rule: VER-EVA-EPA
+Rule family: VER (Vulnerability Evaluation and Reporting)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.143 VER-EVA-AIA Assume It's Automatable
+FedRAMP rule: VER-EVA-AIA
+Rule family: VER (Vulnerability Evaluation and Reporting)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.144 VER-EVA-GRV Group Vulnerabilities
+FedRAMP rule: VER-EVA-GRV
+Rule family: VER (Vulnerability Evaluation and Reporting)
+Force: SHOULD
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.145 VER-EVA-EFP Evaluate False Positives
+FedRAMP rule: VER-EVA-EFP
+Rule family: VER (Vulnerability Evaluation and Reporting)
+Force: SHOULD
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.146 VER-EVA-EFA Evaluation Factors
+FedRAMP rule: VER-EVA-EFA
+Rule family: VER (Vulnerability Evaluation and Reporting)
+Force: SHOULD
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.147 VER-RPT-PER Persistent Reporting
+FedRAMP rule: VER-RPT-PER
+Rule family: VER (Vulnerability Evaluation and Reporting)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.148 VER-RPT-VDT Vulnerability Details
+FedRAMP rule: VER-RPT-VDT
+Rule family: VER (Vulnerability Evaluation and Reporting)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.149 VER-RPT-AVI Accepted Vulnerability Info
+FedRAMP rule: VER-RPT-AVI
+Rule family: VER (Vulnerability Evaluation and Reporting)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.150 VER-RPT-NID Responsible Disclosure
+FedRAMP rule: VER-RPT-NID
+Rule family: VER (Vulnerability Evaluation and Reporting)
+Force: MUST NOT
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.151 VER-RPT-HLO High-Level Overviews
+FedRAMP rule: VER-RPT-HLO
+Rule family: VER (Vulnerability Evaluation and Reporting)
+Force: SHOULD
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.152 VER-RPT-RPD Responsible Public Disclosure
+FedRAMP rule: VER-RPT-RPD
+Rule family: VER (Vulnerability Evaluation and Reporting)
+Force: MAY
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.153 VER-TFR-MHR Monthly Activity Report
+FedRAMP rule: VER-TFR-MHR
+Rule family: VER (Vulnerability Evaluation and Reporting)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.154 VER-TFR-MAV Mark Accepted Vulnerabilities
+FedRAMP rule: VER-TFR-MAV
+Rule family: VER (Vulnerability Evaluation and Reporting)
+Force: MUST
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.155 VER-TFR-MRH Historical Activity
+FedRAMP rule: VER-TFR-MRH
+Rule family: VER (Vulnerability Evaluation and Reporting)
+Force: SHOULD
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.156 VER-TFR-EVU Evaluate Vulnerabilities Quickly
+FedRAMP rule: VER-TFR-EVU
+Rule family: VER (Vulnerability Evaluation and Reporting)
+Force: SHOULD
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.157 VER-TFR-IRI Internet-Reachable Incidents
+FedRAMP rule: VER-TFR-IRI
+Rule family: VER (Vulnerability Evaluation and Reporting)
+Force: MAY
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+1.158 VER-TFR-NRI Non-Internet-Reachable Incidents
+FedRAMP rule: VER-TFR-NRI
+Rule family: VER (Vulnerability Evaluation and Reporting)
+Force: MAY
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Owner: TBD: Information has not been provided.
+
+2. Key Security Indicators
+
+2.1 KSI-CED-RAT Reviewing All Training
+KSI: KSI-CED-RAT
+Family: CED (Cybersecurity Education)
+Security outcome: The effectiveness of relevant cybersecurity education and training is persistently reviewed, including at least general training for all employees, role-specific training for employees in high risk roles, training for development and engineering staff on secure software delivery, and training for staff involved with incident response or disaster recovery.
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 1
+Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Tests: None defined yet
+Owner: TBD: Information has not been provided.
+
+2.2 KSI-CMT-LMC Logging Changes
+KSI: KSI-CMT-LMC
+Family: CMT (Change Management)
+Security outcome: Modifications to the cloud service offering are logged and monitored.
+Status: Not Implemented
+Implementation: Example (reference architecture, replace with your real implementation): All modifications to the cloud service offering are made through version-controlled infrastructure as code deployed by the CI/CD pipeline. AWS CloudTrail organization trail records all management events in every account and region. AWS Config records configuration changes for all supported resource types. Manual changes are detected by comparing CloudTrail write events against pipeline deployment windows.
+Validation: Example (reference architecture, replace with your real implementation): A scheduled validation confirms the organization trail is logging, multi-region, and log-file validated, and that AWS Config recorders are running in every in-scope account and region. An EventBridge rule alerts on any out-of-pipeline write event by a non-pipeline principal.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 1
+Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Tests: Example test 1: describe-trails confirms multi-region and log file validation are enabled and the trail is logging (every 6 hours).; Example test 2: Config aggregator query confirms recorder status is recording in 100 percent of in-scope accounts (daily).
+Owner: Example: Platform Engineering Lead
+
+2.3 KSI-CMT-RMV Redeploying vs Modifying
+KSI: KSI-CMT-RMV
+Family: CMT (Change Management)
+Security outcome: Changes to machine-based information resources are executed through the redeployment of version controlled resources rather than direct modification wherever reasonable.
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 1
+Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Tests: None defined yet
+Owner: TBD: Information has not been provided.
+
+2.4 KSI-CMT-RVP Reviewing Change Procedures
+KSI: KSI-CMT-RVP
+Family: CMT (Change Management)
+Security outcome: The effectiveness of documented change management procedures is persistently reviewed.
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 1
+Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Tests: None defined yet
+Owner: TBD: Information has not been provided.
+
+2.5 KSI-CMT-VTD Validating Throughout Deployment
+KSI: KSI-CMT-VTD
+Family: CMT (Change Management)
+Security outcome: Persistent testing and validation of changes throughout deployment is automated.
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 1
+Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Tests: None defined yet
+Owner: TBD: Information has not been provided.
+
+2.6 KSI-CNA-DFP Defining Functionality and Privileges
+KSI: KSI-CNA-DFP
+Family: CNA (Cloud Native Architecture)
+Security outcome: The functionality and privileges for infrastructure and services are strictly defined.
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 1
+Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Tests: None defined yet
+Owner: TBD: Information has not been provided.
+
+2.7 KSI-CNA-EIS Enforcing Intended State
+KSI: KSI-CNA-EIS
+Family: CNA (Cloud Native Architecture)
+Security outcome: FedRAMP pending, no statement in the official dataset yet.
+Status: Not Implemented
+Implementation: FedRAMP pending: this indicator has no statement in the official dataset yet.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 1
+Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Tests: None defined yet
+Owner: TBD: Information has not been provided.
+
+2.8 KSI-CNA-IBP Implementing Best Practices
+KSI: KSI-CNA-IBP
+Family: CNA (Cloud Native Architecture)
+Security outcome: The use and configuration of third-party machine-based information resources is persistently compared against the original provider's best practices and guidance.
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 1
+Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Tests: None defined yet
+Owner: TBD: Information has not been provided.
+
+2.9 KSI-CNA-MAT Minimizing Attack Surface
+KSI: KSI-CNA-MAT
+Family: CNA (Cloud Native Architecture)
+Security outcome: Machine-based information resources are persistently reviewed to ensure they have a minimal attack surface and that lateral movement is minimized if compromised.
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 1
+Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Tests: None defined yet
+Owner: TBD: Information has not been provided.
+
+2.10 KSI-CNA-OFA Optimizing for Availability
+KSI: KSI-CNA-OFA
+Family: CNA (Cloud Native Architecture)
+Security outcome: Machine-based information resources are persistently reviewed to ensure they are appropriately optimized for high availability and rapid recovery.
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 1
+Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Tests: None defined yet
+Owner: TBD: Information has not been provided.
+
+2.11 KSI-CNA-RNT Restricting Network Traffic
+KSI: KSI-CNA-RNT
+Family: CNA (Cloud Native Architecture)
+Security outcome: Machine-based information resources are persistently reviewed to ensure they are appropriately configured to limit inbound and outbound network traffic.
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 1
+Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Tests: None defined yet
+Owner: TBD: Information has not been provided.
+
+2.12 KSI-CNA-RVP Reviewing Protections
+KSI: KSI-CNA-RVP
+Family: CNA (Cloud Native Architecture)
+Security outcome: The effectiveness of protection against denial of service attacks and other unwanted activity for machine-based information resources is persistently reviewed.
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 1
+Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Tests: None defined yet
+Owner: TBD: Information has not been provided.
+
+2.13 KSI-CNA-ULN Using Logical Networking
+KSI: KSI-CNA-ULN
+Family: CNA (Cloud Native Architecture)
+Security outcome: Logical networking and related capabilities are used and persistently reviewed to enforce traffic flow controls.
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 1
+Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Tests: None defined yet
+Owner: TBD: Information has not been provided.
+
+2.14 KSI-IAM-AAM Automating Account Management
+KSI: KSI-IAM-AAM
+Family: IAM (Identity and Access Management)
+Security outcome: The lifecycle and privileges of all accounts, roles, and groups are securely managed using automation.
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 1
+Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Tests: None defined yet
+Owner: TBD: Information has not been provided.
+
+2.15 KSI-IAM-APM Adopting Passwordless Methods
+KSI: KSI-IAM-APM
+Family: IAM (Identity and Access Management)
+Security outcome: Secure passwordless methods are used for user authentication and authorization when feasible, otherwise strong passwords with phishing-resistant MFA is used.
+Status: Not Implemented
+Implementation: Example (reference architecture, replace with your real implementation): Workforce access uses AWS IAM Identity Center federated to the corporate identity provider. Passwordless FIDO2 security keys are the primary authentication method; where passwordless is not feasible, strong passwords with phishing-resistant MFA (FIDO2/WebAuthn) are enforced by the identity provider conditional access policy. Console password login without MFA is blocked. Programmatic access uses short-lived STS credentials only; no long-lived IAM user access keys exist.
+Validation: Example (reference architecture, replace with your real implementation): A daily AWS Config custom rule checks that no IAM users have console passwords or active access keys. A daily Identity Center API check confirms MFA enforcement is active for every permission set. A CloudTrail Lake query detects any console login event without MFA; any hit creates a high-priority ticket within 15 minutes.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 1
+Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Tests: Example test 1: config rule iam-user-no-passwords-or-keys returns COMPLIANT for all accounts (daily).; Example test 2: CloudTrail Lake query for console login events without MFA returns zero rows (daily).
+Owner: Example: Identity and Access Lead
+
+2.16 KSI-IAM-ELP Ensuring Least Privilege
+KSI: KSI-IAM-ELP
+Family: IAM (Identity and Access Management)
+Security outcome: Identity and access management measures are used and persistently reviewed to ensure each user or device can only access the resources they need.
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 1
+Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Tests: None defined yet
+Owner: TBD: Information has not been provided.
+
+2.17 KSI-IAM-JIT Authorizing Just-in-Time
+KSI: KSI-IAM-JIT
+Family: IAM (Identity and Access Management)
+Security outcome: A least-privileged, role and attribute-based, and just-in-time security authorization model is used and persistently reviewed for all user and non-user accounts and services.
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 1
+Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Tests: None defined yet
+Owner: TBD: Information has not been provided.
+
+2.18 KSI-IAM-SNU Securing Non-User Authentication
+KSI: KSI-IAM-SNU
+Family: IAM (Identity and Access Management)
+Security outcome: Appropriately secure authentication methods are used and persistently reviewed for non-user accounts and services.
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 1
+Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Tests: None defined yet
+Owner: TBD: Information has not been provided.
+
+2.19 KSI-IAM-SUS Responding to Suspicious Activity
+KSI: KSI-IAM-SUS
+Family: IAM (Identity and Access Management)
+Security outcome: Accounts with privileged access are disabled or otherwise secured in response to suspicious activity.
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 1
+Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Tests: None defined yet
+Owner: TBD: Information has not been provided.
+
+2.20 KSI-INR-AAR Generating After Action Reports
+KSI: KSI-INR-AAR
+Family: INR (Incident Response)
+Security outcome: Incident after action reports are generated and lessons learned are persistently incorporated.
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 1
+Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Tests: None defined yet
+Owner: TBD: Information has not been provided.
+
+2.21 KSI-INR-RIR Reviewing Incident Response Procedures
+KSI: KSI-INR-RIR
+Family: INR (Incident Response)
+Security outcome: The effectiveness of documented incident response procedures is persistently reviewed.
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 1
+Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Tests: None defined yet
+Owner: TBD: Information has not been provided.
+
+2.22 KSI-INR-RPI Reviewing Past Incidents
+KSI: KSI-INR-RPI
+Family: INR (Incident Response)
+Security outcome: Past incidents are persistently reviewed for patterns or vulnerabilities that were not previously apparent or identified.
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 1
+Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Tests: None defined yet
+Owner: TBD: Information has not been provided.
+
+2.23 KSI-MLA-ALA Authorizing Log Access
+KSI: KSI-MLA-ALA
+Family: MLA (Monitoring, Logging, and Auditing)
+Security outcome: FedRAMP pending, no statement in the official dataset yet.
+Status: Not Implemented
+Implementation: FedRAMP pending: this indicator has no statement in the official dataset yet.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 1
+Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Tests: None defined yet
+Owner: TBD: Information has not been provided.
+
+2.24 KSI-MLA-EVC Evaluating Configurations
+KSI: KSI-MLA-EVC
+Family: MLA (Monitoring, Logging, and Auditing)
+Security outcome: The configuration of machine-based information resources, especially infrastructure as code, is persistently evaluated and tested.
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 1
+Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Tests: None defined yet
+Owner: TBD: Information has not been provided.
+
+2.25 KSI-MLA-LET Logging Event Types
+KSI: KSI-MLA-LET
+Family: MLA (Monitoring, Logging, and Auditing)
+Security outcome: A list of information resources and event types that will be logged, monitored, and audited is maintained and persistently reviewed to ensure these activities occur.
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 1
+Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Tests: None defined yet
+Owner: TBD: Information has not been provided.
+
+2.26 KSI-MLA-OSM Operating SIEM Capability
+KSI: KSI-MLA-OSM
+Family: MLA (Monitoring, Logging, and Auditing)
+Security outcome: A Security Information and Event Management (SIEM) or similar system(s) is used and persistently reviewed for centralized, tamper-resistant logging of events, activities, and changes.
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 1
+Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Tests: None defined yet
+Owner: TBD: Information has not been provided.
+
+2.27 KSI-MLA-RVL Reviewing Logs
+KSI: KSI-MLA-RVL
+Family: MLA (Monitoring, Logging, and Auditing)
+Security outcome: Logs are persistently reviewed and audited.
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 1
+Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Tests: None defined yet
+Owner: TBD: Information has not been provided.
+
+2.28 KSI-PIY-GIV Generating Inventories
+KSI: KSI-PIY-GIV
+Family: PIY (Policy and Inventory)
+Security outcome: Authoritative sources are used to automatically generate real-time inventories of all information resources when needed.
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 1
+Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Tests: None defined yet
+Owner: TBD: Information has not been provided.
+
+2.29 KSI-PIY-RES Reviewing Executive Support
+KSI: KSI-PIY-RES
+Family: PIY (Policy and Inventory)
+Security outcome: Executive support for achieving the provider's security goals is persistently reviewed and demonstrated.
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 1
+Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Tests: None defined yet
+Owner: TBD: Information has not been provided.
+
+2.30 KSI-PIY-RIS Reviewing Investments in Security
+KSI: KSI-PIY-RIS
+Family: PIY (Policy and Inventory)
+Security outcome: The effectiveness of the provider's investments in achieving security goals is persistently reviewed.
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 1
+Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Tests: None defined yet
+Owner: TBD: Information has not been provided.
+
+2.31 KSI-PIY-RSD Reviewing Security in the SDLC
+KSI: KSI-PIY-RSD
+Family: PIY (Policy and Inventory)
+Security outcome: The effectiveness of building security and privacy considerations into the Software Development Lifecycle and aligning with CISA Secure By Design principles is persistently reviewed.
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 1
+Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Tests: None defined yet
+Owner: TBD: Information has not been provided.
+
+2.32 KSI-PIY-RVD Reviewing Vulnerability Disclosures
+KSI: KSI-PIY-RVD
+Family: PIY (Policy and Inventory)
+Security outcome: The effectiveness of the provider's vulnerability disclosure program is persistently reviewed.
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 1
+Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Tests: None defined yet
+Owner: TBD: Information has not been provided.
+
+2.33 KSI-RPL-ABO Aligning Backups with Objectives
+KSI: KSI-RPL-ABO
+Family: RPL (Recovery Planning)
+Security outcome: The alignment of machine-based information resource backups with defined recovery objectives is persistently reviewed.
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 1
+Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Tests: None defined yet
+Owner: TBD: Information has not been provided.
+
+2.34 KSI-RPL-ARP Aligning Recovery Plan
+KSI: KSI-RPL-ARP
+Family: RPL (Recovery Planning)
+Security outcome: The alignment of recovery plans with defined recovery objectives is persistently reviewed.
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 1
+Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Tests: None defined yet
+Owner: TBD: Information has not been provided.
+
+2.35 KSI-RPL-RRO Reviewing Recovery Objectives
+KSI: KSI-RPL-RRO
+Family: RPL (Recovery Planning)
+Security outcome: The desired Recovery Time Objectives (RTO) and Recovery Point Objectives (RPO) are defined and persistently reviewed for alignment with the provider's business needs and capabilities.
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 1
+Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Tests: None defined yet
+Owner: TBD: Information has not been provided.
+
+2.36 KSI-RPL-TRC Testing Recovery Capabilities
+KSI: KSI-RPL-TRC
+Family: RPL (Recovery Planning)
+Security outcome: The capability to recover from incidents and contingencies aligned with defined recovery objectives is persistently tested.
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 1
+Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Tests: None defined yet
+Owner: TBD: Information has not been provided.
+
+2.37 KSI-SCR-MIT Mitigating Supply Chain Risk
+KSI: KSI-SCR-MIT
+Family: SCR (Supply Chain Risk)
+Security outcome: Persistently identify, review, and mitigate potential supply chain risks.
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 1
+Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Tests: None defined yet
+Owner: TBD: Information has not been provided.
+
+2.38 KSI-SCR-MON Monitoring Supply Chain Risk
+KSI: KSI-SCR-MON
+Family: SCR (Supply Chain Risk)
+Security outcome: Third party software information resources are automatically monitored for upstream vulnerabilities using mechanisms that may include contractual notification requirements or active monitoring services.
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 1
+Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Tests: None defined yet
+Owner: TBD: Information has not been provided.
+
+2.39 KSI-SVC-ACM Automating Configuration Management
+KSI: KSI-SVC-ACM
+Family: SVC (Service Configuration)
+Security outcome: The configuration of machine-based information resources is managed using automation and persistently reviewed for drift.
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 1
+Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Tests: None defined yet
+Owner: TBD: Information has not been provided.
+
+2.40 KSI-SVC-ASM Automating Secret Management
+KSI: KSI-SVC-ASM
+Family: SVC (Service Configuration)
+Security outcome: Management, protection, and regular rotation of digital keys, certificates, and other secrets is automated and persistently reviewed.
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 1
+Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Tests: None defined yet
+Owner: TBD: Information has not been provided.
+
+2.41 KSI-SVC-EIS Evaluating and Improving Security
+KSI: KSI-SVC-EIS
+Family: SVC (Service Configuration)
+Security outcome: Information resources are persistently evaluated for opportunities to improve security and those improvements are persistently made.
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 1
+Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Tests: None defined yet
+Owner: TBD: Information has not been provided.
+
+2.42 KSI-SVC-PRR Preventing Residual Risk
+KSI: KSI-SVC-PRR
+Family: SVC (Service Configuration)
+Security outcome: FedRAMP pending, no statement in the official dataset yet.
+Status: Not Implemented
+Implementation: FedRAMP pending: this indicator has no statement in the official dataset yet.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 1
+Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Tests: None defined yet
+Owner: TBD: Information has not been provided.
+
+2.43 KSI-SVC-RUD Removing Unwanted Data
+KSI: KSI-SVC-RUD
+Family: SVC (Service Configuration)
+Security outcome: FedRAMP pending, no statement in the official dataset yet.
+Status: Not Implemented
+Implementation: FedRAMP pending: this indicator has no statement in the official dataset yet.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 1
+Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Tests: None defined yet
+Owner: TBD: Information has not been provided.
+
+2.44 KSI-SVC-SIN Securing Information
+KSI: KSI-SVC-SIN
+Family: SVC (Service Configuration)
+Security outcome: Information is encrypted or otherwise secured from unwanted access or modification.
+Status: Not Implemented
+Implementation: Example (reference architecture, replace with your real implementation): All federal information is encrypted in transit with TLS 1.2 or higher using FIPS-validated endpoints where required, and at rest with AWS KMS customer managed keys. S3 buckets enforce bucket-level encryption and deny unencrypted uploads by bucket policy. EBS volumes and RDS storage use KMS CMKs by default via account-level settings. Public access is blocked account-wide for S3.
+Validation: Example (reference architecture, replace with your real implementation): AWS Config managed rules check encrypted-volumes, rds-storage-encrypted, and S3 default encryption continuously. A daily query confirms account-level EBS default encryption and S3 Block Public Access remain enabled in every account.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 1
+Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Tests: Example test 1: Config rules encrypted-volumes and rds-storage-encrypted are COMPLIANT for all resources (continuous).; Example test 2: EBS default encryption and S3 Block Public Access report enabled for every in-scope account (daily).
+Owner: Example: Security Engineering Lead
+
+2.45 KSI-SVC-VCM Validating Communications
+KSI: KSI-SVC-VCM
+Family: SVC (Service Configuration)
+Security outcome: FedRAMP pending, no statement in the official dataset yet.
+Status: Not Implemented
+Implementation: FedRAMP pending: this indicator has no statement in the official dataset yet.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 1
+Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Tests: None defined yet
+Owner: TBD: Information has not been provided.
+
+2.46 KSI-SVC-VRI Validating Resource Integrity
+KSI: KSI-SVC-VRI
+Family: SVC (Service Configuration)
+Security outcome: Use cryptographic methods to validate the integrity of machine-based information resources.
+Status: Not Implemented
+Implementation: TBD: Information has not been provided.
+Validation: TBD: Information has not been provided.
+Independent assessment: TBD: Independent assessment has not been performed.
+Minimum automated methods for this class: 1
+Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Tests: None defined yet
+Owner: TBD: Information has not been provided.
