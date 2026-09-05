@@ -85,6 +85,27 @@ Facts are telemetry, never statuses. A status changes only through deterministic
 
 The 20x Program path for Class D is listed by FedRAMP as coming in 2027, with specifics set during the 20x Phase 4 Pilot. The register at `profiles/class-d-future/readiness-register.json` shows the rules that would apply, resolved with the class d variants already present in the canonical dataset, plus a delta against Class C so a Class C provider can see exactly what tightens. It never claims Class D compliance.
 
+## Running it as a pipeline in AWS (CI/CD for the SDR)
+
+The `automation/pipeline/` directory contains a deployable AWS CodePipeline reference, modeled on the AWS DevSecOps pipeline pattern but with SDR-specific gates instead of SCA/SAST/DAST scanners. It lets a provider manage the SDR like production code inside their own AWS environment.
+
+| Stage | What happens | FedRAMP rule it supports |
+|-------|--------------|--------------------------|
+| Source | A push to the provider's private SDR repository (GitHub via AWS CodeConnections) triggers the pipeline | CMT change management practices |
+| Validate and package | CodeBuild regenerates every deliverable, fails if any generated file was hand-edited (regenerate-then-diff gate), then runs the validator with 0 hard failures required | FRC-CSX-VVR persistent automated verification and validation of the SDR |
+| Human approval | SNS emails an approver; nothing publishes without sign-off | Human-gated statuses |
+| Publish | Deliverables land in a versioned, encrypted S3 bucket that can back a trust center or package delivery | FRC-CSO-JSN, SDR-CSO-MTD |
+| Daily drift check (scheduled) | Hash-compares the pinned dataset and schemas against fedramp.gov and alerts on change | Source currency |
+| Daily collector (scheduled, opt-in) | Runs the read-only facts collector and stores timestamped facts in an evidence bucket | SDR-CSX-KMT metrics, FRC-CSX-MOT persistent validation |
+
+Deploy with CloudFormation:
+
+```
+aws cloudformation deploy   --template-file automation/pipeline/sdr-pipeline.yaml   --stack-name sdr-pipeline   --capabilities CAPABILITY_IAM   --parameter-overrides     ConnectionArn=arn:aws:codeconnections:REGION:ACCOUNT:connection/ID     FullRepositoryId=your-org/your-sdr-repo     NotificationEmail=approver@example.com
+```
+
+Create and authorize the CodeConnections connection to your git host once in the console before deploying. The template avoids hardcoded partitions, so it works in standard and GovCloud regions. AWS CodeCommit is not used because it is closed to new customers; the source is any git host CodeConnections supports.
+
 ## Sources and verification
 
 The canonical dataset and both official schemas are pinned in this repository and must be hash-compared against the live copies at the start of each working session, because FedRAMP updates schema files in place without renaming them. Do not cite archived pilot material (RFC-0006 era KSI counts, RFC-0024, or pre-CR26 workbooks with numeric KSI identifiers) as current requirements.

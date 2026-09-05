@@ -1,0 +1,19 @@
+# Scheduled daily when EnableCollectorSchedule is true. Runs the read-only
+# facts collector against this account and uploads the timestamped facts
+# store to the evidence bucket under facts/. Facts are telemetry, never
+# statuses; the daily cadence feeds the SDR-CSX-KMT historical metrics and
+# the FRC-CSX-MOT persistent-validation clock.
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.12
+    commands:
+      - pip install --quiet boto3
+  build:
+    commands:
+      - python automation/collectors/collect_facts.py
+      - |
+        LATEST=$(ls -t automation/facts/*.json | head -1)
+        aws s3 cp "$LATEST" "s3://$EVIDENCE_BUCKET/facts/$(basename "$LATEST")"

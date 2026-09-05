@@ -1,0 +1,39 @@
+# CI gate for the SDR repository. Three checks, in order:
+#   1. Regenerate every deliverable from the record store and pinned dataset.
+#   2. Refuse hand-edited generated files: after regeneration the working
+#      tree must be clean (deterministic pipeline makes this possible).
+#      Docx files are excluded because their zip container embeds
+#      file-entry timestamps; their content is covered by the validator.
+#   3. validate_sdr.py must pass with 0 hard failures (schema, coverage,
+#      test minimums, hygiene, content fidelity against the dataset).
+# The deliverables package is emitted as the pipeline artifact and is
+# published to S3 only after human approval.
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.12
+    commands:
+      - pip install --quiet jsonschema referencing python-docx
+  build:
+    commands:
+      - python validation/scripts/build_catalogs.py
+      - python validation/scripts/build_notes.py
+      - python validation/scripts/build_profiles.py
+      - python validation/scripts/build_sdr.py
+      - python validation/scripts/build_docx.py
+      - python validation/scripts/build_crosswalk.py
+      - git diff --exit-code -- . ':(exclude)*.docx' || { echo "FAIL. Generated outputs differ from committed files. Never edit generated files by hand; edit sdr/records/records-store.json and regenerate."; exit 1; }
+      - python validation/scripts/validate_sdr.py
+  post_build:
+    commands:
+      - echo "Validation passed. Packaging deliverables."
+
+artifacts:
+  base-directory: .
+  files:
+    - sdr/json/**/*
+    - sdr/human-readable/**/*
+    - validation/reports/**/*
+    - traceability/rev5-to-20x-crosswalk.*

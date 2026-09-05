@@ -1,0 +1,456 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: >
+  FedRAMP 20x Security Decision Record (SDR) documentation pipeline.
+  Source (GitHub via AWS CodeConnections) -> regenerate and validate the SDR
+  with CodeBuild -> manual approval -> publish deliverables to a versioned,
+  encrypted S3 bucket. Scheduled jobs check the pinned FedRAMP dataset for
+  upstream drift daily and run the read-only facts collector.
+  Supports FRC-CSX-VVR (persistently verify and validate SDR accuracy),
+  SDR-CSX-KMT (historical KSI metrics), and honest human-gated publication.
+  Works in standard and GovCloud partitions (no hardcoded ARN partitions).
+
+Parameters:
+  ConnectionArn:
+    Type: String
+    Description: >
+      ARN of an AWS CodeConnections (CodeStar Connections) connection to the
+      git host. Create and authorize it once in the console before deploying.
+  FullRepositoryId:
+    Type: String
+    Description: Repository in owner/name form, for example acme/acme-sdr.
+  BranchName:
+    Type: String
+    Default: main
+    Description: Branch that triggers the pipeline.
+  NotificationEmail:
+    Type: String
+    Description: Email address for approval requests and pipeline state changes.
+  EnableCollectorSchedule:
+    Type: String
+    Default: "false"
+    AllowedValues: ["true", "false"]
+    Description: >
+      Set to true only after reviewing automation/collectors/collect_facts.py
+      and granting the collector role in the target account. The collector is
+      read-only by construction.
+
+Conditions:
+  CollectorOn: !Equals [!Ref EnableCollectorSchedule, "true"]
+
+Resources:
+
+  ArtifactBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      VersioningConfiguration:
+        Status: Enabled
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: aws:kms
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+
+  DeliverablesBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      VersioningConfiguration:
+        Status: Enabled
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: aws:kms
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+
+  EvidenceBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      VersioningConfiguration:
+        Status: Enabled
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: aws:kms
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+
+  # Deliberate simplifications, flagged Informational by cfn-lint: S3 access
+  # logging and customer-managed KMS keys are left to the deploying
+  # organization's own logging and key-management standards; IAM policies are
+  # inline because they are scoped to exactly these resources. The topic is
+  # intentionally NOT encrypted with the AWS-managed aws/sns key: EventBridge
+  # and CodePipeline cannot publish through that key's unmodifiable policy,
+  # which would silently break approvals and failure notifications. To
+  # encrypt it, supply a customer-managed key whose policy grants kms:Decrypt
+  # and kms:GenerateDataKey to events.amazonaws.com and
+  # codepipeline.amazonaws.com.
+  NotificationTopic:
+    Type: AWS::SNS::Topic
+
+  NotificationSubscription:
+    Type: AWS::SNS::Subscription
+    Properties:
+      Protocol: email
+      Endpoint: !Ref NotificationEmail
+      TopicArn: !Ref NotificationTopic
+
+  CodeBuildRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: codebuild.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: sdr-codebuild
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - logs:CreateLogGroup
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                Resource: !Sub "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/codebuild/*"
+              - Effect: Allow
+                Action:
+                  - s3:GetObject
+                  - s3:GetObjectVersion
+                  - s3:PutObject
+                Resource:
+                  - !Sub "${ArtifactBucket.Arn}/*"
+                  - !Sub "${EvidenceBucket.Arn}/*"
+              - Effect: Allow
+                Action:
+                  - s3:ListBucket
+                Resource:
+                  - !GetAtt ArtifactBucket.Arn
+                  - !GetAtt EvidenceBucket.Arn
+              - Effect: Allow
+                Action:
+                  - codeconnections:GetConnectionToken
+                  - codeconnections:GetConnection
+                  - codestar-connections:GetConnectionToken
+                  - codestar-connections:GetConnection
+                Resource: !Ref ConnectionArn
+              - Effect: Allow
+                Action:
+                  - sns:Publish
+                Resource: !Ref NotificationTopic
+
+  CollectorRole:
+    Type: AWS::IAM::Role
+    Condition: CollectorOn
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: codebuild.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: sdr-collector-readonly
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - logs:CreateLogGroup
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                Resource: !Sub "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/codebuild/*"
+              - Effect: Allow
+                Action:
+                  - s3:PutObject
+                Resource: !Sub "${EvidenceBucket.Arn}/facts/*"
+              - Effect: Allow
+                Action:
+                  - config:DescribeComplianceByConfigRule
+                Resource: "*"
+              - Effect: Allow
+                Action:
+                  - codeconnections:GetConnectionToken
+                  - codeconnections:GetConnection
+                  - codestar-connections:GetConnectionToken
+                  - codestar-connections:GetConnection
+                Resource: !Ref ConnectionArn
+
+  ValidateProject:
+    Type: AWS::CodeBuild::Project
+    Properties:
+      Name: !Sub "${AWS::StackName}-validate"
+      Description: Regenerate the SDR, refuse hand-edited outputs, validate with 0 hard failures.
+      ServiceRole: !GetAtt CodeBuildRole.Arn
+      TimeoutInMinutes: 20
+      Artifacts:
+        Type: CODEPIPELINE
+      Environment:
+        Type: LINUX_CONTAINER
+        ComputeType: BUILD_GENERAL1_SMALL
+        Image: aws/codebuild/amazonlinux2-x86_64-standard:5.0
+      Source:
+        Type: CODEPIPELINE
+        BuildSpec: automation/pipeline/buildspec-validate.yml
+
+  DriftCheckProject:
+    Type: AWS::CodeBuild::Project
+    Properties:
+      Name: !Sub "${AWS::StackName}-drift-check"
+      Description: Daily hash-compare of the pinned FedRAMP dataset and schemas against upstream.
+      ServiceRole: !GetAtt CodeBuildRole.Arn
+      TimeoutInMinutes: 10
+      Artifacts:
+        Type: NO_ARTIFACTS
+      Environment:
+        Type: LINUX_CONTAINER
+        ComputeType: BUILD_GENERAL1_SMALL
+        Image: aws/codebuild/amazonlinux2-x86_64-standard:5.0
+        EnvironmentVariables:
+          - Name: SNS_TOPIC_ARN
+            Value: !Ref NotificationTopic
+      Source:
+        Type: GITHUB
+        Location: !Sub "https://github.com/${FullRepositoryId}.git"
+        BuildSpec: automation/pipeline/buildspec-drift-check.yml
+        Auth:
+          Type: CODECONNECTIONS
+          Resource: !Ref ConnectionArn
+
+  CollectorProject:
+    Type: AWS::CodeBuild::Project
+    Condition: CollectorOn
+    Properties:
+      Name: !Sub "${AWS::StackName}-collector"
+      Description: Read-only facts collector; writes timestamped facts to the evidence bucket.
+      ServiceRole: !GetAtt CollectorRole.Arn
+      TimeoutInMinutes: 15
+      Artifacts:
+        Type: NO_ARTIFACTS
+      Environment:
+        Type: LINUX_CONTAINER
+        ComputeType: BUILD_GENERAL1_SMALL
+        Image: aws/codebuild/amazonlinux2-x86_64-standard:5.0
+        EnvironmentVariables:
+          - Name: EVIDENCE_BUCKET
+            Value: !Ref EvidenceBucket
+      Source:
+        Type: GITHUB
+        Location: !Sub "https://github.com/${FullRepositoryId}.git"
+        BuildSpec: automation/pipeline/buildspec-collect.yml
+        Auth:
+          Type: CODECONNECTIONS
+          Resource: !Ref ConnectionArn
+
+  PipelineRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: codepipeline.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: sdr-pipeline
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - s3:GetObject
+                  - s3:GetObjectVersion
+                  - s3:PutObject
+                Resource:
+                  - !Sub "${ArtifactBucket.Arn}/*"
+                  - !Sub "${DeliverablesBucket.Arn}/*"
+              - Effect: Allow
+                Action:
+                  - s3:ListBucket
+                  - s3:GetBucketVersioning
+                Resource:
+                  - !GetAtt ArtifactBucket.Arn
+                  - !GetAtt DeliverablesBucket.Arn
+              - Effect: Allow
+                Action:
+                  - codebuild:StartBuild
+                  - codebuild:BatchGetBuilds
+                Resource: !GetAtt ValidateProject.Arn
+              - Effect: Allow
+                Action:
+                  - codeconnections:UseConnection
+                  - codestar-connections:UseConnection
+                Resource: !Ref ConnectionArn
+              - Effect: Allow
+                Action:
+                  - sns:Publish
+                Resource: !Ref NotificationTopic
+
+  Pipeline:
+    Type: AWS::CodePipeline::Pipeline
+    Properties:
+      RoleArn: !GetAtt PipelineRole.Arn
+      ArtifactStore:
+        Type: S3
+        Location: !Ref ArtifactBucket
+      Stages:
+        - Name: Source
+          Actions:
+            - Name: Source
+              ActionTypeId:
+                Category: Source
+                Owner: AWS
+                Provider: CodeStarSourceConnection
+                Version: "1"
+              Configuration:
+                ConnectionArn: !Ref ConnectionArn
+                FullRepositoryId: !Ref FullRepositoryId
+                BranchName: !Ref BranchName
+                # Full clone so the validate stage can run the
+                # regenerate-then-git-diff gate; the zip format carries no
+                # git metadata.
+                OutputArtifactFormat: CODEBUILD_CLONE_REF
+              OutputArtifacts:
+                - Name: SourceOutput
+        - Name: ValidateAndPackage
+          Actions:
+            - Name: RegenerateValidatePackage
+              ActionTypeId:
+                Category: Build
+                Owner: AWS
+                Provider: CodeBuild
+                Version: "1"
+              Configuration:
+                ProjectName: !Ref ValidateProject
+              InputArtifacts:
+                - Name: SourceOutput
+              OutputArtifacts:
+                - Name: Deliverables
+        - Name: HumanApproval
+          Actions:
+            - Name: ApprovePublication
+              ActionTypeId:
+                Category: Approval
+                Owner: AWS
+                Provider: Manual
+                Version: "1"
+              Configuration:
+                NotificationArn: !Ref NotificationTopic
+                CustomData: >
+                  Review the validation report in the build logs before
+                  approving. Approval publishes the SDR deliverables package.
+        - Name: Publish
+          Actions:
+            - Name: PublishDeliverables
+              ActionTypeId:
+                Category: Deploy
+                Owner: AWS
+                Provider: S3
+                Version: "1"
+              Configuration:
+                BucketName: !Ref DeliverablesBucket
+                Extract: "true"
+              InputArtifacts:
+                - Name: Deliverables
+
+  EventsRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: events.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: sdr-scheduled-builds
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action: codebuild:StartBuild
+                Resource:
+                  - !GetAtt DriftCheckProject.Arn
+                  - !If [CollectorOn, !GetAtt CollectorProject.Arn, !Ref "AWS::NoValue"]
+
+  DailyDriftCheck:
+    Type: AWS::Events::Rule
+    Properties:
+      Description: Daily upstream drift check of the pinned FedRAMP sources.
+      ScheduleExpression: rate(1 day)
+      State: ENABLED
+      Targets:
+        - Id: drift-check
+          Arn: !GetAtt DriftCheckProject.Arn
+          RoleArn: !GetAtt EventsRole.Arn
+
+  DailyCollector:
+    Type: AWS::Events::Rule
+    Condition: CollectorOn
+    Properties:
+      Description: Daily read-only facts collection for KSI metrics.
+      ScheduleExpression: rate(1 day)
+      State: ENABLED
+      Targets:
+        - Id: collector
+          Arn: !GetAtt CollectorProject.Arn
+          RoleArn: !GetAtt EventsRole.Arn
+
+  PipelineStateNotification:
+    Type: AWS::Events::Rule
+    Properties:
+      Description: Email on pipeline failures and manual approval needed.
+      EventPattern:
+        source: ["aws.codepipeline"]
+        detail-type: ["CodePipeline Pipeline Execution State Change"]
+        detail:
+          pipeline: [!Ref Pipeline]
+          state: ["FAILED", "SUCCEEDED"]
+      State: ENABLED
+      Targets:
+        - Id: sns
+          Arn: !Ref NotificationTopic
+
+  NotificationTopicPolicy:
+    Type: AWS::SNS::TopicPolicy
+    Properties:
+      Topics:
+        - !Ref NotificationTopic
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: events.amazonaws.com
+            Action: sns:Publish
+            Resource: !Ref NotificationTopic
+          - Effect: Allow
+            Principal:
+              Service: codepipeline.amazonaws.com
+            Action: sns:Publish
+            Resource: !Ref NotificationTopic
+
+Outputs:
+  PipelineName:
+    Value: !Ref Pipeline
+  DeliverablesBucketName:
+    Description: Versioned, encrypted bucket holding published SDR packages.
+    Value: !Ref DeliverablesBucket
+  EvidenceBucketName:
+    Description: Bucket receiving timestamped collector facts under facts/.
+    Value: !Ref EvidenceBucket

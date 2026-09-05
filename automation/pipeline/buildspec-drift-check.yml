@@ -1,0 +1,30 @@
+# Scheduled daily. Hash-compares the pinned FedRAMP sources against the live
+# copies. FedRAMP updates schema files in place without renaming, so hash
+# comparison is the only reliable change signal. On drift, notifies the
+# subscribed email through SNS and fails the build so the drift is visible.
+version: 0.2
+
+phases:
+  build:
+    commands:
+      - |
+        set -e
+        DRIFT=""
+        check () {
+          NAME="$1"; URL="$2"; PINNED="$3"
+          LIVE=$(curl -sL --max-time 30 "$URL" | sha256sum | cut -d' ' -f1)
+          LOCAL=$(sha256sum "$PINNED" | cut -d' ' -f1)
+          if [ "$LIVE" = "$LOCAL" ]; then
+            echo "$NAME: unchanged"
+          else
+            echo "$NAME: CHANGED upstream (live $LIVE vs pinned $LOCAL)"
+            DRIFT="$DRIFT $NAME;"
+          fi
+        }
+        check "CR26-dataset" "https://raw.githubusercontent.com/FedRAMP/rules/main/fedramp-consolidated-rules.json" "references/fedramp-consolidated-rules.json"
+        check "SDR-schema" "https://www.fedramp.gov/schemas/fedramp-security-decision-record-schema-2026-06-24.json" "artifacts/schemas/official/fedramp-security-decision-record-schema-2026-06-24.json"
+        check "common-definitions-schema" "https://www.fedramp.gov/schemas/fedramp-common-definitions-schema-2026-06-24.json" "artifacts/schemas/official/fedramp-common-definitions-schema-2026-06-24.json"
+        if [ -n "$DRIFT" ]; then
+          aws sns publish --topic-arn "$SNS_TOPIC_ARN" --subject "FedRAMP upstream sources changed" --message "Upstream FedRAMP sources changed:$DRIFT Re-pull, diff, re-run the SDR pipeline, and review before relying on the pinned copies."
+          exit 1
+        fi
