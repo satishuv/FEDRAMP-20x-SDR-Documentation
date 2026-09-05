@@ -1,0 +1,374 @@
+Rev5 Control,KSI ID,KSI Name,KSI Family,KSI Family Name
+AC-1,KSI-SVC-SIN,Securing Information,SVC,Service Configuration
+AC-2,KSI-IAM-APM,Adopting Passwordless Methods,IAM,Identity and Access Management
+AC-2,KSI-IAM-JIT,Authorizing Just-in-Time,IAM,Identity and Access Management
+AC-2,KSI-IAM-SNU,Securing Non-User Authentication,IAM,Identity and Access Management
+AC-2,KSI-IAM-SUS,Responding to Suspicious Activity,IAM,Identity and Access Management
+AC-2.1,KSI-IAM-JIT,Authorizing Just-in-Time,IAM,Identity and Access Management
+AC-2.1,KSI-IAM-SUS,Responding to Suspicious Activity,IAM,Identity and Access Management
+AC-2.2,KSI-IAM-AAM,Automating Account Management,IAM,Identity and Access Management
+AC-2.2,KSI-IAM-JIT,Authorizing Just-in-Time,IAM,Identity and Access Management
+AC-2.2,KSI-IAM-SNU,Securing Non-User Authentication,IAM,Identity and Access Management
+AC-2.3,KSI-IAM-AAM,Automating Account Management,IAM,Identity and Access Management
+AC-2.3,KSI-IAM-JIT,Authorizing Just-in-Time,IAM,Identity and Access Management
+AC-2.3,KSI-IAM-SUS,Responding to Suspicious Activity,IAM,Identity and Access Management
+AC-2.4,KSI-IAM-JIT,Authorizing Just-in-Time,IAM,Identity and Access Management
+AC-2.4,KSI-MLA-LET,Logging Event Types,MLA,"Monitoring, Logging, and Auditing"
+AC-2.4,KSI-MLA-RVL,Reviewing Logs,MLA,"Monitoring, Logging, and Auditing"
+AC-2.4,KSI-SVC-ACM,Automating Configuration Management,SVC,Service Configuration
+AC-2.5,KSI-IAM-ELP,Ensuring Least Privilege,IAM,Identity and Access Management
+AC-2.6,KSI-IAM-ELP,Ensuring Least Privilege,IAM,Identity and Access Management
+AC-2.6,KSI-IAM-JIT,Authorizing Just-in-Time,IAM,Identity and Access Management
+AC-2.13,KSI-IAM-AAM,Automating Account Management,IAM,Identity and Access Management
+AC-2.13,KSI-IAM-SUS,Responding to Suspicious Activity,IAM,Identity and Access Management
+AC-3,KSI-IAM-APM,Adopting Passwordless Methods,IAM,Identity and Access Management
+AC-3,KSI-IAM-ELP,Ensuring Least Privilege,IAM,Identity and Access Management
+AC-3,KSI-IAM-JIT,Authorizing Just-in-Time,IAM,Identity and Access Management
+AC-4,KSI-IAM-ELP,Ensuring Least Privilege,IAM,Identity and Access Management
+AC-4,KSI-IAM-JIT,Authorizing Just-in-Time,IAM,Identity and Access Management
+AC-4,KSI-IAM-SNU,Securing Non-User Authentication,IAM,Identity and Access Management
+AC-5,KSI-IAM-JIT,Authorizing Just-in-Time,IAM,Identity and Access Management
+AC-5,KSI-PIY-RIS,Reviewing Investments in Security,PIY,Policy and Inventory
+AC-5,KSI-PIY-RSD,Reviewing Security in the SDLC,PIY,Policy and Inventory
+AC-6,KSI-IAM-ELP,Ensuring Least Privilege,IAM,Identity and Access Management
+AC-6,KSI-IAM-JIT,Authorizing Just-in-Time,IAM,Identity and Access Management
+AC-6.1,KSI-IAM-JIT,Authorizing Just-in-Time,IAM,Identity and Access Management
+AC-6.2,KSI-IAM-JIT,Authorizing Just-in-Time,IAM,Identity and Access Management
+AC-6.5,KSI-IAM-JIT,Authorizing Just-in-Time,IAM,Identity and Access Management
+AC-6.5,KSI-IAM-SNU,Securing Non-User Authentication,IAM,Identity and Access Management
+AC-6.7,KSI-IAM-AAM,Automating Account Management,IAM,Identity and Access Management
+AC-6.7,KSI-IAM-JIT,Authorizing Just-in-Time,IAM,Identity and Access Management
+AC-6.9,KSI-IAM-JIT,Authorizing Just-in-Time,IAM,Identity and Access Management
+AC-6.9,KSI-MLA-LET,Logging Event Types,MLA,"Monitoring, Logging, and Auditing"
+AC-6.9,KSI-MLA-RVL,Reviewing Logs,MLA,"Monitoring, Logging, and Auditing"
+AC-6.10,KSI-IAM-JIT,Authorizing Just-in-Time,IAM,Identity and Access Management
+AC-7,KSI-IAM-JIT,Authorizing Just-in-Time,IAM,Identity and Access Management
+AC-7,KSI-IAM-SUS,Responding to Suspicious Activity,IAM,Identity and Access Management
+AC-12,KSI-CNA-ULN,Using Logical Networking,CNA,Cloud Native Architecture
+AC-12,KSI-IAM-ELP,Ensuring Least Privilege,IAM,Identity and Access Management
+AC-14,KSI-IAM-ELP,Ensuring Least Privilege,IAM,Identity and Access Management
+AC-17,KSI-IAM-ELP,Ensuring Least Privilege,IAM,Identity and Access Management
+AC-17,KSI-IAM-JIT,Authorizing Just-in-Time,IAM,Identity and Access Management
+AC-17.1,KSI-IAM-ELP,Ensuring Least Privilege,IAM,Identity and Access Management
+AC-17.1,KSI-MLA-LET,Logging Event Types,MLA,"Monitoring, Logging, and Auditing"
+AC-17.1,KSI-MLA-OSM,Operating SIEM Capability,MLA,"Monitoring, Logging, and Auditing"
+AC-17.2,KSI-IAM-ELP,Ensuring Least Privilege,IAM,Identity and Access Management
+AC-17.2,KSI-SVC-ASM,Automating Secret Management,SVC,Service Configuration
+AC-17.2,KSI-SVC-SIN,Securing Information,SVC,Service Configuration
+AC-17.3,KSI-CNA-IBP,Implementing Best Practices,CNA,Cloud Native Architecture
+AC-17.3,KSI-CNA-MAT,Minimizing Attack Surface,CNA,Cloud Native Architecture
+AC-17.3,KSI-CNA-RNT,Restricting Network Traffic,CNA,Cloud Native Architecture
+AC-17.3,KSI-CNA-ULN,Using Logical Networking,CNA,Cloud Native Architecture
+AC-17.3,KSI-IAM-ELP,Ensuring Least Privilege,IAM,Identity and Access Management
+AC-18.1,KSI-CNA-MAT,Minimizing Attack Surface,CNA,Cloud Native Architecture
+AC-18.3,KSI-CNA-MAT,Minimizing Attack Surface,CNA,Cloud Native Architecture
+AC-20,KSI-IAM-ELP,Ensuring Least Privilege,IAM,Identity and Access Management
+AC-20,KSI-SCR-MIT,Mitigating Supply Chain Risk,SCR,Supply Chain Risk
+AC-20,KSI-SCR-MON,Monitoring Supply Chain Risk,SCR,Supply Chain Risk
+AC-20.1,KSI-CNA-MAT,Minimizing Attack Surface,CNA,Cloud Native Architecture
+AC-20.1,KSI-IAM-ELP,Ensuring Least Privilege,IAM,Identity and Access Management
+AC-20.1,KSI-IAM-JIT,Authorizing Just-in-Time,IAM,Identity and Access Management
+AC-20.1,KSI-MLA-LET,Logging Event Types,MLA,"Monitoring, Logging, and Auditing"
+AC-20.1,KSI-MLA-OSM,Operating SIEM Capability,MLA,"Monitoring, Logging, and Auditing"
+AT-2,KSI-CED-RAT,Reviewing All Training,CED,Cybersecurity Education
+AT-2.2,KSI-CED-RAT,Reviewing All Training,CED,Cybersecurity Education
+AT-2.3,KSI-CED-RAT,Reviewing All Training,CED,Cybersecurity Education
+AT-3,KSI-CED-RAT,Reviewing All Training,CED,Cybersecurity Education
+AT-3.5,KSI-CED-RAT,Reviewing All Training,CED,Cybersecurity Education
+AT-4,KSI-CED-RAT,Reviewing All Training,CED,Cybersecurity Education
+AU-2,KSI-CMT-LMC,Logging Changes,CMT,Change Management
+AU-2,KSI-MLA-LET,Logging Event Types,MLA,"Monitoring, Logging, and Auditing"
+AU-2,KSI-MLA-OSM,Operating SIEM Capability,MLA,"Monitoring, Logging, and Auditing"
+AU-2,KSI-MLA-RVL,Reviewing Logs,MLA,"Monitoring, Logging, and Auditing"
+AU-3,KSI-MLA-OSM,Operating SIEM Capability,MLA,"Monitoring, Logging, and Auditing"
+AU-3.1,KSI-MLA-OSM,Operating SIEM Capability,MLA,"Monitoring, Logging, and Auditing"
+AU-3.3,KSI-PIY-RSD,Reviewing Security in the SDLC,PIY,Policy and Inventory
+AU-4,KSI-MLA-OSM,Operating SIEM Capability,MLA,"Monitoring, Logging, and Auditing"
+AU-5,KSI-MLA-OSM,Operating SIEM Capability,MLA,"Monitoring, Logging, and Auditing"
+AU-6,KSI-MLA-RVL,Reviewing Logs,MLA,"Monitoring, Logging, and Auditing"
+AU-6.1,KSI-MLA-OSM,Operating SIEM Capability,MLA,"Monitoring, Logging, and Auditing"
+AU-6.1,KSI-MLA-RVL,Reviewing Logs,MLA,"Monitoring, Logging, and Auditing"
+AU-6.3,KSI-MLA-OSM,Operating SIEM Capability,MLA,"Monitoring, Logging, and Auditing"
+AU-7,KSI-MLA-OSM,Operating SIEM Capability,MLA,"Monitoring, Logging, and Auditing"
+AU-7.1,KSI-MLA-LET,Logging Event Types,MLA,"Monitoring, Logging, and Auditing"
+AU-7.1,KSI-MLA-OSM,Operating SIEM Capability,MLA,"Monitoring, Logging, and Auditing"
+AU-8,KSI-MLA-OSM,Operating SIEM Capability,MLA,"Monitoring, Logging, and Auditing"
+AU-9,KSI-MLA-OSM,Operating SIEM Capability,MLA,"Monitoring, Logging, and Auditing"
+AU-9.4,KSI-IAM-JIT,Authorizing Just-in-Time,IAM,Identity and Access Management
+AU-11,KSI-MLA-OSM,Operating SIEM Capability,MLA,"Monitoring, Logging, and Auditing"
+AU-12,KSI-MLA-LET,Logging Event Types,MLA,"Monitoring, Logging, and Auditing"
+CA-2,KSI-PIY-RIS,Reviewing Investments in Security,PIY,Policy and Inventory
+CA-2.1,KSI-CNA-EIS,Enforcing Intended State,CNA,Cloud Native Architecture
+CA-3,KSI-SCR-MON,Monitoring Supply Chain Risk,SCR,Supply Chain Risk
+CA-7,KSI-MLA-EVC,Evaluating Configurations,MLA,"Monitoring, Logging, and Auditing"
+CA-7.1,KSI-CNA-EIS,Enforcing Intended State,CNA,Cloud Native Architecture
+CA-7.4,KSI-SCR-MIT,Mitigating Supply Chain Risk,SCR,Supply Chain Risk
+CA-9,KSI-CNA-MAT,Minimizing Attack Surface,CNA,Cloud Native Architecture
+CA-9,KSI-CNA-RNT,Restricting Network Traffic,CNA,Cloud Native Architecture
+CA-9,KSI-CNA-ULN,Using Logical Networking,CNA,Cloud Native Architecture
+CM-2,KSI-CMT-RMV,Redeploying vs Modifying,CMT,Change Management
+CM-2,KSI-CNA-DFP,Defining Functionality and Privileges,CNA,Cloud Native Architecture
+CM-2,KSI-CNA-IBP,Implementing Best Practices,CNA,Cloud Native Architecture
+CM-2,KSI-MLA-EVC,Evaluating Configurations,MLA,"Monitoring, Logging, and Auditing"
+CM-2,KSI-SVC-ACM,Automating Configuration Management,SVC,Service Configuration
+CM-2.2,KSI-PIY-GIV,Generating Inventories,PIY,Policy and Inventory
+CM-2.2,KSI-SVC-ACM,Automating Configuration Management,SVC,Service Configuration
+CM-2.2,KSI-SVC-VRI,Validating Resource Integrity,SVC,Service Configuration
+CM-2.3,KSI-RPL-ABO,Aligning Backups with Objectives,RPL,Recovery Planning
+CM-2.3,KSI-SVC-ACM,Automating Configuration Management,SVC,Service Configuration
+CM-2.7,KSI-IAM-ELP,Ensuring Least Privilege,IAM,Identity and Access Management
+CM-3,KSI-CMT-LMC,Logging Changes,CMT,Change Management
+CM-3,KSI-CMT-RMV,Redeploying vs Modifying,CMT,Change Management
+CM-3,KSI-CMT-RVP,Reviewing Change Procedures,CMT,Change Management
+CM-3,KSI-CMT-VTD,Validating Throughout Deployment,CMT,Change Management
+CM-3.2,KSI-CMT-LMC,Logging Changes,CMT,Change Management
+CM-3.2,KSI-CMT-RVP,Reviewing Change Procedures,CMT,Change Management
+CM-3.2,KSI-CMT-VTD,Validating Throughout Deployment,CMT,Change Management
+CM-3.4,KSI-CMT-RVP,Reviewing Change Procedures,CMT,Change Management
+CM-3.4,KSI-PIY-RSD,Reviewing Security in the SDLC,PIY,Policy and Inventory
+CM-4.2,KSI-CMT-LMC,Logging Changes,CMT,Change Management
+CM-4.2,KSI-CMT-VTD,Validating Throughout Deployment,CMT,Change Management
+CM-5,KSI-CMT-RMV,Redeploying vs Modifying,CMT,Change Management
+CM-5,KSI-CMT-RVP,Reviewing Change Procedures,CMT,Change Management
+CM-5,KSI-IAM-JIT,Authorizing Just-in-Time,IAM,Identity and Access Management
+CM-6,KSI-CMT-LMC,Logging Changes,CMT,Change Management
+CM-6,KSI-CMT-RMV,Redeploying vs Modifying,CMT,Change Management
+CM-6,KSI-MLA-EVC,Evaluating Configurations,MLA,"Monitoring, Logging, and Auditing"
+CM-6,KSI-SVC-ACM,Automating Configuration Management,SVC,Service Configuration
+CM-7,KSI-CMT-RMV,Redeploying vs Modifying,CMT,Change Management
+CM-7,KSI-IAM-JIT,Authorizing Just-in-Time,IAM,Identity and Access Management
+CM-7.1,KSI-CMT-RVP,Reviewing Change Procedures,CMT,Change Management
+CM-7.1,KSI-CNA-RNT,Restricting Network Traffic,CNA,Cloud Native Architecture
+CM-7.1,KSI-SVC-ACM,Automating Configuration Management,SVC,Service Configuration
+CM-7.1,KSI-SVC-EIS,Evaluating and Improving Security,SVC,Service Configuration
+CM-7.2,KSI-IAM-JIT,Authorizing Just-in-Time,IAM,Identity and Access Management
+CM-7.5,KSI-IAM-JIT,Authorizing Just-in-Time,IAM,Identity and Access Management
+CM-7.5,KSI-PIY-GIV,Generating Inventories,PIY,Policy and Inventory
+CM-8,KSI-PIY-GIV,Generating Inventories,PIY,Policy and Inventory
+CM-8.1,KSI-CMT-RMV,Redeploying vs Modifying,CMT,Change Management
+CM-8.1,KSI-PIY-GIV,Generating Inventories,PIY,Policy and Inventory
+CM-8.3,KSI-CMT-LMC,Logging Changes,CMT,Change Management
+CM-8.3,KSI-SVC-VRI,Validating Resource Integrity,SVC,Service Configuration
+CM-9,KSI-CMT-RVP,Reviewing Change Procedures,CMT,Change Management
+CM-9,KSI-IAM-ELP,Ensuring Least Privilege,IAM,Identity and Access Management
+CM-9,KSI-IAM-JIT,Authorizing Just-in-Time,IAM,Identity and Access Management
+CM-12,KSI-PIY-GIV,Generating Inventories,PIY,Policy and Inventory
+CM-12.1,KSI-PIY-GIV,Generating Inventories,PIY,Policy and Inventory
+CM-12.1,KSI-SVC-EIS,Evaluating and Improving Security,SVC,Service Configuration
+CP-2,KSI-RPL-ARP,Aligning Recovery Plan,RPL,Recovery Planning
+CP-2.1,KSI-PIY-RIS,Reviewing Investments in Security,PIY,Policy and Inventory
+CP-2.1,KSI-RPL-ARP,Aligning Recovery Plan,RPL,Recovery Planning
+CP-2.1,KSI-RPL-TRC,Testing Recovery Capabilities,RPL,Recovery Planning
+CP-2.3,KSI-RPL-ARP,Aligning Recovery Plan,RPL,Recovery Planning
+CP-2.3,KSI-RPL-RRO,Reviewing Recovery Objectives,RPL,Recovery Planning
+CP-2.3,KSI-RPL-TRC,Testing Recovery Capabilities,RPL,Recovery Planning
+CP-2.8,KSI-PIY-GIV,Generating Inventories,PIY,Policy and Inventory
+CP-3,KSI-CED-RAT,Reviewing All Training,CED,Cybersecurity Education
+CP-4,KSI-RPL-TRC,Testing Recovery Capabilities,RPL,Recovery Planning
+CP-4.1,KSI-PIY-RIS,Reviewing Investments in Security,PIY,Policy and Inventory
+CP-4.1,KSI-RPL-ARP,Aligning Recovery Plan,RPL,Recovery Planning
+CP-4.1,KSI-RPL-TRC,Testing Recovery Capabilities,RPL,Recovery Planning
+CP-6,KSI-RPL-ABO,Aligning Backups with Objectives,RPL,Recovery Planning
+CP-6,KSI-RPL-ARP,Aligning Recovery Plan,RPL,Recovery Planning
+CP-6,KSI-RPL-TRC,Testing Recovery Capabilities,RPL,Recovery Planning
+CP-6.1,KSI-RPL-ARP,Aligning Recovery Plan,RPL,Recovery Planning
+CP-6.1,KSI-RPL-TRC,Testing Recovery Capabilities,RPL,Recovery Planning
+CP-6.3,KSI-RPL-ARP,Aligning Recovery Plan,RPL,Recovery Planning
+CP-7,KSI-RPL-ARP,Aligning Recovery Plan,RPL,Recovery Planning
+CP-7.1,KSI-RPL-ARP,Aligning Recovery Plan,RPL,Recovery Planning
+CP-7.2,KSI-RPL-ARP,Aligning Recovery Plan,RPL,Recovery Planning
+CP-7.3,KSI-RPL-ARP,Aligning Recovery Plan,RPL,Recovery Planning
+CP-8,KSI-RPL-ARP,Aligning Recovery Plan,RPL,Recovery Planning
+CP-8.1,KSI-RPL-ARP,Aligning Recovery Plan,RPL,Recovery Planning
+CP-8.2,KSI-RPL-ARP,Aligning Recovery Plan,RPL,Recovery Planning
+CP-9,KSI-RPL-ABO,Aligning Backups with Objectives,RPL,Recovery Planning
+CP-9.1,KSI-RPL-TRC,Testing Recovery Capabilities,RPL,Recovery Planning
+CP-9.8,KSI-SVC-SIN,Securing Information,SVC,Service Configuration
+CP-10,KSI-RPL-ABO,Aligning Backups with Objectives,RPL,Recovery Planning
+CP-10,KSI-RPL-ARP,Aligning Recovery Plan,RPL,Recovery Planning
+CP-10,KSI-RPL-RRO,Reviewing Recovery Objectives,RPL,Recovery Planning
+CP-10,KSI-RPL-TRC,Testing Recovery Capabilities,RPL,Recovery Planning
+CP-10.2,KSI-RPL-ABO,Aligning Backups with Objectives,RPL,Recovery Planning
+CP-10.2,KSI-RPL-ARP,Aligning Recovery Plan,RPL,Recovery Planning
+IA-2,KSI-IAM-APM,Adopting Passwordless Methods,IAM,Identity and Access Management
+IA-2,KSI-IAM-ELP,Ensuring Least Privilege,IAM,Identity and Access Management
+IA-2.1,KSI-IAM-APM,Adopting Passwordless Methods,IAM,Identity and Access Management
+IA-2.2,KSI-IAM-APM,Adopting Passwordless Methods,IAM,Identity and Access Management
+IA-2.8,KSI-IAM-APM,Adopting Passwordless Methods,IAM,Identity and Access Management
+IA-3,KSI-IAM-ELP,Ensuring Least Privilege,IAM,Identity and Access Management
+IA-3,KSI-IAM-SNU,Securing Non-User Authentication,IAM,Identity and Access Management
+IA-4,KSI-IAM-ELP,Ensuring Least Privilege,IAM,Identity and Access Management
+IA-4,KSI-IAM-JIT,Authorizing Just-in-Time,IAM,Identity and Access Management
+IA-4.4,KSI-IAM-AAM,Automating Account Management,IAM,Identity and Access Management
+IA-4.4,KSI-IAM-ELP,Ensuring Least Privilege,IAM,Identity and Access Management
+IA-4.4,KSI-IAM-JIT,Authorizing Just-in-Time,IAM,Identity and Access Management
+IA-5,KSI-IAM-APM,Adopting Passwordless Methods,IAM,Identity and Access Management
+IA-5.1,KSI-IAM-APM,Adopting Passwordless Methods,IAM,Identity and Access Management
+IA-5.2,KSI-IAM-APM,Adopting Passwordless Methods,IAM,Identity and Access Management
+IA-5.2,KSI-IAM-ELP,Ensuring Least Privilege,IAM,Identity and Access Management
+IA-5.2,KSI-IAM-SNU,Securing Non-User Authentication,IAM,Identity and Access Management
+IA-5.2,KSI-SVC-ASM,Automating Secret Management,SVC,Service Configuration
+IA-5.6,KSI-IAM-APM,Adopting Passwordless Methods,IAM,Identity and Access Management
+IA-5.6,KSI-IAM-ELP,Ensuring Least Privilege,IAM,Identity and Access Management
+IA-5.6,KSI-SVC-ASM,Automating Secret Management,SVC,Service Configuration
+IA-6,KSI-IAM-APM,Adopting Passwordless Methods,IAM,Identity and Access Management
+IA-7,KSI-IAM-JIT,Authorizing Just-in-Time,IAM,Identity and Access Management
+IA-8,KSI-IAM-APM,Adopting Passwordless Methods,IAM,Identity and Access Management
+IA-11,KSI-IAM-ELP,Ensuring Least Privilege,IAM,Identity and Access Management
+IA-12,KSI-IAM-AAM,Automating Account Management,IAM,Identity and Access Management
+IA-12.2,KSI-IAM-AAM,Automating Account Management,IAM,Identity and Access Management
+IA-12.3,KSI-IAM-AAM,Automating Account Management,IAM,Identity and Access Management
+IA-12.5,KSI-IAM-AAM,Automating Account Management,IAM,Identity and Access Management
+IR-2,KSI-CED-RAT,Reviewing All Training,CED,Cybersecurity Education
+IR-2.3,KSI-CED-RAT,Reviewing All Training,CED,Cybersecurity Education
+IR-3,KSI-INR-AAR,Generating After Action Reports,INR,Incident Response
+IR-3,KSI-INR-RPI,Reviewing Past Incidents,INR,Incident Response
+IR-3,KSI-RPL-TRC,Testing Recovery Capabilities,RPL,Recovery Planning
+IR-3.2,KSI-PIY-RIS,Reviewing Investments in Security,PIY,Policy and Inventory
+IR-3.2,KSI-RPL-TRC,Testing Recovery Capabilities,RPL,Recovery Planning
+IR-4,KSI-INR-AAR,Generating After Action Reports,INR,Incident Response
+IR-4,KSI-INR-RIR,Reviewing Incident Response Procedures,INR,Incident Response
+IR-4,KSI-INR-RPI,Reviewing Past Incidents,INR,Incident Response
+IR-4.1,KSI-INR-AAR,Generating After Action Reports,INR,Incident Response
+IR-4.1,KSI-INR-RIR,Reviewing Incident Response Procedures,INR,Incident Response
+IR-4.1,KSI-INR-RPI,Reviewing Past Incidents,INR,Incident Response
+IR-4.1,KSI-MLA-OSM,Operating SIEM Capability,MLA,"Monitoring, Logging, and Auditing"
+IR-5,KSI-INR-RPI,Reviewing Past Incidents,INR,Incident Response
+IR-6,KSI-INR-RIR,Reviewing Incident Response Procedures,INR,Incident Response
+IR-6.1,KSI-INR-RIR,Reviewing Incident Response Procedures,INR,Incident Response
+IR-6.3,KSI-INR-RIR,Reviewing Incident Response Procedures,INR,Incident Response
+IR-6.3,KSI-SCR-MON,Monitoring Supply Chain Risk,SCR,Supply Chain Risk
+IR-7,KSI-INR-RIR,Reviewing Incident Response Procedures,INR,Incident Response
+IR-7.1,KSI-INR-RIR,Reviewing Incident Response Procedures,INR,Incident Response
+IR-8,KSI-INR-AAR,Generating After Action Reports,INR,Incident Response
+IR-8,KSI-INR-RIR,Reviewing Incident Response Procedures,INR,Incident Response
+IR-8,KSI-INR-RPI,Reviewing Past Incidents,INR,Incident Response
+IR-8.1,KSI-INR-RIR,Reviewing Incident Response Procedures,INR,Incident Response
+MA-2,KSI-CMT-LMC,Logging Changes,CMT,Change Management
+MA-2,KSI-SVC-EIS,Evaluating and Improving Security,SVC,Service Configuration
+PL-8,KSI-PIY-RSD,Reviewing Security in the SDLC,PIY,Policy and Inventory
+PL-8,KSI-SVC-EIS,Evaluating and Improving Security,SVC,Service Configuration
+PL-9,KSI-SVC-ACM,Automating Configuration Management,SVC,Service Configuration
+PL-10,KSI-CNA-IBP,Implementing Best Practices,CNA,Cloud Native Architecture
+PL-10,KSI-SVC-ACM,Automating Configuration Management,SVC,Service Configuration
+PM-3,KSI-PIY-RIS,Reviewing Investments in Security,PIY,Policy and Inventory
+PM-7,KSI-PIY-RSD,Reviewing Security in the SDLC,PIY,Policy and Inventory
+PS-2,KSI-IAM-ELP,Ensuring Least Privilege,IAM,Identity and Access Management
+PS-2,KSI-IAM-JIT,Authorizing Just-in-Time,IAM,Identity and Access Management
+PS-3,KSI-IAM-ELP,Ensuring Least Privilege,IAM,Identity and Access Management
+PS-3,KSI-IAM-JIT,Authorizing Just-in-Time,IAM,Identity and Access Management
+PS-4,KSI-IAM-ELP,Ensuring Least Privilege,IAM,Identity and Access Management
+PS-4,KSI-IAM-JIT,Authorizing Just-in-Time,IAM,Identity and Access Management
+PS-4,KSI-IAM-SUS,Responding to Suspicious Activity,IAM,Identity and Access Management
+PS-5,KSI-IAM-ELP,Ensuring Least Privilege,IAM,Identity and Access Management
+PS-5,KSI-IAM-JIT,Authorizing Just-in-Time,IAM,Identity and Access Management
+PS-6,KSI-CED-RAT,Reviewing All Training,CED,Cybersecurity Education
+PS-6,KSI-IAM-ELP,Ensuring Least Privilege,IAM,Identity and Access Management
+PS-6,KSI-IAM-JIT,Authorizing Just-in-Time,IAM,Identity and Access Management
+PS-7,KSI-SCR-MON,Monitoring Supply Chain Risk,SCR,Supply Chain Risk
+PS-8,KSI-IAM-SUS,Responding to Suspicious Activity,IAM,Identity and Access Management
+PS-9,KSI-IAM-JIT,Authorizing Just-in-Time,IAM,Identity and Access Management
+RA-3.1,KSI-SCR-MIT,Mitigating Supply Chain Risk,SCR,Supply Chain Risk
+RA-5,KSI-SCR-MON,Monitoring Supply Chain Risk,SCR,Supply Chain Risk
+RA-5.5,KSI-IAM-JIT,Authorizing Just-in-Time,IAM,Identity and Access Management
+RA-5.5,KSI-IAM-SNU,Securing Non-User Authentication,IAM,Identity and Access Management
+RA-5.11,KSI-PIY-RVD,Reviewing Vulnerability Disclosures,PIY,Policy and Inventory
+SA-2,KSI-PIY-RIS,Reviewing Investments in Security,PIY,Policy and Inventory
+SA-3,KSI-PIY-RIS,Reviewing Investments in Security,PIY,Policy and Inventory
+SA-3,KSI-PIY-RSD,Reviewing Security in the SDLC,PIY,Policy and Inventory
+SA-5,KSI-SVC-ACM,Automating Configuration Management,SVC,Service Configuration
+SA-8,KSI-PIY-RSD,Reviewing Security in the SDLC,PIY,Policy and Inventory
+SA-9,KSI-SCR-MIT,Mitigating Supply Chain Risk,SCR,Supply Chain Risk
+SA-9,KSI-SCR-MON,Monitoring Supply Chain Risk,SCR,Supply Chain Risk
+SA-10,KSI-SCR-MIT,Mitigating Supply Chain Risk,SCR,Supply Chain Risk
+SA-11,KSI-SCR-MIT,Mitigating Supply Chain Risk,SCR,Supply Chain Risk
+SA-15.3,KSI-SCR-MIT,Mitigating Supply Chain Risk,SCR,Supply Chain Risk
+SA-22,KSI-SCR-MIT,Mitigating Supply Chain Risk,SCR,Supply Chain Risk
+SC-2,KSI-IAM-JIT,Authorizing Just-in-Time,IAM,Identity and Access Management
+SC-4,KSI-CNA-ULN,Using Logical Networking,CNA,Cloud Native Architecture
+SC-4,KSI-IAM-ELP,Ensuring Least Privilege,IAM,Identity and Access Management
+SC-4,KSI-PIY-RSD,Reviewing Security in the SDLC,PIY,Policy and Inventory
+SC-4,KSI-SVC-PRR,Preventing Residual Risk,SVC,Service Configuration
+SC-5,KSI-CNA-RVP,Reviewing Protections,CNA,Cloud Native Architecture
+SC-7,KSI-CNA-ULN,Using Logical Networking,CNA,Cloud Native Architecture
+SC-7,KSI-SVC-EIS,Evaluating and Improving Security,SVC,Service Configuration
+SC-7.3,KSI-CNA-MAT,Minimizing Attack Surface,CNA,Cloud Native Architecture
+SC-7.4,KSI-CNA-MAT,Minimizing Attack Surface,CNA,Cloud Native Architecture
+SC-7.5,KSI-CNA-MAT,Minimizing Attack Surface,CNA,Cloud Native Architecture
+SC-7.5,KSI-CNA-RNT,Restricting Network Traffic,CNA,Cloud Native Architecture
+SC-7.7,KSI-CNA-ULN,Using Logical Networking,CNA,Cloud Native Architecture
+SC-7.8,KSI-CNA-MAT,Minimizing Attack Surface,CNA,Cloud Native Architecture
+SC-8,KSI-CNA-MAT,Minimizing Attack Surface,CNA,Cloud Native Architecture
+SC-8,KSI-CNA-ULN,Using Logical Networking,CNA,Cloud Native Architecture
+SC-8,KSI-SVC-SIN,Securing Information,SVC,Service Configuration
+SC-8.1,KSI-SVC-SIN,Securing Information,SVC,Service Configuration
+SC-10,KSI-CNA-MAT,Minimizing Attack Surface,CNA,Cloud Native Architecture
+SC-10,KSI-CNA-ULN,Using Logical Networking,CNA,Cloud Native Architecture
+SC-12,KSI-SVC-ASM,Automating Secret Management,SVC,Service Configuration
+SC-13,KSI-SVC-SIN,Securing Information,SVC,Service Configuration
+SC-13,KSI-SVC-VRI,Validating Resource Integrity,SVC,Service Configuration
+SC-17,KSI-SVC-ASM,Automating Secret Management,SVC,Service Configuration
+SC-18,KSI-PIY-RSD,Reviewing Security in the SDLC,PIY,Policy and Inventory
+SC-18,KSI-SCR-MIT,Mitigating Supply Chain Risk,SCR,Supply Chain Risk
+SC-20,KSI-IAM-ELP,Ensuring Least Privilege,IAM,Identity and Access Management
+SC-20,KSI-SVC-SIN,Securing Information,SVC,Service Configuration
+SC-21,KSI-IAM-ELP,Ensuring Least Privilege,IAM,Identity and Access Management
+SC-21,KSI-SVC-SIN,Securing Information,SVC,Service Configuration
+SC-22,KSI-IAM-ELP,Ensuring Least Privilege,IAM,Identity and Access Management
+SC-22,KSI-SVC-SIN,Securing Information,SVC,Service Configuration
+SC-23,KSI-IAM-APM,Adopting Passwordless Methods,IAM,Identity and Access Management
+SC-23,KSI-IAM-ELP,Ensuring Least Privilege,IAM,Identity and Access Management
+SC-23,KSI-IAM-JIT,Authorizing Just-in-Time,IAM,Identity and Access Management
+SC-23,KSI-SVC-SIN,Securing Information,SVC,Service Configuration
+SC-23,KSI-SVC-VCM,Validating Communications,SVC,Service Configuration
+SC-23,KSI-SVC-VRI,Validating Resource Integrity,SVC,Service Configuration
+SC-28,KSI-SVC-SIN,Securing Information,SVC,Service Configuration
+SC-28.1,KSI-SVC-SIN,Securing Information,SVC,Service Configuration
+SC-39,KSI-IAM-ELP,Ensuring Least Privilege,IAM,Identity and Access Management
+SC-39,KSI-IAM-JIT,Authorizing Just-in-Time,IAM,Identity and Access Management
+SC-39,KSI-SVC-EIS,Evaluating and Improving Security,SVC,Service Configuration
+SI-2,KSI-CMT-VTD,Validating Throughout Deployment,CMT,Change Management
+SI-2.2,KSI-SVC-EIS,Evaluating and Improving Security,SVC,Service Configuration
+SI-3,KSI-CMT-RMV,Redeploying vs Modifying,CMT,Change Management
+SI-3,KSI-CNA-DFP,Defining Functionality and Privileges,CNA,Cloud Native Architecture
+SI-3,KSI-IAM-ELP,Ensuring Least Privilege,IAM,Identity and Access Management
+SI-4,KSI-MLA-RVL,Reviewing Logs,MLA,"Monitoring, Logging, and Auditing"
+SI-4,KSI-SVC-EIS,Evaluating and Improving Security,SVC,Service Configuration
+SI-4.2,KSI-MLA-OSM,Operating SIEM Capability,MLA,"Monitoring, Logging, and Auditing"
+SI-4.4,KSI-MLA-LET,Logging Event Types,MLA,"Monitoring, Logging, and Auditing"
+SI-4.4,KSI-MLA-OSM,Operating SIEM Capability,MLA,"Monitoring, Logging, and Auditing"
+SI-4.4,KSI-MLA-RVL,Reviewing Logs,MLA,"Monitoring, Logging, and Auditing"
+SI-4.5,KSI-INR-RIR,Reviewing Incident Response Procedures,INR,Incident Response
+SI-4.5,KSI-MLA-LET,Logging Event Types,MLA,"Monitoring, Logging, and Auditing"
+SI-5,KSI-SCR-MON,Monitoring Supply Chain Risk,SCR,Supply Chain Risk
+SI-5,KSI-SVC-ACM,Automating Configuration Management,SVC,Service Configuration
+SI-7,KSI-SVC-VRI,Validating Resource Integrity,SVC,Service Configuration
+SI-7.1,KSI-SCR-MIT,Mitigating Supply Chain Risk,SCR,Supply Chain Risk
+SI-7.1,KSI-SVC-VCM,Validating Communications,SVC,Service Configuration
+SI-7.1,KSI-SVC-VRI,Validating Resource Integrity,SVC,Service Configuration
+SI-7.7,KSI-MLA-EVC,Evaluating Configurations,MLA,"Monitoring, Logging, and Auditing"
+SI-7.7,KSI-MLA-LET,Logging Event Types,MLA,"Monitoring, Logging, and Auditing"
+SI-7.7,KSI-MLA-OSM,Operating SIEM Capability,MLA,"Monitoring, Logging, and Auditing"
+SI-8,KSI-CNA-RNT,Restricting Network Traffic,CNA,Cloud Native Architecture
+SI-8,KSI-CNA-RVP,Reviewing Protections,CNA,Cloud Native Architecture
+SI-8.2,KSI-CNA-RVP,Reviewing Protections,CNA,Cloud Native Architecture
+SI-10,KSI-CNA-MAT,Minimizing Attack Surface,CNA,Cloud Native Architecture
+SI-10,KSI-PIY-RSD,Reviewing Security in the SDLC,PIY,Policy and Inventory
+SI-11,KSI-CNA-MAT,Minimizing Attack Surface,CNA,Cloud Native Architecture
+SI-11,KSI-MLA-ALA,Authorizing Log Access,MLA,"Monitoring, Logging, and Auditing"
+SI-11,KSI-PIY-RSD,Reviewing Security in the SDLC,PIY,Policy and Inventory
+SI-12,KSI-RPL-ABO,Aligning Backups with Objectives,RPL,Recovery Planning
+SI-12.3,KSI-SVC-RUD,Removing Unwanted Data,SVC,Service Configuration
+SI-16,KSI-CNA-MAT,Minimizing Attack Surface,CNA,Cloud Native Architecture
+SI-16,KSI-PIY-RSD,Reviewing Security in the SDLC,PIY,Policy and Inventory
+SI-18.4,KSI-SVC-RUD,Removing Unwanted Data,SVC,Service Configuration
+SR-2.1,KSI-PIY-RIS,Reviewing Investments in Security,PIY,Policy and Inventory
+SR-5,KSI-SCR-MIT,Mitigating Supply Chain Risk,SCR,Supply Chain Risk
+SR-5,KSI-SCR-MON,Monitoring Supply Chain Risk,SCR,Supply Chain Risk
+SR-6,KSI-SCR-MIT,Mitigating Supply Chain Risk,SCR,Supply Chain Risk
+SR-6,KSI-SCR-MON,Monitoring Supply Chain Risk,SCR,Supply Chain Risk
+SR-8,KSI-SCR-MON,Monitoring Supply Chain Risk,SCR,Supply Chain Risk
+SR-10,KSI-SVC-ACM,Automating Configuration Management,SVC,Service Configuration
+SR-10,KSI-SVC-EIS,Evaluating and Improving Security,SVC,Service Configuration
+SR-10,KSI-SVC-VRI,Validating Resource Integrity,SVC,Service Configuration
+SR-11.1,KSI-CED-RAT,Reviewing All Training,CED,Cybersecurity Education
