@@ -1,63 +1,94 @@
-FedRAMP 20x Security Decision Record (SDR) Framework
+# FedRAMP 20x Security Decision Record (SDR) Framework
 
-A generic, reusable framework for producing FedRAMP 20x Security Decision Records for a cloud service provider pursuing Program Certification. It covers Class A, Class B, and Class C today and carries a future-readiness register for Class D. Every requirement, Key Security Indicator (KSI), family name, and class variant derives from the canonical FedRAMP Consolidated Rules for 2026 (CR26) dataset published by FedRAMP; nothing is hand-typed from memory.
+A generic, reusable framework for producing FedRAMP 20x Security Decision Records for a cloud service provider pursuing Program Certification. It covers Class A, Class B, and Class C today and carries a future-readiness register for Class D. Every requirement, Key Security Indicator (KSI), family name, and class variant derives from the canonical FedRAMP Consolidated Rules for 2026 (CR26) dataset published by FedRAMP. Nothing is hand-typed from memory.
 
-1. What this is and is not
+## Who this is for
 
-This repository is a template. It ships with a synthetic placeholder offering ("Example PaaS Foundation") and honest placeholder statuses: every KSI and rule starts as Not Implemented or TBD until a real provider fills in real facts. It never claims compliance for anyone. Per-customer work belongs in separate private repositories; no customer data, credentials, account numbers, or restricted report content may ever enter this repository.
+- Cloud service providers preparing a FedRAMP 20x Program Certification package at Class A, B, or C.
+- Advisory and security assurance teams guiding a provider through 20x, who need a defensible, regenerable SDR rather than a hand-maintained document.
+- Assessors and reviewers who want to trace every statement in an SDR back to the official dataset.
 
-2. How the framework works
+This repository is a template. It ships with a synthetic placeholder offering ("Example PaaS Foundation") and honest placeholder statuses: every KSI and rule starts as Not Implemented or TBD until a real provider fills in real facts. It never claims compliance for anyone. Per-customer work belongs in separate private repositories. No customer data, credentials, account numbers, or restricted report content may ever enter this repository.
 
-The only file a human edits is sdr/records/records-store.json. Every entry in it carries inline fill_guidance: what the rule or KSI looks for, how to comply, what evidence is required, and the rule or KSI family spelled out in full. The pipeline regenerates everything else. Nobody edits generated outputs.
+## Why it is built this way
 
-Requirements: Python 3.10 or later with the jsonschema, referencing, and python-docx packages (pip install jsonschema referencing python-docx).
+FedRAMP 20x expects the SDR to be machine-readable, schema-valid, and backed by persistent automated verification and validation (rules FRC-CSX-VVK and FRC-CSX-VVR). A hand-edited document cannot keep up with that. This framework therefore treats the SDR as a build artifact:
 
-Pipeline order, run from the repository root:
+1. The official CR26 dataset is pinned in the repository and hash-verified against upstream, so requirement text is always exact.
+2. Humans edit exactly one file, the record store, which holds the provider's real facts.
+3. A deterministic pipeline regenerates every deliverable (JSON, plain text, Word) from those two inputs.
+4. A validator refuses to trust the builders: it re-derives everything from the dataset independently and fails on any mismatch.
 
-1. python validation/scripts/build_catalogs.py (extracts rule and KSI catalogs from the canonical dataset)
-2. python validation/scripts/build_notes.py (explainer notes per rule and KSI, family names)
-3. python validation/scripts/build_profiles.py (per-class rule profiles, Class C overlay, Class D readiness register)
-4. python validation/scripts/build_sdr.py (official-schema JSON, extensions companion, plain-text SDR for the selected class)
-5. python validation/scripts/build_docx.py (authoring docx for the selected class)
-6. python validation/scripts/build_crosswalk.py (NIST SP 800-53 Revision 5 to 20x KSI crosswalk)
-7. python validation/scripts/validate_sdr.py (schema validation, coverage checks, test minimums, hygiene checks)
+## Quickstart
 
-Select the certification class by setting certification_class in profiles/common/offering-profile.json to A, B, or C, then rerun steps 4, 5, and 7.
+Requirements: Python 3.10 or later with the `jsonschema`, `referencing`, and `python-docx` packages.
 
-3. Directory map
+```
+pip install jsonschema referencing python-docx
+```
 
-- references/ pinned copy of the canonical CR26 dataset (hash-compare against upstream at session start)
-- artifacts/schemas/official/ pinned official FedRAMP SDR and common-definitions schemas
-- traceability/ derived catalogs, notes, family names, and the Revision 5 crosswalk
-- profiles/ per-class rule profiles, the common KSI profile, the offering profile, and the Class D future-readiness register
-- sdr/records/ the single editable record store
-- sdr/json/ generated official-schema SDR JSON plus extensions companion per class
-- sdr/human-readable/ generated plain-text SDR and authoring docx per class
-- validation/scripts/ the pipeline
-- validation/reports/ generated validation results, including per-KSI test results
-- .claude/ agent guardrail rules for automated sessions working in this repository
-- quality/ and steering/ local working notes (review reports, project charter, source register, session state); excluded from the published repository by .gitignore because session logs carry engagement context
+Run the pipeline from the repository root, in this order:
 
-4. Validation
+| Step | Command | What it produces and why it runs here |
+|------|---------|----------------------------------------|
+| 1 | `python validation/scripts/build_catalogs.py` | Extracts the rule and KSI catalogs from the canonical dataset. Everything downstream reads these, so they build first. |
+| 2 | `python validation/scripts/build_notes.py` | Explainer notes per rule and KSI, plus the family-name expansions. Needs the catalogs. |
+| 3 | `python validation/scripts/build_profiles.py` | Per-class rule profiles, the Class C overlay, and the Class D readiness register. Needs catalogs and family names. |
+| 4 | `python validation/scripts/build_sdr.py` | The official-schema JSON, its extensions companion, and the plain-text SDR for the selected class. Needs profiles, notes, and the record store. |
+| 5 | `python validation/scripts/build_docx.py` | The authoring Word document for the selected class, with fill fields and guidance. |
+| 6 | `python validation/scripts/build_crosswalk.py` | The NIST SP 800-53 Revision 5 to 20x KSI crosswalk, derived from the dataset's own control mappings. |
+| 7 | `python validation/scripts/validate_sdr.py` | Schema validation, coverage checks, test minimums, hygiene checks, and content fidelity against the dataset. Always run last; nothing ships unless this passes with 0 hard failures. |
 
-validate_sdr.py checks the generated JSON against the official FedRAMP SDR schema (0 errors required), verifies rule and KSI coverage for the selected class, checks automated test minimums per FRC-CSX-VVK (Class A optional, Class B at least 1, Class C at least 2, Class D at least 4 per KSI), scans for markdown leakage and sensitive patterns, and verifies content fidelity: every statement, name, force, and family expansion in the generated outputs is compared against the canonical dataset with an independent resolution path, so the validator does not trust the builders it checks. In template state the test-minimum check reports a soft failure for unfilled KSIs; that is expected and becomes a hard failure only at release.
+To change the certification class, set `certification_class` in `profiles/common/offering-profile.json` to A, B, or C, then rerun steps 4, 5, and 7.
 
-The pipeline is deterministic: generated outputs are pinned to the dataset version and carry no run timestamps, so an unchanged dataset and record store yield byte-identical JSON, text, and CSV outputs (verified by double-run hash comparison). The docx files carry identical content but differ at the byte level across runs because the zip container embeds file-entry timestamps. To record when SDR content last changed, set sdr_last_updated in profiles/common/offering-profile.json; it feeds the official metadata block.
+To fill in a real provider's facts, edit only `sdr/records/records-store.json`. Every entry carries inline fill guidance: what the rule looks for, how to comply, what evidence is required, and the family spelled out in full. Then rerun steps 4, 5, and 7. Nobody edits generated outputs.
 
-5. Sources and verification
+## Directory map
 
-The controlling sources are listed in steering/source-register.txt. The canonical dataset and both official schemas are pinned in this repository and must be hash-compared against the live copies at the start of each working session, because FedRAMP updates schema files in place without renaming them. Do not cite archived pilot material (RFC-0006 era KSI counts, RFC-0024) as current requirements.
+| Path | Contents |
+|------|----------|
+| `references/` | Pinned copy of the canonical CR26 dataset (hash-compare against upstream at session start) |
+| `artifacts/schemas/official/` | Pinned official FedRAMP SDR and common-definitions schemas |
+| `traceability/` | Derived catalogs, notes, family names, the Revision 5 crosswalk, and the AWS service to KSI map |
+| `profiles/` | Per-class rule profiles, the common KSI profile, the offering profile, and the Class D future-readiness register |
+| `sdr/records/` | The single editable record store |
+| `sdr/json/` | Generated official-schema SDR JSON plus extensions companion, per class |
+| `sdr/human-readable/` | Generated plain-text SDR and authoring Word document, per class |
+| `validation/scripts/` | The pipeline |
+| `validation/reports/` | Generated validation results, including per-KSI test results |
+| `automation/` | Layer 1 collector registry and the read-only facts collector |
+| `.claude/` | Agent guardrail rules for automated sessions working in this repository |
 
-6. Class D
+The `steering/` and `quality/` directories are local working notes (project charter, source register, session logs, review reports). They are excluded from the published repository by `.gitignore` because session logs carry engagement context.
 
-The 20x Program path for Class D is listed by FedRAMP as coming in 2027, with specifics set during the 20x Phase 4 Pilot. profiles/class-d-future/readiness-register.json shows the rules that would apply, resolved with the class d variants already present in the canonical dataset, plus a delta against Class C. It never claims Class D compliance.
+## Validation
 
-7. Automation layer (Layer 1: deterministic collectors)
+The validator (`validate_sdr.py`) checks, in order:
 
-traceability/aws-service-ksi-map.json maps every KSI to example Amazon Web Services (AWS) implementation guidance with a verify method and a validate method each, matching the FRC-CSX-VVK two-method shape. validation/scripts/build_collector_registry.py derives automation/collectors/registry.json from it: 46 KSIs, with the AWS Config managed rules named in the guidance extracted as immediately collectable checks and the prose methods carried as described_method entries until dedicated collectors implement them.
+1. The generated JSON against the official FedRAMP SDR schema. Zero errors required.
+2. Rule and KSI coverage for the selected class, in both directions (nothing missing, nothing extra).
+3. Automated test minimums per FRC-CSX-VVK: Class A optional, Class B at least 1, Class C at least 2, Class D at least 4 per KSI. In template state this reports a soft failure for unfilled KSIs; that is expected, and it becomes a hard failure only at release.
+4. Markdown leakage and sensitive patterns (account identifiers, access keys, private keys) across all deliverables.
+5. Content fidelity: every statement, name, force, and family expansion in the generated outputs is compared against the canonical dataset through an independent resolution path, so the validator does not trust the builders it checks.
 
-automation/collectors/collect_facts.py executes the collectable checks against an AWS account, read-only by construction (only config:DescribeComplianceByConfigRule and sts:GetCallerIdentity), refuses admin-looking credentials, and writes a timestamped facts store to automation/facts/ (excluded from git because it identifies a real account). Facts are telemetry, never statuses: a status changes only through deterministic checks plus human sign-off, and generative output is never deterministic telemetry, per FedRAMP's own definitions.
+The pipeline is deterministic. Generated outputs are pinned to the dataset version and carry no run timestamps, so an unchanged dataset and record store yield byte-identical JSON, text, and CSV outputs (verified by double-run hash comparison). The Word files carry identical content but differ at the byte level across runs because the zip container embeds file-entry timestamps. To record when SDR content last changed, set `sdr_last_updated` in `profiles/common/offering-profile.json`; it feeds the official metadata block.
 
-8. License
+## Automation layer (Layer 1: deterministic collectors)
 
-MIT. See LICENSE.
+The map at `traceability/aws-service-ksi-map.json` links every KSI to example Amazon Web Services (AWS) implementation guidance with one verify method and one validate method each, matching the FRC-CSX-VVK two-method shape. From it, `build_collector_registry.py` derives `automation/collectors/registry.json`: 46 KSIs, with the AWS Config managed rules named in the guidance extracted as immediately collectable checks, and the prose methods carried as described-method entries until dedicated collectors implement them.
+
+The collector at `automation/collectors/collect_facts.py` executes the collectable checks against an AWS account. It is read-only by construction (only `config:DescribeComplianceByConfigRule` and `sts:GetCallerIdentity`), refuses admin-looking credentials, and writes a timestamped facts store to `automation/facts/`, which is excluded from git because it identifies a real account.
+
+Facts are telemetry, never statuses. A status changes only through deterministic checks plus human sign-off, and generative output is never deterministic telemetry, per FedRAMP's own definitions.
+
+## Class D
+
+The 20x Program path for Class D is listed by FedRAMP as coming in 2027, with specifics set during the 20x Phase 4 Pilot. The register at `profiles/class-d-future/readiness-register.json` shows the rules that would apply, resolved with the class d variants already present in the canonical dataset, plus a delta against Class C so a Class C provider can see exactly what tightens. It never claims Class D compliance.
+
+## Sources and verification
+
+The canonical dataset and both official schemas are pinned in this repository and must be hash-compared against the live copies at the start of each working session, because FedRAMP updates schema files in place without renaming them. Do not cite archived pilot material (RFC-0006 era KSI counts, RFC-0024, or pre-CR26 workbooks with numeric KSI identifiers) as current requirements.
+
+## License
+
+MIT. See [LICENSE](LICENSE).
