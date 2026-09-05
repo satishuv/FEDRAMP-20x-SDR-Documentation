@@ -1,0 +1,2153 @@
+{
+ "meta": {
+  "title": "KSI collector registry (Layer 1: deterministic read-only checks)",
+  "derived_from": "traceability/aws-service-ksi-map.json",
+  "dataset_version": "2026.07.14.01",
+  "ksis": 46,
+  "config_managed_rule_checks": 45,
+  "boundary": "Collectors are read-only by design and produce facts, never statuses. A status changes only through deterministic checks plus human sign-off; generative output is never deterministic telemetry (FedRAMP definitions)."
+ },
+ "ksis": {
+  "KSI-CED-RAT": {
+   "name": "Reviewing All Training",
+   "family": "CED",
+   "family_name": "Cybersecurity Education",
+   "services": [
+    "AWS IAM Identity Center",
+    "AWS Security Hub",
+    "Amazon CloudWatch",
+    "Amazon EventBridge",
+    "AWS Config",
+    "AWS Lambda",
+    "AWS Key Management Service",
+    "AWS KMS",
+    "Amazon S3"
+   ],
+   "checks": [
+    {
+     "check_id": "KSI-CED-RAT:verify:method",
+     "type": "described_method",
+     "services": [
+      "AWS Config",
+      "AWS Lambda",
+      "Amazon S3"
+     ],
+     "description": "AWS Config custom rule (backed by AWS Lambda) that evaluates whether the training-records object in Amazon S3 exists, is current within the defined review interval, and covers each required audience; reports COMPLIANT or NON_COMPLIANT.",
+     "source": "verify",
+     "collectable_now": false
+    },
+    {
+     "check_id": "KSI-CED-RAT:validate:method",
+     "type": "described_method",
+     "services": [
+      "AWS IAM Identity Center",
+      "AWS Security Hub",
+      "Amazon CloudWatch",
+      "Amazon EventBridge",
+      "AWS Lambda"
+     ],
+     "description": "Amazon EventBridge scheduled AWS Lambda check that compares completion records to the AWS IAM Identity Center workforce roster, emits an Amazon CloudWatch metric for coverage percentage and staleness, and raises an AWS Security Hub finding when coverage drops below the threshold.",
+     "source": "validate",
+     "collectable_now": false
+    }
+   ]
+  },
+  "KSI-CMT-LMC": {
+   "name": "Logging Changes",
+   "family": "CMT",
+   "family_name": "Change Management",
+   "services": [
+    "AWS Security Hub",
+    "AWS CloudTrail",
+    "Amazon CloudWatch",
+    "Amazon EventBridge",
+    "AWS Config",
+    "AWS Key Management Service",
+    "AWS KMS",
+    "Amazon S3"
+   ],
+   "checks": [
+    {
+     "check_id": "KSI-CMT-LMC:verify:config:cloudtrail-enabled",
+     "type": "config_managed_rule",
+     "service": "AWS Config",
+     "target": "cloudtrail-enabled",
+     "source": "verify",
+     "collectable_now": true
+    },
+    {
+     "check_id": "KSI-CMT-LMC:verify:config:multi-region-cloudtrail-enabled",
+     "type": "config_managed_rule",
+     "service": "AWS Config",
+     "target": "multi-region-cloudtrail-enabled",
+     "source": "verify",
+     "collectable_now": true
+    },
+    {
+     "check_id": "KSI-CMT-LMC:verify:config:cloud-trail-log-file-validation-enabled",
+     "type": "config_managed_rule",
+     "service": "AWS Config",
+     "target": "cloud-trail-log-file-validation-enabled",
+     "source": "verify",
+     "collectable_now": true
+    },
+    {
+     "check_id": "KSI-CMT-LMC:verify:method",
+     "type": "described_method",
+     "services": [
+      "AWS Config"
+     ],
+     "description": "AWS Config managed rules `cloudtrail-enabled`, `multi-region-cloudtrail-enabled`, and `cloud-trail-log-file-validation-enabled` confirm logging is configured and immutable.",
+     "source": "verify",
+     "collectable_now": false
+    },
+    {
+     "check_id": "KSI-CMT-LMC:validate:method",
+     "type": "described_method",
+     "services": [
+      "AWS Security Hub",
+      "AWS CloudTrail",
+      "Amazon CloudWatch",
+      "Amazon EventBridge"
+     ],
+     "description": "Amazon EventBridge rule on AWS CloudTrail change events raises an Amazon CloudWatch metric and an AWS Security Hub finding when a change lands, proving change events are captured and observable in near real time.",
+     "source": "validate",
+     "collectable_now": false
+    }
+   ]
+  },
+  "KSI-CMT-RMV": {
+   "name": "Redeploying vs Modifying",
+   "family": "CMT",
+   "family_name": "Change Management",
+   "services": [
+    "AWS Security Hub",
+    "AWS CloudTrail",
+    "Amazon EventBridge",
+    "AWS Config",
+    "AWS Lambda",
+    "AWS CodePipeline",
+    "AWS CodeBuild",
+    "AWS CloudFormation",
+    "IAM"
+   ],
+   "checks": [
+    {
+     "check_id": "KSI-CMT-RMV:verify:method",
+     "type": "described_method",
+     "services": [
+      "AWS Config",
+      "AWS CloudFormation"
+     ],
+     "description": "AWS Config detects drift by comparing deployed resources to the AWS CloudFormation stack template and flags manually modified resources as NON_COMPLIANT.",
+     "source": "verify",
+     "collectable_now": false
+    },
+    {
+     "check_id": "KSI-CMT-RMV:validate:method",
+     "type": "described_method",
+     "services": [
+      "AWS Security Hub",
+      "AWS CloudTrail",
+      "Amazon EventBridge"
+     ],
+     "description": "AWS CloudTrail plus Amazon EventBridge detects mutating API calls made outside the deployment role and raises an AWS Security Hub finding, showing that live modification is caught.",
+     "source": "validate",
+     "collectable_now": false
+    }
+   ]
+  },
+  "KSI-CMT-RVP": {
+   "name": "Reviewing Change Procedures",
+   "family": "CMT",
+   "family_name": "Change Management",
+   "services": [
+    "AWS CloudTrail",
+    "Amazon CloudWatch",
+    "Amazon EventBridge",
+    "AWS Config",
+    "AWS Lambda",
+    "Amazon S3"
+   ],
+   "checks": [
+    {
+     "check_id": "KSI-CMT-RVP:verify:method",
+     "type": "described_method",
+     "services": [
+      "AWS Config",
+      "AWS Lambda"
+     ],
+     "description": "AWS Config custom rule (AWS Lambda backed) confirms the change management procedure document exists and was reviewed within the defined interval.",
+     "source": "verify",
+     "collectable_now": false
+    },
+    {
+     "check_id": "KSI-CMT-RVP:validate:method",
+     "type": "described_method",
+     "services": [
+      "AWS CloudTrail",
+      "Amazon CloudWatch",
+      "Amazon EventBridge",
+      "AWS Lambda"
+     ],
+     "description": "Amazon EventBridge scheduled AWS Lambda job aggregates change success, rollback, and unauthorized-change counts from AWS CloudTrail into an Amazon CloudWatch dashboard used in the periodic review.",
+     "source": "validate",
+     "collectable_now": false
+    }
+   ]
+  },
+  "KSI-CMT-VTD": {
+   "name": "Validating Throughout Deployment",
+   "family": "CMT",
+   "family_name": "Change Management",
+   "services": [
+    "AWS Security Hub",
+    "Amazon CloudWatch",
+    "AWS Config",
+    "Amazon Inspector",
+    "AWS CodePipeline",
+    "AWS CodeBuild",
+    "AWS CloudFormation",
+    "Amazon ECR"
+   ],
+   "checks": [
+    {
+     "check_id": "KSI-CMT-VTD:verify:method",
+     "type": "described_method",
+     "services": [
+      "AWS Config",
+      "AWS CodePipeline"
+     ],
+     "description": "AWS Config confirms AWS CodePipeline stages and required approval and test gates are present in the pipeline definition.",
+     "source": "verify",
+     "collectable_now": false
+    },
+    {
+     "check_id": "KSI-CMT-VTD:validate:method",
+     "type": "described_method",
+     "services": [
+      "AWS Security Hub",
+      "Amazon CloudWatch",
+      "Amazon Inspector",
+      "AWS CodePipeline",
+      "AWS CodeBuild"
+     ],
+     "description": "AWS CodePipeline and AWS CodeBuild run automated tests and Amazon Inspector scans on each change; results and pass or fail gate outcomes are emitted to Amazon CloudWatch and AWS Security Hub, proving validation runs on every deployment.",
+     "source": "validate",
+     "collectable_now": false
+    }
+   ]
+  },
+  "KSI-CNA-DFP": {
+   "name": "Defining Functionality and Privileges",
+   "family": "CNA",
+   "family_name": "Cloud Native Architecture",
+   "services": [
+    "IAM Access Analyzer",
+    "AWS Security Hub",
+    "AWS CloudTrail",
+    "Amazon EventBridge",
+    "AWS Config",
+    "AWS Lambda",
+    "AWS Organizations",
+    "AWS CloudFormation"
+   ],
+   "checks": [
+    {
+     "check_id": "KSI-CNA-DFP:verify:config:iam-policy-no-statements-with-admin-access",
+     "type": "config_managed_rule",
+     "service": "AWS Config",
+     "target": "iam-policy-no-statements-with-admin-access",
+     "source": "verify",
+     "collectable_now": true
+    },
+    {
+     "check_id": "KSI-CNA-DFP:verify:config:ecs-task-definition-user-for-host-mode-check",
+     "type": "config_managed_rule",
+     "service": "AWS Config",
+     "target": "ecs-task-definition-user-for-host-mode-check",
+     "source": "verify",
+     "collectable_now": true
+    },
+    {
+     "check_id": "KSI-CNA-DFP:verify:method",
+     "type": "described_method",
+     "services": [
+      "AWS Config"
+     ],
+     "description": "AWS Config managed rules `iam-policy-no-statements-with-admin-access` and `ecs-task-definition-user-for-host-mode-check` confirm privileges match the defined baseline.",
+     "source": "verify",
+     "collectable_now": false
+    },
+    {
+     "check_id": "KSI-CNA-DFP:validate:method",
+     "type": "described_method",
+     "services": [
+      "IAM Access Analyzer",
+      "AWS Security Hub",
+      "AWS CloudTrail",
+      "Amazon EventBridge"
+     ],
+     "description": "AWS CloudTrail with Amazon EventBridge and IAM Access Analyzer surface use of privileges outside the defined set, raising an AWS Security Hub finding.",
+     "source": "validate",
+     "collectable_now": false
+    }
+   ]
+  },
+  "KSI-CNA-EIS": {
+   "name": "Enforcing Intended State",
+   "family": "CNA",
+   "family_name": "Cloud Native Architecture",
+   "services": [
+    "AWS Security Hub",
+    "AWS Config",
+    "AWS Systems Manager",
+    "AWS CloudFormation"
+   ],
+   "checks": [
+    {
+     "check_id": "KSI-CNA-EIS:verify:method",
+     "type": "described_method",
+     "services": [
+      "AWS Config",
+      "AWS CloudFormation"
+     ],
+     "description": "AWS Config detects configuration drift against the AWS CloudFormation baseline and reports NON_COMPLIANT resources.",
+     "source": "verify",
+     "collectable_now": false
+    },
+    {
+     "check_id": "KSI-CNA-EIS:validate:method",
+     "type": "described_method",
+     "services": [
+      "AWS Security Hub",
+      "AWS Config",
+      "AWS Systems Manager"
+     ],
+     "description": "AWS Config automatic remediation via AWS Systems Manager Automation returns drifted resources to the intended state and records the correction in AWS Security Hub.",
+     "source": "validate",
+     "collectable_now": false
+    }
+   ]
+  },
+  "KSI-CNA-IBP": {
+   "name": "Implementing Best Practices",
+   "family": "CNA",
+   "family_name": "Cloud Native Architecture",
+   "services": [
+    "AWS Security Hub",
+    "AWS Config"
+   ],
+   "checks": [
+    {
+     "check_id": "KSI-CNA-IBP:verify:method",
+     "type": "described_method",
+     "services": [
+      "AWS Config"
+     ],
+     "description": "AWS Config conformance pack evaluates resource configurations against the codified best-practice ruleset.",
+     "source": "verify",
+     "collectable_now": false
+    },
+    {
+     "check_id": "KSI-CNA-IBP:validate:method",
+     "type": "described_method",
+     "services": [
+      "AWS Security Hub"
+     ],
+     "description": "AWS Security Hub continuously scores resources against the AWS Foundational Security Best Practices and CIS standards and reports deviations as findings.",
+     "source": "validate",
+     "collectable_now": false
+    }
+   ]
+  },
+  "KSI-CNA-MAT": {
+   "name": "Minimizing Attack Surface",
+   "family": "CNA",
+   "family_name": "Cloud Native Architecture",
+   "services": [
+    "AWS Security Hub",
+    "AWS Config",
+    "Amazon GuardDuty",
+    "Amazon S3",
+    "AWS WAF",
+    "Amazon VPC"
+   ],
+   "checks": [
+    {
+     "check_id": "KSI-CNA-MAT:verify:config:restricted-ssh",
+     "type": "config_managed_rule",
+     "service": "AWS Config",
+     "target": "restricted-ssh",
+     "source": "verify",
+     "collectable_now": true
+    },
+    {
+     "check_id": "KSI-CNA-MAT:verify:config:s3-bucket-public-read-prohibited",
+     "type": "config_managed_rule",
+     "service": "AWS Config",
+     "target": "s3-bucket-public-read-prohibited",
+     "source": "verify",
+     "collectable_now": true
+    },
+    {
+     "check_id": "KSI-CNA-MAT:verify:config:vpc-sg-open-only-to-authorized-ports",
+     "type": "config_managed_rule",
+     "service": "AWS Config",
+     "target": "vpc-sg-open-only-to-authorized-ports",
+     "source": "verify",
+     "collectable_now": true
+    },
+    {
+     "check_id": "KSI-CNA-MAT:verify:config:alb-http-to-https-redirection-check",
+     "type": "config_managed_rule",
+     "service": "AWS Config",
+     "target": "alb-http-to-https-redirection-check",
+     "source": "verify",
+     "collectable_now": true
+    },
+    {
+     "check_id": "KSI-CNA-MAT:verify:method",
+     "type": "described_method",
+     "services": [
+      "AWS Config"
+     ],
+     "description": "AWS Config managed rules such as `restricted-ssh`, `s3-bucket-public-read-prohibited`, `vpc-sg-open-only-to-authorized-ports`, and `alb-http-to-https-redirection-check` confirm the surface is constrained.",
+     "source": "verify",
+     "collectable_now": false
+    },
+    {
+     "check_id": "KSI-CNA-MAT:validate:method",
+     "type": "described_method",
+     "services": [
+      "AWS Security Hub",
+      "Amazon GuardDuty"
+     ],
+     "description": "Amazon GuardDuty detects lateral movement, reconnaissance, and unexpected connections at runtime and raises AWS Security Hub findings.",
+     "source": "validate",
+     "collectable_now": false
+    }
+   ]
+  },
+  "KSI-CNA-OFA": {
+   "name": "Optimizing for Availability",
+   "family": "CNA",
+   "family_name": "Cloud Native Architecture",
+   "services": [
+    "AWS Security Hub",
+    "Amazon CloudWatch",
+    "AWS Config",
+    "Amazon S3",
+    "Amazon Route 53"
+   ],
+   "checks": [
+    {
+     "check_id": "KSI-CNA-OFA:verify:config:elb-cross-zone-load-balancing-enabled",
+     "type": "config_managed_rule",
+     "service": "AWS Config",
+     "target": "elb-cross-zone-load-balancing-enabled",
+     "source": "verify",
+     "collectable_now": true
+    },
+    {
+     "check_id": "KSI-CNA-OFA:verify:config:rds-multi-az-support",
+     "type": "config_managed_rule",
+     "service": "AWS Config",
+     "target": "rds-multi-az-support",
+     "source": "verify",
+     "collectable_now": true
+    },
+    {
+     "check_id": "KSI-CNA-OFA:verify:config:aurora",
+     "type": "config_managed_rule",
+     "service": "AWS Config",
+     "target": "aurora",
+     "source": "verify",
+     "collectable_now": true
+    },
+    {
+     "check_id": "KSI-CNA-OFA:verify:method",
+     "type": "described_method",
+     "services": [
+      "AWS Config"
+     ],
+     "description": "AWS Config managed rules `elb-cross-zone-load-balancing-enabled` and `rds-multi-az-support` (or `aurora` equivalents) confirm multi-Availability-Zone configuration.",
+     "source": "verify",
+     "collectable_now": false
+    },
+    {
+     "check_id": "KSI-CNA-OFA:validate:method",
+     "type": "described_method",
+     "services": [
+      "AWS Security Hub",
+      "Amazon CloudWatch",
+      "Amazon Route 53"
+     ],
+     "description": "Amazon CloudWatch alarms on Application Load Balancer health and Amazon Route 53 health checks demonstrate failover and availability behavior at runtime, surfaced in AWS Security Hub.",
+     "source": "validate",
+     "collectable_now": false
+    }
+   ]
+  },
+  "KSI-CNA-RNT": {
+   "name": "Restricting Network Traffic",
+   "family": "CNA",
+   "family_name": "Cloud Native Architecture",
+   "services": [
+    "AWS Security Hub",
+    "Amazon CloudWatch",
+    "AWS Config",
+    "Amazon GuardDuty",
+    "AWS WAF",
+    "Amazon VPC",
+    "AWS Network Firewall"
+   ],
+   "checks": [
+    {
+     "check_id": "KSI-CNA-RNT:verify:config:vpc-default-security-group-closed",
+     "type": "config_managed_rule",
+     "service": "AWS Config",
+     "target": "vpc-default-security-group-closed",
+     "source": "verify",
+     "collectable_now": true
+    },
+    {
+     "check_id": "KSI-CNA-RNT:verify:config:vpc-sg-open-only-to-authorized-ports",
+     "type": "config_managed_rule",
+     "service": "AWS Config",
+     "target": "vpc-sg-open-only-to-authorized-ports",
+     "source": "verify",
+     "collectable_now": true
+    },
+    {
+     "check_id": "KSI-CNA-RNT:verify:config:restricted-common-ports",
+     "type": "config_managed_rule",
+     "service": "AWS Config",
+     "target": "restricted-common-ports",
+     "source": "verify",
+     "collectable_now": true
+    },
+    {
+     "check_id": "KSI-CNA-RNT:verify:method",
+     "type": "described_method",
+     "services": [
+      "AWS Config"
+     ],
+     "description": "AWS Config managed rules `vpc-default-security-group-closed`, `vpc-sg-open-only-to-authorized-ports`, and `restricted-common-ports` confirm traffic restrictions.",
+     "source": "verify",
+     "collectable_now": false
+    },
+    {
+     "check_id": "KSI-CNA-RNT:validate:method",
+     "type": "described_method",
+     "services": [
+      "AWS Security Hub",
+      "Amazon CloudWatch",
+      "Amazon GuardDuty",
+      "Amazon VPC"
+     ],
+     "description": "Amazon VPC Flow Logs analyzed through Amazon CloudWatch Logs and Amazon GuardDuty reveal traffic that violates the intended flow and raise AWS Security Hub findings.",
+     "source": "validate",
+     "collectable_now": false
+    }
+   ]
+  },
+  "KSI-CNA-RVP": {
+   "name": "Reviewing Protections",
+   "family": "CNA",
+   "family_name": "Cloud Native Architecture",
+   "services": [
+    "AWS Security Hub",
+    "Amazon CloudWatch",
+    "AWS Config",
+    "AWS WAF",
+    "AWS Shield"
+   ],
+   "checks": [
+    {
+     "check_id": "KSI-CNA-RVP:verify:method",
+     "type": "described_method",
+     "services": [
+      "AWS Config",
+      "AWS WAF"
+     ],
+     "description": "AWS Config confirms AWS WAF web access control lists and rate-based rules are associated with the Application Load Balancer and Amazon CloudFront distributions.",
+     "source": "verify",
+     "collectable_now": false
+    },
+    {
+     "check_id": "KSI-CNA-RVP:validate:method",
+     "type": "described_method",
+     "services": [
+      "AWS Security Hub",
+      "Amazon CloudWatch",
+      "AWS WAF",
+      "AWS Shield"
+     ],
+     "description": "AWS WAF and AWS Shield metrics in Amazon CloudWatch show blocked and rate-limited requests, and AWS Security Hub records anomalies, demonstrating the protections work.",
+     "source": "validate",
+     "collectable_now": false
+    }
+   ]
+  },
+  "KSI-CNA-ULN": {
+   "name": "Using Logical Networking",
+   "family": "CNA",
+   "family_name": "Cloud Native Architecture",
+   "services": [
+    "AWS Security Hub",
+    "AWS Config",
+    "Amazon GuardDuty",
+    "Amazon VPC"
+   ],
+   "checks": [
+    {
+     "check_id": "KSI-CNA-ULN:verify:method",
+     "type": "described_method",
+     "services": [
+      "AWS Config"
+     ],
+     "description": "AWS Config managed rules for security group and network access control list posture confirm logical segmentation is in place.",
+     "source": "verify",
+     "collectable_now": false
+    },
+    {
+     "check_id": "KSI-CNA-ULN:validate:method",
+     "type": "described_method",
+     "services": [
+      "AWS Security Hub",
+      "Amazon GuardDuty",
+      "Amazon VPC"
+     ],
+     "description": "Amazon VPC Flow Logs plus Amazon GuardDuty validate that traffic follows the intended logical paths and flag deviations to AWS Security Hub.",
+     "source": "validate",
+     "collectable_now": false
+    }
+   ]
+  },
+  "KSI-IAM-AAM": {
+   "name": "Automating Account Management",
+   "family": "IAM",
+   "family_name": "Identity and Access Management",
+   "services": [
+    "AWS IAM Identity Center",
+    "IAM Access Analyzer",
+    "AWS Security Hub",
+    "AWS CloudTrail",
+    "Amazon EventBridge",
+    "AWS Config",
+    "AWS CodePipeline",
+    "AWS CloudFormation"
+   ],
+   "checks": [
+    {
+     "check_id": "KSI-IAM-AAM:verify:config:iam-user-no-policies-check",
+     "type": "config_managed_rule",
+     "service": "AWS Config",
+     "target": "iam-user-no-policies-check",
+     "source": "verify",
+     "collectable_now": true
+    },
+    {
+     "check_id": "KSI-IAM-AAM:verify:config:access-keys-rotated",
+     "type": "config_managed_rule",
+     "service": "AWS Config",
+     "target": "access-keys-rotated",
+     "source": "verify",
+     "collectable_now": true
+    },
+    {
+     "check_id": "KSI-IAM-AAM:verify:config:iam-user-unused-credentials-check",
+     "type": "config_managed_rule",
+     "service": "AWS Config",
+     "target": "iam-user-unused-credentials-check",
+     "source": "verify",
+     "collectable_now": true
+    },
+    {
+     "check_id": "KSI-IAM-AAM:verify:method",
+     "type": "described_method",
+     "services": [
+      "AWS IAM Identity Center",
+      "AWS Config"
+     ],
+     "description": "AWS Config managed rules `iam-user-no-policies-check`, `access-keys-rotated`, and `iam-user-unused-credentials-check` confirm account and privilege state, and a custom rule confirms AWS IAM Identity Center SCIM provisioning is enabled.",
+     "source": "verify",
+     "collectable_now": false
+    },
+    {
+     "check_id": "KSI-IAM-AAM:validate:method",
+     "type": "described_method",
+     "services": [
+      "IAM Access Analyzer",
+      "AWS Security Hub",
+      "AWS CloudTrail",
+      "Amazon EventBridge"
+     ],
+     "description": "AWS CloudTrail plus Amazon EventBridge detect account create, modify, and disable events and IAM Access Analyzer unused-access findings, raising AWS Security Hub findings that show lifecycle automation operating.",
+     "source": "validate",
+     "collectable_now": false
+    }
+   ]
+  },
+  "KSI-IAM-APM": {
+   "name": "Adopting Passwordless Methods",
+   "family": "IAM",
+   "family_name": "Identity and Access Management",
+   "services": [
+    "AWS IAM Identity Center",
+    "AWS Security Hub",
+    "AWS CloudTrail",
+    "Amazon EventBridge",
+    "AWS Config"
+   ],
+   "checks": [
+    {
+     "check_id": "KSI-IAM-APM:verify:config:iam-password-policy",
+     "type": "config_managed_rule",
+     "service": "AWS Config",
+     "target": "iam-password-policy",
+     "source": "verify",
+     "collectable_now": true
+    },
+    {
+     "check_id": "KSI-IAM-APM:verify:config:mfa-enabled-for-iam-console-access",
+     "type": "config_managed_rule",
+     "service": "AWS Config",
+     "target": "mfa-enabled-for-iam-console-access",
+     "source": "verify",
+     "collectable_now": true
+    },
+    {
+     "check_id": "KSI-IAM-APM:verify:config:root-account-mfa-enabled",
+     "type": "config_managed_rule",
+     "service": "AWS Config",
+     "target": "root-account-mfa-enabled",
+     "source": "verify",
+     "collectable_now": true
+    },
+    {
+     "check_id": "KSI-IAM-APM:verify:method",
+     "type": "described_method",
+     "services": [
+      "AWS Config"
+     ],
+     "description": "AWS Config managed rules `iam-password-policy` and `mfa-enabled-for-iam-console-access` (and `root-account-mfa-enabled`) confirm MFA and password strength are enforced.",
+     "source": "verify",
+     "collectable_now": false
+    },
+    {
+     "check_id": "KSI-IAM-APM:validate:method",
+     "type": "described_method",
+     "services": [
+      "AWS IAM Identity Center",
+      "AWS Security Hub",
+      "AWS CloudTrail",
+      "Amazon EventBridge"
+     ],
+     "description": "AWS CloudTrail records authentication events in AWS IAM Identity Center; an Amazon EventBridge rule raises an AWS Security Hub finding on any non-MFA or password-only sign-in, showing phishing-resistant methods are in force.",
+     "source": "validate",
+     "collectable_now": false
+    }
+   ]
+  },
+  "KSI-IAM-ELP": {
+   "name": "Ensuring Least Privilege",
+   "family": "IAM",
+   "family_name": "Identity and Access Management",
+   "services": [
+    "AWS IAM Identity Center",
+    "IAM Access Analyzer",
+    "AWS Security Hub",
+    "AWS Config",
+    "AWS Organizations"
+   ],
+   "checks": [
+    {
+     "check_id": "KSI-IAM-ELP:verify:config:iam-policy-no-statements-with-admin-access",
+     "type": "config_managed_rule",
+     "service": "AWS Config",
+     "target": "iam-policy-no-statements-with-admin-access",
+     "source": "verify",
+     "collectable_now": true
+    },
+    {
+     "check_id": "KSI-IAM-ELP:verify:config:iam-policy-no-statements-with-full-access",
+     "type": "config_managed_rule",
+     "service": "AWS Config",
+     "target": "iam-policy-no-statements-with-full-access",
+     "source": "verify",
+     "collectable_now": true
+    },
+    {
+     "check_id": "KSI-IAM-ELP:verify:method",
+     "type": "described_method",
+     "services": [
+      "AWS Config"
+     ],
+     "description": "AWS Config managed rules `iam-policy-no-statements-with-admin-access` and `iam-policy-no-statements-with-full-access` confirm policies avoid broad grants.",
+     "source": "verify",
+     "collectable_now": false
+    },
+    {
+     "check_id": "KSI-IAM-ELP:validate:method",
+     "type": "described_method",
+     "services": [
+      "IAM Access Analyzer",
+      "AWS Security Hub"
+     ],
+     "description": "IAM Access Analyzer continuously identifies unused permissions, roles, and external access and raises AWS Security Hub findings, demonstrating privilege is actively pruned.",
+     "source": "validate",
+     "collectable_now": false
+    }
+   ]
+  },
+  "KSI-IAM-JIT": {
+   "name": "Authorizing Just-in-Time",
+   "family": "IAM",
+   "family_name": "Identity and Access Management",
+   "services": [
+    "AWS IAM Identity Center",
+    "AWS Security Hub",
+    "AWS CloudTrail",
+    "Amazon EventBridge",
+    "AWS Config",
+    "AWS Systems Manager",
+    "AWS Step Functions"
+   ],
+   "checks": [
+    {
+     "check_id": "KSI-IAM-JIT:verify:method",
+     "type": "described_method",
+     "services": [
+      "AWS IAM Identity Center",
+      "AWS Config"
+     ],
+     "description": "AWS Config confirms IAM roles and AWS IAM Identity Center permission sets set short maximum session durations and that no long-lived access keys exist for privileged principals.",
+     "source": "verify",
+     "collectable_now": false
+    },
+    {
+     "check_id": "KSI-IAM-JIT:validate:method",
+     "type": "described_method",
+     "services": [
+      "AWS Security Hub",
+      "AWS CloudTrail",
+      "Amazon EventBridge"
+     ],
+     "description": "AWS CloudTrail plus Amazon EventBridge validate that elevated sessions are short-lived and tied to approvals, raising an AWS Security Hub finding when standing or long-duration privileged sessions appear.",
+     "source": "validate",
+     "collectable_now": false
+    }
+   ]
+  },
+  "KSI-IAM-SNU": {
+   "name": "Securing Non-User Authentication",
+   "family": "IAM",
+   "family_name": "Identity and Access Management",
+   "services": [
+    "AWS Security Hub",
+    "AWS CloudTrail",
+    "Amazon EventBridge",
+    "AWS Config",
+    "AWS Lambda",
+    "AWS KMS",
+    "AWS Secrets Manager",
+    "IAM"
+   ],
+   "checks": [
+    {
+     "check_id": "KSI-IAM-SNU:verify:config:access-keys-rotated",
+     "type": "config_managed_rule",
+     "service": "AWS Config",
+     "target": "access-keys-rotated",
+     "source": "verify",
+     "collectable_now": true
+    },
+    {
+     "check_id": "KSI-IAM-SNU:verify:config:iam-user-no-policies-check",
+     "type": "config_managed_rule",
+     "service": "AWS Config",
+     "target": "iam-user-no-policies-check",
+     "source": "verify",
+     "collectable_now": true
+    },
+    {
+     "check_id": "KSI-IAM-SNU:verify:config:secretsmanager-rotation-enabled-check",
+     "type": "config_managed_rule",
+     "service": "AWS Config",
+     "target": "secretsmanager-rotation-enabled-check",
+     "source": "verify",
+     "collectable_now": true
+    },
+    {
+     "check_id": "KSI-IAM-SNU:verify:method",
+     "type": "described_method",
+     "services": [
+      "AWS Config"
+     ],
+     "description": "AWS Config managed rules `access-keys-rotated`, `iam-user-no-policies-check`, and `secretsmanager-rotation-enabled-check` confirm non-user credentials are role-based or rotated.",
+     "source": "verify",
+     "collectable_now": false
+    },
+    {
+     "check_id": "KSI-IAM-SNU:validate:method",
+     "type": "described_method",
+     "services": [
+      "AWS Security Hub",
+      "AWS CloudTrail",
+      "Amazon EventBridge"
+     ],
+     "description": "AWS CloudTrail plus Amazon EventBridge detect use of static access keys or unrotated secrets by service principals and raise an AWS Security Hub finding, showing secure non-user authentication is enforced.",
+     "source": "validate",
+     "collectable_now": false
+    }
+   ]
+  },
+  "KSI-IAM-SUS": {
+   "name": "Responding to Suspicious Activity",
+   "family": "IAM",
+   "family_name": "Identity and Access Management",
+   "services": [
+    "AWS IAM Identity Center",
+    "AWS Security Hub",
+    "AWS CloudTrail",
+    "Amazon EventBridge",
+    "AWS Config",
+    "AWS Lambda",
+    "Amazon GuardDuty",
+    "Amazon SNS"
+   ],
+   "checks": [
+    {
+     "check_id": "KSI-IAM-SUS:verify:method",
+     "type": "described_method",
+     "services": [
+      "Amazon EventBridge",
+      "AWS Config",
+      "AWS Lambda",
+      "Amazon GuardDuty"
+     ],
+     "description": "AWS Config confirms the Amazon EventBridge rules, AWS Lambda containment functions, and Amazon GuardDuty are enabled and wired to identity findings.",
+     "source": "verify",
+     "collectable_now": false
+    },
+    {
+     "check_id": "KSI-IAM-SUS:validate:method",
+     "type": "described_method",
+     "services": [
+      "AWS Security Hub",
+      "AWS CloudTrail",
+      "Amazon EventBridge",
+      "AWS Lambda",
+      "Amazon GuardDuty"
+     ],
+     "description": "Amazon GuardDuty raises an identity finding, and the Amazon EventBridge and AWS Lambda automation disables or secures the account and records the action in AWS Security Hub and AWS CloudTrail, proving the response works end to end.",
+     "source": "validate",
+     "collectable_now": false
+    }
+   ]
+  },
+  "KSI-INR-AAR": {
+   "name": "Generating After Action Reports",
+   "family": "INR",
+   "family_name": "Incident Response",
+   "services": [
+    "AWS Security Hub",
+    "Amazon CloudWatch",
+    "Amazon EventBridge",
+    "AWS Config",
+    "AWS Lambda",
+    "AWS Key Management Service",
+    "AWS KMS",
+    "Amazon S3"
+   ],
+   "checks": [
+    {
+     "check_id": "KSI-INR-AAR:verify:method",
+     "type": "described_method",
+     "services": [
+      "AWS Config",
+      "AWS Lambda",
+      "Amazon S3"
+     ],
+     "description": "AWS Config custom rule (AWS Lambda backed) confirms an after action report object exists in Amazon S3 for each closed incident within the required interval.",
+     "source": "verify",
+     "collectable_now": false
+    },
+    {
+     "check_id": "KSI-INR-AAR:validate:method",
+     "type": "described_method",
+     "services": [
+      "AWS Security Hub",
+      "Amazon CloudWatch",
+      "Amazon EventBridge",
+      "AWS Lambda"
+     ],
+     "description": "Amazon EventBridge and AWS Lambda track incident-close events from AWS Security Hub and emit an Amazon CloudWatch metric for report completion rate, raising a finding when a report is overdue.",
+     "source": "validate",
+     "collectable_now": false
+    }
+   ]
+  },
+  "KSI-INR-RIR": {
+   "name": "Reviewing Incident Response Procedures",
+   "family": "INR",
+   "family_name": "Incident Response",
+   "services": [
+    "AWS Security Hub",
+    "Amazon CloudWatch",
+    "Amazon EventBridge",
+    "AWS Config",
+    "AWS Lambda",
+    "Amazon S3"
+   ],
+   "checks": [
+    {
+     "check_id": "KSI-INR-RIR:verify:method",
+     "type": "described_method",
+     "services": [
+      "AWS Config"
+     ],
+     "description": "AWS Config custom rule confirms the incident response procedure and contact list exist and were reviewed within the defined interval.",
+     "source": "verify",
+     "collectable_now": false
+    },
+    {
+     "check_id": "KSI-INR-RIR:validate:method",
+     "type": "described_method",
+     "services": [
+      "AWS Security Hub",
+      "Amazon CloudWatch",
+      "Amazon EventBridge",
+      "AWS Lambda"
+     ],
+     "description": "Amazon EventBridge scheduled AWS Lambda job confirms exercises ran on cadence and summarizes AWS Security Hub incident-handling metrics into an Amazon CloudWatch dashboard for the review.",
+     "source": "validate",
+     "collectable_now": false
+    }
+   ]
+  },
+  "KSI-INR-RPI": {
+   "name": "Reviewing Past Incidents",
+   "family": "INR",
+   "family_name": "Incident Response",
+   "services": [
+    "AWS Security Hub",
+    "AWS CloudTrail",
+    "Amazon CloudWatch",
+    "Amazon EventBridge",
+    "AWS Config",
+    "AWS Lambda",
+    "Amazon S3"
+   ],
+   "checks": [
+    {
+     "check_id": "KSI-INR-RPI:verify:method",
+     "type": "described_method",
+     "services": [
+      "AWS CloudTrail",
+      "AWS Config",
+      "Amazon S3"
+     ],
+     "description": "AWS Config custom rule confirms the incident history data store (AWS CloudTrail Lake or the Amazon S3 log archive) is configured with the required retention.",
+     "source": "verify",
+     "collectable_now": false
+    },
+    {
+     "check_id": "KSI-INR-RPI:validate:method",
+     "type": "described_method",
+     "services": [
+      "AWS CloudTrail",
+      "Amazon CloudWatch",
+      "Amazon EventBridge",
+      "AWS Lambda"
+     ],
+     "description": "Amazon EventBridge scheduled AWS Lambda runs AWS CloudTrail Lake or Amazon CloudWatch Logs Insights queries across past incidents, emits pattern metrics, and raises a finding when a recurring pattern is detected.",
+     "source": "validate",
+     "collectable_now": false
+    }
+   ]
+  },
+  "KSI-MLA-ALA": {
+   "name": "Authorizing Log Access",
+   "family": "MLA",
+   "family_name": "Monitoring, Logging, and Auditing",
+   "services": [
+    "AWS Security Hub",
+    "AWS CloudTrail",
+    "Amazon EventBridge",
+    "AWS Config",
+    "AWS Key Management Service",
+    "AWS KMS",
+    "AWS Organizations",
+    "Amazon S3",
+    "IAM"
+   ],
+   "checks": [
+    {
+     "check_id": "KSI-MLA-ALA:verify:config:s3-bucket-public-read-prohibited",
+     "type": "config_managed_rule",
+     "service": "AWS Config",
+     "target": "s3-bucket-public-read-prohibited",
+     "source": "verify",
+     "collectable_now": true
+    },
+    {
+     "check_id": "KSI-MLA-ALA:verify:config:s3-bucket-server-side-encryption-enabled",
+     "type": "config_managed_rule",
+     "service": "AWS Config",
+     "target": "s3-bucket-server-side-encryption-enabled",
+     "source": "verify",
+     "collectable_now": true
+    },
+    {
+     "check_id": "KSI-MLA-ALA:verify:config:cloud-trail-log-file-validation-enabled",
+     "type": "config_managed_rule",
+     "service": "AWS Config",
+     "target": "cloud-trail-log-file-validation-enabled",
+     "source": "verify",
+     "collectable_now": true
+    },
+    {
+     "check_id": "KSI-MLA-ALA:verify:method",
+     "type": "described_method",
+     "services": [
+      "AWS Config"
+     ],
+     "description": "AWS Config managed rules `s3-bucket-public-read-prohibited`, `s3-bucket-server-side-encryption-enabled`, and `cloud-trail-log-file-validation-enabled` confirm log access is restricted and logs are tamper-evident.",
+     "source": "verify",
+     "collectable_now": false
+    },
+    {
+     "check_id": "KSI-MLA-ALA:validate:method",
+     "type": "described_method",
+     "services": [
+      "AWS Security Hub",
+      "AWS CloudTrail",
+      "Amazon EventBridge"
+     ],
+     "description": "AWS CloudTrail data events plus Amazon EventBridge detect access to the log store by principals outside the authorized set and raise an AWS Security Hub finding.",
+     "source": "validate",
+     "collectable_now": false
+    }
+   ]
+  },
+  "KSI-MLA-EVC": {
+   "name": "Evaluating Configurations",
+   "family": "MLA",
+   "family_name": "Monitoring, Logging, and Auditing",
+   "services": [
+    "AWS Security Hub",
+    "AWS Config",
+    "AWS CodeBuild"
+   ],
+   "checks": [
+    {
+     "check_id": "KSI-MLA-EVC:verify:method",
+     "type": "described_method",
+     "services": [
+      "AWS Config"
+     ],
+     "description": "AWS Config conformance pack continuously evaluates resource configurations against the baseline and reports NON_COMPLIANT resources.",
+     "source": "verify",
+     "collectable_now": false
+    },
+    {
+     "check_id": "KSI-MLA-EVC:validate:method",
+     "type": "described_method",
+     "services": [
+      "AWS Security Hub",
+      "AWS CodeBuild"
+     ],
+     "description": "AWS CodeBuild infrastructure-as-code scanning on each change, plus AWS Security Hub configuration findings, validate that configurations are tested before and after deployment.",
+     "source": "validate",
+     "collectable_now": false
+    }
+   ]
+  },
+  "KSI-MLA-LET": {
+   "name": "Logging Event Types",
+   "family": "MLA",
+   "family_name": "Monitoring, Logging, and Auditing",
+   "services": [
+    "AWS Security Hub",
+    "AWS CloudTrail",
+    "Amazon CloudWatch",
+    "Amazon EventBridge",
+    "AWS Config",
+    "Amazon VPC"
+   ],
+   "checks": [
+    {
+     "check_id": "KSI-MLA-LET:verify:config:cloudtrail-enabled",
+     "type": "config_managed_rule",
+     "service": "AWS Config",
+     "target": "cloudtrail-enabled",
+     "source": "verify",
+     "collectable_now": true
+    },
+    {
+     "check_id": "KSI-MLA-LET:verify:config:vpc-flow-logs-enabled",
+     "type": "config_managed_rule",
+     "service": "AWS Config",
+     "target": "vpc-flow-logs-enabled",
+     "source": "verify",
+     "collectable_now": true
+    },
+    {
+     "check_id": "KSI-MLA-LET:verify:config:cloudwatch-log-group-encrypted",
+     "type": "config_managed_rule",
+     "service": "AWS Config",
+     "target": "cloudwatch-log-group-encrypted",
+     "source": "verify",
+     "collectable_now": true
+    },
+    {
+     "check_id": "KSI-MLA-LET:verify:method",
+     "type": "described_method",
+     "services": [
+      "AWS Config"
+     ],
+     "description": "AWS Config managed rules `cloudtrail-enabled`, `vpc-flow-logs-enabled`, and `cloudwatch-log-group-encrypted` confirm the defined event types are being logged.",
+     "source": "verify",
+     "collectable_now": false
+    },
+    {
+     "check_id": "KSI-MLA-LET:validate:method",
+     "type": "described_method",
+     "services": [
+      "AWS Security Hub",
+      "Amazon CloudWatch",
+      "Amazon EventBridge"
+     ],
+     "description": "Amazon CloudWatch metric filters and Amazon EventBridge confirm each defined event type is arriving, and AWS Security Hub raises a finding when an expected log source goes silent.",
+     "source": "validate",
+     "collectable_now": false
+    }
+   ]
+  },
+  "KSI-MLA-OSM": {
+   "name": "Operating SIEM Capability",
+   "family": "MLA",
+   "family_name": "Monitoring, Logging, and Auditing",
+   "services": [
+    "AWS Security Hub",
+    "AWS CloudTrail",
+    "Amazon CloudWatch",
+    "AWS Config",
+    "AWS KMS",
+    "Amazon GuardDuty",
+    "Amazon S3"
+   ],
+   "checks": [
+    {
+     "check_id": "KSI-MLA-OSM:verify:method",
+     "type": "described_method",
+     "services": [
+      "AWS Security Hub",
+      "AWS CloudTrail",
+      "AWS Config",
+      "Amazon S3"
+     ],
+     "description": "AWS Config confirms centralized logging is configured: organization AWS CloudTrail on, Amazon S3 archive with object lock, and AWS Security Hub enabled across accounts.",
+     "source": "verify",
+     "collectable_now": false
+    },
+    {
+     "check_id": "KSI-MLA-OSM:validate:method",
+     "type": "described_method",
+     "services": [
+      "AWS Security Hub",
+      "Amazon CloudWatch",
+      "Amazon GuardDuty"
+     ],
+     "description": "AWS Security Hub and Amazon GuardDuty continuously correlate and surface events, and an Amazon CloudWatch alarm on log-delivery gaps validates the SIEM capability is receiving data.",
+     "source": "validate",
+     "collectable_now": false
+    }
+   ]
+  },
+  "KSI-MLA-RVL": {
+   "name": "Reviewing Logs",
+   "family": "MLA",
+   "family_name": "Monitoring, Logging, and Auditing",
+   "services": [
+    "AWS Security Hub",
+    "AWS CloudTrail",
+    "Amazon CloudWatch",
+    "Amazon EventBridge",
+    "AWS Config",
+    "AWS Lambda"
+   ],
+   "checks": [
+    {
+     "check_id": "KSI-MLA-RVL:verify:method",
+     "type": "described_method",
+     "services": [
+      "AWS Config"
+     ],
+     "description": "AWS Config custom rule confirms the scheduled review queries and alerting rules exist and are enabled.",
+     "source": "verify",
+     "collectable_now": false
+    },
+    {
+     "check_id": "KSI-MLA-RVL:validate:method",
+     "type": "described_method",
+     "services": [
+      "AWS Security Hub",
+      "Amazon CloudWatch",
+      "Amazon EventBridge",
+      "AWS Lambda"
+     ],
+     "description": "Amazon EventBridge scheduled AWS Lambda runs the review queries, emits an Amazon CloudWatch metric for review completion, and raises AWS Security Hub findings on anomalies, showing reviews occur.",
+     "source": "validate",
+     "collectable_now": false
+    }
+   ]
+  },
+  "KSI-PIY-GIV": {
+   "name": "Generating Inventories",
+   "family": "PIY",
+   "family_name": "Policy and Inventory",
+   "services": [
+    "AWS Security Hub",
+    "Amazon EventBridge",
+    "AWS Config",
+    "AWS Lambda",
+    "AWS Organizations",
+    "AWS Systems Manager",
+    "Amazon S3"
+   ],
+   "checks": [
+    {
+     "check_id": "KSI-PIY-GIV:verify:config:required-tags",
+     "type": "config_managed_rule",
+     "service": "AWS Config",
+     "target": "required-tags",
+     "source": "verify",
+     "collectable_now": true
+    },
+    {
+     "check_id": "KSI-PIY-GIV:verify:method",
+     "type": "described_method",
+     "services": [
+      "AWS Config"
+     ],
+     "description": "AWS Config managed rules `required-tags` and resource-recording coverage confirm all supported resources are tracked and tagged.",
+     "source": "verify",
+     "collectable_now": false
+    },
+    {
+     "check_id": "KSI-PIY-GIV:validate:method",
+     "type": "described_method",
+     "services": [
+      "AWS Security Hub",
+      "Amazon EventBridge",
+      "AWS Config",
+      "AWS Lambda",
+      "AWS Systems Manager"
+     ],
+     "description": "Amazon EventBridge and AWS Lambda generate an on-demand inventory from AWS Config and AWS Systems Manager, compare it to the expected baseline, and raise an AWS Security Hub finding on untracked resources.",
+     "source": "validate",
+     "collectable_now": false
+    }
+   ]
+  },
+  "KSI-PIY-RES": {
+   "name": "Reviewing Executive Support",
+   "family": "PIY",
+   "family_name": "Policy and Inventory",
+   "services": [
+    "AWS Security Hub",
+    "Amazon CloudWatch",
+    "Amazon EventBridge",
+    "AWS Config",
+    "AWS Lambda",
+    "AWS Key Management Service",
+    "AWS KMS",
+    "Amazon S3"
+   ],
+   "checks": [
+    {
+     "check_id": "KSI-PIY-RES:verify:method",
+     "type": "described_method",
+     "services": [
+      "AWS Config",
+      "AWS Lambda"
+     ],
+     "description": "AWS Config custom rule (AWS Lambda backed) confirms the executive review artifact exists and was updated within the defined interval.",
+     "source": "verify",
+     "collectable_now": false
+    },
+    {
+     "check_id": "KSI-PIY-RES:validate:method",
+     "type": "described_method",
+     "services": [
+      "AWS Security Hub",
+      "Amazon CloudWatch",
+      "Amazon EventBridge",
+      "AWS Lambda"
+     ],
+     "description": "Amazon EventBridge scheduled AWS Lambda checks the review cadence and emits an Amazon CloudWatch metric and AWS Security Hub finding when an executive review is overdue.",
+     "source": "validate",
+     "collectable_now": false
+    }
+   ]
+  },
+  "KSI-PIY-RIS": {
+   "name": "Reviewing Investments in Security",
+   "family": "PIY",
+   "family_name": "Policy and Inventory",
+   "services": [
+    "AWS Security Hub",
+    "Amazon CloudWatch",
+    "AWS Config",
+    "AWS Lambda",
+    "Amazon S3"
+   ],
+   "checks": [
+    {
+     "check_id": "KSI-PIY-RIS:verify:method",
+     "type": "described_method",
+     "services": [
+      "AWS Config"
+     ],
+     "description": "AWS Config custom rule confirms the investment review artifact exists and is current within the defined interval.",
+     "source": "verify",
+     "collectable_now": false
+    },
+    {
+     "check_id": "KSI-PIY-RIS:validate:method",
+     "type": "described_method",
+     "services": [
+      "AWS Security Hub",
+      "Amazon CloudWatch",
+      "AWS Lambda"
+     ],
+     "description": "Amazon CloudWatch dashboard trends AWS Security Hub security-standard scores over time, and a scheduled AWS Lambda raises a finding when scores regress, validating investment effectiveness is reviewed.",
+     "source": "validate",
+     "collectable_now": false
+    }
+   ]
+  },
+  "KSI-PIY-RSD": {
+   "name": "Reviewing Security in the SDLC",
+   "family": "PIY",
+   "family_name": "Policy and Inventory",
+   "services": [
+    "AWS Security Hub",
+    "Amazon CloudWatch",
+    "AWS Config",
+    "Amazon Inspector",
+    "Amazon S3",
+    "AWS CodePipeline",
+    "AWS CodeBuild"
+   ],
+   "checks": [
+    {
+     "check_id": "KSI-PIY-RSD:verify:method",
+     "type": "described_method",
+     "services": [
+      "AWS Config",
+      "AWS CodePipeline"
+     ],
+     "description": "AWS Config confirms the AWS CodePipeline security stages (test, static analysis, scan) are present in the pipeline definition.",
+     "source": "verify",
+     "collectable_now": false
+    },
+    {
+     "check_id": "KSI-PIY-RSD:validate:method",
+     "type": "described_method",
+     "services": [
+      "AWS Security Hub",
+      "Amazon CloudWatch",
+      "Amazon Inspector",
+      "AWS CodePipeline"
+     ],
+     "description": "AWS CodePipeline and Amazon Inspector run security stages on each build; pass or fail outcomes and coverage trends feed Amazon CloudWatch and AWS Security Hub, validating security is built into the SDLC.",
+     "source": "validate",
+     "collectable_now": false
+    }
+   ]
+  },
+  "KSI-PIY-RVD": {
+   "name": "Reviewing Vulnerability Disclosures",
+   "family": "PIY",
+   "family_name": "Policy and Inventory",
+   "services": [
+    "AWS Security Hub",
+    "Amazon CloudWatch",
+    "Amazon EventBridge",
+    "AWS Config",
+    "AWS Lambda",
+    "Amazon S3"
+   ],
+   "checks": [
+    {
+     "check_id": "KSI-PIY-RVD:verify:method",
+     "type": "described_method",
+     "services": [
+      "AWS Config"
+     ],
+     "description": "AWS Config custom rule confirms the vulnerability disclosure program document and intake configuration exist and are current.",
+     "source": "verify",
+     "collectable_now": false
+    },
+    {
+     "check_id": "KSI-PIY-RVD:validate:method",
+     "type": "described_method",
+     "services": [
+      "AWS Security Hub",
+      "Amazon CloudWatch",
+      "Amazon EventBridge",
+      "AWS Lambda"
+     ],
+     "description": "Amazon EventBridge and AWS Lambda track disclosure intake and resolution timeliness, emit Amazon CloudWatch metrics, and raise an AWS Security Hub finding when disclosures age past the target.",
+     "source": "validate",
+     "collectable_now": false
+    }
+   ]
+  },
+  "KSI-RPL-ABO": {
+   "name": "Aligning Backups with Objectives",
+   "family": "RPL",
+   "family_name": "Recovery Planning",
+   "services": [
+    "AWS Security Hub",
+    "Amazon CloudWatch",
+    "Amazon EventBridge",
+    "AWS Config",
+    "AWS Key Management Service",
+    "AWS KMS",
+    "AWS Backup",
+    "Amazon S3"
+   ],
+   "checks": [
+    {
+     "check_id": "KSI-RPL-ABO:verify:config:backup-plan-min-frequency-and-min-retention-check",
+     "type": "config_managed_rule",
+     "service": "AWS Config",
+     "target": "backup-plan-min-frequency-and-min-retention-check",
+     "source": "verify",
+     "collectable_now": true
+    },
+    {
+     "check_id": "KSI-RPL-ABO:verify:config:s3-bucket-versioning-enabled",
+     "type": "config_managed_rule",
+     "service": "AWS Config",
+     "target": "s3-bucket-versioning-enabled",
+     "source": "verify",
+     "collectable_now": true
+    },
+    {
+     "check_id": "KSI-RPL-ABO:verify:config:db-instance-backup-enabled",
+     "type": "config_managed_rule",
+     "service": "AWS Config",
+     "target": "db-instance-backup-enabled",
+     "source": "verify",
+     "collectable_now": true
+    },
+    {
+     "check_id": "KSI-RPL-ABO:verify:method",
+     "type": "described_method",
+     "services": [
+      "AWS Config"
+     ],
+     "description": "AWS Config managed rules `backup-plan-min-frequency-and-min-retention-check`, `s3-bucket-versioning-enabled`, and `db-instance-backup-enabled` confirm backups meet the defined frequency and retention.",
+     "source": "verify",
+     "collectable_now": false
+    },
+    {
+     "check_id": "KSI-RPL-ABO:validate:method",
+     "type": "described_method",
+     "services": [
+      "AWS Security Hub",
+      "Amazon CloudWatch",
+      "Amazon EventBridge",
+      "AWS Backup"
+     ],
+     "description": "AWS Backup job events through Amazon EventBridge confirm backups complete on schedule and emit an Amazon CloudWatch metric, raising an AWS Security Hub finding on failed or missed backups.",
+     "source": "validate",
+     "collectable_now": false
+    }
+   ]
+  },
+  "KSI-RPL-ARP": {
+   "name": "Aligning Recovery Plan",
+   "family": "RPL",
+   "family_name": "Recovery Planning",
+   "services": [
+    "AWS Security Hub",
+    "Amazon EventBridge",
+    "AWS Config",
+    "AWS Lambda",
+    "AWS Backup",
+    "Amazon S3",
+    "Amazon Route 53"
+   ],
+   "checks": [
+    {
+     "check_id": "KSI-RPL-ARP:verify:method",
+     "type": "described_method",
+     "services": [
+      "AWS Config",
+      "AWS Lambda"
+     ],
+     "description": "AWS Config custom rule (AWS Lambda backed) confirms the recovery plan artifact exists and was reviewed within the defined interval, and that recovery infrastructure (replicas, copy jobs) is configured.",
+     "source": "verify",
+     "collectable_now": false
+    },
+    {
+     "check_id": "KSI-RPL-ARP:validate:method",
+     "type": "described_method",
+     "services": [
+      "AWS Security Hub",
+      "Amazon EventBridge",
+      "AWS Lambda"
+     ],
+     "description": "Amazon EventBridge scheduled AWS Lambda confirms the plan review cadence and validates recovery infrastructure health, raising an AWS Security Hub finding when the plan is stale or infrastructure is missing.",
+     "source": "validate",
+     "collectable_now": false
+    }
+   ]
+  },
+  "KSI-RPL-RRO": {
+   "name": "Reviewing Recovery Objectives",
+   "family": "RPL",
+   "family_name": "Recovery Planning",
+   "services": [
+    "AWS Security Hub",
+    "Amazon CloudWatch",
+    "Amazon EventBridge",
+    "AWS Config",
+    "AWS Lambda",
+    "AWS Backup",
+    "Amazon S3"
+   ],
+   "checks": [
+    {
+     "check_id": "KSI-RPL-RRO:verify:method",
+     "type": "described_method",
+     "services": [
+      "AWS Config"
+     ],
+     "description": "AWS Config custom rule confirms the documented RTO and RPO exist and were reviewed within the interval, and that backup settings match the stated RPO.",
+     "source": "verify",
+     "collectable_now": false
+    },
+    {
+     "check_id": "KSI-RPL-RRO:validate:method",
+     "type": "described_method",
+     "services": [
+      "AWS Security Hub",
+      "Amazon CloudWatch",
+      "Amazon EventBridge",
+      "AWS Lambda"
+     ],
+     "description": "Amazon EventBridge scheduled AWS Lambda compares actual backup and replication intervals against the stated RPO, emits an Amazon CloudWatch metric, and raises an AWS Security Hub finding on misalignment.",
+     "source": "validate",
+     "collectable_now": false
+    }
+   ]
+  },
+  "KSI-RPL-TRC": {
+   "name": "Testing Recovery Capabilities",
+   "family": "RPL",
+   "family_name": "Recovery Planning",
+   "services": [
+    "AWS Security Hub",
+    "Amazon CloudWatch",
+    "Amazon EventBridge",
+    "AWS Config",
+    "AWS Backup",
+    "Amazon S3",
+    "Amazon VPC"
+   ],
+   "checks": [
+    {
+     "check_id": "KSI-RPL-TRC:verify:method",
+     "type": "described_method",
+     "services": [
+      "AWS Config",
+      "AWS Backup"
+     ],
+     "description": "AWS Config confirms an AWS Backup restore-testing plan is configured and scheduled.",
+     "source": "verify",
+     "collectable_now": false
+    },
+    {
+     "check_id": "KSI-RPL-TRC:validate:method",
+     "type": "described_method",
+     "services": [
+      "AWS Security Hub",
+      "Amazon CloudWatch",
+      "Amazon EventBridge",
+      "AWS Backup"
+     ],
+     "description": "AWS Backup restore-testing jobs run on schedule; Amazon EventBridge captures pass or fail and measured recovery time, emits an Amazon CloudWatch metric, and raises an AWS Security Hub finding on a failed restore or an RTO breach.",
+     "source": "validate",
+     "collectable_now": false
+    }
+   ]
+  },
+  "KSI-SCR-MIT": {
+   "name": "Mitigating Supply Chain Risk",
+   "family": "SCR",
+   "family_name": "Supply Chain Risk",
+   "services": [
+    "AWS Security Hub",
+    "AWS Config",
+    "AWS Lambda",
+    "Amazon Inspector",
+    "Amazon S3",
+    "AWS CodePipeline",
+    "Amazon ECR"
+   ],
+   "checks": [
+    {
+     "check_id": "KSI-SCR-MIT:verify:method",
+     "type": "described_method",
+     "services": [
+      "AWS Config",
+      "AWS Lambda",
+      "Amazon Inspector",
+      "Amazon ECR"
+     ],
+     "description": "AWS Config confirms Amazon Inspector scanning is enabled for Amazon ECR and AWS Lambda and that image sources are restricted to approved registries.",
+     "source": "verify",
+     "collectable_now": false
+    },
+    {
+     "check_id": "KSI-SCR-MIT:validate:method",
+     "type": "described_method",
+     "services": [
+      "AWS Security Hub",
+      "Amazon Inspector",
+      "AWS CodePipeline"
+     ],
+     "description": "Amazon Inspector continuously produces vulnerability and SBOM findings routed to AWS Security Hub; a build gate in AWS CodePipeline blocks components that fail the risk threshold, showing mitigation in action.",
+     "source": "validate",
+     "collectable_now": false
+    }
+   ]
+  },
+  "KSI-SCR-MON": {
+   "name": "Monitoring Supply Chain Risk",
+   "family": "SCR",
+   "family_name": "Supply Chain Risk",
+   "services": [
+    "AWS Security Hub",
+    "Amazon EventBridge",
+    "AWS Config",
+    "Amazon Inspector",
+    "Amazon SNS"
+   ],
+   "checks": [
+    {
+     "check_id": "KSI-SCR-MON:verify:method",
+     "type": "described_method",
+     "services": [
+      "Amazon EventBridge",
+      "AWS Config",
+      "Amazon Inspector",
+      "Amazon SNS"
+     ],
+     "description": "AWS Config confirms Amazon Inspector continuous scanning and the alerting pipeline (Amazon EventBridge to Amazon SNS) are enabled.",
+     "source": "verify",
+     "collectable_now": false
+    },
+    {
+     "check_id": "KSI-SCR-MON:validate:method",
+     "type": "described_method",
+     "services": [
+      "AWS Security Hub",
+      "Amazon EventBridge",
+      "Amazon Inspector"
+     ],
+     "description": "Amazon Inspector raises a new finding when an upstream vulnerability affects a monitored dependency, Amazon EventBridge notifies responders, and AWS Security Hub records it, validating active monitoring.",
+     "source": "validate",
+     "collectable_now": false
+    }
+   ]
+  },
+  "KSI-SVC-ACM": {
+   "name": "Automating Configuration Management",
+   "family": "SVC",
+   "family_name": "Service Configuration",
+   "services": [
+    "AWS Security Hub",
+    "AWS Config",
+    "AWS Systems Manager",
+    "AWS CodePipeline",
+    "AWS CloudFormation"
+   ],
+   "checks": [
+    {
+     "check_id": "KSI-SVC-ACM:verify:method",
+     "type": "described_method",
+     "services": [
+      "AWS Config",
+      "AWS CloudFormation"
+     ],
+     "description": "AWS Config detects drift against the AWS CloudFormation baseline and reports NON_COMPLIANT resources.",
+     "source": "verify",
+     "collectable_now": false
+    },
+    {
+     "check_id": "KSI-SVC-ACM:validate:method",
+     "type": "described_method",
+     "services": [
+      "AWS Security Hub",
+      "AWS Config",
+      "AWS Systems Manager"
+     ],
+     "description": "AWS Config automatic remediation via AWS Systems Manager Automation corrects drift and records the correction in AWS Security Hub, validating configuration management operates.",
+     "source": "validate",
+     "collectable_now": false
+    }
+   ]
+  },
+  "KSI-SVC-ASM": {
+   "name": "Automating Secret Management",
+   "family": "SVC",
+   "family_name": "Service Configuration",
+   "services": [
+    "AWS Security Hub",
+    "AWS CloudTrail",
+    "Amazon EventBridge",
+    "AWS Config",
+    "AWS KMS",
+    "AWS Systems Manager",
+    "AWS Secrets Manager",
+    "AWS Certificate Manager"
+   ],
+   "checks": [
+    {
+     "check_id": "KSI-SVC-ASM:verify:config:secretsmanager-rotation-enabled-check",
+     "type": "config_managed_rule",
+     "service": "AWS Config",
+     "target": "secretsmanager-rotation-enabled-check",
+     "source": "verify",
+     "collectable_now": true
+    },
+    {
+     "check_id": "KSI-SVC-ASM:verify:config:secretsmanager-scheduled-rotation-success-check",
+     "type": "config_managed_rule",
+     "service": "AWS Config",
+     "target": "secretsmanager-scheduled-rotation-success-check",
+     "source": "verify",
+     "collectable_now": true
+    },
+    {
+     "check_id": "KSI-SVC-ASM:verify:config:acm-certificate-expiration-check",
+     "type": "config_managed_rule",
+     "service": "AWS Config",
+     "target": "acm-certificate-expiration-check",
+     "source": "verify",
+     "collectable_now": true
+    },
+    {
+     "check_id": "KSI-SVC-ASM:verify:method",
+     "type": "described_method",
+     "services": [
+      "AWS Config"
+     ],
+     "description": "AWS Config managed rules `secretsmanager-rotation-enabled-check`, `secretsmanager-scheduled-rotation-success-check`, and `acm-certificate-expiration-check` confirm rotation and expiry management.",
+     "source": "verify",
+     "collectable_now": false
+    },
+    {
+     "check_id": "KSI-SVC-ASM:validate:method",
+     "type": "described_method",
+     "services": [
+      "AWS Security Hub",
+      "AWS CloudTrail",
+      "Amazon EventBridge"
+     ],
+     "description": "AWS CloudTrail plus Amazon EventBridge confirm rotation events occur on schedule and raise an AWS Security Hub finding on a rotation failure or a stale secret, validating automation works.",
+     "source": "validate",
+     "collectable_now": false
+    }
+   ]
+  },
+  "KSI-SVC-EIS": {
+   "name": "Evaluating and Improving Security",
+   "family": "SVC",
+   "family_name": "Service Configuration",
+   "services": [
+    "AWS Security Hub",
+    "Amazon CloudWatch",
+    "AWS Config",
+    "AWS Lambda",
+    "Amazon Inspector"
+   ],
+   "checks": [
+    {
+     "check_id": "KSI-SVC-EIS:verify:method",
+     "type": "described_method",
+     "services": [
+      "AWS Config"
+     ],
+     "description": "AWS Config conformance pack evaluates resources against the security baseline and reports gaps.",
+     "source": "verify",
+     "collectable_now": false
+    },
+    {
+     "check_id": "KSI-SVC-EIS:validate:method",
+     "type": "described_method",
+     "services": [
+      "AWS Security Hub",
+      "Amazon CloudWatch",
+      "AWS Lambda"
+     ],
+     "description": "AWS Security Hub security-standard scores trended in Amazon CloudWatch show improvements over time, and a scheduled AWS Lambda raises a finding when scores regress, validating continuous improvement.",
+     "source": "validate",
+     "collectable_now": false
+    }
+   ]
+  },
+  "KSI-SVC-PRR": {
+   "name": "Preventing Residual Risk",
+   "family": "SVC",
+   "family_name": "Service Configuration",
+   "services": [
+    "AWS Security Hub",
+    "AWS CloudTrail",
+    "Amazon EventBridge",
+    "AWS Config",
+    "AWS Lambda",
+    "AWS Key Management Service",
+    "Amazon S3",
+    "Amazon Macie",
+    "Amazon VPC"
+   ],
+   "checks": [
+    {
+     "check_id": "KSI-SVC-PRR:verify:method",
+     "type": "described_method",
+     "services": [
+      "AWS Config"
+     ],
+     "description": "AWS Config confirms encryption, isolation settings, and public-access blocks on data stores.",
+     "source": "verify",
+     "collectable_now": false
+    },
+    {
+     "check_id": "KSI-SVC-PRR:validate:method",
+     "type": "described_method",
+     "services": [
+      "AWS Security Hub",
+      "AWS CloudTrail",
+      "Amazon EventBridge",
+      "Amazon Macie"
+     ],
+     "description": "AWS CloudTrail plus Amazon EventBridge and Amazon Macie detect unexpected access to residual or shared data and raise an AWS Security Hub finding.",
+     "source": "validate",
+     "collectable_now": false
+    }
+   ]
+  },
+  "KSI-SVC-RUD": {
+   "name": "Removing Unwanted Data",
+   "family": "SVC",
+   "family_name": "Service Configuration",
+   "services": [
+    "AWS Security Hub",
+    "Amazon CloudWatch",
+    "Amazon EventBridge",
+    "AWS Config",
+    "AWS Lambda",
+    "AWS KMS",
+    "AWS Backup",
+    "Amazon S3"
+   ],
+   "checks": [
+    {
+     "check_id": "KSI-SVC-RUD:verify:method",
+     "type": "described_method",
+     "services": [
+      "AWS Config",
+      "Amazon S3"
+     ],
+     "description": "AWS Config confirms Amazon S3 lifecycle policies, Amazon DynamoDB time to live, and backup retention settings are configured to the defined retention.",
+     "source": "verify",
+     "collectable_now": false
+    },
+    {
+     "check_id": "KSI-SVC-RUD:validate:method",
+     "type": "described_method",
+     "services": [
+      "AWS Security Hub",
+      "Amazon CloudWatch",
+      "Amazon EventBridge",
+      "AWS Lambda"
+     ],
+     "description": "Amazon EventBridge scheduled AWS Lambda verifies expired data is removed on schedule, emits an Amazon CloudWatch metric, and raises an AWS Security Hub finding on retention violations.",
+     "source": "validate",
+     "collectable_now": false
+    }
+   ]
+  },
+  "KSI-SVC-SIN": {
+   "name": "Securing Information",
+   "family": "SVC",
+   "family_name": "Service Configuration",
+   "services": [
+    "AWS Security Hub",
+    "AWS CloudTrail",
+    "Amazon EventBridge",
+    "AWS Config",
+    "AWS KMS",
+    "Amazon S3"
+   ],
+   "checks": [
+    {
+     "check_id": "KSI-SVC-SIN:verify:config:s3-bucket-server-side-encryption-enabled",
+     "type": "config_managed_rule",
+     "service": "AWS Config",
+     "target": "s3-bucket-server-side-encryption-enabled",
+     "source": "verify",
+     "collectable_now": true
+    },
+    {
+     "check_id": "KSI-SVC-SIN:verify:config:encrypted-volumes",
+     "type": "config_managed_rule",
+     "service": "AWS Config",
+     "target": "encrypted-volumes",
+     "source": "verify",
+     "collectable_now": true
+    },
+    {
+     "check_id": "KSI-SVC-SIN:verify:config:rds-storage-encrypted",
+     "type": "config_managed_rule",
+     "service": "AWS Config",
+     "target": "rds-storage-encrypted",
+     "source": "verify",
+     "collectable_now": true
+    },
+    {
+     "check_id": "KSI-SVC-SIN:verify:config:s3-bucket-ssl-requests-only",
+     "type": "config_managed_rule",
+     "service": "AWS Config",
+     "target": "s3-bucket-ssl-requests-only",
+     "source": "verify",
+     "collectable_now": true
+    },
+    {
+     "check_id": "KSI-SVC-SIN:verify:method",
+     "type": "described_method",
+     "services": [
+      "AWS Config"
+     ],
+     "description": "AWS Config managed rules `s3-bucket-server-side-encryption-enabled`, `encrypted-volumes`, `rds-storage-encrypted`, and `s3-bucket-ssl-requests-only` confirm encryption at rest and in transit.",
+     "source": "verify",
+     "collectable_now": false
+    },
+    {
+     "check_id": "KSI-SVC-SIN:validate:method",
+     "type": "described_method",
+     "services": [
+      "AWS Security Hub",
+      "AWS CloudTrail",
+      "Amazon EventBridge"
+     ],
+     "description": "AWS CloudTrail plus Amazon EventBridge detect unencrypted resource creation or non-TLS access attempts and raise an AWS Security Hub finding, validating encryption is enforced.",
+     "source": "validate",
+     "collectable_now": false
+    }
+   ]
+  },
+  "KSI-SVC-VCM": {
+   "name": "Validating Communications",
+   "family": "SVC",
+   "family_name": "Service Configuration",
+   "services": [
+    "AWS Security Hub",
+    "AWS CloudTrail",
+    "Amazon EventBridge",
+    "AWS Config",
+    "AWS Certificate Manager",
+    "IAM"
+   ],
+   "checks": [
+    {
+     "check_id": "KSI-SVC-VCM:verify:config:alb-http-to-https-redirection-check",
+     "type": "config_managed_rule",
+     "service": "AWS Config",
+     "target": "alb-http-to-https-redirection-check",
+     "source": "verify",
+     "collectable_now": true
+    },
+    {
+     "check_id": "KSI-SVC-VCM:verify:config:elb-tls-https-listeners-only",
+     "type": "config_managed_rule",
+     "service": "AWS Config",
+     "target": "elb-tls-https-listeners-only",
+     "source": "verify",
+     "collectable_now": true
+    },
+    {
+     "check_id": "KSI-SVC-VCM:verify:method",
+     "type": "described_method",
+     "services": [
+      "AWS Config"
+     ],
+     "description": "AWS Config managed rules for TLS enforcement (for example `alb-http-to-https-redirection-check` and `elb-tls-https-listeners-only`) confirm communications are encrypted and validated.",
+     "source": "verify",
+     "collectable_now": false
+    },
+    {
+     "check_id": "KSI-SVC-VCM:validate:method",
+     "type": "described_method",
+     "services": [
+      "AWS Security Hub",
+      "AWS CloudTrail",
+      "Amazon EventBridge"
+     ],
+     "description": "AWS CloudTrail plus Amazon EventBridge detect non-TLS or unauthenticated communication attempts and raise an AWS Security Hub finding, validating communications integrity.",
+     "source": "validate",
+     "collectable_now": false
+    }
+   ]
+  },
+  "KSI-SVC-VRI": {
+   "name": "Validating Resource Integrity",
+   "family": "SVC",
+   "family_name": "Service Configuration",
+   "services": [
+    "AWS Security Hub",
+    "AWS CloudTrail",
+    "AWS Config",
+    "Amazon S3",
+    "AWS CodePipeline",
+    "Amazon ECR"
+   ],
+   "checks": [
+    {
+     "check_id": "KSI-SVC-VRI:verify:method",
+     "type": "described_method",
+     "services": [
+      "AWS CloudTrail",
+      "AWS Config",
+      "Amazon ECR"
+     ],
+     "description": "AWS Config confirms image signing, immutable tags on Amazon ECR, and AWS CloudTrail log file validation are enabled.",
+     "source": "verify",
+     "collectable_now": false
+    },
+    {
+     "check_id": "KSI-SVC-VRI:validate:method",
+     "type": "described_method",
+     "services": [
+      "AWS Security Hub",
+      "AWS CodePipeline"
+     ],
+     "description": "AWS CodePipeline signature verification at deployment fails and raises an AWS Security Hub finding when an artifact fails its integrity check, validating integrity enforcement.",
+     "source": "validate",
+     "collectable_now": false
+    }
+   ]
+  }
+ }
+}

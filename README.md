@@ -52,6 +52,12 @@ The controlling sources are listed in steering/source-register.txt. The canonica
 
 The 20x Program path for Class D is listed by FedRAMP as coming in 2027, with specifics set during the 20x Phase 4 Pilot. profiles/class-d-future/readiness-register.json shows the rules that would apply, resolved with the class d variants already present in the canonical dataset, plus a delta against Class C. It never claims Class D compliance.
 
-7. License
+7. Automation layer (Layer 1: deterministic collectors)
+
+traceability/aws-service-ksi-map.json maps every KSI to example Amazon Web Services (AWS) implementation guidance with a verify method and a validate method each, matching the FRC-CSX-VVK two-method shape. validation/scripts/build_collector_registry.py derives automation/collectors/registry.json from it: 46 KSIs, with the AWS Config managed rules named in the guidance extracted as immediately collectable checks and the prose methods carried as described_method entries until dedicated collectors implement them.
+
+automation/collectors/collect_facts.py executes the collectable checks against an AWS account, read-only by construction (only config:DescribeComplianceByConfigRule and sts:GetCallerIdentity), refuses admin-looking credentials, and writes a timestamped facts store to automation/facts/ (excluded from git because it identifies a real account). Facts are telemetry, never statuses: a status changes only through deterministic checks plus human sign-off, and generative output is never deterministic telemetry, per FedRAMP's own definitions.
+
+8. License
 
 MIT. See LICENSE.

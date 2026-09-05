@@ -40,3 +40,6 @@ Thumbs.db
 # Remove these two lines only after scrubbing the files.
 steering/
 quality/
+
+# Collected facts identify a real AWS account: never commit
+automation/facts/
