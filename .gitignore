@@ -1,0 +1,42 @@
+# Credentials and secrets: never commit
+*.pem
+*.key
+*.p12
+*.pfx
+.env
+.env.*
+credentials*
+*credential*
+aws-exports*
+
+# Raw evidence and customer material: never commit
+evidence/
+raw-evidence/
+customer-*/
+*-customer-*
+overrides/
+
+# Python caches
+__pycache__/
+*.pyc
+*.pyo
+
+# Office temp files
+~$*
+*.tmp
+
+# Editor and OS clutter
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# Local build logs
+*.log
+
+# Local working notes: session logs and dated review reports contain
+# engagement context (names, local paths) and stay out of the public repo.
+# Remove these two lines only after scrubbing the files.
+steering/
+quality/
