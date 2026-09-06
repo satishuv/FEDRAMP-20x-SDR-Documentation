@@ -69,6 +69,12 @@ COLLECTOR_CALLS = {
     "guardduty": ("guardduty", ["list_detectors", "get_detector"]),
     "backup": ("backup", ["list_backup_plans", "list_protected_resources"]),
     "kms": ("kms", ["list_keys", "get_key_rotation_status"]),
+    "config": ("config", ["describe_configuration_recorder_status",
+                          "get_discovered_resource_counts",
+                          "describe_compliance_by_config_rule"]),
+    "cloudtrail": ("cloudtrail", ["describe_trails", "get_trail_status"]),
+    "s3": ("s3", ["list_buckets", "get_public_access_block"]),
+    "iam": ("iam", ["get_account_summary", "get_account_password_policy"]),
 }
 
 COLLECTOR_FN = dict(collectors.COLLECTORS)
@@ -91,6 +97,27 @@ def _big_ok_responses(client_name, n):
                    "list_protected_resources": {"Results": [{} for _ in range(n)]}},
         "kms": {"list_keys": {"Keys": [{"KeyId": f"k{i}"} for i in range(n)]},
                 "get_key_rotation_status": {"KeyRotationEnabled": True}},
+        "config": {
+            "describe_configuration_recorder_status": {
+                "ConfigurationRecordersStatus": [{"recording": True} for _ in range(n)]},
+            "get_discovered_resource_counts": {
+                "resourceCounts": [{"resourceType": f"AWS::Svc::R{i}", "count": i}
+                                   for i in range(n)]},
+            "describe_compliance_by_config_rule": {
+                "ComplianceByConfigRules": [
+                    {"Compliance": {"ComplianceType": "COMPLIANT"}} for _ in range(n)]}},
+        "cloudtrail": {
+            "describe_trails": {"trailList": [
+                {"Name": f"t{i}", "TrailARN": f"arn:t{i}", "IsMultiRegionTrail": True}
+                for i in range(n)]},
+            "get_trail_status": {"IsLogging": True}},
+        "s3": {"list_buckets": {"Buckets": [{"Name": f"b{i}"} for i in range(n)]},
+               "get_public_access_block": {"PublicAccessBlockConfiguration": {
+                   "BlockPublicAcls": True, "IgnorePublicAcls": True,
+                   "BlockPublicPolicy": True, "RestrictPublicBuckets": True}}},
+        "iam": {"get_account_summary": {"SummaryMap": {"Users": n, "MFADevices": n,
+                                                       "Roles": n}},
+                "get_account_password_policy": {"PasswordPolicy": {}}},
     }[client_name]
 
 
@@ -157,6 +184,15 @@ def test_empty_account_yields_clean_not_error():
         "backup": ScriptedClient(responses={"list_backup_plans": {"BackupPlansList": []},
                                             "list_protected_resources": {"Results": []}}),
         "kms": ScriptedClient(responses={"list_keys": {"Keys": []}}),
+        "config": ScriptedClient(responses={
+            "describe_configuration_recorder_status": {"ConfigurationRecordersStatus": []},
+            "get_discovered_resource_counts": {"resourceCounts": []},
+            "describe_compliance_by_config_rule": {"ComplianceByConfigRules": []}}),
+        "cloudtrail": ScriptedClient(responses={"describe_trails": {"trailList": []}}),
+        "s3": ScriptedClient(responses={"list_buckets": {"Buckets": []}}),
+        "iam": ScriptedClient(responses={
+            "get_account_summary": {"SummaryMap": {}}},
+            errors={"get_account_password_policy": FakeClientError("NoSuchEntity")}),
     })
     for name, (client_name, _m) in COLLECTOR_CALLS.items():
         facts = COLLECTOR_FN[name](sess, "us-east-1")
@@ -180,6 +216,14 @@ def test_malformed_response_shapes_do_not_crash():
         "backup": ScriptedClient(responses={"list_backup_plans": {},
                                             "list_protected_resources": {}}),
         "kms": ScriptedClient(responses={"list_keys": {}}),
+        "config": ScriptedClient(responses={
+            "describe_configuration_recorder_status": {},
+            "get_discovered_resource_counts": {},
+            "describe_compliance_by_config_rule": {}}),
+        "cloudtrail": ScriptedClient(responses={"describe_trails": {}}),
+        "s3": ScriptedClient(responses={"list_buckets": {}}),
+        "iam": ScriptedClient(responses={"get_account_summary": {},
+                                         "get_account_password_policy": {}}),
     })
     for name in COLLECTOR_CALLS:
         facts = COLLECTOR_FN[name](sess, "us-east-1")
