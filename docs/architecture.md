@@ -27,10 +27,10 @@ flowchart LR
     PIPE --> OUT
     OUT --> GATE
     OUT --> SCAN
-    PIN -. "resolves every statement, name and force<br/>again, through its own code path" .-> GATE
-    GATE -- "0 hard failures" --> SHIP
-    GATE -- "mismatch, or a hand-edited output" --> RS
-    SCAN -- "what is still missing" --> RS
+    PIN -.->|re-resolves every statement, name and force| GATE
+    GATE -->|0 hard failures| SHIP
+    GATE -->|mismatch or hand-edited output| RS
+    SCAN -->|what is still missing| RS
 
     classDef src fill:#e7f5ff,stroke:#1971c2,stroke-width:2px,color:#0b3d66
     classDef you fill:#fff4e6,stroke:#e8590c,stroke-width:2px,color:#7f2704
@@ -121,8 +121,8 @@ flowchart TB
         direction LR
         DEVX["You edit<br/>records-store.json"] --> GIT["Push to your<br/>private repo"]
         GIT --> CI["CI gate<br/>regenerate, diff, validate, scan"]
-        CI -- "0 hard failures" --> HUM["Named human<br/>reads the readiness report<br/>and approves"]
-        CI -- fail --> DEVX
+        CI -->|0 hard failures| HUM["Named human<br/>reads the readiness report<br/>and approves"]
+        CI -->|fail| DEVX
         HUM --> PUB["Published package<br/>versioned, encrypted<br/>backs a trust center"]
     end
 
@@ -134,18 +134,18 @@ flowchart TB
 
     subgraph currency["The currency loop, daily"]
         direction LR
-        DRIFT["Drift check<br/>sha256 of pinned sources<br/>against fedramp.gov"] -- changed --> ALERT["Issue or email:<br/>re-pin, rebuild,<br/>read the diff"]
+        DRIFT["Drift check<br/>sha256 of pinned sources<br/>against fedramp.gov"] -->|changed| ALERT["Issue or email:<br/>re-pin, rebuild,<br/>read the diff"]
     end
 
-    READ -- "feeds indicator tests and<br/>the SDR-CSX-KMT metrics clock" --> DEVX
-    ALERT -- "a reworded requirement may<br/>change what your record says" --> DEVX
-    LLM["Layer 2, planned<br/>drafts prose from collected facts only"] -. "proposes a diff,<br/>never a status" .-> DEVX
+    READ -->|feeds tests and the SDR-CSX-KMT metrics clock| DEVX
+    ALERT -->|a reworded rule may change your record| DEVX
+    LLM["Layer 2, planned<br/>drafts prose from collected facts only"] -.->|proposes a diff, never a status| DEVX
 
     classDef you fill:#fff4e6,stroke:#e8590c,stroke-width:2px,color:#7f2704
     classDef step fill:#f1f3f5,stroke:#495057,stroke-width:2px,color:#212529
     classDef gate fill:#fff0f6,stroke:#c2255c,stroke-width:2px,color:#7a1236
     classDef out fill:#ebfbee,stroke:#2f9e44,stroke-width:2px,color:#14532d
-    classDef plan fill:#f3f0ff,stroke:#6741d9,stroke-width:2px,stroke-dasharray:5 5,color:#3b1e7a
+    classDef plan fill:#f3f0ff,stroke:#6741d9,stroke-width:2px,color:#3b1e7a
     class DEVX,READ,HUM you
     class GIT,COLL,EV,DRIFT,ALERT step
     class CI gate

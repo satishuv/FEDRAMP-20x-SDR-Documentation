@@ -23,8 +23,8 @@ flowchart LR
     BAD["A record that no longer<br/>matches its inputs"]
 
     PUSH --> G1 --> G2 --> G3 --> G4 --> OK
-    G2 -- fails on --> HAND
-    G3 -- fails on --> BAD
+    G2 -->|fails on| HAND
+    G3 -->|fails on| BAD
 
     classDef step fill:#f1f3f5,stroke:#495057,stroke-width:2px,color:#212529
     classDef gate fill:#fff0f6,stroke:#c2255c,stroke-width:2px,color:#7a1236

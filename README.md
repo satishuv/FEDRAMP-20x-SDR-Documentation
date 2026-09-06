@@ -48,9 +48,9 @@ flowchart LR
     PIPE --> OUT
     OUT --> GATE
     OUT --> SCAN
-    DS -. "every statement re-derived<br/>through a separate code path" .-> GATE
-    GATE -- "any mismatch fails the build" --> RS
-    SCAN -- "ranked findings tell you<br/>what to fill in next" --> RS
+    DS -.->|re-derives every statement independently| GATE
+    GATE -->|a mismatch fails the build| RS
+    SCAN -->|ranked findings drive the next edit| RS
 
     classDef src fill:#e7f5ff,stroke:#1971c2,stroke-width:2px,color:#0b3d66
     classDef you fill:#fff4e6,stroke:#e8590c,stroke-width:2px,color:#7f2704

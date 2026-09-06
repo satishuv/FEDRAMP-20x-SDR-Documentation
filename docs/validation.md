@@ -13,8 +13,8 @@ flowchart LR
 
     OUT --> GATE
     OUT --> SCAN
-    GATE -- "all eight checks clean" --> SHIP
-    GATE -- "any hard failure" --> STOP
+    GATE -->|all eight checks clean| SHIP
+    GATE -->|any hard failure| STOP
     SCAN --> LIST
 
     classDef out fill:#ebfbee,stroke:#2f9e44,stroke-width:2px,color:#14532d
