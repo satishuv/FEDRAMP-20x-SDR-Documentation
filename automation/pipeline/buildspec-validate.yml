@@ -6,6 +6,10 @@
 #      file-entry timestamps; their content is covered by the validator.
 #   3. validate_sdr.py must pass with 0 hard failures (schema, coverage,
 #      test minimums, hygiene, content fidelity against the dataset).
+#   4. sdrscan reports assessment readiness per rule and per indicator. It
+#      does not gate, because a template legitimately has open gaps; its
+#      reports ride along in the artifact so a reviewer sees exactly what is
+#      still missing before approving publication.
 # The deliverables package is emitted as the pipeline artifact and is
 # published to S3 only after human approval.
 version: 0.2
@@ -21,14 +25,18 @@ phases:
       - python validation/scripts/build_catalogs.py
       - python validation/scripts/build_notes.py
       - python validation/scripts/build_profiles.py
+      - python validation/scripts/build_collector_registry.py
       - python validation/scripts/build_sdr.py
       - python validation/scripts/build_docx.py
       - python validation/scripts/build_crosswalk.py
       - git diff --exit-code -- . ':(exclude)*.docx' || { echo "FAIL. Generated outputs differ from committed files. Never edit generated files by hand; edit sdr/records/records-store.json and regenerate."; exit 1; }
       - python validation/scripts/validate_sdr.py
+      - python automation/sdrscan/sdrscan.py --write-catalog
+      - git diff --exit-code -- automation/sdrscan/check-catalog.json || { echo "FAIL. check-catalog.json is out of date with checks.py. Run: python automation/sdrscan/sdrscan.py --write-catalog"; exit 1; }
+      - python automation/sdrscan/sdrscan.py --output-formats json,csv,html,txt --only-fails --no-colour --ignore-exit-code-3
   post_build:
     commands:
-      - echo "Validation passed. Packaging deliverables."
+      - echo "Validation passed. Readiness scan attached. Packaging deliverables."
 
 artifacts:
   base-directory: .

@@ -1,0 +1,87 @@
+name: Feature or check request
+description: Propose a new readiness check, a collector, provider support, or a capability
+title: "[feature] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The most useful requests are the concrete ones: a specific readiness check for a
+        specific rule, or a collector for a method that is currently only described in
+        prose. Read docs/vision.md first; it says plainly what this project will not do.
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of request
+      options:
+        - A new readiness check in sdrscan
+        - A collector for a described method that has no automation yet
+        - Support for a cloud provider other than AWS
+        - A new output format or deliverable
+        - Something about the authoring experience
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: The problem
+      description: >
+        What is hard or impossible today. Describe the situation you were in, not the
+        solution you have in mind.
+    validations:
+      required: true
+
+  - type: input
+    id: basis
+    attributes:
+      label: Governing rule or indicator, if there is one
+      description: >
+        A check or collector needs a rule it enforces. Every existing check cites its
+        basis, and one without a basis will be asked for one.
+      placeholder: KSI-MLA-RVL, CCM-OCR-NRD
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What you propose
+      description: >
+        For a check, say what would make it PASS, what would make it FAIL, and its
+        severity. For a collector, name the read-only API call it would make.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: determinism
+    attributes:
+      label: Can this be decided deterministically
+      description: >
+        The project's trust boundary: only a deterministic check plus a named human may
+        move a status to Implemented. Generated or inferred content never can.
+      options:
+        - Yes, a deterministic check decides it
+        - Partly, it can narrow the question but a human must decide
+        - No, it is a judgment call and would be reported as MANUAL
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: What you tried or considered instead
+      description: Including whether an existing check already covers part of it.
+
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Before you submit
+      options:
+        - label: >
+            This does not require a new runtime dependency, or I have explained why the
+            three current ones are not enough.
+        - label: >
+            This does not let any status reach Implemented without a deterministic check
+            plus human sign-off.
+          required: true

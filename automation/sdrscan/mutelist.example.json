@@ -1,0 +1,19 @@
+{
+ "mutelist_note": "Copy this file to mutelist.json to use it. Muting suppresses a failing finding; it does not make the gap go away. Every entry needs a justification and an expiry, and sdrscan ignores entries missing either, so a mute is always an auditable decision with an owner and an end date. Muted findings stay visible in every output with their justification attached, and they are excluded from the readiness percentage rather than counted as passes. Set resource_id to a specific rule or indicator, or to * to mute a check across all resources. Never mute a critical finding to get a pipeline green; fix it or drop the certification class.",
+ "mutes": [
+  {
+   "check_id": "frr_artifacts_referenced",
+   "resource_id": "AFC-CSO-INB",
+   "justification": "Example only. This rule is satisfied by a mailbox configuration with no separate artifact to reference. Confirmed with the compliance owner.",
+   "owner": "Replace with the accountable team",
+   "expires": "2027-01-01"
+  },
+  {
+   "check_id": "ksi_metrics_yearly_summary",
+   "resource_id": "*",
+   "justification": "Example only. The offering has been in production for four months, so a year of history does not exist yet. SDR-CSX-KMT requires the yearly summary where available. Revisit once twelve months of data exists.",
+   "owner": "Replace with the accountable team",
+   "expires": "2027-01-01"
+  }
+ ]
+}

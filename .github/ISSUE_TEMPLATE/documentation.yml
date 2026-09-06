@@ -1,0 +1,49 @@
+name: Documentation problem
+description: Something is wrong, missing, or got you stuck
+title: "[docs] "
+labels: ["documentation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        "I got stuck here" is a complete and welcome report. You do not need to know the
+        fix. Where a first-time reader stalls is the most useful thing you can tell us.
+
+  - type: input
+    id: page
+    attributes:
+      label: Which page
+      placeholder: docs/implementation-guide.md, or README
+    validations:
+      required: true
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of problem
+      options:
+        - It is wrong or out of date
+        - It is missing something I needed
+        - I could not follow it
+        - A command in it does not work
+        - A link is broken
+    validations:
+      required: true
+
+  - type: textarea
+    id: detail
+    attributes:
+      label: What happened
+      description: >
+        Quote the passage if you can. If a command failed, paste what you ran and what
+        came back.
+    validations:
+      required: true
+
+  - type: textarea
+    id: goal
+    attributes:
+      label: What you were trying to do
+      description: >
+        This matters more than it sounds. It usually reveals that the documentation is
+        organized around the code rather than around the task.

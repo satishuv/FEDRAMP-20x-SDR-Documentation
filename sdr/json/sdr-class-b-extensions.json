@@ -46,7 +46,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "AFC-CSO-NOC": {
    "name": "Notification of Changes",
@@ -75,7 +80,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "AFC-CSO-TFG": {
    "name": "Trust @fedramp.gov and @gsa.gov",
@@ -105,7 +115,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "AFC-CSO-RCV": {
    "name": "Receive Email Without Disruption",
@@ -140,7 +155,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "AFC-CSO-CRA": {
    "name": "Complete Required Actions",
@@ -175,7 +195,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "AFC-CSO-EMR": {
    "name": "Emergency Message Routing",
@@ -207,7 +232,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "AFC-CSO-IMA": {
    "name": "Important Message Actions",
@@ -242,7 +272,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "AFC-CSO-ACK": {
    "name": "Acknowledge Receipt",
@@ -275,7 +310,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "CCM-OCR-AVL": {
    "name": "Report Availability",
@@ -305,7 +345,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "CCM-OCR-NRD": {
    "name": "Next Report Date",
@@ -338,7 +383,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "CCM-OCR-FBM": {
    "name": "Feedback Mechanism",
@@ -369,7 +419,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "CCM-OCR-AFS": {
    "name": "Anonymized Feedback Summary",
@@ -400,7 +455,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "CCM-OCR-LSI": {
    "name": "Limit Sensitive Information",
@@ -433,7 +493,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "CCM-OCR-SOR": {
    "name": "Spread Out Reports",
@@ -468,7 +533,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "CCM-OCR-RPS": {
    "name": "Responsible Public Certification Report Sharing",
@@ -501,7 +571,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "CCM-QTR-MTG": {
    "name": "Quarterly Review Meeting",
@@ -534,7 +609,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "CCM-QTR-REG": {
    "name": "Meeting Registration Info",
@@ -563,7 +643,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "CCM-QTR-NRD": {
    "name": "Next Review Date",
@@ -596,7 +681,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "CCM-QTR-NID": {
    "name": "No Irresponsible Disclosure",
@@ -629,7 +719,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "CCM-QTR-SAR": {
    "name": "Schedule Around Reports",
@@ -662,7 +757,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "CCM-QTR-ACT": {
    "name": "Additional Content",
@@ -695,7 +795,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "CCM-QTR-RTR": {
    "name": "Record/Transcribe Reviews",
@@ -728,7 +833,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "CCM-QTR-RTP": {
    "name": "Restrict Third Parties",
@@ -763,7 +873,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "CCM-QTR-SRR": {
    "name": "Share Recordings Responsibly",
@@ -796,7 +911,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "CCM-QTR-SCR": {
    "name": "Share Content Responsibly",
@@ -829,7 +949,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "CDS-CSO-PUB": {
    "name": "Public Information",
@@ -861,7 +986,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "CDS-CSO-SVC": {
    "name": "Public Service List",
@@ -891,7 +1021,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "CDS-CSO-FID": {
    "name": "Always Include FedRAMP ID",
@@ -927,7 +1062,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "CDS-CSO-FRC": {
    "name": "FedRAMP Certification Reports",
@@ -962,7 +1102,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "CDS-CSO-AVR": {
    "name": "Availability Reporting",
@@ -995,7 +1140,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "CDS-CSO-UTC": {
    "name": "Use Trust Centers",
@@ -1030,7 +1180,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "CDS-CSO-CBF": {
    "name": "Consistency Between Formats",
@@ -1063,7 +1218,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "CDS-CSO-RIS": {
    "name": "Responsible Information Sharing",
@@ -1098,7 +1258,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "CDS-CSO-IRP": {
    "name": "Include Relevant Policies",
@@ -1127,7 +1292,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "CDS-CSO-HAD": {
    "name": "Historical FedRAMP Certification Data",
@@ -1158,7 +1328,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "CDS-CSO-PSM": {
    "name": "Per-Service Certification Materials",
@@ -1194,7 +1369,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "CDS-CSO-RPS": {
    "name": "Responsible Public Package Sharing",
@@ -1223,7 +1403,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "CDS-TRC-USH": {
    "name": "Uninterrupted Sharing",
@@ -1258,7 +1443,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "CDS-TRC-PAC": {
    "name": "Programmatic Access",
@@ -1287,7 +1477,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "CDS-TRC-AAI": {
    "name": "Agency Access Inventory",
@@ -1316,7 +1511,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "CDS-TRC-ACL": {
    "name": "Access Logging",
@@ -1345,7 +1545,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "CDS-TRC-HMR": {
    "name": "Human and Machine-Readable Certification Data",
@@ -1378,7 +1583,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "CDS-TRC-SSM": {
    "name": "Self-Service Access Management",
@@ -1407,7 +1617,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "CDS-UTC-AAD": {
    "name": "Agency Access Denial",
@@ -1440,7 +1655,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "CDS-UTC-AGA": {
    "name": "Agency Access",
@@ -1470,7 +1690,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "CMU-CSO-CMD": {
    "name": "Cryptographic Module Documentation",
@@ -1499,7 +1724,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "CMU-CSO-UVM": {
    "name": "Using Validated Cryptographic Modules",
@@ -1532,7 +1762,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "CMU-CSO-CAT": {
    "name": "Configuration of Agency Tenants",
@@ -1561,7 +1796,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "CPO-CSO-OVR": {
    "name": "Overview of the Cloud Service Offering",
@@ -1597,7 +1837,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "CPO-CSO-MTD": {
    "name": "Certification Package Overview Metadata",
@@ -1630,7 +1875,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "CPO-CSO-OSA": {
    "name": "Overall Summary of Assessment in Certification Package",
@@ -1663,7 +1913,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "CPO-CSX-CPM": {
    "name": "Certification Package Maintenance for 20x",
@@ -1699,7 +1954,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "FRC-CSO-FCP": {
    "name": "FedRAMP Certification Profile",
@@ -1734,7 +1994,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "FRC-CSO-PKG": {
    "name": "FedRAMP Certification Package",
@@ -1767,7 +2032,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "FRC-CSO-JSN": {
    "name": "FedRAMP JSON Schemas",
@@ -1802,7 +2072,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "FRC-CSO-MRA": {
    "name": "Maintain Responsibility and Accountability",
@@ -1835,7 +2110,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "FRC-CSO-POP": {
    "name": "Pick One Program Certification Type",
@@ -1870,7 +2150,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "FRC-APP-MLF": {
    "name": "Marketplace Listing First",
@@ -1903,7 +2188,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "FRC-APP-AFC": {
    "name": "Applying for FedRAMP Certification",
@@ -1936,7 +2226,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "FRC-APP-FCP": {
    "name": "Fresh FedRAMP Certification Package",
@@ -1969,7 +2264,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "FRC-APP-FIA": {
    "name": "Fresh Independent Assessment",
@@ -2002,7 +2302,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "FRC-APP-NTP": {
    "name": "No Third-Party Applicants",
@@ -2038,7 +2343,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "FRC-APP-USA": {
    "name": "Updating Stale Assessments",
@@ -2071,7 +2381,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "FRC-CSX-VVK": {
    "name": "Automated Verification and Validation of Key Security Indicators",
@@ -2104,7 +2419,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "FRC-CSX-MOT": {
    "name": "Metrics Over Time for Key Security Indicators",
@@ -2139,7 +2459,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "FRC-CSX-VVR": {
    "name": "Automated Verification and Validation of FedRAMP Rules",
@@ -2174,7 +2499,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "FRC-CSX-MAS": {
    "name": "Application within MAS",
@@ -2207,7 +2537,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "IEC-CSO-EFR": {
    "name": "Evaluate FedRAMP Reportability",
@@ -2236,7 +2571,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "IEC-CSO-DPR": {
    "name": "Default PAIN Rating",
@@ -2269,7 +2609,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "IEC-CSO-IIR": {
    "name": "Initial Incident Report",
@@ -2302,7 +2647,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "IEC-CSO-OIR": {
    "name": "Ongoing Incident Reports",
@@ -2335,7 +2685,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "IEC-CSO-FIR": {
    "name": "Final Incident Report",
@@ -2368,7 +2723,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "IEC-CSO-EFI": {
    "name": "Estimate Federal Impact",
@@ -2399,7 +2759,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "IEC-CSO-AIR": {
    "name": "Automated Incident Reporting",
@@ -2432,7 +2797,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "IVV-CSO-FIA": {
    "name": "FedRAMP Independent Assessments",
@@ -2470,7 +2840,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "IVV-CSO-SEI": {
    "name": "Supply Evidence of Implementation",
@@ -2505,7 +2880,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "IVV-CSO-SEE": {
    "name": "Supply Evidence of Effectiveness",
@@ -2540,7 +2920,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "IVV-CSO-ICP": {
    "name": "Inclusion in Certification Package",
@@ -2576,7 +2961,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "IVV-CSO-DUS": {
    "name": "Document Use of Representative Samples",
@@ -2609,7 +2999,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "IVV-CSO-STE": {
    "name": "Supply Technical Explanations",
@@ -2642,7 +3037,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "IVV-CSO-USR": {
    "name": "Use Representative Samples",
@@ -2677,7 +3077,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "IVV-CSO-RAA": {
    "name": "Receiving Assessor Advice",
@@ -2710,7 +3115,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "IVV-CSX-AIA": {
    "name": "Annual Independent Assessments for 20x",
@@ -2743,7 +3153,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "MAS-CSO-IIR": {
    "name": "Identify Information Resources",
@@ -2778,7 +3193,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "MAS-CSO-FLO": {
    "name": "Information Flows and Security Categories",
@@ -2811,7 +3231,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "MAS-CSO-TPR": {
    "name": "Third-Party Information Resources",
@@ -2842,7 +3267,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "MAS-CSO-MDI": {
    "name": "Metadata Inclusion",
@@ -2873,7 +3303,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "MAS-CSO-SUP": {
    "name": "Supplemental Information",
@@ -2908,7 +3343,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "MKT-CSO-MLR": {
    "name": "Marketplace Listing Requirements",
@@ -2941,7 +3381,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "MKT-CSO-PML": {
    "name": "Provider Marketplace Listing Requests",
@@ -2976,7 +3421,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "MKT-IIP-AGU": {
    "name": "Agency Use Cases",
@@ -3012,7 +3462,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "MKT-IIP-DCP": {
    "name": "Demonstrating Continuous Progress",
@@ -3047,7 +3502,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "MKT-IIP-DLA": {
    "name": "Deadline for Assessment",
@@ -3080,7 +3540,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "SCG-CSO-RSC": {
    "name": "Recommended Secure Configuration",
@@ -3113,7 +3578,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "SCG-CSO-AUP": {
    "name": "Use Instructions",
@@ -3145,7 +3615,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "SCG-CSO-PUB": {
    "name": "Public Secure Configuration Guidance",
@@ -3175,7 +3650,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "SCG-CSO-SDF": {
    "name": "Secure Defaults",
@@ -3205,7 +3685,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "SCG-ENH-CMP": {
    "name": "Comparison Capability",
@@ -3235,7 +3720,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "SCG-ENH-EXP": {
    "name": "Export Capability",
@@ -3265,7 +3755,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "SCG-ENH-API": {
    "name": "API Capability",
@@ -3295,7 +3790,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "SCG-ENH-MRG": {
    "name": "Machine-Readable Guidance",
@@ -3325,7 +3825,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "SCG-ENH-VRH": {
    "name": "Versioning and Release History",
@@ -3355,7 +3860,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "SCN-CSO-EVA": {
    "name": "Evaluate Changes",
@@ -3384,7 +3894,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "SCN-CSO-MAR": {
    "name": "Maintain Audit Records",
@@ -3415,7 +3930,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "SCN-CSO-INF": {
    "name": "Required Information",
@@ -3446,7 +3966,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "SCN-CSO-HIS": {
    "name": "Historical Notifications",
@@ -3475,7 +4000,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "SCN-CSO-HRM": {
    "name": "Human and Machine-Readable Notifications",
@@ -3505,7 +4035,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "SCN-CSO-ARI": {
    "name": "Additional Relevant Information",
@@ -3540,7 +4075,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "SCN-CSO-NOM": {
    "name": "Notification Mechanisms",
@@ -3572,7 +4112,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "SCN-CSO-EMG": {
    "name": "Emergency Changes",
@@ -3607,7 +4152,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "SCN-ADP-NTF": {
    "name": "Notification Requirements",
@@ -3639,7 +4189,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "SCN-RTR-NNR": {
    "name": "No Notification Requirements",
@@ -3676,7 +4231,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "SCN-TRF-NIP": {
    "name": "Notification of Initial Plans",
@@ -3705,7 +4265,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "SCN-TRF-NFP": {
    "name": "Notification of Final Plans",
@@ -3734,7 +4299,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "SCN-TRF-NAF": {
    "name": "Notification After Finishing",
@@ -3763,7 +4333,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "SCN-TRF-NAV": {
    "name": "Notification After Verification",
@@ -3792,7 +4367,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "SCN-TRF-UPD": {
    "name": "Update Documentation",
@@ -3823,7 +4403,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "SCN-TRF-TPR": {
    "name": "Third-Party Review",
@@ -3854,7 +4439,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "SDR-CSO-FRR": {
    "name": "FedRAMP Rules",
@@ -3887,7 +4477,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "SDR-CSO-MTD": {
    "name": "Security Decision Record Metadata",
@@ -3920,7 +4515,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "SDR-CSX-KSI": {
    "name": "Key Security Indicators",
@@ -3953,7 +4553,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "SDR-CSX-KMT": {
    "name": "Key Security Indicator Metrics",
@@ -3986,7 +4591,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "VDR-CSO-DET": {
    "name": "Vulnerability Detection",
@@ -4022,7 +4632,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "VDR-CSO-RES": {
    "name": "Vulnerability Response",
@@ -4059,7 +4674,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "VDR-CSO-FAV": {
    "name": "Failures Are Vulnerabilities",
@@ -4092,7 +4712,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "VDR-CSO-DFR": {
    "name": "Design For Resilience",
@@ -4125,7 +4750,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "VDR-CSO-ADT": {
    "name": "Automate Detection",
@@ -4158,7 +4788,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "VDR-CSO-DAC": {
    "name": "Detect After Changes",
@@ -4191,7 +4826,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "VDR-CSO-MSP": {
    "name": "Maintain Security",
@@ -4224,7 +4864,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "VDR-CSO-AKE": {
    "name": "Avoid KEVs",
@@ -4257,7 +4902,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "VDR-CSO-SIR": {
    "name": "Sampling",
@@ -4290,7 +4940,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "VDR-TFR-NMV": {
    "name": "Non-Machine Verification and Validation",
@@ -4323,7 +4978,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "VDR-TFR-PDD": {
    "name": "Persistent Drift Detection",
@@ -4356,7 +5016,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "VDR-TFR-PCD": {
    "name": "Persistently Complete Detection",
@@ -4389,7 +5054,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "VDR-TFR-PVR": {
    "name": "Mitigation and Remediation Expectations",
@@ -4422,7 +5092,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "VDR-TFR-RMN": {
    "name": "Remaining Vulnerabilities",
@@ -4455,7 +5130,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "VDR-TFR-KEV": {
    "name": "Remediate KEVs",
@@ -4488,7 +5168,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "VDR-TFR-PSD": {
    "name": "Persistent Sample Detection",
@@ -4521,7 +5206,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "VDR-TFR-MVX": {
    "name": "Persistent Machine Verification and Validation for 20x",
@@ -4554,7 +5244,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "VER-EVA-ELX": {
    "name": "Evaluate Exploitability",
@@ -4590,7 +5285,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "VER-EVA-EIR": {
    "name": "Evaluate Internet-Reachability",
@@ -4628,7 +5328,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "VER-EVA-EPA": {
    "name": "Estimate Potential Agency Impact",
@@ -4661,7 +5366,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "VER-EVA-AIA": {
    "name": "Assume It's Automatable",
@@ -4694,7 +5404,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "VER-EVA-GRV": {
    "name": "Group Vulnerabilities",
@@ -4727,7 +5442,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "VER-EVA-EFP": {
    "name": "Evaluate False Positives",
@@ -4760,7 +5480,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "VER-EVA-EFA": {
    "name": "Evaluation Factors",
@@ -4793,7 +5518,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "VER-RPT-PER": {
    "name": "Persistent Reporting",
@@ -4826,7 +5556,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "VER-RPT-VDT": {
    "name": "Vulnerability Details",
@@ -4855,7 +5590,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "VER-RPT-AVI": {
    "name": "Accepted Vulnerability Info",
@@ -4884,7 +5624,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "VER-RPT-NID": {
    "name": "Responsible Disclosure",
@@ -4919,7 +5664,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "VER-RPT-HLO": {
    "name": "High-Level Overviews",
@@ -4952,7 +5702,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "VER-RPT-RPD": {
    "name": "Responsible Public Disclosure",
@@ -4985,7 +5740,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "VER-TFR-MHR": {
    "name": "Monthly Activity Report",
@@ -5014,7 +5774,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "VER-TFR-MAV": {
    "name": "Mark Accepted Vulnerabilities",
@@ -5047,7 +5812,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "VER-TFR-MRH": {
    "name": "Historical Activity",
@@ -5080,7 +5850,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "VER-TFR-EVU": {
    "name": "Evaluate Vulnerabilities Quickly",
@@ -5113,7 +5888,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "VER-TFR-IRI": {
    "name": "Internet-Reachable Incidents",
@@ -5146,7 +5926,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   },
   "VER-TFR-NRI": {
    "name": "Non-Internet-Reachable Incidents",
@@ -5179,7 +5964,12 @@
     "aws": "TBD: Information has not been provided.",
     "provider": "TBD: Information has not been provided.",
     "customer": "TBD: Information has not been provided."
-   }
+   },
+   "independent_verification": "TBD: Information has not been provided.",
+   "independent_validation": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded",
+   "rule_artifacts": [],
+   "senior_official_acceptance": "Not required: rule is followed"
   }
  },
  "ksi": {
@@ -5226,7 +6016,10 @@
    "customer_responsibility": "TBD: Information has not been provided.",
    "aws_responsibility": "TBD: Information has not been provided.",
    "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded"
+   "exception_reference": "None recorded",
+   "measures_verification": "TBD: Information has not been provided.",
+   "automation_verification": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded"
   },
   "KSI-CMT-LMC": {
    "name": "Logging Changes",
@@ -5267,7 +6060,10 @@
    "customer_responsibility": "TBD: Information has not been provided.",
    "aws_responsibility": "TBD: Information has not been provided.",
    "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded"
+   "exception_reference": "None recorded",
+   "measures_verification": "TBD: Information has not been provided.",
+   "automation_verification": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded"
   },
   "KSI-CMT-RMV": {
    "name": "Redeploying vs Modifying",
@@ -5308,7 +6104,10 @@
    "customer_responsibility": "TBD: Information has not been provided.",
    "aws_responsibility": "TBD: Information has not been provided.",
    "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded"
+   "exception_reference": "None recorded",
+   "measures_verification": "TBD: Information has not been provided.",
+   "automation_verification": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded"
   },
   "KSI-CMT-RVP": {
    "name": "Reviewing Change Procedures",
@@ -5348,7 +6147,10 @@
    "customer_responsibility": "TBD: Information has not been provided.",
    "aws_responsibility": "TBD: Information has not been provided.",
    "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded"
+   "exception_reference": "None recorded",
+   "measures_verification": "TBD: Information has not been provided.",
+   "automation_verification": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded"
   },
   "KSI-CMT-VTD": {
    "name": "Validating Throughout Deployment",
@@ -5386,7 +6188,10 @@
    "customer_responsibility": "TBD: Information has not been provided.",
    "aws_responsibility": "TBD: Information has not been provided.",
    "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded"
+   "exception_reference": "None recorded",
+   "measures_verification": "TBD: Information has not been provided.",
+   "automation_verification": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded"
   },
   "KSI-CNA-DFP": {
    "name": "Defining Functionality and Privileges",
@@ -5422,7 +6227,10 @@
    "customer_responsibility": "TBD: Information has not been provided.",
    "aws_responsibility": "TBD: Information has not been provided.",
    "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded"
+   "exception_reference": "None recorded",
+   "measures_verification": "TBD: Information has not been provided.",
+   "automation_verification": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded"
   },
   "KSI-CNA-EIS": {
    "name": "Enforcing Intended State",
@@ -5458,7 +6266,10 @@
    "customer_responsibility": "TBD: Information has not been provided.",
    "aws_responsibility": "TBD: Information has not been provided.",
    "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded"
+   "exception_reference": "None recorded",
+   "measures_verification": "TBD: Information has not been provided.",
+   "automation_verification": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded"
   },
   "KSI-CNA-IBP": {
    "name": "Implementing Best Practices",
@@ -5495,7 +6306,10 @@
    "customer_responsibility": "TBD: Information has not been provided.",
    "aws_responsibility": "TBD: Information has not been provided.",
    "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded"
+   "exception_reference": "None recorded",
+   "measures_verification": "TBD: Information has not been provided.",
+   "automation_verification": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded"
   },
   "KSI-CNA-MAT": {
    "name": "Minimizing Attack Surface",
@@ -5543,7 +6357,10 @@
    "customer_responsibility": "TBD: Information has not been provided.",
    "aws_responsibility": "TBD: Information has not been provided.",
    "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded"
+   "exception_reference": "None recorded",
+   "measures_verification": "TBD: Information has not been provided.",
+   "automation_verification": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded"
   },
   "KSI-CNA-OFA": {
    "name": "Optimizing for Availability",
@@ -5576,7 +6393,10 @@
    "customer_responsibility": "TBD: Information has not been provided.",
    "aws_responsibility": "TBD: Information has not been provided.",
    "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded"
+   "exception_reference": "None recorded",
+   "measures_verification": "TBD: Information has not been provided.",
+   "automation_verification": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded"
   },
   "KSI-CNA-RNT": {
    "name": "Restricting Network Traffic",
@@ -5615,7 +6435,10 @@
    "customer_responsibility": "TBD: Information has not been provided.",
    "aws_responsibility": "TBD: Information has not been provided.",
    "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded"
+   "exception_reference": "None recorded",
+   "measures_verification": "TBD: Information has not been provided.",
+   "automation_verification": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded"
   },
   "KSI-CNA-RVP": {
    "name": "Reviewing Protections",
@@ -5652,7 +6475,10 @@
    "customer_responsibility": "TBD: Information has not been provided.",
    "aws_responsibility": "TBD: Information has not been provided.",
    "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded"
+   "exception_reference": "None recorded",
+   "measures_verification": "TBD: Information has not been provided.",
+   "automation_verification": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded"
   },
   "KSI-CNA-ULN": {
    "name": "Using Logical Networking",
@@ -5694,7 +6520,10 @@
    "customer_responsibility": "TBD: Information has not been provided.",
    "aws_responsibility": "TBD: Information has not been provided.",
    "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded"
+   "exception_reference": "None recorded",
+   "measures_verification": "TBD: Information has not been provided.",
+   "automation_verification": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded"
   },
   "KSI-IAM-AAM": {
    "name": "Automating Account Management",
@@ -5737,7 +6566,10 @@
    "customer_responsibility": "TBD: Information has not been provided.",
    "aws_responsibility": "TBD: Information has not been provided.",
    "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded"
+   "exception_reference": "None recorded",
+   "measures_verification": "TBD: Information has not been provided.",
+   "automation_verification": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded"
   },
   "KSI-IAM-APM": {
    "name": "Adopting Passwordless Methods",
@@ -5784,7 +6616,10 @@
    "customer_responsibility": "TBD: Information has not been provided.",
    "aws_responsibility": "TBD: Information has not been provided.",
    "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded"
+   "exception_reference": "None recorded",
+   "measures_verification": "TBD: Information has not been provided.",
+   "automation_verification": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded"
   },
   "KSI-IAM-ELP": {
    "name": "Ensuring Least Privilege",
@@ -5852,7 +6687,10 @@
    "customer_responsibility": "TBD: Information has not been provided.",
    "aws_responsibility": "TBD: Information has not been provided.",
    "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded"
+   "exception_reference": "None recorded",
+   "measures_verification": "TBD: Information has not been provided.",
+   "automation_verification": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded"
   },
   "KSI-IAM-JIT": {
    "name": "Authorizing Just-in-Time",
@@ -5924,7 +6762,10 @@
    "customer_responsibility": "TBD: Information has not been provided.",
    "aws_responsibility": "TBD: Information has not been provided.",
    "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded"
+   "exception_reference": "None recorded",
+   "measures_verification": "TBD: Information has not been provided.",
+   "automation_verification": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded"
   },
   "KSI-IAM-SNU": {
    "name": "Securing Non-User Authentication",
@@ -5965,7 +6806,10 @@
    "customer_responsibility": "TBD: Information has not been provided.",
    "aws_responsibility": "TBD: Information has not been provided.",
    "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded"
+   "exception_reference": "None recorded",
+   "measures_verification": "TBD: Information has not been provided.",
+   "automation_verification": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded"
   },
   "KSI-IAM-SUS": {
    "name": "Responding to Suspicious Activity",
@@ -6006,7 +6850,10 @@
    "customer_responsibility": "TBD: Information has not been provided.",
    "aws_responsibility": "TBD: Information has not been provided.",
    "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded"
+   "exception_reference": "None recorded",
+   "measures_verification": "TBD: Information has not been provided.",
+   "automation_verification": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded"
   },
   "KSI-INR-AAR": {
    "name": "Generating After Action Reports",
@@ -6044,7 +6891,10 @@
    "customer_responsibility": "TBD: Information has not been provided.",
    "aws_responsibility": "TBD: Information has not been provided.",
    "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded"
+   "exception_reference": "None recorded",
+   "measures_verification": "TBD: Information has not been provided.",
+   "automation_verification": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded"
   },
   "KSI-INR-RIR": {
    "name": "Reviewing Incident Response Procedures",
@@ -6088,7 +6938,10 @@
    "customer_responsibility": "TBD: Information has not been provided.",
    "aws_responsibility": "TBD: Information has not been provided.",
    "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded"
+   "exception_reference": "None recorded",
+   "measures_verification": "TBD: Information has not been provided.",
+   "automation_verification": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded"
   },
   "KSI-INR-RPI": {
    "name": "Reviewing Past Incidents",
@@ -6127,7 +6980,10 @@
    "customer_responsibility": "TBD: Information has not been provided.",
    "aws_responsibility": "TBD: Information has not been provided.",
    "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded"
+   "exception_reference": "None recorded",
+   "measures_verification": "TBD: Information has not been provided.",
+   "automation_verification": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded"
   },
   "KSI-MLA-ALA": {
    "name": "Authorizing Log Access",
@@ -6162,7 +7018,10 @@
    "customer_responsibility": "TBD: Information has not been provided.",
    "aws_responsibility": "TBD: Information has not been provided.",
    "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded"
+   "exception_reference": "None recorded",
+   "measures_verification": "TBD: Information has not been provided.",
+   "automation_verification": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded"
   },
   "KSI-MLA-EVC": {
    "name": "Evaluating Configurations",
@@ -6200,7 +7059,10 @@
    "customer_responsibility": "TBD: Information has not been provided.",
    "aws_responsibility": "TBD: Information has not been provided.",
    "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded"
+   "exception_reference": "None recorded",
+   "measures_verification": "TBD: Information has not been provided.",
+   "automation_verification": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded"
   },
   "KSI-MLA-LET": {
    "name": "Logging Event Types",
@@ -6244,7 +7106,10 @@
    "customer_responsibility": "TBD: Information has not been provided.",
    "aws_responsibility": "TBD: Information has not been provided.",
    "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded"
+   "exception_reference": "None recorded",
+   "measures_verification": "TBD: Information has not been provided.",
+   "automation_verification": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded"
   },
   "KSI-MLA-OSM": {
    "name": "Operating SIEM Capability",
@@ -6296,7 +7161,10 @@
    "customer_responsibility": "TBD: Information has not been provided.",
    "aws_responsibility": "TBD: Information has not been provided.",
    "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded"
+   "exception_reference": "None recorded",
+   "measures_verification": "TBD: Information has not been provided.",
+   "automation_verification": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded"
   },
   "KSI-MLA-RVL": {
    "name": "Reviewing Logs",
@@ -6337,7 +7205,10 @@
    "customer_responsibility": "TBD: Information has not been provided.",
    "aws_responsibility": "TBD: Information has not been provided.",
    "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded"
+   "exception_reference": "None recorded",
+   "measures_verification": "TBD: Information has not been provided.",
+   "automation_verification": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded"
   },
   "KSI-PIY-GIV": {
    "name": "Generating Inventories",
@@ -6378,7 +7249,10 @@
    "customer_responsibility": "TBD: Information has not been provided.",
    "aws_responsibility": "TBD: Information has not been provided.",
    "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded"
+   "exception_reference": "None recorded",
+   "measures_verification": "TBD: Information has not been provided.",
+   "automation_verification": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded"
   },
   "KSI-PIY-RES": {
    "name": "Reviewing Executive Support",
@@ -6411,7 +7285,10 @@
    "customer_responsibility": "TBD: Information has not been provided.",
    "aws_responsibility": "TBD: Information has not been provided.",
    "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded"
+   "exception_reference": "None recorded",
+   "measures_verification": "TBD: Information has not been provided.",
+   "automation_verification": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded"
   },
   "KSI-PIY-RIS": {
    "name": "Reviewing Investments in Security",
@@ -6454,7 +7331,10 @@
    "customer_responsibility": "TBD: Information has not been provided.",
    "aws_responsibility": "TBD: Information has not been provided.",
    "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded"
+   "exception_reference": "None recorded",
+   "measures_verification": "TBD: Information has not been provided.",
+   "automation_verification": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded"
   },
   "KSI-PIY-RSD": {
    "name": "Reviewing Security in the SDLC",
@@ -6500,7 +7380,10 @@
    "customer_responsibility": "TBD: Information has not been provided.",
    "aws_responsibility": "TBD: Information has not been provided.",
    "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded"
+   "exception_reference": "None recorded",
+   "measures_verification": "TBD: Information has not been provided.",
+   "automation_verification": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded"
   },
   "KSI-PIY-RVD": {
    "name": "Reviewing Vulnerability Disclosures",
@@ -6535,7 +7418,10 @@
    "customer_responsibility": "TBD: Information has not been provided.",
    "aws_responsibility": "TBD: Information has not been provided.",
    "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded"
+   "exception_reference": "None recorded",
+   "measures_verification": "TBD: Information has not been provided.",
+   "automation_verification": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded"
   },
   "KSI-RPL-ABO": {
    "name": "Aligning Backups with Objectives",
@@ -6575,7 +7461,10 @@
    "customer_responsibility": "TBD: Information has not been provided.",
    "aws_responsibility": "TBD: Information has not been provided.",
    "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded"
+   "exception_reference": "None recorded",
+   "measures_verification": "TBD: Information has not been provided.",
+   "automation_verification": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded"
   },
   "KSI-RPL-ARP": {
    "name": "Aligning Recovery Plan",
@@ -6625,7 +7514,10 @@
    "customer_responsibility": "TBD: Information has not been provided.",
    "aws_responsibility": "TBD: Information has not been provided.",
    "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded"
+   "exception_reference": "None recorded",
+   "measures_verification": "TBD: Information has not been provided.",
+   "automation_verification": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded"
   },
   "KSI-RPL-RRO": {
    "name": "Reviewing Recovery Objectives",
@@ -6661,7 +7553,10 @@
    "customer_responsibility": "TBD: Information has not been provided.",
    "aws_responsibility": "TBD: Information has not been provided.",
    "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded"
+   "exception_reference": "None recorded",
+   "measures_verification": "TBD: Information has not been provided.",
+   "automation_verification": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded"
   },
   "KSI-RPL-TRC": {
    "name": "Testing Recovery Capabilities",
@@ -6705,7 +7600,10 @@
    "customer_responsibility": "TBD: Information has not been provided.",
    "aws_responsibility": "TBD: Information has not been provided.",
    "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded"
+   "exception_reference": "None recorded",
+   "measures_verification": "TBD: Information has not been provided.",
+   "automation_verification": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded"
   },
   "KSI-SCR-MIT": {
    "name": "Mitigating Supply Chain Risk",
@@ -6751,7 +7649,10 @@
    "customer_responsibility": "TBD: Information has not been provided.",
    "aws_responsibility": "TBD: Information has not been provided.",
    "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded"
+   "exception_reference": "None recorded",
+   "measures_verification": "TBD: Information has not been provided.",
+   "automation_verification": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded"
   },
   "KSI-SCR-MON": {
    "name": "Monitoring Supply Chain Risk",
@@ -6795,7 +7696,10 @@
    "customer_responsibility": "TBD: Information has not been provided.",
    "aws_responsibility": "TBD: Information has not been provided.",
    "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded"
+   "exception_reference": "None recorded",
+   "measures_verification": "TBD: Information has not been provided.",
+   "automation_verification": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded"
   },
   "KSI-SVC-ACM": {
    "name": "Automating Configuration Management",
@@ -6840,7 +7744,10 @@
    "customer_responsibility": "TBD: Information has not been provided.",
    "aws_responsibility": "TBD: Information has not been provided.",
    "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded"
+   "exception_reference": "None recorded",
+   "measures_verification": "TBD: Information has not been provided.",
+   "automation_verification": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded"
   },
   "KSI-SVC-ASM": {
    "name": "Automating Secret Management",
@@ -6879,7 +7786,10 @@
    "customer_responsibility": "TBD: Information has not been provided.",
    "aws_responsibility": "TBD: Information has not been provided.",
    "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded"
+   "exception_reference": "None recorded",
+   "measures_verification": "TBD: Information has not been provided.",
+   "automation_verification": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded"
   },
   "KSI-SVC-EIS": {
    "name": "Evaluating and Improving Security",
@@ -6922,7 +7832,10 @@
    "customer_responsibility": "TBD: Information has not been provided.",
    "aws_responsibility": "TBD: Information has not been provided.",
    "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded"
+   "exception_reference": "None recorded",
+   "measures_verification": "TBD: Information has not been provided.",
+   "automation_verification": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded"
   },
   "KSI-SVC-PRR": {
    "name": "Preventing Residual Risk",
@@ -6957,7 +7870,10 @@
    "customer_responsibility": "TBD: Information has not been provided.",
    "aws_responsibility": "TBD: Information has not been provided.",
    "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded"
+   "exception_reference": "None recorded",
+   "measures_verification": "TBD: Information has not been provided.",
+   "automation_verification": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded"
   },
   "KSI-SVC-RUD": {
    "name": "Removing Unwanted Data",
@@ -6993,7 +7909,10 @@
    "customer_responsibility": "TBD: Information has not been provided.",
    "aws_responsibility": "TBD: Information has not been provided.",
    "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded"
+   "exception_reference": "None recorded",
+   "measures_verification": "TBD: Information has not been provided.",
+   "automation_verification": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded"
   },
   "KSI-SVC-SIN": {
    "name": "Securing Information",
@@ -7039,7 +7958,10 @@
    "customer_responsibility": "TBD: Information has not been provided.",
    "aws_responsibility": "TBD: Information has not been provided.",
    "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded"
+   "exception_reference": "None recorded",
+   "measures_verification": "TBD: Information has not been provided.",
+   "automation_verification": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded"
   },
   "KSI-SVC-VCM": {
    "name": "Validating Communications",
@@ -7075,7 +7997,10 @@
    "customer_responsibility": "TBD: Information has not been provided.",
    "aws_responsibility": "TBD: Information has not been provided.",
    "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded"
+   "exception_reference": "None recorded",
+   "measures_verification": "TBD: Information has not been provided.",
+   "automation_verification": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded"
   },
   "KSI-SVC-VRI": {
    "name": "Validating Resource Integrity",
@@ -7116,7 +8041,10 @@
    "customer_responsibility": "TBD: Information has not been provided.",
    "aws_responsibility": "TBD: Information has not been provided.",
    "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded"
+   "exception_reference": "None recorded",
+   "measures_verification": "TBD: Information has not been provided.",
+   "automation_verification": "TBD: Information has not been provided.",
+   "assessor_responses": "None recorded"
   }
  }
 }

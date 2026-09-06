@@ -1,0 +1,685 @@
+{
+ "catalog_note": "sdrscan check registry. Every check names the FedRAMP rules that make it a requirement. Severity reflects the consequence of the gap for a certification decision, not the difficulty of fixing it.",
+ "count": 37,
+ "checks": [
+  {
+   "check_id": "frr_artifacts_referenced",
+   "title": "Rule-specific artifacts are referenced where they apply",
+   "severity": "medium",
+   "resource_type": "FedRAMP Rule",
+   "fedramp_basis": [
+    "SDR-CSO-FRR"
+   ],
+   "requirement": "SDR-CSO-FRR item 7: rule-specific artifacts, if applicable.",
+   "risk": "A rule whose evidence lives in an unreferenced document forces the assessor to go looking, and they may not find it.",
+   "remediation": "Reference the artifact, or confirm none applies to this rule.",
+   "location": "sdr/records/records-store.json -> frr.<rule>.extension.rule_artifacts",
+   "applies_to_classes": [
+    "a",
+    "b",
+    "c"
+   ]
+  },
+  {
+   "check_id": "frr_assessor_responses_recorded",
+   "title": "Responses to assessor comments are recorded where comments exist",
+   "severity": "low",
+   "resource_type": "FedRAMP Rule",
+   "fedramp_basis": [
+    "SDR-CSO-FRR"
+   ],
+   "requirement": "SDR-CSO-FRR item 6: any responses or clarifications to the comments in the independent verification or validation.",
+   "risk": "An unanswered assessor comment left out of the record looks like it was never raised.",
+   "remediation": "Confirm no comment is outstanding, or record the response.",
+   "location": "sdr/records/records-store.json -> frr.<rule>.extension.assessor_responses",
+   "applies_to_classes": [
+    "a",
+    "b",
+    "c"
+   ]
+  },
+  {
+   "check_id": "frr_implementation_explained",
+   "title": "Rule implementation is explained",
+   "severity": "high",
+   "resource_type": "FedRAMP Rule",
+   "fedramp_basis": [
+    "SDR-CSO-FRR"
+   ],
+   "requirement": "Explanation of how the rule is followed, or an explanation of the reason and resulting risk to customers for not following the rule.",
+   "risk": "This is the first of the seven items SDR-CSO-FRR requires for every rule; a placeholder here means the rule is undocumented.",
+   "remediation": "Replace the placeholder with the provider's real implementation.",
+   "location": "sdr/records/records-store.json -> frr.<rule>.implementation",
+   "applies_to_classes": [
+    "a",
+    "b",
+    "c"
+   ]
+  },
+  {
+   "check_id": "frr_independent_validation_recorded",
+   "title": "Independent validation of the rule is recorded",
+   "severity": "high",
+   "resource_type": "FedRAMP Rule",
+   "fedramp_basis": [
+    "SDR-CSO-FRR",
+    "IVV-IAS-VEF"
+   ],
+   "requirement": "SDR-CSO-FRR item 5: independent validation. IVV-IAS-VEF is the assessor-side rule that produces it.",
+   "risk": "Without independent validation nobody outside the provider has confirmed the implementation actually works.",
+   "remediation": "Record the independent assessor's validation statement once performed.",
+   "location": "sdr/records/records-store.json -> frr.<rule>.extension.independent_validation",
+   "applies_to_classes": [
+    "a",
+    "b",
+    "c"
+   ]
+  },
+  {
+   "check_id": "frr_independent_verification_recorded",
+   "title": "Independent verification of the rule is recorded",
+   "severity": "high",
+   "resource_type": "FedRAMP Rule",
+   "fedramp_basis": [
+    "SDR-CSO-FRR",
+    "IVV-IAS-VIM"
+   ],
+   "requirement": "SDR-CSO-FRR item 4: independent verification. IVV-IAS-VIM is the assessor-side rule that produces it.",
+   "risk": "Provider self-attestation is not independent verification. Its absence is a gap an assessor will raise directly.",
+   "remediation": "Record the independent assessor's verification statement once performed. This has no official schema field, so it lives in the extensions companion.",
+   "location": "sdr/records/records-store.json -> frr.<rule>.extension.independent_verification",
+   "applies_to_classes": [
+    "a",
+    "b",
+    "c"
+   ]
+  },
+  {
+   "check_id": "frr_nonconformance_risk_stated",
+   "title": "Rules not fully followed state the resulting customer risk",
+   "severity": "high",
+   "resource_type": "FedRAMP Rule",
+   "fedramp_basis": [
+    "SDR-CSO-FRR"
+   ],
+   "requirement": "SDR-CSO-FRR requires the reason AND the resulting risk to customers whenever a rule is not followed.",
+   "risk": "Agencies make risk-acceptance decisions from this text. Omitting it shifts an undisclosed risk onto the customer.",
+   "remediation": "State the risk to customers in plain terms on every rule that is not Implemented.",
+   "location": "sdr/records/records-store.json -> frr.<rule>.extension.customer_risk",
+   "applies_to_classes": [
+    "a",
+    "b",
+    "c"
+   ]
+  },
+  {
+   "check_id": "frr_owner_assigned",
+   "title": "Rule has a named accountable owner",
+   "severity": "medium",
+   "resource_type": "FedRAMP Rule",
+   "fedramp_basis": [
+    "FRD-PER",
+    "CCM-OCR-AVL"
+   ],
+   "requirement": "The status of persistent activities must always be known, which requires somebody accountable for keeping it known.",
+   "risk": "Unowned rules go stale between assessments because nobody is responsible for refreshing them.",
+   "remediation": "Assign an owning team or role, not an individual's name.",
+   "location": "sdr/records/records-store.json -> frr.<rule>.extension.owner",
+   "applies_to_classes": [
+    "a",
+    "b",
+    "c"
+   ]
+  },
+  {
+   "check_id": "frr_senior_official_acceptance",
+   "title": "Unimplemented rules carry senior official acceptance",
+   "severity": "high",
+   "resource_type": "FedRAMP Rule",
+   "fedramp_basis": [
+    "SDR-CSO-FRR"
+   ],
+   "requirement": "SDR-CSO-FRR allows verification and validation to be replaced by a senior official's acceptance of the reason for not implementing.",
+   "risk": "A rule marked Not Implemented with nobody accountable for that decision is an unowned risk.",
+   "remediation": "Name the senior official who accepted the decision and when.",
+   "location": "sdr/records/records-store.json -> frr.<rule>.extension.senior_official_acceptance",
+   "applies_to_classes": [
+    "a",
+    "b",
+    "c"
+   ]
+  },
+  {
+   "check_id": "frr_statement_fidelity",
+   "title": "Rule text matches the canonical dataset exactly",
+   "severity": "critical",
+   "resource_type": "FedRAMP Rule",
+   "fedramp_basis": [
+    "FRC-CSO-JSN"
+   ],
+   "requirement": "The rule text a provider answers must be the rule text FedRAMP published.",
+   "risk": "Paraphrasing a rule quietly changes what the provider is claiming to have met, which invalidates the answer.",
+   "remediation": "Never edit rule text. Regenerate from the pinned dataset.",
+   "location": "references/fedramp-consolidated-rules.json",
+   "applies_to_classes": [
+    "a",
+    "b",
+    "c"
+   ]
+  },
+  {
+   "check_id": "frr_status_declared",
+   "title": "Rule carries a valid implementation status",
+   "severity": "medium",
+   "resource_type": "FedRAMP Rule",
+   "fedramp_basis": [
+    "SDR-CSO-FRR",
+    "FRC-CSO-JSN"
+   ],
+   "requirement": "frrImplementationStatus must be Implemented, Not Implemented or Partially Implemented.",
+   "risk": "An absent or invented status leaves the reader guessing whether the rule is met.",
+   "remediation": "Set implementation_status on the rule in the record store.",
+   "location": "sdr/records/records-store.json -> frr.<rule>.implementation_status",
+   "applies_to_classes": [
+    "a",
+    "b",
+    "c"
+   ]
+  },
+  {
+   "check_id": "frr_validation_recorded",
+   "title": "Provider validation of the rule is recorded",
+   "severity": "high",
+   "resource_type": "FedRAMP Rule",
+   "fedramp_basis": [
+    "SDR-CSO-FRR"
+   ],
+   "requirement": "Validation that the implementation is in place and working as intended, or that the reason for not implementing is accepted by a senior official.",
+   "risk": "Verification without validation claims the design is right but never shows it works.",
+   "remediation": "Record how the implementation is confirmed to be working, and how often.",
+   "location": "sdr/records/records-store.json -> frr.<rule>.validation",
+   "applies_to_classes": [
+    "a",
+    "b",
+    "c"
+   ]
+  },
+  {
+   "check_id": "frr_verification_recorded",
+   "title": "Provider verification of the rule is recorded",
+   "severity": "high",
+   "resource_type": "FedRAMP Rule",
+   "fedramp_basis": [
+    "SDR-CSO-FRR"
+   ],
+   "requirement": "Verification that the implementation is appropriate for the rule, or that the reason for not implementing is accepted by a senior official.",
+   "risk": "Without verification there is no statement that the implementation is the right one, only that something was built.",
+   "remediation": "Record who verified the implementation as appropriate, and how.",
+   "location": "sdr/records/records-store.json -> frr.<rule>.extension.verification",
+   "applies_to_classes": [
+    "a",
+    "b",
+    "c"
+   ]
+  },
+  {
+   "check_id": "ksi_automation_verified",
+   "title": "Automation behind the measures is verified as accurate and sufficient",
+   "severity": "high",
+   "resource_type": "Key Security Indicator",
+   "fedramp_basis": [
+    "SDR-CSX-KSI",
+    "FRC-CSX-VVK"
+   ],
+   "requirement": "SDR-CSX-KSI item 4: verification that the automation in place is accurate and sufficient to demonstrate appropriate measures, or that automation is not necessary for each measure.",
+   "risk": "Unverified automation is the most dangerous kind of evidence: it produces confident output nobody has checked.",
+   "remediation": "Record how the automation was verified, or state why automation is unnecessary for this measure.",
+   "location": "sdr/records/records-store.json -> ksi.<indicator>.extension.automation_verification",
+   "applies_to_classes": [
+    "a",
+    "b",
+    "c"
+   ]
+  },
+  {
+   "check_id": "ksi_evidence_present",
+   "title": "Indicator has evidence attached",
+   "severity": "high",
+   "resource_type": "Key Security Indicator",
+   "fedramp_basis": [
+    "SDR-CSX-KSI",
+    "FRC-CSX-VVK"
+   ],
+   "requirement": "The official schema requires ksiEvidence, holding the results of the security tests used to validate the indicator.",
+   "risk": "A test with no recorded result is an assertion, not evidence.",
+   "remediation": "Attach the output of each automated method as an evidence entry.",
+   "location": "sdr/records/records-store.json -> ksi.<indicator>.evidence",
+   "applies_to_classes": [
+    "a",
+    "b",
+    "c"
+   ]
+  },
+  {
+   "check_id": "ksi_evidence_typed",
+   "title": "Evidence uses official evidence types",
+   "severity": "low",
+   "resource_type": "Key Security Indicator",
+   "fedramp_basis": [
+    "FRC-CSO-JSN"
+   ],
+   "requirement": "evidenceType must be one of Log, Report, Screenshot, Configuration, Policy, Procedure or Audit Record.",
+   "risk": "A non-official type value makes the document fail schema validation and breaks automated ingestion.",
+   "remediation": "Use one of the seven official evidenceType values.",
+   "location": "sdr/records/records-store.json -> ksi.<indicator>.evidence[].evidenceType",
+   "applies_to_classes": [
+    "a",
+    "b",
+    "c"
+   ]
+  },
+  {
+   "check_id": "ksi_independent_assessment_recorded",
+   "title": "Independent assessment of the indicator is recorded",
+   "severity": "high",
+   "resource_type": "Key Security Indicator",
+   "fedramp_basis": [
+    "IVV-CSX-AIA",
+    "IVV-IAS-VEF",
+    "SDR-CSX-KSI"
+   ],
+   "requirement": "Assessors verify and validate Key Security Indicators independently of the provider, and IVV-CSX-AIA requires an annual independent assessment for 20x.",
+   "risk": "Self-assessed indicators carry no independent weight in a certification decision.",
+   "remediation": "Record the assessor's statement once the assessment is performed.",
+   "location": "sdr/records/records-store.json -> ksi.<indicator>.assessment",
+   "applies_to_classes": [
+    "a",
+    "b",
+    "c"
+   ]
+  },
+  {
+   "check_id": "ksi_measures_explained",
+   "title": "Indicator measures and objectives are explained",
+   "severity": "high",
+   "resource_type": "Key Security Indicator",
+   "fedramp_basis": [
+    "SDR-CSX-KSI"
+   ],
+   "requirement": "Explanation of measures (and their objectives) that demonstrate the Key Security Indicator, or an explanation of the reason and resulting risk to customers for not having measures available.",
+   "risk": "The indicator is the unit FedRAMP evaluates in 20x. An unexplained indicator contributes nothing to the certification.",
+   "remediation": "Describe the measures and what each is meant to demonstrate.",
+   "location": "sdr/records/records-store.json -> ksi.<indicator>.implementation",
+   "applies_to_classes": [
+    "a",
+    "b",
+    "c"
+   ]
+  },
+  {
+   "check_id": "ksi_measures_validated",
+   "title": "Measures are validated as working as intended",
+   "severity": "high",
+   "resource_type": "Key Security Indicator",
+   "fedramp_basis": [
+    "SDR-CSX-KSI"
+   ],
+   "requirement": "SDR-CSX-KSI item 5: validation that the measures are accurately produced and are in place and working as intended.",
+   "risk": "Verification without validation asserts the measure is the right one but never shows it runs correctly.",
+   "remediation": "Record how the measures are confirmed to be producing accurate output.",
+   "location": "sdr/records/records-store.json -> ksi.<indicator>.validation",
+   "applies_to_classes": [
+    "a",
+    "b",
+    "c"
+   ]
+  },
+  {
+   "check_id": "ksi_measures_verified",
+   "title": "Measures are verified to demonstrate the indicator",
+   "severity": "high",
+   "resource_type": "Key Security Indicator",
+   "fedramp_basis": [
+    "SDR-CSX-KSI"
+   ],
+   "requirement": "SDR-CSX-KSI item 3: verification that the measures demonstrate the Key Security Indicator, or that the reason for not having them is accepted.",
+   "risk": "A measure that runs reliably but does not actually evidence the indicator gives false assurance.",
+   "remediation": "Record who confirmed that the measures evidence this indicator.",
+   "location": "sdr/records/records-store.json -> ksi.<indicator>.extension.measures_verification",
+   "applies_to_classes": [
+    "a",
+    "b",
+    "c"
+   ]
+  },
+  {
+   "check_id": "ksi_metrics_30day_summary",
+   "title": "Indicator carries a 30-day metric summary",
+   "severity": "high",
+   "resource_type": "Key Security Indicator",
+   "fedramp_basis": [
+    "SDR-CSX-KMT"
+   ],
+   "requirement": "Class B and Class C providers MUST include a summary of each metric over the past 30 days.",
+   "risk": "Without recent history an assessor sees a snapshot and cannot tell whether the control has been holding.",
+   "remediation": "Record the 30-day summary, ideally written by the collector rather than by hand.",
+   "location": "sdr/records/records-store.json -> ksi.<indicator>.historical_metrics.last_30_days",
+   "applies_to_classes": [
+    "b",
+    "c"
+   ]
+  },
+  {
+   "check_id": "ksi_metrics_daily_data",
+   "title": "Class C indicators reference a year of daily metric data",
+   "severity": "high",
+   "resource_type": "Key Security Indicator",
+   "fedramp_basis": [
+    "SDR-CSX-KMT",
+    "FRC-CSX-MOT"
+   ],
+   "requirement": "Class C providers MUST supply all daily metric data up to the past year, where available.",
+   "risk": "Class C rests on continuous data. Summaries alone do not meet it.",
+   "remediation": "Reference the daily metric store, for example the collector's evidence bucket prefix.",
+   "location": "sdr/records/records-store.json -> ksi.<indicator>.historical_metrics.daily_data_reference",
+   "applies_to_classes": [
+    "c"
+   ]
+  },
+  {
+   "check_id": "ksi_metrics_yearly_summary",
+   "title": "Indicator carries a metric summary up to the past year",
+   "severity": "medium",
+   "resource_type": "Key Security Indicator",
+   "fedramp_basis": [
+    "SDR-CSX-KMT"
+   ],
+   "requirement": "Class B and Class C providers MUST include a summary of the metric up to the past year, where available.",
+   "risk": "A year of history is what distinguishes a sustained control from one that was fixed the week before assessment.",
+   "remediation": "Record the longer-run summary once that much history exists.",
+   "location": "sdr/records/records-store.json -> ksi.<indicator>.historical_metrics.up_to_one_year",
+   "applies_to_classes": [
+    "b",
+    "c"
+   ]
+  },
+  {
+   "check_id": "ksi_operating_cycle_explained",
+   "title": "Persistent measures explain their operating cycle",
+   "severity": "medium",
+   "resource_type": "Key Security Indicator",
+   "fedramp_basis": [
+    "SDR-CSX-KSI",
+    "FRD-PER"
+   ],
+   "requirement": "SDR-CSX-KSI item 2: explanation of the cycle for any measures that are implemented persistently.",
+   "risk": "Without a stated cycle, a reader cannot tell whether a passing measure was checked this morning or last quarter.",
+   "remediation": "State the cycle, or confirm no measure for this indicator runs persistently.",
+   "location": "sdr/records/records-store.json -> ksi.<indicator>.extension.operating_cycle",
+   "applies_to_classes": [
+    "a",
+    "b",
+    "c"
+   ]
+  },
+  {
+   "check_id": "ksi_owner_assigned",
+   "title": "Indicator has a named accountable owner",
+   "severity": "medium",
+   "resource_type": "Key Security Indicator",
+   "fedramp_basis": [
+    "FRD-PER"
+   ],
+   "requirement": "The status of persistent activities must always be known.",
+   "risk": "Unowned indicators drift, and drift in an indicator is invisible until an assessment finds it.",
+   "remediation": "Assign an owning team or role.",
+   "location": "sdr/records/records-store.json -> ksi.<indicator>.extension.owner",
+   "applies_to_classes": [
+    "a",
+    "b",
+    "c"
+   ]
+  },
+  {
+   "check_id": "ksi_pending_marked_honestly",
+   "title": "Indicators with no published statement are marked FedRAMP pending",
+   "severity": "informational",
+   "resource_type": "Key Security Indicator",
+   "fedramp_basis": [
+    "SDR-CSX-KSI"
+   ],
+   "requirement": "Five indicators have empty statements in the CR26 dataset.",
+   "risk": "Inventing text for an indicator FedRAMP has not published would be fabrication, and would not match the eventual official wording.",
+   "remediation": "Leave these marked FedRAMP pending until FedRAMP publishes the statement.",
+   "location": "references/fedramp-consolidated-rules.json",
+   "applies_to_classes": [
+    "a",
+    "b",
+    "c"
+   ]
+  },
+  {
+   "check_id": "ksi_statement_fidelity",
+   "title": "Indicator text matches the canonical dataset",
+   "severity": "critical",
+   "resource_type": "Key Security Indicator",
+   "fedramp_basis": [
+    "FRC-CSO-JSN"
+   ],
+   "requirement": "The indicator text a provider answers must be the text FedRAMP published.",
+   "risk": "Paraphrasing changes what is being claimed.",
+   "remediation": "Never edit indicator text. Regenerate from the pinned dataset.",
+   "location": "references/fedramp-consolidated-rules.json",
+   "applies_to_classes": [
+    "a",
+    "b",
+    "c"
+   ]
+  },
+  {
+   "check_id": "ksi_status_declared",
+   "title": "Indicator carries a valid implementation status",
+   "severity": "medium",
+   "resource_type": "Key Security Indicator",
+   "fedramp_basis": [
+    "SDR-CSX-KSI",
+    "FRC-CSO-JSN"
+   ],
+   "requirement": "ksiImplementationStatus must be one of the three official values.",
+   "risk": "An absent status leaves the indicator's state undefined.",
+   "remediation": "Set implementation_status on the indicator in the record store.",
+   "location": "sdr/records/records-store.json -> ksi.<indicator>.implementation_status",
+   "applies_to_classes": [
+    "a",
+    "b",
+    "c"
+   ]
+  },
+  {
+   "check_id": "ksi_test_minimum_met",
+   "title": "Indicator meets the automated method minimum for its class",
+   "severity": "high",
+   "resource_type": "Key Security Indicator",
+   "fedramp_basis": [
+    "FRC-CSX-VVK"
+   ],
+   "requirement": "Class A MAY implement automated methods; Class B SHOULD have at least 1 per indicator; Class C MUST have at least 2; Class D MUST have at least 4.",
+   "risk": "Falling short of the class minimum is a direct rule shortfall that blocks the certification class being sought.",
+   "remediation": "Add automated methods until the class minimum is met, or drop to a class whose minimum you meet.",
+   "location": "sdr/records/records-store.json -> ksi.<indicator>.tests",
+   "applies_to_classes": [
+    "a",
+    "b",
+    "c"
+   ]
+  },
+  {
+   "check_id": "sdr_dataset_version_pinned",
+   "title": "Record was built from the pinned rules dataset",
+   "severity": "medium",
+   "resource_type": "Security Decision Record",
+   "fedramp_basis": [
+    "FRC-CSO-JSN"
+   ],
+   "requirement": "The record must reflect the version of the FedRAMP rules it claims to answer.",
+   "risk": "A record built from a superseded dataset can answer rules that have since changed or been withdrawn.",
+   "remediation": "Re-pull the dataset, diff it, then rerun the full pipeline.",
+   "location": "references/fedramp-consolidated-rules.json",
+   "applies_to_classes": [
+    "a",
+    "b",
+    "c"
+   ]
+  },
+  {
+   "check_id": "sdr_dual_format_present",
+   "title": "Record exists in both human-readable and JSON form",
+   "severity": "critical",
+   "resource_type": "Security Decision Record",
+   "fedramp_basis": [
+    "SDR-CSO-FRR",
+    "CDS-CSO-PUB"
+   ],
+   "requirement": "Providers MUST supply a Security Decision Record in both human-readable and JSON formats.",
+   "risk": "Supplying only one format fails the rule outright, whichever format is missing.",
+   "remediation": "Run build_sdr.py, which emits both from the single record store.",
+   "location": "sdr/json/ and sdr/human-readable/",
+   "applies_to_classes": [
+    "a",
+    "b",
+    "c"
+   ]
+  },
+  {
+   "check_id": "sdr_format_consistency",
+   "title": "The two formats agree on every identifier and status",
+   "severity": "critical",
+   "resource_type": "Security Decision Record",
+   "fedramp_basis": [
+    "CDS-CSO-CBF",
+    "FRC-CSX-VVR"
+   ],
+   "requirement": "Providers MUST use automation to ensure information remains consistent between human-readable and machine-readable formats.",
+   "risk": "Divergent formats mean one of them is wrong, and an assessor reading the human-readable copy would reach conclusions the JSON contradicts.",
+   "remediation": "Never hand-edit either rendering. Edit the record store and regenerate so both come from one source.",
+   "location": "sdr/records/records-store.json",
+   "applies_to_classes": [
+    "a",
+    "b",
+    "c"
+   ]
+  },
+  {
+   "check_id": "sdr_human_readable_clean",
+   "title": "Human-readable rendering contains no markup symbols",
+   "severity": "low",
+   "resource_type": "Security Decision Record",
+   "fedramp_basis": [
+    "SDR-CSO-FRR",
+    "CCM-OCR-AVL"
+   ],
+   "requirement": "The human-readable format has to actually be readable by a person without a renderer.",
+   "risk": "Raw markup in a deliverable reads as sloppy and can obscure meaning in print or plain-text delivery.",
+   "remediation": "Keep markup out of the human-readable renderer and the record store content.",
+   "location": "sdr/human-readable/sdr-class-<class>.txt",
+   "applies_to_classes": [
+    "a",
+    "b",
+    "c"
+   ]
+  },
+  {
+   "check_id": "sdr_json_schema_valid",
+   "title": "Machine-readable record validates against the official FedRAMP schema",
+   "severity": "critical",
+   "resource_type": "Security Decision Record",
+   "fedramp_basis": [
+    "FRC-CSO-JSN",
+    "SDR-CSO-FRR"
+   ],
+   "requirement": "Providers MUST supply machine-readable information in JSON documents that are valid against the corresponding FedRAMP JSON schema.",
+   "risk": "An invalid document cannot be ingested by FedRAMP or by an agency's governance tooling, so the submission is not usable evidence.",
+   "remediation": "Fix the reported schema paths, then regenerate. Do not edit generated JSON by hand.",
+   "location": "sdr/json/sdr-class-<class>.json",
+   "applies_to_classes": [
+    "a",
+    "b",
+    "c"
+   ]
+  },
+  {
+   "check_id": "sdr_metadata_complete",
+   "title": "Record carries version, last update and update source",
+   "severity": "high",
+   "resource_type": "Security Decision Record",
+   "fedramp_basis": [
+    "SDR-CSO-MTD"
+   ],
+   "requirement": "Providers MUST include version, date and time of last update, and source of update in their Security Decision Record.",
+   "risk": "Without these an assessor cannot tell which revision they are reading or who changed it, so no finding can be tied to a version.",
+   "remediation": "Set sdr_version and sdr_last_updated in the offering profile and regenerate.",
+   "location": "profiles/common/offering-profile.json",
+   "applies_to_classes": [
+    "a",
+    "b",
+    "c"
+   ]
+  },
+  {
+   "check_id": "sdr_no_sensitive_data",
+   "title": "No account identifiers, keys or private key material in the record",
+   "severity": "critical",
+   "resource_type": "Security Decision Record",
+   "fedramp_basis": [
+    "CDS-CSO-PUB"
+   ],
+   "requirement": "Certification Data is published, so it must not carry secrets or account identifiers.",
+   "risk": "Publishing an account identifier or key turns a compliance deliverable into a targeting aid, and a leaked key is an incident.",
+   "remediation": "Remove the value from the record store, rotate anything exposed, and regenerate.",
+   "location": "sdr/records/records-store.json",
+   "applies_to_classes": [
+    "a",
+    "b",
+    "c"
+   ]
+  },
+  {
+   "check_id": "sdr_overview_uri_declared",
+   "title": "Record links to the Certification Package Overview",
+   "severity": "medium",
+   "resource_type": "Security Decision Record",
+   "fedramp_basis": [
+    "CPO-CSO-OVR",
+    "SDR-CSO-FRR"
+   ],
+   "requirement": "Providers MUST supply a Certification Package Overview, and the Security Decision Record schema requires a URI pointing to it.",
+   "risk": "An assessor landing on the record has no route to the offering's scope, boundary or service description.",
+   "remediation": "Set certification_package_overview_uri in the offering profile to the published overview URI.",
+   "location": "profiles/common/offering-profile.json",
+   "applies_to_classes": [
+    "a",
+    "b",
+    "c"
+   ]
+  },
+  {
+   "check_id": "sdr_record_freshness",
+   "title": "Record has been updated recently enough to be current",
+   "severity": "medium",
+   "resource_type": "Security Decision Record",
+   "fedramp_basis": [
+    "FRC-CSX-VVR",
+    "SDR-CSO-MTD"
+   ],
+   "requirement": "Providers SHOULD implement automated methods to persistently verify and validate the accuracy and completeness of the Security Decision Record.",
+   "risk": "A record that has not moved in months is not a persistent record; an assessor cannot treat it as describing the live system.",
+   "remediation": "Refresh the record from current facts and bump sdr_last_updated on every content change.",
+   "location": "profiles/common/offering-profile.json",
+   "applies_to_classes": [
+    "a",
+    "b",
+    "c"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,108 @@
+name: Bug report
+description: Something in the pipeline, validator, or scanner behaves wrongly
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        For a wrong reading of a FedRAMP requirement, use the requirement
+        interpretation template instead. For anything involving data exposure or a way
+        to make the validator pass on a record that misrepresents reality, do not open
+        a public issue: see SECURITY.md.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Which part
+      options:
+        - Build step (validation/scripts/build_*.py)
+        - Validator (validate_sdr.py)
+        - Readiness scanner (sdrscan.py)
+        - Orchestrator (sdr.py) or Makefile
+        - Facts collector (automation/collectors)
+        - Continuous integration or pipeline
+        - Documentation
+        - Not sure
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Exact commands. Start from a fresh clone if you can.
+      value: |
+        1. git clone ...
+        2. pip install jsonschema referencing python-docx
+        3. python sdr.py all
+      render: shell
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: What happened
+      description: >
+        Paste the full output including any traceback. Redact anything account-specific
+        before pasting; account identifiers do not belong in a public issue.
+      render: text
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Python version
+      placeholder: "3.12.4"
+    validations:
+      required: true
+
+  - type: input
+    id: platform
+    attributes:
+      label: Operating system
+      placeholder: Ubuntu 24.04, macOS 15, Windows 11
+    validations:
+      required: true
+
+  - type: input
+    id: commit
+    attributes:
+      label: Commit
+      description: Output of `git rev-parse --short HEAD`.
+    validations:
+      required: true
+
+  - type: input
+    id: dataset
+    attributes:
+      label: Pinned dataset version
+      description: The `info` version in references/fedramp-consolidated-rules.json.
+      placeholder: 2026.07.14.01
+
+  - type: dropdown
+    id: cert_class
+    attributes:
+      label: Certification class in profiles/common/offering-profile.json
+      options: ["A", "B", "C", "D", "Not applicable"]
+
+  - type: checkboxes
+    id: hygiene
+    attributes:
+      label: Before you submit
+      options:
+        - label: No account identifiers, keys, endpoints, or customer data in this report.
+          required: true
+        - label: >
+            I have not hand-edited a generated file. If the validator reports content
+            fidelity mismatches, that is the usual cause and it is not a bug.
+          required: true

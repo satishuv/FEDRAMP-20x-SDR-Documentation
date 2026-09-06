@@ -43,3 +43,13 @@ quality/
 
 # Collected facts identify a real AWS account: never commit
 automation/facts/
+
+# sdrscan reports are around 6 MB per scan and are regenerated on demand, so
+# they are treated like any other scanner output: not committed. Continuous
+# integration uploads them as build artifacts instead. The scan is
+# deterministic, so anyone can reproduce a report exactly from a given commit.
+validation/reports/sdrscan/
+
+# A live mutelist suppresses findings and belongs to a specific deployment, so
+# it stays local. Copy mutelist.example.json to start one.
+automation/sdrscan/mutelist.json

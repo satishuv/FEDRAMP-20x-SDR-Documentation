@@ -1,0 +1,89 @@
+name: Requirement interpretation is wrong
+description: A rule or indicator is read incorrectly, mapped incorrectly, or missing
+title: "[rule] "
+labels: ["requirement-interpretation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This is the highest-value issue type in the project and it has the strictest
+        entry requirement: cite the rule identifier and quote its statement from the
+        pinned dataset. Not from memory, not from a blog post, not from an earlier
+        FedRAMP phase.
+
+  - type: input
+    id: identifier
+    attributes:
+      label: Rule or indicator identifier
+      description: For example FRC-CSX-VVK, CDS-CSO-PUB, KSI-IAM-APM, IA-05, FRD-CCL.
+      placeholder: FRC-CSX-VVK
+    validations:
+      required: true
+
+  - type: textarea
+    id: statement
+    attributes:
+      label: Its statement, quoted from the dataset
+      description: >
+        Copy it out of references/fedramp-consolidated-rules.json. If the rule has a
+        varies_by_class object, quote the class you are talking about and say which one.
+      render: text
+    validations:
+      required: true
+
+  - type: input
+    id: path
+    attributes:
+      label: Dataset path where it resolves
+      description: >
+        The nesting differs per section. Rules are FRR / family / data / applicability /
+        subset / identifier, where applicability is all, 20x or rev5. Indicators are
+        KSI / family / indicators / identifier. Control guidance is CTL / family /
+        control. Definitions are FRD / data / all / identifier.
+      placeholder: FRR / FRC / data / 20x / CSX / FRC-CSX-VVK
+    validations:
+      required: true
+
+  - type: textarea
+    id: current
+    attributes:
+      label: What the framework does today
+      description: Name the file and, if you can, the line. Paste what it currently says.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What it should do instead, and why the statement requires that
+      description: >
+        Argue from the quoted text. If your reading depends on a definition, cite the
+        FRD entry too.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: consequence
+    attributes:
+      label: What happens if this is left wrong
+      options:
+        - A provider could ship a record that misstates a requirement
+        - A real gap goes unreported by the readiness scanner
+        - A requirement is over-read, creating work FedRAMP does not ask for
+        - Cosmetic or documentation only
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checked
+    attributes:
+      label: Before you submit
+      options:
+        - label: >
+            I traversed all applicability values, not only data["all"]. Reading only
+            "all" hides every 20x-only rule and makes real identifiers look invented.
+          required: true
+        - label: >
+            If an AI assistant helped, I verified the identifier resolves in the
+            dataset myself rather than trusting its output.
+          required: true

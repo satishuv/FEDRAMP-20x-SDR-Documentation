@@ -61,6 +61,11 @@ def scaffold_records(rules, ksis):
             "assessment": [
                 "TBD: Independent assessment has not been performed."
             ],
+            # SDR-CSO-FRR requires seven information items per rule, but the
+            # official schema carries only frrImplementation, frrValidation and
+            # frrAssessment. Items 4 to 7 (independent verification, independent
+            # validation, responses to assessor comments, rule-specific
+            # artifacts) have no official field, so they live here.
             "extension": {
                 "owner": TBD,
                 "verification": TBD,
@@ -69,6 +74,11 @@ def scaffold_records(rules, ksis):
                 "failure_response": TBD,
                 "evidence_freshness": TBD,
                 "exception_reference": "None recorded",
+                "independent_verification": TBD,
+                "independent_validation": TBD,
+                "assessor_responses": "None recorded",
+                "rule_artifacts": [],
+                "senior_official_acceptance": "Not required: rule is followed",
                 "customer_risk": TBD,
                 "responsibility": {
                     "aws": TBD,
@@ -90,6 +100,14 @@ def scaffold_records(rules, ksis):
             "assessment": ["TBD: Independent assessment has not been performed."],
             "tests": [],
             "evidence": [],
+            # SDR-CSX-KMT. Class A MAY include historical metrics; Class B and
+            # Class C MUST. Daily data is Class C only. The collector should
+            # write these rather than a human.
+            "historical_metrics": {
+                "last_30_days": TBD,
+                "up_to_one_year": TBD,
+                "daily_data_reference": TBD,
+            },
             "extension": {
                 "owner": TBD,
                 "measures": TBD,
@@ -99,6 +117,13 @@ def scaffold_records(rules, ksis):
                 "failure_condition": TBD,
                 "failure_response": TBD,
                 "known_limitation": TBD,
+                # SDR-CSX-KSI items 3 and 4: verification that the measures
+                # demonstrate the indicator, and that the automation behind
+                # them is accurate and sufficient (or that automation is not
+                # necessary). Neither has an official schema field.
+                "measures_verification": TBD,
+                "automation_verification": TBD,
+                "assessor_responses": "None recorded",
                 "customer_responsibility": TBD,
                 "aws_responsibility": TBD,
                 "provider_responsibility": TBD,
@@ -367,6 +392,27 @@ def main():
                 added += 1
         if added:
             print(f"record store: {added} new entries scaffolded")
+        # Backfill extension sub-keys added to the scaffold since the store was
+        # written. Existing values are never touched, so authored content
+        # survives; only absent keys are created, with their TBD placeholder.
+        # Without this, a new SDR-CSO-FRR information item would only ever
+        # appear on rules added after the change.
+        added_keys = 0
+        for kind in ("frr", "ksi"):
+            for rid, entry in records[kind].items():
+                template = fresh[kind].get(rid, {})
+                for key, value in template.items():
+                    if key == "extension":
+                        ext = entry.setdefault("extension", {})
+                        for ek, ev in value.items():
+                            if ek not in ext:
+                                ext[ek] = ev
+                                added_keys += 1
+                    elif key not in entry:
+                        entry[key] = value
+                        added_keys += 1
+        if added_keys:
+            print(f"record store: {added_keys} new extension fields backfilled")
     else:
         records = scaffold_records(rules, ksis)
         print("record store scaffolded:", RECORDS)

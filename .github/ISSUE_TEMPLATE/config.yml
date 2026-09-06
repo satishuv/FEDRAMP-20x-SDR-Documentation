@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security or data-exposure report
+    url: https://github.com/satishuv/FEDRAMP-20x-SDR-Documentation/security/advisories/new
+    about: Never report these in a public issue. Use private vulnerability reporting.
+  - name: FedRAMP requirement text itself
+    url: https://github.com/FedRAMP/rules
+    about: If a requirement is wrong rather than our reading of it, it belongs upstream with FedRAMP.
+  - name: Question about using the framework
+    url: https://github.com/satishuv/FEDRAMP-20x-SDR-Documentation/discussions
+    about: Read the docs first, then ask here. Check the frequently asked questions page.

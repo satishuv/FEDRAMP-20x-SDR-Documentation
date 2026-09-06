@@ -30,6 +30,7 @@ jobs:
           python validation/scripts/build_catalogs.py
           python validation/scripts/build_notes.py
           python validation/scripts/build_profiles.py
+          python validation/scripts/build_collector_registry.py
           python validation/scripts/build_sdr.py
           python validation/scripts/build_docx.py
           python validation/scripts/build_crosswalk.py
@@ -42,7 +43,19 @@ jobs:
           }
       - name: Validate (schema, coverage, minimums, hygiene, content fidelity)
         run: python validation/scripts/validate_sdr.py
-      - name: Upload validation reports
+      - name: Refuse a stale check catalog
+        run: |
+          python automation/sdrscan/sdrscan.py --write-catalog
+          git diff --exit-code -- automation/sdrscan/check-catalog.json || {
+            echo "FAIL. check-catalog.json is out of date with checks.py."
+            echo "Run: python automation/sdrscan/sdrscan.py --write-catalog"
+            exit 1
+          }
+      - name: Scan assessment readiness (reports, does not gate)
+        run: |
+          python automation/sdrscan/sdrscan.py --output-formats json,csv,html,txt \
+            --only-fails --no-colour --ignore-exit-code-3
+      - name: Upload validation and scan reports
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:

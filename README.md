@@ -1,178 +1,146 @@
-# FedRAMP 20x Security Decision Record (SDR) Framework
+<h1 align="center">FedRAMP 20x Security Decision Record Framework</h1>
 
-A generic, reusable framework for producing FedRAMP 20x Security Decision Records for a cloud service provider pursuing Program Certification. It covers Class A, Class B, and Class C today and carries a future-readiness register for Class D. Every requirement, Key Security Indicator (KSI), family name, and class variant derives from the canonical FedRAMP Consolidated Rules for 2026 (CR26) dataset published by FedRAMP. Nothing is hand-typed from memory.
+<p align="center">
+  <strong>Treat your FedRAMP authorization package as code, not as a document.</strong><br>
+  Generate a schema-valid, dataset-traceable Security Decision Record from one file you actually edit.
+</p>
 
-## Who this is for
+<p align="center">
+  <a href="https://github.com/satishuv/FEDRAMP-20x-SDR-Documentation/actions/workflows/validate.yml"><img alt="Validate" src="https://github.com/satishuv/FEDRAMP-20x-SDR-Documentation/actions/workflows/validate.yml/badge.svg"></a>
+  <a href="https://github.com/satishuv/FEDRAMP-20x-SDR-Documentation/actions/workflows/drift-check.yml"><img alt="Upstream drift" src="https://github.com/satishuv/FEDRAMP-20x-SDR-Documentation/actions/workflows/drift-check.yml/badge.svg"></a>
+  <img alt="CR26 dataset" src="https://img.shields.io/badge/CR26%20dataset-2026.07.14.01-0b7285">
+  <img alt="Classes" src="https://img.shields.io/badge/classes-A%20%7C%20B%20%7C%20C-1864ab">
+  <img alt="Python" src="https://img.shields.io/badge/python-3.10%2B-3776ab">
+  <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-green"></a>
+</p>
 
-- Cloud service providers preparing a FedRAMP 20x Program Certification package at Class A, B, or C.
-- Advisory and security assurance teams guiding a provider through 20x, who need a defensible, regenerable SDR rather than a hand-maintained document.
-- Assessors and reviewers who want to trace every statement in an SDR back to the official dataset.
+<p align="center">
+  <a href="docs/getting-started.md">Get started</a> &middot;
+  <a href="docs/implementation-guide.md">Fill in your facts</a> &middot;
+  <a href="docs/architecture.md">Architecture</a> &middot;
+  <a href="docs/vision.md">Vision</a> &middot;
+  <a href="docs/glossary.md">Glossary</a>
+</p>
 
-This repository is a template. It ships with a synthetic placeholder offering and honest placeholder statuses: every KSI and rule starts as Not Implemented or TBD until a real provider fills in real facts. It never claims compliance for anyone. Per-customer work belongs in separate private repositories. No customer data, credentials, account numbers, or restricted report content may ever enter this repository.
+---
 
-## Why it is built this way
+## The problem
 
-FedRAMP 20x expects the SDR to be machine-readable, schema-valid, and backed by persistent automated verification and validation (rules FRC-CSX-VVK and FRC-CSX-VVR). A hand-edited document cannot keep up with that. This framework therefore treats the SDR as a build artifact:
+FedRAMP 20x asks providers for a Security Decision Record (SDR) that is machine-readable, schema-valid, and backed by automated verification that runs continuously. Two rules make this explicit: `FRC-CSX-VVK` requires automated methods to verify and validate every Key Security Indicator, and `FRC-CSX-VVR` asks for the same across the SDR itself.
 
-1. The official CR26 dataset is pinned in the repository and hash-verified against upstream, so requirement text is always exact.
-2. Humans edit exactly one file, the record store, which holds the provider's real facts.
-3. A deterministic pipeline regenerates every deliverable (JSON, plain text, Word) from those two inputs.
-4. A validator refuses to trust the builders: it re-derives everything from the dataset independently and fails on any mismatch.
+A hand-maintained Word document cannot satisfy that. It drifts from the requirement text the moment FedRAMP updates the dataset, it cannot be diffed, and it gives an assessor no way to trace a sentence back to the rule that demanded it.
 
-## Architecture
+## The approach
 
-Two views: how a Security Decision Record is built, and how it runs day to day.
-
-### Document build flow
-
-```mermaid
-flowchart LR
-    subgraph upstream["FedRAMP upstream"]
-        DS["CR26 dataset<br/>github.com/FedRAMP/rules"]
-        SCH["Official SDR schemas<br/>fedramp.gov"]
-    end
-    subgraph pinned["Pinned in repo, hash-verified"]
-        REF["references/"]
-        ART["artifacts/schemas/official/"]
-    end
-    RS["sdr/records/records-store.json<br/>THE ONLY FILE HUMANS EDIT"]
-    subgraph pipeline["Deterministic pipeline"]
-        B1["build_catalogs"] --> B2["build_notes"] --> B3["build_profiles"] --> B4["build_sdr"] --> B5["build_docx"]
-        B3 --> B6["build_crosswalk"]
-    end
-    subgraph out["Deliverables"]
-        J["Official SDR JSON<br/>plus extensions"]
-        T["Plain-text SDR"]
-        D["Authoring docx"]
-        X["Rev5 to 20x crosswalk"]
-    end
-    V["validate_sdr.py<br/>schema, coverage, minimums,<br/>hygiene, content fidelity"]
-    DS -- "sha256 compare" --> REF
-    SCH -- "sha256 compare" --> ART
-    REF --> B1
-    RS --> B4
-    B4 --> J
-    B4 --> T
-    B5 --> D
-    B6 --> X
-    out --> V
-    REF --> V
-```
-
-### Operational pipeline
+This framework makes the SDR a build artifact with exactly two inputs.
 
 ```mermaid
 flowchart LR
-    DEVX["Provider or advisor<br/>edits records-store.json"] --> GIT["git push to<br/>private SDR repo"]
-    GIT --> CI["CI gate<br/>GitHub Actions or CodePipeline:<br/>1 regenerate everything<br/>2 fail on hand-edited outputs<br/>3 validate with 0 hard failures"]
-    CI -- pass --> HUM["Human approval<br/>SNS email or protected environment"]
-    CI -- fail --> DEVX
-    HUM --> PUB["Publish package<br/>versioned encrypted S3<br/>trust center or delivery"]
-    SCHED["Daily schedule<br/>EventBridge or cron"] --> DRIFT["Drift check<br/>hash pinned sources<br/>vs fedramp.gov"]
-    DRIFT -- changed --> ALERT["Alert: email or issue<br/>re-pin, rebuild, review"]
-    SCHED --> COLL["Facts collector<br/>read-only AWS calls"]
-    COLL --> EV["Evidence bucket<br/>timestamped facts store"]
-    EV -- "feeds KSI tests,<br/>metrics clock" --> DEVX
-    LLM["Layer 2, planned:<br/>Bedrock drafter and interview agent<br/>drafts narratives FROM facts"] -. "proposes diffs,<br/>human approves" .-> DEVX
+    DS["FedRAMP CR26 dataset<br/>pinned and hash verified"]
+    RS["records-store.json<br/>the one file you edit"]
+    PIPE["python sdr.py all<br/>deterministic pipeline"]
+    OUT["Deliverables<br/>JSON, plain text, Word, crosswalk"]
+    GATE["validate_sdr.py<br/>build gate, 0 hard failures"]
+    SCAN["sdrscan.py<br/>readiness, 37 checks"]
+
+    DS --> PIPE
+    RS --> PIPE
+    PIPE --> OUT
+    OUT --> GATE
+    OUT --> SCAN
+    DS -. "every statement re-derived<br/>through a separate code path" .-> GATE
+    GATE -- "any mismatch fails the build" --> RS
+    SCAN -- "ranked findings tell you<br/>what to fill in next" --> RS
+
+    classDef src fill:#e7f5ff,stroke:#1971c2,stroke-width:2px,color:#0b3d66
+    classDef you fill:#fff4e6,stroke:#e8590c,stroke-width:2px,color:#7f2704
+    classDef step fill:#f1f3f5,stroke:#495057,stroke-width:2px,color:#212529
+    classDef out fill:#ebfbee,stroke:#2f9e44,stroke-width:2px,color:#14532d
+    classDef gate fill:#fff0f6,stroke:#c2255c,stroke-width:2px,color:#7a1236
+    classDef scan fill:#f3f0ff,stroke:#6741d9,stroke-width:2px,color:#3b1e7a
+    class DS src
+    class RS you
+    class PIPE step
+    class OUT out
+    class GATE gate
+    class SCAN scan
 ```
 
-Statuses never change without a human decision. The collector produces telemetry; the planned generative layer only drafts text from that telemetry and can never flip a status or fabricate evidence.
+Two inputs, one pipeline, two checkers with different jobs, and a loop that tells you what to write next.
+
+Requirement text is never typed by hand. It is resolved from the canonical FedRAMP Consolidated Rules for 2026 (CR26) dataset, and an independent validator re-derives every statement from that dataset and fails the build on any mismatch. You write facts about your system. The framework writes everything else.
 
 ## Quickstart
 
-Requirements: Python 3.10 or later with the `jsonschema`, `referencing`, and `python-docx` packages.
-
-```
+```bash
+git clone https://github.com/satishuv/FEDRAMP-20x-SDR-Documentation.git
+cd FEDRAMP-20x-SDR-Documentation
 pip install jsonschema referencing python-docx
+
+python sdr.py all
 ```
 
-Run the pipeline from the repository root, in this order:
+That builds every deliverable, runs the validator, and prints a readiness summary. Expect `hard failures: 0` and a long list of open items: the repository ships as a template with honest placeholders, so open items are the correct result on a fresh clone.
 
-| Step | Command | What it produces and why it runs here |
-|------|---------|----------------------------------------|
-| 1 | `python validation/scripts/build_catalogs.py` | Extracts the rule and KSI catalogs from the canonical dataset. Everything downstream reads these, so they build first. |
-| 2 | `python validation/scripts/build_notes.py` | Explainer notes per rule and KSI, plus the family-name expansions. Needs the catalogs. |
-| 3 | `python validation/scripts/build_profiles.py` | Per-class rule profiles, the Class C overlay, and the Class D readiness register. Needs catalogs and family names. |
-| 4 | `python validation/scripts/build_sdr.py` | The official-schema JSON, its extensions companion, and the plain-text SDR for the selected class. Needs profiles, notes, and the record store. |
-| 5 | `python validation/scripts/build_docx.py` | The authoring Word document for the selected class, with fill fields and guidance. |
-| 6 | `python validation/scripts/build_crosswalk.py` | The NIST SP 800-53 Revision 5 to 20x KSI crosswalk, derived from the dataset's own control mappings. |
-| 7 | `python validation/scripts/validate_sdr.py` | Schema validation, coverage checks, test minimums, hygiene checks, and content fidelity against the dataset. Always run last; nothing ships unless this passes with 0 hard failures. |
+Then open `sdr/records/records-store.json` and start replacing `TBD` with facts about your system. That file is the only one you edit. See the [implementation guide](docs/implementation-guide.md).
 
-To change the certification class, set `certification_class` in `profiles/common/offering-profile.json` to A, B, or C, then rerun steps 4, 5, and 7.
+If you have GNU make, `make all` wraps the same command. To run the seven build steps individually, see [getting started](docs/getting-started.md).
 
-To fill in a real provider's facts, edit only `sdr/records/records-store.json`. Every entry carries inline fill guidance: what the rule looks for, how to comply, what evidence is required, and the family spelled out in full. Then rerun steps 4, 5, and 7. Nobody edits generated outputs.
+## What you get
 
-## Directory map
+| Deliverable | Path | Purpose |
+|---|---|---|
+| Official SDR JSON | `sdr/json/sdr-class-*.json` | Validates against the FedRAMP SDR schema with zero errors |
+| Provider extensions | `sdr/json/sdr-class-*-extensions.json` | Your extra fields, isolated so the official file stays clean |
+| Plain-text SDR | `sdr/human-readable/sdr-class-*.txt` | The human-readable half that `CDS-CSO-CBF` requires to stay in sync |
+| Authoring Word file | `sdr/human-readable/sdr-class-*-authoring.docx` | For reviewers who need to comment in Word |
+| Rev5 crosswalk | `traceability/rev5-to-20x-crosswalk.csv` | Maps NIST SP 800-53 Revision 5 controls to 20x indicators |
+| Validation report | `validation/reports/validation-report.json` | Eight checks, one exit code, gates the build |
+| Readiness findings | `validation/reports/sdrscan/` | One finding per rule and per indicator, severity-ranked |
 
-| Path | Contents |
-|------|----------|
-| `references/` | Pinned copy of the canonical CR26 dataset (hash-compare against upstream at session start) |
-| `artifacts/schemas/official/` | Pinned official FedRAMP SDR and common-definitions schemas |
-| `traceability/` | Derived catalogs, notes, family names, the Revision 5 crosswalk, and the AWS service to KSI map |
-| `profiles/` | Per-class rule profiles, the common KSI profile, the offering profile, and the Class D future-readiness register |
-| `sdr/records/` | The single editable record store |
-| `sdr/json/` | Generated official-schema SDR JSON plus extensions companion, per class |
-| `sdr/human-readable/` | Generated plain-text SDR and authoring Word document, per class |
-| `validation/scripts/` | The pipeline |
-| `validation/reports/` | Generated validation results, including per-KSI test results |
-| `automation/` | Layer 1 collector registry and the read-only facts collector |
-| `.claude/` | Agent guardrail rules for automated sessions working in this repository |
+## Scope today
 
-The `steering/` and `quality/` directories are local working notes (project charter, source register, session logs, review reports). They are excluded from the published repository by `.gitignore` because session logs carry engagement context.
+| Class | Rules resolved | Indicators | Automated methods per indicator | State |
+|---|---|---|---|---|
+| A | 41 | 7 mandatory | 0 required | Supported |
+| B | 158 | 46 | at least 1 | Supported |
+| C | 158 plus overlay | 46 | at least 2 | Supported |
+| D | 157 | 46 | at least 4 | Readiness register only. FedRAMP lists the Class D path for 2027 |
 
-## Validation
+`FRD-CCL` describes the classes as assurance categories "increasing from minimal assurance at Class A to significant assurance at Class D." The dataset does not map them to the Low, Moderate, and High impact levels, so neither does this framework.
 
-The validator (`validate_sdr.py`) checks, in order:
+Derived from the CR26 dataset at version `2026.07.14.01`: 234 rules in 20x scope out of 246 total entries, the remaining 12 being rev5-only, plus 46 Key Security Indicators across 10 families.
 
-1. The generated JSON against the official FedRAMP SDR schema. Zero errors required.
-2. Rule and KSI coverage for the selected class, in both directions (nothing missing, nothing extra).
-3. Automated test minimums per FRC-CSX-VVK: Class A optional, Class B at least 1, Class C at least 2, Class D at least 4 per KSI. In template state this reports a soft failure for unfilled KSIs; that is expected, and it becomes a hard failure only at release.
-4. Markdown leakage and sensitive patterns (account identifiers, access keys, private keys) across all deliverables.
-5. Content fidelity: every statement, name, force, and family expansion in the generated outputs is compared against the canonical dataset through an independent resolution path, so the validator does not trust the builders it checks.
+## What this is not
 
-The pipeline is deterministic. Generated outputs are pinned to the dataset version and carry no run timestamps, so an unchanged dataset and record store yield byte-identical JSON, text, and CSV outputs (verified by double-run hash comparison). The Word files carry identical content but differ at the byte level across runs because the zip container embeds file-entry timestamps. To record when SDR content last changed, set `sdr_last_updated` in `profiles/common/offering-profile.json`; it feeds the official metadata block.
+Being direct about this matters more than adoption numbers.
 
-## Automation layer (Layer 1: deterministic collectors)
+- Not a compliance claim. Every status ships as `Not Implemented` or `TBD`. Nothing here asserts that anyone meets a requirement.
+- Not a shortcut past assessment. It produces a defensible record; an accredited independent assessor still does the assessing.
+- Not a place for customer data. No account identifiers, credentials, endpoints, or restricted report content, ever. Per-customer work belongs in a separate private repository. The validator actively scans for leaked secrets and fails on a hit.
+- Not affiliated with FedRAMP or endorsed by it. FedRAMP publishes the rules; this repository consumes them.
 
-The map at `traceability/aws-service-ksi-map.json` links every KSI to example Amazon Web Services (AWS) implementation guidance with one verify method and one validate method each, matching the FRC-CSX-VVK two-method shape. From it, `build_collector_registry.py` derives `automation/collectors/registry.json`: 46 KSIs, with the AWS Config managed rules named in the guidance extracted as immediately collectable checks, and the prose methods carried as described-method entries until dedicated collectors implement them.
+## Documentation
 
-The collector at `automation/collectors/collect_facts.py` executes the collectable checks against an AWS account. It is read-only by construction (only `config:DescribeComplianceByConfigRule` and `sts:GetCallerIdentity`), refuses admin-looking credentials, and writes a timestamped facts store to `automation/facts/`, which is excluded from git because it identifies a real account.
+| Guide | Read it when |
+|---|---|
+| [Getting started](docs/getting-started.md) | You want a validated SDR on your machine in five minutes |
+| [Implementation guide](docs/implementation-guide.md) | You are filling in your own facts and need to know what each field wants |
+| [Architecture](docs/architecture.md) | You want to know why the pipeline is shaped this way |
+| [Certification classes](docs/certification-classes.md) | You are deciding between Class A, B, C, or planning for D |
+| [Validation and readiness](docs/validation.md) | You want to understand the build gate and the readiness scanner |
+| [Continuous integration](docs/ci-cd.md) | You are wiring this into GitHub Actions or AWS CodePipeline |
+| [Automation layers](docs/automation.md) | You want evidence collected from a live account rather than typed |
+| [Glossary](docs/glossary.md) | An acronym is in your way |
+| [Frequently asked questions](docs/faq.md) | Something surprised you |
+| [Vision and mission](docs/vision.md) | You want to know where this is going and what it refuses to do |
 
-Facts are telemetry, never statuses. A status changes only through deterministic checks plus human sign-off, and generative output is never deterministic telemetry, per FedRAMP's own definitions.
+## Contributing
 
-## Class D
-
-The 20x Program path for Class D is listed by FedRAMP as coming in 2027, with specifics set during the 20x Phase 4 Pilot. The register at `profiles/class-d-future/readiness-register.json` shows the rules that would apply, resolved with the class d variants already present in the canonical dataset, plus a delta against Class C so a Class C provider can see exactly what tightens. It never claims Class D compliance.
-
-## Running it as a pipeline in AWS (CI/CD for the SDR)
-
-Two interchangeable implementations ship in this repository, enforcing the same gates. Pick whichever fits your environment; the security comes from the gates, not the vendor.
-
-1. GitHub Actions (free tier friendly): `.github/workflows/validate.yml` runs the regenerate, diff, and validate gate on every push and pull request, and `.github/workflows/drift-check.yml` checks upstream FedRAMP sources daily and opens an issue on drift. Actions are pinned to full commit SHAs for supply-chain integrity. No AWS account is needed for the CI gate itself.
-
-2. AWS-native: the `automation/pipeline/` directory contains a deployable AWS CodePipeline reference, modeled on the AWS DevSecOps pipeline pattern but with SDR-specific gates instead of SCA/SAST/DAST scanners. Use this when the provider wants approval, publication, evidence storage, and scheduled collection inside their own AWS environment.
-
-| Stage | What happens | FedRAMP rule it supports |
-|-------|--------------|--------------------------|
-| Source | A push to the provider's private SDR repository (GitHub via AWS CodeConnections) triggers the pipeline | CMT change management practices |
-| Validate and package | CodeBuild regenerates every deliverable, fails if any generated file was hand-edited (regenerate-then-diff gate), then runs the validator with 0 hard failures required | FRC-CSX-VVR persistent automated verification and validation of the SDR |
-| Human approval | SNS emails an approver; nothing publishes without sign-off | Human-gated statuses |
-| Publish | Deliverables land in a versioned, encrypted S3 bucket that can back a trust center or package delivery | FRC-CSO-JSN, SDR-CSO-MTD |
-| Daily drift check (scheduled) | Hash-compares the pinned dataset and schemas against fedramp.gov and alerts on change | Source currency |
-| Daily collector (scheduled, opt-in) | Runs the read-only facts collector and stores timestamped facts in an evidence bucket | SDR-CSX-KMT metrics, FRC-CSX-MOT persistent validation |
-
-Deploy with CloudFormation:
-
-```
-aws cloudformation deploy   --template-file automation/pipeline/sdr-pipeline.yaml   --stack-name sdr-pipeline   --capabilities CAPABILITY_IAM   --parameter-overrides     ConnectionArn=arn:aws:codeconnections:REGION:ACCOUNT:connection/ID     FullRepositoryId=your-org/your-sdr-repo     NotificationEmail=approver@example.com
-```
-
-Create and authorize the CodeConnections connection to your git host once in the console before deploying. The template avoids hardcoded partitions, so it works in standard and GovCloud regions. AWS CodeCommit is not used because it is closed to new customers; the source is any git host CodeConnections supports.
-
-## Sources and verification
-
-The canonical dataset and both official schemas are pinned in this repository and must be hash-compared against the live copies at the start of each working session, because FedRAMP updates schema files in place without renaming them. Do not cite archived pilot material (RFC-0006 era KSI counts, RFC-0024, or pre-CR26 workbooks with numeric KSI identifiers) as current requirements.
+Corrections to requirement interpretation are the most valuable contributions, and they are held to a hard standard: cite the rule identifier and quote its statement from the dataset. See [CONTRIBUTING.md](CONTRIBUTING.md). Security reports go through [SECURITY.md](SECURITY.md), not public issues.
 
 ## License
 
 MIT. See [LICENSE](LICENSE).
+
+FedRAMP requirement text and schemas are published by the United States General Services Administration at [github.com/FedRAMP/rules](https://github.com/FedRAMP/rules) and are reproduced here under their terms as government works.

@@ -25,7 +25,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -61,7 +66,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -97,7 +107,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -134,7 +149,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -174,7 +194,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -214,7 +239,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -251,7 +281,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -291,7 +326,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -331,7 +371,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -368,7 +413,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -408,7 +458,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -444,7 +499,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -480,7 +540,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -520,7 +585,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -560,7 +630,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -600,7 +675,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -640,7 +720,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -676,7 +761,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -716,7 +806,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -756,7 +851,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -796,7 +896,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -836,7 +941,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -876,7 +986,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -916,7 +1031,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -956,7 +1076,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -996,7 +1121,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -1033,7 +1163,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -1070,7 +1205,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -1110,7 +1250,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -1150,7 +1295,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -1190,7 +1340,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -1230,7 +1385,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -1270,7 +1430,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -1310,7 +1475,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -1346,7 +1516,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -1382,7 +1557,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -1422,7 +1602,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -1458,7 +1643,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -1498,7 +1688,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -1534,7 +1729,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -1570,7 +1770,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -1606,7 +1811,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -1646,7 +1856,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -1682,7 +1897,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -1722,7 +1942,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -1759,7 +1984,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -1795,7 +2025,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -1835,7 +2070,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -1871,7 +2111,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -1911,7 +2156,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -1951,7 +2201,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -1991,7 +2246,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -2031,7 +2291,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -2071,7 +2336,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -2111,7 +2381,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -2151,7 +2426,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -2191,7 +2471,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -2231,7 +2516,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -2271,7 +2561,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -2311,7 +2606,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -2351,7 +2651,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -2391,7 +2696,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -2431,7 +2741,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -2631,7 +2946,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -2671,7 +2991,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -2711,7 +3036,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -2751,7 +3081,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -2791,7 +3126,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -2827,7 +3167,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -2867,7 +3212,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -2907,7 +3257,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -2947,7 +3302,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -2987,7 +3347,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -3023,7 +3388,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -3063,7 +3433,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -3103,7 +3478,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -3143,7 +3523,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -3183,7 +3568,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -3223,7 +3613,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -3263,7 +3658,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -3303,7 +3703,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -3343,7 +3748,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -3383,7 +3793,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -3423,7 +3838,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -3461,7 +3881,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -3499,7 +3924,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -3537,7 +3967,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -3575,7 +4010,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -3615,7 +4055,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -3655,7 +4100,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -3695,7 +4145,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -3735,7 +4190,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -3775,7 +4235,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -3815,7 +4280,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -3852,7 +4322,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -3889,7 +4364,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -3926,7 +4406,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -3963,7 +4448,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -4000,7 +4490,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -4037,7 +4532,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -4074,7 +4574,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -4111,7 +4616,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -4148,7 +4658,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -4184,7 +4699,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -4220,7 +4740,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -4256,7 +4781,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -4292,7 +4822,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -4329,7 +4864,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -4369,7 +4909,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -4405,7 +4950,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -4445,7 +4995,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -4481,7 +5036,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -4521,7 +5081,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -4557,7 +5122,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -4593,7 +5163,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -4629,7 +5204,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -4665,7 +5245,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -4701,7 +5286,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -4737,7 +5327,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -4777,7 +5372,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -4817,7 +5417,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -4857,7 +5462,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -4897,7 +5507,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -4937,7 +5552,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -4977,7 +5597,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -5017,7 +5642,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -5057,7 +5687,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -5097,7 +5732,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -5137,7 +5777,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -5177,7 +5822,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -5217,7 +5867,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -5257,7 +5912,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -5297,7 +5957,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -5337,7 +6002,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -5377,7 +6047,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -5417,7 +6092,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -5457,7 +6137,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -5497,7 +6182,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -5537,7 +6227,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -5577,7 +6272,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -5617,7 +6317,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -5657,7 +6362,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -5697,7 +6407,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -5737,7 +6452,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -5777,7 +6497,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -5817,7 +6542,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -5857,7 +6587,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -5897,7 +6632,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -5933,7 +6673,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -5969,7 +6714,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -6009,7 +6759,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -6049,7 +6804,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -6089,7 +6849,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -6125,7 +6890,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -6165,7 +6935,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -6205,7 +6980,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -6245,7 +7025,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -6285,7 +7070,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -6325,7 +7115,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -6365,7 +7160,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -6405,7 +7205,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -6445,7 +7250,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -6485,7 +7295,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -6525,7 +7340,12 @@
      "aws": "TBD: Information has not been provided.",
      "provider": "TBD: Information has not been provided.",
      "customer": "TBD: Information has not been provided."
-    }
+    },
+    "independent_verification": "TBD: Information has not been provided.",
+    "independent_validation": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded",
+    "rule_artifacts": [],
+    "senior_official_acceptance": "Not required: rule is followed"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs. Do not edit the generated files in sdr/json or sdr/human-readable.",
@@ -6568,7 +7388,10 @@
     "customer_responsibility": "TBD: Information has not been provided.",
     "aws_responsibility": "TBD: Information has not been provided.",
     "provider_responsibility": "TBD: Information has not been provided.",
-    "exception_reference": "None recorded"
+    "exception_reference": "None recorded",
+    "measures_verification": "TBD: Information has not been provided.",
+    "automation_verification": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -6582,6 +7405,11 @@
      "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
      "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
     ]
+   },
+   "historical_metrics": {
+    "last_30_days": "TBD: Information has not been provided.",
+    "up_to_one_year": "TBD: Information has not been provided.",
+    "daily_data_reference": "TBD: Information has not been provided."
    }
   },
   "KSI-CMT-LMC": {
@@ -6612,7 +7440,10 @@
     "customer_responsibility": "TBD: Information has not been provided.",
     "aws_responsibility": "TBD: Information has not been provided.",
     "provider_responsibility": "TBD: Information has not been provided.",
-    "exception_reference": "None recorded"
+    "exception_reference": "None recorded",
+    "measures_verification": "TBD: Information has not been provided.",
+    "automation_verification": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -6626,6 +7457,11 @@
      "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
      "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
     ]
+   },
+   "historical_metrics": {
+    "last_30_days": "TBD: Information has not been provided.",
+    "up_to_one_year": "TBD: Information has not been provided.",
+    "daily_data_reference": "TBD: Information has not been provided."
    }
   },
   "KSI-CMT-RMV": {
@@ -6653,7 +7489,10 @@
     "customer_responsibility": "TBD: Information has not been provided.",
     "aws_responsibility": "TBD: Information has not been provided.",
     "provider_responsibility": "TBD: Information has not been provided.",
-    "exception_reference": "None recorded"
+    "exception_reference": "None recorded",
+    "measures_verification": "TBD: Information has not been provided.",
+    "automation_verification": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -6667,6 +7506,11 @@
      "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
      "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
     ]
+   },
+   "historical_metrics": {
+    "last_30_days": "TBD: Information has not been provided.",
+    "up_to_one_year": "TBD: Information has not been provided.",
+    "daily_data_reference": "TBD: Information has not been provided."
    }
   },
   "KSI-CMT-RVP": {
@@ -6694,7 +7538,10 @@
     "customer_responsibility": "TBD: Information has not been provided.",
     "aws_responsibility": "TBD: Information has not been provided.",
     "provider_responsibility": "TBD: Information has not been provided.",
-    "exception_reference": "None recorded"
+    "exception_reference": "None recorded",
+    "measures_verification": "TBD: Information has not been provided.",
+    "automation_verification": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -6708,6 +7555,11 @@
      "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
      "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
     ]
+   },
+   "historical_metrics": {
+    "last_30_days": "TBD: Information has not been provided.",
+    "up_to_one_year": "TBD: Information has not been provided.",
+    "daily_data_reference": "TBD: Information has not been provided."
    }
   },
   "KSI-CMT-VTD": {
@@ -6735,7 +7587,10 @@
     "customer_responsibility": "TBD: Information has not been provided.",
     "aws_responsibility": "TBD: Information has not been provided.",
     "provider_responsibility": "TBD: Information has not been provided.",
-    "exception_reference": "None recorded"
+    "exception_reference": "None recorded",
+    "measures_verification": "TBD: Information has not been provided.",
+    "automation_verification": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -6749,6 +7604,11 @@
      "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
      "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
     ]
+   },
+   "historical_metrics": {
+    "last_30_days": "TBD: Information has not been provided.",
+    "up_to_one_year": "TBD: Information has not been provided.",
+    "daily_data_reference": "TBD: Information has not been provided."
    }
   },
   "KSI-CNA-DFP": {
@@ -6776,7 +7636,10 @@
     "customer_responsibility": "TBD: Information has not been provided.",
     "aws_responsibility": "TBD: Information has not been provided.",
     "provider_responsibility": "TBD: Information has not been provided.",
-    "exception_reference": "None recorded"
+    "exception_reference": "None recorded",
+    "measures_verification": "TBD: Information has not been provided.",
+    "automation_verification": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -6790,6 +7653,11 @@
      "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
      "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
     ]
+   },
+   "historical_metrics": {
+    "last_30_days": "TBD: Information has not been provided.",
+    "up_to_one_year": "TBD: Information has not been provided.",
+    "daily_data_reference": "TBD: Information has not been provided."
    }
   },
   "KSI-CNA-EIS": {
@@ -6817,7 +7685,10 @@
     "customer_responsibility": "TBD: Information has not been provided.",
     "aws_responsibility": "TBD: Information has not been provided.",
     "provider_responsibility": "TBD: Information has not been provided.",
-    "exception_reference": "None recorded"
+    "exception_reference": "None recorded",
+    "measures_verification": "TBD: Information has not been provided.",
+    "automation_verification": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -6831,6 +7702,11 @@
      "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
      "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
     ]
+   },
+   "historical_metrics": {
+    "last_30_days": "TBD: Information has not been provided.",
+    "up_to_one_year": "TBD: Information has not been provided.",
+    "daily_data_reference": "TBD: Information has not been provided."
    }
   },
   "KSI-CNA-IBP": {
@@ -6858,7 +7734,10 @@
     "customer_responsibility": "TBD: Information has not been provided.",
     "aws_responsibility": "TBD: Information has not been provided.",
     "provider_responsibility": "TBD: Information has not been provided.",
-    "exception_reference": "None recorded"
+    "exception_reference": "None recorded",
+    "measures_verification": "TBD: Information has not been provided.",
+    "automation_verification": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -6872,6 +7751,11 @@
      "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
      "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
     ]
+   },
+   "historical_metrics": {
+    "last_30_days": "TBD: Information has not been provided.",
+    "up_to_one_year": "TBD: Information has not been provided.",
+    "daily_data_reference": "TBD: Information has not been provided."
    }
   },
   "KSI-CNA-MAT": {
@@ -6899,7 +7783,10 @@
     "customer_responsibility": "TBD: Information has not been provided.",
     "aws_responsibility": "TBD: Information has not been provided.",
     "provider_responsibility": "TBD: Information has not been provided.",
-    "exception_reference": "None recorded"
+    "exception_reference": "None recorded",
+    "measures_verification": "TBD: Information has not been provided.",
+    "automation_verification": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -6913,6 +7800,11 @@
      "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
      "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
     ]
+   },
+   "historical_metrics": {
+    "last_30_days": "TBD: Information has not been provided.",
+    "up_to_one_year": "TBD: Information has not been provided.",
+    "daily_data_reference": "TBD: Information has not been provided."
    }
   },
   "KSI-CNA-OFA": {
@@ -6940,7 +7832,10 @@
     "customer_responsibility": "TBD: Information has not been provided.",
     "aws_responsibility": "TBD: Information has not been provided.",
     "provider_responsibility": "TBD: Information has not been provided.",
-    "exception_reference": "None recorded"
+    "exception_reference": "None recorded",
+    "measures_verification": "TBD: Information has not been provided.",
+    "automation_verification": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -6954,6 +7849,11 @@
      "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
      "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
     ]
+   },
+   "historical_metrics": {
+    "last_30_days": "TBD: Information has not been provided.",
+    "up_to_one_year": "TBD: Information has not been provided.",
+    "daily_data_reference": "TBD: Information has not been provided."
    }
   },
   "KSI-CNA-RNT": {
@@ -6981,7 +7881,10 @@
     "customer_responsibility": "TBD: Information has not been provided.",
     "aws_responsibility": "TBD: Information has not been provided.",
     "provider_responsibility": "TBD: Information has not been provided.",
-    "exception_reference": "None recorded"
+    "exception_reference": "None recorded",
+    "measures_verification": "TBD: Information has not been provided.",
+    "automation_verification": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -6995,6 +7898,11 @@
      "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
      "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
     ]
+   },
+   "historical_metrics": {
+    "last_30_days": "TBD: Information has not been provided.",
+    "up_to_one_year": "TBD: Information has not been provided.",
+    "daily_data_reference": "TBD: Information has not been provided."
    }
   },
   "KSI-CNA-RVP": {
@@ -7022,7 +7930,10 @@
     "customer_responsibility": "TBD: Information has not been provided.",
     "aws_responsibility": "TBD: Information has not been provided.",
     "provider_responsibility": "TBD: Information has not been provided.",
-    "exception_reference": "None recorded"
+    "exception_reference": "None recorded",
+    "measures_verification": "TBD: Information has not been provided.",
+    "automation_verification": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -7036,6 +7947,11 @@
      "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
      "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
     ]
+   },
+   "historical_metrics": {
+    "last_30_days": "TBD: Information has not been provided.",
+    "up_to_one_year": "TBD: Information has not been provided.",
+    "daily_data_reference": "TBD: Information has not been provided."
    }
   },
   "KSI-CNA-ULN": {
@@ -7063,7 +7979,10 @@
     "customer_responsibility": "TBD: Information has not been provided.",
     "aws_responsibility": "TBD: Information has not been provided.",
     "provider_responsibility": "TBD: Information has not been provided.",
-    "exception_reference": "None recorded"
+    "exception_reference": "None recorded",
+    "measures_verification": "TBD: Information has not been provided.",
+    "automation_verification": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -7077,6 +7996,11 @@
      "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
      "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
     ]
+   },
+   "historical_metrics": {
+    "last_30_days": "TBD: Information has not been provided.",
+    "up_to_one_year": "TBD: Information has not been provided.",
+    "daily_data_reference": "TBD: Information has not been provided."
    }
   },
   "KSI-IAM-AAM": {
@@ -7104,7 +8028,10 @@
     "customer_responsibility": "TBD: Information has not been provided.",
     "aws_responsibility": "TBD: Information has not been provided.",
     "provider_responsibility": "TBD: Information has not been provided.",
-    "exception_reference": "None recorded"
+    "exception_reference": "None recorded",
+    "measures_verification": "TBD: Information has not been provided.",
+    "automation_verification": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -7118,6 +8045,11 @@
      "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
      "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
     ]
+   },
+   "historical_metrics": {
+    "last_30_days": "TBD: Information has not been provided.",
+    "up_to_one_year": "TBD: Information has not been provided.",
+    "daily_data_reference": "TBD: Information has not been provided."
    }
   },
   "KSI-IAM-APM": {
@@ -7148,7 +8080,10 @@
     "customer_responsibility": "TBD: Information has not been provided.",
     "aws_responsibility": "TBD: Information has not been provided.",
     "provider_responsibility": "TBD: Information has not been provided.",
-    "exception_reference": "None recorded"
+    "exception_reference": "None recorded",
+    "measures_verification": "TBD: Information has not been provided.",
+    "automation_verification": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -7162,6 +8097,11 @@
      "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
      "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
     ]
+   },
+   "historical_metrics": {
+    "last_30_days": "TBD: Information has not been provided.",
+    "up_to_one_year": "TBD: Information has not been provided.",
+    "daily_data_reference": "TBD: Information has not been provided."
    }
   },
   "KSI-IAM-ELP": {
@@ -7189,7 +8129,10 @@
     "customer_responsibility": "TBD: Information has not been provided.",
     "aws_responsibility": "TBD: Information has not been provided.",
     "provider_responsibility": "TBD: Information has not been provided.",
-    "exception_reference": "None recorded"
+    "exception_reference": "None recorded",
+    "measures_verification": "TBD: Information has not been provided.",
+    "automation_verification": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -7203,6 +8146,11 @@
      "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
      "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
     ]
+   },
+   "historical_metrics": {
+    "last_30_days": "TBD: Information has not been provided.",
+    "up_to_one_year": "TBD: Information has not been provided.",
+    "daily_data_reference": "TBD: Information has not been provided."
    }
   },
   "KSI-IAM-JIT": {
@@ -7230,7 +8178,10 @@
     "customer_responsibility": "TBD: Information has not been provided.",
     "aws_responsibility": "TBD: Information has not been provided.",
     "provider_responsibility": "TBD: Information has not been provided.",
-    "exception_reference": "None recorded"
+    "exception_reference": "None recorded",
+    "measures_verification": "TBD: Information has not been provided.",
+    "automation_verification": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -7244,6 +8195,11 @@
      "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
      "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
     ]
+   },
+   "historical_metrics": {
+    "last_30_days": "TBD: Information has not been provided.",
+    "up_to_one_year": "TBD: Information has not been provided.",
+    "daily_data_reference": "TBD: Information has not been provided."
    }
   },
   "KSI-IAM-SNU": {
@@ -7271,7 +8227,10 @@
     "customer_responsibility": "TBD: Information has not been provided.",
     "aws_responsibility": "TBD: Information has not been provided.",
     "provider_responsibility": "TBD: Information has not been provided.",
-    "exception_reference": "None recorded"
+    "exception_reference": "None recorded",
+    "measures_verification": "TBD: Information has not been provided.",
+    "automation_verification": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -7285,6 +8244,11 @@
      "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
      "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
     ]
+   },
+   "historical_metrics": {
+    "last_30_days": "TBD: Information has not been provided.",
+    "up_to_one_year": "TBD: Information has not been provided.",
+    "daily_data_reference": "TBD: Information has not been provided."
    }
   },
   "KSI-IAM-SUS": {
@@ -7312,7 +8276,10 @@
     "customer_responsibility": "TBD: Information has not been provided.",
     "aws_responsibility": "TBD: Information has not been provided.",
     "provider_responsibility": "TBD: Information has not been provided.",
-    "exception_reference": "None recorded"
+    "exception_reference": "None recorded",
+    "measures_verification": "TBD: Information has not been provided.",
+    "automation_verification": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -7326,6 +8293,11 @@
      "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
      "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
     ]
+   },
+   "historical_metrics": {
+    "last_30_days": "TBD: Information has not been provided.",
+    "up_to_one_year": "TBD: Information has not been provided.",
+    "daily_data_reference": "TBD: Information has not been provided."
    }
   },
   "KSI-INR-AAR": {
@@ -7353,7 +8325,10 @@
     "customer_responsibility": "TBD: Information has not been provided.",
     "aws_responsibility": "TBD: Information has not been provided.",
     "provider_responsibility": "TBD: Information has not been provided.",
-    "exception_reference": "None recorded"
+    "exception_reference": "None recorded",
+    "measures_verification": "TBD: Information has not been provided.",
+    "automation_verification": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -7367,6 +8342,11 @@
      "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
      "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
     ]
+   },
+   "historical_metrics": {
+    "last_30_days": "TBD: Information has not been provided.",
+    "up_to_one_year": "TBD: Information has not been provided.",
+    "daily_data_reference": "TBD: Information has not been provided."
    }
   },
   "KSI-INR-RIR": {
@@ -7394,7 +8374,10 @@
     "customer_responsibility": "TBD: Information has not been provided.",
     "aws_responsibility": "TBD: Information has not been provided.",
     "provider_responsibility": "TBD: Information has not been provided.",
-    "exception_reference": "None recorded"
+    "exception_reference": "None recorded",
+    "measures_verification": "TBD: Information has not been provided.",
+    "automation_verification": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -7408,6 +8391,11 @@
      "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
      "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
     ]
+   },
+   "historical_metrics": {
+    "last_30_days": "TBD: Information has not been provided.",
+    "up_to_one_year": "TBD: Information has not been provided.",
+    "daily_data_reference": "TBD: Information has not been provided."
    }
   },
   "KSI-INR-RPI": {
@@ -7435,7 +8423,10 @@
     "customer_responsibility": "TBD: Information has not been provided.",
     "aws_responsibility": "TBD: Information has not been provided.",
     "provider_responsibility": "TBD: Information has not been provided.",
-    "exception_reference": "None recorded"
+    "exception_reference": "None recorded",
+    "measures_verification": "TBD: Information has not been provided.",
+    "automation_verification": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -7449,6 +8440,11 @@
      "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
      "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
     ]
+   },
+   "historical_metrics": {
+    "last_30_days": "TBD: Information has not been provided.",
+    "up_to_one_year": "TBD: Information has not been provided.",
+    "daily_data_reference": "TBD: Information has not been provided."
    }
   },
   "KSI-MLA-ALA": {
@@ -7476,7 +8472,10 @@
     "customer_responsibility": "TBD: Information has not been provided.",
     "aws_responsibility": "TBD: Information has not been provided.",
     "provider_responsibility": "TBD: Information has not been provided.",
-    "exception_reference": "None recorded"
+    "exception_reference": "None recorded",
+    "measures_verification": "TBD: Information has not been provided.",
+    "automation_verification": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -7490,6 +8489,11 @@
      "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
      "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
     ]
+   },
+   "historical_metrics": {
+    "last_30_days": "TBD: Information has not been provided.",
+    "up_to_one_year": "TBD: Information has not been provided.",
+    "daily_data_reference": "TBD: Information has not been provided."
    }
   },
   "KSI-MLA-EVC": {
@@ -7517,7 +8521,10 @@
     "customer_responsibility": "TBD: Information has not been provided.",
     "aws_responsibility": "TBD: Information has not been provided.",
     "provider_responsibility": "TBD: Information has not been provided.",
-    "exception_reference": "None recorded"
+    "exception_reference": "None recorded",
+    "measures_verification": "TBD: Information has not been provided.",
+    "automation_verification": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -7531,6 +8538,11 @@
      "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
      "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
     ]
+   },
+   "historical_metrics": {
+    "last_30_days": "TBD: Information has not been provided.",
+    "up_to_one_year": "TBD: Information has not been provided.",
+    "daily_data_reference": "TBD: Information has not been provided."
    }
   },
   "KSI-MLA-LET": {
@@ -7558,7 +8570,10 @@
     "customer_responsibility": "TBD: Information has not been provided.",
     "aws_responsibility": "TBD: Information has not been provided.",
     "provider_responsibility": "TBD: Information has not been provided.",
-    "exception_reference": "None recorded"
+    "exception_reference": "None recorded",
+    "measures_verification": "TBD: Information has not been provided.",
+    "automation_verification": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -7572,6 +8587,11 @@
      "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
      "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
     ]
+   },
+   "historical_metrics": {
+    "last_30_days": "TBD: Information has not been provided.",
+    "up_to_one_year": "TBD: Information has not been provided.",
+    "daily_data_reference": "TBD: Information has not been provided."
    }
   },
   "KSI-MLA-OSM": {
@@ -7599,7 +8619,10 @@
     "customer_responsibility": "TBD: Information has not been provided.",
     "aws_responsibility": "TBD: Information has not been provided.",
     "provider_responsibility": "TBD: Information has not been provided.",
-    "exception_reference": "None recorded"
+    "exception_reference": "None recorded",
+    "measures_verification": "TBD: Information has not been provided.",
+    "automation_verification": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -7613,6 +8636,11 @@
      "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
      "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
     ]
+   },
+   "historical_metrics": {
+    "last_30_days": "TBD: Information has not been provided.",
+    "up_to_one_year": "TBD: Information has not been provided.",
+    "daily_data_reference": "TBD: Information has not been provided."
    }
   },
   "KSI-MLA-RVL": {
@@ -7640,7 +8668,10 @@
     "customer_responsibility": "TBD: Information has not been provided.",
     "aws_responsibility": "TBD: Information has not been provided.",
     "provider_responsibility": "TBD: Information has not been provided.",
-    "exception_reference": "None recorded"
+    "exception_reference": "None recorded",
+    "measures_verification": "TBD: Information has not been provided.",
+    "automation_verification": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -7654,6 +8685,11 @@
      "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
      "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
     ]
+   },
+   "historical_metrics": {
+    "last_30_days": "TBD: Information has not been provided.",
+    "up_to_one_year": "TBD: Information has not been provided.",
+    "daily_data_reference": "TBD: Information has not been provided."
    }
   },
   "KSI-PIY-GIV": {
@@ -7681,7 +8717,10 @@
     "customer_responsibility": "TBD: Information has not been provided.",
     "aws_responsibility": "TBD: Information has not been provided.",
     "provider_responsibility": "TBD: Information has not been provided.",
-    "exception_reference": "None recorded"
+    "exception_reference": "None recorded",
+    "measures_verification": "TBD: Information has not been provided.",
+    "automation_verification": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -7695,6 +8734,11 @@
      "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
      "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
     ]
+   },
+   "historical_metrics": {
+    "last_30_days": "TBD: Information has not been provided.",
+    "up_to_one_year": "TBD: Information has not been provided.",
+    "daily_data_reference": "TBD: Information has not been provided."
    }
   },
   "KSI-PIY-RES": {
@@ -7722,7 +8766,10 @@
     "customer_responsibility": "TBD: Information has not been provided.",
     "aws_responsibility": "TBD: Information has not been provided.",
     "provider_responsibility": "TBD: Information has not been provided.",
-    "exception_reference": "None recorded"
+    "exception_reference": "None recorded",
+    "measures_verification": "TBD: Information has not been provided.",
+    "automation_verification": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -7736,6 +8783,11 @@
      "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
      "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
     ]
+   },
+   "historical_metrics": {
+    "last_30_days": "TBD: Information has not been provided.",
+    "up_to_one_year": "TBD: Information has not been provided.",
+    "daily_data_reference": "TBD: Information has not been provided."
    }
   },
   "KSI-PIY-RIS": {
@@ -7763,7 +8815,10 @@
     "customer_responsibility": "TBD: Information has not been provided.",
     "aws_responsibility": "TBD: Information has not been provided.",
     "provider_responsibility": "TBD: Information has not been provided.",
-    "exception_reference": "None recorded"
+    "exception_reference": "None recorded",
+    "measures_verification": "TBD: Information has not been provided.",
+    "automation_verification": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -7777,6 +8832,11 @@
      "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
      "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
     ]
+   },
+   "historical_metrics": {
+    "last_30_days": "TBD: Information has not been provided.",
+    "up_to_one_year": "TBD: Information has not been provided.",
+    "daily_data_reference": "TBD: Information has not been provided."
    }
   },
   "KSI-PIY-RSD": {
@@ -7804,7 +8864,10 @@
     "customer_responsibility": "TBD: Information has not been provided.",
     "aws_responsibility": "TBD: Information has not been provided.",
     "provider_responsibility": "TBD: Information has not been provided.",
-    "exception_reference": "None recorded"
+    "exception_reference": "None recorded",
+    "measures_verification": "TBD: Information has not been provided.",
+    "automation_verification": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -7818,6 +8881,11 @@
      "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
      "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
     ]
+   },
+   "historical_metrics": {
+    "last_30_days": "TBD: Information has not been provided.",
+    "up_to_one_year": "TBD: Information has not been provided.",
+    "daily_data_reference": "TBD: Information has not been provided."
    }
   },
   "KSI-PIY-RVD": {
@@ -7845,7 +8913,10 @@
     "customer_responsibility": "TBD: Information has not been provided.",
     "aws_responsibility": "TBD: Information has not been provided.",
     "provider_responsibility": "TBD: Information has not been provided.",
-    "exception_reference": "None recorded"
+    "exception_reference": "None recorded",
+    "measures_verification": "TBD: Information has not been provided.",
+    "automation_verification": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -7859,6 +8930,11 @@
      "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
      "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
     ]
+   },
+   "historical_metrics": {
+    "last_30_days": "TBD: Information has not been provided.",
+    "up_to_one_year": "TBD: Information has not been provided.",
+    "daily_data_reference": "TBD: Information has not been provided."
    }
   },
   "KSI-RPL-ABO": {
@@ -7886,7 +8962,10 @@
     "customer_responsibility": "TBD: Information has not been provided.",
     "aws_responsibility": "TBD: Information has not been provided.",
     "provider_responsibility": "TBD: Information has not been provided.",
-    "exception_reference": "None recorded"
+    "exception_reference": "None recorded",
+    "measures_verification": "TBD: Information has not been provided.",
+    "automation_verification": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -7900,6 +8979,11 @@
      "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
      "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
     ]
+   },
+   "historical_metrics": {
+    "last_30_days": "TBD: Information has not been provided.",
+    "up_to_one_year": "TBD: Information has not been provided.",
+    "daily_data_reference": "TBD: Information has not been provided."
    }
   },
   "KSI-RPL-ARP": {
@@ -7927,7 +9011,10 @@
     "customer_responsibility": "TBD: Information has not been provided.",
     "aws_responsibility": "TBD: Information has not been provided.",
     "provider_responsibility": "TBD: Information has not been provided.",
-    "exception_reference": "None recorded"
+    "exception_reference": "None recorded",
+    "measures_verification": "TBD: Information has not been provided.",
+    "automation_verification": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -7941,6 +9028,11 @@
      "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
      "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
     ]
+   },
+   "historical_metrics": {
+    "last_30_days": "TBD: Information has not been provided.",
+    "up_to_one_year": "TBD: Information has not been provided.",
+    "daily_data_reference": "TBD: Information has not been provided."
    }
   },
   "KSI-RPL-RRO": {
@@ -7968,7 +9060,10 @@
     "customer_responsibility": "TBD: Information has not been provided.",
     "aws_responsibility": "TBD: Information has not been provided.",
     "provider_responsibility": "TBD: Information has not been provided.",
-    "exception_reference": "None recorded"
+    "exception_reference": "None recorded",
+    "measures_verification": "TBD: Information has not been provided.",
+    "automation_verification": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -7982,6 +9077,11 @@
      "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
      "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
     ]
+   },
+   "historical_metrics": {
+    "last_30_days": "TBD: Information has not been provided.",
+    "up_to_one_year": "TBD: Information has not been provided.",
+    "daily_data_reference": "TBD: Information has not been provided."
    }
   },
   "KSI-RPL-TRC": {
@@ -8009,7 +9109,10 @@
     "customer_responsibility": "TBD: Information has not been provided.",
     "aws_responsibility": "TBD: Information has not been provided.",
     "provider_responsibility": "TBD: Information has not been provided.",
-    "exception_reference": "None recorded"
+    "exception_reference": "None recorded",
+    "measures_verification": "TBD: Information has not been provided.",
+    "automation_verification": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -8023,6 +9126,11 @@
      "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
      "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
     ]
+   },
+   "historical_metrics": {
+    "last_30_days": "TBD: Information has not been provided.",
+    "up_to_one_year": "TBD: Information has not been provided.",
+    "daily_data_reference": "TBD: Information has not been provided."
    }
   },
   "KSI-SCR-MIT": {
@@ -8050,7 +9158,10 @@
     "customer_responsibility": "TBD: Information has not been provided.",
     "aws_responsibility": "TBD: Information has not been provided.",
     "provider_responsibility": "TBD: Information has not been provided.",
-    "exception_reference": "None recorded"
+    "exception_reference": "None recorded",
+    "measures_verification": "TBD: Information has not been provided.",
+    "automation_verification": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -8064,6 +9175,11 @@
      "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
      "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
     ]
+   },
+   "historical_metrics": {
+    "last_30_days": "TBD: Information has not been provided.",
+    "up_to_one_year": "TBD: Information has not been provided.",
+    "daily_data_reference": "TBD: Information has not been provided."
    }
   },
   "KSI-SCR-MON": {
@@ -8091,7 +9207,10 @@
     "customer_responsibility": "TBD: Information has not been provided.",
     "aws_responsibility": "TBD: Information has not been provided.",
     "provider_responsibility": "TBD: Information has not been provided.",
-    "exception_reference": "None recorded"
+    "exception_reference": "None recorded",
+    "measures_verification": "TBD: Information has not been provided.",
+    "automation_verification": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -8105,6 +9224,11 @@
      "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
      "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
     ]
+   },
+   "historical_metrics": {
+    "last_30_days": "TBD: Information has not been provided.",
+    "up_to_one_year": "TBD: Information has not been provided.",
+    "daily_data_reference": "TBD: Information has not been provided."
    }
   },
   "KSI-SVC-ACM": {
@@ -8132,7 +9256,10 @@
     "customer_responsibility": "TBD: Information has not been provided.",
     "aws_responsibility": "TBD: Information has not been provided.",
     "provider_responsibility": "TBD: Information has not been provided.",
-    "exception_reference": "None recorded"
+    "exception_reference": "None recorded",
+    "measures_verification": "TBD: Information has not been provided.",
+    "automation_verification": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -8146,6 +9273,11 @@
      "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
      "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
     ]
+   },
+   "historical_metrics": {
+    "last_30_days": "TBD: Information has not been provided.",
+    "up_to_one_year": "TBD: Information has not been provided.",
+    "daily_data_reference": "TBD: Information has not been provided."
    }
   },
   "KSI-SVC-ASM": {
@@ -8173,7 +9305,10 @@
     "customer_responsibility": "TBD: Information has not been provided.",
     "aws_responsibility": "TBD: Information has not been provided.",
     "provider_responsibility": "TBD: Information has not been provided.",
-    "exception_reference": "None recorded"
+    "exception_reference": "None recorded",
+    "measures_verification": "TBD: Information has not been provided.",
+    "automation_verification": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -8187,6 +9322,11 @@
      "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
      "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
     ]
+   },
+   "historical_metrics": {
+    "last_30_days": "TBD: Information has not been provided.",
+    "up_to_one_year": "TBD: Information has not been provided.",
+    "daily_data_reference": "TBD: Information has not been provided."
    }
   },
   "KSI-SVC-EIS": {
@@ -8214,7 +9354,10 @@
     "customer_responsibility": "TBD: Information has not been provided.",
     "aws_responsibility": "TBD: Information has not been provided.",
     "provider_responsibility": "TBD: Information has not been provided.",
-    "exception_reference": "None recorded"
+    "exception_reference": "None recorded",
+    "measures_verification": "TBD: Information has not been provided.",
+    "automation_verification": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -8228,6 +9371,11 @@
      "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
      "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
     ]
+   },
+   "historical_metrics": {
+    "last_30_days": "TBD: Information has not been provided.",
+    "up_to_one_year": "TBD: Information has not been provided.",
+    "daily_data_reference": "TBD: Information has not been provided."
    }
   },
   "KSI-SVC-PRR": {
@@ -8255,7 +9403,10 @@
     "customer_responsibility": "TBD: Information has not been provided.",
     "aws_responsibility": "TBD: Information has not been provided.",
     "provider_responsibility": "TBD: Information has not been provided.",
-    "exception_reference": "None recorded"
+    "exception_reference": "None recorded",
+    "measures_verification": "TBD: Information has not been provided.",
+    "automation_verification": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -8269,6 +9420,11 @@
      "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
      "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
     ]
+   },
+   "historical_metrics": {
+    "last_30_days": "TBD: Information has not been provided.",
+    "up_to_one_year": "TBD: Information has not been provided.",
+    "daily_data_reference": "TBD: Information has not been provided."
    }
   },
   "KSI-SVC-RUD": {
@@ -8296,7 +9452,10 @@
     "customer_responsibility": "TBD: Information has not been provided.",
     "aws_responsibility": "TBD: Information has not been provided.",
     "provider_responsibility": "TBD: Information has not been provided.",
-    "exception_reference": "None recorded"
+    "exception_reference": "None recorded",
+    "measures_verification": "TBD: Information has not been provided.",
+    "automation_verification": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -8310,6 +9469,11 @@
      "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
      "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
     ]
+   },
+   "historical_metrics": {
+    "last_30_days": "TBD: Information has not been provided.",
+    "up_to_one_year": "TBD: Information has not been provided.",
+    "daily_data_reference": "TBD: Information has not been provided."
    }
   },
   "KSI-SVC-SIN": {
@@ -8340,7 +9504,10 @@
     "customer_responsibility": "TBD: Information has not been provided.",
     "aws_responsibility": "TBD: Information has not been provided.",
     "provider_responsibility": "TBD: Information has not been provided.",
-    "exception_reference": "None recorded"
+    "exception_reference": "None recorded",
+    "measures_verification": "TBD: Information has not been provided.",
+    "automation_verification": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -8354,6 +9521,11 @@
      "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
      "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
     ]
+   },
+   "historical_metrics": {
+    "last_30_days": "TBD: Information has not been provided.",
+    "up_to_one_year": "TBD: Information has not been provided.",
+    "daily_data_reference": "TBD: Information has not been provided."
    }
   },
   "KSI-SVC-VCM": {
@@ -8381,7 +9553,10 @@
     "customer_responsibility": "TBD: Information has not been provided.",
     "aws_responsibility": "TBD: Information has not been provided.",
     "provider_responsibility": "TBD: Information has not been provided.",
-    "exception_reference": "None recorded"
+    "exception_reference": "None recorded",
+    "measures_verification": "TBD: Information has not been provided.",
+    "automation_verification": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -8395,6 +9570,11 @@
      "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
      "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
     ]
+   },
+   "historical_metrics": {
+    "last_30_days": "TBD: Information has not been provided.",
+    "up_to_one_year": "TBD: Information has not been provided.",
+    "daily_data_reference": "TBD: Information has not been provided."
    }
   },
   "KSI-SVC-VRI": {
@@ -8422,7 +9602,10 @@
     "customer_responsibility": "TBD: Information has not been provided.",
     "aws_responsibility": "TBD: Information has not been provided.",
     "provider_responsibility": "TBD: Information has not been provided.",
-    "exception_reference": "None recorded"
+    "exception_reference": "None recorded",
+    "measures_verification": "TBD: Information has not been provided.",
+    "automation_verification": "TBD: Information has not been provided.",
+    "assessor_responses": "None recorded"
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -8436,6 +9619,11 @@
      "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
      "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
     ]
+   },
+   "historical_metrics": {
+    "last_30_days": "TBD: Information has not been provided.",
+    "up_to_one_year": "TBD: Information has not been provided.",
+    "daily_data_reference": "TBD: Information has not been provided."
    }
   }
  }
