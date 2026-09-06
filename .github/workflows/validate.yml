@@ -43,6 +43,12 @@ jobs:
           }
       - name: Validate (schema, coverage, minimums, hygiene, content fidelity)
         run: python validation/scripts/validate_sdr.py
+      - name: Run offline collector tests (no AWS account needed)
+        run: python automation/collectors/test_collectors.py
+      - name: Run offline pre-fill tests (no AWS account needed)
+        run: python automation/prefill/test_prefill.py
+      - name: Run offline metric-appender tests (no AWS account needed)
+        run: python automation/metrics/test_append_metrics.py
       - name: Refuse a stale check catalog
         run: |
           python automation/sdrscan/sdrscan.py --write-catalog

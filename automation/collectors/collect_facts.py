@@ -83,6 +83,32 @@ def main():
         facts.append(fact)
         print(f"  {rule}: {fact['compliance_type']}")
 
+    # Broadened read-only posture collectors (Security Hub, Access Analyzer,
+    # Inspector, GuardDuty, Backup, KMS). Each is read-only and self-contained;
+    # a single service failure yields an ERROR fact rather than sinking the run.
+    posture_facts = []
+    try:
+        from collectors import COLLECTORS
+    except ImportError:
+        import importlib.util
+        spec = importlib.util.spec_from_file_location(
+            "collectors", os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                       "collectors.py"))
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        COLLECTORS = mod.COLLECTORS
+    print("posture collectors:")
+    for name, fn in COLLECTORS:
+        try:
+            svc_facts = fn(session, region)
+        except Exception as e:  # noqa: BLE001 - one service must not sink the run
+            svc_facts = [{"service": name, "check": "collector", "status": "ERROR",
+                          "detail": type(e).__name__, "region": region,
+                          "collected_at": now}]
+        posture_facts.extend(svc_facts)
+        for f in svc_facts:
+            print(f"  {f['service']}.{f['check']}: {f['status']}")
+
     os.makedirs(FACTS_DIR, exist_ok=True)
     out = os.path.join(FACTS_DIR, f"facts-{region}.json")
     with open(out, "w", encoding="utf-8", newline="\n") as f:
@@ -96,9 +122,12 @@ def main():
                          "Never commit this file; it may identify a real account."),
             },
             "facts": facts,
+            "posture_facts": posture_facts,
         }, f, indent=1)
     deployed = sum(1 for x in facts if x["compliance_type"] in ("COMPLIANT", "NON_COMPLIANT", "INSUFFICIENT_DATA"))
-    print(f"wrote {out}: {len(facts)} rules checked, {deployed} deployed in this account/region")
+    print(f"wrote {out}: {len(facts)} config rules checked ({deployed} deployed), "
+          f"{len(posture_facts)} posture facts across "
+          f"{len({p['service'] for p in posture_facts})} services")
     return 0
 
 

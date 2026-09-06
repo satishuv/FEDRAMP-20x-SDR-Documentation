@@ -22,6 +22,10 @@
   <a href="docs/glossary.md">Glossary</a>
 </p>
 
+<p align="center">
+  <sub>Pinned to CR26 dataset <code>2026.07.14.01</code>. A scheduled <a href="https://github.com/satishuv/FEDRAMP-20x-SDR-Documentation/actions/workflows/drift-check.yml">drift check</a> hash-compares the pinned dataset and schemas against <a href="https://github.com/FedRAMP/rules">github.com/FedRAMP/rules</a> daily and opens an issue on any change. Green drift badge above means the pin still matches upstream.</sub>
+</p>
+
 ---
 
 ## The problem

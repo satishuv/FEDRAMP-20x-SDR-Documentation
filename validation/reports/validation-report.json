@@ -8,6 +8,16 @@
    "detail": "0 schema errors"
   },
   {
+   "check": "dataset_version_agreement",
+   "result": "PASS",
+   "detail": "pinned dataset info.version 2026.07.14.01 vs profile dataset_version 2026.07.14.01"
+  },
+  {
+   "check": "pinned_schema_version_guard",
+   "result": "PASS",
+   "detail": "both pinned schemas match expected $id and $schemaVersion"
+  },
+  {
    "check": "rule_coverage",
    "result": "PASS",
    "detail": "missing: [] extra: [] (158/158 rules)"

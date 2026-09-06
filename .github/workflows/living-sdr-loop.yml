@@ -1,0 +1,85 @@
+# Scheduled living-SDR loop. Daily, this:
+#   1. Assumes a READ-ONLY role in the provider's account via GitHub OIDC.
+#   2. Runs the collectors (read-only) to gather dated facts.
+#   3. Appends one metric datapoint per KSI (SDR-CSX-KMT accumulation).
+#   4. Regenerates deliverables and opens a PR ONLY if committed outputs changed.
+#
+# What this deliberately does NOT do: it never sets a status, never writes the
+# assessment field, and never commits the facts store or metric history (both
+# are git-excluded because they derive from a real account). The metric history
+# lives in the account or a private store in a real deployment; in this public
+# template the loop runs, proves it works, and opens a PR only for regenerated
+# public deliverables.
+#
+# This workflow is a TEMPLATE. It is disabled by default (no schedule until a
+# provider sets AWS_OIDC_ROLE_ARN and removes the guard). A provider must:
+#   - create a read-only IAM role trusting this repo via OIDC,
+#   - set the AWS_OIDC_ROLE_ARN and AWS_REGION repository variables,
+#   - decide where the metric history persists (see docs/automation.md).
+name: living-sdr-loop
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "23 5 * * *"
+
+permissions:
+  id-token: write     # for OIDC role assumption
+  contents: write     # to open the regeneration PR branch
+  pull-requests: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    # Guard: does nothing until the provider configures the OIDC role. Keeps the
+    # public template from failing daily on a fork that has no account wired.
+    if: vars.AWS_OIDC_ROLE_ARN != ''
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: pip install --quiet jsonschema referencing python-docx boto3
+      - name: Assume read-only role via OIDC
+        uses: aws-actions/configure-aws-credentials@e3dd6a429d7300a6a4c196c26e071d42e0343502 # v4.0.2
+        with:
+          role-to-assume: ${{ vars.AWS_OIDC_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION }}
+      - name: Collect facts (read-only)
+        run: python automation/collectors/collect_facts.py --region "${{ vars.AWS_REGION }}"
+      - name: Append metric datapoint (SDR-CSX-KMT)
+        run: python automation/metrics/append_metrics.py
+      - name: Pre-fill draft fields from facts (writes a git-excluded sidecar)
+        run: python automation/prefill/prefill_from_facts.py --write || true
+      - name: Regenerate deliverables
+        run: |
+          python validation/scripts/build_catalogs.py
+          python validation/scripts/build_notes.py
+          python validation/scripts/build_profiles.py
+          python validation/scripts/build_collector_registry.py
+          python validation/scripts/build_sdr.py
+          python validation/scripts/build_docx.py
+          python validation/scripts/build_crosswalk.py
+      - name: Validate before proposing anything
+        run: python validation/scripts/validate_sdr.py
+      - name: Open a PR only if committed outputs changed
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # Facts, metric history, and the pre-fill sidecar are git-excluded, so
+          # a diff here means a committed deliverable actually changed.
+          if git diff --quiet -- . ':(exclude)*.docx'; then
+            echo "No committed deliverable changed; nothing to propose today."
+            exit 0
+          fi
+          BRANCH="living-sdr/refresh-$(date -u +%Y%m%d)"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          git add -- . ':(exclude)*.docx'
+          git commit -m "chore: scheduled SDR refresh $(date -u +%Y-%m-%d)"
+          git push -u origin "$BRANCH"
+          gh pr create --title "Scheduled SDR refresh $(date -u +%Y-%m-%d)" \
+            --body "Automated read-only refresh. Regenerated deliverables from the pinned dataset and latest collected facts. No status was changed and no assessment was written. Review the diff before merging; collected facts are telemetry, not compliance conclusions." \
+            || echo "PR may already exist for today."
