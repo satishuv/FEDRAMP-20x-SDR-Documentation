@@ -60,3 +60,11 @@ validation/reports/sdrscan/
 # A live mutelist suppresses findings and belongs to a specific deployment, so
 # it stays local. Copy mutelist.example.json to start one.
 automation/sdrscan/mutelist.json
+
+# Collector test fixtures are generated from botocore service models by
+# generate_fixtures.py at whatever scale a run wants (a 5000-finding Security
+# Hub payload is ~68 MB), so the payloads are regenerated on demand, not
+# committed. The generator and MANIFEST.json ARE committed, so any run is
+# reproducible: `python automation/collectors/generate_fixtures.py --scale N`.
+automation/collectors/testdata/*.json
+!automation/collectors/testdata/MANIFEST.json

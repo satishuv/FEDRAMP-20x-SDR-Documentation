@@ -24,7 +24,7 @@ jobs:
         with:
           python-version: "3.12"
       - name: Install dependencies
-        run: pip install --quiet jsonschema referencing python-docx
+        run: pip install --quiet jsonschema referencing python-docx boto3
       - name: Regenerate all deliverables
         run: |
           python validation/scripts/build_catalogs.py
@@ -45,6 +45,10 @@ jobs:
         run: python validation/scripts/validate_sdr.py
       - name: Run offline collector tests (no AWS account needed)
         run: python automation/collectors/test_collectors.py
+      - name: Run offline collector scale + fault-injection tests (no AWS)
+        run: python automation/collectors/test_collectors_scale.py
+      - name: Run offline collector fixture-scale tests (AWS-shaped, no AWS)
+        run: python automation/collectors/test_collectors_fixtures.py
       - name: Run offline pre-fill tests (no AWS account needed)
         run: python automation/prefill/test_prefill.py
       - name: Run offline metric-appender tests (no AWS account needed)
