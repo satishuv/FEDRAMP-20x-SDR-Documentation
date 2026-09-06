@@ -235,6 +235,47 @@ def main():
     check("official_schema_validation", not errors,
           f"{len(errors)} schema errors" + (f"; first: {errors[0]}" if errors else ""))
 
+    # 1b. Dataset version agreement. The profile meta records the dataset
+    # version it was built from; the pinned dataset carries its own
+    # info.version. If someone swaps the dataset file without rebuilding the
+    # profiles, every report would still stamp the stale profile version and
+    # the mismatch would go unnoticed. Assert they agree so the version the
+    # README and badge advertise is provably the version on disk.
+    dataset_info_version = load(DATASET).get("info", {}).get("version")
+    check("dataset_version_agreement", dataset_info_version == dataset_version,
+          f"pinned dataset info.version {dataset_info_version} vs profile "
+          f"dataset_version {dataset_version}"
+          + ("" if dataset_info_version == dataset_version
+             else " (rebuild profiles after swapping the dataset)"))
+
+    # 1c. Pinned-schema version guard. FedRAMP edits schema files in place
+    # without renaming them, so the filename proves nothing; the $schemaVersion
+    # inside is the real signal. Assert each pinned schema still carries the
+    # $id and $schemaVersion the framework was built against, so a swapped or
+    # upstream-bumped schema is caught at the gate, not only by the daily drift
+    # hash job. Update EXPECTED_SCHEMAS deliberately when adopting a new schema.
+    EXPECTED_SCHEMAS = {
+        SDR_SCHEMA: {
+            "$id": "https://fedramp.gov/schemas/fedramp-security-decision-record-schema-2026-06-24.json",
+            "$schemaVersion": "1.1.1",
+        },
+        COMMON_SCHEMA: {
+            "$id": "https://fedramp.gov/schemas/fedramp-common-definitions-schema-2026-06-24.json",
+            "$schemaVersion": "0.3.0",
+        },
+    }
+    schema_problems = []
+    for path, expected in EXPECTED_SCHEMAS.items():
+        doc = load(path)
+        for key, want in expected.items():
+            got = doc.get(key)
+            if got != want:
+                schema_problems.append(
+                    f"{os.path.basename(path)} {key} {got} vs expected {want}")
+    check("pinned_schema_version_guard", not schema_problems,
+          "; ".join(schema_problems) if schema_problems
+          else "both pinned schemas match expected $id and $schemaVersion")
+
     # 2. Coverage
     profile_ids = {r["rule_id"] for r in class_profile["rules"]}
     sdr_ids = {r["frrID"] for r in sdr["fedRampRequirements"]}

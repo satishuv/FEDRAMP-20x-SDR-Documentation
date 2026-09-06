@@ -44,6 +44,13 @@ quality/
 # Collected facts identify a real AWS account: never commit
 automation/facts/
 
+# The pre-fill sidecar is a proposed record store derived from collected facts.
+# It is a working artifact to diff against, not a deliverable: never commit.
+sdr/records/records-store.prefilled.json
+
+# Per-KSI daily metric history derives from a real account: never commit.
+automation/metrics/metric-history.json
+
 # sdrscan reports are around 6 MB per scan and are regenerated on demand, so
 # they are treated like any other scanner output: not committed. Continuous
 # integration uploads them as build artifacts instead. The scan is

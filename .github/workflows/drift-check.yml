@@ -11,8 +11,9 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   issues: write
+  pull-requests: write
 
 jobs:
   drift:
@@ -24,6 +25,7 @@ jobs:
         run: |
           set -e
           DRIFT=""
+          DATASET_CHANGED=0
           check () {
             NAME="$1"; URL="$2"; PINNED="$3"
             LIVE=$(curl -sL --max-time 30 "$URL" | sha256sum | cut -d' ' -f1)
@@ -33,13 +35,48 @@ jobs:
             else
               echo "$NAME: CHANGED upstream (live $LIVE vs pinned $LOCAL)"
               DRIFT="$DRIFT $NAME;"
+              [ "$NAME" = "CR26-dataset" ] && DATASET_CHANGED=1
             fi
           }
           check "CR26-dataset" "https://raw.githubusercontent.com/FedRAMP/rules/main/fedramp-consolidated-rules.json" "references/fedramp-consolidated-rules.json"
           check "SDR-schema" "https://www.fedramp.gov/schemas/fedramp-security-decision-record-schema-2026-06-24.json" "artifacts/schemas/official/fedramp-security-decision-record-schema-2026-06-24.json"
           check "common-definitions-schema" "https://www.fedramp.gov/schemas/fedramp-common-definitions-schema-2026-06-24.json" "artifacts/schemas/official/fedramp-common-definitions-schema-2026-06-24.json"
+
+          # Second official source of truth (FedRAMP Source Data page): the
+          # narrative docs and changelog live in FedRAMP/2026-markdown, not in
+          # the structured dataset. A timeline or guidance change lands here
+          # without moving the dataset hash, so track the changelog against a
+          # committed baseline rather than a pinned file. The baseline is
+          # self-seeded on first run (see the "Seed baseline" step below) to
+          # avoid hardcoding a hash whose normalization must match sha256sum.
+          MDCHANGELOG="https://raw.githubusercontent.com/FedRAMP/2026-markdown/main/changelog.md"
+          LIVE_MD=$(curl -sL --max-time 30 "$MDCHANGELOG" | sha256sum | cut -d' ' -f1)
+          echo "live_md=$LIVE_MD" >> "$GITHUB_OUTPUT"
+          BASE_MD=$(cat .github/.markdown-changelog-baseline 2>/dev/null || echo "")
+          if [ -z "$BASE_MD" ]; then
+            echo "2026-markdown-changelog: baseline not yet recorded (will seed this run)"
+          elif [ "$LIVE_MD" = "$BASE_MD" ]; then
+            echo "2026-markdown-changelog: unchanged"
+          else
+            echo "2026-markdown-changelog: CHANGED upstream (live $LIVE_MD vs baseline $BASE_MD)"
+            DRIFT="$DRIFT 2026-markdown-changelog;"
+          fi
           echo "drift=$DRIFT" >> "$GITHUB_OUTPUT"
+          echo "dataset_changed=$DATASET_CHANGED" >> "$GITHUB_OUTPUT"
           [ -z "$DRIFT" ]
+      - name: Seed markdown changelog baseline on first run
+        if: always()
+        env:
+          LIVE_MD: ${{ steps.check.outputs.live_md }}
+        run: |
+          if [ -n "$LIVE_MD" ] && [ ! -f .github/.markdown-changelog-baseline ]; then
+            echo "$LIVE_MD" > .github/.markdown-changelog-baseline
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add .github/.markdown-changelog-baseline
+            git commit -m "chore: seed FedRAMP 2026-markdown changelog drift baseline"
+            git push
+          fi
       - name: Open an issue on drift
         if: failure()
         env:
@@ -51,3 +88,43 @@ jobs:
           if [ "$EXISTING" = "0" ]; then
             gh issue create --title "$TITLE" --body "Upstream FedRAMP sources changed. Re-pull the changed sources, diff against the pinned copies, re-run the pipeline and validation, and review before relying on the pinned copies. Detected by the scheduled drift-check workflow."
           fi
+      - name: Set up Python for regeneration
+        if: failure() && steps.check.outputs.dataset_changed == '1'
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
+        with:
+          python-version: "3.12"
+      - name: Regenerate from the new dataset and open a review PR
+        # Only when the DATASET itself drifted: regenerating requirement text
+        # only makes sense from a new dataset. A schema-only or markdown-only
+        # change stays issue-only for a human to interpret. The PR regenerates
+        # requirement text; it never touches a status or the assessment field.
+        if: failure() && steps.check.outputs.dataset_changed == '1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -e
+          pip install --quiet jsonschema referencing python-docx
+          curl -sL --max-time 60 \
+            "https://raw.githubusercontent.com/FedRAMP/rules/main/fedramp-consolidated-rules.json" \
+            -o references/fedramp-consolidated-rules.json
+          NEWVER=$(python -c "import json;print(json.load(open('references/fedramp-consolidated-rules.json'))['info']['version'])")
+          # Bump the profile dataset_version so the new dataset_version_agreement
+          # gate passes; build_profiles derives it from the dataset on rebuild.
+          python validation/scripts/build_catalogs.py
+          python validation/scripts/build_notes.py
+          python validation/scripts/build_profiles.py
+          python validation/scripts/build_collector_registry.py
+          python validation/scripts/build_sdr.py
+          python validation/scripts/build_docx.py
+          python validation/scripts/build_crosswalk.py
+          python validation/scripts/validate_sdr.py
+          BRANCH="drift/dataset-$NEWVER"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          git add -- . ':(exclude)*.docx'
+          git commit -m "chore: regenerate deliverables for CR26 dataset $NEWVER"
+          git push -u origin "$BRANCH" || { echo "branch may already exist"; exit 0; }
+          gh pr create --title "CR26 dataset update: regenerate to $NEWVER" \
+            --body "The pinned CR26 dataset drifted from upstream. This PR pulls the new dataset and regenerates every deliverable deterministically. REVIEW the requirement-text diff before merging: confirm which rules changed and whether any provider records need revisiting. No status was changed and no assessment was written." \
+            || echo "PR may already exist for this dataset version."
