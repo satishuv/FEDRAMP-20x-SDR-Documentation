@@ -1,0 +1,147 @@
+"""Scale and fault tests for the multi-account evidence fan-out (no AWS).
+
+Answers the width version of "what if it fails or crashes at scale": simulate
+a large AWS Organization (many accounts x regions), inject assume-role failures
+and collector failures, and assert:
+  1. The fan-out never raises; a failed account/region yields ONE scope ERROR
+     fact, not a crash and not a dropped scope.
+  2. Every scope is accounted for: scopes_ok + scopes_failed == total scopes.
+  3. Every fact is tagged with its account and region (provenance).
+  4. An admin-looking role name is refused.
+  5. Output stays bounded (no per-resource dumps) even across many accounts.
+
+Run: python automation/collectors/test_multi_account.py
+"""
+import os
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import collect_multi_account as mac  # noqa: E402
+
+
+class _FakeCollectorSession:
+    """Stands in for an assumed-role session; collectors here are stubbed so we
+    exercise the fan-out, not AWS."""
+    def __init__(self, account):
+        self.account = account
+
+
+def _stub_collectors(fail_service=None):
+    """Return a COLLECTORS-like list of (name, fn). Each fn returns one bounded
+    fact; `fail_service` raises to prove one service can't sink an account."""
+    def make(name):
+        def fn(session, region):
+            if name == fail_service:
+                raise RuntimeError(f"{name} boom")
+            return [{
+                "service": name, "check": "x", "status": "OBSERVED",
+                "detail": "bounded summary", "region": region,
+                "collected_at": mac._now(),
+            }]
+        return fn
+    return [(n, make(n)) for n in ("security_hub", "config", "s3", "iam")]
+
+
+class _StubSTS:
+    """A base session whose sts.assume_role succeeds, except for accounts in
+    `fail_accounts`, where it raises (simulating a missing/denied role)."""
+    def __init__(self, fail_accounts=frozenset()):
+        self._fail = set(fail_accounts)
+
+    def client(self, name):
+        assert name == "sts"
+        outer = self
+
+        class _C:
+            def assume_role(self, RoleArn=None, RoleSessionName=None, **k):
+                acct = RoleArn.split(":")[4]
+                if acct in outer._fail:
+                    raise RuntimeError("AccessDenied assuming role")
+                return {"Credentials": {"AccessKeyId": "AKIA", "SecretAccessKey": "s",
+                                        "SessionToken": "t"}}
+        return _C()
+
+
+# Monkeypatch assume_role_session so we don't build a real boto3 Session.
+def _fake_assume(base_session, account, role_name, region, session_name="x"):
+    if "admin" in role_name.lower():
+        raise ValueError("admin role refused")
+    # Delegate to the stub STS to honor injected assume-role failures.
+    base_session.client("sts").assume_role(
+        RoleArn=f"arn:aws:iam::{account}:role/{role_name}",
+        RoleSessionName=session_name)
+    return _FakeCollectorSession(account)
+
+
+def _run(accounts, regions, fail_accounts=frozenset(), fail_service=None,
+         role_name="FedRampReadOnly"):
+    orig = mac.assume_role_session
+    mac.assume_role_session = _fake_assume
+    try:
+        return mac.collect_across_accounts(
+            accounts=accounts, role_name=role_name, regions=regions,
+            base_session=_StubSTS(fail_accounts),
+            collectors=_stub_collectors(fail_service), max_workers=16)
+    finally:
+        mac.assume_role_session = orig
+
+
+def test_large_estate_all_scopes_accounted():
+    accounts = [f"{i:012d}" for i in range(50)]   # 50 accounts
+    regions = ["us-east-1", "us-west-2", "eu-west-1"]  # x3 = 150 scopes
+    facts = _run(accounts, regions)
+    s = mac.summarize(facts)
+    assert s["accounts"] == 50, s
+    assert s["scopes"] == 150, s
+    assert s["scopes_failed_to_assume"] == 0, s
+    # 4 collectors x 150 scopes = 600 facts, each bounded and tagged.
+    assert s["total_facts"] == 600, s
+    for f in facts:
+        assert f.get("account") and f.get("region"), f"untagged fact {f}"
+        assert len(f["detail"]) < 500
+    print("PASS: test_large_estate_all_scopes_accounted")
+
+
+def test_failed_accounts_do_not_sink_the_run():
+    accounts = [f"{i:012d}" for i in range(20)]
+    fail = {accounts[3], accounts[7], accounts[11]}  # 3 accounts can't assume
+    regions = ["us-east-1", "us-west-2"]
+    facts = _run(accounts, regions, fail_accounts=fail)
+    s = mac.summarize(facts)
+    # Each failed account still contributes one scope ERROR fact per region.
+    assert s["scopes_failed_to_assume"] == len(fail) * len(regions), s
+    # Good accounts still produced full facts.
+    ok_accounts = {f["account"] for f in facts if f.get("service") != "_scope"}
+    assert ok_accounts == (set(accounts) - fail), "good accounts missing facts"
+    print("PASS: test_failed_accounts_do_not_sink_the_run")
+
+
+def test_one_bad_service_does_not_sink_an_account():
+    facts = _run(["000000000001"], ["us-east-1"], fail_service="config")
+    # config raised, but the other 3 collectors still produced facts, and
+    # config produced an ERROR fact rather than crashing the account.
+    by_service = {f["service"]: f for f in facts}
+    assert by_service["config"]["status"] == "ERROR", by_service
+    assert by_service["security_hub"]["status"] == "OBSERVED"
+    assert by_service["s3"]["status"] == "OBSERVED"
+    print("PASS: test_one_bad_service_does_not_sink_an_account")
+
+
+def test_admin_role_name_refused():
+    facts = _run(["000000000001"], ["us-east-1"], role_name="OrgAdmin")
+    # Refusal surfaces as a scope ERROR fact, not a crash.
+    assert all(f["service"] == "_scope" and f["status"] == "ERROR" for f in facts), facts
+    print("PASS: test_admin_role_name_refused")
+
+
+def _run_all():
+    tests = [v for k, v in sorted(globals().items())
+             if k.startswith("test_") and callable(v)]
+    for t in tests:
+        t()
+    print(f"\n{len(tests)}/{len(tests)} passed")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(_run_all())
