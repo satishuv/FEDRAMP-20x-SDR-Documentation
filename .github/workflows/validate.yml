@@ -90,6 +90,14 @@ jobs:
         run: python automation/prefill/test_prefill.py
       - name: Run offline AI narrative-drafter boundary tests (no AWS, no model)
         run: python automation/ai/test_draft_narratives.py
+      - name: Run offline AI finding-explainer tests (no AWS, no model)
+        run: python automation/ai/test_explain_findings.py
+      - name: Run offline AI evidence-rollup tests (no AWS, no model)
+        run: python automation/ai/test_rollup_evidence.py
+      - name: Run offline AI over-claim-guard tests (no AWS, no model)
+        run: python automation/ai/test_review_overclaim.py
+      - name: Run offline AI KSI-mapping-suggester tests (no AWS, no model)
+        run: python automation/ai/test_suggest_ksi_mapping.py
       - name: Run offline metric-appender tests (no AWS account needed)
         run: python automation/metrics/test_append_metrics.py
       - name: Refuse a stale check catalog
