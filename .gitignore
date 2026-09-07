@@ -72,3 +72,7 @@ automation/collectors/testdata/*.json
 # ASH (Automated Security Helper) scan output is generated and regenerated on
 # demand; never commit it. The .ash.yaml config IS committed (it is source).
 .ash/
+
+# AI narrative-draft sidecar is a proposed copy derived from account facts;
+# it is a review artifact, never the source of truth. Not committed.
+sdr/records/records-store.ai-draft.json
