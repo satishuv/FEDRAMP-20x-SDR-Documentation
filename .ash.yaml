@@ -1,0 +1,24 @@
+# ASH (AWS Automated Security Helper) configuration for the SDR repo.
+#
+# The scan should cover real source (Python collectors, IaC templates), not
+# generated outputs, caches, or synthetic test fixtures. The paths below are
+# excluded because they are produced by the pipeline or tests and contain
+# high-entropy strings (hashes, resource IDs) that detect-secrets flags as
+# false-positive "secrets" -- they are not credentials. Real source stays in
+# scope, so genuine findings (e.g. the IaC template) are still reported.
+project_name: fedramp-20x-sdr
+global_settings:
+  severity_threshold: MEDIUM
+  ignore_paths:
+    - path: 'validation/reports/'
+      reason: 'Generated scanner reports (regenerated on demand); high-entropy IDs are not secrets.'
+    - path: '.pytest_cache/'
+      reason: 'Pytest cache directory; not source.'
+    - path: '.ash/'
+      reason: 'ASH scan output directory; not source.'
+    - path: 'automation/collectors/testdata/'
+      reason: 'Synthetic AWS-shaped test fixtures generated from botocore models; no real secrets.'
+    - path: 'automation/facts/'
+      reason: 'Read-only telemetry facts store (git-ignored); derived from a live account, not secrets.'
+    - path: 'sdr/records/records-store.prefilled.json'
+      reason: 'Git-ignored prefill sidecar derived from account facts; not secrets.'

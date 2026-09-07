@@ -68,3 +68,7 @@ automation/sdrscan/mutelist.json
 # reproducible: `python automation/collectors/generate_fixtures.py --scale N`.
 automation/collectors/testdata/*.json
 !automation/collectors/testdata/MANIFEST.json
+
+# ASH (Automated Security Helper) scan output is generated and regenerated on
+# demand; never commit it. The .ash.yaml config IS committed (it is source).
+.ash/
