@@ -49,6 +49,10 @@ POSTURE_SERVICE_KEYS = {
     "guardduty": "Amazon GuardDuty",
     "backup": "AWS Backup",
     "kms": "AWS Key Management Service",
+    "config": "AWS Config",
+    "cloudtrail": "AWS CloudTrail",
+    "s3": "Amazon S3",
+    "iam": "IAM",
 }
 
 
@@ -150,21 +154,44 @@ def prefill_ksi(kid, record, ksi_entry, config_by_rule, posture_by_service):
             changed = True
             notes.append(f"{kid}: filled {len(new_tests)} test line(s) from facts")
 
-    # evidence: append provenance pointers, only if still empty.
+    # evidence: append schema-valid evidence OBJECTS, only if still empty. The
+    # official SDR schema requires ksiEvidence items to be objects with an
+    # evidenceType from a fixed enum, not plain strings, so the SDR that
+    # renders from these validates and is publishable. A collector observation
+    # is Configuration/Audit Record evidence carried as evidenceText, with a
+    # date. It is still telemetry: it does not assert the KSI is met.
     if is_tbd(record.get("evidence", [])):
         new_ev = []
         for check, fact in cfg:
-            new_ev.append(
-                f"AWS Config compliance record for `{check['target']}` "
-                f"(collected {fact['collected_at']}, region {fact.get('region')}).")
+            new_ev.append({
+                "evidenceType": "Configuration",
+                "evidenceDescription": (
+                    f"AWS Config rule `{check['target']}` compliance, collected "
+                    f"read-only by the SDR collector ({check['check_id']})."),
+                "evidenceText": (
+                    f"{check['target']} = {fact['compliance_type']} "
+                    f"(region {fact.get('region')})"),
+                "lastUpdated": (fact.get("collected_at") or "")[:10],
+            })
         for pf in posture:
-            new_ev.append(
-                f"{pf['service']} posture: {pf['check']} (collected "
-                f"{pf['collected_at']}, region {pf.get('region')}).")
+            # Log-style services (GuardDuty, CloudTrail) are Audit Record; the
+            # configuration-posture services are Configuration evidence.
+            etype = ("Audit Record"
+                     if pf["service"] in ("guardduty", "cloudtrail", "security_hub")
+                     else "Configuration")
+            new_ev.append({
+                "evidenceType": etype,
+                "evidenceDescription": (
+                    f"{pf['service']} {pf['check']} posture, collected read-only "
+                    f"by the SDR collector in region {pf.get('region')}."),
+                "evidenceText": f"{pf['service']}.{pf['check']} = {pf['status']}. "
+                                f"{pf['detail']}",
+                "lastUpdated": (pf.get("collected_at") or "")[:10],
+            })
         if new_ev:
             record["evidence"] = new_ev
             changed = True
-            notes.append(f"{kid}: filled {len(new_ev)} evidence pointer(s)")
+            notes.append(f"{kid}: filled {len(new_ev)} evidence object(s)")
 
     # extension.automation_verification: a single dated summary line, only if TBD.
     ext = record.get("extension", {})

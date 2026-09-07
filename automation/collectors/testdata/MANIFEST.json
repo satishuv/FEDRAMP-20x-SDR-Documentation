@@ -1,0 +1,56 @@
+{
+  "generated_at": "2026-09-06T23:40:43+00:00",
+  "scale": 1000,
+  "source": "botocore service-2 models",
+  "fixtures": [
+    {
+      "service": "securityhub",
+      "operation": "GetFindings",
+      "list_member": "Findings",
+      "items": 1000,
+      "file": "securityhub_GetFindings.json"
+    },
+    {
+      "service": "accessanalyzer",
+      "operation": "ListFindings",
+      "list_member": "findings",
+      "items": 1000,
+      "file": "accessanalyzer_ListFindings.json"
+    },
+    {
+      "service": "inspector2",
+      "operation": "ListCoverage",
+      "list_member": "coveredResources",
+      "items": 1000,
+      "file": "inspector2_ListCoverage.json"
+    },
+    {
+      "service": "backup",
+      "operation": "ListProtectedResources",
+      "list_member": "Results",
+      "items": 1000,
+      "file": "backup_ListProtectedResources.json"
+    },
+    {
+      "service": "backup",
+      "operation": "ListBackupPlans",
+      "list_member": "BackupPlansList",
+      "items": 1000,
+      "file": "backup_ListBackupPlans.json"
+    },
+    {
+      "service": "kms",
+      "operation": "ListKeys",
+      "list_member": "Keys",
+      "items": 1000,
+      "file": "kms_ListKeys.json"
+    },
+    {
+      "service": "guardduty",
+      "operation": "ListDetectors",
+      "list_member": "DetectorIds",
+      "items": 1000,
+      "file": "guardduty_ListDetectors.json"
+    }
+  ]
+}
