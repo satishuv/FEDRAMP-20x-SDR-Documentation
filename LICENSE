@@ -1,21 +1,46 @@
-MIT License
+All Rights Reserved
 
-Copyright (c) 2026 Satish Uppalapati
+Copyright (c) 2026 Amazon Web Services, Inc. and/or its affiliates,
+Security Assurance Services (SAS). All rights reserved.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+This software and its associated documentation, source code, configuration,
+generated output, and all other materials in this repository (collectively,
+the "Work") are the property of Amazon Web Services, Inc. and/or its
+affiliates. Amazon Web Services Security Assurance Services and its affiliates
+reserve all rights in and to the Work to the fullest extent permitted by
+applicable law.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+No license, right, or permission is granted, whether by implication, estoppel,
+or otherwise, to any person under this notice. Without the prior express
+written permission of Amazon Web Services, Inc., no person may copy, reproduce,
+modify, adapt, translate, publish, distribute, sublicense, sell, lease, lend,
+transmit, display, perform, create derivative works of, reverse engineer, or
+otherwise use or exploit the Work, in whole or in part, in any form or by any
+means.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+All Amazon Web Services (AWS) names, logos, trademarks, service marks, and
+brand elements are the property of Amazon Web Services, Inc. and/or its
+affiliates and may not be used without prior written permission. Nothing in
+the Work constitutes an official AWS position, product, service, or
+endorsement.
+
+DISCLAIMER OF WARRANTY AND LIMITATION OF LIABILITY
+
+THE WORK IS PROVIDED "AS IS" AND "AS AVAILABLE", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT.
+THE WORK DOES NOT GENERATE, ASSESS, CERTIFY, OR GUARANTEE COMPLIANCE OF ANY
+KIND, INCLUDING FEDRAMP 20X COMPLIANCE. ANY OUTPUT OF THE WORK IS AN UNVERIFIED
+DRAFT THAT MUST BE INDEPENDENTLY REVIEWED AND VERIFIED BY A QUALIFIED HUMAN
+BEFORE ANY USE. IN NO EVENT SHALL AMAZON WEB SERVICES, INC., ITS AFFILIATES, OR
+ANY CONTRIBUTOR BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN
+CONNECTION WITH THE WORK OR THE USE OR OTHER DEALINGS IN THE WORK.
+
+THIRD-PARTY MATERIALS
+
+FedRAMP requirement text and schemas are published by the United States
+General Services Administration at https://github.com/FedRAMP/rules and remain
+the property of their respective owners, reproduced under their terms as
+government works. Other third-party components remain subject to the licenses
+under which they are distributed.

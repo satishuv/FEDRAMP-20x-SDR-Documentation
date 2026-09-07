@@ -11,7 +11,7 @@
   <img alt="CR26 dataset" src="https://img.shields.io/badge/CR26%20dataset-2026.07.14.01-0b7285">
   <img alt="Classes" src="https://img.shields.io/badge/classes-A%20%7C%20B%20%7C%20C-1864ab">
   <img alt="Python" src="https://img.shields.io/badge/python-3.10%2B-3776ab">
-  <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-green"></a>
+  <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-All%20Rights%20Reserved-c92a2a"></a>
 </p>
 
 <p align="center">
@@ -25,6 +25,29 @@
 <p align="center">
   <sub>Pinned to CR26 dataset <code>2026.07.14.01</code>. A scheduled <a href="https://github.com/satishuv/FEDRAMP-20x-SDR-Documentation/actions/workflows/drift-check.yml">drift check</a> hash-compares the pinned dataset and schemas against <a href="https://github.com/FedRAMP/rules">github.com/FedRAMP/rules</a> daily and opens an issue on any change. Green drift badge above means the pin still matches upstream.</sub>
 </p>
+
+---
+
+> [!CAUTION]
+> ## Read this before you use anything this repository produces
+>
+> **This is not a compliance audit bot. It does not generate compliance.**
+>
+> This framework is an authoring and formatting aid. It assembles a schema-valid document and scaffolds draft text. It does **not** assess, certify, or attest anything, and it **cannot** make you FedRAMP 20x compliant.
+>
+> - **Nothing generated here is compliant, verified, or authoritative.** Any Security Decision Record (SDR), Key Security Indicator (KSI) narrative, implementation text, validation text, evidence summary, finding explanation, or any other output — whether produced by the deterministic pipeline or by an optional AI-assist module — is an **unverified draft only**. It carries no assurance of accuracy, completeness, or correctness.
+>
+> - **Producing a document with this repository does not guarantee, imply, or contribute to FedRAMP 20x compliance.** Passing the build gate means the file is *well-formed*, not that the *claims in it are true*. A green build is a formatting check, never a compliance determination.
+>
+> - **Every single letter must be independently re-checked and verified by a qualified human before any use.** Do not submit, rely on, or represent any output of this repository as fact, as evidence, or as a compliance position until a knowledgeable person has read it end to end, confirmed every statement against the actual system and the authoritative FedRAMP sources, and taken ownership of it. Treat all generated text as a starting draft to be rewritten, not as an answer.
+>
+> - **AI-assisted output is especially not to be trusted as-is.** The optional AI modules draft, explain, summarize, flag, and suggest. They can be wrong, incomplete, or misleading, and they may state things the underlying facts do not support. They never gather evidence, never set an implementation status, and never write an assessment — those remain human decisions with human sign-off. AI output is a suggestion for a human to verify, nothing more.
+>
+> - **Compliance is determined only by an accredited independent assessor and the authorizing body — never by this tool.** No software, and nothing in this repository, can grant, promise, or substitute for a real FedRAMP 20x authorization.
+>
+> - **No warranty. Use entirely at your own risk.** This software is provided "as is," without warranty of any kind. The authors and rights holders accept no liability for any use, misuse, or reliance on it or on anything it produces.
+>
+> **Ownership and rights.** This work is associated with and developed in the context of **Amazon Web Services (AWS) Security Assurance Services (SAS)**. AWS Security Assurance Services and its affiliates reserve all rights in and to this work to the fullest extent applicable. All AWS-related names, marks, and materials remain the property of Amazon Web Services, Inc. and its affiliates. Use of this repository does not transfer any such rights, and nothing here should be read as an official AWS position, product, or service. FedRAMP requirement text and schemas remain the property of their respective owners (see [License and rights](#license-and-rights)).
 
 ---
 
@@ -117,12 +140,13 @@ Derived from the CR26 dataset at version `2026.07.14.01`: 234 rules in 20x scope
 
 ## What this is not
 
-Being direct about this matters more than adoption numbers.
+Being direct about this matters more than adoption numbers. See the [caution banner](#read-this-before-you-use-anything-this-repository-produces) at the top for the full statement; in short:
 
-- Not a compliance claim. Every status ships as `Not Implemented` or `TBD`. Nothing here asserts that anyone meets a requirement.
-- Not a shortcut past assessment. It produces a defensible record; an accredited independent assessor still does the assessing.
+- Not a compliance claim, and not a compliance generator. Every status ships as `Not Implemented` or `TBD`. Nothing here asserts that anyone meets a requirement, and no output of the pipeline or the AI modules is compliant or verified.
+- Not a shortcut past assessment. It produces a defensible draft record; an accredited independent assessor still does the assessing. A green build is a formatting check, not a compliance determination.
+- Not trustworthy without human verification. Every generated statement — deterministic or AI-assisted — is an unverified draft. Every letter must be re-checked and confirmed by a qualified human before any use.
 - Not a place for customer data. No account identifiers, credentials, endpoints, or restricted report content, ever. Per-customer work belongs in a separate private repository. The validator actively scans for leaked secrets and fails on a hit.
-- Not affiliated with FedRAMP or endorsed by it. FedRAMP publishes the rules; this repository consumes them.
+- Not affiliated with or endorsed by FedRAMP. FedRAMP publishes the rules; this repository consumes them. Nothing here is an official AWS position, product, or service.
 
 ## Documentation
 
@@ -143,8 +167,10 @@ Being direct about this matters more than adoption numbers.
 
 Corrections to requirement interpretation are the most valuable contributions, and they are held to a hard standard: cite the rule identifier and quote its statement from the dataset. See [CONTRIBUTING.md](CONTRIBUTING.md). Security reports go through [SECURITY.md](SECURITY.md), not public issues.
 
-## License
+## License and rights
 
-MIT. See [LICENSE](LICENSE).
+All rights reserved. See [LICENSE](LICENSE). This is not open-source software; no license or permission to use, copy, modify, or distribute is granted without prior express written permission of Amazon Web Services, Inc.
+
+This work is associated with **Amazon Web Services (AWS) Security Assurance Services (SAS)**. AWS Security Assurance Services and its affiliates reserve all rights in and to this work to the fullest extent applicable, and all AWS names, marks, and materials remain the property of Amazon Web Services, Inc. and its affiliates. Nothing here is an official AWS position, product, service, or endorsement.
 
 FedRAMP requirement text and schemas are published by the United States General Services Administration at [github.com/FedRAMP/rules](https://github.com/FedRAMP/rules) and are reproduced here under their terms as government works.
