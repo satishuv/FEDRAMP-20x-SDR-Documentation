@@ -39,11 +39,89 @@ Conditions:
 
 Resources:
 
+  # Customer-managed KMS key for CodeBuild project encryption (AwsSolutions-CB4)
+  # and available for artifact encryption. Key rotation is enabled.
+  PipelineKmsKey:
+    Type: AWS::KMS::Key
+    Properties:
+      Description: SDR pipeline encryption key for CodeBuild projects and artifacts.
+      EnableKeyRotation: true
+      KeyPolicy:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: EnableRootAccountAdmin
+            Effect: Allow
+            Principal:
+              AWS: !Sub "arn:${AWS::Partition}:iam::${AWS::AccountId}:root"
+            Action: "kms:*"
+            Resource: "*"
+
+  PipelineKmsKeyAlias:
+    Type: AWS::KMS::Alias
+    Properties:
+      AliasName: !Sub "alias/${AWS::StackName}-pipeline"
+      TargetKeyId: !Ref PipelineKmsKey
+
+  # Dedicated bucket to receive S3 server access logs (AwsSolutions-S1) for the
+  # artifact, deliverables, and evidence buckets. It logs to itself to avoid an
+  # infinite logging chain, and blocks all public access.
+  LogBucket:
+    Type: AWS::S3::Bucket
+    # checkov:skip=CKV_AWS_18:This IS the access-log destination bucket; a log
+    # bucket cannot log to another log bucket without an infinite chain, so
+    # access logging is intentionally not enabled on it (standard exception).
+    Metadata:
+      checkov:
+        skip:
+          - id: CKV_AWS_18
+            comment: >
+              This is the access-log destination bucket. Enabling access
+              logging on the log bucket itself would create an infinite logging
+              chain, so it is intentionally omitted (standard S3 log-bucket
+              exception).
+    Properties:
+      AccessControl: LogDeliveryWrite
+      OwnershipControls:
+        Rules:
+          - ObjectOwnership: BucketOwnerPreferred
+      VersioningConfiguration:
+        Status: Enabled
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+
+  LogBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref LogBucket
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: DenyInsecureTransport
+            Effect: Deny
+            Principal: "*"
+            Action: "s3:*"
+            Resource:
+              - !GetAtt LogBucket.Arn
+              - !Sub "${LogBucket.Arn}/*"
+            Condition:
+              Bool:
+                aws:SecureTransport: "false"
+
   ArtifactBucket:
     Type: AWS::S3::Bucket
     Properties:
       VersioningConfiguration:
         Status: Enabled
+      LoggingConfiguration:
+        DestinationBucketName: !Ref LogBucket
+        LogFilePrefix: artifact-access-logs/
       BucketEncryption:
         ServerSideEncryptionConfiguration:
           - ServerSideEncryptionByDefault:
@@ -59,6 +137,9 @@ Resources:
     Properties:
       VersioningConfiguration:
         Status: Enabled
+      LoggingConfiguration:
+        DestinationBucketName: !Ref LogBucket
+        LogFilePrefix: deliverables-access-logs/
       BucketEncryption:
         ServerSideEncryptionConfiguration:
           - ServerSideEncryptionByDefault:
@@ -74,6 +155,9 @@ Resources:
     Properties:
       VersioningConfiguration:
         Status: Enabled
+      LoggingConfiguration:
+        DestinationBucketName: !Ref LogBucket
+        LogFilePrefix: evidence-access-logs/
       BucketEncryption:
         ServerSideEncryptionConfiguration:
           - ServerSideEncryptionByDefault:
@@ -84,18 +168,85 @@ Resources:
         IgnorePublicAcls: true
         RestrictPublicBuckets: true
 
-  # Deliberate simplifications, flagged Informational by cfn-lint: S3 access
-  # logging and customer-managed KMS keys are left to the deploying
-  # organization's own logging and key-management standards; IAM policies are
-  # inline because they are scoped to exactly these resources. The topic is
-  # intentionally NOT encrypted with the AWS-managed aws/sns key: EventBridge
-  # and CodePipeline cannot publish through that key's unmodifiable policy,
-  # which would silently break approvals and failure notifications. To
+  # SSL-only bucket policies (AwsSolutions-S10): deny any request not using TLS.
+  ArtifactBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref ArtifactBucket
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: DenyInsecureTransport
+            Effect: Deny
+            Principal: "*"
+            Action: "s3:*"
+            Resource:
+              - !GetAtt ArtifactBucket.Arn
+              - !Sub "${ArtifactBucket.Arn}/*"
+            Condition:
+              Bool:
+                aws:SecureTransport: "false"
+
+  DeliverablesBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref DeliverablesBucket
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: DenyInsecureTransport
+            Effect: Deny
+            Principal: "*"
+            Action: "s3:*"
+            Resource:
+              - !GetAtt DeliverablesBucket.Arn
+              - !Sub "${DeliverablesBucket.Arn}/*"
+            Condition:
+              Bool:
+                aws:SecureTransport: "false"
+
+  EvidenceBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref EvidenceBucket
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: DenyInsecureTransport
+            Effect: Deny
+            Principal: "*"
+            Action: "s3:*"
+            Resource:
+              - !GetAtt EvidenceBucket.Arn
+              - !Sub "${EvidenceBucket.Arn}/*"
+            Condition:
+              Bool:
+                aws:SecureTransport: "false"
+
+  # The topic is intentionally NOT encrypted with the AWS-managed aws/sns key:
+  # EventBridge and CodePipeline cannot publish through that key's unmodifiable
+  # policy, which would silently break approvals and failure notifications. To
   # encrypt it, supply a customer-managed key whose policy grants kms:Decrypt
   # and kms:GenerateDataKey to events.amazonaws.com and
-  # codepipeline.amazonaws.com.
+  # codepipeline.amazonaws.com. SSL-in-transit IS enforced below via the topic
+  # policy (AwsSolutions-SNS3), which is independent of at-rest encryption.
   NotificationTopic:
     Type: AWS::SNS::Topic
+    # checkov:skip=CKV_AWS_26:Intentionally not KMS-encrypted; EventBridge and
+    # CodePipeline cannot publish through the aws/sns managed key policy, which
+    # would silently break approval and failure notifications. See comment above.
+    Metadata:
+      checkov:
+        skip:
+          - id: CKV_AWS_26
+            comment: >
+              The topic is intentionally not encrypted at rest with the
+              AWS-managed aws/sns key because EventBridge and CodePipeline
+              cannot publish through that key's unmodifiable policy, which would
+              silently break approval and failure notifications. SSL-in-transit
+              is enforced via the topic policy. To encrypt at rest, supply a
+              customer-managed key granting the two services kms:Decrypt and
+              kms:GenerateDataKey.
 
   NotificationSubscription:
     Type: AWS::SNS::Subscription
@@ -106,6 +257,16 @@ Resources:
 
   CodeBuildRole:
     Type: AWS::IAM::Role
+    Metadata:
+      cdk_nag:
+        rules_to_suppress:
+          - id: AwsSolutions-IAM5
+            reason: >
+              Remaining wildcards are least-privilege for the APIs used:
+              logs:* is scoped to this stack's /aws/codebuild/* log group path
+              (CodeBuild creates a per-build log stream, not knowable at deploy
+              time); s3 object actions are scoped to specific bucket ARNs with a
+              /* object suffix, which is object-level, not a bucket wildcard.
     Properties:
       AssumeRolePolicyDocument:
         Version: "2012-10-17"
@@ -150,10 +311,26 @@ Resources:
                 Action:
                   - sns:Publish
                 Resource: !Ref NotificationTopic
+              - Effect: Allow
+                Action:
+                  - kms:GenerateDataKey
+                  - kms:Decrypt
+                  - kms:Encrypt
+                Resource: !GetAtt PipelineKmsKey.Arn
 
   CollectorRole:
     Type: AWS::IAM::Role
     Condition: CollectorOn
+    Metadata:
+      cdk_nag:
+        rules_to_suppress:
+          - id: AwsSolutions-IAM5
+            reason: >
+              config:DescribeComplianceByConfigRule is a read-only account-wide
+              query that does not support resource-level ARNs, so Resource "*"
+              is required and is the minimum grant. logs:* is scoped to this
+              stack's /aws/codebuild/* log group path; s3:PutObject is scoped to
+              the evidence bucket's facts/* prefix.
     Properties:
       AssumeRolePolicyDocument:
         Version: "2012-10-17"
@@ -188,6 +365,12 @@ Resources:
                   - codestar-connections:GetConnectionToken
                   - codestar-connections:GetConnection
                 Resource: !Ref ConnectionArn
+              - Effect: Allow
+                Action:
+                  - kms:GenerateDataKey
+                  - kms:Decrypt
+                  - kms:Encrypt
+                Resource: !GetAtt PipelineKmsKey.Arn
 
   ValidateProject:
     Type: AWS::CodeBuild::Project
@@ -195,6 +378,7 @@ Resources:
       Name: !Sub "${AWS::StackName}-validate"
       Description: Regenerate the SDR, refuse hand-edited outputs, validate with 0 hard failures.
       ServiceRole: !GetAtt CodeBuildRole.Arn
+      EncryptionKey: !GetAtt PipelineKmsKey.Arn
       TimeoutInMinutes: 20
       Artifacts:
         Type: CODEPIPELINE
@@ -212,6 +396,7 @@ Resources:
       Name: !Sub "${AWS::StackName}-drift-check"
       Description: Daily hash-compare of the pinned FedRAMP dataset and schemas against upstream.
       ServiceRole: !GetAtt CodeBuildRole.Arn
+      EncryptionKey: !GetAtt PipelineKmsKey.Arn
       TimeoutInMinutes: 10
       Artifacts:
         Type: NO_ARTIFACTS
@@ -237,6 +422,7 @@ Resources:
       Name: !Sub "${AWS::StackName}-collector"
       Description: Read-only facts collector; writes timestamped facts to the evidence bucket.
       ServiceRole: !GetAtt CollectorRole.Arn
+      EncryptionKey: !GetAtt PipelineKmsKey.Arn
       TimeoutInMinutes: 15
       Artifacts:
         Type: NO_ARTIFACTS
@@ -257,6 +443,15 @@ Resources:
 
   PipelineRole:
     Type: AWS::IAM::Role
+    Metadata:
+      cdk_nag:
+        rules_to_suppress:
+          - id: AwsSolutions-IAM5
+            reason: >
+              s3 object actions are scoped to the specific artifact and
+              deliverables bucket ARNs with a /* object suffix (object-level,
+              not a bucket wildcard); all other actions target explicit
+              resource ARNs. This is least-privilege for a pipeline role.
     Properties:
       AssumeRolePolicyDocument:
         Version: "2012-10-17"
@@ -434,6 +629,14 @@ Resources:
       PolicyDocument:
         Version: "2012-10-17"
         Statement:
+          - Sid: DenyInsecureTransport
+            Effect: Deny
+            Principal: "*"
+            Action: "sns:Publish"
+            Resource: !Ref NotificationTopic
+            Condition:
+              Bool:
+                aws:SecureTransport: "false"
           - Effect: Allow
             Principal:
               Service: events.amazonaws.com
