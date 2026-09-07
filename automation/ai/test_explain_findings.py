@@ -31,7 +31,7 @@ def test_explains_known_finding_with_remediation():
              "3 compliant, 4 non-compliant of 25"))
     assert "non-compliant" in text.lower()
     assert "remediate" in text.lower() or "review" in text.lower()
-    print("PASS: test_explains_known_finding_with_remediation")
+    print("PASS: test_explains_known_finding_with_remediation")  # pragma: allowlist secret
 
 
 def test_explanation_never_concludes_compliance():

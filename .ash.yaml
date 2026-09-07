@@ -22,3 +22,5 @@ global_settings:
       reason: 'Read-only telemetry facts store (git-ignored); derived from a live account, not secrets.'
     - path: 'sdr/records/records-store.prefilled.json'
       reason: 'Git-ignored prefill sidecar derived from account facts; not secrets.'
+    - path: 'automation/ai/test_explain_findings.py'
+      reason: 'Test-only file; detect-secrets matches a long snake_case test function name against its IBM-Cloud-IAM-Key heuristic. It is a Python identifier in a print statement, not a credential.'
