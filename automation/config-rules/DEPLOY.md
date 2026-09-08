@@ -45,3 +45,29 @@ Amazon S3 location and is current within a review interval.
 The default `max_age_days` values in the manifest are suggestions, not asserted
 FedRAMP-required intervals. Confirm each against your own policy and the
 applicable FedRAMP interval before relying on it.
+
+## Generated deploy artifacts
+
+`deploy/generate_templates.py` reads `rules-manifest.json` and emits two
+equivalent, deterministic artifacts (re-run it after any manifest change so the
+two never drift):
+
+- `deploy/cloudformation.yaml` — one Lambda (the shared evidence-existence
+  handler), a read-only execution role (`s3:GetObject`/`s3:GetObjectTagging` on
+  the evidence bucket, `config:PutEvaluations`, basic logging), the
+  `config.amazonaws.com` invoke permission, and 11 `AWS::Config::ConfigRule`
+  resources. `EvidenceBucket`, `LambdaCodeS3Bucket`, and `LambdaCodeS3Key` are
+  template parameters.
+- `deploy/cdk_stack.py` + `deploy/cdk_app.py` — the equivalent CDK v2 (Python)
+  stack, also read from the manifest.
+
+```bash
+python automation/config-rules/deploy/generate_templates.py            # write both
+python automation/config-rules/deploy/generate_templates.py --stdout   # preview CFN
+```
+
+The trust boundary is unchanged: a COMPLIANT result from any of these rules is
+telemetry (an evidence artifact is present and current), never a compliance
+determination, source-eligibility decision, or assessment. The provider owns
+the evidence bucket and the review cadence, and the default `max_age_days`
+values are suggestions to confirm, not FedRAMP-asserted intervals.

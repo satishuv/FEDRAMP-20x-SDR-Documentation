@@ -75,6 +75,8 @@ READ_ONLY_ACTIONS = {
     "codepipeline:GetPipeline",
     "inspector2:BatchGetAccountStatus",
     "backup:ListRestoreTestingPlans",
+    # Durable-store verification (read-side complement to provision_store.py).
+    "s3:GetBucketVersioning",
 }
 
 
@@ -862,9 +864,39 @@ def collect_restore_testing(session, region):
 
 
 # Ordered so a driver can iterate. Each entry: (name, function).
+def collect_bucket_versioning(session, region, bucket=None):
+    """Verify the durable metric-history/facts store bucket has versioning
+    enabled. Read-side complement to automation/storage/provision_store.py.
+
+    The bucket name comes from the SDR_STORE_BUCKET environment variable unless
+    passed explicitly. If no bucket is configured, this is NOT_CONFIGURED (not
+    an error): the living-SDR loop may run before a durable store is wired.
+    Telemetry only: a passing result says versioning is on, not that any
+    indicator is met.
+    """
+    import os
+    bucket = bucket or os.environ.get("SDR_STORE_BUCKET")
+    if not bucket:
+        return [_fact("s3_store", "versioning", "NOT_CONFIGURED",
+                      "No SDR_STORE_BUCKET set; durable store not wired yet.",
+                      region)]
+    try:
+        s3 = session.client("s3")
+        resp = s3.get_bucket_versioning(Bucket=bucket)
+        status = resp.get("Status")  # "Enabled" | "Suspended" | None
+        if status == "Enabled":
+            return [_fact("s3_store", "versioning", "ENABLED",
+                          "Store bucket has versioning enabled.", region)]
+        detail = ("Store bucket versioning is Suspended." if status == "Suspended"
+                  else "Store bucket has never had versioning enabled.")
+        return [_fact("s3_store", "versioning", "NOT_ENABLED", detail, region)]
+    except Exception as e:  # noqa: BLE001 - one service must not sink the run
+        return [_fact("s3_store", "versioning", f"ERROR:{_client_error_name(e)}",
+                      "Could not read bucket versioning.", region)]
+
+
 COLLECTORS = [
-    ("security_hub", collect_security_hub),
-    ("access_analyzer", collect_access_analyzer),
+    ("security_hub", collect_security_hub),    ("access_analyzer", collect_access_analyzer),
     ("inspector", collect_inspector),
     ("guardduty", collect_guardduty),
     ("backup", collect_backup),
@@ -889,4 +921,5 @@ COLLECTORS = [
     ("pipeline_gates", collect_pipeline_gates),
     ("supply_chain_scanning", collect_supply_chain_scanning),
     ("restore_testing", collect_restore_testing),
+    ("bucket_versioning", collect_bucket_versioning),
 ]
