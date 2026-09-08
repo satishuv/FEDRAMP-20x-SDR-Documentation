@@ -22,7 +22,7 @@ These are the decisions that shaped the code, in the order they get applied when
 
 **Determinism is a security property.** The same inputs produce byte-identical outputs, verified by double-run hash comparison. Generated files carry no run timestamps. This means a reviewer can regenerate your package and confirm it matches what you shipped, which is a much stronger claim than trusting the file you sent.
 
-**Automation reports, humans decide.** Collectors gather telemetry. Scanners report gaps. Neither may move a status to `Implemented`. A status changes when a deterministic check passes and a named human signs off. The planned generative layer drafts prose from collected facts and proposes a diff; it never approves its own work.
+**Automation reports, humans decide.** Collectors gather telemetry. Scanners report gaps. Neither may move a status to `Implemented`. A status changes when a deterministic check passes and a named human signs off. The opt-in AI-assist layer drafts prose from collected facts and proposes a diff; it never approves its own work.
 
 **Honest failure.** Running the readiness scanner against the shipped template produces thousands of findings. That is the correct output for an unfilled template, and the framework does not soften it, hide it behind a summary score, or let it block the build. A tool that reports green on an empty record is worse than no tool.
 
@@ -46,7 +46,7 @@ Ordered by how much each unblocks a real provider, not by how interesting it is 
 | Readiness scanning | Per-rule and per-indicator findings citing the governing rule | Shipped |
 | Continuous integration | GitHub Actions gate plus a deployable AWS CodePipeline reference | Shipped |
 | Layer 1 collectors | Read-only evidence collection from a live AWS account | Shipped for AWS Config managed rules; more collectors needed |
-| Layer 2 drafting | An Amazon Bedrock agent that drafts narratives from collected facts and proposes a reviewable diff | Planned |
+| Layer 2 AI assist | Five opt-in modules that draft narratives, explain findings, summarize evidence, flag over-claims, and suggest mappings from collected facts; each proposes a reviewable diff or advisory output | Built |
 | Infrastructure annotations | Link infrastructure-as-code resources to the indicators they satisfy | Planned |
 | Class D | Full support once FedRAMP publishes the Class D path, currently listed for 2027 | Blocked on FedRAMP |
 

@@ -14,7 +14,7 @@
 |---|---|
 | [Architecture](architecture.md) | The build flow, the operational pipeline, why the design is shaped this way, and the dataset traversal problem |
 | [Validation and readiness](validation.md) | The eight build-gate checks, the readiness scanner, determinism, upstream drift |
-| [Automation layers](automation.md) | What each layer may and may not decide, the read-only collector, the planned drafter |
+| [Automation layers](automation.md) | What each layer may and may not decide, the read-only collectors, and the five opt-in AI-assist modules |
 | [Continuous integration](ci-cd.md) | The four gates, GitHub Actions, the AWS CodePipeline reference |
 
 ## Reference

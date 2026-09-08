@@ -38,7 +38,7 @@ Reading only `data["all"]` will make every `*-CSX-*` rule look nonexistent. That
 - Anything that lets a status reach `Implemented` without a deterministic check plus a named human. This is the trust boundary of the whole project.
 - Generated content presented as evidence.
 - Softening the readiness scanner so a template looks greener than it is.
-- Widening the collector's permissions. It calls two APIs by design.
+- Widening the collector's permissions. Every action it may call is in a read-only allowlist by design.
 - Real customer data, in any form, including in a test fixture.
 - Adding a dependency without a clear reason. Three is the current count and it is deliberate.
 
