@@ -91,6 +91,16 @@ The repository ships set to Class B. Change one field in `profiles/common/offeri
 
 Then rerun steps 5, 6, and 8, or just `python sdr.py all`. See [certification classes](certification-classes.md) for what changes between them.
 
+## Adoption models: greenfield and brownfield
+
+The framework never assumes how or when your offering was built. It reads whatever posture exists in the account when it runs, so it fits both a new offering and an existing one. FedRAMP's own rules do not distinguish new from existing systems; obligations are set by certification class (A to D), not by system age. Greenfield and brownfield are a practical lens, not a FedRAMP distinction.
+
+**Greenfield** (a new offering built for 20x): add the framework at the start, so the record grows with the system and each indicator narrative is written as the capability is built. The living-SDR loop banks the up-to-one-year metric history from day one, which matters because that history cannot be backfilled. The only caveat is that a brand-new system has little posture to collect until it is actually running, so early runs correctly report many not-enabled results.
+
+**Brownfield** (an existing offering adopting 20x, often the more common case): point the read-only collectors at your existing account and let the pre-fill map the collected facts into a populated starting draft rather than a blank template. Three honest frictions apply: the metric history still starts accumulating only at adoption; an established account usually needs a remediation pass, because the collectors surface real drift honestly; and the governance-evidence indicators still require you to wire up the evidence location the Config custom rules check.
+
+Either way the pipeline, the build gate, the drift check, and the trust boundary are identical — neither path shortcuts human verification or independent assessment.
+
 ## Describing your offering
 
 Still in `profiles/common/offering-profile.json`, replace the placeholder identity fields: `organization_name`, `offering_name`, `offering_abbreviation`, `business_purpose`, `service_model`, `deployment_model`, `aws_partition`, `primary_region`, `dr_region`, `iac_technology`. These feed the metadata block that `SDR-CSO-MTD` requires.

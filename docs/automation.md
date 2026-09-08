@@ -38,6 +38,26 @@ Facts feed three things: the automated methods you cite in an indicator's `tests
 
 Facts do not write into the record store. You read them, decide what they demonstrate, and write that. The gap between "the collector saw a passing Config rule" and "this indicator is implemented" is a judgment, and the framework insists a person makes it.
 
+### Persistence and retention
+
+The collected facts and the metric history are the only data the framework produces from a real account, so where they live and how long they are kept follows what FedRAMP 20x specifies, not a fixed house rule.
+
+Today the collectors write dated facts to `automation/facts/` and the appender writes one datapoint per indicator to `automation/metrics/metric-history.json`. Both are git-excluded because they derive from a real account, and the appender retains a little over one year (`RETAIN_DAYS = 400`). That is the template default; a real deployment persists these in the provider's own account or a private store, which the living-SDR workflow assumes and never commits.
+
+What 20x specifies (verified against the pinned CR26 dataset `2026.07.14.01`):
+
+- KSI metric history (`SDR-CSX-KMT` with `FRC-CSX-MOT`): Class B keeps a 30-day summary and an up-to-one-year summary per indicator; Class C keeps those plus all daily metric data up to the past year; Class D must significantly supersede the lower classes, with specifics set during the 20x Phase 4 Pilot. The governing window is **up to one year**, which is why the appender retains about a year.
+- Significant Change Notifications (`SCN-CSO-HIS`): 12 months of history.
+- Trust-center access-log summaries (`CDS-TRC-ACL`): at least 6 months.
+- Historical Certification Data snapshots (`CDS-CSO-HAD`): kept for the duration of the certification, aligned to the Ongoing Certification Reports.
+- Centralized logging (`KSI-MLA-OSM`): must be tamper-resistant. FedRAMP states the property, not the storage product.
+
+On a seven-year immutable bucket: 20x does **not** require seven-year retention for the metric history or facts store; the governing figure for that data is one year. A seven-year window is a general federal records-retention or audit-archive practice, not a 20x rule for this data, so treat it as a provider or agency policy choice rather than a 20x requirement.
+
+A sound way to meet the tamper-resistant and in-boundary requirements is an Amazon S3 bucket in the provider's own account with versioning enabled and, where write-once tamper-evidence is wanted, Object Lock (WORM), plus a lifecycle policy set to the retention the applicable rule requires (about a year for the metric history, longer only if a separate records-retention policy applies). This is one implementation of what the rules ask for; the rules name the property, and the provider chooses the mechanism.
+
+`automation/storage/provision_store.py` provisions exactly that store at deploy time: it creates the bucket if absent and **enables bucket versioning** (optionally Object Lock and a lifecycle retention). It is the one deploy-time write step, opt-in, idempotent, and safety-additive — it never suspends versioning, deletes anything, or moves a status. See `automation/storage/DEPLOY.md`.
+
 ## Layer 2: AI assist (opt-in, built)
 
 Five optional AI-assist modules live in `automation/ai/`, each a separate pluggable component with hard constraints fixed in code:
