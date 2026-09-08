@@ -60,7 +60,7 @@ Dataset                      deterministic check against dataset 2026.07.14.01
 Assessment readiness         24.3% (531 pass, 1657 fail, 407 manual of 2595 findings)
 ```
 
-That single `FAIL` line is expected and correct on a fresh clone. `FRC-CSX-VVK` requires a minimum number of automated validation methods per indicator (Class B needs one, Class C needs two), and a template has none yet. It is reported as an advisory failure during authoring and becomes a hard failure only at release. `hard failures: 0` is the line that gates the build.
+That single `FAIL` line is expected and correct on a fresh clone. `FRC-CSX-VVK` sets a per-indicator automated-method target that rises by class (recommended `SHOULD` at Class B with at least one method, required `MUST` at Class C with at least two), and a template has none yet. It is reported as an advisory failure during authoring and becomes a hard failure only at release. `hard failures: 0` is the line that gates the build.
 
 24.3 percent readiness is also the correct starting number. It measures how much of your record is filled in with facts, not how secure your system is.
 

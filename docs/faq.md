@@ -56,7 +56,7 @@ Whatever your federal customers require. Two practical points: a class change is
 
 ## Will an AI write my record for me?
 
-Partly, and deliberately not the part that matters. The planned Layer 2 drafter turns collected facts into draft prose and proposes a diff for you to correct. It cannot set a status, cannot produce evidence, and cannot invent a specific that no telemetry supports. The bottleneck in a real record is writing 214 entries of clear prose, not deciding what is true, and only the first of those is safe to automate. See [automation](automation.md).
+Partly, and deliberately not the part that matters. The opt-in Layer 2 AI-assist modules turn collected facts into draft prose and propose a diff for you to correct, explain findings, summarize evidence, flag over-claims, and suggest mappings. None can set a status, produce evidence, or invent a specific that no telemetry supports. The bottleneck in a real record is writing the narrative entries of clear prose, not deciding what is true, and only the first of those is safe to automate. See [automation](automation.md).
 
 ## Why Python with three dependencies?
 

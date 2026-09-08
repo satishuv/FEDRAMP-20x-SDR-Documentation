@@ -139,7 +139,7 @@ flowchart TB
 
     READ -->|feeds tests and the SDR-CSX-KMT metrics clock| DEVX
     ALERT -->|a reworded rule may change your record| DEVX
-    LLM["Layer 2, planned<br/>drafts prose from collected facts only"] -.->|proposes a diff, never a status| DEVX
+    LLM["Layer 2, opt-in AI assist<br/>drafts prose from collected facts only"] -.->|proposes a diff, never a status| DEVX
 
     classDef you fill:#fff4e6,stroke:#e8590c,stroke-width:2px,color:#7f2704
     classDef step fill:#f1f3f5,stroke:#495057,stroke-width:2px,color:#212529

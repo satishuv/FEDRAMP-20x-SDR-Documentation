@@ -45,7 +45,7 @@ What it does defend:
 - **Against drift.** Pinned sources plus a daily hash comparison against upstream, so a silently updated FedRAMP schema cannot change your build without you knowing. FedRAMP updates schema files in place without renaming them, which is exactly why the check exists.
 - **Against undetected tampering.** Deterministic builds mean a reviewer can regenerate your package and compare bytes. A modified deliverable that does not match its inputs fails the regenerate-then-diff gate.
 - **Against builder bugs.** The validator re-derives everything from the dataset through an independent code path, so a wrong builder cannot pass by sharing the validator's assumptions.
-- **Against accidental privilege.** The collector calls two APIs and refuses administrative-looking credentials.
+- **Against accidental privilege.** The collectors call only read-only actions enumerated in an allowlist and refuse administrative-looking credentials.
 
 What it does not defend against: a maintainer with commit access acting in bad faith, a compromised developer machine, or false facts entered deliberately. Those need controls outside this repository.
 
