@@ -4,7 +4,7 @@ Notable changes to this project. Format follows [Keep a Changelog](https://keepa
 
 One project-specific convention: the pinned FedRAMP dataset version is recorded alongside every release, because the same code against a different dataset produces a different record.
 
-## Unreleased
+## 1.0.0, 2026-09-08
 
 Pinned dataset: `2026.07.14.01`
 
