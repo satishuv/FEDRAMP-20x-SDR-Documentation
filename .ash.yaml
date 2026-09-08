@@ -24,3 +24,10 @@ global_settings:
       reason: 'Git-ignored prefill sidecar derived from account facts; not secrets.'
     - path: 'automation/ai/test_explain_findings.py'
       reason: 'Test-only file; detect-secrets matches a long snake_case test function name against its IBM-Cloud-IAM-Key heuristic. It is a Python identifier in a print statement, not a credential.'
+  suppressions:
+    - rule_id: 'CKV_AWS_26'
+      path: 'automation/pipeline/sdr-pipeline.yaml'
+      reason: 'SNS topic intentionally not KMS-encrypted at rest: EventBridge and CodePipeline cannot publish through the aws/sns managed key policy, which would silently break approval and failure notifications. SSL-in-transit is enforced via the topic policy. Documented inline as a checkov:skip; mirrored here so ASH honors it.'
+    - rule_id: 'CKV_AWS_18'
+      path: 'automation/pipeline/sdr-pipeline.yaml'
+      reason: 'Access logging is intentionally not enabled on the LogBucket itself: a log-destination bucket cannot log to another log bucket without an infinite chain (standard S3 log-bucket exception). Documented inline as a checkov:skip; mirrored here so ASH honors it.'

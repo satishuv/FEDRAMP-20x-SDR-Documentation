@@ -22,6 +22,11 @@ BASE = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 SERVICE_MAP = os.path.join(BASE, "traceability", "aws-service-ksi-map.json")
 OUT_DIR = os.path.join(BASE, "automation", "collectors")
 OUT = os.path.join(OUT_DIR, "registry.json")
+# Stage 1 triage: which pending KSIs now have a real read-only collector
+# (bucket_a) versus a provider-deployed Config custom rule (bucket_b). The
+# registry reads this so the collectable-now count regenerates deterministically
+# instead of being hand-edited.
+CLASSIFICATION = os.path.join(OUT_DIR, "pending-ksi-classification.json")
 
 # Service names recognized in guidance prose, longest match first.
 SERVICES = [
@@ -55,6 +60,15 @@ def find_services(text):
 
 def main():
     smap = json.load(open(SERVICE_MAP, encoding="utf-8"))
+    # Load the Stage 1 triage. bucket_a KSIs now have a real read-only
+    # collector, so their described-method checks are collectable now.
+    # bucket_b KSIs are provider-deployed Config custom rules, not repo
+    # collectors, so they stay not-collectable and are flagged provider_deployed.
+    bucket_a, bucket_b = set(), set()
+    if os.path.exists(CLASSIFICATION):
+        cls = json.load(open(CLASSIFICATION, encoding="utf-8"))
+        bucket_a = set(cls.get("bucket_a", {}).get("ksis", {}).keys())
+        bucket_b = set(cls.get("bucket_b", {}).get("ksis", {}).keys())
     registry = {}
     total_rules = 0
     for kid, e in sorted(smap["ksis"].items()):
@@ -72,14 +86,23 @@ def main():
                     "collectable_now": True,
                 })
             total_rules += len(rules)
-            checks.append({
+            # A described method becomes collectable now when a read-only
+            # collector was built for this KSI (bucket_a). Bucket_b keeps it
+            # false and records that it is provider-deployed infrastructure.
+            method_check = {
                 "check_id": f"{kid}:{source}:method",
                 "type": "described_method",
                 "services": find_services(text),
                 "description": text,
                 "source": source,
-                "collectable_now": False,
-            })
+                "collectable_now": kid in bucket_a,
+            }
+            if kid in bucket_a:
+                method_check["collector"] = "automation/collectors/collectors.py"
+            if kid in bucket_b:
+                method_check["provider_deployed"] = True
+                method_check["deploy"] = "automation/config-rules/ (Config custom rule)"
+            checks.append(method_check)
         registry[kid] = {
             "name": e["name"],
             "family": e["family"],
@@ -105,12 +128,22 @@ def main():
         },
         "ksis": registry,
     }
+    collectable = sum(1 for k in registry.values()
+                      for c in k["checks"] if c["collectable_now"])
+    ksis_collectable = sum(
+        1 for k in registry.values()
+        if any(c["collectable_now"] for c in k["checks"]))
+    ksis_provider_deployed = sum(
+        1 for k in registry.values()
+        if any(c.get("provider_deployed") for c in k["checks"]))
+    doc["meta"]["ksis_collectable_now"] = ksis_collectable
+    doc["meta"]["ksis_provider_deployed_only"] = ksis_provider_deployed
     os.makedirs(OUT_DIR, exist_ok=True)
     with open(OUT, "w", encoding="utf-8", newline="\n") as f:
         json.dump(doc, f, indent=1)
-    collectable = sum(1 for k in registry.values()
-                      for c in k["checks"] if c["collectable_now"])
-    print(f"registry: {len(registry)} KSIs, {collectable} collectable checks now, "
+    print(f"registry: {len(registry)} KSIs, {ksis_collectable} collectable now "
+          f"(KSI level), {ksis_provider_deployed} provider-deployed only, "
+          f"{collectable} collectable checks, "
           f"{sum(len(k['checks']) for k in registry.values())} checks total")
     return 0
 

@@ -1,0 +1,56 @@
+{
+ "meta": {
+  "title": "Triage of the 30 not-yet-directly-collectable KSIs",
+  "derived_from": "automation/collectors/registry.json (collectable_now == false)",
+  "dataset_version": "2026.07.14.01",
+  "purpose": "Stage 1 output. Classifies each pending KSI as bucket_a (a read-only AWS API exposes the state, so a deterministic collector can gather it now) or bucket_b (the evidence is a document, artifact, or reviewed-within-interval process that needs a deployable AWS Config custom rule plus provider-produced evidence, and is NOT honestly collectable read-only from this repo).",
+  "boundary_note": "Bucket A collectors read posture and emit facts, never statuses. Bucket B is provider-deployed infrastructure, not a read-only collector; marking it collectable_now would be over-claiming and is refused.",
+  "counts": {
+   "bucket_a_direct_collectors": 19,
+   "bucket_b_custom_rule_scaffolds": 11,
+   "total_pending": 30,
+   "already_collectable_now": 16,
+   "projected_collectable_now_after_bucket_a": 35
+  }
+ },
+ "bucket_a": {
+  "description": "Read-only describe/list/get exposes the state. Build as new collectors in collectors.py with offline fixture tests; each new API action is added to READ_ONLY_ACTIONS on purpose.",
+  "ksis": {
+   "KSI-CMT-RMV": {"family": "CMT", "name": "Redeploying vs Modifying", "signal": "CloudFormation drift status of stacks", "read_only_calls": ["cloudformation:ListStacks", "cloudformation:DescribeStackResourceDrifts"]},
+   "KSI-CMT-VTD": {"family": "CMT", "name": "Validating Throughout Deployment", "signal": "CodePipeline stages include approval and test gates", "read_only_calls": ["codepipeline:ListPipelines", "codepipeline:GetPipeline"]},
+   "KSI-CNA-EIS": {"family": "CNA", "name": "Enforcing Intended State", "signal": "CloudFormation drift against baseline", "read_only_calls": ["cloudformation:ListStacks", "cloudformation:DescribeStackResourceDrifts"]},
+   "KSI-CNA-IBP": {"family": "CNA", "name": "Implementing Best Practices", "signal": "Config conformance pack compliance", "read_only_calls": ["config:DescribeConformancePacks", "config:GetConformancePackComplianceSummary"]},
+   "KSI-CNA-RVP": {"family": "CNA", "name": "Reviewing Protections", "signal": "WAF web ACLs and rate-based rules associated with ALB/CloudFront", "read_only_calls": ["wafv2:ListWebACLs", "wafv2:ListResourcesForWebACL"]},
+   "KSI-CNA-ULN": {"family": "CNA", "name": "Using Logical Networking", "signal": "Security group and network ACL posture (logical segmentation)", "read_only_calls": ["ec2:DescribeSecurityGroups", "ec2:DescribeNetworkAcls"]},
+   "KSI-IAM-JIT": {"family": "IAM", "name": "Authorizing Just-in-Time", "signal": "Short max session durations; no long-lived access keys for privileged principals", "read_only_calls": ["iam:ListRoles", "iam:GetRole", "iam:ListAccessKeys", "iam:ListUsers"]},
+   "KSI-IAM-SUS": {"family": "IAM", "name": "Responding to Suspicious Activity", "signal": "GuardDuty enabled; EventBridge rules and Lambda containment functions present", "read_only_calls": ["guardduty:ListDetectors", "guardduty:GetDetector", "events:ListRules"]},
+   "KSI-MLA-EVC": {"family": "MLA", "name": "Evaluating Configurations", "signal": "Config conformance pack continuous evaluation", "read_only_calls": ["config:DescribeConformancePacks", "config:GetConformancePackComplianceSummary"]},
+   "KSI-MLA-OSM": {"family": "MLA", "name": "Operating SIEM Capability", "signal": "Org CloudTrail on; S3 archive with object lock; Security Hub enabled", "read_only_calls": ["cloudtrail:DescribeTrails", "s3:GetObjectLockConfiguration", "securityhub:DescribeHub"]},
+   "KSI-PIY-RSD": {"family": "PIY", "name": "Reviewing Security in the SDLC", "signal": "CodePipeline security stages (test, static analysis, scan) present", "read_only_calls": ["codepipeline:ListPipelines", "codepipeline:GetPipeline"]},
+   "KSI-RPL-TRC": {"family": "RPL", "name": "Testing Recovery Capabilities", "signal": "AWS Backup restore-testing plan configured and scheduled", "read_only_calls": ["backup:ListRestoreTestingPlans", "backup:GetRestoreTestingPlan"]},
+   "KSI-SCR-MIT": {"family": "SCR", "name": "Mitigating Supply Chain Risk", "signal": "Inspector scanning enabled for ECR and Lambda", "read_only_calls": ["inspector2:BatchGetAccountStatus", "inspector2:ListCoverage"]},
+   "KSI-SCR-MON": {"family": "SCR", "name": "Monitoring Supply Chain Risk", "signal": "Inspector continuous scanning and alerting pipeline enabled", "read_only_calls": ["inspector2:BatchGetAccountStatus", "events:ListRules", "sns:ListTopics"]},
+   "KSI-SVC-ACM": {"family": "SVC", "name": "Automating Configuration Management", "signal": "CloudFormation drift against baseline", "read_only_calls": ["cloudformation:ListStacks", "cloudformation:DescribeStackResourceDrifts"]},
+   "KSI-SVC-EIS": {"family": "SVC", "name": "Evaluating and Improving Security", "signal": "Config conformance pack security-baseline gaps", "read_only_calls": ["config:DescribeConformancePacks", "config:GetConformancePackComplianceSummary"]},
+   "KSI-SVC-PRR": {"family": "SVC", "name": "Preventing Residual Risk", "signal": "Encryption, isolation, public-access blocks on data stores", "read_only_calls": ["s3:GetBucketPublicAccessBlock", "s3:GetBucketEncryption", "kms:ListKeys"]},
+   "KSI-SVC-RUD": {"family": "SVC", "name": "Removing Unwanted Data", "signal": "S3 lifecycle policies, DynamoDB TTL, backup retention configured", "read_only_calls": ["s3:GetBucketLifecycleConfiguration", "dynamodb:ListTables", "dynamodb:DescribeTimeToLive", "backup:ListBackupPlans"]},
+   "KSI-SVC-VRI": {"family": "SVC", "name": "Validating Resource Integrity", "signal": "ECR immutable tags/image signing; CloudTrail log-file validation enabled", "read_only_calls": ["ecr:DescribeRepositories", "cloudtrail:GetTrailStatus", "cloudtrail:DescribeTrails"]}
+  }
+ },
+ "bucket_b": {
+  "description": "Evidence is a document, artifact, or reviewed-within-interval process. Not readable from a plain API. Deliver as a deployable AWS Config custom rule plus a Lambda evaluation skeleton the provider installs in their own account. Registry stays collectable_now=false; a provider_deployed flag records that this is provider infrastructure, not a repo read-only collector.",
+  "ksis": {
+   "KSI-CED-RAT": {"family": "CED", "name": "Reviewing All Training", "evidence": "training-records object in S3, current within review interval, covers each audience"},
+   "KSI-CMT-RVP": {"family": "CMT", "name": "Reviewing Change Procedures", "evidence": "change-management procedure document reviewed within interval"},
+   "KSI-INR-AAR": {"family": "INR", "name": "Generating After Action Reports", "evidence": "after-action report object per closed incident within interval"},
+   "KSI-INR-RIR": {"family": "INR", "name": "Reviewing Incident Response Procedures", "evidence": "IR procedure and contact list reviewed within interval"},
+   "KSI-INR-RPI": {"family": "INR", "name": "Reviewing Past Incidents", "evidence": "incident-history data store (CloudTrail Lake or S3 archive) with required retention"},
+   "KSI-MLA-RVL": {"family": "MLA", "name": "Reviewing Logs", "evidence": "scheduled review queries and alerting rules exist and are enabled"},
+   "KSI-PIY-RES": {"family": "PIY", "name": "Reviewing Executive Support", "evidence": "executive review artifact updated within interval"},
+   "KSI-PIY-RIS": {"family": "PIY", "name": "Reviewing Investments in Security", "evidence": "investment review artifact current within interval"},
+   "KSI-PIY-RVD": {"family": "PIY", "name": "Reviewing Vulnerability Disclosures", "evidence": "vulnerability disclosure program document and intake configuration current"},
+   "KSI-RPL-ARP": {"family": "RPL", "name": "Aligning Recovery Plan", "evidence": "recovery plan artifact reviewed within interval; recovery infrastructure configured"},
+   "KSI-RPL-RRO": {"family": "RPL", "name": "Reviewing Recovery Objectives", "evidence": "documented RTO and RPO reviewed within interval; backup settings match stated RPO"}
+  }
+ }
+}
