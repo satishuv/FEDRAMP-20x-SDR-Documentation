@@ -85,7 +85,8 @@ jobs:
       - name: Run offline collector fixture-scale tests (AWS-shaped, no AWS)
         run: python automation/collectors/test_collectors_fixtures.py
       - name: Run offline multi-account fan-out tests (no AWS)
-        run: python automation/collectors/test_multi_account.py      - name: Run offline pre-fill tests (no AWS account needed)
+        run: python automation/collectors/test_multi_account.py
+      - name: Run offline pre-fill tests (no AWS account needed)
         run: python automation/prefill/test_prefill.py
       - name: Run offline AI narrative-drafter boundary tests (no AWS, no model)
         run: python automation/ai/test_draft_narratives.py
