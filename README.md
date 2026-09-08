@@ -59,10 +59,10 @@ A hand-maintained Word document cannot satisfy that. It drifts from the requirem
 
 ## The approach
 
-This framework makes the SDR a build artifact with exactly two inputs.
+In plain terms: you write facts about your system, and the framework turns them into an official, self-checking compliance report. You maintain one file; everything else is generated and verified for you.
 
 <p align="center">
-  <img src="docs/assets/architecture.svg" alt="Architecture: two inputs (records-store.json and the pinned FedRAMP CR26 dataset) feed one deterministic pipeline (python sdr.py all) that produces the deliverables, which two checkers (validate_sdr.py build gate and sdrscan.py readiness scanner) inspect, closing a loop back to the one file you edit." width="720">
+  <img src="docs/assets/architecture.svg" alt="How it works: your system's facts (records-store.json, the one file you edit) and the official rulebook (the pinned FedRAMP CR26 dataset) both feed the builder (python sdr.py all), which produces the finished report (the SDR in JSON, plain text, Word, and crosswalk formats). Two automatic checkers inspect it: the fact-checker (validate_sdr.py) fails the build if a claim does not match the rulebook, and the to-do list (sdrscan.py) scores how ready you are. Together they form a loop that points you back to what to fix next in your facts file." width="760">
 </p>
 
 Two inputs, one pipeline, two checkers with different jobs, and a loop that tells you what to write next.
