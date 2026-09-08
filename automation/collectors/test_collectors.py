@@ -358,6 +358,46 @@ def test_restore_testing_none():
         FakeSession({"backup": bk}), "us-east-1")[0]["status"] == "NONE"
 
 
+def test_bucket_versioning_enabled():
+    os.environ["SDR_STORE_BUCKET"] = "my-store"
+    try:
+        sess = FakeSession({"s3": FakeClient(responses={
+            "get_bucket_versioning": {"Status": "Enabled"}})})
+        fact = collectors.collect_bucket_versioning(sess, "us-east-1")[0]
+        assert fact["status"] == "ENABLED"
+        assert fact["check"] == "versioning"
+    finally:
+        del os.environ["SDR_STORE_BUCKET"]
+
+
+def test_bucket_versioning_suspended():
+    sess = FakeSession({"s3": FakeClient(responses={
+        "get_bucket_versioning": {"Status": "Suspended"}})})
+    fact = collectors.collect_bucket_versioning(sess, "us-east-1", bucket="b")[0]
+    assert fact["status"] == "NOT_ENABLED"
+    assert "Suspended" in fact["detail"]
+
+
+def test_bucket_versioning_never_set():
+    sess = FakeSession({"s3": FakeClient(responses={"get_bucket_versioning": {}})})
+    fact = collectors.collect_bucket_versioning(sess, "us-east-1", bucket="b")[0]
+    assert fact["status"] == "NOT_ENABLED"
+
+
+def test_bucket_versioning_not_configured():
+    os.environ.pop("SDR_STORE_BUCKET", None)
+    sess = FakeSession({"s3": FakeClient()})
+    fact = collectors.collect_bucket_versioning(sess, "us-east-1")[0]
+    assert fact["status"] == "NOT_CONFIGURED"
+
+
+def test_bucket_versioning_client_error():
+    sess = FakeSession({"s3": FakeClient(
+        errors={"get_bucket_versioning": FakeClientError("AccessDenied")})})
+    fact = collectors.collect_bucket_versioning(sess, "us-east-1", bucket="b")[0]
+    assert fact["status"].startswith("ERROR:")
+
+
 def _run_all():
     tests = [v for k, v in sorted(globals().items())
              if k.startswith("test_") and callable(v)]

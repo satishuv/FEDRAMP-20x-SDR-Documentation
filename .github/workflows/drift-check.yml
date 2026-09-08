@@ -104,10 +104,16 @@ jobs:
         run: |
           set -e
           pip install --quiet jsonschema referencing python-docx
+          cp references/fedramp-consolidated-rules.json /tmp/dataset-old.json
           curl -sL --max-time 60 \
             "https://raw.githubusercontent.com/FedRAMP/rules/main/fedramp-consolidated-rules.json" \
             -o references/fedramp-consolidated-rules.json
           NEWVER=$(python -c "import json;print(json.load(open('references/fedramp-consolidated-rules.json'))['info']['version'])")
+          # Report which rules materially changed (force / applicability /
+          # statement) between the old and new dataset, for the PR body.
+          python validation/scripts/dataset_diff.py /tmp/dataset-old.json \
+            references/fedramp-consolidated-rules.json --json /tmp/dataset-diff.json \
+            | tee /tmp/dataset-diff.txt
           # Bump the profile dataset_version so the new dataset_version_agreement
           # gate passes; build_profiles derives it from the dataset on rebuild.
           python validation/scripts/build_catalogs.py
@@ -125,6 +131,7 @@ jobs:
           git add -- . ':(exclude)*.docx'
           git commit -m "chore: regenerate deliverables for CR26 dataset $NEWVER"
           git push -u origin "$BRANCH" || { echo "branch may already exist"; exit 0; }
+          DIFF_SUMMARY=$(cat /tmp/dataset-diff.txt 2>/dev/null || echo "(diff unavailable)")
           gh pr create --title "CR26 dataset update: regenerate to $NEWVER" \
-            --body "The pinned CR26 dataset drifted from upstream. This PR pulls the new dataset and regenerates every deliverable deterministically. REVIEW the requirement-text diff before merging: confirm which rules changed and whether any provider records need revisiting. No status was changed and no assessment was written." \
+            --body "$(printf 'The pinned CR26 dataset drifted from upstream. This PR pulls the new dataset and regenerates every deliverable deterministically.\n\n## Material rule changes (force / applicability / statement)\n```\n%s\n```\n\nREVIEW the requirement-text diff before merging: confirm which rules changed and whether any provider records need revisiting. No status was changed and no assessment was written.' "$DIFF_SUMMARY")" \
             || echo "PR may already exist for this dataset version."

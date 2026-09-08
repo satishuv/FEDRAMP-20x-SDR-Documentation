@@ -100,10 +100,18 @@ jobs:
         run: python automation/ai/test_suggest_ksi_mapping.py
       - name: Run offline metric-appender tests (no AWS account needed)
         run: python automation/metrics/test_append_metrics.py
+      - name: Run offline longitudinal metric-history tests (no AWS)
+        run: python automation/metrics/test_metric_history_longitudinal.py
       - name: Run offline Config custom-rule handler tests (no AWS, Bucket B)
         run: python automation/config-rules/test_evidence_existence_rule.py
+      - name: Run offline Config-rule deploy-template generator tests (no AWS)
+        run: python automation/config-rules/deploy/test_generate_templates.py
       - name: Run offline durable-store provisioner tests (no AWS)
         run: python automation/storage/test_provision_store.py
+      - name: Run offline AI Bedrock-backend boundary tests (no AWS, no model)
+        run: python automation/ai/test_bedrock_boundary.py
+      - name: Run offline dataset-diff tests (no AWS)
+        run: python validation/scripts/test_dataset_diff.py
       - name: Refuse a stale check catalog
         run: |
           python automation/sdrscan/sdrscan.py --write-catalog
