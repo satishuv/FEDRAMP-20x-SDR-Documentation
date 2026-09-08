@@ -61,37 +61,9 @@ A hand-maintained Word document cannot satisfy that. It drifts from the requirem
 
 This framework makes the SDR a build artifact with exactly two inputs.
 
-```mermaid
-flowchart LR
-    DS["FedRAMP CR26 dataset<br/>pinned and hash verified"]
-    RS["records-store.json<br/>the one file you edit"]
-    PIPE["python sdr.py all<br/>deterministic pipeline"]
-    OUT["Deliverables<br/>JSON, plain text, Word, crosswalk"]
-    GATE["validate_sdr.py<br/>build gate, 0 hard failures"]
-    SCAN["sdrscan.py<br/>readiness, 37 checks"]
-
-    DS --> PIPE
-    RS --> PIPE
-    PIPE --> OUT
-    OUT --> GATE
-    OUT --> SCAN
-    DS -.->|re-derives every statement independently| GATE
-    GATE -->|a mismatch fails the build| RS
-    SCAN -->|ranked findings drive the next edit| RS
-
-    classDef src fill:#e7f5ff,stroke:#1971c2,stroke-width:2px,color:#0b3d66
-    classDef you fill:#fff4e6,stroke:#e8590c,stroke-width:2px,color:#7f2704
-    classDef step fill:#f1f3f5,stroke:#495057,stroke-width:2px,color:#212529
-    classDef out fill:#ebfbee,stroke:#2f9e44,stroke-width:2px,color:#14532d
-    classDef gate fill:#fff0f6,stroke:#c2255c,stroke-width:2px,color:#7a1236
-    classDef scan fill:#f3f0ff,stroke:#6741d9,stroke-width:2px,color:#3b1e7a
-    class DS src
-    class RS you
-    class PIPE step
-    class OUT out
-    class GATE gate
-    class SCAN scan
-```
+<p align="center">
+  <img src="docs/assets/architecture.svg" alt="Architecture: two inputs (records-store.json and the pinned FedRAMP CR26 dataset) feed one deterministic pipeline (python sdr.py all) that produces the deliverables, which two checkers (validate_sdr.py build gate and sdrscan.py readiness scanner) inspect, closing a loop back to the one file you edit." width="720">
+</p>
 
 Two inputs, one pipeline, two checkers with different jobs, and a loop that tells you what to write next.
 

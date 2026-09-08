@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 620" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8b949e"/>
+    </marker>
+    <marker id="arrowLoop" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#d29922"/>
+    </marker>
+  </defs>
+
+  <!-- ===== solid forward edges ===== -->
+  <g stroke="#8b949e" stroke-width="2" fill="none">
+    <path d="M240,110 C240,145 350,120 350,152" marker-end="url(#arrow)"/>
+    <path d="M640,110 C640,145 430,120 430,152" marker-end="url(#arrow)"/>
+    <path d="M390,214 L390,266" marker-end="url(#arrow)"/>
+    <path d="M360,328 C360,360 250,352 250,384" marker-end="url(#arrow)"/>
+    <path d="M420,328 C420,360 530,352 530,384" marker-end="url(#arrow)"/>
+  </g>
+
+  <!-- ===== feedback loop: checkers -> records-store, routed down the left margin ===== -->
+  <path d="M130,414 C60,414 60,90 118,84" fill="none" stroke="#d29922" stroke-width="2.5" stroke-dasharray="7 5" marker-end="url(#arrowLoop)"/>
+  <path d="M130,414 L156,414" fill="none" stroke="#d29922" stroke-width="2.5" stroke-dasharray="7 5"/>
+
+  <!-- loop label -->
+  <g transform="translate(70,250)">
+    <rect x="-56" y="-20" width="130" height="46" rx="8" fill="#161b22" stroke="#d29922" stroke-width="1.2"/>
+    <text x="9" y="-1" fill="#e3b341" font-size="14" text-anchor="middle" font-weight="700">the loop</text>
+    <text x="9" y="18" fill="#8b949e" font-size="12" text-anchor="middle">what to edit next</text>
+  </g>
+
+  <!-- ===== nodes ===== -->
+  <g>
+    <rect x="120" y="52" width="240" height="58" rx="10" fill="#3d2e00" stroke="#d29922" stroke-width="2"/>
+    <text x="240" y="80" fill="#f0d68a" font-size="17" text-anchor="middle" font-weight="600">records-store.json</text>
+    <text x="240" y="99" fill="#c9b06b" font-size="12" text-anchor="middle">the one file you edit — system facts</text>
+  </g>
+  <g>
+    <rect x="520" y="52" width="240" height="58" rx="10" fill="#0d2847" stroke="#3b82f6" stroke-width="2"/>
+    <text x="640" y="80" fill="#a9cbf5" font-size="17" text-anchor="middle" font-weight="600">FedRAMP CR26 dataset</text>
+    <text x="640" y="99" fill="#7aa7d9" font-size="12" text-anchor="middle">pinned, hash-verified</text>
+  </g>
+  <g>
+    <rect x="270" y="152" width="240" height="62" rx="10" fill="#21262d" stroke="#8b949e" stroke-width="2"/>
+    <text x="390" y="181" fill="#e6edf3" font-size="17" text-anchor="middle" font-weight="600" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace">python sdr.py all</text>
+    <text x="390" y="200" fill="#8b949e" font-size="12" text-anchor="middle">deterministic pipeline</text>
+  </g>
+  <g>
+    <rect x="270" y="266" width="240" height="62" rx="10" fill="#0f2e1a" stroke="#22c55e" stroke-width="2"/>
+    <text x="390" y="295" fill="#9ae6b4" font-size="17" text-anchor="middle" font-weight="600">Deliverables</text>
+    <text x="390" y="314" fill="#6ec38a" font-size="12" text-anchor="middle">JSON · text · Word · crosswalk</text>
+  </g>
+
+  <!-- checkers band label, placed to the RIGHT so it never overlaps the arrows -->
+  <text x="700" y="360" fill="#6e7681" font-size="12" text-anchor="middle" letter-spacing="0.5">two checkers,</text>
+  <text x="700" y="378" fill="#6e7681" font-size="12" text-anchor="middle" letter-spacing="0.5">different jobs</text>
+
+  <g>
+    <rect x="130" y="384" width="240" height="62" rx="10" fill="#3d0a24" stroke="#ec4899" stroke-width="2"/>
+    <text x="250" y="413" fill="#f9a8d4" font-size="16" text-anchor="middle" font-weight="600" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace">validate_sdr.py</text>
+    <text x="250" y="432" fill="#d6789f" font-size="12" text-anchor="middle">build gate — 0 hard failures</text>
+  </g>
+  <g>
+    <rect x="410" y="384" width="240" height="62" rx="10" fill="#2a1758" stroke="#8b5cf6" stroke-width="2"/>
+    <text x="530" y="413" fill="#c4b5fd" font-size="16" text-anchor="middle" font-weight="600" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace">sdrscan.py</text>
+    <text x="530" y="432" fill="#a894e0" font-size="12" text-anchor="middle">readiness scanner</text>
+  </g>
+
+  <!-- caption -->
+  <text x="390" y="500" fill="#8b949e" font-size="13.5" text-anchor="middle">Two inputs, one pipeline, two checkers — and a loop that tells you what to write next.</text>
+</svg>
