@@ -53,7 +53,7 @@
 
 ## The problem
 
-FedRAMP 20x asks providers for a Security Decision Record (SDR) that is machine-readable, schema-valid, and backed by automated verification that runs continuously. Two rules make this explicit: `FRC-CSX-VVK` requires automated methods to verify and validate every Key Security Indicator, and `FRC-CSX-VVR` asks for the same across the SDR itself.
+FedRAMP 20x asks providers for a Security Decision Record (SDR) that is machine-readable, schema-valid, and backed by automated verification. Two rules drive this: `FRC-CSX-VVK` calls for automated methods to persistently verify and validate each Key Security Indicator, with the obligation rising by class (`MAY` at A, `SHOULD` at B, `MUST` at C and D), and `FRC-CSX-VVR` asks for the same across the SDR itself.
 
 A hand-maintained Word document cannot satisfy that. It drifts from the requirement text the moment FedRAMP updates the dataset, it cannot be diffed, and it gives an assessor no way to trace a sentence back to the rule that demanded it.
 
