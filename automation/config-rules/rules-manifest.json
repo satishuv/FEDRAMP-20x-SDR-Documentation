@@ -1,0 +1,22 @@
+{
+ "meta": {
+  "title": "Bucket B provider-deployed Config custom rules",
+  "dataset_version": "2026.07.14.01",
+  "handler": "evidence_existence_rule.lambda_handler",
+  "boundary": "These are provider-deployed AWS Config custom rules, NOT read-only collectors in this repository. Each checks that a provider-produced evidence artifact exists and is fresh within a review interval. A COMPLIANT result is telemetry (an artifact is present and current), never a compliance determination and never a source-eligibility or assessment decision. The provider owns the evidence S3 bucket and the review cadence. max_age_days values below are DEFAULT SUGGESTIONS the provider confirms against their own policy and the FedRAMP interval; they are not asserted as the FedRAMP-required values.",
+  "count": 11
+ },
+ "rules": [
+  {"ksi_id": "KSI-CED-RAT", "family": "CED", "rule_name": "sdr-ced-rat-training-records", "evidence": "training-records object covering each required audience", "default_max_age_days": 365},
+  {"ksi_id": "KSI-CMT-RVP", "family": "CMT", "rule_name": "sdr-cmt-rvp-change-procedure-review", "evidence": "change-management procedure document, reviewed", "default_max_age_days": 365},
+  {"ksi_id": "KSI-INR-AAR", "family": "INR", "rule_name": "sdr-inr-aar-after-action-reports", "evidence": "after-action report for each closed incident", "default_max_age_days": 90},
+  {"ksi_id": "KSI-INR-RIR", "family": "INR", "rule_name": "sdr-inr-rir-ir-procedure-review", "evidence": "incident response procedure and contact list, reviewed", "default_max_age_days": 365},
+  {"ksi_id": "KSI-INR-RPI", "family": "INR", "rule_name": "sdr-inr-rpi-incident-history-retention", "evidence": "incident history data store retention configuration record", "default_max_age_days": 365},
+  {"ksi_id": "KSI-MLA-RVL", "family": "MLA", "rule_name": "sdr-mla-rvl-log-review-config", "evidence": "scheduled log-review queries and alerting configuration record", "default_max_age_days": 90},
+  {"ksi_id": "KSI-PIY-RES", "family": "PIY", "rule_name": "sdr-piy-res-executive-review", "evidence": "executive support review artifact", "default_max_age_days": 365},
+  {"ksi_id": "KSI-PIY-RIS", "family": "PIY", "rule_name": "sdr-piy-ris-investment-review", "evidence": "security investment review artifact", "default_max_age_days": 365},
+  {"ksi_id": "KSI-PIY-RVD", "family": "PIY", "rule_name": "sdr-piy-rvd-vuln-disclosure", "evidence": "vulnerability disclosure program document and intake config", "default_max_age_days": 365},
+  {"ksi_id": "KSI-RPL-ARP", "family": "RPL", "rule_name": "sdr-rpl-arp-recovery-plan-review", "evidence": "recovery plan artifact, reviewed", "default_max_age_days": 365},
+  {"ksi_id": "KSI-RPL-RRO", "family": "RPL", "rule_name": "sdr-rpl-rro-rto-rpo-review", "evidence": "documented RTO/RPO artifact, reviewed", "default_max_age_days": 365}
+ ]
+}

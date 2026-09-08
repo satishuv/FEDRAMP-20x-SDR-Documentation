@@ -100,6 +100,8 @@ jobs:
         run: python automation/ai/test_suggest_ksi_mapping.py
       - name: Run offline metric-appender tests (no AWS account needed)
         run: python automation/metrics/test_append_metrics.py
+      - name: Run offline Config custom-rule handler tests (no AWS, Bucket B)
+        run: python automation/config-rules/test_evidence_existence_rule.py
       - name: Refuse a stale check catalog
         run: |
           python automation/sdrscan/sdrscan.py --write-catalog

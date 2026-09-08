@@ -53,6 +53,28 @@ READ_ONLY_ACTIONS = {
     "iam:GetAccountSummary",
     "iam:GetAccountPasswordPolicy",
     "iam:ListUsers",
+    # Stage 2 Bucket A additions (CNA, SVC, MLA families): all read-only.
+    "cloudformation:ListStacks",
+    "cloudformation:DescribeStackResourceDrifts",
+    "config:DescribeConformancePacks",
+    "config:GetConformancePackComplianceSummary",
+    "wafv2:ListWebACLs",
+    "wafv2:ListResourcesForWebACL",
+    "ec2:DescribeSecurityGroups",
+    "ec2:DescribeNetworkAcls",
+    "ecr:DescribeRepositories",
+    "s3:GetBucketEncryption",
+    "s3:GetBucketLifecycleConfiguration",
+    "dynamodb:ListTables",
+    "dynamodb:DescribeTimeToLive",
+    # Stage 3 Bucket A additions (IAM, CMT, PIY, SCR, RPL families): read-only.
+    "iam:ListRoles",
+    "iam:ListAccessKeys",
+    "events:ListRules",
+    "codepipeline:ListPipelines",
+    "codepipeline:GetPipeline",
+    "inspector2:BatchGetAccountStatus",
+    "backup:ListRestoreTestingPlans",
 }
 
 
@@ -404,6 +426,442 @@ def collect_iam(session, region):
 
 
 # Ordered so a driver can iterate. Each entry: (name, function).
+# --- Bucket A collectors (Stage 2: CNA, SVC, MLA families) -------------------
+# Each reads genuine AWS state read-only and emits posture facts. They map to
+# the pending KSIs classified in pending-ksi-classification.json (bucket_a).
+
+
+def collect_cfn_drift(session, region):
+    """AWS CloudFormation drift posture. Reports how many stacks report drift
+    against their template (the 'enforcing intended state' signal). Aggregate
+    counts only, never stack contents. Maps: CNA-EIS, SVC-ACM, CMT-RMV."""
+    try:
+        cf = session.client("cloudformation")
+    except Exception as e:  # noqa: BLE001
+        return [_fact("cloudformation", "client", "ERROR", type(e).__name__, region)]
+    try:
+        stacks = cf.list_stacks().get("StackSummaries", [])
+    except Exception as e:  # noqa: BLE001
+        return [_fact("cloudformation", "stacks", f"ERROR:{_client_error_name(e)}",
+                      "Could not list CloudFormation stacks", region)]
+    active = [s for s in stacks if s.get("StackStatus") != "DELETE_COMPLETE"]
+    if not active:
+        return [_fact("cloudformation", "drift", "NO_STACKS",
+                      "No active CloudFormation stacks in this region", region)]
+    drifted = sum(1 for s in active
+                  if s.get("DriftInformation", {}).get("StackDriftStatus") == "DRIFTED")
+    in_sync = sum(1 for s in active
+                  if s.get("DriftInformation", {}).get("StackDriftStatus") == "IN_SYNC")
+    return [_fact("cloudformation", "drift", "OBSERVED",
+                  f"{drifted} drifted, {in_sync} in sync of {len(active)} "
+                  "active stack(s)", region)]
+
+
+def collect_config_conformance(session, region):
+    """AWS Config conformance packs: codified best-practice / baseline rule
+    sets and their compliance. Maps: CNA-IBP, MLA-EVC, SVC-EIS."""
+    try:
+        cfg = session.client("config")
+    except Exception as e:  # noqa: BLE001
+        return [_fact("config", "conformance_client", "ERROR", type(e).__name__, region)]
+    try:
+        packs = cfg.describe_conformance_packs().get("ConformancePackDetails", [])
+    except Exception as e:  # noqa: BLE001
+        return [_fact("config", "conformance_packs", f"ERROR:{_client_error_name(e)}",
+                      "Could not describe conformance packs", region)]
+    if not packs:
+        return [_fact("config", "conformance_packs", "NONE",
+                      "No Config conformance packs in this region", region)]
+    facts = [_fact("config", "conformance_packs", "PRESENT",
+                   f"{len(packs)} conformance pack(s)", region)]
+    compliant = 0
+    checked = 0
+    for p in packs:
+        try:
+            s = cfg.get_conformance_pack_compliance_summary(
+                ConformancePackNames=[p["ConformancePackName"]])
+            checked += 1
+            summaries = s.get("ConformancePackComplianceSummaryList", [])
+            if summaries and summaries[0].get("ConformancePackComplianceStatus") == "COMPLIANT":
+                compliant += 1
+        except Exception:  # noqa: BLE001 - one pack's summary must not sink the run
+            continue
+    facts.append(_fact("config", "conformance_compliance", "OBSERVED",
+                       f"{compliant} of {checked} pack(s) reporting COMPLIANT",
+                       region))
+    return facts
+
+
+def collect_waf(session, region):
+    """AWS WAFv2 web ACLs and how many are associated with a resource
+    (ALB / CloudFront). The 'reviewing protections' signal. Maps: CNA-RVP."""
+    try:
+        waf = session.client("wafv2")
+    except Exception as e:  # noqa: BLE001
+        return [_fact("wafv2", "client", "ERROR", type(e).__name__, region)]
+    try:
+        acls = waf.list_web_acls(Scope="REGIONAL").get("WebACLs", [])
+    except Exception as e:  # noqa: BLE001
+        return [_fact("wafv2", "web_acls", f"ERROR:{_client_error_name(e)}",
+                      "Could not list WAF web ACLs", region)]
+    if not acls:
+        return [_fact("wafv2", "web_acls", "NONE",
+                      "No regional WAF web ACLs in this region", region)]
+    associated = 0
+    for a in acls:
+        try:
+            res = waf.list_resources_for_web_acl(WebACLArn=a["ARN"]).get(
+                "ResourceArns", [])
+            if res:
+                associated += 1
+        except Exception:  # noqa: BLE001
+            continue
+    return [_fact("wafv2", "web_acls", "OBSERVED",
+                  f"{associated} of {len(acls)} web ACL(s) associated with a "
+                  "resource", region)]
+
+
+def collect_network_segmentation(session, region):
+    """EC2 security groups and network ACLs: the logical-segmentation signal.
+    Reports counts and how many SGs allow unrestricted (0.0.0.0/0) inbound.
+    Aggregate posture, no rule bodies. Maps: CNA-ULN."""
+    try:
+        ec2 = session.client("ec2")
+    except Exception as e:  # noqa: BLE001
+        return [_fact("ec2", "client", "ERROR", type(e).__name__, region)]
+    facts = []
+    try:
+        sgs = ec2.describe_security_groups().get("SecurityGroups", [])
+        open_ingress = 0
+        for sg in sgs:
+            for perm in sg.get("IpPermissions", []):
+                if any(r.get("CidrIp") == "0.0.0.0/0" for r in perm.get("IpRanges", [])):
+                    open_ingress += 1
+                    break
+        facts.append(_fact("ec2", "security_groups", "OBSERVED",
+                           f"{len(sgs)} security group(s), {open_ingress} with "
+                           "an open (0.0.0.0/0) inbound rule", region))
+    except Exception as e:  # noqa: BLE001
+        facts.append(_fact("ec2", "security_groups", f"ERROR:{_client_error_name(e)}",
+                           "Could not describe security groups", region))
+    try:
+        acls = ec2.describe_network_acls().get("NetworkAcls", [])
+        facts.append(_fact("ec2", "network_acls", "OBSERVED",
+                           f"{len(acls)} network ACL(s)", region))
+    except Exception as e:  # noqa: BLE001
+        facts.append(_fact("ec2", "network_acls", f"ERROR:{_client_error_name(e)}",
+                           "Could not describe network ACLs", region))
+    return facts
+
+
+def collect_cloudtrail_integrity(session, region):
+    """CloudTrail log-file validation: the resource-integrity signal. Reports
+    how many trails have log-file validation enabled. Maps: SVC-VRI (with
+    collect_ecr_integrity)."""
+    try:
+        ct = session.client("cloudtrail")
+    except Exception as e:  # noqa: BLE001
+        return [_fact("cloudtrail", "log_validation_client", "ERROR",
+                      type(e).__name__, region)]
+    try:
+        trails = ct.describe_trails().get("trailList", [])
+    except Exception as e:  # noqa: BLE001
+        return [_fact("cloudtrail", "log_validation", f"ERROR:{_client_error_name(e)}",
+                      "Could not describe trails for log validation", region)]
+    if not trails:
+        return [_fact("cloudtrail", "log_validation", "NONE",
+                      "No CloudTrail trails visible in this region", region)]
+    validated = sum(1 for t in trails if t.get("LogFileValidationEnabled"))
+    return [_fact("cloudtrail", "log_validation", "OBSERVED",
+                  f"{validated} of {len(trails)} trail(s) have log-file "
+                  "validation enabled", region)]
+
+
+def collect_ecr_integrity(session, region):
+    """Amazon ECR image-tag immutability: the resource-integrity signal for
+    container images. Reports how many repositories enforce immutable tags.
+    Maps: SVC-VRI (with collect_cloudtrail_integrity)."""
+    try:
+        ecr = session.client("ecr")
+    except Exception as e:  # noqa: BLE001
+        return [_fact("ecr", "client", "ERROR", type(e).__name__, region)]
+    try:
+        repos = ecr.describe_repositories().get("repositories", [])
+    except Exception as e:  # noqa: BLE001
+        return [_fact("ecr", "repositories", f"ERROR:{_client_error_name(e)}",
+                      "Could not describe ECR repositories", region)]
+    if not repos:
+        return [_fact("ecr", "image_immutability", "NO_REPOS",
+                      "No ECR repositories in this region", region)]
+    immutable = sum(1 for r in repos
+                    if r.get("imageTagMutability") == "IMMUTABLE")
+    return [_fact("ecr", "image_immutability", "OBSERVED",
+                  f"{immutable} of {len(repos)} repositor(y/ies) enforce "
+                  "immutable image tags", region)]
+
+
+def collect_s3_data_protection(session, region):
+    """Amazon S3 encryption and public-access posture across buckets: the
+    residual-risk / prevent-exposure signal. Aggregate counts, no bucket
+    identifiers. Maps: SVC-PRR."""
+    try:
+        s3 = session.client("s3")
+    except Exception as e:  # noqa: BLE001
+        return [_fact("s3", "data_protection_client", "ERROR", type(e).__name__, region)]
+    try:
+        buckets = s3.list_buckets().get("Buckets", [])
+    except Exception as e:  # noqa: BLE001
+        return [_fact("s3", "encryption", f"ERROR:{_client_error_name(e)}",
+                      "Could not list S3 buckets", region)]
+    if not buckets:
+        return [_fact("s3", "encryption", "NONE", "No S3 buckets in this account", region)]
+    encrypted = 0
+    checked = 0
+    for b in buckets:
+        try:
+            enc = s3.get_bucket_encryption(Bucket=b["Name"])
+            checked += 1
+            rules = enc.get("ServerSideEncryptionConfiguration", {}).get("Rules", [])
+            if rules:
+                encrypted += 1
+        except Exception:  # noqa: BLE001 - one bucket read must not sink the run
+            checked += 1
+            continue
+    return [_fact("s3", "encryption", "OBSERVED",
+                  f"{encrypted} of {checked} bucket(s) have default encryption "
+                  f"configured ({len(buckets)} total)", region)]
+
+
+def collect_data_retention(session, region):
+    """Data-retention posture: S3 lifecycle rules, DynamoDB TTL, and backup
+    plans. The 'removing unwanted data' signal. Maps: SVC-RUD."""
+    facts = []
+    try:
+        s3 = session.client("s3")
+        buckets = s3.list_buckets().get("Buckets", [])
+        with_lifecycle = 0
+        checked = 0
+        for b in buckets:
+            try:
+                lc = s3.get_bucket_lifecycle_configuration(Bucket=b["Name"])
+                checked += 1
+                if lc.get("Rules"):
+                    with_lifecycle += 1
+            except Exception:  # noqa: BLE001 - NoSuchLifecycleConfiguration is normal
+                checked += 1
+                continue
+        facts.append(_fact("s3", "lifecycle", "OBSERVED",
+                           f"{with_lifecycle} of {checked} bucket(s) have a "
+                           "lifecycle policy", region))
+    except Exception as e:  # noqa: BLE001
+        facts.append(_fact("s3", "lifecycle", f"ERROR:{_client_error_name(e)}",
+                           "Could not read S3 lifecycle posture", region))
+    try:
+        ddb = session.client("dynamodb")
+        tables = ddb.list_tables().get("TableNames", [])
+        ttl_on = 0
+        for t in tables:
+            try:
+                d = ddb.describe_time_to_live(TableName=t)
+                if d.get("TimeToLiveDescription", {}).get(
+                        "TimeToLiveStatus") == "ENABLED":
+                    ttl_on += 1
+            except Exception:  # noqa: BLE001
+                continue
+        facts.append(_fact("dynamodb", "ttl", "OBSERVED",
+                           f"{ttl_on} of {len(tables)} table(s) have TTL enabled",
+                           region))
+    except Exception as e:  # noqa: BLE001
+        facts.append(_fact("dynamodb", "ttl", f"ERROR:{_client_error_name(e)}",
+                           "Could not read DynamoDB TTL posture", region))
+    return facts
+
+
+def collect_siem_posture(session, region):
+    """Centralized-logging / SIEM posture: CloudTrail on, and Security Hub
+    enabled (the aggregation point). The 'operating SIEM capability' signal.
+    Maps: MLA-OSM."""
+    facts = []
+    try:
+        ct = session.client("cloudtrail")
+        trails = ct.describe_trails().get("trailList", [])
+        multiregion = sum(1 for t in trails if t.get("IsMultiRegionTrail"))
+        facts.append(_fact("cloudtrail", "siem_capture", "OBSERVED",
+                           f"{len(trails)} trail(s), {multiregion} multi-region",
+                           region))
+    except Exception as e:  # noqa: BLE001
+        facts.append(_fact("cloudtrail", "siem_capture",
+                           f"ERROR:{_client_error_name(e)}",
+                           "Could not read CloudTrail for SIEM posture", region))
+    try:
+        sh = session.client("securityhub")
+        sh.describe_hub()
+        facts.append(_fact("securityhub", "siem_aggregation", "ENABLED",
+                           "Security Hub is enabled as the aggregation point",
+                           region))
+    except Exception as e:  # noqa: BLE001
+        name = _client_error_name(e)
+        if "InvalidAccess" in name or "ResourceNotFound" in name:
+            facts.append(_fact("securityhub", "siem_aggregation", "NOT_ENABLED",
+                               "Security Hub is not enabled in this region", region))
+        else:
+            facts.append(_fact("securityhub", "siem_aggregation", f"ERROR:{name}",
+                               "Could not determine Security Hub status", region))
+    return facts
+
+
+def collect_iam_jit(session, region):
+    """Just-in-time access posture: role max-session durations and whether
+    long-lived access keys exist. The 'authorizing just-in-time' signal.
+    Aggregate counts, no principal ARNs. Maps: IAM-JIT."""
+    try:
+        iam = session.client("iam")
+    except Exception as e:  # noqa: BLE001
+        return [_fact("iam", "jit_client", "ERROR", type(e).__name__, region)]
+    facts = []
+    try:
+        roles = iam.list_roles().get("Roles", [])
+        long_session = sum(1 for r in roles
+                           if (r.get("MaxSessionDuration") or 3600) > 3600)
+        facts.append(_fact("iam", "role_session_duration", "OBSERVED",
+                           f"{long_session} of {len(roles)} role(s) allow a "
+                           "session longer than 1 hour", region))
+    except Exception as e:  # noqa: BLE001
+        facts.append(_fact("iam", "role_session_duration",
+                           f"ERROR:{_client_error_name(e)}",
+                           "Could not list IAM roles", region))
+    try:
+        users = iam.list_users().get("Users", [])
+        with_keys = 0
+        for u in users:
+            try:
+                keys = iam.list_access_keys(UserName=u["UserName"]).get(
+                    "AccessKeyMetadata", [])
+                if keys:
+                    with_keys += 1
+            except Exception:  # noqa: BLE001
+                continue
+        facts.append(_fact("iam", "long_lived_keys", "OBSERVED",
+                           f"{with_keys} of {len(users)} user(s) have a "
+                           "long-lived access key", region))
+    except Exception as e:  # noqa: BLE001
+        facts.append(_fact("iam", "long_lived_keys",
+                           f"ERROR:{_client_error_name(e)}",
+                           "Could not list IAM users", region))
+    return facts
+
+
+def collect_iam_response_wiring(session, region):
+    """Suspicious-activity response wiring: GuardDuty enabled and EventBridge
+    rules present to route findings to containment. The 'responding to
+    suspicious activity' signal. Maps: IAM-SUS."""
+    facts = []
+    try:
+        gd = session.client("guardduty")
+        ids = gd.list_detectors().get("DetectorIds", [])
+        facts.append(_fact("guardduty", "response_detector",
+                           "ENABLED" if ids else "NONE",
+                           f"{len(ids)} GuardDuty detector(s) present", region))
+    except Exception as e:  # noqa: BLE001
+        facts.append(_fact("guardduty", "response_detector",
+                           f"ERROR:{_client_error_name(e)}",
+                           "Could not list GuardDuty detectors", region))
+    try:
+        ev = session.client("events")
+        rules = ev.list_rules().get("Rules", [])
+        enabled = sum(1 for r in rules if r.get("State") == "ENABLED")
+        facts.append(_fact("events", "response_rules", "OBSERVED",
+                           f"{enabled} of {len(rules)} EventBridge rule(s) "
+                           "enabled to route events", region))
+    except Exception as e:  # noqa: BLE001
+        facts.append(_fact("events", "response_rules",
+                           f"ERROR:{_client_error_name(e)}",
+                           "Could not list EventBridge rules", region))
+    return facts
+
+
+def collect_pipeline_gates(session, region):
+    """CodePipeline stage posture: how many pipelines include an approval or a
+    test/scan stage. The 'validating throughout deployment' and 'security in
+    the SDLC' signal. Maps: CMT-VTD, PIY-RSD."""
+    try:
+        cp = session.client("codepipeline")
+    except Exception as e:  # noqa: BLE001
+        return [_fact("codepipeline", "client", "ERROR", type(e).__name__, region)]
+    try:
+        names = [p["name"] for p in cp.list_pipelines().get("pipelines", [])]
+    except Exception as e:  # noqa: BLE001
+        return [_fact("codepipeline", "pipelines", f"ERROR:{_client_error_name(e)}",
+                      "Could not list CodePipelines", region)]
+    if not names:
+        return [_fact("codepipeline", "pipelines", "NONE",
+                      "No CodePipelines in this region", region)]
+    gate_keywords = ("approval", "test", "scan", "analysis", "security")
+    with_gate = 0
+    checked = 0
+    for n in names:
+        try:
+            pl = cp.get_pipeline(name=n).get("pipeline", {})
+            checked += 1
+            stage_text = " ".join(s.get("name", "").lower()
+                                  for s in pl.get("stages", []))
+            if any(k in stage_text for k in gate_keywords):
+                with_gate += 1
+        except Exception:  # noqa: BLE001
+            continue
+    return [_fact("codepipeline", "pipeline_gates", "OBSERVED",
+                  f"{with_gate} of {checked} pipeline(s) include an approval or "
+                  "test/scan stage", region)]
+
+
+def collect_supply_chain_scanning(session, region):
+    """Amazon Inspector account scanning status for ECR and Lambda: the
+    supply-chain mitigation/monitoring signal. Maps: SCR-MIT, SCR-MON."""
+    try:
+        insp = session.client("inspector2")
+    except Exception as e:  # noqa: BLE001
+        return [_fact("inspector2", "supply_chain_client", "ERROR",
+                      type(e).__name__, region)]
+    try:
+        resp = insp.batch_get_account_status()
+        accounts = resp.get("accounts", [])
+    except Exception as e:  # noqa: BLE001
+        return [_fact("inspector2", "scanning_status",
+                      f"ERROR:{_client_error_name(e)}",
+                      "Could not read Inspector account status", region)]
+    if not accounts:
+        return [_fact("inspector2", "scanning_status", "UNKNOWN",
+                      "No Inspector account status returned", region)]
+    state = accounts[0].get("resourceState", {})
+    ecr_on = state.get("ecr", {}).get("status") == "ENABLED"
+    lambda_on = state.get("lambda", {}).get("status") == "ENABLED"
+    enabled = [n for n, on in (("ECR", ecr_on), ("Lambda", lambda_on)) if on]
+    status = "ENABLED" if enabled else "NOT_ENABLED"
+    return [_fact("inspector2", "scanning_status", status,
+                  f"Inspector scanning enabled for: "
+                  f"{', '.join(enabled) if enabled else 'none'}", region)]
+
+
+def collect_restore_testing(session, region):
+    """AWS Backup restore-testing plans: the 'testing recovery capabilities'
+    signal. Reports whether a restore-testing plan is configured. Maps:
+    RPL-TRC."""
+    try:
+        bk = session.client("backup")
+    except Exception as e:  # noqa: BLE001
+        return [_fact("backup", "restore_testing_client", "ERROR",
+                      type(e).__name__, region)]
+    try:
+        plans = bk.list_restore_testing_plans().get("RestoreTestingPlans", [])
+    except Exception as e:  # noqa: BLE001
+        return [_fact("backup", "restore_testing", f"ERROR:{_client_error_name(e)}",
+                      "Could not list restore-testing plans", region)]
+    return [_fact("backup", "restore_testing",
+                  "PRESENT" if plans else "NONE",
+                  f"{len(plans)} restore-testing plan(s) configured", region)]
+
+
+# Ordered so a driver can iterate. Each entry: (name, function).
 COLLECTORS = [
     ("security_hub", collect_security_hub),
     ("access_analyzer", collect_access_analyzer),
@@ -415,4 +873,20 @@ COLLECTORS = [
     ("cloudtrail", collect_cloudtrail),
     ("s3", collect_s3),
     ("iam", collect_iam),
+    # Stage 2 Bucket A additions (CNA, SVC, MLA):
+    ("cfn_drift", collect_cfn_drift),
+    ("config_conformance", collect_config_conformance),
+    ("waf", collect_waf),
+    ("network_segmentation", collect_network_segmentation),
+    ("cloudtrail_integrity", collect_cloudtrail_integrity),
+    ("ecr_integrity", collect_ecr_integrity),
+    ("s3_data_protection", collect_s3_data_protection),
+    ("data_retention", collect_data_retention),
+    ("siem_posture", collect_siem_posture),
+    # Stage 3 Bucket A additions (IAM, CMT, PIY, SCR, RPL):
+    ("iam_jit", collect_iam_jit),
+    ("iam_response_wiring", collect_iam_response_wiring),
+    ("pipeline_gates", collect_pipeline_gates),
+    ("supply_chain_scanning", collect_supply_chain_scanning),
+    ("restore_testing", collect_restore_testing),
 ]

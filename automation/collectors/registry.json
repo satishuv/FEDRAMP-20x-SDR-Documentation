@@ -5,7 +5,9 @@
   "dataset_version": "2026.07.14.01",
   "ksis": 46,
   "config_managed_rule_checks": 45,
-  "boundary": "Collectors are read-only by design and produce facts, never statuses. A status changes only through deterministic checks plus human sign-off; generative output is never deterministic telemetry (FedRAMP definitions)."
+  "boundary": "Collectors are read-only by design and produce facts, never statuses. A status changes only through deterministic checks plus human sign-off; generative output is never deterministic telemetry (FedRAMP definitions).",
+  "ksis_collectable_now": 35,
+  "ksis_provider_deployed_only": 11
  },
  "ksis": {
   "KSI-CED-RAT": {
@@ -34,7 +36,9 @@
      ],
      "description": "AWS Config custom rule (backed by AWS Lambda) that evaluates whether the training-records object in Amazon S3 exists, is current within the defined review interval, and covers each required audience; reports COMPLIANT or NON_COMPLIANT.",
      "source": "verify",
-     "collectable_now": false
+     "collectable_now": false,
+     "provider_deployed": true,
+     "deploy": "automation/config-rules/ (Config custom rule)"
     },
     {
      "check_id": "KSI-CED-RAT:validate:method",
@@ -48,7 +52,9 @@
      ],
      "description": "Amazon EventBridge scheduled AWS Lambda check that compares completion records to the AWS IAM Identity Center workforce roster, emits an Amazon CloudWatch metric for coverage percentage and staleness, and raises an AWS Security Hub finding when coverage drops below the threshold.",
      "source": "validate",
-     "collectable_now": false
+     "collectable_now": false,
+     "provider_deployed": true,
+     "deploy": "automation/config-rules/ (Config custom rule)"
     }
    ]
   },
@@ -141,7 +147,8 @@
      ],
      "description": "AWS Config detects drift by comparing deployed resources to the AWS CloudFormation stack template and flags manually modified resources as NON_COMPLIANT.",
      "source": "verify",
-     "collectable_now": false
+     "collectable_now": true,
+     "collector": "automation/collectors/collectors.py"
     },
     {
      "check_id": "KSI-CMT-RMV:validate:method",
@@ -153,7 +160,8 @@
      ],
      "description": "AWS CloudTrail plus Amazon EventBridge detects mutating API calls made outside the deployment role and raises an AWS Security Hub finding, showing that live modification is caught.",
      "source": "validate",
-     "collectable_now": false
+     "collectable_now": true,
+     "collector": "automation/collectors/collectors.py"
     }
    ]
   },
@@ -179,7 +187,9 @@
      ],
      "description": "AWS Config custom rule (AWS Lambda backed) confirms the change management procedure document exists and was reviewed within the defined interval.",
      "source": "verify",
-     "collectable_now": false
+     "collectable_now": false,
+     "provider_deployed": true,
+     "deploy": "automation/config-rules/ (Config custom rule)"
     },
     {
      "check_id": "KSI-CMT-RVP:validate:method",
@@ -192,7 +202,9 @@
      ],
      "description": "Amazon EventBridge scheduled AWS Lambda job aggregates change success, rollback, and unauthorized-change counts from AWS CloudTrail into an Amazon CloudWatch dashboard used in the periodic review.",
      "source": "validate",
-     "collectable_now": false
+     "collectable_now": false,
+     "provider_deployed": true,
+     "deploy": "automation/config-rules/ (Config custom rule)"
     }
    ]
   },
@@ -220,7 +232,8 @@
      ],
      "description": "AWS Config confirms AWS CodePipeline stages and required approval and test gates are present in the pipeline definition.",
      "source": "verify",
-     "collectable_now": false
+     "collectable_now": true,
+     "collector": "automation/collectors/collectors.py"
     },
     {
      "check_id": "KSI-CMT-VTD:validate:method",
@@ -234,7 +247,8 @@
      ],
      "description": "AWS CodePipeline and AWS CodeBuild run automated tests and Amazon Inspector scans on each change; results and pass or fail gate outcomes are emitted to Amazon CloudWatch and AWS Security Hub, proving validation runs on every deployment.",
      "source": "validate",
-     "collectable_now": false
+     "collectable_now": true,
+     "collector": "automation/collectors/collectors.py"
     }
    ]
   },
@@ -314,7 +328,8 @@
      ],
      "description": "AWS Config detects configuration drift against the AWS CloudFormation baseline and reports NON_COMPLIANT resources.",
      "source": "verify",
-     "collectable_now": false
+     "collectable_now": true,
+     "collector": "automation/collectors/collectors.py"
     },
     {
      "check_id": "KSI-CNA-EIS:validate:method",
@@ -326,7 +341,8 @@
      ],
      "description": "AWS Config automatic remediation via AWS Systems Manager Automation returns drifted resources to the intended state and records the correction in AWS Security Hub.",
      "source": "validate",
-     "collectable_now": false
+     "collectable_now": true,
+     "collector": "automation/collectors/collectors.py"
     }
    ]
   },
@@ -347,7 +363,8 @@
      ],
      "description": "AWS Config conformance pack evaluates resource configurations against the codified best-practice ruleset.",
      "source": "verify",
-     "collectable_now": false
+     "collectable_now": true,
+     "collector": "automation/collectors/collectors.py"
     },
     {
      "check_id": "KSI-CNA-IBP:validate:method",
@@ -357,7 +374,8 @@
      ],
      "description": "AWS Security Hub continuously scores resources against the AWS Foundational Security Best Practices and CIS standards and reports deviations as findings.",
      "source": "validate",
-     "collectable_now": false
+     "collectable_now": true,
+     "collector": "automation/collectors/collectors.py"
     }
    ]
   },
@@ -573,7 +591,8 @@
      ],
      "description": "AWS Config confirms AWS WAF web access control lists and rate-based rules are associated with the Application Load Balancer and Amazon CloudFront distributions.",
      "source": "verify",
-     "collectable_now": false
+     "collectable_now": true,
+     "collector": "automation/collectors/collectors.py"
     },
     {
      "check_id": "KSI-CNA-RVP:validate:method",
@@ -586,7 +605,8 @@
      ],
      "description": "AWS WAF and AWS Shield metrics in Amazon CloudWatch show blocked and rate-limited requests, and AWS Security Hub records anomalies, demonstrating the protections work.",
      "source": "validate",
-     "collectable_now": false
+     "collectable_now": true,
+     "collector": "automation/collectors/collectors.py"
     }
    ]
   },
@@ -609,7 +629,8 @@
      ],
      "description": "AWS Config managed rules for security group and network access control list posture confirm logical segmentation is in place.",
      "source": "verify",
-     "collectable_now": false
+     "collectable_now": true,
+     "collector": "automation/collectors/collectors.py"
     },
     {
      "check_id": "KSI-CNA-ULN:validate:method",
@@ -621,7 +642,8 @@
      ],
      "description": "Amazon VPC Flow Logs plus Amazon GuardDuty validate that traffic follows the intended logical paths and flag deviations to AWS Security Hub.",
      "source": "validate",
-     "collectable_now": false
+     "collectable_now": true,
+     "collector": "automation/collectors/collectors.py"
     }
    ]
   },
@@ -825,7 +847,8 @@
      ],
      "description": "AWS Config confirms IAM roles and AWS IAM Identity Center permission sets set short maximum session durations and that no long-lived access keys exist for privileged principals.",
      "source": "verify",
-     "collectable_now": false
+     "collectable_now": true,
+     "collector": "automation/collectors/collectors.py"
     },
     {
      "check_id": "KSI-IAM-JIT:validate:method",
@@ -837,7 +860,8 @@
      ],
      "description": "AWS CloudTrail plus Amazon EventBridge validate that elevated sessions are short-lived and tied to approvals, raising an AWS Security Hub finding when standing or long-duration privileged sessions appear.",
      "source": "validate",
-     "collectable_now": false
+     "collectable_now": true,
+     "collector": "automation/collectors/collectors.py"
     }
    ]
   },
@@ -930,7 +954,8 @@
      ],
      "description": "AWS Config confirms the Amazon EventBridge rules, AWS Lambda containment functions, and Amazon GuardDuty are enabled and wired to identity findings.",
      "source": "verify",
-     "collectable_now": false
+     "collectable_now": true,
+     "collector": "automation/collectors/collectors.py"
     },
     {
      "check_id": "KSI-IAM-SUS:validate:method",
@@ -944,7 +969,8 @@
      ],
      "description": "Amazon GuardDuty raises an identity finding, and the Amazon EventBridge and AWS Lambda automation disables or secures the account and records the action in AWS Security Hub and AWS CloudTrail, proving the response works end to end.",
      "source": "validate",
-     "collectable_now": false
+     "collectable_now": true,
+     "collector": "automation/collectors/collectors.py"
     }
    ]
   },
@@ -973,7 +999,9 @@
      ],
      "description": "AWS Config custom rule (AWS Lambda backed) confirms an after action report object exists in Amazon S3 for each closed incident within the required interval.",
      "source": "verify",
-     "collectable_now": false
+     "collectable_now": false,
+     "provider_deployed": true,
+     "deploy": "automation/config-rules/ (Config custom rule)"
     },
     {
      "check_id": "KSI-INR-AAR:validate:method",
@@ -986,7 +1014,9 @@
      ],
      "description": "Amazon EventBridge and AWS Lambda track incident-close events from AWS Security Hub and emit an Amazon CloudWatch metric for report completion rate, raising a finding when a report is overdue.",
      "source": "validate",
-     "collectable_now": false
+     "collectable_now": false,
+     "provider_deployed": true,
+     "deploy": "automation/config-rules/ (Config custom rule)"
     }
    ]
   },
@@ -1011,7 +1041,9 @@
      ],
      "description": "AWS Config custom rule confirms the incident response procedure and contact list exist and were reviewed within the defined interval.",
      "source": "verify",
-     "collectable_now": false
+     "collectable_now": false,
+     "provider_deployed": true,
+     "deploy": "automation/config-rules/ (Config custom rule)"
     },
     {
      "check_id": "KSI-INR-RIR:validate:method",
@@ -1024,7 +1056,9 @@
      ],
      "description": "Amazon EventBridge scheduled AWS Lambda job confirms exercises ran on cadence and summarizes AWS Security Hub incident-handling metrics into an Amazon CloudWatch dashboard for the review.",
      "source": "validate",
-     "collectable_now": false
+     "collectable_now": false,
+     "provider_deployed": true,
+     "deploy": "automation/config-rules/ (Config custom rule)"
     }
    ]
   },
@@ -1052,7 +1086,9 @@
      ],
      "description": "AWS Config custom rule confirms the incident history data store (AWS CloudTrail Lake or the Amazon S3 log archive) is configured with the required retention.",
      "source": "verify",
-     "collectable_now": false
+     "collectable_now": false,
+     "provider_deployed": true,
+     "deploy": "automation/config-rules/ (Config custom rule)"
     },
     {
      "check_id": "KSI-INR-RPI:validate:method",
@@ -1065,7 +1101,9 @@
      ],
      "description": "Amazon EventBridge scheduled AWS Lambda runs AWS CloudTrail Lake or Amazon CloudWatch Logs Insights queries across past incidents, emits pattern metrics, and raises a finding when a recurring pattern is detected.",
      "source": "validate",
-     "collectable_now": false
+     "collectable_now": false,
+     "provider_deployed": true,
+     "deploy": "automation/config-rules/ (Config custom rule)"
     }
    ]
   },
@@ -1151,7 +1189,8 @@
      ],
      "description": "AWS Config conformance pack continuously evaluates resource configurations against the baseline and reports NON_COMPLIANT resources.",
      "source": "verify",
-     "collectable_now": false
+     "collectable_now": true,
+     "collector": "automation/collectors/collectors.py"
     },
     {
      "check_id": "KSI-MLA-EVC:validate:method",
@@ -1162,7 +1201,8 @@
      ],
      "description": "AWS CodeBuild infrastructure-as-code scanning on each change, plus AWS Security Hub configuration findings, validate that configurations are tested before and after deployment.",
      "source": "validate",
-     "collectable_now": false
+     "collectable_now": true,
+     "collector": "automation/collectors/collectors.py"
     }
    ]
   },
@@ -1252,7 +1292,8 @@
      ],
      "description": "AWS Config confirms centralized logging is configured: organization AWS CloudTrail on, Amazon S3 archive with object lock, and AWS Security Hub enabled across accounts.",
      "source": "verify",
-     "collectable_now": false
+     "collectable_now": true,
+     "collector": "automation/collectors/collectors.py"
     },
     {
      "check_id": "KSI-MLA-OSM:validate:method",
@@ -1264,7 +1305,8 @@
      ],
      "description": "AWS Security Hub and Amazon GuardDuty continuously correlate and surface events, and an Amazon CloudWatch alarm on log-delivery gaps validates the SIEM capability is receiving data.",
      "source": "validate",
-     "collectable_now": false
+     "collectable_now": true,
+     "collector": "automation/collectors/collectors.py"
     }
    ]
   },
@@ -1289,7 +1331,9 @@
      ],
      "description": "AWS Config custom rule confirms the scheduled review queries and alerting rules exist and are enabled.",
      "source": "verify",
-     "collectable_now": false
+     "collectable_now": false,
+     "provider_deployed": true,
+     "deploy": "automation/config-rules/ (Config custom rule)"
     },
     {
      "check_id": "KSI-MLA-RVL:validate:method",
@@ -1302,7 +1346,9 @@
      ],
      "description": "Amazon EventBridge scheduled AWS Lambda runs the review queries, emits an Amazon CloudWatch metric for review completion, and raises AWS Security Hub findings on anomalies, showing reviews occur.",
      "source": "validate",
-     "collectable_now": false
+     "collectable_now": false,
+     "provider_deployed": true,
+     "deploy": "automation/config-rules/ (Config custom rule)"
     }
    ]
   },
@@ -1378,7 +1424,9 @@
      ],
      "description": "AWS Config custom rule (AWS Lambda backed) confirms the executive review artifact exists and was updated within the defined interval.",
      "source": "verify",
-     "collectable_now": false
+     "collectable_now": false,
+     "provider_deployed": true,
+     "deploy": "automation/config-rules/ (Config custom rule)"
     },
     {
      "check_id": "KSI-PIY-RES:validate:method",
@@ -1391,7 +1439,9 @@
      ],
      "description": "Amazon EventBridge scheduled AWS Lambda checks the review cadence and emits an Amazon CloudWatch metric and AWS Security Hub finding when an executive review is overdue.",
      "source": "validate",
-     "collectable_now": false
+     "collectable_now": false,
+     "provider_deployed": true,
+     "deploy": "automation/config-rules/ (Config custom rule)"
     }
    ]
   },
@@ -1415,7 +1465,9 @@
      ],
      "description": "AWS Config custom rule confirms the investment review artifact exists and is current within the defined interval.",
      "source": "verify",
-     "collectable_now": false
+     "collectable_now": false,
+     "provider_deployed": true,
+     "deploy": "automation/config-rules/ (Config custom rule)"
     },
     {
      "check_id": "KSI-PIY-RIS:validate:method",
@@ -1427,7 +1479,9 @@
      ],
      "description": "Amazon CloudWatch dashboard trends AWS Security Hub security-standard scores over time, and a scheduled AWS Lambda raises a finding when scores regress, validating investment effectiveness is reviewed.",
      "source": "validate",
-     "collectable_now": false
+     "collectable_now": false,
+     "provider_deployed": true,
+     "deploy": "automation/config-rules/ (Config custom rule)"
     }
    ]
   },
@@ -1454,7 +1508,8 @@
      ],
      "description": "AWS Config confirms the AWS CodePipeline security stages (test, static analysis, scan) are present in the pipeline definition.",
      "source": "verify",
-     "collectable_now": false
+     "collectable_now": true,
+     "collector": "automation/collectors/collectors.py"
     },
     {
      "check_id": "KSI-PIY-RSD:validate:method",
@@ -1467,7 +1522,8 @@
      ],
      "description": "AWS CodePipeline and Amazon Inspector run security stages on each build; pass or fail outcomes and coverage trends feed Amazon CloudWatch and AWS Security Hub, validating security is built into the SDLC.",
      "source": "validate",
-     "collectable_now": false
+     "collectable_now": true,
+     "collector": "automation/collectors/collectors.py"
     }
    ]
   },
@@ -1492,7 +1548,9 @@
      ],
      "description": "AWS Config custom rule confirms the vulnerability disclosure program document and intake configuration exist and are current.",
      "source": "verify",
-     "collectable_now": false
+     "collectable_now": false,
+     "provider_deployed": true,
+     "deploy": "automation/config-rules/ (Config custom rule)"
     },
     {
      "check_id": "KSI-PIY-RVD:validate:method",
@@ -1505,7 +1563,9 @@
      ],
      "description": "Amazon EventBridge and AWS Lambda track disclosure intake and resolution timeliness, emit Amazon CloudWatch metrics, and raise an AWS Security Hub finding when disclosures age past the target.",
      "source": "validate",
-     "collectable_now": false
+     "collectable_now": false,
+     "provider_deployed": true,
+     "deploy": "automation/config-rules/ (Config custom rule)"
     }
    ]
   },
@@ -1596,7 +1656,9 @@
      ],
      "description": "AWS Config custom rule (AWS Lambda backed) confirms the recovery plan artifact exists and was reviewed within the defined interval, and that recovery infrastructure (replicas, copy jobs) is configured.",
      "source": "verify",
-     "collectable_now": false
+     "collectable_now": false,
+     "provider_deployed": true,
+     "deploy": "automation/config-rules/ (Config custom rule)"
     },
     {
      "check_id": "KSI-RPL-ARP:validate:method",
@@ -1608,7 +1670,9 @@
      ],
      "description": "Amazon EventBridge scheduled AWS Lambda confirms the plan review cadence and validates recovery infrastructure health, raising an AWS Security Hub finding when the plan is stale or infrastructure is missing.",
      "source": "validate",
-     "collectable_now": false
+     "collectable_now": false,
+     "provider_deployed": true,
+     "deploy": "automation/config-rules/ (Config custom rule)"
     }
    ]
   },
@@ -1634,7 +1698,9 @@
      ],
      "description": "AWS Config custom rule confirms the documented RTO and RPO exist and were reviewed within the interval, and that backup settings match the stated RPO.",
      "source": "verify",
-     "collectable_now": false
+     "collectable_now": false,
+     "provider_deployed": true,
+     "deploy": "automation/config-rules/ (Config custom rule)"
     },
     {
      "check_id": "KSI-RPL-RRO:validate:method",
@@ -1647,7 +1713,9 @@
      ],
      "description": "Amazon EventBridge scheduled AWS Lambda compares actual backup and replication intervals against the stated RPO, emits an Amazon CloudWatch metric, and raises an AWS Security Hub finding on misalignment.",
      "source": "validate",
-     "collectable_now": false
+     "collectable_now": false,
+     "provider_deployed": true,
+     "deploy": "automation/config-rules/ (Config custom rule)"
     }
    ]
   },
@@ -1674,7 +1742,8 @@
      ],
      "description": "AWS Config confirms an AWS Backup restore-testing plan is configured and scheduled.",
      "source": "verify",
-     "collectable_now": false
+     "collectable_now": true,
+     "collector": "automation/collectors/collectors.py"
     },
     {
      "check_id": "KSI-RPL-TRC:validate:method",
@@ -1687,7 +1756,8 @@
      ],
      "description": "AWS Backup restore-testing jobs run on schedule; Amazon EventBridge captures pass or fail and measured recovery time, emits an Amazon CloudWatch metric, and raises an AWS Security Hub finding on a failed restore or an RTO breach.",
      "source": "validate",
-     "collectable_now": false
+     "collectable_now": true,
+     "collector": "automation/collectors/collectors.py"
     }
    ]
   },
@@ -1716,7 +1786,8 @@
      ],
      "description": "AWS Config confirms Amazon Inspector scanning is enabled for Amazon ECR and AWS Lambda and that image sources are restricted to approved registries.",
      "source": "verify",
-     "collectable_now": false
+     "collectable_now": true,
+     "collector": "automation/collectors/collectors.py"
     },
     {
      "check_id": "KSI-SCR-MIT:validate:method",
@@ -1728,7 +1799,8 @@
      ],
      "description": "Amazon Inspector continuously produces vulnerability and SBOM findings routed to AWS Security Hub; a build gate in AWS CodePipeline blocks components that fail the risk threshold, showing mitigation in action.",
      "source": "validate",
-     "collectable_now": false
+     "collectable_now": true,
+     "collector": "automation/collectors/collectors.py"
     }
    ]
   },
@@ -1755,7 +1827,8 @@
      ],
      "description": "AWS Config confirms Amazon Inspector continuous scanning and the alerting pipeline (Amazon EventBridge to Amazon SNS) are enabled.",
      "source": "verify",
-     "collectable_now": false
+     "collectable_now": true,
+     "collector": "automation/collectors/collectors.py"
     },
     {
      "check_id": "KSI-SCR-MON:validate:method",
@@ -1767,7 +1840,8 @@
      ],
      "description": "Amazon Inspector raises a new finding when an upstream vulnerability affects a monitored dependency, Amazon EventBridge notifies responders, and AWS Security Hub records it, validating active monitoring.",
      "source": "validate",
-     "collectable_now": false
+     "collectable_now": true,
+     "collector": "automation/collectors/collectors.py"
     }
    ]
   },
@@ -1792,7 +1866,8 @@
      ],
      "description": "AWS Config detects drift against the AWS CloudFormation baseline and reports NON_COMPLIANT resources.",
      "source": "verify",
-     "collectable_now": false
+     "collectable_now": true,
+     "collector": "automation/collectors/collectors.py"
     },
     {
      "check_id": "KSI-SVC-ACM:validate:method",
@@ -1804,7 +1879,8 @@
      ],
      "description": "AWS Config automatic remediation via AWS Systems Manager Automation corrects drift and records the correction in AWS Security Hub, validating configuration management operates.",
      "source": "validate",
-     "collectable_now": false
+     "collectable_now": true,
+     "collector": "automation/collectors/collectors.py"
     }
    ]
   },
@@ -1891,7 +1967,8 @@
      ],
      "description": "AWS Config conformance pack evaluates resources against the security baseline and reports gaps.",
      "source": "verify",
-     "collectable_now": false
+     "collectable_now": true,
+     "collector": "automation/collectors/collectors.py"
     },
     {
      "check_id": "KSI-SVC-EIS:validate:method",
@@ -1903,7 +1980,8 @@
      ],
      "description": "AWS Security Hub security-standard scores trended in Amazon CloudWatch show improvements over time, and a scheduled AWS Lambda raises a finding when scores regress, validating continuous improvement.",
      "source": "validate",
-     "collectable_now": false
+     "collectable_now": true,
+     "collector": "automation/collectors/collectors.py"
     }
    ]
   },
@@ -1931,7 +2009,8 @@
      ],
      "description": "AWS Config confirms encryption, isolation settings, and public-access blocks on data stores.",
      "source": "verify",
-     "collectable_now": false
+     "collectable_now": true,
+     "collector": "automation/collectors/collectors.py"
     },
     {
      "check_id": "KSI-SVC-PRR:validate:method",
@@ -1944,7 +2023,8 @@
      ],
      "description": "AWS CloudTrail plus Amazon EventBridge and Amazon Macie detect unexpected access to residual or shared data and raise an AWS Security Hub finding.",
      "source": "validate",
-     "collectable_now": false
+     "collectable_now": true,
+     "collector": "automation/collectors/collectors.py"
     }
    ]
   },
@@ -1972,7 +2052,8 @@
      ],
      "description": "AWS Config confirms Amazon S3 lifecycle policies, Amazon DynamoDB time to live, and backup retention settings are configured to the defined retention.",
      "source": "verify",
-     "collectable_now": false
+     "collectable_now": true,
+     "collector": "automation/collectors/collectors.py"
     },
     {
      "check_id": "KSI-SVC-RUD:validate:method",
@@ -1985,7 +2066,8 @@
      ],
      "description": "Amazon EventBridge scheduled AWS Lambda verifies expired data is removed on schedule, emits an Amazon CloudWatch metric, and raises an AWS Security Hub finding on retention violations.",
      "source": "validate",
-     "collectable_now": false
+     "collectable_now": true,
+     "collector": "automation/collectors/collectors.py"
     }
    ]
   },
@@ -2134,7 +2216,8 @@
      ],
      "description": "AWS Config confirms image signing, immutable tags on Amazon ECR, and AWS CloudTrail log file validation are enabled.",
      "source": "verify",
-     "collectable_now": false
+     "collectable_now": true,
+     "collector": "automation/collectors/collectors.py"
     },
     {
      "check_id": "KSI-SVC-VRI:validate:method",
@@ -2145,7 +2228,8 @@
      ],
      "description": "AWS CodePipeline signature verification at deployment fails and raises an AWS Security Hub finding when an artifact fails its integrity check, validating integrity enforcement.",
      "source": "validate",
-     "collectable_now": false
+     "collectable_now": true,
+     "collector": "automation/collectors/collectors.py"
     }
    ]
   }
