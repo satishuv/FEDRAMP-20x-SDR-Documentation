@@ -72,6 +72,47 @@ def build_cfn(manifest):
         "Resources": {},
     }
 
+    # Customer-managed KMS key encrypting the Lambda log group at rest.
+    template["Resources"]["EvidenceRuleLogKey"] = {
+        "Type": "AWS::KMS::Key",
+        "Properties": {
+            "Description": "CMK encrypting the evidence-existence Lambda log group.",
+            "EnableKeyRotation": True,
+            "KeyPolicy": {
+                "Version": "2012-10-17",
+                "Statement": [
+                    {
+                        "Sid": "AllowAccountAdmin",
+                        "Effect": "Allow",
+                        "Principal": {"AWS": {"Fn::Sub": "arn:aws:iam::${AWS::AccountId}:root"}},
+                        "Action": "kms:*",
+                        "Resource": "*",
+                    },
+                    {
+                        "Sid": "AllowCloudWatchLogs",
+                        "Effect": "Allow",
+                        "Principal": {"Service": {"Fn::Sub": "logs.${AWS::Region}.amazonaws.com"}},
+                        "Action": [
+                            "kms:Encrypt", "kms:Decrypt", "kms:ReEncrypt*",
+                            "kms:GenerateDataKey*", "kms:Describe*",
+                        ],
+                        "Resource": "*",
+                    },
+                ],
+            },
+        },
+    }
+
+    # Explicit, encrypted, retained log group for the function.
+    template["Resources"]["EvidenceRuleLogGroup"] = {
+        "Type": "AWS::Logs::LogGroup",
+        "Properties": {
+            "LogGroupName": {"Fn::Sub": "/aws/lambda/${EvidenceRuleFunction}"},
+            "RetentionInDays": 365,
+            "KmsKeyId": {"Fn::GetAtt": ["EvidenceRuleLogKey", "Arn"]},
+        },
+    }
+
     # Execution role: read-only on the evidence bucket + Config PutEvaluations
     # + basic Lambda logging. No write on the evidence data.
     template["Resources"]["EvidenceRuleRole"] = {
@@ -104,6 +145,14 @@ def build_cfn(manifest):
                             "Action": "config:PutEvaluations",
                             "Resource": "*",
                         },
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "xray:PutTraceSegments",
+                                "xray:PutTelemetryRecords",
+                            ],
+                            "Resource": "*",
+                        },
                     ],
                 },
             }],
@@ -112,10 +161,19 @@ def build_cfn(manifest):
 
     template["Resources"]["EvidenceRuleFunction"] = {
         "Type": "AWS::Lambda::Function",
+        "DependsOn": ["EvidenceRuleLogGroup"],
         "Properties": {
             "Handler": handler,
             "Runtime": "python3.12",
             "Timeout": 30,
+            "ReservedConcurrentExecutions": 10,
+            "TracingConfig": {"Mode": "Active"},
+            "LoggingConfig": {
+                "LogFormat": "JSON",
+                "ApplicationLogLevel": "INFO",
+                "SystemLogLevel": "INFO",
+                "LogGroup": {"Fn::Sub": "/aws/lambda/${EvidenceRuleFunction}"},
+            },
             "Role": {"Fn::GetAtt": ["EvidenceRuleRole", "Arn"]},
             "Code": {
                 "S3Bucket": {"Ref": "LambdaCodeS3Bucket"},

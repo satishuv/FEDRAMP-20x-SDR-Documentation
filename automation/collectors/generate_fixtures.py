@@ -24,7 +24,7 @@ synthetic value, so the payload validates as a whole AWS response.
 import argparse
 import json
 import os
-import random
+import secrets
 from datetime import datetime, timezone
 
 import botocore.session as bs
@@ -50,7 +50,9 @@ _ID_ALPHABET = "0123456789abcdef"
 
 
 def _rand_id(n=12):
-    return "".join(random.choice(_ID_ALPHABET) for _ in range(n))
+    # Use secrets (CSPRNG) rather than random: cheap, and satisfies SAST that
+    # flags the non-cryptographic random module even for synthetic test IDs.
+    return "".join(secrets.choice(_ID_ALPHABET) for _ in range(n))
 
 
 def _service_model(service_id):
