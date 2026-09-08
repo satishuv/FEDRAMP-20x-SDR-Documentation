@@ -21,6 +21,8 @@ Pinned dataset: `2026.07.14.01`
 - Compliance CAUTION banner at the top of the README: the framework is not a compliance audit bot, no generated output is compliant or guarantees FedRAMP 20x compliance, every generated statement must be independently verified by a qualified human, and AI output is advisory only.
 - Continuous-integration wiring for the AI-module boundary suites and the Config custom-rule handler tests.
 - Caching of the AWS Automated Security Helper install in the security-scan job, keyed to the pinned version.
+- `automation/storage/provision_store.py`: a deploy-time provisioner for the durable metric-history/facts store. It creates an in-boundary S3 bucket in the provider's own account and enables bucket versioning (optionally Object Lock/WORM and a lifecycle retention). Safety-additive and idempotent — it never suspends versioning, deletes anything, or moves a status — with a DEPLOY guide and 12 offline tests wired into continuous integration.
+- `docs/getting-started.md` and `docs/automation.md`: an "Adoption models" note (greenfield vs brownfield, adoption-model-agnostic) and a "Persistence and retention" note recording the 20x retention windows (KSI metric history up to one year per `SDR-CSX-KMT`; 12 months for `SCN-CSO-HIS`; 6 months for `CDS-TRC-ACL`) and clarifying that a seven-year immutable bucket is a provider policy choice, not a 20x requirement.
 
 ### Changed
 
