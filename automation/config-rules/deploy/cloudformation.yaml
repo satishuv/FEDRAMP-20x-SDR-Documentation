@@ -13,6 +13,43 @@ Parameters:
     Type: String
     Description: S3 key of the packaged Lambda zip.
 Resources:
+  EvidenceRuleLogKey:
+    Type: AWS::KMS::Key
+    Properties:
+      Description: CMK encrypting the evidence-existence Lambda log group.
+      EnableKeyRotation: true
+      KeyPolicy:
+        Version: '2012-10-17'
+        Statement:
+        - Sid: AllowAccountAdmin
+          Effect: Allow
+          Principal:
+            AWS:
+              Fn::Sub: arn:aws:iam::${AWS::AccountId}:root
+          Action: kms:*
+          Resource: '*'
+        - Sid: AllowCloudWatchLogs
+          Effect: Allow
+          Principal:
+            Service:
+              Fn::Sub: logs.${AWS::Region}.amazonaws.com
+          Action:
+          - kms:Encrypt
+          - kms:Decrypt
+          - kms:ReEncrypt*
+          - kms:GenerateDataKey*
+          - kms:Describe*
+          Resource: '*'
+  EvidenceRuleLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName:
+        Fn::Sub: /aws/lambda/${EvidenceRuleFunction}
+      RetentionInDays: 365
+      KmsKeyId:
+        Fn::GetAtt:
+        - EvidenceRuleLogKey
+        - Arn
   EvidenceRuleRole:
     Type: AWS::IAM::Role
     Properties:
@@ -39,12 +76,28 @@ Resources:
           - Effect: Allow
             Action: config:PutEvaluations
             Resource: '*'
+          - Effect: Allow
+            Action:
+            - xray:PutTraceSegments
+            - xray:PutTelemetryRecords
+            Resource: '*'
   EvidenceRuleFunction:
     Type: AWS::Lambda::Function
+    DependsOn:
+    - EvidenceRuleLogGroup
     Properties:
       Handler: evidence_existence_rule.lambda_handler
       Runtime: python3.12
       Timeout: 30
+      ReservedConcurrentExecutions: 10
+      TracingConfig:
+        Mode: Active
+      LoggingConfig:
+        LogFormat: JSON
+        ApplicationLogLevel: INFO
+        SystemLogLevel: INFO
+        LogGroup:
+          Fn::Sub: /aws/lambda/${EvidenceRuleFunction}
       Role:
         Fn::GetAtt:
         - EvidenceRuleRole
