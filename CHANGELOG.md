@@ -14,12 +14,26 @@ Pinned dataset: `2026.07.14.01`
 - `sdr.py` orchestrator with `build`, `validate`, `scan`, `all`, and `clean` subcommands, so a first run is one command instead of seven.
 - `Makefile` with equivalent targets.
 - Community health files: contributing guide, security policy, code of conduct, this changelog, issue templates, pull request template.
+- Nineteen additional read-only collectors in `automation/collectors/collectors.py` covering the previously described-only indicators (CloudFormation drift, Config conformance packs, WAF, security-group and network-ACL segmentation, CloudTrail and ECR integrity, S3 data protection and retention, SIEM posture, IAM just-in-time and suspicious-activity response wiring, CodePipeline gates, Inspector supply-chain scanning, and Backup restore-testing). Each is read-only (every action enumerated in the `READ_ONLY_ACTIONS` allowlist), emits posture facts rather than statuses, and is offline-testable; the collector test suite grew to 32 tests.
+- `automation/config-rules/`: a provider-deployed AWS Config custom-rule scaffold (a shared, parameterized Lambda evidence-existence evaluator, a manifest of eleven rules, a deploy guide, and 6 offline handler tests) for the eleven indicators whose evidence is a document or a reviewed process rather than a live API field. These are provider infrastructure, not repository collectors; a passing result is telemetry, never a status or assessment.
+- `automation/collectors/pending-ksi-classification.json`: the machine-readable triage recording which pending indicators became direct read-only collectors versus provider-deployed rules. `build_collector_registry.py` reads it so the collectable-now count regenerates deterministically.
+- Five opt-in AI-assist modules in `automation/ai/` (narrative drafter, finding explainer, evidence rollup, over-claim guard, architecture-to-indicator suggester), each with an offline deterministic default backend and an opt-in Amazon Bedrock backend, a forbidden-field boundary guard, and 27 offline boundary tests wired into continuous integration.
+- Compliance CAUTION banner at the top of the README: the framework is not a compliance audit bot, no generated output is compliant or guarantees FedRAMP 20x compliance, every generated statement must be independently verified by a qualified human, and AI output is advisory only.
+- Continuous-integration wiring for the AI-module boundary suites and the Config custom-rule handler tests.
+- Caching of the AWS Automated Security Helper install in the security-scan job, keyed to the pinned version.
 
 ### Changed
 
 - README rewritten as an entry point rather than a reference manual. Architecture diagrams, the directory map, the validation detail, and the pipeline reference moved into `docs/`.
 - Removed an unsupported claim that mapped certification classes A, B, C, and D to the Low, Moderate, and High impact levels. `FRD-CCL` describes them as assurance categories and the dataset does not state that mapping.
 - Corrected three indicator names that were paraphrased rather than quoted: `KSI-CMT-LMC` is "Logging Changes", `KSI-IAM-AAM` is "Automating Account Management", and `KSI-IAM-APM` is "Adopting Passwordless Methods". The `INR` family is Incident Response, not Incident Reporting.
+- License changed from MIT to all-rights-reserved, associated with Amazon Web Services (AWS) Security Assurance Services (SAS); README badge, README license section, and `CONTRIBUTING.md` updated to match. Ownership and licensing wording is pending confirmation by AWS legal.
+- `docs/automation.md`, `docs/vision.md`, `docs/architecture.md`, `docs/faq.md`, `docs/README.md`, `CONTRIBUTING.md`, and `SECURITY.md` updated to reflect the built state: Layer 1 collectors call many read-only actions (not two), and Layer 2 is five built opt-in AI modules (not a single planned drafter).
+- Collector coverage: thirty-five of forty-six indicators are now directly collectable read-only (up from sixteen), with the remaining eleven covered by provider-deployed Config custom rules.
+
+### Fixed
+
+- Corrected the described force of `FRC-CSX-VVK` across the README and `docs/getting-started.md`: automated verification of Key Security Indicators is `MAY` at Class A, `SHOULD` (at least one method per indicator) at Class B, and `MUST` at Class C (two) and Class D (four). Earlier wording implied automation was required at Class B. Verified verbatim against the FedRAMP Consolidated Rules for 2026 dataset (`2026.07.14.01`), confirmed current against the upstream `github.com/FedRAMP/rules` repository.
 
 ## 0.1.0, 2026-09-05
 
