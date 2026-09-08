@@ -32,7 +32,7 @@
   <g>
     <rect x="120" y="52" width="240" height="58" rx="10" fill="#3d2e00" stroke="#d29922" stroke-width="2"/>
     <text x="240" y="80" fill="#f0d68a" font-size="17" text-anchor="middle" font-weight="600">records-store.json</text>
-    <text x="240" y="99" fill="#c9b06b" font-size="12" text-anchor="middle">the one file you edit — system facts</text>
+    <text x="240" y="99" fill="#c9b06b" font-size="12" text-anchor="middle">the one file you edit</text>
   </g>
   <g>
     <rect x="520" y="52" width="240" height="58" rx="10" fill="#0d2847" stroke="#3b82f6" stroke-width="2"/>
@@ -47,7 +47,7 @@
   <g>
     <rect x="270" y="266" width="240" height="62" rx="10" fill="#0f2e1a" stroke="#22c55e" stroke-width="2"/>
     <text x="390" y="295" fill="#9ae6b4" font-size="17" text-anchor="middle" font-weight="600">Deliverables</text>
-    <text x="390" y="314" fill="#6ec38a" font-size="12" text-anchor="middle">JSON · text · Word · crosswalk</text>
+    <text x="390" y="314" fill="#6ec38a" font-size="12" text-anchor="middle">JSON / text / Word / crosswalk</text>
   </g>
 
   <!-- checkers band label, placed to the RIGHT so it never overlaps the arrows -->
@@ -57,7 +57,7 @@
   <g>
     <rect x="130" y="384" width="240" height="62" rx="10" fill="#3d0a24" stroke="#ec4899" stroke-width="2"/>
     <text x="250" y="413" fill="#f9a8d4" font-size="16" text-anchor="middle" font-weight="600" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace">validate_sdr.py</text>
-    <text x="250" y="432" fill="#d6789f" font-size="12" text-anchor="middle">build gate — 0 hard failures</text>
+    <text x="250" y="432" fill="#d6789f" font-size="12" text-anchor="middle">build gate, 0 hard failures</text>
   </g>
   <g>
     <rect x="410" y="384" width="240" height="62" rx="10" fill="#2a1758" stroke="#8b5cf6" stroke-width="2"/>
@@ -66,5 +66,5 @@
   </g>
 
   <!-- caption -->
-  <text x="390" y="500" fill="#8b949e" font-size="13.5" text-anchor="middle">Two inputs, one pipeline, two checkers — and a loop that tells you what to write next.</text>
+  <text x="390" y="500" fill="#8b949e" font-size="13.5" text-anchor="middle">Two inputs, one pipeline, two checkers, and a loop that tells you what to write next.</text>
 </svg>
