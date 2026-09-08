@@ -1,6 +1,6 @@
 # Contributing
 
-Corrections to requirement interpretation are the most valuable contribution here, and they carry the highest bar. Everything else is ordinary open source work.
+Corrections to requirement interpretation are the most valuable contribution here, and they carry the highest bar.
 
 ## The one hard rule
 
@@ -82,4 +82,4 @@ By participating you agree to the [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## License
 
-Contributions are accepted under the MIT license that covers this repository. FedRAMP requirement text and schemas remain works of the United States government, published at [github.com/FedRAMP/rules](https://github.com/FedRAMP/rules).
+All rights in this repository are reserved by Amazon Web Services, Inc. and/or its affiliates (see [LICENSE](LICENSE)); this is not open-source software. By submitting a contribution you assign all rights in it to Amazon Web Services, Inc. and confirm you are authorized to do so. FedRAMP requirement text and schemas remain works of the United States government, published at [github.com/FedRAMP/rules](https://github.com/FedRAMP/rules).
