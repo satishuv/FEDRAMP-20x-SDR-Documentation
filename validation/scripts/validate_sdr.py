@@ -46,7 +46,13 @@ MD_PATTERNS = [
 ]
 
 SENSITIVE_PATTERNS = [
-    (re.compile(r"\b\d{12}\b"), "possible AWS account ID"),
+    # A real AWS account ID is a standalone 12-digit number. Exclude a 12-digit
+    # run that sits inside a hyphen-delimited hex token (a UUID), where it is
+    # adjacent to hex/hyphen context on either side; those are identifiers in
+    # generated files (e.g. OSCAL uuid fields), not account IDs. Real account
+    # IDs appear surrounded by whitespace, quotes, or path/colon separators and
+    # still match.
+    (re.compile(r"(?<![0-9A-Fa-f-])\d{12}(?![0-9A-Fa-f-])"), "possible AWS account ID"),
     (re.compile(r"AKIA[0-9A-Z]{16}"), "AWS access key ID"),
     (re.compile(r"-----BEGIN (RSA |EC )?PRIVATE KEY-----"), "private key"),
 ]
