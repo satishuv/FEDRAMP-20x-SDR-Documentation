@@ -1,0 +1,32 @@
+# CFN Guard equivalent of policy/s3_tls.rego.
+#
+# Same intent, CloudFormation form: every AWS::S3::Bucket must be paired with an
+# AWS::S3::BucketPolicy that denies non-TLS access (aws:SecureTransport = false).
+# CFN Guard and OPA are interchangeable here (Sean's demo used both); pick the
+# one that matches your IaC. Run with:
+#     cfn-guard validate --rules s3_tls.guard --data template.yaml
+#
+# This checks the same encryption-in-transit outcome the SDR tracks
+# (KSI-CNA / SC-8 family); it is a pre-deploy gate, not an SDR status setter.
+
+let s3_buckets = Resources.*[ Type == 'AWS::S3::Bucket' ]
+let bucket_policies = Resources.*[ Type == 'AWS::S3::BucketPolicy' ]
+
+rule s3_bucket_policies_exist when %s3_buckets !empty {
+    %bucket_policies !empty
+    <<
+        Violation: an S3 bucket is declared but no AWS::S3::BucketPolicy is present.
+        Fix: attach a bucket policy that denies requests with aws:SecureTransport=false.
+    >>
+}
+
+rule s3_denies_insecure_transport when %bucket_policies !empty {
+    some %bucket_policies.Properties.PolicyDocument.Statement[*] {
+        Effect == 'Deny'
+        Condition.Bool.'aws:SecureTransport' == 'false'
+    }
+    <<
+        Violation: no bucket policy statement denies non-TLS access.
+        Fix: add a Deny statement with Condition Bool aws:SecureTransport = false.
+    >>
+}

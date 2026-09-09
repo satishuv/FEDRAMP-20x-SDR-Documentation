@@ -43,6 +43,7 @@ BUILD_STEPS = [
     ("build_profiles.py", "per-class profiles, Class C overlay, Class D register"),
     ("build_collector_registry.py", "indicator to read-only AWS check map"),
     ("build_sdr.py", "schema JSON, extensions companion, plain text record"),
+    ("automation/exporters/oscal_export.py", "OSCAL export of the SDR"),
     ("build_docx.py", "authoring Word document"),
     ("build_crosswalk.py", "NIST SP 800-53 Revision 5 to 20x crosswalk"),
 ]
@@ -131,7 +132,12 @@ def cmd_build(args):
     out(f"Building the Class {current_class()} Security Decision Record.")
     for i, (script, description) in enumerate(BUILD_STEPS, start=1):
         step_header(i, total, f"{script}: {description}")
-        code = run(os.path.join(SCRIPTS, script))
+        # Most steps live in validation/scripts; an entry containing a path
+        # separator (e.g. automation/exporters/oscal_export.py) is resolved
+        # against the repo root instead.
+        script_path = (os.path.join(BASE, script) if ("/" in script or os.sep in script)
+                       else os.path.join(SCRIPTS, script))
+        code = run(script_path)
         if code != 0:
             out()
             out("Build stopped. Later steps read what this one writes, so "

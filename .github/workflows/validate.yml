@@ -67,6 +67,7 @@ jobs:
           python validation/scripts/build_profiles.py
           python validation/scripts/build_collector_registry.py
           python validation/scripts/build_sdr.py
+          python automation/exporters/oscal_export.py
           python validation/scripts/build_docx.py
           python validation/scripts/build_crosswalk.py
       - name: Refuse hand-edited generated files
@@ -112,6 +113,12 @@ jobs:
         run: python automation/ai/test_bedrock_boundary.py
       - name: Run offline dataset-diff tests (no AWS)
         run: python validation/scripts/test_dataset_diff.py
+      - name: Run offline OSCAL exporter tests (no AWS)
+        run: python automation/exporters/test_oscal_export.py
+      - name: Run offline evidence-wiring tests (no AWS)
+        run: python automation/collectors/test_evidence_wiring.py
+      - name: Run offline shift-left policy tests (no AWS, no opa)
+        run: python examples/shift-left/test_run_policy.py
       - name: Refuse a stale check catalog
         run: |
           python automation/sdrscan/sdrscan.py --write-catalog

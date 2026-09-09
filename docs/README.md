@@ -15,6 +15,7 @@
 | [Architecture](architecture.md) | The build flow, the operational pipeline, why the design is shaped this way, and the dataset traversal problem |
 | [Validation and readiness](validation.md) | The eight build-gate checks, the readiness scanner, determinism, upstream drift |
 | [Automation layers](automation.md) | What each layer may and may not decide, the read-only collectors, and the five opt-in AI-assist modules |
+| [OSCAL export](oscal-export.md) | Emitting the SDR as OSCAL for downstream governance, risk, and compliance tools |
 | [Continuous integration](ci-cd.md) | The four gates, GitHub Actions, the AWS CodePipeline reference |
 
 ## Reference
@@ -25,6 +26,9 @@
 | [Frequently asked questions](faq.md) | The questions that come up most, including the ones with uncomfortable answers |
 | [Vision and mission](vision.md) | Where this is going, the principles behind it, and what it refuses to do |
 | [Scanner reference](../automation/sdrscan/README.md) | Every readiness check, output formats, mutelist |
+| [Shift-left policy-as-code](../examples/shift-left/README.md) | The pre-deploy OPA / CFN Guard gate sibling to the SDR |
+| [Reference: compliance-engineering control model](references/compliance-engineering-control-model.md) | Where the SDR sits in the broader AWS control stack |
+| [Reference: OSCAL and machine-readable packages](references/oscal-and-machine-readable-packages.md) | OSCAL context and primary sources |
 
 ## Reading order for a first authorization
 

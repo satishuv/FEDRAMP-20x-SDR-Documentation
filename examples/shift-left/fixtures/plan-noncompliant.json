@@ -1,0 +1,12 @@
+{
+ "note": "Simplified terraform-plan-JSON shape: a bare S3 bucket with NO TLS-enforcing policy. This fails the shift-left check (blocked).",
+ "resources": [
+  {
+   "type": "aws_s3_bucket",
+   "name": "insecure",
+   "values": {
+    "bucket": "insecure-bucket"
+   }
+  }
+ ]
+}
