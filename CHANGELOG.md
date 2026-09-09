@@ -4,6 +4,17 @@ Notable changes to this project. Format follows [Keep a Changelog](https://keepa
 
 One project-specific convention: the pinned FedRAMP dataset version is recorded alongside every release, because the same code against a different dataset produces a different record.
 
+## Unreleased
+
+Pinned dataset: `2026.07.14.01`
+
+### Added
+
+- `automation/exporters/oscal_export.py`: an OSCAL export of the Security Decision Record. It reads a generated SDR JSON and emits an OSCAL Assessment Results document alongside it (`sdr/json/sdr-class-<x>.oscal.json`), so the same verified facts are available in the machine-readable interchange format that agency governance, risk, and compliance tools ingest. It is a pure read-transform-write adapter: it never queries AWS, never runs a determination, passes every status through verbatim (`Not Implemented` stays `not-satisfied`), never invents satisfaction, and skips `TBD` evidence rather than emitting a fake resource. Wired into the build pipeline and `sdr.py`; 7 offline tests. See `docs/oscal-export.md`. The export makes no claim about whether any FedRAMP process requires OSCAL; it simply provides the option.
+- `automation/collectors/evidence_wiring.py`: turns read-only collector facts into schema-valid `ksiEvidence[]` entries (populating the official schema's existing `evidenceType`/`evidenceDescription`/`evidenceLocation`/`evidenceText` fields) so the SDR's evidence array is fed from telemetry instead of left empty. It never changes a status, and when it cannot know the durable artifact URI it emits an obvious `sdr://` placeholder for a human to replace rather than fabricating an https link. 9 offline tests.
+- `examples/shift-left/`: a policy-as-code pre-deploy gate sibling to the SDR framework, matching the AWS Security Assurance Services compliance-engineering demo. An OPA/Rego rule and an equivalent CFN Guard rule enforce S3 TLS-in-transit against terraform-plan JSON; a local runner uses `opa` if present and otherwise a pure-Python evaluator of the same rule, with pass-is-silent / fail-blocks semantics, an `--alert` dev mode, and optional JSON evidence output. It never writes to the record store or sets an SDR status. 8 offline tests.
+- `docs/references/compliance-engineering-control-model.md` and `docs/references/oscal-and-machine-readable-packages.md`: distilled, sourced reference notes positioning the framework within the broader AWS control stack (preventive, detective, responsive, shift-left) and recording OSCAL context (the 2022 AWS OSCAL SSP milestone and RFC-0024), each with primary-source links.
+
 ## 1.0.0, 2026-09-08
 
 Pinned dataset: `2026.07.14.01`
