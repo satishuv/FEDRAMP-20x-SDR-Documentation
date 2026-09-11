@@ -21,7 +21,18 @@
    "providerExtensions": {
     "ruleName": "Maintain a FedRAMP Security Inbox",
     "family": "AFC",
-    "familyName": "Addressing FedRAMP Communication"
+    "familyName": "Addressing FedRAMP Communication",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "Example: monthly synthetic test.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "Example: Security Operations Manager"
+    }
    }
   },
   {
@@ -39,7 +50,18 @@
    "providerExtensions": {
     "ruleName": "Notification of Changes",
     "family": "AFC",
-    "familyName": "Addressing FedRAMP Communication"
+    "familyName": "Addressing FedRAMP Communication",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -57,7 +79,18 @@
    "providerExtensions": {
     "ruleName": "Trust @fedramp.gov and @gsa.gov",
     "family": "AFC",
-    "familyName": "Addressing FedRAMP Communication"
+    "familyName": "Addressing FedRAMP Communication",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -75,7 +108,18 @@
    "providerExtensions": {
     "ruleName": "Receive Email Without Disruption",
     "family": "AFC",
-    "familyName": "Addressing FedRAMP Communication"
+    "familyName": "Addressing FedRAMP Communication",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -93,7 +137,18 @@
    "providerExtensions": {
     "ruleName": "Complete Required Actions",
     "family": "AFC",
-    "familyName": "Addressing FedRAMP Communication"
+    "familyName": "Addressing FedRAMP Communication",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -111,7 +166,18 @@
    "providerExtensions": {
     "ruleName": "Emergency Message Routing",
     "family": "AFC",
-    "familyName": "Addressing FedRAMP Communication"
+    "familyName": "Addressing FedRAMP Communication",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -129,7 +195,18 @@
    "providerExtensions": {
     "ruleName": "Important Message Actions",
     "family": "AFC",
-    "familyName": "Addressing FedRAMP Communication"
+    "familyName": "Addressing FedRAMP Communication",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -147,7 +224,18 @@
    "providerExtensions": {
     "ruleName": "Acknowledge Receipt",
     "family": "AFC",
-    "familyName": "Addressing FedRAMP Communication"
+    "familyName": "Addressing FedRAMP Communication",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -165,7 +253,18 @@
    "providerExtensions": {
     "ruleName": "Report Availability",
     "family": "CCM",
-    "familyName": "Collaborative Continuous Monitoring"
+    "familyName": "Collaborative Continuous Monitoring",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -183,7 +282,18 @@
    "providerExtensions": {
     "ruleName": "Next Report Date",
     "family": "CCM",
-    "familyName": "Collaborative Continuous Monitoring"
+    "familyName": "Collaborative Continuous Monitoring",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -201,7 +311,18 @@
    "providerExtensions": {
     "ruleName": "Feedback Mechanism",
     "family": "CCM",
-    "familyName": "Collaborative Continuous Monitoring"
+    "familyName": "Collaborative Continuous Monitoring",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -219,7 +340,18 @@
    "providerExtensions": {
     "ruleName": "Anonymized Feedback Summary",
     "family": "CCM",
-    "familyName": "Collaborative Continuous Monitoring"
+    "familyName": "Collaborative Continuous Monitoring",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -237,7 +369,18 @@
    "providerExtensions": {
     "ruleName": "Limit Sensitive Information",
     "family": "CCM",
-    "familyName": "Collaborative Continuous Monitoring"
+    "familyName": "Collaborative Continuous Monitoring",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -255,7 +398,18 @@
    "providerExtensions": {
     "ruleName": "Spread Out Reports",
     "family": "CCM",
-    "familyName": "Collaborative Continuous Monitoring"
+    "familyName": "Collaborative Continuous Monitoring",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -273,7 +427,18 @@
    "providerExtensions": {
     "ruleName": "Responsible Public Certification Report Sharing",
     "family": "CCM",
-    "familyName": "Collaborative Continuous Monitoring"
+    "familyName": "Collaborative Continuous Monitoring",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -291,7 +456,18 @@
    "providerExtensions": {
     "ruleName": "Quarterly Review Meeting",
     "family": "CCM",
-    "familyName": "Collaborative Continuous Monitoring"
+    "familyName": "Collaborative Continuous Monitoring",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -309,7 +485,18 @@
    "providerExtensions": {
     "ruleName": "Meeting Registration Info",
     "family": "CCM",
-    "familyName": "Collaborative Continuous Monitoring"
+    "familyName": "Collaborative Continuous Monitoring",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -327,7 +514,18 @@
    "providerExtensions": {
     "ruleName": "Next Review Date",
     "family": "CCM",
-    "familyName": "Collaborative Continuous Monitoring"
+    "familyName": "Collaborative Continuous Monitoring",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -345,7 +543,18 @@
    "providerExtensions": {
     "ruleName": "No Irresponsible Disclosure",
     "family": "CCM",
-    "familyName": "Collaborative Continuous Monitoring"
+    "familyName": "Collaborative Continuous Monitoring",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -363,7 +572,18 @@
    "providerExtensions": {
     "ruleName": "Schedule Around Reports",
     "family": "CCM",
-    "familyName": "Collaborative Continuous Monitoring"
+    "familyName": "Collaborative Continuous Monitoring",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -381,7 +601,18 @@
    "providerExtensions": {
     "ruleName": "Additional Content",
     "family": "CCM",
-    "familyName": "Collaborative Continuous Monitoring"
+    "familyName": "Collaborative Continuous Monitoring",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -399,7 +630,18 @@
    "providerExtensions": {
     "ruleName": "Record/Transcribe Reviews",
     "family": "CCM",
-    "familyName": "Collaborative Continuous Monitoring"
+    "familyName": "Collaborative Continuous Monitoring",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -417,7 +659,18 @@
    "providerExtensions": {
     "ruleName": "Restrict Third Parties",
     "family": "CCM",
-    "familyName": "Collaborative Continuous Monitoring"
+    "familyName": "Collaborative Continuous Monitoring",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -435,7 +688,18 @@
    "providerExtensions": {
     "ruleName": "Share Recordings Responsibly",
     "family": "CCM",
-    "familyName": "Collaborative Continuous Monitoring"
+    "familyName": "Collaborative Continuous Monitoring",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -453,7 +717,18 @@
    "providerExtensions": {
     "ruleName": "Share Content Responsibly",
     "family": "CCM",
-    "familyName": "Collaborative Continuous Monitoring"
+    "familyName": "Collaborative Continuous Monitoring",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -471,7 +746,18 @@
    "providerExtensions": {
     "ruleName": "Public Information",
     "family": "CDS",
-    "familyName": "Certification Data Sharing"
+    "familyName": "Certification Data Sharing",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -489,7 +775,18 @@
    "providerExtensions": {
     "ruleName": "Public Service List",
     "family": "CDS",
-    "familyName": "Certification Data Sharing"
+    "familyName": "Certification Data Sharing",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -507,7 +804,18 @@
    "providerExtensions": {
     "ruleName": "Always Include FedRAMP ID",
     "family": "CDS",
-    "familyName": "Certification Data Sharing"
+    "familyName": "Certification Data Sharing",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -525,7 +833,18 @@
    "providerExtensions": {
     "ruleName": "FedRAMP Certification Reports",
     "family": "CDS",
-    "familyName": "Certification Data Sharing"
+    "familyName": "Certification Data Sharing",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -543,7 +862,18 @@
    "providerExtensions": {
     "ruleName": "Availability Reporting",
     "family": "CDS",
-    "familyName": "Certification Data Sharing"
+    "familyName": "Certification Data Sharing",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -561,7 +891,18 @@
    "providerExtensions": {
     "ruleName": "Use Trust Centers",
     "family": "CDS",
-    "familyName": "Certification Data Sharing"
+    "familyName": "Certification Data Sharing",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -579,7 +920,18 @@
    "providerExtensions": {
     "ruleName": "Consistency Between Formats",
     "family": "CDS",
-    "familyName": "Certification Data Sharing"
+    "familyName": "Certification Data Sharing",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -597,7 +949,18 @@
    "providerExtensions": {
     "ruleName": "Responsible Information Sharing",
     "family": "CDS",
-    "familyName": "Certification Data Sharing"
+    "familyName": "Certification Data Sharing",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -615,7 +978,18 @@
    "providerExtensions": {
     "ruleName": "Include Relevant Policies",
     "family": "CDS",
-    "familyName": "Certification Data Sharing"
+    "familyName": "Certification Data Sharing",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -633,7 +1007,18 @@
    "providerExtensions": {
     "ruleName": "Historical FedRAMP Certification Data",
     "family": "CDS",
-    "familyName": "Certification Data Sharing"
+    "familyName": "Certification Data Sharing",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -651,7 +1036,18 @@
    "providerExtensions": {
     "ruleName": "Per-Service Certification Materials",
     "family": "CDS",
-    "familyName": "Certification Data Sharing"
+    "familyName": "Certification Data Sharing",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -669,7 +1065,18 @@
    "providerExtensions": {
     "ruleName": "Responsible Public Package Sharing",
     "family": "CDS",
-    "familyName": "Certification Data Sharing"
+    "familyName": "Certification Data Sharing",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -687,7 +1094,18 @@
    "providerExtensions": {
     "ruleName": "Uninterrupted Sharing",
     "family": "CDS",
-    "familyName": "Certification Data Sharing"
+    "familyName": "Certification Data Sharing",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -705,7 +1123,18 @@
    "providerExtensions": {
     "ruleName": "Programmatic Access",
     "family": "CDS",
-    "familyName": "Certification Data Sharing"
+    "familyName": "Certification Data Sharing",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -723,7 +1152,18 @@
    "providerExtensions": {
     "ruleName": "Agency Access Inventory",
     "family": "CDS",
-    "familyName": "Certification Data Sharing"
+    "familyName": "Certification Data Sharing",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -741,7 +1181,18 @@
    "providerExtensions": {
     "ruleName": "Access Logging",
     "family": "CDS",
-    "familyName": "Certification Data Sharing"
+    "familyName": "Certification Data Sharing",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -759,7 +1210,18 @@
    "providerExtensions": {
     "ruleName": "Human and Machine-Readable Certification Data",
     "family": "CDS",
-    "familyName": "Certification Data Sharing"
+    "familyName": "Certification Data Sharing",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -777,7 +1239,18 @@
    "providerExtensions": {
     "ruleName": "Self-Service Access Management",
     "family": "CDS",
-    "familyName": "Certification Data Sharing"
+    "familyName": "Certification Data Sharing",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -795,7 +1268,18 @@
    "providerExtensions": {
     "ruleName": "Agency Access Denial",
     "family": "CDS",
-    "familyName": "Certification Data Sharing"
+    "familyName": "Certification Data Sharing",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -813,7 +1297,18 @@
    "providerExtensions": {
     "ruleName": "Agency Access",
     "family": "CDS",
-    "familyName": "Certification Data Sharing"
+    "familyName": "Certification Data Sharing",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -831,7 +1326,18 @@
    "providerExtensions": {
     "ruleName": "Cryptographic Module Documentation",
     "family": "CMU",
-    "familyName": "Cryptographic Module Use"
+    "familyName": "Cryptographic Module Use",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -849,7 +1355,18 @@
    "providerExtensions": {
     "ruleName": "Using Validated Cryptographic Modules",
     "family": "CMU",
-    "familyName": "Cryptographic Module Use"
+    "familyName": "Cryptographic Module Use",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -867,7 +1384,18 @@
    "providerExtensions": {
     "ruleName": "Configuration of Agency Tenants",
     "family": "CMU",
-    "familyName": "Cryptographic Module Use"
+    "familyName": "Cryptographic Module Use",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -885,7 +1413,18 @@
    "providerExtensions": {
     "ruleName": "Overview of the Cloud Service Offering",
     "family": "CPO",
-    "familyName": "Certification Package Overview"
+    "familyName": "Certification Package Overview",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -903,7 +1442,18 @@
    "providerExtensions": {
     "ruleName": "Certification Package Overview Metadata",
     "family": "CPO",
-    "familyName": "Certification Package Overview"
+    "familyName": "Certification Package Overview",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -921,7 +1471,18 @@
    "providerExtensions": {
     "ruleName": "Overall Summary of Assessment in Certification Package",
     "family": "CPO",
-    "familyName": "Certification Package Overview"
+    "familyName": "Certification Package Overview",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -939,7 +1500,18 @@
    "providerExtensions": {
     "ruleName": "Certification Package Maintenance for 20x",
     "family": "CPO",
-    "familyName": "Certification Package Overview"
+    "familyName": "Certification Package Overview",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -957,7 +1529,18 @@
    "providerExtensions": {
     "ruleName": "FedRAMP Certification Profile",
     "family": "FRC",
-    "familyName": "FedRAMP Certification"
+    "familyName": "FedRAMP Certification",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -975,7 +1558,18 @@
    "providerExtensions": {
     "ruleName": "FedRAMP Certification Package",
     "family": "FRC",
-    "familyName": "FedRAMP Certification"
+    "familyName": "FedRAMP Certification",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -993,7 +1587,18 @@
    "providerExtensions": {
     "ruleName": "FedRAMP JSON Schemas",
     "family": "FRC",
-    "familyName": "FedRAMP Certification"
+    "familyName": "FedRAMP Certification",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "Example: every change plus weekly re-validation.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "Example: Compliance Engineering Lead"
+    }
    }
   },
   {
@@ -1011,7 +1616,18 @@
    "providerExtensions": {
     "ruleName": "Maintain Responsibility and Accountability",
     "family": "FRC",
-    "familyName": "FedRAMP Certification"
+    "familyName": "FedRAMP Certification",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1029,7 +1645,18 @@
    "providerExtensions": {
     "ruleName": "Pick One Program Certification Type",
     "family": "FRC",
-    "familyName": "FedRAMP Certification"
+    "familyName": "FedRAMP Certification",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1047,7 +1674,18 @@
    "providerExtensions": {
     "ruleName": "Marketplace Listing First",
     "family": "FRC",
-    "familyName": "FedRAMP Certification"
+    "familyName": "FedRAMP Certification",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1065,7 +1703,18 @@
    "providerExtensions": {
     "ruleName": "Applying for FedRAMP Certification",
     "family": "FRC",
-    "familyName": "FedRAMP Certification"
+    "familyName": "FedRAMP Certification",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1083,7 +1732,18 @@
    "providerExtensions": {
     "ruleName": "Fresh FedRAMP Certification Package",
     "family": "FRC",
-    "familyName": "FedRAMP Certification"
+    "familyName": "FedRAMP Certification",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1101,7 +1761,18 @@
    "providerExtensions": {
     "ruleName": "Fresh Independent Assessment",
     "family": "FRC",
-    "familyName": "FedRAMP Certification"
+    "familyName": "FedRAMP Certification",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1119,7 +1790,18 @@
    "providerExtensions": {
     "ruleName": "No Third-Party Applicants",
     "family": "FRC",
-    "familyName": "FedRAMP Certification"
+    "familyName": "FedRAMP Certification",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1137,7 +1819,18 @@
    "providerExtensions": {
     "ruleName": "Updating Stale Assessments",
     "family": "FRC",
-    "familyName": "FedRAMP Certification"
+    "familyName": "FedRAMP Certification",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1155,7 +1848,18 @@
    "providerExtensions": {
     "ruleName": "Automated Verification and Validation of Key Security Indicators",
     "family": "FRC",
-    "familyName": "FedRAMP Certification"
+    "familyName": "FedRAMP Certification",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1173,7 +1877,18 @@
    "providerExtensions": {
     "ruleName": "Metrics Over Time for Key Security Indicators",
     "family": "FRC",
-    "familyName": "FedRAMP Certification"
+    "familyName": "FedRAMP Certification",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1191,7 +1906,18 @@
    "providerExtensions": {
     "ruleName": "Automated Verification and Validation of FedRAMP Rules",
     "family": "FRC",
-    "familyName": "FedRAMP Certification"
+    "familyName": "FedRAMP Certification",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1209,7 +1935,18 @@
    "providerExtensions": {
     "ruleName": "Application within MAS",
     "family": "FRC",
-    "familyName": "FedRAMP Certification"
+    "familyName": "FedRAMP Certification",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1227,7 +1964,18 @@
    "providerExtensions": {
     "ruleName": "Evaluate FedRAMP Reportability",
     "family": "IEC",
-    "familyName": "Incident Evaluation and Communication"
+    "familyName": "Incident Evaluation and Communication",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1245,7 +1993,18 @@
    "providerExtensions": {
     "ruleName": "Default PAIN Rating",
     "family": "IEC",
-    "familyName": "Incident Evaluation and Communication"
+    "familyName": "Incident Evaluation and Communication",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1263,7 +2022,18 @@
    "providerExtensions": {
     "ruleName": "Initial Incident Report",
     "family": "IEC",
-    "familyName": "Incident Evaluation and Communication"
+    "familyName": "Incident Evaluation and Communication",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1281,7 +2051,18 @@
    "providerExtensions": {
     "ruleName": "Ongoing Incident Reports",
     "family": "IEC",
-    "familyName": "Incident Evaluation and Communication"
+    "familyName": "Incident Evaluation and Communication",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1299,7 +2080,18 @@
    "providerExtensions": {
     "ruleName": "Final Incident Report",
     "family": "IEC",
-    "familyName": "Incident Evaluation and Communication"
+    "familyName": "Incident Evaluation and Communication",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1317,7 +2109,18 @@
    "providerExtensions": {
     "ruleName": "Estimate Federal Impact",
     "family": "IEC",
-    "familyName": "Incident Evaluation and Communication"
+    "familyName": "Incident Evaluation and Communication",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1335,7 +2138,18 @@
    "providerExtensions": {
     "ruleName": "Automated Incident Reporting",
     "family": "IEC",
-    "familyName": "Incident Evaluation and Communication"
+    "familyName": "Incident Evaluation and Communication",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1353,7 +2167,18 @@
    "providerExtensions": {
     "ruleName": "FedRAMP Independent Assessments",
     "family": "IVV",
-    "familyName": "Independent Verification and Validation"
+    "familyName": "Independent Verification and Validation",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1371,7 +2196,18 @@
    "providerExtensions": {
     "ruleName": "Supply Evidence of Implementation",
     "family": "IVV",
-    "familyName": "Independent Verification and Validation"
+    "familyName": "Independent Verification and Validation",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1389,7 +2225,18 @@
    "providerExtensions": {
     "ruleName": "Supply Evidence of Effectiveness",
     "family": "IVV",
-    "familyName": "Independent Verification and Validation"
+    "familyName": "Independent Verification and Validation",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1407,7 +2254,18 @@
    "providerExtensions": {
     "ruleName": "Inclusion in Certification Package",
     "family": "IVV",
-    "familyName": "Independent Verification and Validation"
+    "familyName": "Independent Verification and Validation",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1425,7 +2283,18 @@
    "providerExtensions": {
     "ruleName": "Document Use of Representative Samples",
     "family": "IVV",
-    "familyName": "Independent Verification and Validation"
+    "familyName": "Independent Verification and Validation",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1443,7 +2312,18 @@
    "providerExtensions": {
     "ruleName": "Supply Technical Explanations",
     "family": "IVV",
-    "familyName": "Independent Verification and Validation"
+    "familyName": "Independent Verification and Validation",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1461,7 +2341,18 @@
    "providerExtensions": {
     "ruleName": "Use Representative Samples",
     "family": "IVV",
-    "familyName": "Independent Verification and Validation"
+    "familyName": "Independent Verification and Validation",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1479,7 +2370,18 @@
    "providerExtensions": {
     "ruleName": "Receiving Assessor Advice",
     "family": "IVV",
-    "familyName": "Independent Verification and Validation"
+    "familyName": "Independent Verification and Validation",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1497,7 +2399,18 @@
    "providerExtensions": {
     "ruleName": "Annual Independent Assessments for 20x",
     "family": "IVV",
-    "familyName": "Independent Verification and Validation"
+    "familyName": "Independent Verification and Validation",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1515,7 +2428,18 @@
    "providerExtensions": {
     "ruleName": "Identify Information Resources",
     "family": "MAS",
-    "familyName": "Minimum Assessment Scope"
+    "familyName": "Minimum Assessment Scope",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1533,7 +2457,18 @@
    "providerExtensions": {
     "ruleName": "Information Flows and Security Categories",
     "family": "MAS",
-    "familyName": "Minimum Assessment Scope"
+    "familyName": "Minimum Assessment Scope",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1551,7 +2486,18 @@
    "providerExtensions": {
     "ruleName": "Third-Party Information Resources",
     "family": "MAS",
-    "familyName": "Minimum Assessment Scope"
+    "familyName": "Minimum Assessment Scope",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1569,7 +2515,18 @@
    "providerExtensions": {
     "ruleName": "Metadata Inclusion",
     "family": "MAS",
-    "familyName": "Minimum Assessment Scope"
+    "familyName": "Minimum Assessment Scope",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1587,7 +2544,18 @@
    "providerExtensions": {
     "ruleName": "Supplemental Information",
     "family": "MAS",
-    "familyName": "Minimum Assessment Scope"
+    "familyName": "Minimum Assessment Scope",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1605,7 +2573,18 @@
    "providerExtensions": {
     "ruleName": "Marketplace Listing Requirements",
     "family": "MKT",
-    "familyName": "Marketplace Listing"
+    "familyName": "Marketplace Listing",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1623,7 +2602,18 @@
    "providerExtensions": {
     "ruleName": "Provider Marketplace Listing Requests",
     "family": "MKT",
-    "familyName": "Marketplace Listing"
+    "familyName": "Marketplace Listing",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1641,7 +2631,18 @@
    "providerExtensions": {
     "ruleName": "Agency Use Cases",
     "family": "MKT",
-    "familyName": "Marketplace Listing"
+    "familyName": "Marketplace Listing",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1659,7 +2660,18 @@
    "providerExtensions": {
     "ruleName": "Demonstrating Continuous Progress",
     "family": "MKT",
-    "familyName": "Marketplace Listing"
+    "familyName": "Marketplace Listing",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1677,7 +2689,18 @@
    "providerExtensions": {
     "ruleName": "Deadline for Assessment",
     "family": "MKT",
-    "familyName": "Marketplace Listing"
+    "familyName": "Marketplace Listing",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1695,7 +2718,18 @@
    "providerExtensions": {
     "ruleName": "Recommended Secure Configuration",
     "family": "SCG",
-    "familyName": "Secure Configuration Guide"
+    "familyName": "Secure Configuration Guide",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1713,7 +2747,18 @@
    "providerExtensions": {
     "ruleName": "Use Instructions",
     "family": "SCG",
-    "familyName": "Secure Configuration Guide"
+    "familyName": "Secure Configuration Guide",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1731,7 +2776,18 @@
    "providerExtensions": {
     "ruleName": "Public Secure Configuration Guidance",
     "family": "SCG",
-    "familyName": "Secure Configuration Guide"
+    "familyName": "Secure Configuration Guide",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1749,7 +2805,18 @@
    "providerExtensions": {
     "ruleName": "Secure Defaults",
     "family": "SCG",
-    "familyName": "Secure Configuration Guide"
+    "familyName": "Secure Configuration Guide",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1767,7 +2834,18 @@
    "providerExtensions": {
     "ruleName": "Comparison Capability",
     "family": "SCG",
-    "familyName": "Secure Configuration Guide"
+    "familyName": "Secure Configuration Guide",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1785,7 +2863,18 @@
    "providerExtensions": {
     "ruleName": "Export Capability",
     "family": "SCG",
-    "familyName": "Secure Configuration Guide"
+    "familyName": "Secure Configuration Guide",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1803,7 +2892,18 @@
    "providerExtensions": {
     "ruleName": "API Capability",
     "family": "SCG",
-    "familyName": "Secure Configuration Guide"
+    "familyName": "Secure Configuration Guide",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1821,7 +2921,18 @@
    "providerExtensions": {
     "ruleName": "Machine-Readable Guidance",
     "family": "SCG",
-    "familyName": "Secure Configuration Guide"
+    "familyName": "Secure Configuration Guide",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1839,7 +2950,18 @@
    "providerExtensions": {
     "ruleName": "Versioning and Release History",
     "family": "SCG",
-    "familyName": "Secure Configuration Guide"
+    "familyName": "Secure Configuration Guide",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1857,7 +2979,18 @@
    "providerExtensions": {
     "ruleName": "Evaluate Changes",
     "family": "SCN",
-    "familyName": "Significant Change Notification"
+    "familyName": "Significant Change Notification",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1875,7 +3008,18 @@
    "providerExtensions": {
     "ruleName": "Maintain Audit Records",
     "family": "SCN",
-    "familyName": "Significant Change Notification"
+    "familyName": "Significant Change Notification",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1893,7 +3037,18 @@
    "providerExtensions": {
     "ruleName": "Required Information",
     "family": "SCN",
-    "familyName": "Significant Change Notification"
+    "familyName": "Significant Change Notification",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1911,7 +3066,18 @@
    "providerExtensions": {
     "ruleName": "Historical Notifications",
     "family": "SCN",
-    "familyName": "Significant Change Notification"
+    "familyName": "Significant Change Notification",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1929,7 +3095,18 @@
    "providerExtensions": {
     "ruleName": "Human and Machine-Readable Notifications",
     "family": "SCN",
-    "familyName": "Significant Change Notification"
+    "familyName": "Significant Change Notification",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1947,7 +3124,18 @@
    "providerExtensions": {
     "ruleName": "Additional Relevant Information",
     "family": "SCN",
-    "familyName": "Significant Change Notification"
+    "familyName": "Significant Change Notification",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1965,7 +3153,18 @@
    "providerExtensions": {
     "ruleName": "Notification Mechanisms",
     "family": "SCN",
-    "familyName": "Significant Change Notification"
+    "familyName": "Significant Change Notification",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -1983,7 +3182,18 @@
    "providerExtensions": {
     "ruleName": "Emergency Changes",
     "family": "SCN",
-    "familyName": "Significant Change Notification"
+    "familyName": "Significant Change Notification",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -2001,7 +3211,18 @@
    "providerExtensions": {
     "ruleName": "Notification Requirements",
     "family": "SCN",
-    "familyName": "Significant Change Notification"
+    "familyName": "Significant Change Notification",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -2019,7 +3240,18 @@
    "providerExtensions": {
     "ruleName": "No Notification Requirements",
     "family": "SCN",
-    "familyName": "Significant Change Notification"
+    "familyName": "Significant Change Notification",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -2037,7 +3269,18 @@
    "providerExtensions": {
     "ruleName": "Notification of Initial Plans",
     "family": "SCN",
-    "familyName": "Significant Change Notification"
+    "familyName": "Significant Change Notification",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -2055,7 +3298,18 @@
    "providerExtensions": {
     "ruleName": "Notification of Final Plans",
     "family": "SCN",
-    "familyName": "Significant Change Notification"
+    "familyName": "Significant Change Notification",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -2073,7 +3327,18 @@
    "providerExtensions": {
     "ruleName": "Notification After Finishing",
     "family": "SCN",
-    "familyName": "Significant Change Notification"
+    "familyName": "Significant Change Notification",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -2091,7 +3356,18 @@
    "providerExtensions": {
     "ruleName": "Notification After Verification",
     "family": "SCN",
-    "familyName": "Significant Change Notification"
+    "familyName": "Significant Change Notification",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -2109,7 +3385,18 @@
    "providerExtensions": {
     "ruleName": "Update Documentation",
     "family": "SCN",
-    "familyName": "Significant Change Notification"
+    "familyName": "Significant Change Notification",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -2127,7 +3414,18 @@
    "providerExtensions": {
     "ruleName": "Third-Party Review",
     "family": "SCN",
-    "familyName": "Significant Change Notification"
+    "familyName": "Significant Change Notification",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -2145,7 +3443,18 @@
    "providerExtensions": {
     "ruleName": "FedRAMP Rules",
     "family": "SDR",
-    "familyName": "Security Decision Record"
+    "familyName": "Security Decision Record",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -2163,7 +3472,18 @@
    "providerExtensions": {
     "ruleName": "Security Decision Record Metadata",
     "family": "SDR",
-    "familyName": "Security Decision Record"
+    "familyName": "Security Decision Record",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -2181,7 +3501,18 @@
    "providerExtensions": {
     "ruleName": "Key Security Indicators",
     "family": "SDR",
-    "familyName": "Security Decision Record"
+    "familyName": "Security Decision Record",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -2199,7 +3530,18 @@
    "providerExtensions": {
     "ruleName": "Key Security Indicator Metrics",
     "family": "SDR",
-    "familyName": "Security Decision Record"
+    "familyName": "Security Decision Record",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -2217,7 +3559,18 @@
    "providerExtensions": {
     "ruleName": "Vulnerability Detection",
     "family": "VDR",
-    "familyName": "Vulnerability Detection and Response"
+    "familyName": "Vulnerability Detection and Response",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "Example: daily coverage and freshness checks.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "Example: Vulnerability Management Lead"
+    }
    }
   },
   {
@@ -2235,7 +3588,18 @@
    "providerExtensions": {
     "ruleName": "Vulnerability Response",
     "family": "VDR",
-    "familyName": "Vulnerability Detection and Response"
+    "familyName": "Vulnerability Detection and Response",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -2253,7 +3617,18 @@
    "providerExtensions": {
     "ruleName": "Failures Are Vulnerabilities",
     "family": "VDR",
-    "familyName": "Vulnerability Detection and Response"
+    "familyName": "Vulnerability Detection and Response",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -2271,7 +3646,18 @@
    "providerExtensions": {
     "ruleName": "Design For Resilience",
     "family": "VDR",
-    "familyName": "Vulnerability Detection and Response"
+    "familyName": "Vulnerability Detection and Response",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -2289,7 +3675,18 @@
    "providerExtensions": {
     "ruleName": "Automate Detection",
     "family": "VDR",
-    "familyName": "Vulnerability Detection and Response"
+    "familyName": "Vulnerability Detection and Response",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -2307,7 +3704,18 @@
    "providerExtensions": {
     "ruleName": "Detect After Changes",
     "family": "VDR",
-    "familyName": "Vulnerability Detection and Response"
+    "familyName": "Vulnerability Detection and Response",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -2325,7 +3733,18 @@
    "providerExtensions": {
     "ruleName": "Maintain Security",
     "family": "VDR",
-    "familyName": "Vulnerability Detection and Response"
+    "familyName": "Vulnerability Detection and Response",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -2343,7 +3762,18 @@
    "providerExtensions": {
     "ruleName": "Avoid KEVs",
     "family": "VDR",
-    "familyName": "Vulnerability Detection and Response"
+    "familyName": "Vulnerability Detection and Response",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -2361,7 +3791,18 @@
    "providerExtensions": {
     "ruleName": "Sampling",
     "family": "VDR",
-    "familyName": "Vulnerability Detection and Response"
+    "familyName": "Vulnerability Detection and Response",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -2379,7 +3820,18 @@
    "providerExtensions": {
     "ruleName": "Non-Machine Verification and Validation",
     "family": "VDR",
-    "familyName": "Vulnerability Detection and Response"
+    "familyName": "Vulnerability Detection and Response",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -2397,7 +3849,18 @@
    "providerExtensions": {
     "ruleName": "Persistent Drift Detection",
     "family": "VDR",
-    "familyName": "Vulnerability Detection and Response"
+    "familyName": "Vulnerability Detection and Response",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -2415,7 +3878,18 @@
    "providerExtensions": {
     "ruleName": "Persistently Complete Detection",
     "family": "VDR",
-    "familyName": "Vulnerability Detection and Response"
+    "familyName": "Vulnerability Detection and Response",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -2433,7 +3907,18 @@
    "providerExtensions": {
     "ruleName": "Mitigation and Remediation Expectations",
     "family": "VDR",
-    "familyName": "Vulnerability Detection and Response"
+    "familyName": "Vulnerability Detection and Response",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -2451,7 +3936,18 @@
    "providerExtensions": {
     "ruleName": "Remaining Vulnerabilities",
     "family": "VDR",
-    "familyName": "Vulnerability Detection and Response"
+    "familyName": "Vulnerability Detection and Response",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -2469,7 +3965,18 @@
    "providerExtensions": {
     "ruleName": "Remediate KEVs",
     "family": "VDR",
-    "familyName": "Vulnerability Detection and Response"
+    "familyName": "Vulnerability Detection and Response",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -2487,7 +3994,18 @@
    "providerExtensions": {
     "ruleName": "Persistent Sample Detection",
     "family": "VDR",
-    "familyName": "Vulnerability Detection and Response"
+    "familyName": "Vulnerability Detection and Response",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -2505,7 +4023,18 @@
    "providerExtensions": {
     "ruleName": "Persistent Machine Verification and Validation for 20x",
     "family": "VDR",
-    "familyName": "Vulnerability Detection and Response"
+    "familyName": "Vulnerability Detection and Response",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -2523,7 +4052,18 @@
    "providerExtensions": {
     "ruleName": "Evaluate Exploitability",
     "family": "VER",
-    "familyName": "Vulnerability Evaluation and Reporting"
+    "familyName": "Vulnerability Evaluation and Reporting",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -2541,7 +4081,18 @@
    "providerExtensions": {
     "ruleName": "Evaluate Internet-Reachability",
     "family": "VER",
-    "familyName": "Vulnerability Evaluation and Reporting"
+    "familyName": "Vulnerability Evaluation and Reporting",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -2559,7 +4110,18 @@
    "providerExtensions": {
     "ruleName": "Estimate Potential Agency Impact",
     "family": "VER",
-    "familyName": "Vulnerability Evaluation and Reporting"
+    "familyName": "Vulnerability Evaluation and Reporting",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -2577,7 +4139,18 @@
    "providerExtensions": {
     "ruleName": "Assume It's Automatable",
     "family": "VER",
-    "familyName": "Vulnerability Evaluation and Reporting"
+    "familyName": "Vulnerability Evaluation and Reporting",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -2595,7 +4168,18 @@
    "providerExtensions": {
     "ruleName": "Group Vulnerabilities",
     "family": "VER",
-    "familyName": "Vulnerability Evaluation and Reporting"
+    "familyName": "Vulnerability Evaluation and Reporting",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -2613,7 +4197,18 @@
    "providerExtensions": {
     "ruleName": "Evaluate False Positives",
     "family": "VER",
-    "familyName": "Vulnerability Evaluation and Reporting"
+    "familyName": "Vulnerability Evaluation and Reporting",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -2631,7 +4226,18 @@
    "providerExtensions": {
     "ruleName": "Evaluation Factors",
     "family": "VER",
-    "familyName": "Vulnerability Evaluation and Reporting"
+    "familyName": "Vulnerability Evaluation and Reporting",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -2649,7 +4255,18 @@
    "providerExtensions": {
     "ruleName": "Persistent Reporting",
     "family": "VER",
-    "familyName": "Vulnerability Evaluation and Reporting"
+    "familyName": "Vulnerability Evaluation and Reporting",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -2667,7 +4284,18 @@
    "providerExtensions": {
     "ruleName": "Vulnerability Details",
     "family": "VER",
-    "familyName": "Vulnerability Evaluation and Reporting"
+    "familyName": "Vulnerability Evaluation and Reporting",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -2685,7 +4313,18 @@
    "providerExtensions": {
     "ruleName": "Accepted Vulnerability Info",
     "family": "VER",
-    "familyName": "Vulnerability Evaluation and Reporting"
+    "familyName": "Vulnerability Evaluation and Reporting",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -2703,7 +4342,18 @@
    "providerExtensions": {
     "ruleName": "Responsible Disclosure",
     "family": "VER",
-    "familyName": "Vulnerability Evaluation and Reporting"
+    "familyName": "Vulnerability Evaluation and Reporting",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -2721,7 +4371,18 @@
    "providerExtensions": {
     "ruleName": "High-Level Overviews",
     "family": "VER",
-    "familyName": "Vulnerability Evaluation and Reporting"
+    "familyName": "Vulnerability Evaluation and Reporting",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -2739,7 +4400,18 @@
    "providerExtensions": {
     "ruleName": "Responsible Public Disclosure",
     "family": "VER",
-    "familyName": "Vulnerability Evaluation and Reporting"
+    "familyName": "Vulnerability Evaluation and Reporting",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -2757,7 +4429,18 @@
    "providerExtensions": {
     "ruleName": "Monthly Activity Report",
     "family": "VER",
-    "familyName": "Vulnerability Evaluation and Reporting"
+    "familyName": "Vulnerability Evaluation and Reporting",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -2775,7 +4458,18 @@
    "providerExtensions": {
     "ruleName": "Mark Accepted Vulnerabilities",
     "family": "VER",
-    "familyName": "Vulnerability Evaluation and Reporting"
+    "familyName": "Vulnerability Evaluation and Reporting",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -2793,7 +4487,18 @@
    "providerExtensions": {
     "ruleName": "Historical Activity",
     "family": "VER",
-    "familyName": "Vulnerability Evaluation and Reporting"
+    "familyName": "Vulnerability Evaluation and Reporting",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -2811,7 +4516,18 @@
    "providerExtensions": {
     "ruleName": "Evaluate Vulnerabilities Quickly",
     "family": "VER",
-    "familyName": "Vulnerability Evaluation and Reporting"
+    "familyName": "Vulnerability Evaluation and Reporting",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -2829,7 +4545,18 @@
    "providerExtensions": {
     "ruleName": "Internet-Reachable Incidents",
     "family": "VER",
-    "familyName": "Vulnerability Evaluation and Reporting"
+    "familyName": "Vulnerability Evaluation and Reporting",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   },
   {
@@ -2847,7 +4574,18 @@
    "providerExtensions": {
     "ruleName": "Non-Internet-Reachable Incidents",
     "family": "VER",
-    "familyName": "Vulnerability Evaluation and Reporting"
+    "familyName": "Vulnerability Evaluation and Reporting",
+    "xFedRampSemantic": {
+     "implementationRisk": "TBD: Information has not been provided.",
+     "verification": "TBD: Information has not been provided.",
+     "validationFrequency": "TBD: Information has not been provided.",
+     "independentVerification": "TBD: Information has not been provided.",
+     "independentValidation": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "ruleArtifacts": [],
+     "seniorOfficialAcceptance": "Not required: rule is followed",
+     "owner": "TBD: Information has not been provided."
+    }
    }
   }
  ],
@@ -2869,7 +4607,20 @@
    "providerExtensions": {
     "ksiName": "Reviewing All Training",
     "family": "CED",
-    "familyName": "Cybersecurity Education"
+    "familyName": "Cybersecurity Education",
+    "xFedRampSemantic": {
+     "measures": "TBD: Information has not been provided.",
+     "operatingCycle": "TBD: Information has not been provided.",
+     "measuresVerification": "TBD: Information has not been provided.",
+     "automationVerification": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "owner": "TBD: Information has not been provided.",
+     "historicalMetrics": {
+      "last30Days": "TBD: Information has not been provided.",
+      "upToOneYear": "TBD: Information has not been provided.",
+      "dailyDataReference": "TBD: Information has not been provided."
+     }
+    }
    }
   },
   {
@@ -2892,7 +4643,20 @@
    "providerExtensions": {
     "ksiName": "Logging Changes",
     "family": "CMT",
-    "familyName": "Change Management"
+    "familyName": "Change Management",
+    "xFedRampSemantic": {
+     "measures": "TBD: Information has not been provided.",
+     "operatingCycle": "TBD: Information has not been provided.",
+     "measuresVerification": "TBD: Information has not been provided.",
+     "automationVerification": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "owner": "Example: Platform Engineering Lead",
+     "historicalMetrics": {
+      "last30Days": "TBD: Information has not been provided.",
+      "upToOneYear": "TBD: Information has not been provided.",
+      "dailyDataReference": "TBD: Information has not been provided."
+     }
+    }
    }
   },
   {
@@ -2912,7 +4676,20 @@
    "providerExtensions": {
     "ksiName": "Redeploying vs Modifying",
     "family": "CMT",
-    "familyName": "Change Management"
+    "familyName": "Change Management",
+    "xFedRampSemantic": {
+     "measures": "TBD: Information has not been provided.",
+     "operatingCycle": "TBD: Information has not been provided.",
+     "measuresVerification": "TBD: Information has not been provided.",
+     "automationVerification": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "owner": "TBD: Information has not been provided.",
+     "historicalMetrics": {
+      "last30Days": "TBD: Information has not been provided.",
+      "upToOneYear": "TBD: Information has not been provided.",
+      "dailyDataReference": "TBD: Information has not been provided."
+     }
+    }
    }
   },
   {
@@ -2932,7 +4709,20 @@
    "providerExtensions": {
     "ksiName": "Reviewing Change Procedures",
     "family": "CMT",
-    "familyName": "Change Management"
+    "familyName": "Change Management",
+    "xFedRampSemantic": {
+     "measures": "TBD: Information has not been provided.",
+     "operatingCycle": "TBD: Information has not been provided.",
+     "measuresVerification": "TBD: Information has not been provided.",
+     "automationVerification": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "owner": "TBD: Information has not been provided.",
+     "historicalMetrics": {
+      "last30Days": "TBD: Information has not been provided.",
+      "upToOneYear": "TBD: Information has not been provided.",
+      "dailyDataReference": "TBD: Information has not been provided."
+     }
+    }
    }
   },
   {
@@ -2952,7 +4742,20 @@
    "providerExtensions": {
     "ksiName": "Validating Throughout Deployment",
     "family": "CMT",
-    "familyName": "Change Management"
+    "familyName": "Change Management",
+    "xFedRampSemantic": {
+     "measures": "TBD: Information has not been provided.",
+     "operatingCycle": "TBD: Information has not been provided.",
+     "measuresVerification": "TBD: Information has not been provided.",
+     "automationVerification": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "owner": "TBD: Information has not been provided.",
+     "historicalMetrics": {
+      "last30Days": "TBD: Information has not been provided.",
+      "upToOneYear": "TBD: Information has not been provided.",
+      "dailyDataReference": "TBD: Information has not been provided."
+     }
+    }
    }
   },
   {
@@ -2972,7 +4775,20 @@
    "providerExtensions": {
     "ksiName": "Defining Functionality and Privileges",
     "family": "CNA",
-    "familyName": "Cloud Native Architecture"
+    "familyName": "Cloud Native Architecture",
+    "xFedRampSemantic": {
+     "measures": "TBD: Information has not been provided.",
+     "operatingCycle": "TBD: Information has not been provided.",
+     "measuresVerification": "TBD: Information has not been provided.",
+     "automationVerification": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "owner": "TBD: Information has not been provided.",
+     "historicalMetrics": {
+      "last30Days": "TBD: Information has not been provided.",
+      "upToOneYear": "TBD: Information has not been provided.",
+      "dailyDataReference": "TBD: Information has not been provided."
+     }
+    }
    }
   },
   {
@@ -2992,7 +4808,20 @@
    "providerExtensions": {
     "ksiName": "Enforcing Intended State",
     "family": "CNA",
-    "familyName": "Cloud Native Architecture"
+    "familyName": "Cloud Native Architecture",
+    "xFedRampSemantic": {
+     "measures": "TBD: Information has not been provided.",
+     "operatingCycle": "TBD: Information has not been provided.",
+     "measuresVerification": "TBD: Information has not been provided.",
+     "automationVerification": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "owner": "TBD: Information has not been provided.",
+     "historicalMetrics": {
+      "last30Days": "TBD: Information has not been provided.",
+      "upToOneYear": "TBD: Information has not been provided.",
+      "dailyDataReference": "TBD: Information has not been provided."
+     }
+    }
    }
   },
   {
@@ -3012,7 +4841,20 @@
    "providerExtensions": {
     "ksiName": "Implementing Best Practices",
     "family": "CNA",
-    "familyName": "Cloud Native Architecture"
+    "familyName": "Cloud Native Architecture",
+    "xFedRampSemantic": {
+     "measures": "TBD: Information has not been provided.",
+     "operatingCycle": "TBD: Information has not been provided.",
+     "measuresVerification": "TBD: Information has not been provided.",
+     "automationVerification": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "owner": "TBD: Information has not been provided.",
+     "historicalMetrics": {
+      "last30Days": "TBD: Information has not been provided.",
+      "upToOneYear": "TBD: Information has not been provided.",
+      "dailyDataReference": "TBD: Information has not been provided."
+     }
+    }
    }
   },
   {
@@ -3032,7 +4874,20 @@
    "providerExtensions": {
     "ksiName": "Minimizing Attack Surface",
     "family": "CNA",
-    "familyName": "Cloud Native Architecture"
+    "familyName": "Cloud Native Architecture",
+    "xFedRampSemantic": {
+     "measures": "TBD: Information has not been provided.",
+     "operatingCycle": "TBD: Information has not been provided.",
+     "measuresVerification": "TBD: Information has not been provided.",
+     "automationVerification": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "owner": "TBD: Information has not been provided.",
+     "historicalMetrics": {
+      "last30Days": "TBD: Information has not been provided.",
+      "upToOneYear": "TBD: Information has not been provided.",
+      "dailyDataReference": "TBD: Information has not been provided."
+     }
+    }
    }
   },
   {
@@ -3052,7 +4907,20 @@
    "providerExtensions": {
     "ksiName": "Optimizing for Availability",
     "family": "CNA",
-    "familyName": "Cloud Native Architecture"
+    "familyName": "Cloud Native Architecture",
+    "xFedRampSemantic": {
+     "measures": "TBD: Information has not been provided.",
+     "operatingCycle": "TBD: Information has not been provided.",
+     "measuresVerification": "TBD: Information has not been provided.",
+     "automationVerification": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "owner": "TBD: Information has not been provided.",
+     "historicalMetrics": {
+      "last30Days": "TBD: Information has not been provided.",
+      "upToOneYear": "TBD: Information has not been provided.",
+      "dailyDataReference": "TBD: Information has not been provided."
+     }
+    }
    }
   },
   {
@@ -3072,7 +4940,20 @@
    "providerExtensions": {
     "ksiName": "Restricting Network Traffic",
     "family": "CNA",
-    "familyName": "Cloud Native Architecture"
+    "familyName": "Cloud Native Architecture",
+    "xFedRampSemantic": {
+     "measures": "TBD: Information has not been provided.",
+     "operatingCycle": "TBD: Information has not been provided.",
+     "measuresVerification": "TBD: Information has not been provided.",
+     "automationVerification": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "owner": "TBD: Information has not been provided.",
+     "historicalMetrics": {
+      "last30Days": "TBD: Information has not been provided.",
+      "upToOneYear": "TBD: Information has not been provided.",
+      "dailyDataReference": "TBD: Information has not been provided."
+     }
+    }
    }
   },
   {
@@ -3092,7 +4973,20 @@
    "providerExtensions": {
     "ksiName": "Reviewing Protections",
     "family": "CNA",
-    "familyName": "Cloud Native Architecture"
+    "familyName": "Cloud Native Architecture",
+    "xFedRampSemantic": {
+     "measures": "TBD: Information has not been provided.",
+     "operatingCycle": "TBD: Information has not been provided.",
+     "measuresVerification": "TBD: Information has not been provided.",
+     "automationVerification": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "owner": "TBD: Information has not been provided.",
+     "historicalMetrics": {
+      "last30Days": "TBD: Information has not been provided.",
+      "upToOneYear": "TBD: Information has not been provided.",
+      "dailyDataReference": "TBD: Information has not been provided."
+     }
+    }
    }
   },
   {
@@ -3112,7 +5006,20 @@
    "providerExtensions": {
     "ksiName": "Using Logical Networking",
     "family": "CNA",
-    "familyName": "Cloud Native Architecture"
+    "familyName": "Cloud Native Architecture",
+    "xFedRampSemantic": {
+     "measures": "TBD: Information has not been provided.",
+     "operatingCycle": "TBD: Information has not been provided.",
+     "measuresVerification": "TBD: Information has not been provided.",
+     "automationVerification": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "owner": "TBD: Information has not been provided.",
+     "historicalMetrics": {
+      "last30Days": "TBD: Information has not been provided.",
+      "upToOneYear": "TBD: Information has not been provided.",
+      "dailyDataReference": "TBD: Information has not been provided."
+     }
+    }
    }
   },
   {
@@ -3132,7 +5039,20 @@
    "providerExtensions": {
     "ksiName": "Automating Account Management",
     "family": "IAM",
-    "familyName": "Identity and Access Management"
+    "familyName": "Identity and Access Management",
+    "xFedRampSemantic": {
+     "measures": "TBD: Information has not been provided.",
+     "operatingCycle": "TBD: Information has not been provided.",
+     "measuresVerification": "TBD: Information has not been provided.",
+     "automationVerification": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "owner": "TBD: Information has not been provided.",
+     "historicalMetrics": {
+      "last30Days": "TBD: Information has not been provided.",
+      "upToOneYear": "TBD: Information has not been provided.",
+      "dailyDataReference": "TBD: Information has not been provided."
+     }
+    }
    }
   },
   {
@@ -3155,7 +5075,20 @@
    "providerExtensions": {
     "ksiName": "Adopting Passwordless Methods",
     "family": "IAM",
-    "familyName": "Identity and Access Management"
+    "familyName": "Identity and Access Management",
+    "xFedRampSemantic": {
+     "measures": "Example: percent of authentications using FIDO2; count of MFA-less console logins (target 0).",
+     "operatingCycle": "Example: continuous enforcement, daily automated checks.",
+     "measuresVerification": "TBD: Information has not been provided.",
+     "automationVerification": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "owner": "Example: Identity and Access Lead",
+     "historicalMetrics": {
+      "last30Days": "TBD: Information has not been provided.",
+      "upToOneYear": "TBD: Information has not been provided.",
+      "dailyDataReference": "TBD: Information has not been provided."
+     }
+    }
    }
   },
   {
@@ -3175,7 +5108,20 @@
    "providerExtensions": {
     "ksiName": "Ensuring Least Privilege",
     "family": "IAM",
-    "familyName": "Identity and Access Management"
+    "familyName": "Identity and Access Management",
+    "xFedRampSemantic": {
+     "measures": "TBD: Information has not been provided.",
+     "operatingCycle": "TBD: Information has not been provided.",
+     "measuresVerification": "TBD: Information has not been provided.",
+     "automationVerification": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "owner": "TBD: Information has not been provided.",
+     "historicalMetrics": {
+      "last30Days": "TBD: Information has not been provided.",
+      "upToOneYear": "TBD: Information has not been provided.",
+      "dailyDataReference": "TBD: Information has not been provided."
+     }
+    }
    }
   },
   {
@@ -3195,7 +5141,20 @@
    "providerExtensions": {
     "ksiName": "Authorizing Just-in-Time",
     "family": "IAM",
-    "familyName": "Identity and Access Management"
+    "familyName": "Identity and Access Management",
+    "xFedRampSemantic": {
+     "measures": "TBD: Information has not been provided.",
+     "operatingCycle": "TBD: Information has not been provided.",
+     "measuresVerification": "TBD: Information has not been provided.",
+     "automationVerification": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "owner": "TBD: Information has not been provided.",
+     "historicalMetrics": {
+      "last30Days": "TBD: Information has not been provided.",
+      "upToOneYear": "TBD: Information has not been provided.",
+      "dailyDataReference": "TBD: Information has not been provided."
+     }
+    }
    }
   },
   {
@@ -3215,7 +5174,20 @@
    "providerExtensions": {
     "ksiName": "Securing Non-User Authentication",
     "family": "IAM",
-    "familyName": "Identity and Access Management"
+    "familyName": "Identity and Access Management",
+    "xFedRampSemantic": {
+     "measures": "TBD: Information has not been provided.",
+     "operatingCycle": "TBD: Information has not been provided.",
+     "measuresVerification": "TBD: Information has not been provided.",
+     "automationVerification": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "owner": "TBD: Information has not been provided.",
+     "historicalMetrics": {
+      "last30Days": "TBD: Information has not been provided.",
+      "upToOneYear": "TBD: Information has not been provided.",
+      "dailyDataReference": "TBD: Information has not been provided."
+     }
+    }
    }
   },
   {
@@ -3235,7 +5207,20 @@
    "providerExtensions": {
     "ksiName": "Responding to Suspicious Activity",
     "family": "IAM",
-    "familyName": "Identity and Access Management"
+    "familyName": "Identity and Access Management",
+    "xFedRampSemantic": {
+     "measures": "TBD: Information has not been provided.",
+     "operatingCycle": "TBD: Information has not been provided.",
+     "measuresVerification": "TBD: Information has not been provided.",
+     "automationVerification": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "owner": "TBD: Information has not been provided.",
+     "historicalMetrics": {
+      "last30Days": "TBD: Information has not been provided.",
+      "upToOneYear": "TBD: Information has not been provided.",
+      "dailyDataReference": "TBD: Information has not been provided."
+     }
+    }
    }
   },
   {
@@ -3255,7 +5240,20 @@
    "providerExtensions": {
     "ksiName": "Generating After Action Reports",
     "family": "INR",
-    "familyName": "Incident Response"
+    "familyName": "Incident Response",
+    "xFedRampSemantic": {
+     "measures": "TBD: Information has not been provided.",
+     "operatingCycle": "TBD: Information has not been provided.",
+     "measuresVerification": "TBD: Information has not been provided.",
+     "automationVerification": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "owner": "TBD: Information has not been provided.",
+     "historicalMetrics": {
+      "last30Days": "TBD: Information has not been provided.",
+      "upToOneYear": "TBD: Information has not been provided.",
+      "dailyDataReference": "TBD: Information has not been provided."
+     }
+    }
    }
   },
   {
@@ -3275,7 +5273,20 @@
    "providerExtensions": {
     "ksiName": "Reviewing Incident Response Procedures",
     "family": "INR",
-    "familyName": "Incident Response"
+    "familyName": "Incident Response",
+    "xFedRampSemantic": {
+     "measures": "TBD: Information has not been provided.",
+     "operatingCycle": "TBD: Information has not been provided.",
+     "measuresVerification": "TBD: Information has not been provided.",
+     "automationVerification": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "owner": "TBD: Information has not been provided.",
+     "historicalMetrics": {
+      "last30Days": "TBD: Information has not been provided.",
+      "upToOneYear": "TBD: Information has not been provided.",
+      "dailyDataReference": "TBD: Information has not been provided."
+     }
+    }
    }
   },
   {
@@ -3295,7 +5306,20 @@
    "providerExtensions": {
     "ksiName": "Reviewing Past Incidents",
     "family": "INR",
-    "familyName": "Incident Response"
+    "familyName": "Incident Response",
+    "xFedRampSemantic": {
+     "measures": "TBD: Information has not been provided.",
+     "operatingCycle": "TBD: Information has not been provided.",
+     "measuresVerification": "TBD: Information has not been provided.",
+     "automationVerification": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "owner": "TBD: Information has not been provided.",
+     "historicalMetrics": {
+      "last30Days": "TBD: Information has not been provided.",
+      "upToOneYear": "TBD: Information has not been provided.",
+      "dailyDataReference": "TBD: Information has not been provided."
+     }
+    }
    }
   },
   {
@@ -3315,7 +5339,20 @@
    "providerExtensions": {
     "ksiName": "Authorizing Log Access",
     "family": "MLA",
-    "familyName": "Monitoring, Logging, and Auditing"
+    "familyName": "Monitoring, Logging, and Auditing",
+    "xFedRampSemantic": {
+     "measures": "TBD: Information has not been provided.",
+     "operatingCycle": "TBD: Information has not been provided.",
+     "measuresVerification": "TBD: Information has not been provided.",
+     "automationVerification": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "owner": "TBD: Information has not been provided.",
+     "historicalMetrics": {
+      "last30Days": "TBD: Information has not been provided.",
+      "upToOneYear": "TBD: Information has not been provided.",
+      "dailyDataReference": "TBD: Information has not been provided."
+     }
+    }
    }
   },
   {
@@ -3335,7 +5372,20 @@
    "providerExtensions": {
     "ksiName": "Evaluating Configurations",
     "family": "MLA",
-    "familyName": "Monitoring, Logging, and Auditing"
+    "familyName": "Monitoring, Logging, and Auditing",
+    "xFedRampSemantic": {
+     "measures": "TBD: Information has not been provided.",
+     "operatingCycle": "TBD: Information has not been provided.",
+     "measuresVerification": "TBD: Information has not been provided.",
+     "automationVerification": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "owner": "TBD: Information has not been provided.",
+     "historicalMetrics": {
+      "last30Days": "TBD: Information has not been provided.",
+      "upToOneYear": "TBD: Information has not been provided.",
+      "dailyDataReference": "TBD: Information has not been provided."
+     }
+    }
    }
   },
   {
@@ -3355,7 +5405,20 @@
    "providerExtensions": {
     "ksiName": "Logging Event Types",
     "family": "MLA",
-    "familyName": "Monitoring, Logging, and Auditing"
+    "familyName": "Monitoring, Logging, and Auditing",
+    "xFedRampSemantic": {
+     "measures": "TBD: Information has not been provided.",
+     "operatingCycle": "TBD: Information has not been provided.",
+     "measuresVerification": "TBD: Information has not been provided.",
+     "automationVerification": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "owner": "TBD: Information has not been provided.",
+     "historicalMetrics": {
+      "last30Days": "TBD: Information has not been provided.",
+      "upToOneYear": "TBD: Information has not been provided.",
+      "dailyDataReference": "TBD: Information has not been provided."
+     }
+    }
    }
   },
   {
@@ -3375,7 +5438,20 @@
    "providerExtensions": {
     "ksiName": "Operating SIEM Capability",
     "family": "MLA",
-    "familyName": "Monitoring, Logging, and Auditing"
+    "familyName": "Monitoring, Logging, and Auditing",
+    "xFedRampSemantic": {
+     "measures": "TBD: Information has not been provided.",
+     "operatingCycle": "TBD: Information has not been provided.",
+     "measuresVerification": "TBD: Information has not been provided.",
+     "automationVerification": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "owner": "TBD: Information has not been provided.",
+     "historicalMetrics": {
+      "last30Days": "TBD: Information has not been provided.",
+      "upToOneYear": "TBD: Information has not been provided.",
+      "dailyDataReference": "TBD: Information has not been provided."
+     }
+    }
    }
   },
   {
@@ -3395,7 +5471,20 @@
    "providerExtensions": {
     "ksiName": "Reviewing Logs",
     "family": "MLA",
-    "familyName": "Monitoring, Logging, and Auditing"
+    "familyName": "Monitoring, Logging, and Auditing",
+    "xFedRampSemantic": {
+     "measures": "TBD: Information has not been provided.",
+     "operatingCycle": "TBD: Information has not been provided.",
+     "measuresVerification": "TBD: Information has not been provided.",
+     "automationVerification": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "owner": "TBD: Information has not been provided.",
+     "historicalMetrics": {
+      "last30Days": "TBD: Information has not been provided.",
+      "upToOneYear": "TBD: Information has not been provided.",
+      "dailyDataReference": "TBD: Information has not been provided."
+     }
+    }
    }
   },
   {
@@ -3415,7 +5504,20 @@
    "providerExtensions": {
     "ksiName": "Generating Inventories",
     "family": "PIY",
-    "familyName": "Policy and Inventory"
+    "familyName": "Policy and Inventory",
+    "xFedRampSemantic": {
+     "measures": "TBD: Information has not been provided.",
+     "operatingCycle": "TBD: Information has not been provided.",
+     "measuresVerification": "TBD: Information has not been provided.",
+     "automationVerification": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "owner": "TBD: Information has not been provided.",
+     "historicalMetrics": {
+      "last30Days": "TBD: Information has not been provided.",
+      "upToOneYear": "TBD: Information has not been provided.",
+      "dailyDataReference": "TBD: Information has not been provided."
+     }
+    }
    }
   },
   {
@@ -3435,7 +5537,20 @@
    "providerExtensions": {
     "ksiName": "Reviewing Executive Support",
     "family": "PIY",
-    "familyName": "Policy and Inventory"
+    "familyName": "Policy and Inventory",
+    "xFedRampSemantic": {
+     "measures": "TBD: Information has not been provided.",
+     "operatingCycle": "TBD: Information has not been provided.",
+     "measuresVerification": "TBD: Information has not been provided.",
+     "automationVerification": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "owner": "TBD: Information has not been provided.",
+     "historicalMetrics": {
+      "last30Days": "TBD: Information has not been provided.",
+      "upToOneYear": "TBD: Information has not been provided.",
+      "dailyDataReference": "TBD: Information has not been provided."
+     }
+    }
    }
   },
   {
@@ -3455,7 +5570,20 @@
    "providerExtensions": {
     "ksiName": "Reviewing Investments in Security",
     "family": "PIY",
-    "familyName": "Policy and Inventory"
+    "familyName": "Policy and Inventory",
+    "xFedRampSemantic": {
+     "measures": "TBD: Information has not been provided.",
+     "operatingCycle": "TBD: Information has not been provided.",
+     "measuresVerification": "TBD: Information has not been provided.",
+     "automationVerification": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "owner": "TBD: Information has not been provided.",
+     "historicalMetrics": {
+      "last30Days": "TBD: Information has not been provided.",
+      "upToOneYear": "TBD: Information has not been provided.",
+      "dailyDataReference": "TBD: Information has not been provided."
+     }
+    }
    }
   },
   {
@@ -3475,7 +5603,20 @@
    "providerExtensions": {
     "ksiName": "Reviewing Security in the SDLC",
     "family": "PIY",
-    "familyName": "Policy and Inventory"
+    "familyName": "Policy and Inventory",
+    "xFedRampSemantic": {
+     "measures": "TBD: Information has not been provided.",
+     "operatingCycle": "TBD: Information has not been provided.",
+     "measuresVerification": "TBD: Information has not been provided.",
+     "automationVerification": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "owner": "TBD: Information has not been provided.",
+     "historicalMetrics": {
+      "last30Days": "TBD: Information has not been provided.",
+      "upToOneYear": "TBD: Information has not been provided.",
+      "dailyDataReference": "TBD: Information has not been provided."
+     }
+    }
    }
   },
   {
@@ -3495,7 +5636,20 @@
    "providerExtensions": {
     "ksiName": "Reviewing Vulnerability Disclosures",
     "family": "PIY",
-    "familyName": "Policy and Inventory"
+    "familyName": "Policy and Inventory",
+    "xFedRampSemantic": {
+     "measures": "TBD: Information has not been provided.",
+     "operatingCycle": "TBD: Information has not been provided.",
+     "measuresVerification": "TBD: Information has not been provided.",
+     "automationVerification": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "owner": "TBD: Information has not been provided.",
+     "historicalMetrics": {
+      "last30Days": "TBD: Information has not been provided.",
+      "upToOneYear": "TBD: Information has not been provided.",
+      "dailyDataReference": "TBD: Information has not been provided."
+     }
+    }
    }
   },
   {
@@ -3515,7 +5669,20 @@
    "providerExtensions": {
     "ksiName": "Aligning Backups with Objectives",
     "family": "RPL",
-    "familyName": "Recovery Planning"
+    "familyName": "Recovery Planning",
+    "xFedRampSemantic": {
+     "measures": "TBD: Information has not been provided.",
+     "operatingCycle": "TBD: Information has not been provided.",
+     "measuresVerification": "TBD: Information has not been provided.",
+     "automationVerification": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "owner": "TBD: Information has not been provided.",
+     "historicalMetrics": {
+      "last30Days": "TBD: Information has not been provided.",
+      "upToOneYear": "TBD: Information has not been provided.",
+      "dailyDataReference": "TBD: Information has not been provided."
+     }
+    }
    }
   },
   {
@@ -3535,7 +5702,20 @@
    "providerExtensions": {
     "ksiName": "Aligning Recovery Plan",
     "family": "RPL",
-    "familyName": "Recovery Planning"
+    "familyName": "Recovery Planning",
+    "xFedRampSemantic": {
+     "measures": "TBD: Information has not been provided.",
+     "operatingCycle": "TBD: Information has not been provided.",
+     "measuresVerification": "TBD: Information has not been provided.",
+     "automationVerification": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "owner": "TBD: Information has not been provided.",
+     "historicalMetrics": {
+      "last30Days": "TBD: Information has not been provided.",
+      "upToOneYear": "TBD: Information has not been provided.",
+      "dailyDataReference": "TBD: Information has not been provided."
+     }
+    }
    }
   },
   {
@@ -3555,7 +5735,20 @@
    "providerExtensions": {
     "ksiName": "Reviewing Recovery Objectives",
     "family": "RPL",
-    "familyName": "Recovery Planning"
+    "familyName": "Recovery Planning",
+    "xFedRampSemantic": {
+     "measures": "TBD: Information has not been provided.",
+     "operatingCycle": "TBD: Information has not been provided.",
+     "measuresVerification": "TBD: Information has not been provided.",
+     "automationVerification": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "owner": "TBD: Information has not been provided.",
+     "historicalMetrics": {
+      "last30Days": "TBD: Information has not been provided.",
+      "upToOneYear": "TBD: Information has not been provided.",
+      "dailyDataReference": "TBD: Information has not been provided."
+     }
+    }
    }
   },
   {
@@ -3575,7 +5768,20 @@
    "providerExtensions": {
     "ksiName": "Testing Recovery Capabilities",
     "family": "RPL",
-    "familyName": "Recovery Planning"
+    "familyName": "Recovery Planning",
+    "xFedRampSemantic": {
+     "measures": "TBD: Information has not been provided.",
+     "operatingCycle": "TBD: Information has not been provided.",
+     "measuresVerification": "TBD: Information has not been provided.",
+     "automationVerification": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "owner": "TBD: Information has not been provided.",
+     "historicalMetrics": {
+      "last30Days": "TBD: Information has not been provided.",
+      "upToOneYear": "TBD: Information has not been provided.",
+      "dailyDataReference": "TBD: Information has not been provided."
+     }
+    }
    }
   },
   {
@@ -3595,7 +5801,20 @@
    "providerExtensions": {
     "ksiName": "Mitigating Supply Chain Risk",
     "family": "SCR",
-    "familyName": "Supply Chain Risk"
+    "familyName": "Supply Chain Risk",
+    "xFedRampSemantic": {
+     "measures": "TBD: Information has not been provided.",
+     "operatingCycle": "TBD: Information has not been provided.",
+     "measuresVerification": "TBD: Information has not been provided.",
+     "automationVerification": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "owner": "TBD: Information has not been provided.",
+     "historicalMetrics": {
+      "last30Days": "TBD: Information has not been provided.",
+      "upToOneYear": "TBD: Information has not been provided.",
+      "dailyDataReference": "TBD: Information has not been provided."
+     }
+    }
    }
   },
   {
@@ -3615,7 +5834,20 @@
    "providerExtensions": {
     "ksiName": "Monitoring Supply Chain Risk",
     "family": "SCR",
-    "familyName": "Supply Chain Risk"
+    "familyName": "Supply Chain Risk",
+    "xFedRampSemantic": {
+     "measures": "TBD: Information has not been provided.",
+     "operatingCycle": "TBD: Information has not been provided.",
+     "measuresVerification": "TBD: Information has not been provided.",
+     "automationVerification": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "owner": "TBD: Information has not been provided.",
+     "historicalMetrics": {
+      "last30Days": "TBD: Information has not been provided.",
+      "upToOneYear": "TBD: Information has not been provided.",
+      "dailyDataReference": "TBD: Information has not been provided."
+     }
+    }
    }
   },
   {
@@ -3635,7 +5867,20 @@
    "providerExtensions": {
     "ksiName": "Automating Configuration Management",
     "family": "SVC",
-    "familyName": "Service Configuration"
+    "familyName": "Service Configuration",
+    "xFedRampSemantic": {
+     "measures": "TBD: Information has not been provided.",
+     "operatingCycle": "TBD: Information has not been provided.",
+     "measuresVerification": "TBD: Information has not been provided.",
+     "automationVerification": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "owner": "TBD: Information has not been provided.",
+     "historicalMetrics": {
+      "last30Days": "TBD: Information has not been provided.",
+      "upToOneYear": "TBD: Information has not been provided.",
+      "dailyDataReference": "TBD: Information has not been provided."
+     }
+    }
    }
   },
   {
@@ -3655,7 +5900,20 @@
    "providerExtensions": {
     "ksiName": "Automating Secret Management",
     "family": "SVC",
-    "familyName": "Service Configuration"
+    "familyName": "Service Configuration",
+    "xFedRampSemantic": {
+     "measures": "TBD: Information has not been provided.",
+     "operatingCycle": "TBD: Information has not been provided.",
+     "measuresVerification": "TBD: Information has not been provided.",
+     "automationVerification": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "owner": "TBD: Information has not been provided.",
+     "historicalMetrics": {
+      "last30Days": "TBD: Information has not been provided.",
+      "upToOneYear": "TBD: Information has not been provided.",
+      "dailyDataReference": "TBD: Information has not been provided."
+     }
+    }
    }
   },
   {
@@ -3675,7 +5933,20 @@
    "providerExtensions": {
     "ksiName": "Evaluating and Improving Security",
     "family": "SVC",
-    "familyName": "Service Configuration"
+    "familyName": "Service Configuration",
+    "xFedRampSemantic": {
+     "measures": "TBD: Information has not been provided.",
+     "operatingCycle": "TBD: Information has not been provided.",
+     "measuresVerification": "TBD: Information has not been provided.",
+     "automationVerification": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "owner": "TBD: Information has not been provided.",
+     "historicalMetrics": {
+      "last30Days": "TBD: Information has not been provided.",
+      "upToOneYear": "TBD: Information has not been provided.",
+      "dailyDataReference": "TBD: Information has not been provided."
+     }
+    }
    }
   },
   {
@@ -3695,7 +5966,20 @@
    "providerExtensions": {
     "ksiName": "Preventing Residual Risk",
     "family": "SVC",
-    "familyName": "Service Configuration"
+    "familyName": "Service Configuration",
+    "xFedRampSemantic": {
+     "measures": "TBD: Information has not been provided.",
+     "operatingCycle": "TBD: Information has not been provided.",
+     "measuresVerification": "TBD: Information has not been provided.",
+     "automationVerification": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "owner": "TBD: Information has not been provided.",
+     "historicalMetrics": {
+      "last30Days": "TBD: Information has not been provided.",
+      "upToOneYear": "TBD: Information has not been provided.",
+      "dailyDataReference": "TBD: Information has not been provided."
+     }
+    }
    }
   },
   {
@@ -3715,7 +5999,20 @@
    "providerExtensions": {
     "ksiName": "Removing Unwanted Data",
     "family": "SVC",
-    "familyName": "Service Configuration"
+    "familyName": "Service Configuration",
+    "xFedRampSemantic": {
+     "measures": "TBD: Information has not been provided.",
+     "operatingCycle": "TBD: Information has not been provided.",
+     "measuresVerification": "TBD: Information has not been provided.",
+     "automationVerification": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "owner": "TBD: Information has not been provided.",
+     "historicalMetrics": {
+      "last30Days": "TBD: Information has not been provided.",
+      "upToOneYear": "TBD: Information has not been provided.",
+      "dailyDataReference": "TBD: Information has not been provided."
+     }
+    }
    }
   },
   {
@@ -3738,7 +6035,20 @@
    "providerExtensions": {
     "ksiName": "Securing Information",
     "family": "SVC",
-    "familyName": "Service Configuration"
+    "familyName": "Service Configuration",
+    "xFedRampSemantic": {
+     "measures": "TBD: Information has not been provided.",
+     "operatingCycle": "TBD: Information has not been provided.",
+     "measuresVerification": "TBD: Information has not been provided.",
+     "automationVerification": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "owner": "Example: Security Engineering Lead",
+     "historicalMetrics": {
+      "last30Days": "TBD: Information has not been provided.",
+      "upToOneYear": "TBD: Information has not been provided.",
+      "dailyDataReference": "TBD: Information has not been provided."
+     }
+    }
    }
   },
   {
@@ -3758,7 +6068,20 @@
    "providerExtensions": {
     "ksiName": "Validating Communications",
     "family": "SVC",
-    "familyName": "Service Configuration"
+    "familyName": "Service Configuration",
+    "xFedRampSemantic": {
+     "measures": "TBD: Information has not been provided.",
+     "operatingCycle": "TBD: Information has not been provided.",
+     "measuresVerification": "TBD: Information has not been provided.",
+     "automationVerification": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "owner": "TBD: Information has not been provided.",
+     "historicalMetrics": {
+      "last30Days": "TBD: Information has not been provided.",
+      "upToOneYear": "TBD: Information has not been provided.",
+      "dailyDataReference": "TBD: Information has not been provided."
+     }
+    }
    }
   },
   {
@@ -3778,7 +6101,20 @@
    "providerExtensions": {
     "ksiName": "Validating Resource Integrity",
     "family": "SVC",
-    "familyName": "Service Configuration"
+    "familyName": "Service Configuration",
+    "xFedRampSemantic": {
+     "measures": "TBD: Information has not been provided.",
+     "operatingCycle": "TBD: Information has not been provided.",
+     "measuresVerification": "TBD: Information has not been provided.",
+     "automationVerification": "TBD: Information has not been provided.",
+     "assessorResponses": "None recorded",
+     "owner": "TBD: Information has not been provided.",
+     "historicalMetrics": {
+      "last30Days": "TBD: Information has not been provided.",
+      "upToOneYear": "TBD: Information has not been provided.",
+      "dailyDataReference": "TBD: Information has not been provided."
+     }
+    }
    }
   }
  ]

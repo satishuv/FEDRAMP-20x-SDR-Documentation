@@ -79,6 +79,8 @@ jobs:
           }
       - name: Validate (schema, coverage, minimums, hygiene, content fidelity)
         run: python validation/scripts/validate_sdr.py
+      - name: Run offline SDR semantic round-trip tests (no AWS)
+        run: python validation/scripts/test_sdr_semantic_roundtrip.py
       - name: Run offline collector tests (no AWS account needed)
         run: python automation/collectors/test_collectors.py
       - name: Run offline collector scale + fault-injection tests (no AWS)

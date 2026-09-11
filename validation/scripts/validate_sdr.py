@@ -326,11 +326,36 @@ def main():
         })
     all_fields = all(r["schema_fields_present"] for r in ksi_results)
     check("ksi_required_fields", all_fields, "all KSIs carry the six schema-required fields")
+
+    # FRC-CSX-VVK normative force per class, verified verbatim against the
+    # canonical dataset: Class A = MAY (optional), Class B = SHOULD (>= 1
+    # automated method per KSI), Class C = MUST (>= 2), Class D = MUST (>= 4).
+    # The count below the class minimum is reported, but whether falling short
+    # is a genuine FedRAMP shortfall depends on the force: at Class C it is a
+    # MUST shortfall; at Class B it is a SHOULD the provider is expected to meet
+    # but which FedRAMP does not mandate. Never label a Class B SHOULD as a
+    # FedRAMP requirement. This repository may still treat >= 1 as a release
+    # policy stricter than FedRAMP, but that is repository policy, not a MUST.
+    VVK_FORCE = {"a": "MAY", "b": "SHOULD", "c": "MUST", "d": "MUST"}
+    force = VVK_FORCE.get(cls, "SHOULD")
     below_min = [r["ksi_id"] for r in ksi_results if not r["meets_test_minimum"]]
+    # A shortfall is a hard failure only where FedRAMP force is MUST (Class C/D)
+    # AND the record is populated (not template TBD). In template state the
+    # count is informational for every class.
+    populated_below = [r["ksi_id"] for r in ksi_results
+                       if not r["meets_test_minimum"] and r["content_state"] == "populated"]
+    vvk_hard = force == "MUST" and bool(populated_below)
     check("ksi_test_minimums", not below_min,
-          f"{len(below_min)} KSIs below the FRC-CSX-VVK minimum for class {cls.upper()} "
-          "(expected in template state; hard failure only at release)",
-          hard=False)
+          f"{len(below_min)} KSIs below the FRC-CSX-VVK minimum for class "
+          f"{cls.upper()} (FedRAMP force: {force}; "
+          + ("MUST shortfall on populated records is a hard failure"
+             if force == "MUST" else
+             "SHOULD at this class, so this is an expectation, not a FedRAMP "
+             "requirement; repository release policy may still require it")
+          + (f"; {len(populated_below)} populated KSIs short"
+             if populated_below else "; all shortfalls are template TBD state")
+          + ")",
+          hard=vvk_hard)
 
     # 4. Markdown detection in human-readable output
     txt = open(os.path.join(BASE, "sdr", "human-readable", f"sdr-class-{cls}.txt"),
@@ -365,6 +390,57 @@ def main():
              " (all statements, names, and forces match the dataset)"))
     if fidelity_problems:
         report["fidelity_problems"] = fidelity_problems[:50]
+
+    # 7. Semantic completeness (CR26), independent of JSON-schema validity.
+    # The official FedRAMP schema is intentionally minimal and permits extra
+    # fields, so a zero-error schema result proves FORMAT conformance
+    # (FRC-CSO-JSN), not that every required SDR-CSO-FRR / SDR-CSX-KSI /
+    # SDR-CSX-KMT information item is present in the submitted document. This
+    # gate checks that each required semantic element EXISTS on every entry
+    # (presence, not truth: a TBD placeholder counts as present-but-unfilled;
+    # an ABSENT key is a completeness defect). It never asserts the content is
+    # correct: that remains the human assessor's determination.
+    frr_required = ["implementationRisk", "verification", "independentVerification",
+                    "independentValidation", "assessorResponses", "ruleArtifacts"]
+    ksi_required = ["measures", "operatingCycle", "measuresVerification",
+                    "automationVerification", "historicalMetrics"]
+    sem_problems = []
+    for entry in sdr["fedRampRequirements"]:
+        sem = entry.get("providerExtensions", {}).get("xFedRampSemantic")
+        if sem is None:
+            sem_problems.append(f"{entry['frrID']}: missing xFedRampSemantic block")
+            continue
+        for f in frr_required:
+            if f not in sem:
+                sem_problems.append(f"{entry['frrID']}: missing SDR-CSO-FRR item {f}")
+    # SDR-CSX-KMT historical metrics are required in the SDR for Class B and C;
+    # Class A MAY include them. So the historicalMetrics block must be present
+    # for B/C; for A its absence is acceptable.
+    for entry in sdr["keySecurityIndicators"]:
+        sem = entry.get("providerExtensions", {}).get("xFedRampSemantic")
+        if sem is None:
+            sem_problems.append(f"{entry['ksiId']}: missing xFedRampSemantic block")
+            continue
+        for f in ksi_required:
+            if f == "historicalMetrics" and cls == "a":
+                continue
+            if f not in sem:
+                sem_problems.append(f"{entry['ksiId']}: missing SDR-CSX item {f}")
+        hm = sem.get("historicalMetrics", {})
+        if cls in ("b", "c"):
+            for mf in ("last30Days", "upToOneYear"):
+                if mf not in hm:
+                    sem_problems.append(f"{entry['ksiId']}: missing SDR-CSX-KMT {mf}")
+            if cls == "c" and "dailyDataReference" not in hm:
+                sem_problems.append(f"{entry['ksiId']}: missing SDR-CSX-KMT dailyDataReference (Class C)")
+    check("semantic_completeness_cr26", not sem_problems,
+          f"{len(sem_problems)} required semantic elements absent from the "
+          "submitted SDR"
+          + (f"; first: {sem_problems[0]}" if sem_problems else
+             " (every SDR-CSO-FRR and SDR-CSX-KSI/KMT required item is present; "
+             "presence only, not a correctness or compliance determination)"))
+    if sem_problems:
+        report["semantic_problems"] = sem_problems[:50]
 
     os.makedirs(REPORTS, exist_ok=True)
     with open(os.path.join(REPORTS, "validation-report.json"), "w",
