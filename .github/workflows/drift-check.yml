@@ -43,6 +43,11 @@ jobs:
           check "common-definitions-schema" "https://www.fedramp.gov/schemas/fedramp-common-definitions-schema-2026-06-24.json" "artifacts/schemas/official/fedramp-common-definitions-schema-2026-06-24.json"
           check "CPO-schema" "https://www.fedramp.gov/schemas/fedramp-certification-package-overview-schema-2026-06-24.json" "artifacts/schemas/official/fedramp-certification-package-overview-schema-2026-06-24.json"
           check "OCR-schema" "https://www.fedramp.gov/schemas/fedramp-ongoing-certification-report-schema-2026-06-24.json" "artifacts/schemas/official/fedramp-ongoing-certification-report-schema-2026-06-24.json"
+          check "incident-report-schema" "https://www.fedramp.gov/schemas/fedramp-incident-report-schema-2026-06-24.json" "artifacts/schemas/official/fedramp-incident-report-schema-2026-06-24.json"
+          check "SCN-schema" "https://www.fedramp.gov/schemas/fedramp-significant-change-notifications-schema-2026-06-24.json" "artifacts/schemas/official/fedramp-significant-change-notifications-schema-2026-06-24.json"
+          check "accepted-vuln-schema" "https://www.fedramp.gov/schemas/fedramp-accepted-vulnerability-info-schema-2026-06-24.json" "artifacts/schemas/official/fedramp-accepted-vulnerability-info-schema-2026-06-24.json"
+          check "VDR-schema" "https://www.fedramp.gov/schemas/fedramp-vulnerability-detail-report-schema-2026-06-24.json" "artifacts/schemas/official/fedramp-vulnerability-detail-report-schema-2026-06-24.json"
+          check "historical-ver-schema" "https://www.fedramp.gov/schemas/fedramp-historical-ver-activity-schema-2026-06-24.json" "artifacts/schemas/official/fedramp-historical-ver-activity-schema-2026-06-24.json"
 
           # Second official source of truth (FedRAMP Source Data page): the
           # narrative docs and changelog live in FedRAMP/2026-markdown, not in

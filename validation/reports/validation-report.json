@@ -15,7 +15,7 @@
   {
    "check": "pinned_schema_version_guard",
    "result": "PASS",
-   "detail": "all 4 pinned schemas match expected $id and $schemaVersion"
+   "detail": "all 9 pinned schemas match expected $id and $schemaVersion"
   },
   {
    "check": "rule_coverage",

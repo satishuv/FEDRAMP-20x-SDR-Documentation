@@ -48,6 +48,46 @@
    "sha256": "3c2209b87509516d33f6e4651b432fbc62d38578c389cd3f4ef47562196708ff",
    "status": "current"
   },
+  "incident_report_schema": {
+   "description": "Official FedRAMP Incident Report JSON schema (IEC-CSO-IIR/OIR/FIR).",
+   "schema_version": "0.2.0",
+   "schema_id": "https://fedramp.gov/schemas/fedramp-incident-report-schema-2026-06-24.json",
+   "pinned_path": "artifacts/schemas/official/fedramp-incident-report-schema-2026-06-24.json",
+   "sha256": "1cf699249e49f1be6c9b72c0b929cd0ce7ab40809d19fbf937f3e2d1bca89125",
+   "status": "current"
+  },
+  "significant_change_notification_schema": {
+   "description": "Official FedRAMP Significant Change Notification JSON schema (SCN family).",
+   "schema_version": "0.1.2",
+   "schema_id": "https://fedramp.gov/schemas/fedramp-significant-change-notifications-schema-2026-06-24.json",
+   "pinned_path": "artifacts/schemas/official/fedramp-significant-change-notifications-schema-2026-06-24.json",
+   "sha256": "eae3bfce9cd4c6bc1058aab18c1ca7138b798a69ab865391b30612d9ac87b7fb",
+   "status": "current"
+  },
+  "accepted_vulnerability_info_schema": {
+   "description": "Official FedRAMP Accepted Vulnerability Information JSON schema (VER family).",
+   "schema_version": "0.1.1",
+   "schema_id": "https://fedramp.gov/schemas/fedramp-accepted-vulnerability-info-schema-2026-06-24.json",
+   "pinned_path": "artifacts/schemas/official/fedramp-accepted-vulnerability-info-schema-2026-06-24.json",
+   "sha256": "2c17ba6e21abd1951e29cf59d90e69d39468c01eb1ad69a6c690233e196f68e2",
+   "status": "current"
+  },
+  "vulnerability_detail_report_schema": {
+   "description": "Official FedRAMP Vulnerability Detail Report JSON schema (VDR family).",
+   "schema_version": "0.1.1",
+   "schema_id": "https://fedramp.gov/schemas/fedramp-vulnerability-detail-report-schema-2026-06-24.json",
+   "pinned_path": "artifacts/schemas/official/fedramp-vulnerability-detail-report-schema-2026-06-24.json",
+   "sha256": "92b2918106c0117ba84d14a5da33762dbb5df2acbf5303a806f6d4bbea98f60b",
+   "status": "current"
+  },
+  "historical_ver_activity_schema": {
+   "description": "Official FedRAMP Historical Vulnerability Evaluation and Reporting Activity JSON schema (VER family).",
+   "schema_version": "0.1.1",
+   "schema_id": "https://fedramp.gov/schemas/fedramp-historical-ver-activity-schema-2026-06-24.json",
+   "pinned_path": "artifacts/schemas/official/fedramp-historical-ver-activity-schema-2026-06-24.json",
+   "sha256": "51011860138687f25b858b840eefe2b077f31a183ba5d625c461ac296c58df9f",
+   "status": "current"
+  },
   "nist_800_53": {
    "description": "NIST SP 800-53 security and privacy control catalog. Used only for the KSI-to-related-control reverse index (traceability), never as a source of FedRAMP requirements.",
    "catalog": "SP 800-53 Rev. 5",
