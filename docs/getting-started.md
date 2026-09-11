@@ -119,6 +119,17 @@ python automation/sdrscan/sdrscan.py --only-fails --severity critical,high
 
 Every finding names the rule that makes it a requirement and the exact JSON path to fix. Work the critical findings first. The [implementation guide](implementation-guide.md) walks through a single entry end to end.
 
+## Understanding one requirement
+
+To see what a single rule or indicator asks for and how your record currently addresses it, in plain language:
+
+```bash
+python sdr.py explain FRC-CSO-PKG
+python sdr.py explain KSI-CNA-RNT
+```
+
+The output is grounded: the requirement text, force (MUST/SHOULD/MAY), and class applicability come verbatim from the pinned dataset, and the status, implementation, and evidence come from your record store. It states what is not yet filled rather than inventing text, and it never makes a compliance determination.
+
 ## Troubleshooting
 
 | Symptom | Cause and fix |

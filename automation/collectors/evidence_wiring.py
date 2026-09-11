@@ -53,6 +53,31 @@ _DEFAULT_TYPE = "Report"
 _ERROR_PREFIX = "ERROR"
 
 
+def evidence_hash(artifact):
+    """SHA-256 of an evidence artifact, for tamper-evident traceability.
+
+    Accepts bytes, str, or a JSON-serializable object (dict/list). Objects are
+    hashed over their canonical (sorted-key, compact) JSON encoding so the same
+    logical content always yields the same digest regardless of key order or
+    whitespace. Returns a lowercase hex digest string prefixed 'sha256:'.
+
+    This is a traceability aid, not a security control: it lets a reviewer
+    confirm the evidence object in the SDR is the same bytes that were
+    collected, and lets CI detect a silently-edited evidence artifact. It never
+    sets a status or makes a determination.
+    """
+    import hashlib
+    import json as _json
+
+    if isinstance(artifact, bytes):
+        data = artifact
+    elif isinstance(artifact, str):
+        data = artifact.encode("utf-8")
+    else:
+        data = _json.dumps(artifact, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    return "sha256:" + hashlib.sha256(data).hexdigest()
+
+
 def _pointer(service, check, region, location_base=None):
     """Build the evidenceLocation.
 
@@ -88,6 +113,11 @@ def fact_to_evidence(fact, location_base=None):
         "evidenceDescription": f"{service}:{check} = {status}. {detail}".strip(),
         "evidenceLocation": _pointer(service, check, region, location_base),
         "evidenceText": f"{service}:{check} status={status} region={region}",
+        # Tamper-evident digest of the source fact. A reviewer or CI can
+        # recompute it to confirm the evidence entry reflects the fact that was
+        # collected and has not been silently edited. Carried in the extension
+        # namespace so the official evidence object stays schema-clean.
+        "xEvidenceContentHash": evidence_hash(fact),
     }
     if observed:
         # SDR schema wants a date (not datetime) for evidence lastUpdated.
@@ -133,3 +163,78 @@ def attach_evidence(ksi_record, facts, location_base=None, replace=False):
         added += 1
     ksi_record["evidence"] = existing
     return added
+
+
+# --- Evidence adapters -----------------------------------------------------
+#
+# An adapter reads raw data from ONE source (a scan CSV, a config export, a
+# vulnerability report) and yields collector-shaped fact dicts. Those facts
+# flow through fact_to_evidence, so every adapter's output lands in the SDR as
+# a schema-valid evidence object with a content hash, using the same trust
+# boundary as the AWS collectors: telemetry only, never a status determination.
+#
+# To add a source, subclass EvidenceAdapter, implement collect(), and register
+# it. This is the extension point the reviews asked for; the AWS collectors are
+# one producer of facts, adapters are another.
+
+_ADAPTERS = {}
+
+
+class EvidenceAdapter:
+    """Base class for an evidence source. Subclasses set `name` and implement
+    `collect(raw)`, returning an iterable of collector-shaped fact dicts:
+        {service, check, status, detail, region, observed_at}
+    The fact is hashed and mapped to an SDR evidence object downstream."""
+
+    name = "abstract"
+    service = "adapter"
+
+    def collect(self, raw):  # pragma: no cover - abstract
+        raise NotImplementedError
+
+    def to_evidence(self, raw, location_base=None):
+        """Run collect() and map every fact to an SDR evidence object."""
+        return facts_to_evidence(list(self.collect(raw)), location_base)
+
+
+def register_adapter(adapter):
+    """Register an EvidenceAdapter instance (or subclass) under its name."""
+    inst = adapter() if isinstance(adapter, type) else adapter
+    if not isinstance(inst, EvidenceAdapter):
+        raise TypeError("adapter must be an EvidenceAdapter")
+    _ADAPTERS[inst.name] = inst
+    return inst
+
+
+def get_adapter(name):
+    return _ADAPTERS.get(name)
+
+
+def list_adapters():
+    return sorted(_ADAPTERS)
+
+
+class CsvCountAdapter(EvidenceAdapter):
+    """Reference adapter: turns a metric name and an observed/total count into a
+    single evidence fact (e.g. a vulnerability-scan patch-coverage row). Pure,
+    offline, illustrative. `raw` is a dict:
+        {check, observed, total, region?, observed_at?, detail?}"""
+
+    name = "csv-count"
+    service = "scan"
+
+    def collect(self, raw):
+        observed = raw.get("observed", 0)
+        total = raw.get("total", 0)
+        pct = round(100.0 * observed / total, 2) if total else 0.0
+        yield {
+            "service": self.service,
+            "check": raw.get("check", "count"),
+            "status": f"{pct}%",
+            "detail": raw.get("detail", f"{observed} of {total}"),
+            "region": raw.get("region", "global"),
+            "observed_at": raw.get("observed_at"),
+        }
+
+
+register_adapter(CsvCountAdapter)

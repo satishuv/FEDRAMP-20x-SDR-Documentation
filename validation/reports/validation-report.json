@@ -61,6 +61,16 @@
    "check": "no_stale_nist_800_63_3",
    "result": "PASS",
    "detail": "no stale SP 800-63-3 reference in generated or authored content (current edition is SP 800-63-4)"
+  },
+  {
+   "check": "evidence_linkage_for_populated_musts",
+   "result": "FAIL",
+   "detail": "8 populated KSIs have no evidence entry (force SHOULD at class B; reported, hard only at Class C/D where the force is MUST): ['KSI-CMT-LMC', 'KSI-CNA-EIS', 'KSI-IAM-APM', 'KSI-MLA-ALA', 'KSI-SVC-PRR']"
+  },
+  {
+   "check": "sources_lock_consistency",
+   "result": "PASS",
+   "detail": "every pinned source matches its recorded sha256 in sources.lock.json"
   }
  ],
  "hard_failures": 0
