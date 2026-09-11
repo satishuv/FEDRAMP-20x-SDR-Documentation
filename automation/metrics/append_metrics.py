@@ -119,12 +119,49 @@ def summarize(points):
     return {"days_observed": len(points), "avg_passing_fraction": avg}
 
 
+# FRC-CSX-MOT persistent-validation window, per class, verified verbatim
+# against the pinned dataset: Class A MAY, Class B SHOULD, Class C MUST supply
+# status from persistent validation over at least the past 6 months, Class D
+# MUST over at least the past 18 months.
+MOT_MIN_DAYS = {"a": 0, "b": 0, "c": 183, "d": 548}
+MOT_FORCE = {"a": "MAY", "b": "SHOULD", "c": "MUST", "d": "MUST"}
+
+
+def mot_window(series, cls, today):
+    """Assess the FRC-CSX-MOT persistent-validation window for one KSI.
+
+    Reports the span the observed series actually covers and whether it meets
+    the class minimum. This is a coverage measurement, not a determination: a
+    covered window says validation status exists over that period, not that the
+    control passed. An empty series reports covered=0 and meets=False for C/D.
+    """
+    cls = cls.lower()
+    required = MOT_MIN_DAYS.get(cls, 0)
+    force = MOT_FORCE.get(cls, "SHOULD")
+    if series:
+        earliest = min(datetime.fromisoformat(p["date"]).date() for p in series)
+        covered = (today - earliest).days
+    else:
+        covered = 0
+    meets = covered >= required if required else True
+    return {
+        "class": cls.upper(),
+        "force": force,
+        "required_days": required,
+        "covered_days": covered,
+        "meets_window": meets,
+        "note": ("Coverage of the persistent-validation window, not a pass/fail "
+                 "verdict. MUST at Class C (>=6 months) and Class D (>=18 months); "
+                 "SHOULD at B; MAY at A."),
+    }
+
+
 def prune(series, today):
     cutoff = today - timedelta(days=RETAIN_DAYS)
     return [p for p in series if datetime.fromisoformat(p["date"]).date() >= cutoff]
 
 
-def append_run(history, registry, config_by_rule, posture_by_service, today):
+def append_run(history, registry, config_by_rule, posture_by_service, today, cls="b"):
     """Append today's datapoint per KSI to the history and recompute summaries.
     One datapoint per KSI per calendar day; a second run the same day replaces
     that day's point rather than duplicating it (idempotent per day)."""
@@ -146,6 +183,8 @@ def append_run(history, registry, config_by_rule, posture_by_service, today):
         last30 = [p for p in entry["series"] if p["date"] >= cutoff30]
         entry["last_30_days"] = summarize(last30)
         entry["up_to_one_year"] = summarize(entry["series"])
+        # FRC-CSX-MOT persistent-validation window coverage for this class.
+        entry["persistent_validation_window"] = mot_window(entry["series"], cls, today)
     history["meta"] = {
         "last_run": date_str,
         "retain_days": RETAIN_DAYS,
@@ -177,7 +216,10 @@ def main():
     today = (datetime.fromisoformat(args.today).date() if args.today
              else datetime.now(timezone.utc).date())
     history = load(HISTORY, {}) or {}
-    appended = append_run(history, registry, config_by_rule, posture_by_service, today)
+    # Class drives the FRC-CSX-MOT window requirement (6 months at C, 18 at D).
+    offering = load(os.path.join(BASE, "profiles", "common", "offering-profile.json"), {})
+    cls = (offering.get("certification_class") or "b").lower()
+    appended = append_run(history, registry, config_by_rule, posture_by_service, today, cls)
 
     os.makedirs(os.path.dirname(HISTORY), exist_ok=True)
     with open(HISTORY, "w", encoding="utf-8", newline="\n") as f:

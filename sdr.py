@@ -43,6 +43,8 @@ BUILD_STEPS = [
     ("build_profiles.py", "per-class profiles, Class C overlay, Class D register"),
     ("build_collector_registry.py", "indicator to read-only AWS check map"),
     ("build_sdr.py", "schema JSON, extensions companion, plain text record"),
+    ("build_cpo.py", "Certification Package Overview (CPO-CSO-OVR)"),
+    ("build_ocr.py", "example Ongoing Certification Report (CCM-OCR-AVL)"),
     ("automation/exporters/oscal_export.py", "OSCAL export of the SDR"),
     ("build_docx.py", "authoring Word document"),
     ("build_crosswalk.py", "NIST SP 800-53 Revision 5 to 20x crosswalk"),
