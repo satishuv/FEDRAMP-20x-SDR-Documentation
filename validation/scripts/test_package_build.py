@@ -17,6 +17,7 @@ SCHEMA_DIR = os.path.join(BASE, "artifacts", "schemas", "official")
 
 import build_cpo  # noqa: E402
 import build_ocr  # noqa: E402
+import build_events  # noqa: E402
 
 
 def _load(path):
@@ -64,6 +65,31 @@ def test_ocr_period_is_deterministic():
     a = build_ocr.build_ocr(profile)["reportPeriod"]
     b = build_ocr.build_ocr(profile)["reportPeriod"]
     assert a == b
+
+
+_EVENT_SCHEMAS = {
+    "incident-report-example.json": "fedramp-incident-report-schema-2026-06-24.json",
+    "significant-change-notification-example.json": "fedramp-significant-change-notifications-schema-2026-06-24.json",
+    "accepted-vulnerabilities-example.json": "fedramp-accepted-vulnerability-info-schema-2026-06-24.json",
+    "vulnerability-detail-report-example.json": "fedramp-vulnerability-detail-report-schema-2026-06-24.json",
+    "historical-ver-activity-example.json": "fedramp-historical-ver-activity-schema-2026-06-24.json",
+}
+
+
+def test_all_event_artifacts_are_schema_valid():
+    profile = _load(build_events.PROFILE)
+    docs = build_events.build_all(profile)
+    for fn, schema_name in _EVENT_SCHEMAS.items():
+        errs = _validate(docs[fn], schema_name)
+        assert not errs, f"{fn} schema errors: {[e.message for e in errs[:3]]}"
+
+
+def test_event_empty_arrays_attest_none():
+    profile = _load(build_events.PROFILE)
+    docs = build_events.build_all(profile)
+    assert docs["accepted-vulnerabilities-example.json"]["acceptedVulnerabilities"] == []
+    assert docs["vulnerability-detail-report-example.json"]["vulnerabilities"] == []
+    assert docs["historical-ver-activity-example.json"]["activeVulnerabilities"] == []
 
 
 def main():

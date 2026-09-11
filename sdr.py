@@ -45,6 +45,8 @@ BUILD_STEPS = [
     ("build_sdr.py", "schema JSON, extensions companion, plain text record"),
     ("build_cpo.py", "Certification Package Overview (CPO-CSO-OVR)"),
     ("build_ocr.py", "example Ongoing Certification Report (CCM-OCR-AVL)"),
+    ("build_scg.py", "Secure Configuration Guide scaffold (SCG-CSO-RSC/AUP)"),
+    ("build_events.py", "example incident, SCN, and vulnerability artifacts"),
     ("automation/exporters/oscal_export.py", "OSCAL export of the SDR"),
     ("build_docx.py", "authoring Word document"),
     ("build_crosswalk.py", "NIST SP 800-53 Revision 5 to 20x crosswalk"),

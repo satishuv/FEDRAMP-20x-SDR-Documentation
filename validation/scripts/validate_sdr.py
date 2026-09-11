@@ -277,6 +277,26 @@ def main():
             "$id": "https://fedramp.gov/schemas/fedramp-ongoing-certification-report-schema-2026-06-24.json",
             "$schemaVersion": "0.2.0",
         },
+        os.path.join(SCHEMA_DIR, "fedramp-incident-report-schema-2026-06-24.json"): {
+            "$id": "https://fedramp.gov/schemas/fedramp-incident-report-schema-2026-06-24.json",
+            "$schemaVersion": "0.2.0",
+        },
+        os.path.join(SCHEMA_DIR, "fedramp-significant-change-notifications-schema-2026-06-24.json"): {
+            "$id": "https://fedramp.gov/schemas/fedramp-significant-change-notifications-schema-2026-06-24.json",
+            "$schemaVersion": "0.1.2",
+        },
+        os.path.join(SCHEMA_DIR, "fedramp-accepted-vulnerability-info-schema-2026-06-24.json"): {
+            "$id": "https://fedramp.gov/schemas/fedramp-accepted-vulnerability-info-schema-2026-06-24.json",
+            "$schemaVersion": "0.1.1",
+        },
+        os.path.join(SCHEMA_DIR, "fedramp-vulnerability-detail-report-schema-2026-06-24.json"): {
+            "$id": "https://fedramp.gov/schemas/fedramp-vulnerability-detail-report-schema-2026-06-24.json",
+            "$schemaVersion": "0.1.1",
+        },
+        os.path.join(SCHEMA_DIR, "fedramp-historical-ver-activity-schema-2026-06-24.json"): {
+            "$id": "https://fedramp.gov/schemas/fedramp-historical-ver-activity-schema-2026-06-24.json",
+            "$schemaVersion": "0.1.1",
+        },
     }
     schema_problems = []
     for path, expected in EXPECTED_SCHEMAS.items():

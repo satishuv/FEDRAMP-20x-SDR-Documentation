@@ -22,6 +22,20 @@ ARTIFACTS = [
      os.path.join(SCHEMA_DIR, "fedramp-certification-package-overview-schema-2026-06-24.json")),
     ("OCR", os.path.join(BASE, "package", "ocr", "ocr-example.json"),
      os.path.join(SCHEMA_DIR, "fedramp-ongoing-certification-report-schema-2026-06-24.json")),
+    ("Incident Report", os.path.join(BASE, "package", "events", "incident-report-example.json"),
+     os.path.join(SCHEMA_DIR, "fedramp-incident-report-schema-2026-06-24.json")),
+    ("Significant Change Notification",
+     os.path.join(BASE, "package", "events", "significant-change-notification-example.json"),
+     os.path.join(SCHEMA_DIR, "fedramp-significant-change-notifications-schema-2026-06-24.json")),
+    ("Accepted Vulnerabilities",
+     os.path.join(BASE, "package", "events", "accepted-vulnerabilities-example.json"),
+     os.path.join(SCHEMA_DIR, "fedramp-accepted-vulnerability-info-schema-2026-06-24.json")),
+    ("Vulnerability Detail Report",
+     os.path.join(BASE, "package", "events", "vulnerability-detail-report-example.json"),
+     os.path.join(SCHEMA_DIR, "fedramp-vulnerability-detail-report-schema-2026-06-24.json")),
+    ("Historical VER Activity",
+     os.path.join(BASE, "package", "events", "historical-ver-activity-example.json"),
+     os.path.join(SCHEMA_DIR, "fedramp-historical-ver-activity-schema-2026-06-24.json")),
 ]
 
 

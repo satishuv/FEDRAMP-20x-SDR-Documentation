@@ -34,6 +34,8 @@ jobs:
           python validation/scripts/build_sdr.py
           python validation/scripts/build_cpo.py
           python validation/scripts/build_ocr.py
+          python validation/scripts/build_scg.py
+          python validation/scripts/build_events.py
           python automation/exporters/oscal_export.py
           python validation/scripts/build_docx.py
           python validation/scripts/build_crosswalk.py
