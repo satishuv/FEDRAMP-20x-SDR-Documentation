@@ -471,6 +471,63 @@ def main():
           else "no stale SP 800-63-3 reference in generated or authored content "
                "(current edition is SP 800-63-4)")
 
+    # 9. Evidence linkage for populated MUST work. For a KSI whose record is
+    # populated (not template TBD) and whose FRC-CSX-VVK force at this class is
+    # MUST (Class C/D), require at least one evidence entry. This makes the
+    # "every implemented MUST has traceable evidence" expectation an explicit
+    # gate rather than only a readiness-scanner observation. Template TBD
+    # records and lower-force classes are reported, not failed.
+    VVK_FORCE = {"a": "MAY", "b": "SHOULD", "c": "MUST", "d": "MUST"}
+    force = VVK_FORCE.get(cls, "SHOULD")
+    linkage_gaps = []
+    for k in sdr["keySecurityIndicators"]:
+        impl = k.get("ksiImplementation", [])
+        populated = not any("TBD" in s for s in impl)
+        if not populated:
+            continue
+        if not (k.get("ksiEvidence") or []):
+            linkage_gaps.append(k["ksiId"])
+    linkage_hard = force == "MUST" and bool(linkage_gaps)
+    check("evidence_linkage_for_populated_musts", not linkage_gaps,
+          (f"{len(linkage_gaps)} populated KSIs have no evidence entry "
+           f"(force {force} at class {cls.upper()}"
+           + ("; hard failure" if linkage_hard else
+              "; reported, hard only at Class C/D where the force is MUST")
+           + f"): {linkage_gaps[:5]}")
+          if linkage_gaps else
+          "every populated KSI carries at least one evidence entry",
+          hard=linkage_hard)
+
+    # 10. Sources lock consistency. references/sources.lock.json records a
+    # SHA-256 for each pinned source; assert it still matches the file on disk,
+    # so the lock cannot silently disagree with what is pinned. This complements
+    # the daily drift-check workflow (which compares against upstream) by
+    # guarding the local pin-to-lock agreement at the build gate.
+    import hashlib
+    lock_path = os.path.join(BASE, "references", "sources.lock.json")
+    lock_problems = []
+    if os.path.exists(lock_path):
+        lock = load(lock_path)
+        for key, entry in (lock.get("sources") or {}).items():
+            rel = entry.get("pinned_path")
+            want = entry.get("sha256")
+            if not rel or not want:
+                continue
+            fpath = os.path.join(BASE, rel)
+            if not os.path.exists(fpath):
+                lock_problems.append(f"{key}: pinned_path {rel} missing")
+                continue
+            with open(fpath, "rb") as fh:
+                got = hashlib.sha256(fh.read()).hexdigest()
+            if got != want:
+                lock_problems.append(f"{key}: {rel} sha256 {got[:12]} != lock {want[:12]}")
+        check("sources_lock_consistency", not lock_problems,
+              "; ".join(lock_problems) if lock_problems
+              else "every pinned source matches its recorded sha256 in sources.lock.json")
+    else:
+        check("sources_lock_consistency", True,
+              "no sources.lock.json present (skipped)", hard=False)
+
     os.makedirs(REPORTS, exist_ok=True)
     with open(os.path.join(REPORTS, "validation-report.json"), "w",
               encoding="utf-8", newline="\n") as f:

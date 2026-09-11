@@ -182,6 +182,12 @@ def cmd_scan(args):
     return code
 
 
+def cmd_explain(args):
+    """Print a grounded, plain-language explanation of one rule or KSI."""
+    explain_path = os.path.join(SCRIPTS, "explain.py")
+    return run(explain_path, [args.identifier], label="explain.py")
+
+
 def cmd_clean(args):
     """Remove regenerable local clutter only.
 
@@ -295,6 +301,10 @@ def build_parser():
                        help="passed through to the scanner")
 
     sub.add_parser("clean", help="remove caches and scanner reports")
+
+    explain_p = sub.add_parser(
+        "explain", help="explain one rule or KSI in plain language (grounded in the dataset)")
+    explain_p.add_argument("identifier", help="a rule id (FRC-CSO-PKG) or KSI id (KSI-CNA-RNT)")
     return p
 
 
@@ -312,6 +322,7 @@ def main(argv=None):
         "scan": cmd_scan,
         "all": cmd_all,
         "clean": cmd_clean,
+        "explain": cmd_explain,
     }
     return handlers[args.command](args)
 

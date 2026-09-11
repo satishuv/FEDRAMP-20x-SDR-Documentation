@@ -95,6 +95,56 @@ def test_error_facts_dropped_in_bulk():
     assert len(out) == 2
 
 
+def test_evidence_carries_content_hash():
+    ev = ew.fact_to_evidence(_fact())
+    assert ev["xEvidenceContentHash"].startswith("sha256:")
+    assert len(ev["xEvidenceContentHash"]) == len("sha256:") + 64
+
+
+def test_hash_is_deterministic_and_order_independent():
+    # Same logical content, different key order -> same digest.
+    h1 = ew.evidence_hash({"a": 1, "b": [2, 3]})
+    h2 = ew.evidence_hash({"b": [2, 3], "a": 1})
+    assert h1 == h2
+    # Different content -> different digest.
+    assert ew.evidence_hash({"a": 1}) != ew.evidence_hash({"a": 2})
+    # Bytes and str inputs are accepted.
+    assert ew.evidence_hash(b"x") == ew.evidence_hash("x")
+
+
+def test_hash_detects_tampering():
+    ev = ew.fact_to_evidence(_fact())
+    original = ev["xEvidenceContentHash"]
+    tampered = ew.evidence_hash(_fact(detail="All buckets block public access!!"))
+    assert tampered != original
+
+
+def test_adapter_registry_has_reference_adapter():
+    assert "csv-count" in ew.list_adapters()
+    assert ew.get_adapter("csv-count") is not None
+
+
+def test_csv_count_adapter_produces_hashed_evidence():
+    adapter = ew.get_adapter("csv-count")
+    raw = {"check": "patch-coverage", "observed": 98, "total": 100,
+           "observed_at": "2026-09-08T00:00:00+00:00"}
+    evs = adapter.to_evidence(raw)
+    assert len(evs) == 1
+    ev = evs[0]
+    assert "98.0%" in ev["evidenceText"] or "98.0%" in ev["evidenceDescription"]
+    assert ev["xEvidenceContentHash"].startswith("sha256:")
+
+
+def test_register_rejects_non_adapter():
+    class NotAnAdapter:
+        pass
+    try:
+        ew.register_adapter(NotAnAdapter)
+    except TypeError:
+        return
+    raise AssertionError("register_adapter should reject a non-adapter")
+
+
 def _run_direct():
     fns = [g for n, g in sorted(globals().items()) if n.startswith("test_") and callable(g)]
     for fn in fns:
