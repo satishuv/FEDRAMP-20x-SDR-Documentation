@@ -442,6 +442,35 @@ def main():
     if sem_problems:
         report["semantic_problems"] = sem_problems[:50]
 
+    # 8. Stale NIST identity-guidance reference guard. CR26's July 14 update
+    # cites "the most recent NIST Digital Identity Guidelines" rather than a
+    # fixed revision, and SP 800-63-4 (final, July 2025) supersedes 800-63-3.
+    # New normative material must not cite 800-63-3 as current. The pinned
+    # dataset is excluded from this scan: FedRAMP owns its own text, and if the
+    # canonical dataset ever contained 800-63-3 that is a FedRAMP fact to
+    # mirror, not a repository defect. This scans the framework's own generated
+    # deliverables and authored docs.
+    stale_ref = re.compile(r"800[- ]?63[- ]?3\b")
+    stale_hits = []
+    scan_roots = [os.path.join(BASE, "sdr"), os.path.join(BASE, "docs"),
+                  os.path.join(BASE, "traceability")]
+    for root in scan_roots:
+        for dirpath, _dirs, files in os.walk(root):
+            for fn in files:
+                if not fn.endswith((".json", ".txt", ".md", ".csv")):
+                    continue
+                path = os.path.join(dirpath, fn)
+                try:
+                    content = open(path, encoding="utf-8", errors="ignore").read()
+                except OSError:
+                    continue
+                if stale_ref.search(content):
+                    stale_hits.append(os.path.relpath(path, BASE))
+    check("no_stale_nist_800_63_3", not stale_hits,
+          f"stale 800-63-3 references in: {stale_hits}" if stale_hits
+          else "no stale SP 800-63-3 reference in generated or authored content "
+               "(current edition is SP 800-63-4)")
+
     os.makedirs(REPORTS, exist_ok=True)
     with open(os.path.join(REPORTS, "validation-report.json"), "w",
               encoding="utf-8", newline="\n") as f:

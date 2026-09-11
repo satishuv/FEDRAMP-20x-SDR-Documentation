@@ -56,6 +56,11 @@
    "check": "semantic_completeness_cr26",
    "result": "PASS",
    "detail": "0 required semantic elements absent from the submitted SDR (every SDR-CSO-FRR and SDR-CSX-KSI/KMT required item is present; presence only, not a correctness or compliance determination)"
+  },
+  {
+   "check": "no_stale_nist_800_63_3",
+   "result": "PASS",
+   "detail": "no stale SP 800-63-3 reference in generated or authored content (current edition is SP 800-63-4)"
   }
  ],
  "hard_failures": 0

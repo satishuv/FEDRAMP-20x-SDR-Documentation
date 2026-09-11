@@ -1,0 +1,58 @@
+{
+ "manifest_note": "Certification Package manifest. FRC-CSO-PKG defines the initial FedRAMP 20x Certification Package as the Certification Package Overview (CPO), the Security Decision Record (SDR) implementation/validation/assessment information, and a real or example Ongoing Certification Report (OCR); Class B/C offerings also have a Secure Configuration Guide (SCG) and certification-data-sharing obligations. This file records which of those artifacts this repository generates today and which are planned, so a reader is never left assuming SDR output is a complete package. It is a scope statement, not a compliance claim. Nothing here asserts any artifact is complete, correct, or certified.",
+ "certification_package": {
+  "certification_package_overview": {
+   "cr26_rules": ["FRC-CSO-PKG", "CPO-CSO-OVR"],
+   "required_for_initial_package": true,
+   "status": "planned",
+   "generated_artifact": null,
+   "note": "The SDR references a CPO URI (profiles/common/offering-profile.json certification_package_overview_uri) but this repository does not yet generate the CPO itself. A first-class CPO generator against the official CPO schema is the next package-expansion step."
+  },
+  "security_decision_record": {
+   "cr26_rules": ["SDR-CSO-FRR", "SDR-CSX-KSI", "SDR-CSX-KMT", "SDR-CSO-MTD", "FRC-CSO-JSN"],
+   "required_for_initial_package": true,
+   "status": "implemented",
+   "generated_artifact": [
+    "sdr/json/sdr-class-<class>.json",
+    "sdr/human-readable/sdr-class-<class>.txt"
+   ],
+   "note": "Schema-valid JSON plus human-readable text. Required SDR-CSO-FRR / SDR-CSX-KSI / SDR-CSX-KMT semantic items are carried in providerExtensions.xFedRampSemantic and validated by the semantic_completeness_cr26 gate. Content ships as TBD until a provider fills it."
+  },
+  "ongoing_certification_report": {
+   "cr26_rules": ["FRC-CSO-PKG", "CCM-OCR-AVL"],
+   "required_for_initial_package": true,
+   "required_ongoing_cadence": "every 3 months",
+   "status": "planned",
+   "generated_artifact": null,
+   "note": "A real or example OCR is required in the initial package and every three months thereafter. Not yet generated. A schema-driven OCR example/generator is a package-expansion step."
+  },
+  "secure_configuration_guide": {
+   "cr26_rules": ["SCG-CSO-RSC", "SCG-CSO-AUP"],
+   "required_for_initial_package": "Class B and C",
+   "status": "planned",
+   "generated_artifact": null,
+   "note": "Not yet modeled. Could be a generated document or an explicit external-link manifest referenced from the CPO."
+  },
+  "certification_data_sharing": {
+   "cr26_rules": ["CDS-CSO-PUB", "CDS-CSO-SVC", "CDS-CSO-UTC", "CDS-CSO-CBF", "CDS-CSO-AVR"],
+   "required_for_initial_package": true,
+   "status": "partial",
+   "generated_artifact": null,
+   "note": "CDS-CSO-CBF (JSON and human-readable stay in sync) is supported by the paired SDR outputs. CDS-CSO-UTC requires a FedRAMP-compatible trust center and CDS-CSO-AVR requires a Class C availability service; neither is implemented by this repository, and a public GitHub Pages site is not a trust center."
+  }
+ },
+ "event_driven_artifacts": {
+  "incident_reports": {"cr26_rules": ["IEC-CSO-IIR", "IEC-CSO-OIR", "IEC-CSO-FIR"], "status": "planned"},
+  "significant_change_notification": {"cr26_family": "SCN", "status": "planned"},
+  "vulnerability_reporting": {"cr26_families": ["VDR", "VER"], "status": "planned",
+   "note": "Accepted-vulnerability information, historical vulnerability-evaluation activity, and vulnerability detail reports have official schemas and belong in the evidence roadmap."}
+ },
+ "interoperability_exports": {
+  "oscal": {
+   "status": "implemented",
+   "generated_artifact": "sdr/json/sdr-class-<class>.oscal.json",
+   "required": false,
+   "note": "No CR26 rule makes OSCAL the native 20x SDR submission format. This is a derived interoperability export only, not a FedRAMP 20x submission artifact."
+  }
+ }
+}
