@@ -2,7 +2,7 @@
 
 FedRAMP 20x defines four certification classes. `FRD-CCL` describes them as categories of assurance a cloud service offering supplies to federal customers, "increasing from minimal assurance at Class A to significant assurance at Class D."
 
-A note on a common shorthand: the dataset does not map the classes to the Low, Moderate, and High impact levels. People say "Class D is High" in conversation, and it may turn out that way, but no rule in CR26 states it. This framework does not encode the mapping, and you should not put it in your record either.
+A note on impact levels. FedRAMP's current public 20x guidance maps the classes to impact levels: Class A (Pilot), Class B (Low), Class C (Moderate), and the planned Class D (High). The [FedRAMP 20x page](https://www.fedramp.gov/20x/) states this directly ("Class A (Pilot), Class B (Low), and Class C (Moderate)" available now, with a "20x Class D (High) Pilot" in Phase 4). These labels describe the certification classes. They do not mean the 20x Key Security Indicator profile is a renamed NIST SP 800-53B Low, Moderate, or High baseline, and this framework does not infer one-to-one baseline equivalence. The `FRD-CCL` definition in the dataset describes the classes as assurance categories "increasing from minimal assurance at Class A to significant assurance at Class D"; the Low/Moderate/High labels come from FedRAMP's program guidance rather than from a mapping field inside the dataset.
 
 ## What differs between classes
 
@@ -73,6 +73,6 @@ Your record store is shared across classes. Entries for rules outside your class
 
 `profiles/class-d-future/readiness-register.json` holds 157 rules resolved against the class D variants already present in the dataset, plus a `delta_from_class_c` block so a Class C provider can see exactly what tightens.
 
-It is a planning aid, nothing more. Its metadata carries `status: FedRAMP pending`. FedRAMP lists the 20x Program path for Class D as coming in 2027, with specifics set during the Phase 4 Pilot, so the register will change. Nothing in it constitutes a claim of Class D readiness, and the framework will not generate a Class D deliverable.
+It is a planning aid, nothing more. Its metadata carries `status: FedRAMP pending`. On September 9, 2026 FedRAMP opened [RFC-0033](https://www.fedramp.gov/rfcs/0033/), "20x Phase 4 Development Tracks for 20x Class D," which states that detailed proposed Class D requirements will be released during the pilot and previews the direction: Class D will require holding a Class C certification without corrective action for 6 months to become eligible, deployment on a Class D certified IaaS/PaaS, and new Key Security Indicators including a theme for Foreign Ownership, Control, or Influence (FOCI). RFC-0033 anticipates a full-requirements RFC on October 14, 2026, final pilot requirements around November 18, 2026, and the pilot during FY27 Q1 to Q2. The register will change as those land. Nothing in it constitutes a claim of Class D readiness, and the framework will not generate a Class D deliverable.
 
 See the [implementation guide](implementation-guide.md) for filling in a class once you have chosen, or [validation](validation.md) for how the per-class minimums are enforced.

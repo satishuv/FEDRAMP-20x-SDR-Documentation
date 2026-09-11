@@ -1,0 +1,50 @@
+{
+ "lock_note": "Provenance lock for every official source input this framework pins. Records the upstream URL, the exact version, a SHA-256 of the pinned copy on disk, and the date it was verified current against upstream. The daily drift-check workflow hash-compares the pinned copies against these upstreams; this file is the human-readable record of what the pins mean and where they came from. Update deliberately, in the same change that bumps a pin, and never by hand-editing a hash to make a check pass.",
+ "verified_current_on": "2026-09-11",
+ "sources": {
+  "cr26_consolidated_rules": {
+   "description": "FedRAMP Consolidated Rules for 2026, the canonical machine-readable requirements dataset and source of truth for rule text, identifiers, force, class applicability, KSIs, and definitions.",
+   "version": "2026.07.14.01",
+   "upstream_repo": "https://github.com/FedRAMP/rules",
+   "upstream_raw": "https://raw.githubusercontent.com/FedRAMP/rules/main/fedramp-consolidated-rules.json",
+   "pinned_path": "references/fedramp-consolidated-rules.json",
+   "sha256": "135707003f0aaa5ceb10d7d32c2681e5b1585a4eaf4403d0d135837787e5ae8e",
+   "status": "current",
+   "notes": "The official guidance site states AI agents and automation must use the machine-readable repositories, not the rendered HTML at fedramp.gov."
+  },
+  "sdr_schema": {
+   "description": "Official FedRAMP Security Decision Record JSON schema.",
+   "schema_version": "1.1.1",
+   "schema_id": "https://fedramp.gov/schemas/fedramp-security-decision-record-schema-2026-06-24.json",
+   "upstream_repo": "https://github.com/FedRAMP/docs",
+   "pinned_path": "artifacts/schemas/official/fedramp-security-decision-record-schema-2026-06-24.json",
+   "sha256": "6a6d7dca1a9ae0031c06df6213bf5c5631e9b9b5fb81c050403cfd723484be86",
+   "status": "current",
+   "notes": "FedRAMP edits schema files in place without renaming, so the filename proves nothing; the $schemaVersion inside is the real signal. The validator asserts this $id and $schemaVersion at the build gate."
+  },
+  "common_definitions_schema": {
+   "description": "Official FedRAMP common-definitions JSON schema, referenced by the SDR schema.",
+   "schema_version": "0.3.0",
+   "schema_id": "https://fedramp.gov/schemas/fedramp-common-definitions-schema-2026-06-24.json",
+   "pinned_path": "artifacts/schemas/official/fedramp-common-definitions-schema-2026-06-24.json",
+   "sha256": "1d2468ace4f2e9f08471ec2dae38e9f7847b04cd12ac54b61b0923319d16622d",
+   "status": "current"
+  },
+  "nist_800_53": {
+   "description": "NIST SP 800-53 security and privacy control catalog. Used only for the KSI-to-related-control reverse index (traceability), never as a source of FedRAMP requirements.",
+   "catalog": "SP 800-53 Rev. 5",
+   "release": "5.2.0",
+   "release_date": "2025-08-27",
+   "upstream": "https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final",
+   "status": "current",
+   "notes": "Release 5.2.0 (Aug 27, 2025) added SA-15(13), SA-24, SI-02(07) and revised SI-07(12). This framework does not automatically add new 5.2.0 control relationships to FedRAMP KSIs; relationships come only from the CR26 dataset. The reverse index is FedRAMP-declared relatedness, not control-satisfaction equivalence."
+  },
+  "nist_800_63": {
+   "description": "NIST Digital Identity Guidelines. CR26's July 14 update cites 'the most recent NIST Digital Identity Guidelines' rather than a fixed revision.",
+   "current_edition": "SP 800-63-4",
+   "status": "final",
+   "upstream": "https://pages.nist.gov/800-63-4/",
+   "notes": "SP 800-63-4 is final and supersedes SP 800-63-3. New normative material must not cite 800-63-3 as current; a validator regression check guards against a stale reference."
+  }
+ }
+}

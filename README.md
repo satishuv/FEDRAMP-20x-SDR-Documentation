@@ -1,7 +1,7 @@
 <h1 align="center">FedRAMP 20x Security Decision Record Framework</h1>
 
 <p align="center">
-  <strong>Treat your FedRAMP authorization package as code, not as a document.</strong><br>
+  <strong>Treat your FedRAMP 20x Security Decision Record as continuously verified data, not a hand-maintained document.</strong><br>
   Generate a schema-valid, dataset-traceable Security Decision Record from one file you actually edit.
 </p>
 
@@ -104,9 +104,9 @@ If you have GNU make, `make all` wraps the same command. To run the seven build 
 | A | 41 | 7 mandatory | 0 required | Supported |
 | B | 158 | 46 | at least 1 | Supported |
 | C | 158 plus overlay | 46 | at least 2 | Supported |
-| D | 157 | 46 | at least 4 | Readiness register only. FedRAMP lists the Class D path for 2027 |
+| D | 157 | 46 | at least 4 | Readiness register only. FedRAMP 20x Class D (High) is in Phase 4 development ([RFC-0033](https://www.fedramp.gov/rfcs/0033/)), pilot estimated FY27 Q1-Q2 |
 
-`FRD-CCL` describes the classes as assurance categories "increasing from minimal assurance at Class A to significant assurance at Class D." The dataset does not map them to the Low, Moderate, and High impact levels, so neither does this framework.
+`FRD-CCL` describes the classes as assurance categories "increasing from minimal assurance at Class A to significant assurance at Class D." FedRAMP's current 20x guidance maps them to impact levels: Class A (Pilot), Class B (Low), Class C (Moderate), and the planned Class D (High), per the [FedRAMP 20x page](https://www.fedramp.gov/20x/). Those labels do not make the 20x indicator profile a renamed NIST SP 800-53B baseline, so this framework tracks the class but does not infer baseline equivalence.
 
 Derived from the CR26 dataset at version `2026.07.14.01`: 234 rules in 20x scope out of 246 total entries, the remaining 12 being rev5-only, plus 46 Key Security Indicators across 10 families.
 
