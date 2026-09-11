@@ -1,5 +1,13 @@
 {
- "note": "Rev5 control to 20x KSI crosswalk, generated from the canonical dataset's per-KSI controls field. Source of truth is FedRAMP's own mapping, not a projection. A control absent from this file has no KSI carrying it in the current dataset; that does not mean the control concept is unaddressed, FedRAMP Rules (FRR) may cover it as a process obligation instead.",
+ "note": "NIST control to 20x KSI reverse index, generated from the canonical dataset's per-KSI controls field. Source of truth is FedRAMP's own related-control mapping, not a projection. A control absent from this file has no KSI carrying it in the current dataset; that does not mean the control concept is unaddressed, FedRAMP Rules (FRR) may cover it as a process obligation instead.",
+ "relationship": "fedramp_declared_related_control",
+ "direction": "nist_control -> ksis",
+ "equivalence": false,
+ "equivalence_note": "This is relatedness, not equivalence. A control listed against a KSI does not mean the KSI satisfies the NIST control or the reverse. Do not read these rows as control satisfaction.",
+ "nist_catalog": "NIST SP 800-53 Rev. 5",
+ "nist_release": "5.2.0",
+ "nist_release_date": "2025-08-27",
+ "relationship_source": "CR26 dataset (ksi-catalog.json controls field)",
  "dataset_note": "Derived from ksi-catalog.json at build time.",
  "controls_mapped": 209,
  "ksis_without_control_mappings": [

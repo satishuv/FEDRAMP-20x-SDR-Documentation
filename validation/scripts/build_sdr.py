@@ -170,6 +170,18 @@ def build_official(profile, rules, ksis, records):
                     "ruleName": r["name"],
                     "family": fam,
                     "familyName": fam_names["frr"].get(fam, fam),
+                    # SDR-CSO-FRR requires seven information items per applicable
+                    # rule, but the official schema carries only frrImplementation,
+                    # frrValidation and frrAssessment. The remaining required
+                    # items (implementation/nonimplementation risk, independent
+                    # verification, independent validation, responses to
+                    # independent-review comments, and rule-specific artifacts)
+                    # have no dedicated official field. The official schema does
+                    # not set additionalProperties, so extra fields are permitted;
+                    # they are carried here, inside the submitted document, so the
+                    # required information travels WITH the SDR rather than in a
+                    # separate sidecar a consumer might miss.
+                    "xFedRampSemantic": frr_semantic(rec),
                 },
             }
         )
@@ -188,10 +200,64 @@ def build_official(profile, rules, ksis, records):
                     "ksiName": k["name"],
                     "family": k["family"],
                     "familyName": k["family_name"],
+                    # SDR-CSX-KSI requires five information items per KSI
+                    # (measures/objectives, their cycle, verification of the
+                    # measures, verification of the supporting automation, and
+                    # validation) and SDR-CSX-KMT requires historical metrics by
+                    # class. Only ksiValidation/ksiAssessment map to official
+                    # fields, so the rest is carried here inside the submitted
+                    # document.
+                    "xFedRampSemantic": ksi_semantic(rec),
                 },
             }
         )
     return doc
+
+
+def _val(v):
+    """Normalize a record value for emission: None becomes the TBD marker so a
+    required field is never silently absent from the submitted document."""
+    return v if v not in (None, "") else TBD
+
+
+def frr_semantic(rec):
+    """Assemble the SDR-CSO-FRR semantic block from a record-store entry so
+    every required information item reaches the submitted SDR. Missing values
+    surface as the honest TBD marker rather than disappearing."""
+    ext = rec.get("extension", {})
+    return {
+        "implementationRisk": _val(ext.get("customer_risk")),
+        "verification": _val(ext.get("verification")),
+        "validationFrequency": _val(ext.get("validation_frequency")),
+        "independentVerification": _val(ext.get("independent_verification")),
+        "independentValidation": _val(ext.get("independent_validation")),
+        "assessorResponses": ext.get("assessor_responses", "None recorded"),
+        "ruleArtifacts": ext.get("rule_artifacts", []),
+        "seniorOfficialAcceptance": ext.get(
+            "senior_official_acceptance", "Not required: rule is followed"),
+        "owner": _val(ext.get("owner")),
+    }
+
+
+def ksi_semantic(rec):
+    """Assemble the SDR-CSX-KSI and SDR-CSX-KMT semantic block from a
+    record-store entry. Historical metrics (Class B/C MUST) are emitted here
+    instead of being dropped from the generated document."""
+    ext = rec.get("extension", {})
+    hm = rec.get("historical_metrics", {})
+    return {
+        "measures": _val(ext.get("measures")),
+        "operatingCycle": _val(ext.get("operating_cycle")),
+        "measuresVerification": _val(ext.get("measures_verification")),
+        "automationVerification": _val(ext.get("automation_verification")),
+        "assessorResponses": ext.get("assessor_responses", "None recorded"),
+        "owner": _val(ext.get("owner")),
+        "historicalMetrics": {
+            "last30Days": _val(hm.get("last_30_days")),
+            "upToOneYear": _val(hm.get("up_to_one_year")),
+            "dailyDataReference": _val(hm.get("daily_data_reference")),
+        },
+    }
 
 
 def load_notes():
@@ -328,6 +394,13 @@ def render_human(profile, rules, ksis, records, cls):
         for s in rec.get("assessment", []):
             a(f"Independent assessment: {s}")
         ext = rec.get("extension", {})
+        a(f"Implementation or nonimplementation risk: {_val(ext.get('customer_risk'))}")
+        a(f"Verification: {_val(ext.get('verification'))}")
+        a(f"Independent verification: {_val(ext.get('independent_verification'))}")
+        a(f"Independent validation: {_val(ext.get('independent_validation'))}")
+        a(f"Responses to independent review comments: {ext.get('assessor_responses', 'None recorded')}")
+        arts = ext.get("rule_artifacts", [])
+        a(f"Rule-specific artifacts: {'; '.join(str(x) for x in arts) if arts else 'None recorded'}")
         a(f"Owner: {ext.get('owner', TBD)}")
         a("")
     a("2. Key Security Indicators")
@@ -335,6 +408,7 @@ def render_human(profile, rules, ksis, records, cls):
     for i, k in enumerate(ksis, 1):
         rec = records["ksi"].get(k["ksi_id"], {})
         ext = rec.get("extension", {})
+        hm = rec.get("historical_metrics", {})
         a(f"2.{i} {k['ksi_id']} {k['name'] or ''}")
         a(f"KSI: {k['ksi_id']}")
         a(f"Family: {k['family']} ({k['family_name']})")
@@ -349,8 +423,15 @@ def render_human(profile, rules, ksis, records, cls):
             a(f"Validation: {s}")
         for s in rec.get("assessment", []):
             a(f"Independent assessment: {s}")
+        a(f"Measures and objectives: {_val(ext.get('measures'))}")
+        a(f"Measurement cycle: {_val(ext.get('operating_cycle'))}")
+        a(f"Verification of measures: {_val(ext.get('measures_verification'))}")
+        a(f"Verification of supporting automation: {_val(ext.get('automation_verification'))}")
         a(f"Minimum automated methods for this class: {k['minimum_automated_methods'][f'class_{cls}']}")
-        a(f"Historical metrics required: {k['historical_metrics'][f'class_{cls}']}")
+        a(f"Historical metrics required for this class: {k['historical_metrics'][f'class_{cls}']}")
+        a(f"Historical metrics, 30-day summary: {_val(hm.get('last_30_days'))}")
+        a(f"Historical metrics, up to one year: {_val(hm.get('up_to_one_year'))}")
+        a(f"Historical metrics, daily data reference (Class C): {_val(hm.get('daily_data_reference'))}")
         tests = rec.get("tests", [])
         a(f"Tests: {'; '.join(tests) if tests else 'None defined yet'}")
         a(f"Owner: {ext.get('owner', TBD)}")

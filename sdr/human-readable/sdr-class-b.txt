@@ -25,6 +25,12 @@ Status: Not Implemented
 Implementation: Example (reference architecture, replace with your real implementation): A dedicated FedRAMP security inbox is maintained as a monitored distribution list reaching the security on-call rotation, separate from customer support channels. The address is registered with FedRAMP and published in the certification data.
 Validation: Example (reference architecture, replace with your real implementation): A monthly synthetic test email is sent to the inbox; the on-call rotation must acknowledge within the documented response window. Delivery, spam-filter, and distribution-list membership checks run monthly and after any mail-system change.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: Example: Security Operations Manager
 
 1.2 AFC-CSO-NOC Notification of Changes
@@ -35,6 +41,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.3 AFC-CSO-TFG Trust @fedramp.gov and @gsa.gov
@@ -45,6 +57,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.4 AFC-CSO-RCV Receive Email Without Disruption
@@ -55,6 +73,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.5 AFC-CSO-CRA Complete Required Actions
@@ -65,6 +89,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.6 AFC-CSO-EMR Emergency Message Routing
@@ -75,6 +105,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.7 AFC-CSO-IMA Important Message Actions
@@ -85,6 +121,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.8 AFC-CSO-ACK Acknowledge Receipt
@@ -95,6 +137,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.9 CCM-OCR-AVL Report Availability
@@ -105,6 +153,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.10 CCM-OCR-NRD Next Report Date
@@ -115,6 +169,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.11 CCM-OCR-FBM Feedback Mechanism
@@ -125,6 +185,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.12 CCM-OCR-AFS Anonymized Feedback Summary
@@ -135,6 +201,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.13 CCM-OCR-LSI Limit Sensitive Information
@@ -145,6 +217,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.14 CCM-OCR-SOR Spread Out Reports
@@ -155,6 +233,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.15 CCM-OCR-RPS Responsible Public Certification Report Sharing
@@ -165,6 +249,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.16 CCM-QTR-MTG Quarterly Review Meeting
@@ -175,6 +265,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.17 CCM-QTR-REG Meeting Registration Info
@@ -185,6 +281,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.18 CCM-QTR-NRD Next Review Date
@@ -195,6 +297,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.19 CCM-QTR-NID No Irresponsible Disclosure
@@ -205,6 +313,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.20 CCM-QTR-SAR Schedule Around Reports
@@ -215,6 +329,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.21 CCM-QTR-ACT Additional Content
@@ -225,6 +345,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.22 CCM-QTR-RTR Record/Transcribe Reviews
@@ -235,6 +361,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.23 CCM-QTR-RTP Restrict Third Parties
@@ -245,6 +377,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.24 CCM-QTR-SRR Share Recordings Responsibly
@@ -255,6 +393,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.25 CCM-QTR-SCR Share Content Responsibly
@@ -265,6 +409,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.26 CDS-CSO-PUB Public Information
@@ -275,6 +425,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.27 CDS-CSO-SVC Public Service List
@@ -285,6 +441,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.28 CDS-CSO-FID Always Include FedRAMP ID
@@ -295,6 +457,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.29 CDS-CSO-FRC FedRAMP Certification Reports
@@ -305,6 +473,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.30 CDS-CSO-AVR Availability Reporting
@@ -315,6 +489,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.31 CDS-CSO-UTC Use Trust Centers
@@ -325,6 +505,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.32 CDS-CSO-CBF Consistency Between Formats
@@ -335,6 +521,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.33 CDS-CSO-RIS Responsible Information Sharing
@@ -345,6 +537,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.34 CDS-CSO-IRP Include Relevant Policies
@@ -355,6 +553,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.35 CDS-CSO-HAD Historical FedRAMP Certification Data
@@ -365,6 +569,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.36 CDS-CSO-PSM Per-Service Certification Materials
@@ -375,6 +585,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.37 CDS-CSO-RPS Responsible Public Package Sharing
@@ -385,6 +601,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.38 CDS-TRC-USH Uninterrupted Sharing
@@ -395,6 +617,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.39 CDS-TRC-PAC Programmatic Access
@@ -405,6 +633,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.40 CDS-TRC-AAI Agency Access Inventory
@@ -415,6 +649,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.41 CDS-TRC-ACL Access Logging
@@ -425,6 +665,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.42 CDS-TRC-HMR Human and Machine-Readable Certification Data
@@ -435,6 +681,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.43 CDS-TRC-SSM Self-Service Access Management
@@ -445,6 +697,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.44 CDS-UTC-AAD Agency Access Denial
@@ -455,6 +713,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.45 CDS-UTC-AGA Agency Access
@@ -465,6 +729,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.46 CMU-CSO-CMD Cryptographic Module Documentation
@@ -475,6 +745,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.47 CMU-CSO-UVM Using Validated Cryptographic Modules
@@ -485,6 +761,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.48 CMU-CSO-CAT Configuration of Agency Tenants
@@ -495,6 +777,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.49 CPO-CSO-OVR Overview of the Cloud Service Offering
@@ -505,6 +793,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.50 CPO-CSO-MTD Certification Package Overview Metadata
@@ -515,6 +809,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.51 CPO-CSO-OSA Overall Summary of Assessment in Certification Package
@@ -525,6 +825,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.52 CPO-CSX-CPM Certification Package Maintenance for 20x
@@ -535,6 +841,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.53 FRC-CSO-FCP FedRAMP Certification Profile
@@ -545,6 +857,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.54 FRC-CSO-PKG FedRAMP Certification Package
@@ -555,6 +873,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.55 FRC-CSO-JSN FedRAMP JSON Schemas
@@ -565,6 +889,12 @@ Status: Not Implemented
 Implementation: Example (reference architecture, replace with your real implementation): All machine-readable certification information is produced as JSON validated against the corresponding published FedRAMP JSON schema before release. The generation pipeline pins the current official schema, hash-compares it against the live published schema at each run, and fails the build on any validation error.
 Validation: Example (reference architecture, replace with your real implementation): Schema validation runs in CI on every change to certification data; results are retained with the build record. A scheduled job re-validates published artifacts weekly against the live schema to catch in-place schema updates.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: Example: Compliance Engineering Lead
 
 1.56 FRC-CSO-MRA Maintain Responsibility and Accountability
@@ -575,6 +905,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.57 FRC-CSO-POP Pick One Program Certification Type
@@ -585,6 +921,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.58 FRC-APP-MLF Marketplace Listing First
@@ -595,6 +937,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.59 FRC-APP-AFC Applying for FedRAMP Certification
@@ -605,6 +953,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.60 FRC-APP-FCP Fresh FedRAMP Certification Package
@@ -615,6 +969,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.61 FRC-APP-FIA Fresh Independent Assessment
@@ -625,6 +985,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.62 FRC-APP-NTP No Third-Party Applicants
@@ -635,6 +1001,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.63 FRC-APP-USA Updating Stale Assessments
@@ -645,6 +1017,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.64 FRC-CSX-VVK Automated Verification and Validation of Key Security Indicators
@@ -655,6 +1033,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.65 FRC-CSX-MOT Metrics Over Time for Key Security Indicators
@@ -665,6 +1049,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.66 FRC-CSX-VVR Automated Verification and Validation of FedRAMP Rules
@@ -675,6 +1065,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.67 FRC-CSX-MAS Application within MAS
@@ -685,6 +1081,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.68 IEC-CSO-EFR Evaluate FedRAMP Reportability
@@ -695,6 +1097,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.69 IEC-CSO-DPR Default PAIN Rating
@@ -705,6 +1113,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.70 IEC-CSO-IIR Initial Incident Report
@@ -715,6 +1129,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.71 IEC-CSO-OIR Ongoing Incident Reports
@@ -725,6 +1145,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.72 IEC-CSO-FIR Final Incident Report
@@ -735,6 +1161,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.73 IEC-CSO-EFI Estimate Federal Impact
@@ -745,6 +1177,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.74 IEC-CSO-AIR Automated Incident Reporting
@@ -755,6 +1193,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.75 IVV-CSO-FIA FedRAMP Independent Assessments
@@ -765,6 +1209,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.76 IVV-CSO-SEI Supply Evidence of Implementation
@@ -775,6 +1225,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.77 IVV-CSO-SEE Supply Evidence of Effectiveness
@@ -785,6 +1241,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.78 IVV-CSO-ICP Inclusion in Certification Package
@@ -795,6 +1257,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.79 IVV-CSO-DUS Document Use of Representative Samples
@@ -805,6 +1273,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.80 IVV-CSO-STE Supply Technical Explanations
@@ -815,6 +1289,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.81 IVV-CSO-USR Use Representative Samples
@@ -825,6 +1305,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.82 IVV-CSO-RAA Receiving Assessor Advice
@@ -835,6 +1321,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.83 IVV-CSX-AIA Annual Independent Assessments for 20x
@@ -845,6 +1337,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.84 MAS-CSO-IIR Identify Information Resources
@@ -855,6 +1353,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.85 MAS-CSO-FLO Information Flows and Security Categories
@@ -865,6 +1369,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.86 MAS-CSO-TPR Third-Party Information Resources
@@ -875,6 +1385,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.87 MAS-CSO-MDI Metadata Inclusion
@@ -885,6 +1401,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.88 MAS-CSO-SUP Supplemental Information
@@ -895,6 +1417,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.89 MKT-CSO-MLR Marketplace Listing Requirements
@@ -905,6 +1433,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.90 MKT-CSO-PML Provider Marketplace Listing Requests
@@ -915,6 +1449,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.91 MKT-IIP-AGU Agency Use Cases
@@ -925,6 +1465,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.92 MKT-IIP-DCP Demonstrating Continuous Progress
@@ -935,6 +1481,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.93 MKT-IIP-DLA Deadline for Assessment
@@ -945,6 +1497,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.94 SCG-CSO-RSC Recommended Secure Configuration
@@ -955,6 +1513,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.95 SCG-CSO-AUP Use Instructions
@@ -965,6 +1529,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.96 SCG-CSO-PUB Public Secure Configuration Guidance
@@ -975,6 +1545,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.97 SCG-CSO-SDF Secure Defaults
@@ -985,6 +1561,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.98 SCG-ENH-CMP Comparison Capability
@@ -995,6 +1577,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.99 SCG-ENH-EXP Export Capability
@@ -1005,6 +1593,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.100 SCG-ENH-API API Capability
@@ -1015,6 +1609,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.101 SCG-ENH-MRG Machine-Readable Guidance
@@ -1025,6 +1625,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.102 SCG-ENH-VRH Versioning and Release History
@@ -1035,6 +1641,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.103 SCN-CSO-EVA Evaluate Changes
@@ -1045,6 +1657,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.104 SCN-CSO-MAR Maintain Audit Records
@@ -1055,6 +1673,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.105 SCN-CSO-INF Required Information
@@ -1065,6 +1689,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.106 SCN-CSO-HIS Historical Notifications
@@ -1075,6 +1705,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.107 SCN-CSO-HRM Human and Machine-Readable Notifications
@@ -1085,6 +1721,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.108 SCN-CSO-ARI Additional Relevant Information
@@ -1095,6 +1737,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.109 SCN-CSO-NOM Notification Mechanisms
@@ -1105,6 +1753,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.110 SCN-CSO-EMG Emergency Changes
@@ -1115,6 +1769,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.111 SCN-ADP-NTF Notification Requirements
@@ -1125,6 +1785,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.112 SCN-RTR-NNR No Notification Requirements
@@ -1135,6 +1801,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.113 SCN-TRF-NIP Notification of Initial Plans
@@ -1145,6 +1817,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.114 SCN-TRF-NFP Notification of Final Plans
@@ -1155,6 +1833,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.115 SCN-TRF-NAF Notification After Finishing
@@ -1165,6 +1849,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.116 SCN-TRF-NAV Notification After Verification
@@ -1175,6 +1865,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.117 SCN-TRF-UPD Update Documentation
@@ -1185,6 +1881,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.118 SCN-TRF-TPR Third-Party Review
@@ -1195,6 +1897,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.119 SDR-CSO-FRR FedRAMP Rules
@@ -1205,6 +1913,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.120 SDR-CSO-MTD Security Decision Record Metadata
@@ -1215,6 +1929,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.121 SDR-CSX-KSI Key Security Indicators
@@ -1225,6 +1945,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.122 SDR-CSX-KMT Key Security Indicator Metrics
@@ -1235,6 +1961,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.123 VDR-CSO-DET Vulnerability Detection
@@ -1245,6 +1977,12 @@ Status: Not Implemented
 Implementation: Example (reference architecture, replace with your real implementation): Amazon Inspector continuously scans EC2 instances, ECR container images, and Lambda functions for software vulnerabilities across all in-scope accounts. Findings aggregate to Security Hub in the security tooling account. Coverage is verified against the asset inventory so every in-scope machine-based resource has an active scanning source.
 Validation: Example (reference architecture, replace with your real implementation): A daily job compares Inspector coverage status against the resource inventory from AWS Config; any in-scope resource without coverage opens a ticket. Finding ingestion freshness is checked daily so no source is silent for more than 24 hours.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: Example: Vulnerability Management Lead
 
 1.124 VDR-CSO-RES Vulnerability Response
@@ -1255,6 +1993,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.125 VDR-CSO-FAV Failures Are Vulnerabilities
@@ -1265,6 +2009,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.126 VDR-CSO-DFR Design For Resilience
@@ -1275,6 +2025,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.127 VDR-CSO-ADT Automate Detection
@@ -1285,6 +2041,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.128 VDR-CSO-DAC Detect After Changes
@@ -1295,6 +2057,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.129 VDR-CSO-MSP Maintain Security
@@ -1305,6 +2073,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.130 VDR-CSO-AKE Avoid KEVs
@@ -1315,6 +2089,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.131 VDR-CSO-SIR Sampling
@@ -1325,6 +2105,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.132 VDR-TFR-NMV Non-Machine Verification and Validation
@@ -1335,6 +2121,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.133 VDR-TFR-PDD Persistent Drift Detection
@@ -1345,6 +2137,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.134 VDR-TFR-PCD Persistently Complete Detection
@@ -1355,6 +2153,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.135 VDR-TFR-PVR Mitigation and Remediation Expectations
@@ -1365,6 +2169,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.136 VDR-TFR-RMN Remaining Vulnerabilities
@@ -1375,6 +2185,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.137 VDR-TFR-KEV Remediate KEVs
@@ -1385,6 +2201,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.138 VDR-TFR-PSD Persistent Sample Detection
@@ -1395,6 +2217,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.139 VDR-TFR-MVX Persistent Machine Verification and Validation for 20x
@@ -1405,6 +2233,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.140 VER-EVA-ELX Evaluate Exploitability
@@ -1415,6 +2249,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.141 VER-EVA-EIR Evaluate Internet-Reachability
@@ -1425,6 +2265,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.142 VER-EVA-EPA Estimate Potential Agency Impact
@@ -1435,6 +2281,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.143 VER-EVA-AIA Assume It's Automatable
@@ -1445,6 +2297,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.144 VER-EVA-GRV Group Vulnerabilities
@@ -1455,6 +2313,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.145 VER-EVA-EFP Evaluate False Positives
@@ -1465,6 +2329,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.146 VER-EVA-EFA Evaluation Factors
@@ -1475,6 +2345,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.147 VER-RPT-PER Persistent Reporting
@@ -1485,6 +2361,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.148 VER-RPT-VDT Vulnerability Details
@@ -1495,6 +2377,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.149 VER-RPT-AVI Accepted Vulnerability Info
@@ -1505,6 +2393,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.150 VER-RPT-NID Responsible Disclosure
@@ -1515,6 +2409,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.151 VER-RPT-HLO High-Level Overviews
@@ -1525,6 +2425,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.152 VER-RPT-RPD Responsible Public Disclosure
@@ -1535,6 +2441,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.153 VER-TFR-MHR Monthly Activity Report
@@ -1545,6 +2457,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.154 VER-TFR-MAV Mark Accepted Vulnerabilities
@@ -1555,6 +2473,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.155 VER-TFR-MRH Historical Activity
@@ -1565,6 +2489,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.156 VER-TFR-EVU Evaluate Vulnerabilities Quickly
@@ -1575,6 +2505,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.157 VER-TFR-IRI Internet-Reachable Incidents
@@ -1585,6 +2521,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.158 VER-TFR-NRI Non-Internet-Reachable Incidents
@@ -1595,6 +2537,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 2. Key Security Indicators
@@ -1607,8 +2555,15 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 1
-Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -1620,8 +2575,15 @@ Status: Not Implemented
 Implementation: Example (reference architecture, replace with your real implementation): All modifications to the cloud service offering are made through version-controlled infrastructure as code deployed by the CI/CD pipeline. AWS CloudTrail organization trail records all management events in every account and region. AWS Config records configuration changes for all supported resource types. Manual changes are detected by comparing CloudTrail write events against pipeline deployment windows.
 Validation: Example (reference architecture, replace with your real implementation): A scheduled validation confirms the organization trail is logging, multi-region, and log-file validated, and that AWS Config recorders are running in every in-scope account and region. An EventBridge rule alerts on any out-of-pipeline write event by a non-pipeline principal.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 1
-Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: Example test 1: describe-trails confirms multi-region and log file validation are enabled and the trail is logging (every 6 hours).; Example test 2: Config aggregator query confirms recorder status is recording in 100 percent of in-scope accounts (daily).
 Owner: Example: Platform Engineering Lead
 
@@ -1633,8 +2595,15 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 1
-Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -1646,8 +2615,15 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 1
-Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -1659,8 +2635,15 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 1
-Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -1672,8 +2655,15 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 1
-Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -1685,8 +2675,15 @@ Status: Not Implemented
 Implementation: FedRAMP pending: this indicator has no statement in the official dataset yet.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 1
-Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -1698,8 +2695,15 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 1
-Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -1711,8 +2715,15 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 1
-Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -1724,8 +2735,15 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 1
-Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -1737,8 +2755,15 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 1
-Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -1750,8 +2775,15 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 1
-Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -1763,8 +2795,15 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 1
-Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -1776,8 +2815,15 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 1
-Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -1789,8 +2835,15 @@ Status: Not Implemented
 Implementation: Example (reference architecture, replace with your real implementation): Workforce access uses AWS IAM Identity Center federated to the corporate identity provider. Passwordless FIDO2 security keys are the primary authentication method; where passwordless is not feasible, strong passwords with phishing-resistant MFA (FIDO2/WebAuthn) are enforced by the identity provider conditional access policy. Console password login without MFA is blocked. Programmatic access uses short-lived STS credentials only; no long-lived IAM user access keys exist.
 Validation: Example (reference architecture, replace with your real implementation): A daily AWS Config custom rule checks that no IAM users have console passwords or active access keys. A daily Identity Center API check confirms MFA enforcement is active for every permission set. A CloudTrail Lake query detects any console login event without MFA; any hit creates a high-priority ticket within 15 minutes.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: Example: percent of authentications using FIDO2; count of MFA-less console logins (target 0).
+Measurement cycle: Example: continuous enforcement, daily automated checks.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 1
-Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: Example test 1: config rule iam-user-no-passwords-or-keys returns COMPLIANT for all accounts (daily).; Example test 2: CloudTrail Lake query for console login events without MFA returns zero rows (daily).
 Owner: Example: Identity and Access Lead
 
@@ -1802,8 +2855,15 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 1
-Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -1815,8 +2875,15 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 1
-Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -1828,8 +2895,15 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 1
-Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -1841,8 +2915,15 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 1
-Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -1854,8 +2935,15 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 1
-Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -1867,8 +2955,15 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 1
-Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -1880,8 +2975,15 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 1
-Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -1893,8 +2995,15 @@ Status: Not Implemented
 Implementation: FedRAMP pending: this indicator has no statement in the official dataset yet.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 1
-Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -1906,8 +3015,15 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 1
-Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -1919,8 +3035,15 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 1
-Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -1932,8 +3055,15 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 1
-Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -1945,8 +3075,15 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 1
-Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -1958,8 +3095,15 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 1
-Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -1971,8 +3115,15 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 1
-Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -1984,8 +3135,15 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 1
-Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -1997,8 +3155,15 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 1
-Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -2010,8 +3175,15 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 1
-Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -2023,8 +3195,15 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 1
-Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -2036,8 +3215,15 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 1
-Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -2049,8 +3235,15 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 1
-Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -2062,8 +3255,15 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 1
-Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -2075,8 +3275,15 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 1
-Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -2088,8 +3295,15 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 1
-Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -2101,8 +3315,15 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 1
-Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -2114,8 +3335,15 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 1
-Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -2127,8 +3355,15 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 1
-Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -2140,8 +3375,15 @@ Status: Not Implemented
 Implementation: FedRAMP pending: this indicator has no statement in the official dataset yet.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 1
-Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -2153,8 +3395,15 @@ Status: Not Implemented
 Implementation: FedRAMP pending: this indicator has no statement in the official dataset yet.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 1
-Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -2166,8 +3415,15 @@ Status: Not Implemented
 Implementation: Example (reference architecture, replace with your real implementation): All federal information is encrypted in transit with TLS 1.2 or higher using FIPS-validated endpoints where required, and at rest with AWS KMS customer managed keys. S3 buckets enforce bucket-level encryption and deny unencrypted uploads by bucket policy. EBS volumes and RDS storage use KMS CMKs by default via account-level settings. Public access is blocked account-wide for S3.
 Validation: Example (reference architecture, replace with your real implementation): AWS Config managed rules check encrypted-volumes, rds-storage-encrypted, and S3 default encryption continuously. A daily query confirms account-level EBS default encryption and S3 Block Public Access remain enabled in every account.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 1
-Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: Example test 1: Config rules encrypted-volumes and rds-storage-encrypted are COMPLIANT for all resources (continuous).; Example test 2: EBS default encryption and S3 Block Public Access report enabled for every in-scope account (daily).
 Owner: Example: Security Engineering Lead
 
@@ -2179,8 +3435,15 @@ Status: Not Implemented
 Implementation: FedRAMP pending: this indicator has no statement in the official dataset yet.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 1
-Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -2192,7 +3455,14 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 1
-Historical metrics required: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
