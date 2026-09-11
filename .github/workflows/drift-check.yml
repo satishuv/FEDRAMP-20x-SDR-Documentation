@@ -41,6 +41,8 @@ jobs:
           check "CR26-dataset" "https://raw.githubusercontent.com/FedRAMP/rules/main/fedramp-consolidated-rules.json" "references/fedramp-consolidated-rules.json"
           check "SDR-schema" "https://www.fedramp.gov/schemas/fedramp-security-decision-record-schema-2026-06-24.json" "artifacts/schemas/official/fedramp-security-decision-record-schema-2026-06-24.json"
           check "common-definitions-schema" "https://www.fedramp.gov/schemas/fedramp-common-definitions-schema-2026-06-24.json" "artifacts/schemas/official/fedramp-common-definitions-schema-2026-06-24.json"
+          check "CPO-schema" "https://www.fedramp.gov/schemas/fedramp-certification-package-overview-schema-2026-06-24.json" "artifacts/schemas/official/fedramp-certification-package-overview-schema-2026-06-24.json"
+          check "OCR-schema" "https://www.fedramp.gov/schemas/fedramp-ongoing-certification-report-schema-2026-06-24.json" "artifacts/schemas/official/fedramp-ongoing-certification-report-schema-2026-06-24.json"
 
           # Second official source of truth (FedRAMP Source Data page): the
           # narrative docs and changelog live in FedRAMP/2026-markdown, not in

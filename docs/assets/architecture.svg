@@ -54,9 +54,9 @@
   <!-- report -->
   <g>
     <rect x="290" y="296" width="260" height="72" rx="10" fill="#0f2e1a" stroke="#22c55e" stroke-width="2"/>
-    <text x="420" y="322" fill="#9ae6b4" font-size="17" text-anchor="middle" font-weight="700">The finished report</text>
-    <text x="420" y="341" fill="#c3ecd0" font-size="12" text-anchor="middle">the SDR, in every format</text>
-    <text x="420" y="358" fill="#63b57e" font-size="11" text-anchor="middle" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace">JSON / plain text / Word / crosswalk</text>
+    <text x="420" y="322" fill="#9ae6b4" font-size="17" text-anchor="middle" font-weight="700">The Certification Package</text>
+    <text x="420" y="341" fill="#c3ecd0" font-size="12" text-anchor="middle">SDR, Package Overview, and Ongoing Report</text>
+    <text x="420" y="358" fill="#63b57e" font-size="11" text-anchor="middle" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace">SDR + CPO + OCR, each schema-validated</text>
   </g>
 
   <!-- checkers band label -->

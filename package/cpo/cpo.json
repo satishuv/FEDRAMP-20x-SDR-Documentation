@@ -1,0 +1,50 @@
+{
+ "serviceIdentification": {
+  "fedRampPackageId": "TBD-PACKAGE-ID",
+  "providerName": "TBD: Information has not been provided",
+  "serviceName": "Example PaaS Foundation",
+  "serviceAcronym": "EPF",
+  "serviceDescription": "Reference architecture assumption: a generic AWS-native Platform as a Service foundation that customers use to deploy and operate applications and SaaS workloads on AWS.",
+  "certificationType": "20x",
+  "website": "https://example.provider.gov-placeholder/tbd",
+  "logo": "https://example.provider.gov-placeholder/logo.png"
+ },
+ "serviceProperties": {
+  "serviceType": [
+   "PaaS"
+  ],
+  "deploymentModel": "Public Cloud",
+  "trustCenter": {
+   "repositoryType": [
+    "Website"
+   ],
+   "url": "https://example.provider.gov-placeholder/tbd",
+   "repositoryDescription": "FedRAMP-compatible trust center for Certification Data (CDS-CSO-UTC).",
+   "authenticationRequired": false
+  },
+  "secureConfigurationGuidance": {
+   "repositoryType": [
+    "Website"
+   ],
+   "url": "https://example.provider.gov-placeholder/tbd",
+   "repositoryDescription": "Secure Configuration Guide (SCG-CSO-RSC).",
+   "authenticationRequired": false
+  },
+  "nextOngoingCertificationReportDate": "2026-01-01"
+ },
+ "contactInformation": [
+  {
+   "contactType": "Security",
+   "contactName": "TBD: Information has not been provided"
+  },
+  {
+   "contactType": "Sales",
+   "contactName": "TBD: Information has not been provided."
+  }
+ ],
+ "assessor": {
+  "name": "TBD: Information has not been provided",
+  "assessorID": "000000"
+ },
+ "_cpoNote": "Class B Certification Package Overview scaffold. Required by CPO-CSO-OVR. Fill provider values in profiles/common/offering-profile.json; TBD markers show what a human still owes. Not a compliance claim."
+}

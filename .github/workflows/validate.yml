@@ -32,6 +32,8 @@ jobs:
           python validation/scripts/build_profiles.py
           python validation/scripts/build_collector_registry.py
           python validation/scripts/build_sdr.py
+          python validation/scripts/build_cpo.py
+          python validation/scripts/build_ocr.py
           python automation/exporters/oscal_export.py
           python validation/scripts/build_docx.py
           python validation/scripts/build_crosswalk.py
@@ -46,6 +48,10 @@ jobs:
         run: python validation/scripts/validate_sdr.py
       - name: Run offline SDR semantic round-trip tests (no AWS)
         run: python validation/scripts/test_sdr_semantic_roundtrip.py
+      - name: Validate Certification Package artifacts (CPO, OCR) against official schemas
+        run: python validation/scripts/validate_package.py
+      - name: Run offline package generator tests (no AWS)
+        run: python validation/scripts/test_package_build.py
       - name: Run offline collector tests (no AWS account needed)
         run: python automation/collectors/test_collectors.py
       - name: Run offline collector scale + fault-injection tests (no AWS)

@@ -269,6 +269,14 @@ def main():
             "$id": "https://fedramp.gov/schemas/fedramp-common-definitions-schema-2026-06-24.json",
             "$schemaVersion": "0.3.0",
         },
+        os.path.join(SCHEMA_DIR, "fedramp-certification-package-overview-schema-2026-06-24.json"): {
+            "$id": "https://fedramp.gov/schemas/fedramp-certification-package-overview-schema-2026-06-24.json",
+            "$schemaVersion": "0.1.4",
+        },
+        os.path.join(SCHEMA_DIR, "fedramp-ongoing-certification-report-schema-2026-06-24.json"): {
+            "$id": "https://fedramp.gov/schemas/fedramp-ongoing-certification-report-schema-2026-06-24.json",
+            "$schemaVersion": "0.2.0",
+        },
     }
     schema_problems = []
     for path, expected in EXPECTED_SCHEMAS.items():
@@ -280,7 +288,7 @@ def main():
                     f"{os.path.basename(path)} {key} {got} vs expected {want}")
     check("pinned_schema_version_guard", not schema_problems,
           "; ".join(schema_problems) if schema_problems
-          else "both pinned schemas match expected $id and $schemaVersion")
+          else f"all {len(EXPECTED_SCHEMAS)} pinned schemas match expected $id and $schemaVersion")
 
     # 2. Coverage
     profile_ids = {r["rule_id"] for r in class_profile["rules"]}

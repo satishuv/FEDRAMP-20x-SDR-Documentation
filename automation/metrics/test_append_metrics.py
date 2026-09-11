@@ -78,6 +78,43 @@ def test_30_day_window():
     assert hist["ksis"]["KSI-A"]["up_to_one_year"]["days_observed"] == 2
 
 
+def test_mot_window_class_c_short_and_met():
+    today = date(2026, 9, 6)
+    # A single point today: 0 days covered, Class C requires 183 -> not met.
+    short = am.mot_window([{"date": "2026-09-06", "passing": 1, "total": 1}], "c", today)
+    assert short["force"] == "MUST"
+    assert short["required_days"] == 183
+    assert short["covered_days"] == 0
+    assert short["meets_window"] is False
+    # A point 200 days ago: covered >= 183 -> met.
+    met = am.mot_window([{"date": "2026-02-18", "passing": 1, "total": 1}], "c", today)
+    assert met["covered_days"] >= 183
+    assert met["meets_window"] is True
+
+
+def test_mot_window_class_d_needs_18_months():
+    today = date(2026, 9, 6)
+    w = am.mot_window([{"date": "2025-09-06", "passing": 1, "total": 1}], "d", today)
+    # ~365 days covered is short of the 548-day (18 month) Class D requirement.
+    assert w["required_days"] == 548
+    assert w["meets_window"] is False
+
+
+def test_mot_window_class_b_is_should_not_gated():
+    today = date(2026, 9, 6)
+    w = am.mot_window([], "b", today)
+    assert w["force"] == "SHOULD"
+    assert w["required_days"] == 0
+    assert w["meets_window"] is True  # no minimum at B
+
+
+def test_append_run_records_mot_window():
+    hist = {}
+    am.append_run(hist, REGISTRY, config("COMPLIANT"), {}, date(2026, 9, 6), cls="c")
+    w = hist["ksis"]["KSI-A"]["persistent_validation_window"]
+    assert w["class"] == "C" and w["force"] == "MUST"
+
+
 def _run_all():
     tests = [v for k, v in sorted(globals().items())
              if k.startswith("test_") and callable(v)]

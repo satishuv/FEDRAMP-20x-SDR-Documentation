@@ -30,6 +30,24 @@
    "sha256": "1d2468ace4f2e9f08471ec2dae38e9f7847b04cd12ac54b61b0923319d16622d",
    "status": "current"
   },
+  "cpo_schema": {
+   "description": "Official FedRAMP Certification Package Overview JSON schema (CPO-CSO-OVR).",
+   "schema_version": "0.1.4",
+   "schema_id": "https://fedramp.gov/schemas/fedramp-certification-package-overview-schema-2026-06-24.json",
+   "upstream": "https://fedramp.gov/schemas/fedramp-certification-package-overview-schema-2026-06-24.json",
+   "pinned_path": "artifacts/schemas/official/fedramp-certification-package-overview-schema-2026-06-24.json",
+   "sha256": "0fa563b23e48f8f670ac8fe3d87ac49bb7099f68e1e54a17ba03424e787d60e0",
+   "status": "current"
+  },
+  "ocr_schema": {
+   "description": "Official FedRAMP Ongoing Certification Report JSON schema (CCM-OCR-AVL).",
+   "schema_version": "0.2.0",
+   "schema_id": "https://fedramp.gov/schemas/fedramp-ongoing-certification-report-schema-2026-06-24.json",
+   "upstream": "https://fedramp.gov/schemas/fedramp-ongoing-certification-report-schema-2026-06-24.json",
+   "pinned_path": "artifacts/schemas/official/fedramp-ongoing-certification-report-schema-2026-06-24.json",
+   "sha256": "3c2209b87509516d33f6e4651b432fbc62d38578c389cd3f4ef47562196708ff",
+   "status": "current"
+  },
   "nist_800_53": {
    "description": "NIST SP 800-53 security and privacy control catalog. Used only for the KSI-to-related-control reverse index (traceability), never as a source of FedRAMP requirements.",
    "catalog": "SP 800-53 Rev. 5",
