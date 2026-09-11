@@ -25,6 +25,9 @@ global_settings:
     - path: 'automation/ai/test_explain_findings.py'
       reason: 'Test-only file; detect-secrets matches a long snake_case test function name against its IBM-Cloud-IAM-Key heuristic. It is a Python identifier in a print statement, not a credential.'
   suppressions:
+    - rule_id: 'SECRET-HEX-HIGH-ENTROPY-STRING'
+      path: 'references/sources.lock.json'
+      reason: 'The high-entropy hex strings are SHA-256 integrity hashes of public FedRAMP source files (the pinned CR26 dataset and schemas), recorded so the drift check and a human can verify the pins. They are published on purpose and are not credentials. Scoped to this file and this rule only, so any other secret type here is still gated.'
     - rule_id: 'CKV_AWS_26'
       path: 'automation/pipeline/sdr-pipeline.yaml'
       reason: 'SNS topic intentionally not KMS-encrypted at rest: EventBridge and CodePipeline cannot publish through the aws/sns managed key policy, which would silently break approval and failure notifications. SSL-in-transit is enforced via the topic policy. Documented inline as a checkov:skip; mirrored here so ASH honors it.'
