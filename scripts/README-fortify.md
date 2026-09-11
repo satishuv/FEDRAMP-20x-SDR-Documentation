@@ -6,23 +6,30 @@ suppression filter, and fails if any unaccepted finding remains.
 
 ## Why local, not in GitHub CI
 
-Fortify SCA cannot run on GitHub-hosted runners: it is a licensed product with
-a ~1 GB gated installer, and the license is tied to this machine. Putting the
-installer or license in a public repo is neither practical nor permitted. So
-this gate runs locally, in WSL, where Fortify is installed.
+Neither security scanner runs in the external repo's CI. The public CI runs
+only the deterministic build and validation gate (`validate-sdr`). Both
+security scanners are LOCAL pre-merge gates:
+
+Fortify SCA cannot run on GitHub-hosted runners anyway: it is a licensed
+product with a ~1 GB gated installer, and the license is tied to this machine.
+ASH was previously a CI job but has been moved local as well, so security
+scanning is a deliberate local step you run before committing to main, and
+again on a fresh local copy of main after a merge, rather than a public-CI
+check.
 
 The split of duties:
 
-- ASH (`.github/workflows/`) is the automated, in-cloud gate on every PR
-  (Bandit, checkov, detect-secrets, cdk-nag). It runs with no license.
-- Fortify (this gate) is the deeper local check you run before merging to
-  `main`. It catches dataflow/structural issues ASH does not.
+- ASH (`scripts/ash_scan.sh` / `.ps1`) is the broad local gate (Bandit,
+  checkov, detect-secrets, cdk-nag). Scope and suppressions live in `.ash.yaml`.
+- Fortify (this gate) is the deeper local check. It catches dataflow and
+  structural issues ASH does not.
 
-If you later want Fortify enforced inside GitHub, the upgrade path is a
-self-hosted runner with Fortify pre-installed, made a required check. That adds
-operational cost (the runner must be online for any merge, and public-repo
-self-hosted runners need care around forked-PR code execution), which is why a
-solo repo starts with the local gate.
+Both are wired into the same pre-push hook, which fires only on a push to
+`main`. If you later want either enforced inside GitHub, the upgrade path is a
+self-hosted runner with the tool pre-installed, made a required check. That
+adds operational cost (the runner must be online for any merge, and public-repo
+self-hosted runners need care around forked-PR code execution), which is why
+this repo runs both locally.
 
 ## What it scans
 
@@ -63,8 +70,8 @@ Install the pre-push hook once per clone (hooks are not tracked by git):
 .\scripts\install-fortify-hook.ps1
 ```
 
-The hook runs the gate only when a push updates `main` (feature-branch pushes
-are not gated, since ASH already runs in PR CI and Fortify is slow). Emergency
+The hook runs both the ASH and Fortify gates only when a push updates `main`
+(feature-branch pushes are not gated, since the scans are slow). Emergency
 bypass:
 
 ```bash

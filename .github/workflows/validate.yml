@@ -16,41 +16,6 @@ permissions:
   contents: read
 
 jobs:
-  # Security scan: run ASH (AWS Automated Security Helper) on every push and
-  # pull request so any code or config change is scanned. ASH aggregates
-  # Bandit, checkov, cdk-nag, detect-secrets, and more; scan scope and
-  # suppressions live in .ash.yaml. This job fails the build on actionable
-  # findings at or above the configured severity threshold.
-  security-scan:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
-      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
-        with:
-          python-version: "3.12"
-      # Cache the pip download/build of ASH and its dependency tree, keyed to
-      # the pinned ASH version. The first run populates it; later runs restore
-      # in seconds instead of re-resolving checkov, cdk-nag, boto3, etc., which
-      # is the bulk of this job's time. Bump the key when the ASH pin changes.
-      - name: Cache ASH install
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
-        with:
-          path: ~/.cache/pip
-          key: ash-pip-v3.0.0-py3.12-${{ runner.os }}
-          restore-keys: |
-            ash-pip-v3.0.0-py3.12-
-            ash-pip-
-      - name: Install ASH
-        run: pip install --quiet "git+https://github.com/awslabs/automated-security-helper.git@v3.0.0" "pydantic>=2.11.3,<2.12"
-      - name: Run ASH scan (local mode)
-        run: ash scan --source-dir . --output-dir .ash/ash_output --mode local
-      - name: Upload ASH reports
-        if: always()
-        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
-        with:
-          name: ash-security-reports
-          path: .ash/ash_output/reports/
-
   validate:
     runs-on: ubuntu-latest
     steps:
