@@ -62,6 +62,10 @@ jobs:
         run: python validation/scripts/validate_reviews.py
       - name: Run offline review-register tests (no AWS)
         run: python validation/scripts/test_reviews.py
+      - name: Run adversarial suite (gates detect deliberate tampering)
+        run: python tests/adversarial/run_adversarial.py
+      - name: Run end-to-end adversarial tampering test (real validator)
+        run: python tests/adversarial/test_e2e_tampering.py
       - name: Run offline collector tests (no AWS account needed)
         run: python automation/collectors/test_collectors.py
       - name: Run offline collector scale + fault-injection tests (no AWS)
