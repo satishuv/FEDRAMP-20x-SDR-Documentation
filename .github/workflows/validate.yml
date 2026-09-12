@@ -41,6 +41,7 @@ jobs:
           python validation/scripts/build_crosswalk.py
           python validation/scripts/build_applicability_decisions.py
           python validation/scripts/build_assurance_graph.py
+          python validation/scripts/build_release_manifest.py
       - name: Refuse hand-edited generated files
         run: |
           git diff --exit-code -- . ':(exclude)*.docx' || {
@@ -60,6 +61,8 @@ jobs:
         run: python validation/scripts/validate_assurance_graph.py
       - name: Validate the human review register (no machine-authored approvals)
         run: python validation/scripts/validate_reviews.py
+      - name: Validate cross-artifact package consistency
+        run: python validation/scripts/validate_package_consistency.py
       - name: Run offline review-register tests (no AWS)
         run: python validation/scripts/test_reviews.py
       - name: Run adversarial suite (gates detect deliberate tampering)

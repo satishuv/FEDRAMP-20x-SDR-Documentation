@@ -52,6 +52,8 @@ BUILD_STEPS = [
     ("build_crosswalk.py", "NIST SP 800-53 Revision 5 to 20x crosswalk"),
     ("build_applicability_decisions.py", "applicability decision ledger (included and excluded, with reasons)"),
     ("build_assurance_graph.py", "unified assurance graph joining all artifacts"),
+    ("build_release_manifest.py", "cryptographic release manifest of the package"),
+    ("validate_package_consistency.py", "cross-artifact consistency check"),
 ]
 
 REQUIRED_MODULES = [
@@ -335,3 +337,4 @@ def main(argv=None):
 
 if __name__ == "__main__":
     sys.exit(main())
+
