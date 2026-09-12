@@ -1,0 +1,2350 @@
+{
+ "decisions_note": "Applicability decision for every FedRAMP Rule in the dataset, for this certification class. Included AND excluded rules are recorded with the exact reason, so absence is provable, not silent. Reasons use only real CR26 fields (affects, subset_applicability, varies_by_class); the dataset carries no per-rule effective/status field, so none is claimed.",
+ "certification_class": "B",
+ "dataset_version": "2026.07.14.01",
+ "total_rules": 234,
+ "included": 158,
+ "excluded": 76,
+ "decisions": [
+  {
+   "rule_id": "AFC-CSO-ACK",
+   "family": "AFC",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "AFC-CSO-CRA",
+   "family": "AFC",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "AFC-CSO-EMR",
+   "family": "AFC",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "AFC-CSO-IMA",
+   "family": "AFC",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "AFC-CSO-INB",
+   "family": "AFC",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "AFC-CSO-NOC",
+   "family": "AFC",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "AFC-CSO-RCV",
+   "family": "AFC",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "AFC-CSO-TFG",
+   "family": "AFC",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "CCM-OCR-AFS",
+   "family": "CCM",
+   "subset": "OCR",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "CCM-OCR-AVL",
+   "family": "CCM",
+   "subset": "OCR",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "CCM-OCR-FBM",
+   "family": "CCM",
+   "subset": "OCR",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "CCM-OCR-LSI",
+   "family": "CCM",
+   "subset": "OCR",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "CCM-OCR-NRD",
+   "family": "CCM",
+   "subset": "OCR",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "CCM-OCR-RPS",
+   "family": "CCM",
+   "subset": "OCR",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "CCM-OCR-SOR",
+   "family": "CCM",
+   "subset": "OCR",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "CCM-QTR-ACT",
+   "family": "CCM",
+   "subset": "QTR",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "CCM-QTR-MTG",
+   "family": "CCM",
+   "subset": "QTR",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + class_variant"
+  },
+  {
+   "rule_id": "CCM-QTR-NID",
+   "family": "CCM",
+   "subset": "QTR",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "CCM-QTR-NRD",
+   "family": "CCM",
+   "subset": "QTR",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "CCM-QTR-REG",
+   "family": "CCM",
+   "subset": "QTR",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "CCM-QTR-RTP",
+   "family": "CCM",
+   "subset": "QTR",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "CCM-QTR-RTR",
+   "family": "CCM",
+   "subset": "QTR",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "CCM-QTR-SAR",
+   "family": "CCM",
+   "subset": "QTR",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "CCM-QTR-SCR",
+   "family": "CCM",
+   "subset": "QTR",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "CCM-QTR-SRR",
+   "family": "CCM",
+   "subset": "QTR",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "CDS-CSO-AVR",
+   "family": "CDS",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + class_variant"
+  },
+  {
+   "rule_id": "CDS-CSO-CBF",
+   "family": "CDS",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "CDS-CSO-FID",
+   "family": "CDS",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "CDS-CSO-FRC",
+   "family": "CDS",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "CDS-CSO-HAD",
+   "family": "CDS",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "CDS-CSO-IRP",
+   "family": "CDS",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "CDS-CSO-PSM",
+   "family": "CDS",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + class_variant"
+  },
+  {
+   "rule_id": "CDS-CSO-PUB",
+   "family": "CDS",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "CDS-CSO-RIS",
+   "family": "CDS",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "CDS-CSO-RPS",
+   "family": "CDS",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "CDS-CSO-SVC",
+   "family": "CDS",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "CDS-CSO-UTC",
+   "family": "CDS",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "CDS-TRC-AAI",
+   "family": "CDS",
+   "subset": "TRC",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "CDS-TRC-ACL",
+   "family": "CDS",
+   "subset": "TRC",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "CDS-TRC-HMR",
+   "family": "CDS",
+   "subset": "TRC",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "CDS-TRC-PAC",
+   "family": "CDS",
+   "subset": "TRC",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "CDS-TRC-SSM",
+   "family": "CDS",
+   "subset": "TRC",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "CDS-TRC-USH",
+   "family": "CDS",
+   "subset": "TRC",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "CDS-UTC-AAD",
+   "family": "CDS",
+   "subset": "UTC",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "CDS-UTC-AGA",
+   "family": "CDS",
+   "subset": "UTC",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "CMU-CSO-CAT",
+   "family": "CMU",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "CMU-CSO-CMD",
+   "family": "CMU",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "CMU-CSO-UVM",
+   "family": "CMU",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + class_variant"
+  },
+  {
+   "rule_id": "CPO-CSO-MTD",
+   "family": "CPO",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "CPO-CSO-OSA",
+   "family": "CPO",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + class_variant"
+  },
+  {
+   "rule_id": "CPO-CSO-OVR",
+   "family": "CPO",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "CPO-CSX-CPM",
+   "family": "CPO",
+   "subset": "CSX",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + class_variant"
+  },
+  {
+   "rule_id": "FRC-APP-AFC",
+   "family": "FRC",
+   "subset": "APP",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "FRC-APP-FCP",
+   "family": "FRC",
+   "subset": "APP",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "FRC-APP-FIA",
+   "family": "FRC",
+   "subset": "APP",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + class_variant"
+  },
+  {
+   "rule_id": "FRC-APP-MLF",
+   "family": "FRC",
+   "subset": "APP",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "FRC-APP-NTP",
+   "family": "FRC",
+   "subset": "APP",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "FRC-APP-USA",
+   "family": "FRC",
+   "subset": "APP",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "FRC-CSO-FCP",
+   "family": "FRC",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "FRC-CSO-JSN",
+   "family": "FRC",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "FRC-CSO-MRA",
+   "family": "FRC",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "FRC-CSO-PKG",
+   "family": "FRC",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "FRC-CSO-POP",
+   "family": "FRC",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "FRC-CSX-MAS",
+   "family": "FRC",
+   "subset": "CSX",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "FRC-CSX-MOT",
+   "family": "FRC",
+   "subset": "CSX",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + class_variant"
+  },
+  {
+   "rule_id": "FRC-CSX-VVK",
+   "family": "FRC",
+   "subset": "CSX",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + class_variant"
+  },
+  {
+   "rule_id": "FRC-CSX-VVR",
+   "family": "FRC",
+   "subset": "CSX",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + class_variant"
+  },
+  {
+   "rule_id": "IEC-CSO-AIR",
+   "family": "IEC",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "IEC-CSO-DPR",
+   "family": "IEC",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "IEC-CSO-EFI",
+   "family": "IEC",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "IEC-CSO-EFR",
+   "family": "IEC",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "IEC-CSO-FIR",
+   "family": "IEC",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + class_variant"
+  },
+  {
+   "rule_id": "IEC-CSO-IIR",
+   "family": "IEC",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + class_variant"
+  },
+  {
+   "rule_id": "IEC-CSO-OIR",
+   "family": "IEC",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + class_variant"
+  },
+  {
+   "rule_id": "IVV-CSO-DUS",
+   "family": "IVV",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "IVV-CSO-FIA",
+   "family": "IVV",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + class_variant"
+  },
+  {
+   "rule_id": "IVV-CSO-ICP",
+   "family": "IVV",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "IVV-CSO-RAA",
+   "family": "IVV",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "IVV-CSO-SEE",
+   "family": "IVV",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "IVV-CSO-SEI",
+   "family": "IVV",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "IVV-CSO-STE",
+   "family": "IVV",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "IVV-CSO-USR",
+   "family": "IVV",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "IVV-CSX-AIA",
+   "family": "IVV",
+   "subset": "CSX",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + class_variant"
+  },
+  {
+   "rule_id": "MAS-CSO-FLO",
+   "family": "MAS",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "MAS-CSO-IIR",
+   "family": "MAS",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "MAS-CSO-MDI",
+   "family": "MAS",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "MAS-CSO-SUP",
+   "family": "MAS",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "MAS-CSO-TPR",
+   "family": "MAS",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "MKT-CSO-MLR",
+   "family": "MKT",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "MKT-CSO-PML",
+   "family": "MKT",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "MKT-IIP-AGU",
+   "family": "MKT",
+   "subset": "IIP",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "MKT-IIP-DCP",
+   "family": "MKT",
+   "subset": "IIP",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "MKT-IIP-DLA",
+   "family": "MKT",
+   "subset": "IIP",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "SCG-CSO-AUP",
+   "family": "SCG",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "SCG-CSO-PUB",
+   "family": "SCG",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "SCG-CSO-RSC",
+   "family": "SCG",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "SCG-CSO-SDF",
+   "family": "SCG",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "SCG-ENH-API",
+   "family": "SCG",
+   "subset": "ENH",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "SCG-ENH-CMP",
+   "family": "SCG",
+   "subset": "ENH",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "SCG-ENH-EXP",
+   "family": "SCG",
+   "subset": "ENH",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "SCG-ENH-MRG",
+   "family": "SCG",
+   "subset": "ENH",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "SCG-ENH-VRH",
+   "family": "SCG",
+   "subset": "ENH",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "SCN-ADP-NTF",
+   "family": "SCN",
+   "subset": "ADP",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "SCN-CSO-ARI",
+   "family": "SCN",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "SCN-CSO-EMG",
+   "family": "SCN",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "SCN-CSO-EVA",
+   "family": "SCN",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "SCN-CSO-HIS",
+   "family": "SCN",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "SCN-CSO-HRM",
+   "family": "SCN",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "SCN-CSO-INF",
+   "family": "SCN",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "SCN-CSO-MAR",
+   "family": "SCN",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "SCN-CSO-NOM",
+   "family": "SCN",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "SCN-RTR-NNR",
+   "family": "SCN",
+   "subset": "RTR",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "SCN-TRF-NAF",
+   "family": "SCN",
+   "subset": "TRF",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "SCN-TRF-NAV",
+   "family": "SCN",
+   "subset": "TRF",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "SCN-TRF-NFP",
+   "family": "SCN",
+   "subset": "TRF",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "SCN-TRF-NIP",
+   "family": "SCN",
+   "subset": "TRF",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "SCN-TRF-TPR",
+   "family": "SCN",
+   "subset": "TRF",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "SCN-TRF-UPD",
+   "family": "SCN",
+   "subset": "TRF",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "SDR-CSO-FRR",
+   "family": "SDR",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "SDR-CSO-MTD",
+   "family": "SDR",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "SDR-CSX-KMT",
+   "family": "SDR",
+   "subset": "CSX",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + class_variant"
+  },
+  {
+   "rule_id": "SDR-CSX-KSI",
+   "family": "SDR",
+   "subset": "CSX",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "VDR-CSO-ADT",
+   "family": "VDR",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "VDR-CSO-AKE",
+   "family": "VDR",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "VDR-CSO-DAC",
+   "family": "VDR",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "VDR-CSO-DET",
+   "family": "VDR",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "VDR-CSO-DFR",
+   "family": "VDR",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "VDR-CSO-FAV",
+   "family": "VDR",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "VDR-CSO-MSP",
+   "family": "VDR",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "VDR-CSO-RES",
+   "family": "VDR",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "VDR-CSO-SIR",
+   "family": "VDR",
+   "subset": "CSO",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "VDR-TFR-KEV",
+   "family": "VDR",
+   "subset": "TFR",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "VDR-TFR-MVX",
+   "family": "VDR",
+   "subset": "TFR",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + class_variant"
+  },
+  {
+   "rule_id": "VDR-TFR-NMV",
+   "family": "VDR",
+   "subset": "TFR",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "VDR-TFR-PCD",
+   "family": "VDR",
+   "subset": "TFR",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + class_variant"
+  },
+  {
+   "rule_id": "VDR-TFR-PDD",
+   "family": "VDR",
+   "subset": "TFR",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + class_variant"
+  },
+  {
+   "rule_id": "VDR-TFR-PSD",
+   "family": "VDR",
+   "subset": "TFR",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + class_variant"
+  },
+  {
+   "rule_id": "VDR-TFR-PVR",
+   "family": "VDR",
+   "subset": "TFR",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + class_variant"
+  },
+  {
+   "rule_id": "VDR-TFR-RMN",
+   "family": "VDR",
+   "subset": "TFR",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "VER-EVA-AIA",
+   "family": "VER",
+   "subset": "EVA",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "VER-EVA-EFA",
+   "family": "VER",
+   "subset": "EVA",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "VER-EVA-EFP",
+   "family": "VER",
+   "subset": "EVA",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "VER-EVA-EIR",
+   "family": "VER",
+   "subset": "EVA",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "VER-EVA-ELX",
+   "family": "VER",
+   "subset": "EVA",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "VER-EVA-EPA",
+   "family": "VER",
+   "subset": "EVA",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "VER-EVA-GRV",
+   "family": "VER",
+   "subset": "EVA",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "VER-RPT-AVI",
+   "family": "VER",
+   "subset": "RPT",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "VER-RPT-HLO",
+   "family": "VER",
+   "subset": "RPT",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "VER-RPT-NID",
+   "family": "VER",
+   "subset": "RPT",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "VER-RPT-PER",
+   "family": "VER",
+   "subset": "RPT",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "VER-RPT-RPD",
+   "family": "VER",
+   "subset": "RPT",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "VER-RPT-VDT",
+   "family": "VER",
+   "subset": "RPT",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "VER-TFR-EVU",
+   "family": "VER",
+   "subset": "TFR",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + class_variant"
+  },
+  {
+   "rule_id": "VER-TFR-IRI",
+   "family": "VER",
+   "subset": "TFR",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + class_variant"
+  },
+  {
+   "rule_id": "VER-TFR-MAV",
+   "family": "VER",
+   "subset": "TFR",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "VER-TFR-MHR",
+   "family": "VER",
+   "subset": "TFR",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + top_level"
+  },
+  {
+   "rule_id": "VER-TFR-MRH",
+   "family": "VER",
+   "subset": "TFR",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + class_variant"
+  },
+  {
+   "rule_id": "VER-TFR-NRI",
+   "family": "VER",
+   "subset": "TFR",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": true,
+   "reason": "20x + Program + Class B + class_variant"
+  },
+  {
+   "rule_id": "AFC-FRP-CDS",
+   "family": "AFC",
+   "subset": "FRP",
+   "affects": [
+    "FedRAMP"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['FedRAMP'])"
+  },
+  {
+   "rule_id": "AFC-FRP-COR",
+   "family": "AFC",
+   "subset": "FRP",
+   "affects": [
+    "FedRAMP"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['FedRAMP'])"
+  },
+  {
+   "rule_id": "AFC-FRP-ERT",
+   "family": "AFC",
+   "subset": "FRP",
+   "affects": [
+    "FedRAMP"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['FedRAMP'])"
+  },
+  {
+   "rule_id": "AFC-FRP-PNT",
+   "family": "AFC",
+   "subset": "FRP",
+   "affects": [
+    "FedRAMP"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['FedRAMP'])"
+  },
+  {
+   "rule_id": "AFC-FRP-RPM",
+   "family": "AFC",
+   "subset": "FRP",
+   "affects": [
+    "FedRAMP"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['FedRAMP'])"
+  },
+  {
+   "rule_id": "AFC-FRP-RQA",
+   "family": "AFC",
+   "subset": "FRP",
+   "affects": [
+    "FedRAMP"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['FedRAMP'])"
+  },
+  {
+   "rule_id": "AFC-FRP-UFS",
+   "family": "AFC",
+   "subset": "FRP",
+   "affects": [
+    "FedRAMP"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['FedRAMP'])"
+  },
+  {
+   "rule_id": "AFC-FRP-VRE",
+   "family": "AFC",
+   "subset": "FRP",
+   "affects": [
+    "FedRAMP"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['FedRAMP'])"
+  },
+  {
+   "rule_id": "AGU-AGC-AIP",
+   "family": "AGU",
+   "subset": "AGC",
+   "affects": [
+    "Agencies"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Agencies'])"
+  },
+  {
+   "rule_id": "AGU-AGC-GRC",
+   "family": "AGU",
+   "subset": "AGC",
+   "affects": [
+    "Agencies"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Agencies'])"
+  },
+  {
+   "rule_id": "AGU-AGC-LIA",
+   "family": "AGU",
+   "subset": "AGC",
+   "affects": [
+    "Agencies"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Agencies'])"
+  },
+  {
+   "rule_id": "AGU-AGC-NAA",
+   "family": "AGU",
+   "subset": "AGC",
+   "affects": [
+    "Agencies"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Agencies'])"
+  },
+  {
+   "rule_id": "AGU-AGC-NAI",
+   "family": "AGU",
+   "subset": "AGC",
+   "affects": [
+    "Agencies"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Agencies'])"
+  },
+  {
+   "rule_id": "AGU-AGC-NAR",
+   "family": "AGU",
+   "subset": "AGC",
+   "affects": [
+    "Agencies"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Agencies'])"
+  },
+  {
+   "rule_id": "AGU-AGC-SIN",
+   "family": "AGU",
+   "subset": "AGC",
+   "affects": [
+    "Agencies"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Agencies'])"
+  },
+  {
+   "rule_id": "AGU-AGC-TPP",
+   "family": "AGU",
+   "subset": "AGC",
+   "affects": [
+    "Agencies"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Agencies'])"
+  },
+  {
+   "rule_id": "AGU-AGC-WKG",
+   "family": "AGU",
+   "subset": "AGC",
+   "affects": [
+    "Agencies"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Agencies'])"
+  },
+  {
+   "rule_id": "AGU-SPN-MRC",
+   "family": "AGU",
+   "subset": "SPN",
+   "affects": [
+    "Agencies"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Agencies'])"
+  },
+  {
+   "rule_id": "AGU-USE-ABU",
+   "family": "AGU",
+   "subset": "USE",
+   "affects": [
+    "Agencies"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Agencies'])"
+  },
+  {
+   "rule_id": "AGU-USE-AFR",
+   "family": "AGU",
+   "subset": "USE",
+   "affects": [
+    "Agencies"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Agencies'])"
+  },
+  {
+   "rule_id": "AGU-USE-CLA",
+   "family": "AGU",
+   "subset": "USE",
+   "affects": [
+    "Agencies"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Agencies'])"
+  },
+  {
+   "rule_id": "AGU-USE-DSO",
+   "family": "AGU",
+   "subset": "USE",
+   "affects": [
+    "Agencies"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Agencies'])"
+  },
+  {
+   "rule_id": "AGU-USE-NFC",
+   "family": "AGU",
+   "subset": "USE",
+   "affects": [
+    "Agencies"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Agencies'])"
+  },
+  {
+   "rule_id": "AGU-USE-NPC",
+   "family": "AGU",
+   "subset": "USE",
+   "affects": [
+    "Agencies"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Agencies'])"
+  },
+  {
+   "rule_id": "AGU-USE-RCF",
+   "family": "AGU",
+   "subset": "USE",
+   "affects": [
+    "Agencies"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Agencies'])"
+  },
+  {
+   "rule_id": "AGU-USE-RIR",
+   "family": "AGU",
+   "subset": "USE",
+   "affects": [
+    "Agencies"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Agencies'])"
+  },
+  {
+   "rule_id": "AGU-USE-ROR",
+   "family": "AGU",
+   "subset": "USE",
+   "affects": [
+    "Agencies"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Agencies'])"
+  },
+  {
+   "rule_id": "AGU-USE-RSG",
+   "family": "AGU",
+   "subset": "USE",
+   "affects": [
+    "Agencies"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Agencies'])"
+  },
+  {
+   "rule_id": "CCM-AGM-CSC",
+   "family": "CCM",
+   "subset": "AGM",
+   "affects": [
+    "Agencies"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Agencies'])"
+  },
+  {
+   "rule_id": "CCM-AGM-ROR",
+   "family": "CCM",
+   "subset": "AGM",
+   "affects": [
+    "Agencies"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Agencies'])"
+  },
+  {
+   "rule_id": "FRC-APS-ATO",
+   "family": "FRC",
+   "subset": "APS",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": false,
+   "reason": "subset types ['Rev5'] exclude 20x"
+  },
+  {
+   "rule_id": "FRC-CCL-DCC",
+   "family": "FRC",
+   "subset": "CCL",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": false,
+   "reason": "subset types ['Rev5'] exclude 20x"
+  },
+  {
+   "rule_id": "FRC-CCL-DNP",
+   "family": "FRC",
+   "subset": "CCL",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": false,
+   "reason": "subset types ['Rev5'] exclude 20x"
+  },
+  {
+   "rule_id": "FRC-CCL-UCC",
+   "family": "FRC",
+   "subset": "CCL",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": false,
+   "reason": "subset types ['Rev5'] exclude 20x"
+  },
+  {
+   "rule_id": "FRC-CLA-ASF",
+   "family": "FRC",
+   "subset": "CLA",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": false,
+   "reason": "subset classes ['A'] exclude B"
+  },
+  {
+   "rule_id": "FRC-CLA-EAM",
+   "family": "FRC",
+   "subset": "CLA",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": false,
+   "reason": "subset classes ['A'] exclude B"
+  },
+  {
+   "rule_id": "FRC-CLA-IVV",
+   "family": "FRC",
+   "subset": "CLA",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": false,
+   "reason": "subset classes ['A'] exclude B"
+  },
+  {
+   "rule_id": "FRC-CLA-MFR",
+   "family": "FRC",
+   "subset": "CLA",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": false,
+   "reason": "subset classes ['A'] exclude B"
+  },
+  {
+   "rule_id": "FRC-CLA-OFR",
+   "family": "FRC",
+   "subset": "CLA",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": false,
+   "reason": "subset classes ['A'] exclude B"
+  },
+  {
+   "rule_id": "FRC-CLA-RFR",
+   "family": "FRC",
+   "subset": "CLA",
+   "affects": [
+    "Providers"
+   ],
+   "applicable": false,
+   "reason": "subset classes ['A'] exclude B"
+  },
+  {
+   "rule_id": "IEC-FRP-ORV",
+   "family": "IEC",
+   "subset": "FRP",
+   "affects": [
+    "FedRAMP"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['FedRAMP'])"
+  },
+  {
+   "rule_id": "IVV-IAS-EPX",
+   "family": "IVV",
+   "subset": "IAS",
+   "affects": [
+    "Assessors"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Assessors'])"
+  },
+  {
+   "rule_id": "IVV-IAS-OSA",
+   "family": "IVV",
+   "subset": "IAS",
+   "affects": [
+    "Assessors"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Assessors'])"
+  },
+  {
+   "rule_id": "IVV-IAS-SHA",
+   "family": "IVV",
+   "subset": "IAS",
+   "affects": [
+    "Assessors"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Assessors'])"
+  },
+  {
+   "rule_id": "IVV-IAS-SUM",
+   "family": "IVV",
+   "subset": "IAS",
+   "affects": [
+    "Assessors"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Assessors'])"
+  },
+  {
+   "rule_id": "IVV-IAS-VEF",
+   "family": "IVV",
+   "subset": "IAS",
+   "affects": [
+    "Assessors"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Assessors'])"
+  },
+  {
+   "rule_id": "IVV-IAS-VIM",
+   "family": "IVV",
+   "subset": "IAS",
+   "affects": [
+    "Assessors"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Assessors'])"
+  },
+  {
+   "rule_id": "IVV-IAS-VIP",
+   "family": "IVV",
+   "subset": "IAS",
+   "affects": [
+    "Assessors"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Assessors'])"
+  },
+  {
+   "rule_id": "MKT-CAS-LRQ",
+   "family": "MKT",
+   "subset": "CAS",
+   "affects": [
+    "Advisors"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Advisors'])"
+  },
+  {
+   "rule_id": "MKT-CAS-RFR",
+   "family": "MKT",
+   "subset": "CAS",
+   "affects": [
+    "Advisors"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Advisors'])"
+  },
+  {
+   "rule_id": "MKT-CAS-WEB",
+   "family": "MKT",
+   "subset": "CAS",
+   "affects": [
+    "Advisors"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Advisors'])"
+  },
+  {
+   "rule_id": "MKT-FRP-SOF",
+   "family": "MKT",
+   "subset": "FRP",
+   "affects": [
+    "FedRAMP"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['FedRAMP'])"
+  },
+  {
+   "rule_id": "MKT-IAS-LRQ",
+   "family": "MKT",
+   "subset": "IAS",
+   "affects": [
+    "Assessors"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Assessors'])"
+  },
+  {
+   "rule_id": "MKT-IAS-OFR",
+   "family": "MKT",
+   "subset": "IAS",
+   "affects": [
+    "Assessors"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Assessors'])"
+  },
+  {
+   "rule_id": "MKT-IAS-WEB",
+   "family": "MKT",
+   "subset": "IAS",
+   "affects": [
+    "Assessors"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Assessors'])"
+  },
+  {
+   "rule_id": "REC-FRP-DRD",
+   "family": "REC",
+   "subset": "FRP",
+   "affects": [
+    "FedRAMP"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['FedRAMP'])"
+  },
+  {
+   "rule_id": "REC-FRP-FOC",
+   "family": "REC",
+   "subset": "FRP",
+   "affects": [
+    "FedRAMP"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['FedRAMP'])"
+  },
+  {
+   "rule_id": "REC-FRP-RAO",
+   "family": "REC",
+   "subset": "FRP",
+   "affects": [
+    "FedRAMP"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['FedRAMP'])"
+  },
+  {
+   "rule_id": "REC-IAS-ACC",
+   "family": "REC",
+   "subset": "IAS",
+   "affects": [
+    "Assessors"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Assessors'])"
+  },
+  {
+   "rule_id": "REC-IAS-ADA",
+   "family": "REC",
+   "subset": "IAS",
+   "affects": [
+    "Assessors"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Assessors'])"
+  },
+  {
+   "rule_id": "REC-IAS-AFI",
+   "family": "REC",
+   "subset": "IAS",
+   "affects": [
+    "Assessors"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Assessors'])"
+  },
+  {
+   "rule_id": "REC-IAS-ANR",
+   "family": "REC",
+   "subset": "IAS",
+   "affects": [
+    "Assessors"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Assessors'])"
+  },
+  {
+   "rule_id": "REC-IAS-CAP",
+   "family": "REC",
+   "subset": "IAS",
+   "affects": [
+    "Assessors"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Assessors'])"
+  },
+  {
+   "rule_id": "REC-IAS-CFI",
+   "family": "REC",
+   "subset": "IAS",
+   "affects": [
+    "Assessors"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Assessors'])"
+  },
+  {
+   "rule_id": "REC-IAS-INV",
+   "family": "REC",
+   "subset": "IAS",
+   "affects": [
+    "Assessors"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Assessors'])"
+  },
+  {
+   "rule_id": "REC-IAS-PSC",
+   "family": "REC",
+   "subset": "IAS",
+   "affects": [
+    "Assessors"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Assessors'])"
+  },
+  {
+   "rule_id": "REC-IAS-PST",
+   "family": "REC",
+   "subset": "IAS",
+   "affects": [
+    "Assessors"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Assessors'])"
+  },
+  {
+   "rule_id": "REC-IAS-RAR",
+   "family": "REC",
+   "subset": "IAS",
+   "affects": [
+    "Assessors"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Assessors'])"
+  },
+  {
+   "rule_id": "REC-IAS-RAS",
+   "family": "REC",
+   "subset": "IAS",
+   "affects": [
+    "Assessors"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Assessors'])"
+  },
+  {
+   "rule_id": "REC-IAS-RQU",
+   "family": "REC",
+   "subset": "IAS",
+   "affects": [
+    "Assessors"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Assessors'])"
+  },
+  {
+   "rule_id": "REC-IAS-SEP",
+   "family": "REC",
+   "subset": "IAS",
+   "affects": [
+    "Assessors"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Assessors'])"
+  },
+  {
+   "rule_id": "SCN-FRP-CAP",
+   "family": "SCN",
+   "subset": "FRP",
+   "affects": [
+    "FedRAMP"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['FedRAMP'])"
+  },
+  {
+   "rule_id": "VER-AGM-MAP",
+   "family": "VER",
+   "subset": "AGM",
+   "affects": [
+    "Agencies"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Agencies'])"
+  },
+  {
+   "rule_id": "VER-AGM-RVR",
+   "family": "VER",
+   "subset": "AGM",
+   "affects": [
+    "Agencies"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['Agencies'])"
+  },
+  {
+   "rule_id": "VER-FRP-ADV",
+   "family": "VER",
+   "subset": "FRP",
+   "affects": [
+    "FedRAMP"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['FedRAMP'])"
+  },
+  {
+   "rule_id": "VER-FRP-ARP",
+   "family": "VER",
+   "subset": "FRP",
+   "affects": [
+    "FedRAMP"
+   ],
+   "applicable": false,
+   "reason": "does not affect Providers (affects=['FedRAMP'])"
+  }
+ ]
+}

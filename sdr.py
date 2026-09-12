@@ -50,6 +50,7 @@ BUILD_STEPS = [
     ("automation/exporters/oscal_export.py", "OSCAL export of the SDR"),
     ("build_docx.py", "authoring Word document"),
     ("build_crosswalk.py", "NIST SP 800-53 Revision 5 to 20x crosswalk"),
+    ("build_applicability_decisions.py", "applicability decision ledger (included and excluded, with reasons)"),
     ("build_assurance_graph.py", "unified assurance graph joining all artifacts"),
 ]
 
