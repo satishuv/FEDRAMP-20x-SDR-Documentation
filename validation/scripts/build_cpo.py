@@ -7,10 +7,16 @@ set of related rules (CPO-CSO-MTD, CDS-CSO-PUB/SVC, MAS-CSO-*, CMU-CSO-CMD,
 CDS-CSO-IRP, IVV-CSO-ICP). This builds the JSON against the official
 fedramp-certification-package-overview-schema and a plain-text rendering.
 
-Like the SDR generator, this fabricates nothing: every provider-specific value
-comes from profiles/common/offering-profile.json, and anything unprovided is an
-honest TBD placeholder. A green schema validation means the document is
-well-formed, never that its contents are true or that the provider is certified.
+Every provider-specific value comes from profiles/common/offering-profile.json,
+and anything unprovided is an honest TBD placeholder. Where the official CPO
+schema requires an enum value the profile has not supplied (deployment model,
+service type) or a date (next Ongoing Certification Report), the generator emits
+a schema-valid assumption AND records it in the doc's _cpoAssumptions list, so
+it is never silently presented as a real provider fact. sdr.py preflight blocks
+submission while the underlying profile fields are TBD, so an assumed value can
+never reach a "submission ready" package. A green schema validation means the
+document is well-formed, never that its contents are true or that the provider
+is certified.
 
     python validation/scripts/build_cpo.py
 
@@ -62,15 +68,50 @@ def build_cpo(profile):
     # certificationType enum is '20x' or 'Rev5'. Map the offering profile's
     # human label to the schema token.
     ctype = "Rev5" if "rev5" in (profile.get("certification_type") or "").lower() else "20x"
-    # deploymentModel must be one of the schema's enum values; default to the
-    # most common commercial case and let the provider correct it.
+
+    # Any value the generator has to assume (because the profile is unset or
+    # TBD) is recorded here so it is visible, not silently presented as a real
+    # provider fact. sdr.py preflight already blocks submission while the
+    # underlying profile fields are TBD, so these assumptions can never reach a
+    # "submission ready" package.
+    assumptions = []
+
+    def _unset(v):
+        return v is None or str(v).strip() == "" or str(v).strip().startswith("TBD")
+
+    # deploymentModel must be one of the schema's enum values.
     DEPLOY_ENUM = {"public cloud": "Public Cloud", "government-only cloud": "Government-Only Cloud",
                    "hybrid cloud": "Hybrid Cloud", "community cloud": "Community Cloud",
                    "government community cloud": "Government Community Cloud"}
-    deploy = DEPLOY_ENUM.get((profile.get("deployment_model") or "").lower(), "Public Cloud")
+    raw_deploy = profile.get("deployment_model")
+    deploy = DEPLOY_ENUM.get((raw_deploy or "").lower())
+    if deploy is None:
+        deploy = "Public Cloud"
+        assumptions.append("deploymentModel assumed 'Public Cloud' because the "
+                           "offering profile deployment_model is unset/unknown")
     # serviceType enum is SaaS/PaaS/IaaS.
-    stype = (profile.get("service_model") or "PaaS").upper()
-    stype = {"SAAS": "SaaS", "PAAS": "PaaS", "IAAS": "IaaS"}.get(stype, "PaaS")
+    raw_stype = profile.get("service_model")
+    stype = {"SAAS": "SaaS", "PAAS": "PaaS", "IAAS": "IaaS"}.get((raw_stype or "").upper())
+    if stype is None:
+        stype = "PaaS"
+        assumptions.append("serviceType assumed 'PaaS' because the offering "
+                           "profile service_model is unset/unknown")
+    # nextOngoingCertificationReportDate: OCRs are due every 3 months
+    # (CCM-OCR-AVL). Rather than a hard-coded past date, derive a plausible
+    # FUTURE placeholder from the pinned dataset date + 3 months, and mark it.
+    next_ocr = profile.get("next_ocr_date")
+    if _unset(next_ocr):
+        import datetime as _dt
+        base = "-".join((profile.get("dataset_version") or "2026-01-01").split(".")[:3])
+        try:
+            d = _dt.date.fromisoformat(base)
+        except ValueError:
+            d = _dt.date.today()
+        # add ~3 months (90 days) as a placeholder cadence anchor
+        next_ocr = (d + _dt.timedelta(days=90)).isoformat()
+        assumptions.append(f"nextOngoingCertificationReportDate is a placeholder "
+                           f"({next_ocr}) derived from the dataset date + 3 months "
+                           f"(CCM-OCR-AVL cadence); the provider must set next_ocr_date")
     # assessorID must be exactly 6 digits; use a clearly-placeholder value.
     aid = profile.get("assessor_id")
     if not (isinstance(aid, str) and aid.isdigit() and len(aid) == 6):
@@ -95,8 +136,7 @@ def build_cpo(profile):
                 "FedRAMP-compatible trust center for Certification Data (CDS-CSO-UTC)."),
             "secureConfigurationGuidance": _repository(
                 "Secure Configuration Guide (SCG-CSO-RSC)."),
-            "nextOngoingCertificationReportDate": profile.get("next_ocr_date")
-            or "2026-01-01",
+            "nextOngoingCertificationReportDate": next_ocr,
         },
         # contactInformation must contain at least a Security and a Sales
         # contact (CDS-CSO-PUB). Ship both as honest placeholders.
@@ -113,6 +153,8 @@ def build_cpo(profile):
         f"Class {cls} Certification Package Overview scaffold. Required by "
         "CPO-CSO-OVR. Fill provider values in profiles/common/offering-profile.json; "
         "TBD markers show what a human still owes. Not a compliance claim.")
+    if assumptions:
+        doc["_cpoAssumptions"] = assumptions
     return doc
 
 

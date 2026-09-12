@@ -87,8 +87,23 @@ def main():
             if tail not in graph_ids and not any(g in aid for g in graph_ids):
                 problems.append(f"{where}: assurance_id '{aid}' does not resolve in the assurance graph")
 
+    # Package-level signoff (distinct from per-node reviews). Only validated
+    # when populated; the TBD template placeholder is left alone.
+    signoff = reg.get("package_signoff")
+    if isinstance(signoff, dict):
+        dec = str(signoff.get("decision", ""))
+        populated = dec and not dec.startswith("TBD")
+        if populated:
+            if dec not in ALLOWED_DECISIONS:
+                problems.append(f"package_signoff: decision '{dec}' not in {sorted(ALLOWED_DECISIONS)}")
+            signer = str(signoff.get("reviewer", "")).strip().lower()
+            if signer in FORBIDDEN_REVIEWERS:
+                problems.append("package_signoff: reviewer is not a human identity; "
+                                "package approval must be a human act")
+            if dec == "approved" and not signoff.get("release_tag"):
+                problems.append("package_signoff: approved without a release_tag to bind it to")
+
     if problems:
-        print(f"FAIL: review register has {len(problems)} problem(s):")
         for p in problems[:20]:
             print(f"    - {p}")
         return 1

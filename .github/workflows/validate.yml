@@ -24,7 +24,7 @@ jobs:
         with:
           python-version: "3.12"
       - name: Install dependencies
-        run: pip install --quiet jsonschema referencing python-docx boto3
+        run: pip install --quiet -r requirements-ci.txt
       - name: Regenerate all deliverables
         run: |
           python validation/scripts/build_catalogs.py
@@ -86,6 +86,7 @@ jobs:
         with:
           name: validation-reports
           path: validation/reports/
+
 
 
 
