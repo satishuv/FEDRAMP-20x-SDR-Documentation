@@ -1,8 +1,8 @@
-<h1 align="center">FedRAMP 20x Security Decision Record Framework</h1>
+<h1 align="center">FedRAMP 20x Certification Package Framework</h1>
 
 <p align="center">
-  <strong>Treat your FedRAMP 20x Security Decision Record as continuously verified data, not a hand-maintained document.</strong><br>
-  Generate a schema-valid, dataset-traceable Security Decision Record from one file you actually edit.
+  <strong>Build and maintain your FedRAMP 20x Certification Package from traceable, machine-readable facts, not hand-maintained documents.</strong><br>
+  One file of facts becomes a schema-validated Security Decision Record, Certification Package Overview, Ongoing Certification Report, Secure Configuration Guide, and the event-driven artifacts, every JSON validated against its official FedRAMP schema.
 </p>
 
 <p align="center">
@@ -53,21 +53,21 @@
 
 ## The problem
 
-FedRAMP 20x asks providers for a Security Decision Record (SDR) that is machine-readable, schema-valid, and backed by automated verification. Two rules drive this: `FRC-CSX-VVK` calls for automated methods to persistently verify and validate each Key Security Indicator, with the obligation rising by class (`MAY` at A, `SHOULD` at B, `MUST` at C and D), and `FRC-CSX-VVR` asks for the same across the SDR itself.
+FedRAMP 20x asks providers for a machine-readable, schema-valid Certification Package, not a stack of Word documents. At its center is the Security Decision Record (SDR), backed by automated verification: `FRC-CSX-VVK` calls for automated methods to persistently verify and validate each Key Security Indicator, with the obligation rising by class (`MAY` at A, `SHOULD` at B, `MUST` at C and D), and `FRC-CSX-VVR` asks for the same across the SDR itself. The initial package (`FRC-CSO-PKG`) also requires a Certification Package Overview, a real or example Ongoing Certification Report, and, for Class B/C, a Secure Configuration Guide.
 
-A hand-maintained Word document cannot satisfy that. It drifts from the requirement text the moment FedRAMP updates the dataset, it cannot be diffed, and it gives an assessor no way to trace a sentence back to the rule that demanded it.
+A hand-maintained document set cannot satisfy that. It drifts from the requirement text the moment FedRAMP updates the dataset, it cannot be diffed, and it gives an assessor no way to trace a sentence back to the rule that demanded it.
 
 ## The approach
 
-In plain terms: you write facts about your system, and the framework turns them into an official, self-checking compliance report. You maintain one file; everything else is generated and verified for you.
+In plain terms: you write facts about your system, and the framework turns them into an official, self-checking Certification Package. You maintain one file; everything else is generated and verified for you.
 
 <p align="center">
-  <img src="docs/assets/architecture.svg" alt="How it works: your system's facts (records-store.json, the one file you edit) and the official rulebook (the pinned FedRAMP CR26 dataset) both feed the builder (python sdr.py all), which produces the Certification Package (the SDR, the Certification Package Overview, and an example Ongoing Certification Report, each schema-validated). Two automatic checkers inspect it: the fact-checker (validate_sdr.py) fails the build if a claim does not match the rulebook, and the to-do list (sdrscan.py) scores how ready you are. Together they form a loop that points you back to what to fix next in your facts file." width="760">
+  <img src="docs/assets/architecture.svg" alt="How it works: your system's facts (records-store.json, the one file you edit) and the official rulebook (the pinned FedRAMP CR26 dataset and JSON schemas) feed the builder (python sdr.py all), which produces the full Certification Package (Security Decision Record, Certification Package Overview, Ongoing Certification Report, Secure Configuration Guide, and the event-driven incident, change, and vulnerability artifacts), every JSON validated against its official FedRAMP schema. Optional evidence sources (AWS collectors, and opt-in CrowdStrike Falcon and Wiz) attach hashed evidence. Two automatic checkers inspect the output: the fact-checker (validate_sdr.py plus validate_package.py) fails the build if a claim does not match the rulebook or a document does not match its schema, and the readiness scanner (sdrscan.py) scores how ready you are. Together they form a loop that points you back to what to fix next in your facts file. A daily drift check compares the pinned sources against upstream FedRAMP." width="820">
 </p>
 
-Two inputs, one pipeline, two checkers with different jobs, and a loop that tells you what to write next.
+Two inputs, one pipeline, several official-schema artifacts, two checkers with different jobs, and a loop that tells you what to write next.
 
-Requirement text is never typed by hand. It is resolved from the canonical FedRAMP Consolidated Rules for 2026 (CR26) dataset, and an independent validator re-derives every statement from that dataset and fails the build on any mismatch. You write facts about your system. The framework writes everything else.
+Requirement text is never typed by hand. It is resolved from the canonical FedRAMP Consolidated Rules for 2026 (CR26) dataset, and an independent validator re-derives every statement from that dataset and fails the build on any mismatch. Every generated JSON artifact is validated against its official FedRAMP schema. You write facts about your system. The framework writes everything else.
 
 ## Quickstart
 
@@ -83,19 +83,48 @@ That builds every deliverable, runs the validator, and prints a readiness summar
 
 Then open `sdr/records/records-store.json` and start replacing `TBD` with facts about your system. That file is the only one you edit. See the [implementation guide](docs/implementation-guide.md).
 
-If you have GNU make, `make all` wraps the same command. To run the seven build steps individually, see [getting started](docs/getting-started.md).
+If you have GNU make, `make all` wraps the same command. To run the build steps individually, see [getting started](docs/getting-started.md).
 
 ## What you get
 
+Every JSON artifact below is validated against its official FedRAMP schema; the whole set is regenerated by one command.
+
 | Deliverable | Path | Purpose |
 |---|---|---|
-| Official SDR JSON | `sdr/json/sdr-class-*.json` | Validates against the FedRAMP SDR schema with zero errors |
-| Provider extensions | `sdr/json/sdr-class-*-extensions.json` | Your extra fields, isolated so the official file stays clean |
-| Plain-text SDR | `sdr/human-readable/sdr-class-*.txt` | The human-readable half that `CDS-CSO-CBF` requires to stay in sync |
-| Authoring Word file | `sdr/human-readable/sdr-class-*-authoring.docx` | For reviewers who need to comment in Word |
-| Rev5 crosswalk | `traceability/rev5-to-20x-crosswalk.csv` | Maps NIST SP 800-53 Revision 5 controls to 20x indicators |
-| Validation report | `validation/reports/validation-report.json` | Eight checks, one exit code, gates the build |
+| Security Decision Record (JSON) | `sdr/json/sdr-class-*.json` | The core record. Validates against the official SDR schema; required semantic items carried in `providerExtensions.xFedRampSemantic` |
+| SDR plain text and Word | `sdr/human-readable/sdr-class-*.txt` / `*-authoring.docx` | Human-readable halves; `.txt` keeps parity with the JSON per `CDS-CSO-CBF` |
+| Certification Package Overview | `package/cpo/cpo.json` / `.md` | `CPO-CSO-OVR`. Validates against the official CPO schema |
+| Ongoing Certification Report (example) | `package/ocr/ocr-example.json` / `.md` | `CCM-OCR-AVL`. Validates against the official OCR schema |
+| Secure Configuration Guide | `package/scg/secure-configuration-guide.md` | `SCG-CSO-RSC` / `SCG-CSO-AUP` scaffold (no JSON schema exists for the SCG) |
+| Event artifacts (examples) | `package/events/*.json` | Incident Report, Significant Change Notification, and the vulnerability set (VDR/VER), each schema-validated |
+| Rev5 related-control index | `traceability/rev5-to-20x-crosswalk.csv` | NIST SP 800-53 Rev. 5 (Release 5.2.0) controls related to each 20x indicator |
+| OSCAL export | `sdr/json/sdr-class-*.oscal.json` | Interoperability only; not a native 20x submission format |
+| Validation report | `validation/reports/validation-report.json` | 13 checks, one exit code, gates the build |
 | Readiness findings | `validation/reports/sdrscan/` | One finding per rule and per indicator, severity-ranked |
+
+## Deploy it
+
+You do not deploy this framework to run it: it is a local, offline generator. `python sdr.py all` produces every artifact on your machine with no cloud account and no network. Where "deployment" matters is publishing the finished package and wiring continuous verification. Three paths, smallest first:
+
+1. Local only. Clone, `pip install jsonschema referencing python-docx`, run `python sdr.py all`. This is the whole tool. Everything else is optional.
+2. Continuous integration. The included GitHub Actions `validate.yml` runs the build gate on every push and pull request; `drift-check.yml` hash-compares the pinned FedRAMP sources against upstream daily and opens an issue on any change. Fork, and both run for free with no secrets. Security scanning (ASH and Fortify) runs as a local pre-commit gate, not in CI: install it once per clone with `scripts/install-fortify-hook.ps1`.
+3. Provider pipeline in your own AWS account. `automation/pipeline/` holds a deployable AWS CodePipeline reference (regenerate, validate, human-approval gate, publish to a versioned encrypted S3 bucket that can back a trust center). See [continuous integration](docs/ci-cd.md) and [the deployment guide](docs/deployment.md).
+
+Per-customer work belongs in a private fork: copy this repository, edit only `profiles/common/offering-profile.json` and `sdr/records/records-store.json`, and never commit customer values to the public template.
+
+## Opt in to optional features
+
+The core is deterministic and offline. Everything below is off by default and enabled deliberately.
+
+| Feature | How to turn it on | What it adds |
+|---|---|---|
+| AWS evidence collectors | Run `automation/collectors/collect_facts.py` with read-only AWS credentials | Collects posture telemetry into evidence, no status set |
+| CrowdStrike Falcon evidence | Set `evidence_sources.crowdstrike-falcon.enabled: true` in the offering profile, point `export_path` at a Falcon export, run `automation/collectors/apply_third_party_evidence.py` | Attaches endpoint-detection evidence to `KSI-MLA-OSM/RVL/LET`, `KSI-INR-RIR` |
+| Wiz evidence | Set `evidence_sources.wiz.enabled: true`, point `export_path` at a Wiz export, run the same driver | Attaches posture and vulnerability evidence to `KSI-MLA-EVC/OSM`, `KSI-SCR-MON` |
+| AI-assist drafting | Opt-in modules under `automation/ai/` | Drafts and explains text for a human to verify; never sets a status |
+| Explain a requirement | `python sdr.py explain FRC-CSO-PKG` or `KSI-CNA-RNT` | Plain-language, dataset-grounded summary of one rule or KSI |
+
+Both third-party evidence sources read a file the customer exports in their own environment. This repository holds no Falcon or Wiz API client and no credentials, so a customer who uses neither tool sees nothing change. See [optional evidence sources](examples/evidence-sources/README.md).
 
 ## Scope today
 
@@ -130,6 +159,8 @@ Being direct about this matters more than adoption numbers. See the [caution ban
 | [Certification classes](docs/certification-classes.md) | You are deciding between Class A, B, C, or planning for D |
 | [Validation and readiness](docs/validation.md) | You want to understand the build gate and the readiness scanner |
 | [Continuous integration](docs/ci-cd.md) | You are wiring this into GitHub Actions or AWS CodePipeline |
+| [Deployment](docs/deployment.md) | You want to publish the package and stand up continuous verification |
+| [Optional evidence sources](examples/evidence-sources/README.md) | You run CrowdStrike Falcon or Wiz and want that telemetry as evidence |
 | [Automation layers](docs/automation.md) | You want evidence collected from a live account rather than typed |
 | [Glossary](docs/glossary.md) | An acronym is in your way |
 | [Frequently asked questions](docs/faq.md) | Something surprised you |
@@ -146,3 +177,4 @@ All rights reserved. See [LICENSE](LICENSE). This is not open-source software; n
 This work is associated with **Amazon Web Services (AWS) Security Assurance Services (SAS)**. AWS Security Assurance Services and its affiliates reserve all rights in and to this work to the fullest extent applicable, and all AWS names, marks, and materials remain the property of Amazon Web Services, Inc. and its affiliates. Nothing here is an official AWS position, product, service, or endorsement.
 
 FedRAMP requirement text and schemas are published by the United States General Services Administration at [github.com/FedRAMP/rules](https://github.com/FedRAMP/rules) and are reproduced here under their terms as government works.
+
