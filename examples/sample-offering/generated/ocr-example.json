@@ -1,0 +1,30 @@
+{
+ "certificationPackageOverviewUri": "https://example.provider.gov-placeholder/cpo.json",
+ "reportPeriod": {
+  "from": "2026-04-15",
+  "to": "2026-07-14"
+ },
+ "certificationDataChanges": [
+  "EXAMPLE: no changes to FedRAMP Certification Data during this period."
+ ],
+ "plannedCertificationDataChanges": {
+  "planningHorizonThrough": "2026-10-12",
+  "changes": [
+   "EXAMPLE: no planned changes to Certification Data in the next 3 months."
+  ]
+ },
+ "acceptedVulnerabilities": "EXAMPLE: summary of accepted vulnerabilities this period. Replace with the provider's real summary; see the VER/accepted-vulnerability artifacts.",
+ "transformativeChanges": [
+  "EXAMPLE: no transformative changes during this period."
+ ],
+ "updatedRecommendations": [
+  "EXAMPLE: no updated recommendations during this period."
+ ],
+ "activeAgencies": [
+  "EXAMPLE: list of agencies actively using the offering this period."
+ ],
+ "reportableIncidents": {
+  "incidents": []
+ },
+ "_ocrNote": "EXAMPLE Ongoing Certification Report scaffold. Required by CCM-OCR-AVL every 3 months and as a real-or-example artifact in the initial package (FRC-CSO-PKG). Every value prefixed EXAMPLE is a placeholder; empty arrays attest none-this-period. Not a real report and not a compliance claim."
+}

@@ -35,8 +35,16 @@ runs `python sdr.py all`, prints the gate result, and restores
 `sdr/records/records-store.json` and `profiles/common/offering-profile.json`.
 Your real record store is never left modified.
 
+To also write the rendered output package to `generated/` (so a reviewer can
+read a populated SDR without running anything):
+
+```bash
+python examples/sample-offering/build_sample.py --emit
+```
+
 ## Files
 
 - `build_sample.py` — generates the sample inputs, runs the gate, restores originals.
 - `records-store.sample.json` — the generated filled record store (fictional).
 - `offering-profile.sample.json` — the generated filled profile (fictional).
+- `generated/` — the rendered sample package (SDR JSON and text, CPO, OCR, SCG, event artifacts), committed so a reviewer can read a populated example directly.
