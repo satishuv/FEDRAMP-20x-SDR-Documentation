@@ -1,0 +1,6 @@
+{
+ "certificationPackageOverviewUri": "https://example.provider.gov-placeholder/cpo.json",
+ "reportType": "Initial",
+ "providerTrackingId": "EXAMPLE-INC-0001",
+ "_eventNote": "EXAMPLE Incident Report (IEC-CSO-IIR/OIR/FIR) scaffold. Validated against the official FedRAMP schema. Empty arrays attest none-this-period. Replace EXAMPLE values with real data when an actual event occurs. Not a real filing and not a compliance claim."
+}

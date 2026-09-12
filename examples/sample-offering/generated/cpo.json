@@ -1,0 +1,50 @@
+{
+ "serviceIdentification": {
+  "fedRampPackageId": "TBD-PACKAGE-ID",
+  "providerName": "Acme Cloud Systems, Inc. (fictional)",
+  "serviceName": "Acme Cloud Widgets",
+  "serviceAcronym": "ACW",
+  "serviceDescription": "A fictional multi-tenant SaaS widget-processing platform used to demonstrate a populated SDR.",
+  "certificationType": "20x",
+  "website": "https://example.provider.gov-placeholder/tbd",
+  "logo": "https://example.provider.gov-placeholder/logo.png"
+ },
+ "serviceProperties": {
+  "serviceType": [
+   "SaaS"
+  ],
+  "deploymentModel": "Public Cloud",
+  "trustCenter": {
+   "repositoryType": [
+    "Website"
+   ],
+   "url": "https://example.provider.gov-placeholder/tbd",
+   "repositoryDescription": "FedRAMP-compatible trust center for Certification Data (CDS-CSO-UTC).",
+   "authenticationRequired": false
+  },
+  "secureConfigurationGuidance": {
+   "repositoryType": [
+    "Website"
+   ],
+   "url": "https://example.provider.gov-placeholder/tbd",
+   "repositoryDescription": "Secure Configuration Guide (SCG-CSO-RSC).",
+   "authenticationRequired": false
+  },
+  "nextOngoingCertificationReportDate": "2026-01-01"
+ },
+ "contactInformation": [
+  {
+   "contactType": "Security",
+   "contactName": "security@example-acme.invalid (fictional)"
+  },
+  {
+   "contactType": "Sales",
+   "contactName": "TBD: Information has not been provided."
+  }
+ ],
+ "assessor": {
+  "name": "Example 3PAO (fictional)",
+  "assessorID": "000000"
+ },
+ "_cpoNote": "Class B Certification Package Overview scaffold. Required by CPO-CSO-OVR. Fill provider values in profiles/common/offering-profile.json; TBD markers show what a human still owes. Not a compliance claim."
+}

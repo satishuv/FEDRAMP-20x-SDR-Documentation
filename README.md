@@ -161,6 +161,7 @@ Being direct about this matters more than adoption numbers. See the [caution ban
 | [Continuous integration](docs/ci-cd.md) | You are wiring this into GitHub Actions or AWS CodePipeline |
 | [Deployment](docs/deployment.md) | You want to publish the package and stand up continuous verification |
 | [Optional evidence sources](examples/evidence-sources/README.md) | You run CrowdStrike Falcon or Wiz and want that telemetry as evidence |
+| [How this relates to official FedRAMP repos](docs/comparison.md) | You want the capability comparison against FedRAMP/rules, /2026, and /2026-markdown |
 | [Automation layers](docs/automation.md) | You want evidence collected from a live account rather than typed |
 | [Glossary](docs/glossary.md) | An acronym is in your way |
 | [Frequently asked questions](docs/faq.md) | Something surprised you |

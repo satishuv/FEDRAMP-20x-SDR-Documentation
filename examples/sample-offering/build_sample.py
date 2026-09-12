@@ -114,8 +114,14 @@ def write_sample_artifacts():
         json.dump(generate_sample_profile(), f, indent=1)
 
 
-def run_gate_with_sample():
-    """Swap sample inputs in, run the gate, restore originals. Returns (rc, out)."""
+def run_gate_with_sample(emit_dir=None):
+    """Swap sample inputs in, run the gate, restore originals. Returns (rc, out).
+
+    If emit_dir is given, the generated sample package (SDR JSON, human-readable,
+    CPO, OCR, SCG, event artifacts) is copied there BEFORE the real inputs are
+    restored, so a reviewer can read a populated example without running the
+    build. Only committed-safe text artifacts are copied (no docx, whose zip
+    timestamps are non-deterministic)."""
     tmp = tempfile.mkdtemp(prefix="sdr-sample-")
     store_bak = os.path.join(tmp, "store.bak")
     profile_bak = os.path.join(tmp, "profile.bak")
@@ -129,24 +135,82 @@ def run_gate_with_sample():
         proc = subprocess.run(
             [sys.executable, os.path.join(BASE, "sdr.py"), "all"],
             cwd=BASE, capture_output=True, text=True)
+        if emit_dir:
+            _emit_generated(emit_dir)
         return proc.returncode, (proc.stdout or "") + (proc.stderr or "")
     finally:
         shutil.copy2(store_bak, REAL_STORE)
         if profile_exists:
             shutil.copy2(profile_bak, REAL_PROFILE)
         shutil.rmtree(tmp, ignore_errors=True)
+        # Running the gate above wrote the SAMPLE content into the real
+        # generated output paths (sdr/json, package/, ...). Restoring the input
+        # files is not enough: regenerate from the restored real inputs so the
+        # committed generated outputs are never left holding sample content.
+        subprocess.run([sys.executable, os.path.join(BASE, "sdr.py"), "build"],
+                       cwd=BASE, capture_output=True, text=True)
+
+
+# Generated artifacts copied into the emit dir. Text/JSON only (deterministic);
+# .docx is excluded because its zip container embeds timestamps.
+_EMIT_ARTIFACTS = [
+    "sdr/json/sdr-class-b.json",
+    "sdr/human-readable/sdr-class-b.txt",
+    "package/cpo/cpo.json",
+    "package/cpo/cpo.md",
+    "package/ocr/ocr-example.json",
+    "package/scg/secure-configuration-guide.md",
+    "package/events/incident-report-example.json",
+    "package/events/significant-change-notification-example.json",
+    "package/events/accepted-vulnerabilities-example.json",
+    "package/events/vulnerability-detail-report-example.json",
+    "package/events/historical-ver-activity-example.json",
+]
+
+
+def _emit_generated(emit_dir):
+    os.makedirs(emit_dir, exist_ok=True)
+    copied = 0
+    for rel in _EMIT_ARTIFACTS:
+        src = os.path.join(BASE, rel)
+        if os.path.exists(src):
+            dst = os.path.join(emit_dir, os.path.basename(rel))
+            shutil.copy2(src, dst)
+            copied += 1
+    with open(os.path.join(emit_dir, "README.md"), "w", encoding="utf-8", newline="\n") as f:
+        f.write(
+            "# Generated sample package (Acme Cloud Widgets, fictional)\n\n"
+            "These files are the ACTUAL output of running the sample build "
+            "(`python examples/sample-offering/build_sample.py --emit`) against "
+            "the fictional Acme Cloud Widgets inputs, committed so a reviewer "
+            "can read a populated Class B Certification Package without running "
+            "anything.\n\n"
+            "Everything here is FICTIONAL and illustrative. It is not a real "
+            "offering, not an attestation, and not evidence of compliance. "
+            "Narrative fields are filled with clearly-labelled sample prose; "
+            "implementation status, assessment, tests, and evidence are left as "
+            "the template sets them, because those are reserved for human "
+            "judgment and an accredited assessor.\n\n"
+            "Regenerate with:\n\n"
+            "```bash\npython examples/sample-offering/build_sample.py --emit\n```\n")
+    return copied
 
 
 def main():
+    emit_dir = None
+    if "--emit" in sys.argv:
+        emit_dir = os.path.join(HERE, "generated")
     print("Generating fictional sample offering (Acme Cloud Widgets)...")
     write_sample_artifacts()
     print(f"  wrote {os.path.relpath(SAMPLE_STORE, BASE)}")
     print(f"  wrote {os.path.relpath(SAMPLE_PROFILE, BASE)}")
     print("Running the gate against the sample (real inputs are restored after)...")
-    rc, out = run_gate_with_sample()
+    rc, out = run_gate_with_sample(emit_dir)
     tail = "\n".join(out.splitlines()[-25:])
     print(tail)
     print(f"\nGate exit code: {rc} ({'PASS' if rc == 0 else 'non-zero'})")
+    if emit_dir:
+        print(f"Generated sample package emitted to {os.path.relpath(emit_dir, BASE)}")
     print("Real record store and profile have been restored.")
     return rc
 

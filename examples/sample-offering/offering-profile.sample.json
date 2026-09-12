@@ -23,5 +23,16 @@
  "sdr_version": "0.1.0",
  "schema_version": "2026-06-24",
  "dataset_version": "2026.07.14.01",
+ "evidence_sources": {
+  "note": "Optional third-party evidence sources, opt-in per customer. Off by default. Set enabled=true and point export_path at a customer-produced export (produced in the customer's own environment; this repository holds no API client or credentials). See automation/collectors/thirdparty_adapters.py.",
+  "crowdstrike-falcon": {
+   "enabled": false,
+   "export_path": "automation/facts/falcon-export.json"
+  },
+  "wiz": {
+   "enabled": false,
+   "export_path": "automation/facts/wiz-export.json"
+  }
+ },
  "sdr_last_updated": "2026-09-07"
 }
