@@ -1,0 +1,6 @@
+# Pinned dependency set for CI, so the CI environment is reproducible and
+# supply-chain-traceable. Runtime deps come from requirements.txt; boto3 is
+# added here because the offline collector tests exercise botocore-shaped
+# fixtures. Keep versions in sync with requirements.txt.
+-r requirements.txt
+boto3==1.40.70

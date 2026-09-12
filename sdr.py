@@ -70,6 +70,7 @@ VALIDATION_GATE = [
     ("validation/scripts/validate_package.py", "CPO/OCR against official schemas"),
     ("validation/scripts/validate_assurance_graph.py", "assurance graph (full-chain traceability)"),
     ("validation/scripts/validate_reviews.py", "human review register (no machine-authored approvals)"),
+    ("validation/scripts/validate_evidence.py", "live evidence-integrity gate (malformed/mismatched digests)"),
     ("validation/scripts/validate_package_consistency.py", "cross-artifact package consistency"),
 ]
 
@@ -228,6 +229,18 @@ def cmd_validate(args):
             code = run(os.path.join(BASE, rel), label=os.path.basename(rel))
             if code != 0:
                 failures.append(rel)
+        # Some adversarial tests deliberately tamper a generated artifact and
+        # run the validator, which overwrites validation-report.json with a
+        # FAILED report before restoring the artifact. Re-run the SDR validator
+        # once more so the canonical report on disk always reflects the real,
+        # restored tree, never a leftover tampered-run report.
+        out()
+        out("Restoring canonical validation report (post-adversarial)")
+        out(RULE)
+        code = run(os.path.join(BASE, "validation/scripts/validate_sdr.py"),
+                   label="validate_sdr.py (canonical restore)")
+        if code != 0:
+            failures.append("validation/scripts/validate_sdr.py (canonical restore)")
 
     out()
     if failures:
@@ -240,8 +253,11 @@ def cmd_validate(args):
             "exists to catch exactly that.")
         return 1
     scope = "gate + full offline test suite" if run_tests else "gate only"
-    out(f"All validation passed ({scope}). This is the same gate CI runs; a "
-        "passing local run means CI would pass on the same tree.")
+    out(f"All validation passed ({scope}). This is the validation-suite gate "
+        "CI runs via `python sdr.py validate`. CI additionally enforces "
+        "regenerate-and-diff, a double-build reproducibility gate, and the "
+        "scanner-catalog freshness check outside this command, so a clean local "
+        "run means the validation suite would pass, not that every CI gate would.")
     return 0
 
 
@@ -349,13 +365,61 @@ def cmd_review(args):
     return 0
 
 
+def cmd_reproducibility():
+    """Verify the build is reproducible: hash the deterministic artifacts,
+    rebuild, and confirm they are byte-identical. Mirrors the CI reproducibility
+    gate so `release` verifies reproducibility rather than merely asserting it.
+    Returns 0 if reproducible, 1 otherwise. Excludes *.docx (its zip container
+    embeds timestamps)."""
+    import hashlib
+
+    watch_dirs = ["sdr", "package", "traceability", "artifacts", "validation/reports"]
+    exts = (".json", ".txt", ".md", ".csv")
+
+    def fingerprint():
+        digests = {}
+        for d in watch_dirs:
+            root = os.path.join(BASE, d)
+            for dirpath, _dirs, files in os.walk(root):
+                for fn in files:
+                    if fn.endswith(exts) and not fn.endswith(".docx"):
+                        p = os.path.join(dirpath, fn)
+                        h = hashlib.sha256()
+                        with open(p, "rb") as f:
+                            for chunk in iter(lambda: f.read(65536), b""):
+                                h.update(chunk)
+                        digests[os.path.relpath(p, BASE)] = h.hexdigest()
+        return digests
+
+    out("Reproducibility check (double build, byte comparison)")
+    out(RULE)
+    first = fingerprint()
+    code = cmd_build(argparse.Namespace(only_fails=False, no_tests=True))
+    if code != 0:
+        out("FAIL. Rebuild failed during reproducibility check.")
+        return 1
+    second = fingerprint()
+    changed = sorted(k for k in set(first) | set(second) if first.get(k) != second.get(k))
+    if changed:
+        out(f"FAIL. {len(changed)} deterministic artifact(s) changed across two builds:")
+        for k in changed[:20]:
+            out(f"    - {k}")
+        return 1
+    out(f"Reproducible: {len(second)} deterministic artifacts byte-identical across two builds.")
+    return 0
+
+
 def cmd_release(args):
     """Produce and report a release: build, run the FULL validation gate and
-    test suite, then print the tag.
+    test suite, verify reproducibility, then print the tag.
 
-    Runs the same gate CI runs (via cmd_validate), so a local `sdr.py release`
-    can never succeed when CI would fail. Does not tag git or publish anything.
+    Runs the same validation suite CI runs (via cmd_validate) AND a local
+    double-build reproducibility check, so `release` verifies what it claims.
+    Always runs the full test suite (no --no-tests escape). Does not tag git or
+    publish anything.
     """
+    # A release is not allowed to skip its own tests.
+    args.no_tests = False
     code = cmd_build(args)
     if code != 0:
         out("Build failed; not a releasable state.")
@@ -364,6 +428,11 @@ def cmd_release(args):
     code = cmd_validate(args)
     if code != 0:
         out("Validation gate failed; not releasable.")
+        return code
+    out()
+    code = cmd_reproducibility()
+    if code != 0:
+        out("Reproducibility check failed; not releasable.")
         return code
     manifest = load_json(os.path.join(BASE, "artifacts", "release-manifest.json"))
     out()
@@ -376,7 +445,8 @@ def cmd_release(args):
         out(f"Artifacts fingerprinted      {manifest.get('artifact_count', '?')}")
     out()
     out("This is a build-provenance record, not a compliance determination. A "
-        "passing release gate means well-formed, consistent and reproducible; "
+        "passing release gate means well-formed, consistent, and verified "
+        "reproducible (double-build byte-identical, checked just now); "
         "certification is an accredited assessor and authorizing-body decision.")
     out(f"To tag: git tag {manifest.get('release_tag', '<tag>') if manifest else '<tag>'}")
     return 0
@@ -384,7 +454,6 @@ def cmd_release(args):
 
 def cmd_preflight(args):
     """FedRAMP submission preflight: check for submission BLOCKERS.
-
     Structural validity (the build gate) is necessary but not sufficient to
     submit. FedRAMP requires the initial package to represent the current
     offering and be freshly provider-verified. This reports blockers; it never
@@ -401,40 +470,88 @@ def cmd_preflight(args):
     blockers = []
     warnings = []
 
+    def _is_tbd(v):
+        return v is None or str(v).strip() == "" or str(v).strip().startswith("TBD") \
+            or "placeholder" in str(v).lower() or "has not been provided" in str(v).lower()
+
+    def _parse_dt(value):
+        """Return (datetime, error). Requires timezone-aware; rejects future."""
+        s = str(value).replace("Z", "+00:00")
+        try:
+            dt = _dt.datetime.fromisoformat(s)
+        except ValueError:
+            return None, "not a valid ISO datetime"
+        if dt.tzinfo is None:
+            return None, "must be timezone-aware (include an offset or Z)"
+        if dt > _dt.datetime.now(_dt.timezone.utc):
+            return None, "is in the future"
+        return dt, None
+
+    # Required offering-profile fields. Everything not on the optional allowlist
+    # that is still a TBD is a submission blocker, not a warning.
+    OPTIONAL_FIELDS = {
+        "profile_note", "evidence_sources", "external_assessment",
+        "provider_verified_at", "dr_region", "iac_technology",
+        "materials_item_schema", "note",
+    }
+    REQUIRED_FIELDS = [
+        "organization_name", "offering_name", "offering_abbreviation",
+        "business_purpose", "service_model", "deployment_model",
+        "certification_type", "certification_class", "aws_partition",
+        "primary_region", "management_plane", "federal_information_types",
+        "certification_package_overview_uri", "security_contact",
+        "incident_contact", "assessor", "evidence_retention",
+    ]
+    unresolved_required = [f for f in REQUIRED_FIELDS if _is_tbd(offering.get(f))]
+    if unresolved_required:
+        blockers.append(f"{len(unresolved_required)} required offering-profile "
+                        f"field(s) unresolved (TBD/placeholder): "
+                        f"{', '.join(unresolved_required)}")
+
+    # FRC-APP-FCP: provider verification freshness (7 days, real timedelta).
     verified = offering.get("provider_verified_at")
-    if not verified or str(verified).startswith("TBD"):
+    if _is_tbd(verified):
         blockers.append("provider_verified_at is not set (FRC-APP-FCP requires "
                         "verification/validation within the previous 7 days)")
     else:
-        try:
-            when = _dt.datetime.fromisoformat(str(verified).replace("Z", "+00:00"))
-            age_days = (_dt.datetime.now(_dt.timezone.utc) - when).days
-            if age_days > 7:
-                blockers.append(f"provider_verified_at is {age_days} days old; "
-                                f"FRC-APP-FCP requires within the previous 7 days")
-        except ValueError:
-            blockers.append(f"provider_verified_at is not a valid ISO datetime: {verified}")
+        dt, err = _parse_dt(verified)
+        if err:
+            blockers.append(f"provider_verified_at {err}: {verified}")
+        elif (_dt.datetime.now(_dt.timezone.utc) - dt) > _dt.timedelta(days=7):
+            blockers.append("provider_verified_at is older than 7 days "
+                            "(FRC-APP-FCP requires within the previous 7 days)")
 
+    # Class A: external assessment materials (FRC-CLA-ASF / EAM).
     if cls == "a":
         ext = offering.get("external_assessment") or {}
-        if not ext or all(str(v).startswith("TBD") for v in [ext.get("framework"), ext.get("assessment_date")]):
+        if not ext or _is_tbd(ext.get("framework")) or _is_tbd(ext.get("assessment_date")):
             blockers.append("Class A: external_assessment not populated "
                             "(FRC-CLA-ASF/EAM require alternative-framework "
                             "assessment materials from the past 12 months)")
         else:
             adate = ext.get("assessment_date")
-            if adate and not str(adate).startswith("TBD"):
-                try:
-                    when = _dt.date.fromisoformat(adate)
-                    if (_dt.date.today() - when).days > 365:
-                        blockers.append(f"Class A: external assessment {adate} is "
-                                        f"older than 12 months (FRC-CLA-ASF)")
-                except ValueError:
-                    blockers.append(f"Class A: assessment_date not a valid date: {adate}")
-            if not ext.get("materials"):
+            try:
+                when = _dt.date.fromisoformat(str(adate))
+                if when > _dt.date.today():
+                    blockers.append(f"Class A: assessment_date is in the future: {adate}")
+                elif (_dt.date.today() - when) > _dt.timedelta(days=365):
+                    blockers.append(f"Class A: external assessment {adate} is "
+                                    f"older than 12 months (FRC-CLA-ASF)")
+            except ValueError:
+                blockers.append(f"Class A: assessment_date not a valid date: {adate}")
+            materials = ext.get("materials") or []
+            if not materials:
                 blockers.append("Class A: external_assessment.materials empty "
                                 "(FRC-CLA-EAM: supply the assessment materials as references)")
+            else:
+                for i, m in enumerate(materials):
+                    if not isinstance(m, dict) or _is_tbd(m.get("type")) \
+                            or _is_tbd(m.get("uri")) or _is_tbd(m.get("sha256")):
+                        blockers.append(f"Class A: materials[{i}] missing "
+                                        f"type/uri/sha256 (FRC-CLA-EAM)")
 
+    # Record store: unresolved content is a readiness warning (the build gate
+    # already ships these as honest TBDs; a provider fills them before submit).
     records_path = os.path.join(BASE, "sdr", "records", "records-store.json")
     try:
         with open(records_path, encoding="utf-8") as f:
@@ -448,12 +565,25 @@ def cmd_preflight(args):
     except OSError:
         warnings.append("records-store.json not readable")
 
+    # Package-level signoff MUST reference the current release-manifest hash.
+    # One approved node in the assurance review register is NOT package approval.
     register = load_json(os.path.join(BASE, "sdr", "reviews", "review-register.json")) or {}
-    reviews = register.get("reviews", [])
-    approved = [r for r in reviews if r.get("decision") == "approved"]
-    if not approved:
-        blockers.append("no human review recorded as approved in the review "
-                        "register (submission requires provider signoff)")
+    signoff = register.get("package_signoff")
+    manifest = load_json(os.path.join(BASE, "artifacts", "release-manifest.json")) or {}
+    manifest_tag = manifest.get("release_tag")
+    if not signoff or signoff.get("decision") != "approved":
+        blockers.append("no package_signoff recorded as approved "
+                        "(package-level provider signoff is required to submit; "
+                        "a single approved assurance node is not package approval)")
+    else:
+        signed_tag = signoff.get("release_tag") or signoff.get("release_manifest_tag")
+        if manifest_tag and signed_tag != manifest_tag:
+            blockers.append(f"package_signoff is for a different release "
+                            f"({signed_tag}) than the current manifest ({manifest_tag}); "
+                            f"re-sign against the current package")
+        for req in ("reviewer", "timestamp"):
+            if _is_tbd(signoff.get(req)):
+                blockers.append(f"package_signoff.{req} not set")
 
     out()
     out(f"FedRAMP submission preflight (Class {cls.upper()})")
@@ -472,9 +602,10 @@ def cmd_preflight(args):
             "readiness check, not a compliance determination; FedRAMP and its "
             "recognized assessor determine compliance.")
         return 1
-    out("Submission ready: no blockers found. This means the package is fresh, "
-        "complete, and provider-signed off. It does NOT mean compliant or "
-        "certified; that is FedRAMP's determination.")
+    out("Submission ready: no blockers found. Required provider fields are "
+        "filled, the package is freshly provider-verified, and a package-level "
+        "signoff exists against the current release manifest. This does NOT "
+        "mean compliant or certified; that is FedRAMP's determination.")
     return 0
 
 
@@ -604,9 +735,7 @@ def build_parser():
     diff_p.add_argument("old", nargs="?", help="old dataset JSON (optional)")
     diff_p.add_argument("new", nargs="?", help="new dataset JSON (optional)")
     sub.add_parser("review", help="report the human review register (read-only)")
-    rel_p = sub.add_parser("release", help="build, run the full CI gate, print the release tag")
-    rel_p.add_argument("--no-tests", action="store_true",
-                       help="skip the offline test suite in the validate step")
+    rel_p = sub.add_parser("release", help="build, run the full gate + reproducibility, print the tag")
     sub.add_parser("preflight", help="check FedRAMP submission blockers (read-only)")
     return p
 

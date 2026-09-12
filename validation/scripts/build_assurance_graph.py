@@ -30,10 +30,43 @@ BASE = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 PROFILE = os.path.join(BASE, "profiles", "common", "offering-profile.json")
 KSI_PROFILE = os.path.join(BASE, "profiles", "common", "ksi-profile.json")
 RECORDS = os.path.join(BASE, "sdr", "records", "records-store.json")
+REGISTER = os.path.join(BASE, "sdr", "reviews", "review-register.json")
 OUT = os.path.join(BASE, "traceability", "assurance-graph.json")
 
 # FRC-CSX-VVK force per class, verified against the dataset.
 VVK_FORCE = {"a": "MAY", "b": "SHOULD", "c": "MUST", "d": "MUST"}
+
+
+def _review_index():
+    """Map assurance_id -> the real recorded review, so the graph reflects
+    actual human decisions instead of a hardcoded 'pending'. Reads the review
+    register the pipeline never writes to. Returns {} when nothing is reviewed
+    (the correct template state)."""
+    reg = load(REGISTER, {}) or {}
+    idx = {}
+    for r in reg.get("reviews", []):
+        aid = r.get("assurance_id")
+        if not aid:
+            continue
+        # Accept an ASR- wrapper or the bare rule/ksi id.
+        key = aid.split("ASR-")[-1] if str(aid).startswith("ASR-") else aid
+        idx[key] = r
+    return idx
+
+
+def _review_for(review_idx, ident, owner):
+    """Return the review block for one node id: the recorded human review if
+    present, else the honest pending default (reviewer = record owner)."""
+    r = review_idx.get(ident)
+    if not r:
+        return {"reviewer": owner, "review_status": "pending",
+                "reviewed_evidence_hashes": []}
+    return {
+        "reviewer": r.get("reviewer", owner),
+        "review_status": r.get("decision", "pending"),
+        "reviewed_at": r.get("reviewed_at"),
+        "reviewed_evidence_hashes": r.get("evidence_hashes_reviewed", []),
+    }
 
 
 def load(path, default=None):
@@ -70,6 +103,7 @@ def build_graph(cls):
     sdr = load(os.path.join(BASE, "sdr", "json", f"sdr-class-{cls}.json"), {})
     sdr_frr_index = {e["frrID"]: i for i, e in enumerate(sdr.get("fedRampRequirements", []))}
     sdr_ksi_index = {e["ksiId"]: i for i, e in enumerate(sdr.get("keySecurityIndicators", []))}
+    review_idx = _review_index()
 
     nodes = []
 
@@ -107,11 +141,8 @@ def build_graph(cls):
                 "result": "PASS" if rid in sdr_frr_index else "MISSING",
                 "validator": "deterministic",
             },
-            "review": {
-                "reviewer": ext.get("owner", "TBD"),
-                "review_status": "pending",
-                "responses": ext.get("assessor_responses", "None recorded"),
-            },
+            "review": dict(_review_for(review_idx, rid, ext.get("owner", "TBD")),
+                           responses=ext.get("assessor_responses", "None recorded")),
             "outputs": {
                 "sdr_json_pointer": f"$.fedRampRequirements[{i}]" if i is not None else None,
             },
@@ -149,10 +180,7 @@ def build_graph(cls):
                 "result": "PASS" if kid in sdr_ksi_index else "MISSING",
                 "validator": "deterministic",
             },
-            "review": {
-                "reviewer": ext.get("owner", "TBD"),
-                "review_status": "pending",
-            },
+            "review": _review_for(review_idx, kid, ext.get("owner", "TBD")),
             "outputs": {
                 "sdr_json_pointer": f"$.keySecurityIndicators[{i}]" if i is not None else None,
             },

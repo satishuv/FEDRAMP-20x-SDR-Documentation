@@ -61,8 +61,16 @@ def test_tampered_sdr_statement_hard_fails():
             "expected a content-fidelity FAIL after tampering"
         print("PASS: test_tampered_sdr_statement_hard_fails")
     finally:
+        # Restore the tampered file, THEN re-run the validator so the canonical
+        # validation-report.json reflects the restored (clean) state. Without
+        # this, the last report written to disk is the FAILED one from the
+        # tampered run, leaving the repository asserting a hard failure that is
+        # not real. Assert the restored tree validates clean.
         shutil.copy2(bak, txt_path)
         shutil.rmtree(tmp, ignore_errors=True)
+        rc_restore, out_restore = _run_validator()
+        assert "content_fidelity_against_dataset | 0 mismatches" in out_restore, \
+            "restore FAILED to return content fidelity to clean; report left dirty"
 
 
 def main():

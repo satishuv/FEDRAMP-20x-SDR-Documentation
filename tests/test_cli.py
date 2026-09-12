@@ -7,6 +7,7 @@ against silent breakage. Offline; no network, no dataset mutation.
     python tests/test_cli.py
 """
 
+import inspect
 import io
 import os
 import subprocess
@@ -14,6 +15,7 @@ import sys
 from contextlib import redirect_stdout
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, BASE)
 sys.path.insert(0, os.path.join(BASE, "automation", "collectors"))
 
 PY = sys.executable
@@ -47,13 +49,15 @@ def test_review():
 
 
 def test_release():
-    # --no-tests: exercise the release path (build + validators + tag) without
-    # recursively re-running the full offline suite, which includes this test.
-    code, out = run_cli("release", "--no-tests")
-    check("release exits 0", code == 0)
-    check("release prints a tag", "release tag" in out.lower())
-    check("release disclaims compliance",
-          "not a compliance determination" in out.lower())
+    # `release` now always runs the full validate suite (which includes THIS
+    # test), so invoking it here would recurse. Instead assert its contract:
+    # the --no-tests escape hatch is gone, and the reproducibility helper exists.
+    import sdr as sdrmod
+    code_flag, _ = run_cli("release", "--no-tests")
+    check("release rejects the removed --no-tests escape", code_flag != 0)
+    check("cmd_reproducibility helper exists", hasattr(sdrmod, "cmd_reproducibility"))
+    check("cmd_release forces tests on",
+          "args.no_tests = False" in inspect.getsource(sdrmod.cmd_release))
 
 
 def test_diff_no_args():

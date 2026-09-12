@@ -1,4 +1,13 @@
 {
  "register_note": "Human review and signoff register. This is the ONLY place an approval can be recorded, and only a human writes it. The deterministic pipeline never populates a decision here: it cannot mark anything approved, assessed, certified, or compliant. Each entry records a reviewer's explicit decision on one assurance-graph node, the evidence hashes they reviewed, and when. An empty reviews array is the correct state for a template; it means nothing has been human-reviewed yet.",
- "reviews": []
+ "reviews": [],
+ "package_signoff_note": "Package-level provider signoff, distinct from per-node reviews above. A single approved node is NOT package approval. Only a human sets this. `sdr.py preflight` requires decision=approved AND release_tag matching the current artifacts/release-manifest.json before it will report submission ready. Left null in the template.",
+ "package_signoff": {
+  "decision": "TBD: approved | rejected (a human sets this; the pipeline never does)",
+  "reviewer": "TBD: name and role of the provider signer",
+  "timestamp": "TBD: ISO-8601 timezone-aware datetime of signoff",
+  "release_tag": "TBD: release_tag from artifacts/release-manifest.json this signoff covers",
+  "package_manifest_sha256": "TBD: hash of the release manifest reviewed",
+  "notes": "TBD: scope of what was reviewed"
+ }
 }
