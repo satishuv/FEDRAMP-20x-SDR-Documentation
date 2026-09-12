@@ -1,0 +1,7 @@
+{
+ "_note": "EXAMPLE Wiz export shape, for illustration only. A customer produces the real file from their own Wiz tenant in their own environment; this repository holds no Wiz API client or credentials. Point profiles/common/offering-profile.json evidence_sources.wiz.export_path at the real file and set enabled=true to opt in.",
+ "observed_at": "2026-09-08T00:00:00Z",
+ "issues_by_severity": {"critical": 0, "high": 2, "medium": 10},
+ "config_findings_open": 4,
+ "vulnerabilities_open": 7
+}

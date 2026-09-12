@@ -44,6 +44,9 @@ _SERVICE_EVIDENCE = {
     "iam": ("Policy", "aws-iam"),
     "events": ("Configuration", "aws-eventbridge"),
     "codepipeline": ("Configuration", "aws-codepipeline"),
+    # Optional third-party evidence sources (opt-in; see thirdparty_adapters.py).
+    "crowdstrike": ("Log", "crowdstrike-falcon"),
+    "wiz": ("Report", "wiz"),
 }
 
 _DEFAULT_TYPE = "Report"
