@@ -60,7 +60,7 @@
   "sdr/json/sdr-class-b-extensions.json": "sha256:02b1c8b48c90b40e924613c1b51357cee5d1a93bdebf9e526116bd75c1f30f2b",
   "sdr/json/sdr-class-b.json": "sha256:3f492ecd76a8a229a923c63ed05ad08c4b0f81e43b918795974b024dd0b906e3",
   "sdr/json/sdr-class-b.oscal.json": "sha256:8673096d074df69ffd4b8f8cb797ab53f8ca148138e7d1fce16b03e1c7da34ae",
-  "traceability/applicability-decisions.json": "sha256:942f02f03361116a8c03b9b17033cc645e22ce16c08b838a625c02ac3e4608e4",
+  "traceability/applicability-decisions.json": "sha256:b5ed9b76b8bb6a633aae2266d2ad02119edcb5886c3724dde9341bb4bc8a9581",
   "traceability/assurance-graph.json": "sha256:623458f1104fe879b25aa2ce3d96a91d0a46cdcdec2ff2cb98e67bc94227ea35",
   "traceability/rev5-to-20x-crosswalk.csv": "sha256:54abb349fbf14d1d8ec15da7fe2de5615f132f14309dc3957a81563e5575db43"
  },

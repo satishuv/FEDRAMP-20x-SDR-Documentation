@@ -50,12 +50,33 @@ def coverage(graph):
     tbd_ksis = sum(1 for n in ksis if _is_tbd(n))
     pending_review = sum(1 for n in nodes
                          if n.get("review", {}).get("review_status") != "approved")
+
+    # Aggregate evidence lifecycle state across all evidence entries, so
+    # coverage reflects current/stale/expired/collection-error, not merely
+    # "has evidence / doesn't."
+    lifecycle = {"current": 0, "stale": 0, "expired": 0, "missing": 0,
+                 "collection-error": 0, "integrity-failed": 0,
+                 "superseded": 0, "unknown": 0}
+    total_evidence = 0
+    for n in nodes:
+        for e in (n.get("evidence") or []):
+            total_evidence += 1
+            fs = e.get("freshness_status")
+            cs = e.get("collection_status")
+            if cs and cs != "success":
+                lifecycle["collection-error"] += 1
+            elif fs in lifecycle:
+                lifecycle[fs] += 1
+            else:
+                lifecycle["unknown"] += 1
     return {
         "coverage_note": (
             "Coverage metrics, NOT a compliance percentage. 'evidence coverage' "
             "and 'verification coverage' describe completeness of the record, "
             "not whether the provider meets a requirement. A human assessor "
-            "determines compliance."),
+            "determines compliance. Lifecycle counts describe evidence freshness "
+            "state; stale/expired/missing evidence is a readiness signal, never "
+            "an automatic compliance failure."),
         "certification_class": graph.get("certification_class"),
         "rules_total": len(rules),
         "rules_with_evidence": rules_with_evidence,
@@ -65,6 +86,8 @@ def coverage(graph):
         "ksis_meeting_verification_minimum": ksis_meeting_min,
         "ksis_template_tbd": tbd_ksis,
         "nodes_pending_review": pending_review,
+        "evidence_total": total_evidence,
+        "evidence_lifecycle": lifecycle,
     }
 
 

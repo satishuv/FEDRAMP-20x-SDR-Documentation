@@ -54,17 +54,17 @@ def _class_rule_sets():
     return out
 
 
-def _collector_targets():
-    """Map of config-managed-rule target -> owning KSI, from the registry, so a
-    changed rule that touches a collector target can be traced to a collector."""
+def _ksi_collectors():
+    """Map ksi_id -> the collector checks that produce its evidence, from the
+    collector registry. Uses the registry structure the unused _collector_targets
+    walked, but keyed by KSI so a changed KSI resolves to its collectors."""
     reg = load(REGISTRY, {"ksis": {}})
-    target_to_ksi = {}
-    for kid, entry in reg.get("ksis", {}).items():
-        for check in entry.get("checks", []):
-            t = check.get("target")
-            if t:
-                target_to_ksi.setdefault(t, []).append(kid)
-    return target_to_ksi
+    out = {}
+    for kid, entry in (reg.get("ksis", {}) or {}).items():
+        checks = entry.get("checks", []) or []
+        out[kid] = [c.get("check_id") or c.get("target") or c.get("check") or c.get("name")
+                    for c in checks if isinstance(c, dict)]
+    return out
 
 
 def impact_for_rule(rid, change_type, class_sets, records):
@@ -73,8 +73,6 @@ def impact_for_rule(rid, change_type, class_sets, records):
     affected_records = [f"sdr/records/records-store.json#/frr/{rid}"] if in_records else []
     affected_outputs = [f"sdr/json/sdr-class-{c}.json" for c in CLASSES
                         if rid in class_sets[c]]
-    # A force change to MUST, a removal, or an applicability move always needs
-    # human review; a statement change needs review if the rule is in scope.
     requires_review = bool(affected_classes) or change_type in ("removed",)
     return {
         "rule_id": rid,
@@ -86,10 +84,29 @@ def impact_for_rule(rid, change_type, class_sets, records):
     }
 
 
+def impact_for_ksi(kid, change_type, ksi_collectors, records):
+    """Downstream impact of a changed KSI: changed KSI -> collector registry
+    (which collectors feed it) -> evidence -> KSI SDR node. This chain is real
+    because KSIs DO map to collectors in the registry; it does not invent an
+    FRR->KSI relationship the dataset lacks."""
+    collectors = ksi_collectors.get(kid, [])
+    in_records = kid in (records.get("ksi", {}) or {})
+    return {
+        "ksi_id": kid,
+        "change_type": change_type,
+        "affected_collectors": collectors,
+        "affected_records": [f"sdr/records/records-store.json#/ksi/{kid}"] if in_records else [],
+        "affected_outputs": [f"sdr/json/sdr-class-{c}.json" for c in CLASSES],
+        "requires_human_review": True,
+    }
+
+
 def compute(diff):
     class_sets = _class_rule_sets()
     records = load(RECORDS, {"frr": {}, "ksi": {}})
+    ksi_collectors = _ksi_collectors()
     impacts = []
+    ksi_impacts = []
 
     for rid in diff.get("rules_added", []):
         impacts.append(impact_for_rule(rid, "added", class_sets, records))
@@ -111,17 +128,33 @@ def compute(diff):
         imp["change_detail"] = c["changes"]
         impacts.append(imp)
 
+    # Individual KSI changes -> collectors -> evidence -> SDR node.
+    for kid in diff.get("ksis_added", []):
+        ksi_impacts.append(impact_for_ksi(kid, "added", ksi_collectors, records))
+    for kid in diff.get("ksis_removed", []):
+        ksi_impacts.append(impact_for_ksi(kid, "removed", ksi_collectors, records))
+    for c in diff.get("ksis_changed", []):
+        kid = c["id"]
+        change_types = sorted(c["changes"].keys())
+        imp = impact_for_ksi(kid, "+".join(change_types), ksi_collectors, records)
+        imp["change_detail"] = c["changes"]
+        ksi_impacts.append(imp)
+
     review_needed = [i["rule_id"] for i in impacts if i["requires_human_review"]]
+    ksi_review_needed = [i["ksi_id"] for i in ksi_impacts if i["requires_human_review"]]
     return {
         "impact_note": (
             "Downstream impact of upstream FedRAMP changes on this provider's "
-            "package. Reading-only; changes nothing and sets no status. Each "
-            "entry names the classes, records, and generated outputs a human "
-            "must re-review."),
+            "package. Reading-only; changes nothing and sets no status. FRR "
+            "changes map to classes/records/outputs; KSI changes map through the "
+            "collector registry to collectors/evidence/SDR node. No FRR->KSI "
+            "relationship is invented (the dataset carries none)."),
         "source_summary": diff.get("summary", {}),
         "impacts": impacts,
+        "ksi_impacts": ksi_impacts,
         "rules_requiring_review": sorted(review_needed),
-        "total_requiring_review": len(review_needed),
+        "ksis_requiring_review": sorted(ksi_review_needed),
+        "total_requiring_review": len(review_needed) + len(ksi_review_needed),
     }
 
 
