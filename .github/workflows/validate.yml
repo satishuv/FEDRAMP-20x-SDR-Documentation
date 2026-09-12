@@ -39,6 +39,7 @@ jobs:
           python automation/exporters/oscal_export.py
           python validation/scripts/build_docx.py
           python validation/scripts/build_crosswalk.py
+          python validation/scripts/build_assurance_graph.py
       - name: Refuse hand-edited generated files
         run: |
           git diff --exit-code -- . ':(exclude)*.docx' || {
@@ -54,6 +55,8 @@ jobs:
         run: python validation/scripts/validate_package.py
       - name: Run offline package generator tests (no AWS)
         run: python validation/scripts/test_package_build.py
+      - name: Validate the assurance graph (full-chain traceability)
+        run: python validation/scripts/validate_assurance_graph.py
       - name: Run offline collector tests (no AWS account needed)
         run: python automation/collectors/test_collectors.py
       - name: Run offline collector scale + fault-injection tests (no AWS)
