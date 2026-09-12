@@ -124,3 +124,46 @@ def verify_integrity(evidence, source_fact):
 def is_placeholder_uri(uri):
     """A template/placeholder evidence location, not a real artifact URI."""
     return bool(uri) and uri.startswith("sdr://placeholder/")
+
+
+def collector_health(collector, *, last_success=None, last_error=None,
+                     duration_ms=None, objects_collected=None,
+                     regions_expected=None, regions_collected=None):
+    """Build a collector-health record so a broken collection is
+    distinguishable from a clean security posture. A collector that errored, or
+    saw fewer regions than expected, is 'degraded'/'failed', never silently
+    'no findings'."""
+    if last_error:
+        status = "failed"
+    elif (regions_expected is not None and regions_collected is not None
+          and regions_collected < regions_expected):
+        status = "degraded"
+    elif last_success:
+        status = "complete"
+    else:
+        status = "not-run"
+    return {
+        "collector": collector,
+        "status": status,
+        "last_success": last_success,
+        "last_error": last_error,
+        "duration_ms": duration_ms,
+        "objects_collected": objects_collected,
+        "regions_expected": regions_expected,
+        "regions_collected": regions_collected,
+        "coverage_status": ("complete" if status == "complete" else status),
+    }
+
+
+def supersede(history, new_evidence, now=None):
+    """Append new evidence to an immutable history list without dropping the
+    prior entries: the newest entry records `supersedes` pointing at the prior
+    content hash, so continuity is provable rather than overwritten. Returns a
+    new history list (does not mutate the input)."""
+    history = list(history or [])
+    prior_hash = history[-1].get("content_hash") if history else None
+    entry = dict(new_evidence)
+    entry.setdefault("content_hash", new_evidence.get("xEvidenceContentHash"))
+    entry["supersedes"] = prior_hash
+    history.append(entry)
+    return history

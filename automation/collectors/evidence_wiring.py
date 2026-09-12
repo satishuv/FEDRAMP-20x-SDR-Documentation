@@ -187,10 +187,22 @@ class EvidenceAdapter:
     """Base class for an evidence source. Subclasses set `name` and implement
     `collect(raw)`, returning an iterable of collector-shaped fact dicts:
         {service, check, status, detail, region, observed_at}
-    The fact is hashed and mapped to an SDR evidence object downstream."""
+    The fact is hashed and mapped to an SDR evidence object downstream.
+
+    Adapter contract v2 (metadata only, backward compatible): subclasses may
+    declare `version`, `source_type`, `supported_evidence_types`, and
+    `freshness_policy_days`. describe() returns that metadata so a caller can
+    enumerate adapter capabilities without instantiating a collection, and
+    health() returns a default healthy record a real adapter overrides. None of
+    this makes an adapter decide PASS/FAIL: adapters gather facts, validators
+    evaluate, humans assess."""
 
     name = "abstract"
     service = "adapter"
+    version = "1.0.0"
+    source_type = "generic"
+    supported_evidence_types = ["Report"]
+    freshness_policy_days = 1
 
     def collect(self, raw):  # pragma: no cover - abstract
         raise NotImplementedError
@@ -198,6 +210,28 @@ class EvidenceAdapter:
     def to_evidence(self, raw, location_base=None):
         """Run collect() and map every fact to an SDR evidence object."""
         return facts_to_evidence(list(self.collect(raw)), location_base)
+
+    def describe(self):
+        """Adapter capability metadata (contract v2). Pure, no collection."""
+        return {
+            "name": self.name,
+            "version": self.version,
+            "service": self.service,
+            "source_type": self.source_type,
+            "supported_evidence_types": list(self.supported_evidence_types),
+            "freshness_policy_days": self.freshness_policy_days,
+        }
+
+    def health(self):
+        """Default health record. A real adapter overrides this with its last
+        collection outcome; the default distinguishes 'not yet run' from a
+        failure so a broken collector is never read as clean posture."""
+        return {
+            "adapter": self.name,
+            "status": "not-run",
+            "last_success": None,
+            "last_error": None,
+        }
 
 
 def register_adapter(adapter):
