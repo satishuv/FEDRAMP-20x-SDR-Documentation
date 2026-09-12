@@ -66,76 +66,8 @@ jobs:
             exit 1
           }
           echo "Reproducibility gate: byte-identical across two builds."
-      - name: Validate (schema, coverage, minimums, hygiene, content fidelity)
-        run: python validation/scripts/validate_sdr.py
-      - name: Run offline SDR semantic round-trip tests (no AWS)
-        run: python validation/scripts/test_sdr_semantic_roundtrip.py
-      - name: Validate Certification Package artifacts (CPO, OCR) against official schemas
-        run: python validation/scripts/validate_package.py
-      - name: Run offline package generator tests (no AWS)
-        run: python validation/scripts/test_package_build.py
-      - name: Validate the assurance graph (full-chain traceability)
-        run: python validation/scripts/validate_assurance_graph.py
-      - name: Validate the human review register (no machine-authored approvals)
-        run: python validation/scripts/validate_reviews.py
-      - name: Validate cross-artifact package consistency
-        run: python validation/scripts/validate_package_consistency.py
-      - name: Test the CLI subcommands and adapter scaffold
-        run: python tests/test_cli.py
-      - name: Run offline review-register tests (no AWS)
-        run: python validation/scripts/test_reviews.py
-      - name: Run adversarial suite (gates detect deliberate tampering)
-        run: python tests/adversarial/run_adversarial.py
-      - name: Run end-to-end adversarial tampering test (real validator)
-        run: python tests/adversarial/test_e2e_tampering.py
-      - name: Run offline collector tests (no AWS account needed)
-        run: python automation/collectors/test_collectors.py
-      - name: Run offline collector scale + fault-injection tests (no AWS)
-        run: python automation/collectors/test_collectors_scale.py
-      - name: Run offline collector fixture-scale tests (AWS-shaped, no AWS)
-        run: python automation/collectors/test_collectors_fixtures.py
-      - name: Run offline multi-account fan-out tests (no AWS)
-        run: python automation/collectors/test_multi_account.py
-      - name: Run offline pre-fill tests (no AWS account needed)
-        run: python automation/prefill/test_prefill.py
-      - name: Run offline AI narrative-drafter boundary tests (no AWS, no model)
-        run: python automation/ai/test_draft_narratives.py
-      - name: Run offline AI finding-explainer tests (no AWS, no model)
-        run: python automation/ai/test_explain_findings.py
-      - name: Run offline AI evidence-rollup tests (no AWS, no model)
-        run: python automation/ai/test_rollup_evidence.py
-      - name: Run offline AI over-claim-guard tests (no AWS, no model)
-        run: python automation/ai/test_review_overclaim.py
-      - name: Run offline AI KSI-mapping-suggester tests (no AWS, no model)
-        run: python automation/ai/test_suggest_ksi_mapping.py
-      - name: Run offline metric-appender tests (no AWS account needed)
-        run: python automation/metrics/test_append_metrics.py
-      - name: Run offline longitudinal metric-history tests (no AWS)
-        run: python automation/metrics/test_metric_history_longitudinal.py
-      - name: Run offline Config custom-rule handler tests (no AWS, Bucket B)
-        run: python automation/config-rules/test_evidence_existence_rule.py
-      - name: Run offline Config-rule deploy-template generator tests (no AWS)
-        run: python automation/config-rules/deploy/test_generate_templates.py
-      - name: Run offline durable-store provisioner tests (no AWS)
-        run: python automation/storage/test_provision_store.py
-      - name: Run offline AI Bedrock-backend boundary tests (no AWS, no model)
-        run: python automation/ai/test_bedrock_boundary.py
-      - name: Run offline dataset-diff tests (no AWS)
-        run: python validation/scripts/test_dataset_diff.py
-      - name: Run offline change-impact tests (no AWS)
-        run: python validation/scripts/test_change_impact.py
-      - name: Run offline applicability-decision tests (no AWS)
-        run: python validation/scripts/test_applicability.py
-      - name: Run offline OSCAL exporter tests (no AWS)
-        run: python automation/exporters/test_oscal_export.py
-      - name: Run offline evidence-wiring tests (no AWS)
-        run: python automation/collectors/test_evidence_wiring.py
-      - name: Run offline third-party evidence adapter tests (Falcon, Wiz; no network, no creds)
-        run: python automation/collectors/test_thirdparty_adapters.py
-      - name: Run offline evidence lifecycle + integrity tests (no AWS)
-        run: python automation/collectors/test_evidence_lifecycle.py
-      - name: Run offline shift-left policy tests (no AWS, no opa)
-        run: python examples/shift-left/test_run_policy.py
+      - name: Validate (full gate + offline test suite, CI parity via sdr.py)
+        run: python sdr.py validate
       - name: Refuse a stale check catalog
         run: |
           python automation/sdrscan/sdrscan.py --write-catalog

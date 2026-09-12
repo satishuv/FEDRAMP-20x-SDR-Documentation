@@ -18,9 +18,9 @@ not an aspiration. Legend: implemented, partial, not applicable.
 | MUST / SHOULD / MAY semantics | keywords in rules | not semantic | in text | implemented, force-aware | Class B SHOULD is advisory; Class C/D MUST shortfalls are hard build failures (`ksi_test_minimums`, `evidence_linkage_for_populated_musts`) |
 | Official JSON schemas | provided | n/a | n/a | 9 pinned, version-guarded | SDR, common, CPO, OCR, incident, SCN, accepted-vuln, VDR, historical-VER; guarded by `pinned_schema_version_guard` |
 | Generate a CSP SDR | no | no | no | implemented | The core differentiator |
-| Full Certification Package | no | no | no | implemented | SDR + CPO + OCR + SCG + event artifacts, each schema-validated (`validate_package.py`) |
+| Full Certification Package | no | no | no | partial | SDR + CPO + OCR + event artifacts are schema-validated (`validate_package.py`); the SCG is a Markdown scaffold (FedRAMP publishes no JSON schema for it, so it is not schema-validated); certification data sharing is partial (no trust center, no Class C availability service); Class A External Assessment Materials are modeled as references, not stored |
 | Provider facts / evidence store | no | no | no | implemented | Editable `records-store.json`; facts, not status, are automated |
-| Evidence adapter interface | no | no | no | implemented | `EvidenceAdapter` (collect/normalize/hash/evaluate) + registry; AWS collectors and opt-in CrowdStrike Falcon and Wiz adapters |
+| Evidence adapter interface | no | no | no | implemented | `EvidenceAdapter` v2 (collect/describe/health) + registry; adapters gather facts only. Hashing happens downstream, validators evaluate, humans assess. AWS collectors plus opt-in CrowdStrike Falcon and Wiz adapters |
 | Evidence hashing | no | no | no | implemented | Every evidence entry carries a SHA-256 `xEvidenceContentHash` |
 | Requirements-to-evidence traceability | partial (rule to KSI) | no | no | implemented | Every SDR assertion is a structured object (`xFedRampSemantic`), presence-gated by `semantic_completeness_cr26` |
 | KSI implementation workflow | no | guidance | guidance | implemented | All 46 KSIs carry implementation/validation/tests/evidence, metrics, and the MOT window |

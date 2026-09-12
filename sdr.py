@@ -61,6 +61,52 @@ BUILD_STEPS = [
     ("build_visualization.py", "self-contained HTML assurance-graph view"),
 ]
 
+# The authoritative validation gate. `cmd_validate` runs every entry, and CI
+# calls `python sdr.py validate` rather than listing scripts of its own, so the
+# local gate and the CI gate cannot drift. A local `sdr.py release` therefore
+# fails whenever CI would fail. Paths are relative to the repository root.
+VALIDATION_GATE = [
+    ("validation/scripts/validate_sdr.py", "SDR schema, coverage, minimums, hygiene, content fidelity"),
+    ("validation/scripts/validate_package.py", "CPO/OCR against official schemas"),
+    ("validation/scripts/validate_assurance_graph.py", "assurance graph (full-chain traceability)"),
+    ("validation/scripts/validate_reviews.py", "human review register (no machine-authored approvals)"),
+    ("validation/scripts/validate_package_consistency.py", "cross-artifact package consistency"),
+]
+
+# The full offline test suite CI runs. Same source of truth as CI.
+TEST_SUITE = [
+    "validation/scripts/test_sdr_semantic_roundtrip.py",
+    "validation/scripts/test_package_build.py",
+    "tests/test_cli.py",
+    "validation/scripts/test_reviews.py",
+    "tests/adversarial/run_adversarial.py",
+    "tests/adversarial/test_e2e_tampering.py",
+    "automation/collectors/test_collectors.py",
+    "automation/collectors/test_collectors_scale.py",
+    "automation/collectors/test_collectors_fixtures.py",
+    "automation/collectors/test_multi_account.py",
+    "automation/prefill/test_prefill.py",
+    "automation/ai/test_draft_narratives.py",
+    "automation/ai/test_explain_findings.py",
+    "automation/ai/test_rollup_evidence.py",
+    "automation/ai/test_review_overclaim.py",
+    "automation/ai/test_suggest_ksi_mapping.py",
+    "automation/metrics/test_append_metrics.py",
+    "automation/metrics/test_metric_history_longitudinal.py",
+    "automation/config-rules/test_evidence_existence_rule.py",
+    "automation/config-rules/deploy/test_generate_templates.py",
+    "automation/storage/test_provision_store.py",
+    "automation/ai/test_bedrock_boundary.py",
+    "validation/scripts/test_dataset_diff.py",
+    "validation/scripts/test_change_impact.py",
+    "validation/scripts/test_applicability.py",
+    "automation/exporters/test_oscal_export.py",
+    "automation/collectors/test_evidence_wiring.py",
+    "automation/collectors/test_thirdparty_adapters.py",
+    "automation/collectors/test_evidence_lifecycle.py",
+    "examples/shift-left/test_run_policy.py",
+]
+
 REQUIRED_MODULES = [
     ("jsonschema", "jsonschema"),
     ("referencing", "referencing"),
@@ -166,14 +212,37 @@ def cmd_validate(args):
         return 2
     out(f"Validating the Class {current_class()} record.")
     out(RULE)
-    code = run(os.path.join(SCRIPTS, "validate_sdr.py"), label="validate_sdr.py")
-    if code != 0:
+    failures = []
+
+    for rel, label in VALIDATION_GATE:
+        code = run(os.path.join(BASE, rel), label=label)
+        if code != 0:
+            failures.append(rel)
+
+    run_tests = not getattr(args, "no_tests", False)
+    if run_tests:
         out()
-        out("The gate failed. Nothing ships until hard failures reach 0.")
-        out("Fix the cause in sdr/records/records-store.json, then rebuild. "
-            "Never edit a generated file to make a check pass; "
-            "content_fidelity_against_dataset exists to catch exactly that.")
-    return code
+        out("Offline test suite")
+        out(RULE)
+        for rel in TEST_SUITE:
+            code = run(os.path.join(BASE, rel), label=os.path.basename(rel))
+            if code != 0:
+                failures.append(rel)
+
+    out()
+    if failures:
+        out(f"The gate failed: {len(failures)} check(s) did not pass.")
+        for rel in failures:
+            out(f"    - {rel}")
+        out("Nothing ships until every gate and test passes. Fix the cause in "
+            "sdr/records/records-store.json, then rebuild. Never edit a "
+            "generated file to make a check pass; content_fidelity_against_dataset "
+            "exists to catch exactly that.")
+        return 1
+    scope = "gate + full offline test suite" if run_tests else "gate only"
+    out(f"All validation passed ({scope}). This is the same gate CI runs; a "
+        "passing local run means CI would pass on the same tree.")
+    return 0
 
 
 def cmd_scan(args):
@@ -281,21 +350,21 @@ def cmd_review(args):
 
 
 def cmd_release(args):
-    """Produce and report a release: build, verify consistency, print the tag.
+    """Produce and report a release: build, run the FULL validation gate and
+    test suite, then print the tag.
 
-    Does not tag git or publish anything; it prints the release manifest tag
-    and confirms the package is internally consistent and reproducible-shaped.
+    Runs the same gate CI runs (via cmd_validate), so a local `sdr.py release`
+    can never succeed when CI would fail. Does not tag git or publish anything.
     """
     code = cmd_build(args)
     if code != 0:
         out("Build failed; not a releasable state.")
         return code
-    consistency = os.path.join(SCRIPTS, "validate_package_consistency.py")
-    if os.path.exists(consistency):
-        code = run(consistency, [], label="validate_package_consistency.py")
-        if code != 0:
-            out("Cross-artifact consistency failed; not releasable.")
-            return code
+    out()
+    code = cmd_validate(args)
+    if code != 0:
+        out("Validation gate failed; not releasable.")
+        return code
     manifest = load_json(os.path.join(BASE, "artifacts", "release-manifest.json"))
     out()
     out("Release")
@@ -310,6 +379,102 @@ def cmd_release(args):
         "passing release gate means well-formed, consistent and reproducible; "
         "certification is an accredited assessor and authorizing-body decision.")
     out(f"To tag: git tag {manifest.get('release_tag', '<tag>') if manifest else '<tag>'}")
+    return 0
+
+
+def cmd_preflight(args):
+    """FedRAMP submission preflight: check for submission BLOCKERS.
+
+    Structural validity (the build gate) is necessary but not sufficient to
+    submit. FedRAMP requires the initial package to represent the current
+    offering and be freshly provider-verified. This reports blockers; it never
+    says "compliant" and never changes a status. Grounded in the pinned dataset:
+      FRC-APP-FCP (MUST): fresh initial package verified/validated by the
+        provider within the previous 7 days.
+      FRC-CLA-ASF / FRC-CLA-EAM (MUST, Class A): alternative-framework
+        assessment within the past 12 months, and External Assessment Materials
+        supplied.
+    """
+    import datetime as _dt
+    offering = load_json(OFFERING_PROFILE) or {}
+    cls = current_class().lower()
+    blockers = []
+    warnings = []
+
+    verified = offering.get("provider_verified_at")
+    if not verified or str(verified).startswith("TBD"):
+        blockers.append("provider_verified_at is not set (FRC-APP-FCP requires "
+                        "verification/validation within the previous 7 days)")
+    else:
+        try:
+            when = _dt.datetime.fromisoformat(str(verified).replace("Z", "+00:00"))
+            age_days = (_dt.datetime.now(_dt.timezone.utc) - when).days
+            if age_days > 7:
+                blockers.append(f"provider_verified_at is {age_days} days old; "
+                                f"FRC-APP-FCP requires within the previous 7 days")
+        except ValueError:
+            blockers.append(f"provider_verified_at is not a valid ISO datetime: {verified}")
+
+    if cls == "a":
+        ext = offering.get("external_assessment") or {}
+        if not ext or all(str(v).startswith("TBD") for v in [ext.get("framework"), ext.get("assessment_date")]):
+            blockers.append("Class A: external_assessment not populated "
+                            "(FRC-CLA-ASF/EAM require alternative-framework "
+                            "assessment materials from the past 12 months)")
+        else:
+            adate = ext.get("assessment_date")
+            if adate and not str(adate).startswith("TBD"):
+                try:
+                    when = _dt.date.fromisoformat(adate)
+                    if (_dt.date.today() - when).days > 365:
+                        blockers.append(f"Class A: external assessment {adate} is "
+                                        f"older than 12 months (FRC-CLA-ASF)")
+                except ValueError:
+                    blockers.append(f"Class A: assessment_date not a valid date: {adate}")
+            if not ext.get("materials"):
+                blockers.append("Class A: external_assessment.materials empty "
+                                "(FRC-CLA-EAM: supply the assessment materials as references)")
+
+    records_path = os.path.join(BASE, "sdr", "records", "records-store.json")
+    try:
+        with open(records_path, encoding="utf-8") as f:
+            raw = f.read()
+        tbd = raw.count("TBD")
+        placeholders = raw.count("sdr://placeholder/")
+        if tbd:
+            warnings.append(f"{tbd} unresolved TBD placeholder(s) in the record store")
+        if placeholders:
+            warnings.append(f"{placeholders} unresolved sdr://placeholder/ evidence URI(s)")
+    except OSError:
+        warnings.append("records-store.json not readable")
+
+    register = load_json(os.path.join(BASE, "sdr", "reviews", "review-register.json")) or {}
+    reviews = register.get("reviews", [])
+    approved = [r for r in reviews if r.get("decision") == "approved"]
+    if not approved:
+        blockers.append("no human review recorded as approved in the review "
+                        "register (submission requires provider signoff)")
+
+    out()
+    out(f"FedRAMP submission preflight (Class {cls.upper()})")
+    out(RULE)
+    if blockers:
+        out(f"SUBMISSION BLOCKERS ({len(blockers)}):")
+        for b in blockers:
+            out(f"    [BLOCK] {b}")
+    if warnings:
+        out(f"Warnings ({len(warnings)}):")
+        for w in warnings:
+            out(f"    [WARN]  {w}")
+    out()
+    if blockers:
+        out("NOT submission ready. Resolve the blockers above. This is a "
+            "readiness check, not a compliance determination; FedRAMP and its "
+            "recognized assessor determine compliance.")
+        return 1
+    out("Submission ready: no blockers found. This means the package is fresh, "
+        "complete, and provider-signed off. It does NOT mean compliant or "
+        "certified; that is FedRAMP's determination.")
     return 0
 
 
@@ -415,7 +580,9 @@ def build_parser():
     sub = p.add_subparsers(dest="command")
 
     sub.add_parser("build", help="regenerate every deliverable from the record store")
-    sub.add_parser("validate", help="run the build gate; 0 hard failures required to ship")
+    val_p = sub.add_parser("validate", help="run the full gate + offline test suite (CI parity)")
+    val_p.add_argument("--no-tests", action="store_true",
+                       help="run validators only, skip the offline test suite (faster)")
 
     scan = sub.add_parser("scan", help="run the readiness scanner (reports, does not gate)")
     scan.add_argument("--only-fails", action="store_true",
@@ -424,6 +591,8 @@ def build_parser():
     all_p = sub.add_parser("all", help="build, validate, scan, then summarize")
     all_p.add_argument("--only-fails", action="store_true",
                        help="passed through to the scanner")
+    all_p.add_argument("--no-tests", action="store_true",
+                       help="skip the offline test suite in the validate step")
 
     sub.add_parser("clean", help="remove caches and scanner reports")
 
@@ -435,7 +604,10 @@ def build_parser():
     diff_p.add_argument("old", nargs="?", help="old dataset JSON (optional)")
     diff_p.add_argument("new", nargs="?", help="new dataset JSON (optional)")
     sub.add_parser("review", help="report the human review register (read-only)")
-    sub.add_parser("release", help="build, verify consistency, print the release tag")
+    rel_p = sub.add_parser("release", help="build, run the full CI gate, print the release tag")
+    rel_p.add_argument("--no-tests", action="store_true",
+                       help="skip the offline test suite in the validate step")
+    sub.add_parser("preflight", help="check FedRAMP submission blockers (read-only)")
     return p
 
 
@@ -447,6 +619,8 @@ def main(argv=None):
         return 0
     if not hasattr(args, "only_fails"):
         args.only_fails = False
+    if not hasattr(args, "no_tests"):
+        args.no_tests = False
     handlers = {
         "build": cmd_build,
         "validate": cmd_validate,
@@ -457,6 +631,7 @@ def main(argv=None):
         "diff": cmd_diff,
         "review": cmd_review,
         "release": cmd_release,
+        "preflight": cmd_preflight,
     }
     return handlers[args.command](args)
 

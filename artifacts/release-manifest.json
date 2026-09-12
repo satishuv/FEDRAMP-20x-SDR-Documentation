@@ -47,7 +47,9 @@
   "package/cpo/cpo.md": "sha256:6ccb94a8ac8c199d757d42553d1391d078c6d9fd6b96e117ca93ec9ed3c19cd5",
   "package/events/accepted-vulnerabilities-example.json": "sha256:976ee1c98c7b6ad3198806fa8c8acdb128ce1bffd8a1b58085476fd16bcd2e00",
   "package/events/historical-ver-activity-example.json": "sha256:af7982abac7fece1116a71119e5c2a43909c8e5a82e414194cf4b22a4909681e",
-  "package/events/incident-report-example.json": "sha256:fcad892873d2a94217864b93c0c4e57fc2e7c4d56500b3de721e790f26a69577",
+  "package/events/incident-report-final-example.json": "sha256:2e7a40a58e34085620a4514d0af48c46e2d8b0b2388527620a58962dde5bab3a",
+  "package/events/incident-report-initial-example.json": "sha256:5ffb0fdbd8cd9f1632ecca08d4bc03bf67c83c5f0300eea83efcd19b82062b26",
+  "package/events/incident-report-ongoing-example.json": "sha256:e3a97e497af6f2b16fe528cb1f4aa0d9941b366f348215c0595097b5ad2c5f70",
   "package/events/significant-change-notification-example.json": "sha256:4d492667ea8e0e86d904ea030658cde60d73b43188cee45530f774905592728e",
   "package/events/vulnerability-detail-report-example.json": "sha256:f0098b2efbb1a276df48b8509f48408f8421ec28d4c5815ee525531c0c773897",
   "package/ocr/ocr-example.json": "sha256:9c5686660493baeca002a058fc3d37446472cb7ca05cd80b0f1f76421649e314",
@@ -60,7 +62,7 @@
   "traceability/assurance-graph.json": "sha256:fbfafecd9fe2fe1807876efbdd79daffb937c7476d109f8cf8474bb9f81c465a",
   "traceability/rev5-to-20x-crosswalk.csv": "sha256:54abb349fbf14d1d8ec15da7fe2de5615f132f14309dc3957a81563e5575db43"
  },
- "artifact_count": 16,
+ "artifact_count": 18,
  "release_tag": "v1.0.0-cr26-2026.07.14.01",
  "build": {
   "deterministic": true,

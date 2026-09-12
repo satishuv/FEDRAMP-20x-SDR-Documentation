@@ -20,6 +20,22 @@
   "incident_contact": "TBD: Information has not been provided",
   "assessor": "TBD: Information has not been provided",
   "evidence_retention": "TBD: Information has not been provided",
+  "provider_verified_at": "TBD: ISO-8601 datetime the provider verified and validated the current offering. FRC-APP-FCP requires the initial package to be verified/validated within the previous 7 days of submission. Left as TBD in the template so `sdr.py preflight` reports it as a blocker until a provider fills it.",
+  "external_assessment": {
+    "note": "Required for Class A (FRC-CLA-ASF, FRC-CLA-EAM). Model the alternative-framework assessment as references; do NOT store confidential reports in this repository. All values TBD in the template.",
+    "framework": "TBD: SOC 2 Type II | FedRAMP Ready | GovRAMP | other alternative security framework",
+    "assessment_date": "TBD: YYYY-MM-DD (must be within the previous 12 months per FRC-CLA-ASF)",
+    "assessor": "TBD: name of the assessing organization",
+    "materials": [],
+    "materials_item_schema": {
+      "type": "e.g. SOC2-TypeII-report | FedRAMP-Ready-package | bridge-letter",
+      "uri": "location reference (the report itself is NOT stored in this repository)",
+      "sha256": "hash of the referenced material",
+      "bridge_or_gap_letter_uri": "if applicable",
+      "next_assessment_date": "YYYY-MM-DD",
+      "supplemental_evidence_uri": "if applicable"
+    }
+  },
   "sdr_version": "0.1.0",
   "schema_version": "2026-06-24",
   "dataset_version": "2026.07.14.01",
