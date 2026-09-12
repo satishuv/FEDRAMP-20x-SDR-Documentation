@@ -70,6 +70,28 @@ def _index_ksis(dataset):
     return per_family, total
 
 
+def _index_ksi_detail(dataset):
+    """Return {ksi_id: {statement, controls}} for individual-KSI change
+    detection. Statement text and related NIST controls are what materially
+    change; counts alone hide a reworded or re-mapped indicator."""
+    out = {}
+    ksi = dataset.get("KSI", {})
+    for fam, body in ksi.items():
+        if not isinstance(body, dict):
+            continue
+        inds = body.get("indicators", body)
+        if not isinstance(inds, dict):
+            continue
+        for kid, entry in inds.items():
+            if not re.match(r"^KSI-", kid) or not isinstance(entry, dict):
+                continue
+            out[kid] = {
+                "statement": entry.get("statement") or entry.get("text"),
+                "controls": entry.get("controls") or entry.get("nist_controls") or [],
+            }
+    return out
+
+
 def diff_datasets(old, new):
     old_rules = _index_rules(old)
     new_rules = _index_rules(new)
@@ -101,17 +123,39 @@ def diff_datasets(old, new):
         if old_fam.get(fam, 0) != new_fam.get(fam, 0)
     }
 
+    # Individual KSI changes (statement/controls), not merely count deltas.
+    old_ksi = _index_ksi_detail(old)
+    new_ksi = _index_ksi_detail(new)
+    ksis_added = sorted(set(new_ksi) - set(old_ksi))
+    ksis_removed = sorted(set(old_ksi) - set(new_ksi))
+    ksis_changed = []
+    for kid in sorted(set(old_ksi) & set(new_ksi)):
+        o, n = old_ksi[kid], new_ksi[kid]
+        kd = {}
+        if (o.get("statement") or "") != (n.get("statement") or ""):
+            kd["statement"] = {"old": o.get("statement"), "new": n.get("statement")}
+        if (o.get("controls") or []) != (n.get("controls") or []):
+            kd["controls"] = {"old": o.get("controls"), "new": n.get("controls")}
+        if kd:
+            ksis_changed.append({"id": kid, "changes": kd})
+
     return {
         "rules_added": added,
         "rules_removed": removed,
         "rules_changed": changed,
         "ksi_total": {"old": old_total, "new": new_total},
         "ksi_family_changes": ksi_family_changes,
+        "ksis_added": ksis_added,
+        "ksis_removed": ksis_removed,
+        "ksis_changed": ksis_changed,
         "summary": {
             "added": len(added),
             "removed": len(removed),
             "changed": len(changed),
             "force_changes": sum(1 for c in changed if "force" in c["changes"]),
+            "ksis_added": len(ksis_added),
+            "ksis_removed": len(ksis_removed),
+            "ksis_changed": len(ksis_changed),
         },
     }
 

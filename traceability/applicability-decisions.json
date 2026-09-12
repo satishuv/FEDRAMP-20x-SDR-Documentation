@@ -1,5 +1,5 @@
 {
- "decisions_note": "Applicability decision for every FedRAMP Rule in the dataset, for this certification class. Included AND excluded rules are recorded with the exact reason, so absence is provable, not silent. Reasons use only real CR26 fields (affects, subset_applicability, varies_by_class); the dataset carries no per-rule effective/status field, so none is claimed.",
+ "decisions_note": "Applicability decision for every FedRAMP Rule in the dataset, for this certification class. Included AND excluded rules are recorded with the exact reason, so absence is provable, not silent. Reasons use only real CR26 fields (affects, subset_applicability, varies_by_class). Document-level status/effective is surfaced from the canonical family metadata (FRR info.status/effective, KSI status); the dataset carries NO per-rule effective/status field, so none is invented at the rule level.",
  "certification_class": "B",
  "dataset_version": "2026.07.14.01",
  "total_rules": 234,
@@ -13,8 +13,28 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-01-05",
+     "maintain": "2026-01-05",
+     "grace": {
+      "default": "2026-07-01",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "AFC-CSO-CRA",
@@ -23,8 +43,28 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-01-05",
+     "maintain": "2026-01-05",
+     "grace": {
+      "default": "2026-07-01",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "AFC-CSO-EMR",
@@ -33,8 +73,28 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-01-05",
+     "maintain": "2026-01-05",
+     "grace": {
+      "default": "2026-07-01",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "AFC-CSO-IMA",
@@ -43,8 +103,28 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-01-05",
+     "maintain": "2026-01-05",
+     "grace": {
+      "default": "2026-07-01",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "AFC-CSO-INB",
@@ -53,8 +133,28 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-01-05",
+     "maintain": "2026-01-05",
+     "grace": {
+      "default": "2026-07-01",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "AFC-CSO-NOC",
@@ -63,8 +163,28 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-01-05",
+     "maintain": "2026-01-05",
+     "grace": {
+      "default": "2026-07-01",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "AFC-CSO-RCV",
@@ -73,8 +193,28 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-01-05",
+     "maintain": "2026-01-05",
+     "grace": {
+      "default": "2026-07-01",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "AFC-CSO-TFG",
@@ -83,8 +223,28 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-01-05",
+     "maintain": "2026-01-05",
+     "grace": {
+      "default": "2026-07-01",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "CCM-OCR-AFS",
@@ -93,8 +253,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "OCR",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "CCM-OCR-AVL",
@@ -103,8 +272,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "OCR",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "CCM-OCR-FBM",
@@ -113,8 +291,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "OCR",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "CCM-OCR-LSI",
@@ -123,8 +310,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "OCR",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "CCM-OCR-NRD",
@@ -133,8 +329,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "OCR",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "CCM-OCR-RPS",
@@ -143,8 +348,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "OCR",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "CCM-OCR-SOR",
@@ -153,8 +367,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "OCR",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "CCM-QTR-ACT",
@@ -163,8 +386,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "QTR",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "CCM-QTR-MTG",
@@ -173,8 +405,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + class_variant"
+   "reason": "20x + Program + Class B + class_variant",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "QTR",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "CCM-QTR-NID",
@@ -183,8 +424,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "QTR",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "CCM-QTR-NRD",
@@ -193,8 +443,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "QTR",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "CCM-QTR-REG",
@@ -203,8 +462,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "QTR",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "CCM-QTR-RTP",
@@ -213,8 +481,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "QTR",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "CCM-QTR-RTR",
@@ -223,8 +500,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "QTR",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "CCM-QTR-SAR",
@@ -233,8 +519,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "QTR",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "CCM-QTR-SCR",
@@ -243,8 +538,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "QTR",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "CCM-QTR-SRR",
@@ -253,8 +557,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "QTR",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "CDS-CSO-AVR",
@@ -263,8 +576,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + class_variant"
+   "reason": "20x + Program + Class B + class_variant",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "CDS-CSO-CBF",
@@ -273,8 +595,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "CDS-CSO-FID",
@@ -283,8 +614,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "CDS-CSO-FRC",
@@ -293,8 +633,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "CDS-CSO-HAD",
@@ -303,8 +652,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "CDS-CSO-IRP",
@@ -313,8 +671,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "CDS-CSO-PSM",
@@ -323,8 +690,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + class_variant"
+   "reason": "20x + Program + Class B + class_variant",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "CDS-CSO-PUB",
@@ -333,8 +709,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "CDS-CSO-RIS",
@@ -343,8 +728,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "CDS-CSO-RPS",
@@ -353,8 +747,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "CDS-CSO-SVC",
@@ -363,8 +766,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "CDS-CSO-UTC",
@@ -373,8 +785,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "CDS-TRC-AAI",
@@ -383,8 +804,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "TRC",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "CDS-TRC-ACL",
@@ -393,8 +823,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "TRC",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "CDS-TRC-HMR",
@@ -403,8 +842,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "TRC",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "CDS-TRC-PAC",
@@ -413,8 +861,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "TRC",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "CDS-TRC-SSM",
@@ -423,8 +880,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "TRC",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "CDS-TRC-USH",
@@ -433,8 +899,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "TRC",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "CDS-UTC-AAD",
@@ -443,8 +918,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "UTC",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "CDS-UTC-AGA",
@@ -453,8 +937,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "UTC",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "CMU-CSO-CAT",
@@ -463,8 +956,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "CMU-CSO-CMD",
@@ -473,8 +975,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "CMU-CSO-UVM",
@@ -483,8 +994,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + class_variant"
+   "reason": "20x + Program + Class B + class_variant",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "CPO-CSO-MTD",
@@ -493,8 +1013,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "CPO-CSO-OSA",
@@ -503,8 +1032,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + class_variant"
+   "reason": "20x + Program + Class B + class_variant",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "CPO-CSO-OVR",
@@ -513,8 +1051,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "CPO-CSX-CPM",
@@ -523,8 +1070,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + class_variant"
+   "reason": "20x + Program + Class B + class_variant",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSX",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "FRC-APP-AFC",
@@ -533,8 +1089,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "APP",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "FRC-APP-FCP",
@@ -543,8 +1108,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "APP",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "FRC-APP-FIA",
@@ -553,8 +1127,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + class_variant"
+   "reason": "20x + Program + Class B + class_variant",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "APP",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "FRC-APP-MLF",
@@ -563,8 +1146,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "APP",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "FRC-APP-NTP",
@@ -573,8 +1165,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "APP",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "FRC-APP-USA",
@@ -583,8 +1184,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "APP",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "FRC-CSO-FCP",
@@ -593,8 +1203,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "FRC-CSO-JSN",
@@ -603,8 +1222,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "FRC-CSO-MRA",
@@ -613,8 +1241,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "FRC-CSO-PKG",
@@ -623,8 +1260,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "FRC-CSO-POP",
@@ -633,8 +1279,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "FRC-CSX-MAS",
@@ -643,8 +1298,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSX",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "FRC-CSX-MOT",
@@ -653,8 +1317,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + class_variant"
+   "reason": "20x + Program + Class B + class_variant",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSX",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "FRC-CSX-VVK",
@@ -663,8 +1336,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + class_variant"
+   "reason": "20x + Program + Class B + class_variant",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSX",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "FRC-CSX-VVR",
@@ -673,8 +1355,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + class_variant"
+   "reason": "20x + Program + Class B + class_variant",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSX",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "IEC-CSO-AIR",
@@ -683,8 +1374,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "IEC-CSO-DPR",
@@ -693,8 +1393,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "IEC-CSO-EFI",
@@ -703,8 +1412,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "IEC-CSO-EFR",
@@ -713,8 +1431,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "IEC-CSO-FIR",
@@ -723,8 +1450,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + class_variant"
+   "reason": "20x + Program + Class B + class_variant",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "IEC-CSO-IIR",
@@ -733,8 +1469,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + class_variant"
+   "reason": "20x + Program + Class B + class_variant",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "IEC-CSO-OIR",
@@ -743,8 +1488,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + class_variant"
+   "reason": "20x + Program + Class B + class_variant",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "IVV-CSO-DUS",
@@ -753,8 +1507,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "IVV-CSO-FIA",
@@ -763,8 +1526,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + class_variant"
+   "reason": "20x + Program + Class B + class_variant",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "IVV-CSO-ICP",
@@ -773,8 +1545,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "IVV-CSO-RAA",
@@ -783,8 +1564,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "IVV-CSO-SEE",
@@ -793,8 +1583,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "IVV-CSO-SEI",
@@ -803,8 +1602,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "IVV-CSO-STE",
@@ -813,8 +1621,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "IVV-CSO-USR",
@@ -823,8 +1640,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "IVV-CSX-AIA",
@@ -833,8 +1659,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + class_variant"
+   "reason": "20x + Program + Class B + class_variant",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSX",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "MAS-CSO-FLO",
@@ -843,8 +1678,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "MAS-CSO-IIR",
@@ -853,8 +1697,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "MAS-CSO-MDI",
@@ -863,8 +1716,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "MAS-CSO-SUP",
@@ -873,8 +1735,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "MAS-CSO-TPR",
@@ -883,8 +1754,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "MKT-CSO-MLR",
@@ -893,8 +1773,29 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2026-07-04",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2026-07-04",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "MKT-CSO-PML",
@@ -903,8 +1804,29 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2026-07-04",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2026-07-04",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "MKT-IIP-AGU",
@@ -913,8 +1835,29 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2026-07-04",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2026-07-04",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "IIP",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "MKT-IIP-DCP",
@@ -923,8 +1866,29 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2026-07-04",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2026-07-04",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "IIP",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "MKT-IIP-DLA",
@@ -933,8 +1897,29 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2026-07-04",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2026-07-04",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "IIP",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "SCG-CSO-AUP",
@@ -943,8 +1928,28 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-03-01",
+     "maintain": "2026-03-01",
+     "grace": {
+      "default": "2026-07-01",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "SCG-CSO-PUB",
@@ -953,8 +1958,28 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-03-01",
+     "maintain": "2026-03-01",
+     "grace": {
+      "default": "2026-07-01",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "SCG-CSO-RSC",
@@ -963,8 +1988,28 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-03-01",
+     "maintain": "2026-03-01",
+     "grace": {
+      "default": "2026-07-01",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "SCG-CSO-SDF",
@@ -973,8 +2018,28 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-03-01",
+     "maintain": "2026-03-01",
+     "grace": {
+      "default": "2026-07-01",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "SCG-ENH-API",
@@ -983,8 +2048,28 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-03-01",
+     "maintain": "2026-03-01",
+     "grace": {
+      "default": "2026-07-01",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "ENH",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "SCG-ENH-CMP",
@@ -993,8 +2078,28 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-03-01",
+     "maintain": "2026-03-01",
+     "grace": {
+      "default": "2026-07-01",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "ENH",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "SCG-ENH-EXP",
@@ -1003,8 +2108,28 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-03-01",
+     "maintain": "2026-03-01",
+     "grace": {
+      "default": "2026-07-01",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "ENH",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "SCG-ENH-MRG",
@@ -1013,8 +2138,28 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-03-01",
+     "maintain": "2026-03-01",
+     "grace": {
+      "default": "2026-07-01",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "ENH",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "SCG-ENH-VRH",
@@ -1023,8 +2168,28 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-03-01",
+     "maintain": "2026-03-01",
+     "grace": {
+      "default": "2026-07-01",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "ENH",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "SCN-ADP-NTF",
@@ -1033,8 +2198,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "ADP",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "SCN-CSO-ARI",
@@ -1043,8 +2217,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "SCN-CSO-EMG",
@@ -1053,8 +2236,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "SCN-CSO-EVA",
@@ -1063,8 +2255,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "SCN-CSO-HIS",
@@ -1073,8 +2274,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "SCN-CSO-HRM",
@@ -1083,8 +2293,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "SCN-CSO-INF",
@@ -1093,8 +2312,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "SCN-CSO-MAR",
@@ -1103,8 +2331,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "SCN-CSO-NOM",
@@ -1113,8 +2350,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "SCN-RTR-NNR",
@@ -1123,8 +2369,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "RTR",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "SCN-TRF-NAF",
@@ -1133,8 +2388,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "TRF",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "SCN-TRF-NAV",
@@ -1143,8 +2407,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "TRF",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "SCN-TRF-NFP",
@@ -1153,8 +2426,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "TRF",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "SCN-TRF-NIP",
@@ -1163,8 +2445,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "TRF",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "SCN-TRF-TPR",
@@ -1173,8 +2464,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "TRF",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "SCN-TRF-UPD",
@@ -1183,8 +2483,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "TRF",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "SDR-CSO-FRR",
@@ -1193,8 +2502,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "SDR-CSO-MTD",
@@ -1203,8 +2521,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "SDR-CSX-KMT",
@@ -1213,8 +2540,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + class_variant"
+   "reason": "20x + Program + Class B + class_variant",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSX",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "SDR-CSX-KSI",
@@ -1223,8 +2559,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CSX",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "VDR-CSO-ADT",
@@ -1233,8 +2578,29 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Mandated by CISA BOD 26-04",
+    "date": {
+     "obtain": "2026-12-07",
+     "maintain": "2026-12-07",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-03-07",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "VDR-CSO-AKE",
@@ -1243,8 +2609,29 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Mandated by CISA BOD 26-04",
+    "date": {
+     "obtain": "2026-12-07",
+     "maintain": "2026-12-07",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-03-07",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "VDR-CSO-DAC",
@@ -1253,8 +2640,29 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Mandated by CISA BOD 26-04",
+    "date": {
+     "obtain": "2026-12-07",
+     "maintain": "2026-12-07",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-03-07",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "VDR-CSO-DET",
@@ -1263,8 +2671,29 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Mandated by CISA BOD 26-04",
+    "date": {
+     "obtain": "2026-12-07",
+     "maintain": "2026-12-07",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-03-07",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "VDR-CSO-DFR",
@@ -1273,8 +2702,29 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Mandated by CISA BOD 26-04",
+    "date": {
+     "obtain": "2026-12-07",
+     "maintain": "2026-12-07",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-03-07",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "VDR-CSO-FAV",
@@ -1283,8 +2733,29 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Mandated by CISA BOD 26-04",
+    "date": {
+     "obtain": "2026-12-07",
+     "maintain": "2026-12-07",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-03-07",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "VDR-CSO-MSP",
@@ -1293,8 +2764,29 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Mandated by CISA BOD 26-04",
+    "date": {
+     "obtain": "2026-12-07",
+     "maintain": "2026-12-07",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-03-07",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "VDR-CSO-RES",
@@ -1303,8 +2795,29 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Mandated by CISA BOD 26-04",
+    "date": {
+     "obtain": "2026-12-07",
+     "maintain": "2026-12-07",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-03-07",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "VDR-CSO-SIR",
@@ -1313,8 +2826,29 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Mandated by CISA BOD 26-04",
+    "date": {
+     "obtain": "2026-12-07",
+     "maintain": "2026-12-07",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-03-07",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "CSO",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "VDR-TFR-KEV",
@@ -1323,8 +2857,29 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Mandated by CISA BOD 26-04",
+    "date": {
+     "obtain": "2026-12-07",
+     "maintain": "2026-12-07",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-03-07",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "TFR",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "VDR-TFR-MVX",
@@ -1333,8 +2888,29 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Mandated by CISA BOD 26-04",
+    "date": {
+     "obtain": "2026-12-07",
+     "maintain": "2026-12-07",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-03-07",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + class_variant"
+   "reason": "20x + Program + Class B + class_variant",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "TFR",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "VDR-TFR-NMV",
@@ -1343,8 +2919,29 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Mandated by CISA BOD 26-04",
+    "date": {
+     "obtain": "2026-12-07",
+     "maintain": "2026-12-07",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-03-07",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "TFR",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "VDR-TFR-PCD",
@@ -1353,8 +2950,29 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Mandated by CISA BOD 26-04",
+    "date": {
+     "obtain": "2026-12-07",
+     "maintain": "2026-12-07",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-03-07",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + class_variant"
+   "reason": "20x + Program + Class B + class_variant",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "TFR",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "VDR-TFR-PDD",
@@ -1363,8 +2981,29 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Mandated by CISA BOD 26-04",
+    "date": {
+     "obtain": "2026-12-07",
+     "maintain": "2026-12-07",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-03-07",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + class_variant"
+   "reason": "20x + Program + Class B + class_variant",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "TFR",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "VDR-TFR-PSD",
@@ -1373,8 +3012,29 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Mandated by CISA BOD 26-04",
+    "date": {
+     "obtain": "2026-12-07",
+     "maintain": "2026-12-07",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-03-07",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + class_variant"
+   "reason": "20x + Program + Class B + class_variant",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "TFR",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "VDR-TFR-PVR",
@@ -1383,8 +3043,29 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Mandated by CISA BOD 26-04",
+    "date": {
+     "obtain": "2026-12-07",
+     "maintain": "2026-12-07",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-03-07",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + class_variant"
+   "reason": "20x + Program + Class B + class_variant",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "TFR",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "VDR-TFR-RMN",
@@ -1393,8 +3074,29 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Mandated by CISA BOD 26-04",
+    "date": {
+     "obtain": "2026-12-07",
+     "maintain": "2026-12-07",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-03-07",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "TFR",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "VER-EVA-AIA",
@@ -1403,8 +3105,29 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Mandated by CISA BOD 26-04",
+    "date": {
+     "obtain": "2026-12-07",
+     "maintain": "2026-12-07",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-03-07",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "EVA",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "VER-EVA-EFA",
@@ -1413,8 +3136,29 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Mandated by CISA BOD 26-04",
+    "date": {
+     "obtain": "2026-12-07",
+     "maintain": "2026-12-07",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-03-07",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "EVA",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "VER-EVA-EFP",
@@ -1423,8 +3167,29 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Mandated by CISA BOD 26-04",
+    "date": {
+     "obtain": "2026-12-07",
+     "maintain": "2026-12-07",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-03-07",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "EVA",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "VER-EVA-EIR",
@@ -1433,8 +3198,29 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Mandated by CISA BOD 26-04",
+    "date": {
+     "obtain": "2026-12-07",
+     "maintain": "2026-12-07",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-03-07",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "EVA",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "VER-EVA-ELX",
@@ -1443,8 +3229,29 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Mandated by CISA BOD 26-04",
+    "date": {
+     "obtain": "2026-12-07",
+     "maintain": "2026-12-07",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-03-07",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "EVA",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "VER-EVA-EPA",
@@ -1453,8 +3260,29 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Mandated by CISA BOD 26-04",
+    "date": {
+     "obtain": "2026-12-07",
+     "maintain": "2026-12-07",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-03-07",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "EVA",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "VER-EVA-GRV",
@@ -1463,8 +3291,29 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Mandated by CISA BOD 26-04",
+    "date": {
+     "obtain": "2026-12-07",
+     "maintain": "2026-12-07",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-03-07",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "EVA",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "VER-RPT-AVI",
@@ -1473,8 +3322,29 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Mandated by CISA BOD 26-04",
+    "date": {
+     "obtain": "2026-12-07",
+     "maintain": "2026-12-07",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-03-07",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "RPT",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "VER-RPT-HLO",
@@ -1483,8 +3353,29 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Mandated by CISA BOD 26-04",
+    "date": {
+     "obtain": "2026-12-07",
+     "maintain": "2026-12-07",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-03-07",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "RPT",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "VER-RPT-NID",
@@ -1493,8 +3384,29 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Mandated by CISA BOD 26-04",
+    "date": {
+     "obtain": "2026-12-07",
+     "maintain": "2026-12-07",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-03-07",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "RPT",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "VER-RPT-PER",
@@ -1503,8 +3415,29 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Mandated by CISA BOD 26-04",
+    "date": {
+     "obtain": "2026-12-07",
+     "maintain": "2026-12-07",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-03-07",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "RPT",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "VER-RPT-RPD",
@@ -1513,8 +3446,29 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Mandated by CISA BOD 26-04",
+    "date": {
+     "obtain": "2026-12-07",
+     "maintain": "2026-12-07",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-03-07",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "RPT",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "VER-RPT-VDT",
@@ -1523,8 +3477,29 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Mandated by CISA BOD 26-04",
+    "date": {
+     "obtain": "2026-12-07",
+     "maintain": "2026-12-07",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-03-07",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "RPT",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "VER-TFR-EVU",
@@ -1533,8 +3508,29 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Mandated by CISA BOD 26-04",
+    "date": {
+     "obtain": "2026-12-07",
+     "maintain": "2026-12-07",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-03-07",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + class_variant"
+   "reason": "20x + Program + Class B + class_variant",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "TFR",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "VER-TFR-IRI",
@@ -1543,8 +3539,29 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Mandated by CISA BOD 26-04",
+    "date": {
+     "obtain": "2026-12-07",
+     "maintain": "2026-12-07",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-03-07",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + class_variant"
+   "reason": "20x + Program + Class B + class_variant",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "TFR",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "VER-TFR-MAV",
@@ -1553,8 +3570,29 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Mandated by CISA BOD 26-04",
+    "date": {
+     "obtain": "2026-12-07",
+     "maintain": "2026-12-07",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-03-07",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "TFR",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "VER-TFR-MHR",
@@ -1563,8 +3601,29 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Mandated by CISA BOD 26-04",
+    "date": {
+     "obtain": "2026-12-07",
+     "maintain": "2026-12-07",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-03-07",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + top_level"
+   "reason": "20x + Program + Class B + top_level",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "TFR",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "VER-TFR-MRH",
@@ -1573,8 +3632,29 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Mandated by CISA BOD 26-04",
+    "date": {
+     "obtain": "2026-12-07",
+     "maintain": "2026-12-07",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-03-07",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + class_variant"
+   "reason": "20x + Program + Class B + class_variant",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "TFR",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "VER-TFR-NRI",
@@ -1583,8 +3663,29 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Mandated by CISA BOD 26-04",
+    "date": {
+     "obtain": "2026-12-07",
+     "maintain": "2026-12-07",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-03-07",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": true,
-   "reason": "20x + Program + Class B + class_variant"
+   "reason": "20x + Program + Class B + class_variant",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "TFR",
+    "class": "B",
+    "final_applicability": true
+   }
   },
   {
    "rule_id": "AFC-FRP-CDS",
@@ -1593,8 +3694,28 @@
    "affects": [
     "FedRAMP"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-01-05",
+     "maintain": "2026-01-05",
+     "grace": {
+      "default": "2026-07-01",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['FedRAMP'])"
+   "reason": "does not affect Providers (affects=['FedRAMP'])",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "FRP",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "AFC-FRP-COR",
@@ -1603,8 +3724,28 @@
    "affects": [
     "FedRAMP"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-01-05",
+     "maintain": "2026-01-05",
+     "grace": {
+      "default": "2026-07-01",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['FedRAMP'])"
+   "reason": "does not affect Providers (affects=['FedRAMP'])",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "FRP",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "AFC-FRP-ERT",
@@ -1613,8 +3754,28 @@
    "affects": [
     "FedRAMP"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-01-05",
+     "maintain": "2026-01-05",
+     "grace": {
+      "default": "2026-07-01",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['FedRAMP'])"
+   "reason": "does not affect Providers (affects=['FedRAMP'])",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "FRP",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "AFC-FRP-PNT",
@@ -1623,8 +3784,28 @@
    "affects": [
     "FedRAMP"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-01-05",
+     "maintain": "2026-01-05",
+     "grace": {
+      "default": "2026-07-01",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['FedRAMP'])"
+   "reason": "does not affect Providers (affects=['FedRAMP'])",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "FRP",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "AFC-FRP-RPM",
@@ -1633,8 +3814,28 @@
    "affects": [
     "FedRAMP"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-01-05",
+     "maintain": "2026-01-05",
+     "grace": {
+      "default": "2026-07-01",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['FedRAMP'])"
+   "reason": "does not affect Providers (affects=['FedRAMP'])",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "FRP",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "AFC-FRP-RQA",
@@ -1643,8 +3844,28 @@
    "affects": [
     "FedRAMP"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-01-05",
+     "maintain": "2026-01-05",
+     "grace": {
+      "default": "2026-07-01",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['FedRAMP'])"
+   "reason": "does not affect Providers (affects=['FedRAMP'])",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "FRP",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "AFC-FRP-UFS",
@@ -1653,8 +3874,28 @@
    "affects": [
     "FedRAMP"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-01-05",
+     "maintain": "2026-01-05",
+     "grace": {
+      "default": "2026-07-01",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['FedRAMP'])"
+   "reason": "does not affect Providers (affects=['FedRAMP'])",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "FRP",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "AFC-FRP-VRE",
@@ -1663,8 +3904,28 @@
    "affects": [
     "FedRAMP"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-01-05",
+     "maintain": "2026-01-05",
+     "grace": {
+      "default": "2026-07-01",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['FedRAMP'])"
+   "reason": "does not affect Providers (affects=['FedRAMP'])",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "FRP",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "AGU-AGC-AIP",
@@ -1673,8 +3934,29 @@
    "affects": [
     "Agencies"
    ],
+   "document_status": "placeholder",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2026-07-04",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2026-07-04",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Agencies'])"
+   "reason": "does not affect Providers (affects=['Agencies'])",
+   "resolution_chain": {
+    "document_status": "placeholder",
+    "effective_is": "required",
+    "subset": "AGC",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "AGU-AGC-GRC",
@@ -1683,8 +3965,29 @@
    "affects": [
     "Agencies"
    ],
+   "document_status": "placeholder",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2026-07-04",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2026-07-04",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Agencies'])"
+   "reason": "does not affect Providers (affects=['Agencies'])",
+   "resolution_chain": {
+    "document_status": "placeholder",
+    "effective_is": "required",
+    "subset": "AGC",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "AGU-AGC-LIA",
@@ -1693,8 +3996,29 @@
    "affects": [
     "Agencies"
    ],
+   "document_status": "placeholder",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2026-07-04",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2026-07-04",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Agencies'])"
+   "reason": "does not affect Providers (affects=['Agencies'])",
+   "resolution_chain": {
+    "document_status": "placeholder",
+    "effective_is": "required",
+    "subset": "AGC",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "AGU-AGC-NAA",
@@ -1703,8 +4027,29 @@
    "affects": [
     "Agencies"
    ],
+   "document_status": "placeholder",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2026-07-04",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2026-07-04",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Agencies'])"
+   "reason": "does not affect Providers (affects=['Agencies'])",
+   "resolution_chain": {
+    "document_status": "placeholder",
+    "effective_is": "required",
+    "subset": "AGC",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "AGU-AGC-NAI",
@@ -1713,8 +4058,29 @@
    "affects": [
     "Agencies"
    ],
+   "document_status": "placeholder",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2026-07-04",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2026-07-04",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Agencies'])"
+   "reason": "does not affect Providers (affects=['Agencies'])",
+   "resolution_chain": {
+    "document_status": "placeholder",
+    "effective_is": "required",
+    "subset": "AGC",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "AGU-AGC-NAR",
@@ -1723,8 +4089,29 @@
    "affects": [
     "Agencies"
    ],
+   "document_status": "placeholder",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2026-07-04",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2026-07-04",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Agencies'])"
+   "reason": "does not affect Providers (affects=['Agencies'])",
+   "resolution_chain": {
+    "document_status": "placeholder",
+    "effective_is": "required",
+    "subset": "AGC",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "AGU-AGC-SIN",
@@ -1733,8 +4120,29 @@
    "affects": [
     "Agencies"
    ],
+   "document_status": "placeholder",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2026-07-04",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2026-07-04",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Agencies'])"
+   "reason": "does not affect Providers (affects=['Agencies'])",
+   "resolution_chain": {
+    "document_status": "placeholder",
+    "effective_is": "required",
+    "subset": "AGC",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "AGU-AGC-TPP",
@@ -1743,8 +4151,29 @@
    "affects": [
     "Agencies"
    ],
+   "document_status": "placeholder",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2026-07-04",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2026-07-04",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Agencies'])"
+   "reason": "does not affect Providers (affects=['Agencies'])",
+   "resolution_chain": {
+    "document_status": "placeholder",
+    "effective_is": "required",
+    "subset": "AGC",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "AGU-AGC-WKG",
@@ -1753,8 +4182,29 @@
    "affects": [
     "Agencies"
    ],
+   "document_status": "placeholder",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2026-07-04",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2026-07-04",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Agencies'])"
+   "reason": "does not affect Providers (affects=['Agencies'])",
+   "resolution_chain": {
+    "document_status": "placeholder",
+    "effective_is": "required",
+    "subset": "AGC",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "AGU-SPN-MRC",
@@ -1763,8 +4213,29 @@
    "affects": [
     "Agencies"
    ],
+   "document_status": "placeholder",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2026-07-04",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2026-07-04",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Agencies'])"
+   "reason": "does not affect Providers (affects=['Agencies'])",
+   "resolution_chain": {
+    "document_status": "placeholder",
+    "effective_is": "required",
+    "subset": "SPN",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "AGU-USE-ABU",
@@ -1773,8 +4244,29 @@
    "affects": [
     "Agencies"
    ],
+   "document_status": "placeholder",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2026-07-04",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2026-07-04",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Agencies'])"
+   "reason": "does not affect Providers (affects=['Agencies'])",
+   "resolution_chain": {
+    "document_status": "placeholder",
+    "effective_is": "required",
+    "subset": "USE",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "AGU-USE-AFR",
@@ -1783,8 +4275,29 @@
    "affects": [
     "Agencies"
    ],
+   "document_status": "placeholder",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2026-07-04",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2026-07-04",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Agencies'])"
+   "reason": "does not affect Providers (affects=['Agencies'])",
+   "resolution_chain": {
+    "document_status": "placeholder",
+    "effective_is": "required",
+    "subset": "USE",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "AGU-USE-CLA",
@@ -1793,8 +4306,29 @@
    "affects": [
     "Agencies"
    ],
+   "document_status": "placeholder",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2026-07-04",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2026-07-04",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Agencies'])"
+   "reason": "does not affect Providers (affects=['Agencies'])",
+   "resolution_chain": {
+    "document_status": "placeholder",
+    "effective_is": "required",
+    "subset": "USE",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "AGU-USE-DSO",
@@ -1803,8 +4337,29 @@
    "affects": [
     "Agencies"
    ],
+   "document_status": "placeholder",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2026-07-04",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2026-07-04",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Agencies'])"
+   "reason": "does not affect Providers (affects=['Agencies'])",
+   "resolution_chain": {
+    "document_status": "placeholder",
+    "effective_is": "required",
+    "subset": "USE",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "AGU-USE-NFC",
@@ -1813,8 +4368,29 @@
    "affects": [
     "Agencies"
    ],
+   "document_status": "placeholder",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2026-07-04",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2026-07-04",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Agencies'])"
+   "reason": "does not affect Providers (affects=['Agencies'])",
+   "resolution_chain": {
+    "document_status": "placeholder",
+    "effective_is": "required",
+    "subset": "USE",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "AGU-USE-NPC",
@@ -1823,8 +4399,29 @@
    "affects": [
     "Agencies"
    ],
+   "document_status": "placeholder",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2026-07-04",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2026-07-04",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Agencies'])"
+   "reason": "does not affect Providers (affects=['Agencies'])",
+   "resolution_chain": {
+    "document_status": "placeholder",
+    "effective_is": "required",
+    "subset": "USE",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "AGU-USE-RCF",
@@ -1833,8 +4430,29 @@
    "affects": [
     "Agencies"
    ],
+   "document_status": "placeholder",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2026-07-04",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2026-07-04",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Agencies'])"
+   "reason": "does not affect Providers (affects=['Agencies'])",
+   "resolution_chain": {
+    "document_status": "placeholder",
+    "effective_is": "required",
+    "subset": "USE",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "AGU-USE-RIR",
@@ -1843,8 +4461,29 @@
    "affects": [
     "Agencies"
    ],
+   "document_status": "placeholder",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2026-07-04",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2026-07-04",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Agencies'])"
+   "reason": "does not affect Providers (affects=['Agencies'])",
+   "resolution_chain": {
+    "document_status": "placeholder",
+    "effective_is": "required",
+    "subset": "USE",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "AGU-USE-ROR",
@@ -1853,8 +4492,29 @@
    "affects": [
     "Agencies"
    ],
+   "document_status": "placeholder",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2026-07-04",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2026-07-04",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Agencies'])"
+   "reason": "does not affect Providers (affects=['Agencies'])",
+   "resolution_chain": {
+    "document_status": "placeholder",
+    "effective_is": "required",
+    "subset": "USE",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "AGU-USE-RSG",
@@ -1863,8 +4523,29 @@
    "affects": [
     "Agencies"
    ],
+   "document_status": "placeholder",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2026-07-04",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2026-07-04",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Agencies'])"
+   "reason": "does not affect Providers (affects=['Agencies'])",
+   "resolution_chain": {
+    "document_status": "placeholder",
+    "effective_is": "required",
+    "subset": "USE",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "CCM-AGM-CSC",
@@ -1873,8 +4554,17 @@
    "affects": [
     "Agencies"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Agencies'])"
+   "reason": "does not affect Providers (affects=['Agencies'])",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "AGM",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "CCM-AGM-ROR",
@@ -1883,8 +4573,17 @@
    "affects": [
     "Agencies"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Agencies'])"
+   "reason": "does not affect Providers (affects=['Agencies'])",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "AGM",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "FRC-APS-ATO",
@@ -1893,8 +4592,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": false,
-   "reason": "subset types ['Rev5'] exclude 20x"
+   "reason": "subset types ['Rev5'] exclude 20x",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "APS",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "FRC-CCL-DCC",
@@ -1903,8 +4611,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": false,
-   "reason": "subset types ['Rev5'] exclude 20x"
+   "reason": "subset types ['Rev5'] exclude 20x",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CCL",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "FRC-CCL-DNP",
@@ -1913,8 +4630,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": false,
-   "reason": "subset types ['Rev5'] exclude 20x"
+   "reason": "subset types ['Rev5'] exclude 20x",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CCL",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "FRC-CCL-UCC",
@@ -1923,8 +4649,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": false,
-   "reason": "subset types ['Rev5'] exclude 20x"
+   "reason": "subset types ['Rev5'] exclude 20x",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CCL",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "FRC-CLA-ASF",
@@ -1933,8 +4668,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": false,
-   "reason": "subset classes ['A'] exclude B"
+   "reason": "subset classes ['A'] exclude B",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CLA",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "FRC-CLA-EAM",
@@ -1943,8 +4687,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": false,
-   "reason": "subset classes ['A'] exclude B"
+   "reason": "subset classes ['A'] exclude B",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CLA",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "FRC-CLA-IVV",
@@ -1953,8 +4706,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": false,
-   "reason": "subset classes ['A'] exclude B"
+   "reason": "subset classes ['A'] exclude B",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CLA",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "FRC-CLA-MFR",
@@ -1963,8 +4725,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": false,
-   "reason": "subset classes ['A'] exclude B"
+   "reason": "subset classes ['A'] exclude B",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CLA",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "FRC-CLA-OFR",
@@ -1973,8 +4744,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": false,
-   "reason": "subset classes ['A'] exclude B"
+   "reason": "subset classes ['A'] exclude B",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CLA",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "FRC-CLA-RFR",
@@ -1983,8 +4763,17 @@
    "affects": [
     "Providers"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": false,
-   "reason": "subset classes ['A'] exclude B"
+   "reason": "subset classes ['A'] exclude B",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "CLA",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "IEC-FRP-ORV",
@@ -1993,8 +4782,17 @@
    "affects": [
     "FedRAMP"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": false,
-   "reason": "does not affect Providers (affects=['FedRAMP'])"
+   "reason": "does not affect Providers (affects=['FedRAMP'])",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "FRP",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "IVV-IAS-EPX",
@@ -2003,8 +4801,17 @@
    "affects": [
     "Assessors"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Assessors'])"
+   "reason": "does not affect Providers (affects=['Assessors'])",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "IAS",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "IVV-IAS-OSA",
@@ -2013,8 +4820,17 @@
    "affects": [
     "Assessors"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Assessors'])"
+   "reason": "does not affect Providers (affects=['Assessors'])",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "IAS",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "IVV-IAS-SHA",
@@ -2023,8 +4839,17 @@
    "affects": [
     "Assessors"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Assessors'])"
+   "reason": "does not affect Providers (affects=['Assessors'])",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "IAS",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "IVV-IAS-SUM",
@@ -2033,8 +4858,17 @@
    "affects": [
     "Assessors"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Assessors'])"
+   "reason": "does not affect Providers (affects=['Assessors'])",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "IAS",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "IVV-IAS-VEF",
@@ -2043,8 +4877,17 @@
    "affects": [
     "Assessors"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Assessors'])"
+   "reason": "does not affect Providers (affects=['Assessors'])",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "IAS",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "IVV-IAS-VIM",
@@ -2053,8 +4896,17 @@
    "affects": [
     "Assessors"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Assessors'])"
+   "reason": "does not affect Providers (affects=['Assessors'])",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "IAS",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "IVV-IAS-VIP",
@@ -2063,8 +4915,17 @@
    "affects": [
     "Assessors"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Assessors'])"
+   "reason": "does not affect Providers (affects=['Assessors'])",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "IAS",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "MKT-CAS-LRQ",
@@ -2073,8 +4934,29 @@
    "affects": [
     "Advisors"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2026-07-04",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2026-07-04",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Advisors'])"
+   "reason": "does not affect Providers (affects=['Advisors'])",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "CAS",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "MKT-CAS-RFR",
@@ -2083,8 +4965,29 @@
    "affects": [
     "Advisors"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2026-07-04",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2026-07-04",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Advisors'])"
+   "reason": "does not affect Providers (affects=['Advisors'])",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "CAS",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "MKT-CAS-WEB",
@@ -2093,8 +4996,29 @@
    "affects": [
     "Advisors"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2026-07-04",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2026-07-04",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Advisors'])"
+   "reason": "does not affect Providers (affects=['Advisors'])",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "CAS",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "MKT-FRP-SOF",
@@ -2103,8 +5027,29 @@
    "affects": [
     "FedRAMP"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2026-07-04",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2026-07-04",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['FedRAMP'])"
+   "reason": "does not affect Providers (affects=['FedRAMP'])",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "FRP",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "MKT-IAS-LRQ",
@@ -2113,8 +5058,29 @@
    "affects": [
     "Assessors"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2026-07-04",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2026-07-04",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Assessors'])"
+   "reason": "does not affect Providers (affects=['Assessors'])",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "IAS",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "MKT-IAS-OFR",
@@ -2123,8 +5089,29 @@
    "affects": [
     "Assessors"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2026-07-04",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2026-07-04",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Assessors'])"
+   "reason": "does not affect Providers (affects=['Assessors'])",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "IAS",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "MKT-IAS-WEB",
@@ -2133,8 +5120,29 @@
    "affects": [
     "Assessors"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2026-07-04",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2026-07-04",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Assessors'])"
+   "reason": "does not affect Providers (affects=['Assessors'])",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "IAS",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "REC-FRP-DRD",
@@ -2143,8 +5151,29 @@
    "affects": [
     "FedRAMP"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2026-07-04",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2026-07-04",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['FedRAMP'])"
+   "reason": "does not affect Providers (affects=['FedRAMP'])",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "FRP",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "REC-FRP-FOC",
@@ -2153,8 +5182,29 @@
    "affects": [
     "FedRAMP"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2026-07-04",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2026-07-04",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['FedRAMP'])"
+   "reason": "does not affect Providers (affects=['FedRAMP'])",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "FRP",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "REC-FRP-RAO",
@@ -2163,8 +5213,29 @@
    "affects": [
     "FedRAMP"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2026-07-04",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2026-07-04",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['FedRAMP'])"
+   "reason": "does not affect Providers (affects=['FedRAMP'])",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "FRP",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "REC-IAS-ACC",
@@ -2173,8 +5244,29 @@
    "affects": [
     "Assessors"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2026-07-04",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2026-07-04",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Assessors'])"
+   "reason": "does not affect Providers (affects=['Assessors'])",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "IAS",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "REC-IAS-ADA",
@@ -2183,8 +5275,29 @@
    "affects": [
     "Assessors"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2026-07-04",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2026-07-04",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Assessors'])"
+   "reason": "does not affect Providers (affects=['Assessors'])",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "IAS",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "REC-IAS-AFI",
@@ -2193,8 +5306,29 @@
    "affects": [
     "Assessors"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2026-07-04",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2026-07-04",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Assessors'])"
+   "reason": "does not affect Providers (affects=['Assessors'])",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "IAS",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "REC-IAS-ANR",
@@ -2203,8 +5337,29 @@
    "affects": [
     "Assessors"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2026-07-04",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2026-07-04",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Assessors'])"
+   "reason": "does not affect Providers (affects=['Assessors'])",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "IAS",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "REC-IAS-CAP",
@@ -2213,8 +5368,29 @@
    "affects": [
     "Assessors"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2026-07-04",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2026-07-04",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Assessors'])"
+   "reason": "does not affect Providers (affects=['Assessors'])",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "IAS",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "REC-IAS-CFI",
@@ -2223,8 +5399,29 @@
    "affects": [
     "Assessors"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2026-07-04",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2026-07-04",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Assessors'])"
+   "reason": "does not affect Providers (affects=['Assessors'])",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "IAS",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "REC-IAS-INV",
@@ -2233,8 +5430,29 @@
    "affects": [
     "Assessors"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2026-07-04",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2026-07-04",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Assessors'])"
+   "reason": "does not affect Providers (affects=['Assessors'])",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "IAS",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "REC-IAS-PSC",
@@ -2243,8 +5461,29 @@
    "affects": [
     "Assessors"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2026-07-04",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2026-07-04",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Assessors'])"
+   "reason": "does not affect Providers (affects=['Assessors'])",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "IAS",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "REC-IAS-PST",
@@ -2253,8 +5492,29 @@
    "affects": [
     "Assessors"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2026-07-04",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2026-07-04",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Assessors'])"
+   "reason": "does not affect Providers (affects=['Assessors'])",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "IAS",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "REC-IAS-RAR",
@@ -2263,8 +5523,29 @@
    "affects": [
     "Assessors"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2026-07-04",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2026-07-04",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Assessors'])"
+   "reason": "does not affect Providers (affects=['Assessors'])",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "IAS",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "REC-IAS-RAS",
@@ -2273,8 +5554,29 @@
    "affects": [
     "Assessors"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2026-07-04",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2026-07-04",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Assessors'])"
+   "reason": "does not affect Providers (affects=['Assessors'])",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "IAS",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "REC-IAS-RQU",
@@ -2283,8 +5585,29 @@
    "affects": [
     "Assessors"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2026-07-04",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2026-07-04",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Assessors'])"
+   "reason": "does not affect Providers (affects=['Assessors'])",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "IAS",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "REC-IAS-SEP",
@@ -2293,8 +5616,29 @@
    "affects": [
     "Assessors"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2026-07-04",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2026-07-04",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Assessors'])"
+   "reason": "does not affect Providers (affects=['Assessors'])",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "IAS",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "SCN-FRP-CAP",
@@ -2303,8 +5647,17 @@
    "affects": [
     "FedRAMP"
    ],
+   "document_status": "stable",
+   "document_effective": null,
    "applicable": false,
-   "reason": "does not affect Providers (affects=['FedRAMP'])"
+   "reason": "does not affect Providers (affects=['FedRAMP'])",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": null,
+    "subset": "FRP",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "VER-AGM-MAP",
@@ -2313,8 +5666,29 @@
    "affects": [
     "Agencies"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Mandated by CISA BOD 26-04",
+    "date": {
+     "obtain": "2026-12-07",
+     "maintain": "2026-12-07",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-03-07",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Agencies'])"
+   "reason": "does not affect Providers (affects=['Agencies'])",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "AGM",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "VER-AGM-RVR",
@@ -2323,8 +5697,29 @@
    "affects": [
     "Agencies"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Mandated by CISA BOD 26-04",
+    "date": {
+     "obtain": "2026-12-07",
+     "maintain": "2026-12-07",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-03-07",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['Agencies'])"
+   "reason": "does not affect Providers (affects=['Agencies'])",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "AGM",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "VER-FRP-ADV",
@@ -2333,8 +5728,29 @@
    "affects": [
     "FedRAMP"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Mandated by CISA BOD 26-04",
+    "date": {
+     "obtain": "2026-12-07",
+     "maintain": "2026-12-07",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-03-07",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['FedRAMP'])"
+   "reason": "does not affect Providers (affects=['FedRAMP'])",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "FRP",
+    "class": "B",
+    "final_applicability": false
+   }
   },
   {
    "rule_id": "VER-FRP-ARP",
@@ -2343,8 +5759,29 @@
    "affects": [
     "FedRAMP"
    ],
+   "document_status": "stable",
+   "document_effective": {
+    "is": "required",
+    "current_status": "Mandated by CISA BOD 26-04",
+    "date": {
+     "obtain": "2026-12-07",
+     "maintain": "2026-12-07",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-03-07",
+      "until_next_assessment": false
+     }
+    }
+   },
    "applicable": false,
-   "reason": "does not affect Providers (affects=['FedRAMP'])"
+   "reason": "does not affect Providers (affects=['FedRAMP'])",
+   "resolution_chain": {
+    "document_status": "stable",
+    "effective_is": "required",
+    "subset": "FRP",
+    "class": "B",
+    "final_applicability": false
+   }
   }
  ]
 }

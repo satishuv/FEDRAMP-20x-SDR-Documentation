@@ -64,6 +64,25 @@ def main():
         problems.append(f"assurance graph class {graph.get('certification_class')} != {cls.upper()}")
 
     cpo = load("package/cpo/cpo.json", {})
+    # CPO offering identity must match the offering profile it was generated
+    # from (the docstring promises a CPO consistency check; this performs it
+    # using fields that exist in the official CPO schema).
+    si = cpo.get("serviceIdentification", {}) or {}
+    cpo_checks = [
+        ("serviceName", si.get("serviceName"), offering.get("offering_name")),
+        ("serviceAcronym", si.get("serviceAcronym"), offering.get("offering_abbreviation")),
+        ("providerName", si.get("providerName"), offering.get("organization_name")),
+    ]
+    for field, cpo_val, prof_val in cpo_checks:
+        if cpo_val and prof_val and str(cpo_val) != str(prof_val):
+            problems.append(f"CPO {field} '{cpo_val}' != offering profile '{prof_val}'")
+    # Certification type token consistency (20x vs the profile's label).
+    cpo_ctype = si.get("certificationType")
+    prof_is_rev5 = "rev5" in (offering.get("certification_type") or "").lower()
+    if cpo_ctype and ((cpo_ctype == "Rev5") != prof_is_rev5):
+        problems.append(f"CPO certificationType '{cpo_ctype}' disagrees with "
+                        f"offering certification_type '{offering.get('certification_type')}'")
+
     # OCR and event artifacts must reference the same CPO URI as the profile.
     for rel in ["package/ocr/ocr-example.json",
                 "package/events/incident-report-initial-example.json",

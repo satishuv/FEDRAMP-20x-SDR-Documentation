@@ -71,7 +71,26 @@ def test_ksi_family_change_detected():
 def test_no_change_reports_empty():
     d = dd.diff_datasets(OLD, OLD)
     assert d["summary"] == {"added": 0, "removed": 0, "changed": 0,
-                            "force_changes": 0}
+                            "force_changes": 0, "ksis_added": 0,
+                            "ksis_removed": 0, "ksis_changed": 0}
+
+
+def test_ksi_statement_change_detected():
+    import copy
+    new = copy.deepcopy(OLD)
+    # Mutate one KSI's statement text and confirm it is reported individually,
+    # not merely as a family count change.
+    for fam, body in new.get("KSI", {}).items():
+        inds = body.get("indicators", body) if isinstance(body, dict) else {}
+        for kid, entry in (inds.items() if isinstance(inds, dict) else []):
+            if isinstance(entry, dict) and (entry.get("statement") or entry.get("text")):
+                key = "statement" if entry.get("statement") else "text"
+                entry[key] = "TAMPERED " + str(entry[key])
+                d = dd.diff_datasets(OLD, new)
+                assert any(c["id"] == kid for c in d["ksis_changed"]), \
+                    "individual KSI statement change not detected"
+                return
+    # No KSI with a statement found; nothing to assert.
 
 
 def _run_all():

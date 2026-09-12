@@ -73,6 +73,26 @@ def _class_a_enumerated_ids():
         return None
 
 
+def _family_document_state(ds):
+    """Family-level document status and effective metadata from the canonical
+    dataset. This is DOCUMENT/family-level (FRR family info.status/info.effective,
+    KSI family status), NOT a per-rule field: the dataset carries no per-rule
+    effective/status, so we surface only what actually exists. Returns
+    {family_short_name: {status, tag, effective}}."""
+    out = {}
+    for fam, node in (ds.get("FRR", {}) or {}).items():
+        info = node.get("info", {}) if isinstance(node, dict) else {}
+        out[fam] = {
+            "document_status": info.get("status"),
+            "tag": info.get("tag"),
+            "effective": info.get("effective"),
+        }
+    for fam, node in (ds.get("KSI", {}) or {}).items():
+        if isinstance(node, dict):
+            out[fam] = {"document_status": node.get("status")}
+    return out
+
+
 def decide(rule, cls, class_a_ids=None):
     """Return (applicable: bool, reason: str) using the real dataset fields and
     build_profiles' own logic, so the decision matches the profile exactly.
@@ -100,19 +120,36 @@ def decide(rule, cls, class_a_ids=None):
 def build(cls):
     ds = load(DATASET)
     rules = _all_rules(ds)
+    doc_state = _family_document_state(ds)
     class_a_ids = _class_a_enumerated_ids() if cls == "a" else None
     included, excluded = [], []
     for rid in sorted(rules):
         rule = rules[rid]
         rule["_rule_id"] = rid
         applicable, reason = decide(rule, cls, class_a_ids)
+        fam = rule.get("_family")
+        fam_state = doc_state.get(fam, {})
         entry = {
             "rule_id": rid,
-            "family": rule.get("_family"),
+            "family": fam,
             "subset": rule.get("_subset"),
             "affects": rule.get("affects"),
+            # Document-level (family) status/effective from the canonical
+            # source, surfaced so applicability respects it. Not per-rule.
+            "document_status": fam_state.get("document_status"),
+            "document_effective": fam_state.get("effective"),
             "applicable": applicable,
             "reason": reason,
+            # The explicit resolution chain: document status -> effective ->
+            # subset applicability -> class resolution -> final applicability.
+            "resolution_chain": {
+                "document_status": fam_state.get("document_status"),
+                "effective_is": (fam_state.get("effective") or {}).get("is")
+                if isinstance(fam_state.get("effective"), dict) else None,
+                "subset": rule.get("_subset"),
+                "class": cls.upper(),
+                "final_applicability": applicable,
+            },
         }
         (included if applicable else excluded).append(entry)
     return {
@@ -121,8 +158,10 @@ def build(cls):
             "this certification class. Included AND excluded rules are recorded "
             "with the exact reason, so absence is provable, not silent. Reasons "
             "use only real CR26 fields (affects, subset_applicability, "
-            "varies_by_class); the dataset carries no per-rule effective/status "
-            "field, so none is claimed."),
+            "varies_by_class). Document-level status/effective is surfaced from "
+            "the canonical family metadata (FRR info.status/effective, KSI "
+            "status); the dataset carries NO per-rule effective/status field, so "
+            "none is invented at the rule level."),
         "certification_class": cls.upper(),
         "dataset_version": ds.get("info", {}).get("version"),
         "total_rules": len(rules),

@@ -27,6 +27,14 @@ import os
 import sys
 
 BASE = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+# Reuse the evidence lifecycle model rather than duplicating it, so the graph's
+# evidence nodes carry real freshness/expiry/collection state.
+sys.path.insert(0, os.path.join(BASE, "automation", "collectors"))
+try:
+    from evidence_lifecycle import lifecycle_record as _lifecycle_record
+except Exception:
+    _lifecycle_record = None
 PROFILE = os.path.join(BASE, "profiles", "common", "offering-profile.json")
 KSI_PROFILE = os.path.join(BASE, "profiles", "common", "ksi-profile.json")
 RECORDS = os.path.join(BASE, "sdr", "records", "records-store.json")
@@ -78,19 +86,33 @@ def load(path, default=None):
 
 
 def _evidence_nodes(evidence):
-    """Normalize a record's evidence list into graph evidence nodes, carrying
-    the content hash and observation time already present on each entry."""
+    """Normalize a record's evidence list into graph evidence nodes, enriched
+    with lifecycle state (freshness, expiry, collection status, evidence id,
+    supersession) via evidence_lifecycle.lifecycle_record, so the graph carries
+    the real lifecycle - not merely source/type/location/hash/date."""
     out = []
     for e in evidence or []:
         if not isinstance(e, dict):
             continue
-        out.append({
+        node = {
             "source": (e.get("evidenceText", "").split(":")[0] or "unknown"),
             "type": e.get("evidenceType"),
             "location": e.get("evidenceLocation"),
             "sha256": e.get("xEvidenceContentHash"),
             "observed_at": e.get("lastUpdated"),
-        })
+        }
+        if _lifecycle_record is not None:
+            try:
+                lc = _lifecycle_record(e)
+                node["evidence_id"] = lc.get("evidence_id")
+                node["freshness_status"] = lc.get("freshness_status")
+                node["expires_at"] = lc.get("expires_at")
+                node["collection_status"] = lc.get("collection_status")
+                node["supersedes"] = lc.get("supersedes")
+            except Exception:
+                # Never let lifecycle enrichment break the graph build.
+                node["freshness_status"] = "unknown"
+        out.append(node)
     return out
 
 
