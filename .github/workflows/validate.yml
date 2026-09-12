@@ -80,6 +80,8 @@ jobs:
         run: python validation/scripts/validate_reviews.py
       - name: Validate cross-artifact package consistency
         run: python validation/scripts/validate_package_consistency.py
+      - name: Test the CLI subcommands and adapter scaffold
+        run: python tests/test_cli.py
       - name: Run offline review-register tests (no AWS)
         run: python validation/scripts/test_reviews.py
       - name: Run adversarial suite (gates detect deliberate tampering)
@@ -152,5 +154,6 @@ jobs:
         with:
           name: validation-reports
           path: validation/reports/
+
 
 
