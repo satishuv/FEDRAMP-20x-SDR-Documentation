@@ -43,6 +43,7 @@ jobs:
           python validation/scripts/build_assurance_graph.py
           python validation/scripts/build_release_manifest.py
           python validation/scripts/build_reports.py
+          python validation/scripts/build_visualization.py
       - name: Refuse hand-edited generated files
         run: |
           git diff --exit-code -- . ':(exclude)*.docx' || {
@@ -151,4 +152,5 @@ jobs:
         with:
           name: validation-reports
           path: validation/reports/
+
 

@@ -11,6 +11,9 @@ workflow ever disagree, the workflow is correct and this file is the bug.
     python sdr.py validate    run the build gate (0 hard failures required)
     python sdr.py scan        run the readiness scanner (does not gate)
     python sdr.py clean       remove caches and scanner reports
+    python sdr.py diff        show what a dataset change would affect
+    python sdr.py review      report the human review register
+    python sdr.py release     build, verify consistency, print the release tag
 
 Exit codes: 0 success, 1 a step failed, 2 a dependency or path problem.
 The readiness scanner's "findings exist" exit code is not a failure and is
@@ -55,6 +58,7 @@ BUILD_STEPS = [
     ("build_release_manifest.py", "cryptographic release manifest of the package"),
     ("validate_package_consistency.py", "cross-artifact consistency check"),
     ("build_reports.py", "evidence-coverage and reviewer reports"),
+    ("build_visualization.py", "self-contained HTML assurance-graph view"),
 ]
 
 REQUIRED_MODULES = [
@@ -197,6 +201,118 @@ def cmd_explain(args):
     return run(explain_path, [args.identifier], label="explain.py")
 
 
+def cmd_diff(args):
+    """Show what a dataset change would affect, without editing anything.
+
+    Give two dataset files to compare (an old and a new CR26 release); this runs
+    the same dataset-diff and change-impact scripts the drift-check workflow
+    runs, so a local `diff` and the daily automation agree. With no arguments it
+    reports the last recorded change-impact artifact, if one exists.
+    """
+    code = 0
+    old, new = getattr(args, "old", None), getattr(args, "new", None)
+    if old and new:
+        dd = os.path.join(SCRIPTS, "dataset_diff.py")
+        ci = os.path.join(SCRIPTS, "change_impact.py")
+        diff_out = os.path.join(BASE, "traceability", "dataset-diff.json")
+        code = run(dd, [old, new, "--json", diff_out], label="dataset_diff.py")
+        if code == 0:
+            code = run(ci, ["--diff", diff_out,
+                            "--json", os.path.join(BASE, "traceability", "change-impact.json")],
+                       label="change_impact.py")
+    elif old or new:
+        out("Provide both an old and a new dataset file, or neither.")
+        return 2
+
+    impact = load_json(os.path.join(BASE, "traceability", "change-impact.json"))
+    if impact:
+        s = impact.get("source_summary", {})
+        out()
+        out("Change impact summary")
+        out(RULE)
+        out(f"Rules added      {s.get('added', 0)}")
+        out(f"Rules removed    {s.get('removed', 0)}")
+        out(f"Rules changed    {s.get('changed', 0)}")
+        out(f"Requiring human review   {impact.get('total_requiring_review', 0)}")
+        for rid in impact.get("rules_requiring_review", [])[:20]:
+            out(f"    - {rid}")
+        out()
+        out("A dataset change never auto-changes a status or an approval. It "
+            "flags what a human must re-examine.")
+    else:
+        out("No change-impact record found. Pass two dataset files to compare, "
+            "e.g. `python sdr.py diff old.json new.json`, or let the daily "
+            "drift-check workflow produce one.")
+    return code
+
+
+def cmd_review(args):
+    """Report the human review register: what is approved, what is pending.
+
+    Read-only. The pipeline never authors an approval; this only shows the
+    state a human recorded.
+    """
+    register = load_json(os.path.join(BASE, "sdr", "reviews", "review-register.json"))
+    out()
+    out("Human review register")
+    out(RULE)
+    if not register:
+        out("No review register found.")
+        return 0
+    reviews = register.get("reviews", [])
+    if not reviews:
+        out("Register present, no reviews recorded yet. Nothing is approved.")
+        out()
+        out("A reviewer records signoff in sdr/reviews/review-register.json. "
+            "The pipeline cannot and will not do this.")
+        return 0
+    approved = [r for r in reviews if r.get("decision") == "approved"]
+    other = [r for r in reviews if r.get("decision") != "approved"]
+    out(f"Recorded reviews             {len(reviews)}")
+    out(f"Approved                     {len(approved)}")
+    out(f"Pending / other              {len(other)}")
+    for r in other[:20]:
+        out(f"    - {r.get('scope', '?')}: {r.get('decision', 'pending')} "
+            f"(reviewer {r.get('reviewer', 'TBD')})")
+    out()
+    out("Approval is a human act. A green build proves the package is "
+        "well-formed, not that it is approved or compliant.")
+    return 0
+
+
+def cmd_release(args):
+    """Produce and report a release: build, verify consistency, print the tag.
+
+    Does not tag git or publish anything; it prints the release manifest tag
+    and confirms the package is internally consistent and reproducible-shaped.
+    """
+    code = cmd_build(args)
+    if code != 0:
+        out("Build failed; not a releasable state.")
+        return code
+    consistency = os.path.join(SCRIPTS, "validate_package_consistency.py")
+    if os.path.exists(consistency):
+        code = run(consistency, [], label="validate_package_consistency.py")
+        if code != 0:
+            out("Cross-artifact consistency failed; not releasable.")
+            return code
+    manifest = load_json(os.path.join(BASE, "artifacts", "release-manifest.json"))
+    out()
+    out("Release")
+    out(RULE)
+    if manifest:
+        out(f"Release tag                  {manifest.get('release_tag', '?')}")
+        out(f"Framework version            {manifest.get('framework_version', '?')}")
+        out(f"Dataset version              {manifest.get('dataset_version', '?')}")
+        out(f"Artifacts fingerprinted      {manifest.get('artifact_count', '?')}")
+    out()
+    out("This is a build-provenance record, not a compliance determination. A "
+        "passing release gate means well-formed, consistent and reproducible; "
+        "certification is an accredited assessor and authorizing-body decision.")
+    out(f"To tag: git tag {manifest.get('release_tag', '<tag>') if manifest else '<tag>'}")
+    return 0
+
+
 def cmd_clean(args):
     """Remove regenerable local clutter only.
 
@@ -314,6 +430,12 @@ def build_parser():
     explain_p = sub.add_parser(
         "explain", help="explain one rule or KSI in plain language (grounded in the dataset)")
     explain_p.add_argument("identifier", help="a rule id (FRC-CSO-PKG) or KSI id (KSI-CNA-RNT)")
+
+    diff_p = sub.add_parser("diff", help="show what a dataset change would affect (read-only)")
+    diff_p.add_argument("old", nargs="?", help="old dataset JSON (optional)")
+    diff_p.add_argument("new", nargs="?", help="new dataset JSON (optional)")
+    sub.add_parser("review", help="report the human review register (read-only)")
+    sub.add_parser("release", help="build, verify consistency, print the release tag")
     return p
 
 
@@ -332,11 +454,15 @@ def main(argv=None):
         "all": cmd_all,
         "clean": cmd_clean,
         "explain": cmd_explain,
+        "diff": cmd_diff,
+        "review": cmd_review,
+        "release": cmd_release,
     }
     return handlers[args.command](args)
 
 
 if __name__ == "__main__":
     sys.exit(main())
+
 
 
