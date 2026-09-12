@@ -1,0 +1,12 @@
+{
+ "coverage_note": "Coverage metrics, NOT a compliance percentage. 'evidence coverage' and 'verification coverage' describe completeness of the record, not whether the provider meets a requirement. A human assessor determines compliance.",
+ "certification_class": "B",
+ "rules_total": 158,
+ "rules_with_evidence": 0,
+ "rules_template_tbd": 155,
+ "ksis_total": 46,
+ "ksis_with_evidence": 0,
+ "ksis_meeting_verification_minimum": 3,
+ "ksis_template_tbd": 38,
+ "nodes_pending_review": 204
+}
