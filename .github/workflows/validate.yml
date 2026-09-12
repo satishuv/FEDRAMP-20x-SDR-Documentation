@@ -102,6 +102,8 @@ jobs:
         run: python automation/collectors/test_evidence_wiring.py
       - name: Run offline third-party evidence adapter tests (Falcon, Wiz; no network, no creds)
         run: python automation/collectors/test_thirdparty_adapters.py
+      - name: Run offline evidence lifecycle + integrity tests (no AWS)
+        run: python automation/collectors/test_evidence_lifecycle.py
       - name: Run offline shift-left policy tests (no AWS, no opa)
         run: python examples/shift-left/test_run_policy.py
       - name: Refuse a stale check catalog
