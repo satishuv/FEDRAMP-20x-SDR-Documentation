@@ -50,6 +50,21 @@ jobs:
             echo "Never edit generated files by hand; edit sdr/records/records-store.json and regenerate."
             exit 1
           }
+      - name: Reproducibility gate (build twice, compare deterministic artifacts)
+        run: |
+          set -e
+          find sdr package traceability artifacts validation/reports \
+            -type f \( -name '*.json' -o -name '*.txt' -o -name '*.md' -o -name '*.csv' \) \
+            ! -name '*.docx' -print0 | sort -z | xargs -0 sha256sum > /tmp/repro-first.txt
+          python sdr.py build > /dev/null
+          find sdr package traceability artifacts validation/reports \
+            -type f \( -name '*.json' -o -name '*.txt' -o -name '*.md' -o -name '*.csv' \) \
+            ! -name '*.docx' -print0 | sort -z | xargs -0 sha256sum > /tmp/repro-second.txt
+          diff /tmp/repro-first.txt /tmp/repro-second.txt || {
+            echo "FAIL. Deterministic artifacts changed across two identical builds."
+            exit 1
+          }
+          echo "Reproducibility gate: byte-identical across two builds."
       - name: Validate (schema, coverage, minimums, hygiene, content fidelity)
         run: python validation/scripts/validate_sdr.py
       - name: Run offline SDR semantic round-trip tests (no AWS)
