@@ -54,6 +54,7 @@ BUILD_STEPS = [
     ("build_assurance_graph.py", "unified assurance graph joining all artifacts"),
     ("build_release_manifest.py", "cryptographic release manifest of the package"),
     ("validate_package_consistency.py", "cross-artifact consistency check"),
+    ("build_reports.py", "evidence-coverage and reviewer reports"),
 ]
 
 REQUIRED_MODULES = [
@@ -337,4 +338,5 @@ def main(argv=None):
 
 if __name__ == "__main__":
     sys.exit(main())
+
 

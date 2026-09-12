@@ -25,6 +25,56 @@ OFFERING = os.path.join(BASE, "profiles", "common", "offering-profile.json")
 RULE_RE = re.compile(r"^[A-Z]{3}-[A-Z]{3}-[A-Z]{3}$")
 KSI_RE = re.compile(r"^KSI-[A-Z]{3}-[A-Z]{3}$")
 
+GRAPH = os.path.join(BASE, "traceability", "assurance-graph.json")
+DECISIONS = os.path.join(BASE, "traceability", "applicability-decisions.json")
+
+
+def _graph_node(ident):
+    """Return the assurance-graph node for a rule or KSI id, if the graph exists."""
+    g = _load(GRAPH)
+    if not g:
+        return None
+    for n in g.get("nodes", []):
+        if n.get("rule_id") == ident or n.get("ksi_id") == ident:
+            return n
+    return None
+
+
+def _decision(ident):
+    d = _load(DECISIONS)
+    if not d:
+        return None
+    for dec in d.get("decisions", []):
+        if dec.get("rule_id") == ident:
+            return dec
+    return None
+
+
+def _augment(lines, node, decision):
+    """Append the richer assurance view (applicability path, evidence
+    freshness, validation, output pointer) when the graph/decisions exist."""
+    if decision:
+        lines.append("")
+        lines.append("Applicability decision:")
+        lines.append(f"  applicable: {decision.get('applicable')}")
+        lines.append(f"  reason: {decision.get('reason')}")
+    if node:
+        ev = node.get("evidence", []) or []
+        lines.append("")
+        lines.append(f"Evidence entries: {len(ev)}")
+        for e in ev[:5]:
+            fresh = e.get("observed_at") or "no date"
+            lines.append(f"  - {e.get('type', '?')} {e.get('location', '')} "
+                         f"[{e.get('sha256', 'no hash')}] observed {fresh}")
+        val = node.get("validation", {})
+        lines.append(f"Validation: {val.get('result', '?')} (by {val.get('validator', '?')})")
+        rev = node.get("review", {})
+        lines.append(f"Review: {rev.get('review_status', 'pending')} "
+                     f"(reviewer {rev.get('reviewer', 'TBD')})")
+        ptr = node.get("outputs", {}).get("sdr_json_pointer")
+        if ptr:
+            lines.append(f"Output location: sdr/json/sdr-class-<class>.json {ptr}")
+
 
 def _load(path):
     try:
@@ -94,6 +144,7 @@ def _explain_rule(rid, cls):
     arts = ext.get("rule_artifacts", []) if ext else []
     L.append(f"  Rule-specific artifacts: "
              f"{'; '.join(str(a) for a in arts) if arts else 'None recorded'}")
+    _augment(L, _graph_node(rid), _decision(rid))
     L.append("")
     L.append("This summary is generated from the dataset and your record store. "
              "It is not a compliance determination; a human owns that.")
@@ -133,6 +184,7 @@ def _explain_ksi(kid, cls):
         h = e.get("xEvidenceContentHash", "")
         L.append(f"    - {e.get('evidenceType', '?')}: {loc}"
                  + (f"  [{h}]" if h else ""))
+    _augment(L, _graph_node(kid), None)
     L.append("")
     L.append("This summary is generated from the dataset and your record store. "
              "It is not a compliance determination; a human owns that.")
