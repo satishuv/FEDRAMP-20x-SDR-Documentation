@@ -77,6 +77,37 @@ def test_placeholder_uri_detected():
     assert el.is_placeholder_uri(ev["evidenceLocation"]) is True
 
 
+def test_collector_health_distinguishes_failure_from_clean():
+    ok = el.collector_health("aws-config", last_success="t", objects_collected=83,
+                             regions_expected=3, regions_collected=3)
+    assert ok["status"] == "complete"
+    failed = el.collector_health("aws-config", last_error="AccessDenied")
+    assert failed["status"] == "failed"
+    degraded = el.collector_health("aws-config", last_success="t",
+                                   regions_expected=3, regions_collected=1)
+    assert degraded["status"] == "degraded"
+    notrun = el.collector_health("aws-config")
+    assert notrun["status"] == "not-run"
+
+
+def test_supersede_keeps_immutable_history():
+    e1 = ew.fact_to_evidence(_fact(observed="2026-09-10T11:00:00Z"))
+    e2 = ew.fact_to_evidence(_fact(observed="2026-09-11T11:00:00Z"))
+    hist = el.supersede([], e1)
+    hist = el.supersede(hist, e2)
+    assert len(hist) == 2  # old entry retained, not overwritten
+    assert hist[-1]["supersedes"] == e1["xEvidenceContentHash"]
+    assert hist[0]["supersedes"] is None
+
+
+def test_adapter_describe_and_health():
+    a = ew.get_adapter("csv-count")
+    d = a.describe()
+    assert d["name"] == "csv-count" and "version" in d and "source_type" in d
+    h = a.health()
+    assert h["status"] == "not-run"  # default until a real run overrides
+
+
 def main():
     tests = [v for k, v in sorted(globals().items()) if k.startswith("test_")]
     for t in tests:
