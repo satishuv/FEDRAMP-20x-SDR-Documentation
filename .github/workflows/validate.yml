@@ -58,6 +58,10 @@ jobs:
         run: python validation/scripts/test_package_build.py
       - name: Validate the assurance graph (full-chain traceability)
         run: python validation/scripts/validate_assurance_graph.py
+      - name: Validate the human review register (no machine-authored approvals)
+        run: python validation/scripts/validate_reviews.py
+      - name: Run offline review-register tests (no AWS)
+        run: python validation/scripts/test_reviews.py
       - name: Run offline collector tests (no AWS account needed)
         run: python automation/collectors/test_collectors.py
       - name: Run offline collector scale + fault-injection tests (no AWS)

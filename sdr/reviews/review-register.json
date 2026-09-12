@@ -1,0 +1,4 @@
+{
+ "register_note": "Human review and signoff register. This is the ONLY place an approval can be recorded, and only a human writes it. The deterministic pipeline never populates a decision here: it cannot mark anything approved, assessed, certified, or compliant. Each entry records a reviewer's explicit decision on one assurance-graph node, the evidence hashes they reviewed, and when. An empty reviews array is the correct state for a template; it means nothing has been human-reviewed yet.",
+ "reviews": []
+}
