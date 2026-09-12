@@ -66,7 +66,9 @@ def main():
     cpo = load("package/cpo/cpo.json", {})
     # OCR and event artifacts must reference the same CPO URI as the profile.
     for rel in ["package/ocr/ocr-example.json",
-                "package/events/incident-report-example.json",
+                "package/events/incident-report-initial-example.json",
+                "package/events/incident-report-ongoing-example.json",
+                "package/events/incident-report-final-example.json",
                 "package/events/significant-change-notification-example.json",
                 "package/events/accepted-vulnerabilities-example.json",
                 "package/events/vulnerability-detail-report-example.json",

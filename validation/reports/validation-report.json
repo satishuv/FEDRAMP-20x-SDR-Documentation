@@ -49,8 +49,8 @@
   },
   {
    "check": "content_fidelity_against_dataset",
-   "result": "PASS",
-   "detail": "0 mismatches (all statements, names, and forces match the dataset)"
+   "result": "FAIL",
+   "detail": "1 mismatches; first: txt: KSI KSI-CED-RAT statement not found verbatim"
   },
   {
    "check": "semantic_completeness_cr26",
@@ -73,5 +73,8 @@
    "detail": "every pinned source matches its recorded sha256 in sources.lock.json"
   }
  ],
- "hard_failures": 0
+ "hard_failures": 1,
+ "fidelity_problems": [
+  "txt: KSI KSI-CED-RAT statement not found verbatim"
+ ]
 }

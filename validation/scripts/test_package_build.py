@@ -68,7 +68,9 @@ def test_ocr_period_is_deterministic():
 
 
 _EVENT_SCHEMAS = {
-    "incident-report-example.json": "fedramp-incident-report-schema-2026-06-24.json",
+    "incident-report-initial-example.json": "fedramp-incident-report-schema-2026-06-24.json",
+    "incident-report-ongoing-example.json": "fedramp-incident-report-schema-2026-06-24.json",
+    "incident-report-final-example.json": "fedramp-incident-report-schema-2026-06-24.json",
     "significant-change-notification-example.json": "fedramp-significant-change-notifications-schema-2026-06-24.json",
     "accepted-vulnerabilities-example.json": "fedramp-accepted-vulnerability-info-schema-2026-06-24.json",
     "vulnerability-detail-report-example.json": "fedramp-vulnerability-detail-report-schema-2026-06-24.json",

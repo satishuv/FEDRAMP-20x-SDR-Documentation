@@ -47,7 +47,9 @@ def test_review():
 
 
 def test_release():
-    code, out = run_cli("release")
+    # --no-tests: exercise the release path (build + validators + tag) without
+    # recursively re-running the full offline suite, which includes this test.
+    code, out = run_cli("release", "--no-tests")
     check("release exits 0", code == 0)
     check("release prints a tag", "release tag" in out.lower())
     check("release disclaims compliance",
@@ -66,6 +68,16 @@ def test_diff_rejects_single_path():
     check("diff rejects a single path", code == 2)
 
 
+def test_preflight():
+    code, out = run_cli("preflight")
+    # The template is deliberately unfilled, so preflight must report blockers.
+    check("preflight blocks the unfilled template", code == 1)
+    check("preflight names submission blockers", "BLOCK" in out)
+    check("preflight never claims compliance",
+          "not a compliance determination" in out.lower())
+    check("preflight cites FRC-APP-FCP freshness", "FRC-APP-FCP" in out)
+
+
 def test_scaffold():
     import scaffold_adapter as sa
     code = sa.scaffold("Falcon", "crowdstrike")
@@ -79,7 +91,7 @@ def test_scaffold():
 
 def main():
     for t in (test_review, test_release, test_diff_no_args,
-              test_diff_rejects_single_path, test_scaffold):
+              test_diff_rejects_single_path, test_preflight, test_scaffold):
         print(t.__name__)
         t()
     print(f"\n{PASS}/{PASS + FAIL} passed")
