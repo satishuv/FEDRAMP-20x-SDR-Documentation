@@ -21,6 +21,7 @@ Exit 1 on any structural or referential failure. An empty register is valid
 
 import json
 import os
+import re
 import sys
 
 BASE = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -54,6 +55,32 @@ def _assurance_ids():
     return ids
 
 
+def _node_evidence_hashes():
+    """Map each assurance-node id to the set of content hashes of the evidence
+    CURRENTLY attached to it in the graph. A node-level approval's reviewed
+    hashes must be a subset of these, so a stale or copied-from-another-node hash
+    is caught. Returns {node_id: {hash, ...}} or None if the graph is absent."""
+    graph = load(GRAPH)
+    if not graph:
+        return None
+    out = {}
+    for n in graph.get("nodes", []):
+        rid = n.get("rule_id") or n.get("ksi_id")
+        if not rid:
+            continue
+        hashes = set()
+        for ev in (n.get("evidence") or []):
+            if isinstance(ev, dict):
+                h = ev.get("xEvidenceContentHash") or ev.get("content_hash")
+                if h:
+                    hashes.add(h)
+        out[rid] = hashes
+    return out
+
+
+_SHA256_RE = re.compile(r"^(sha256:)?[0-9a-f]{64}$")
+
+
 def main():
     reg = load(REGISTER)
     if reg is None:
@@ -63,6 +90,7 @@ def main():
     problems = []
 
     graph_ids = _assurance_ids()
+    node_hashes = _node_evidence_hashes()
 
     for i, r in enumerate(reviews):
         where = r.get("review_id", f"#{i}")
@@ -76,11 +104,33 @@ def main():
         if reviewer in FORBIDDEN_REVIEWERS:
             problems.append(f"{where}: reviewer '{r.get('reviewer')}' is not a human "
                             "identity; approvals must be a human act")
-        # An 'approved' decision must list the evidence hashes reviewed.
-        if dec == "approved" and not r.get("evidence_hashes_reviewed"):
-            problems.append(f"{where}: approved without listing evidence_hashes_reviewed")
-        # Referential: the assurance_id must resolve, if the graph is present.
         aid = r.get("assurance_id")
+        # An 'approved' decision must list the evidence hashes reviewed, and each
+        # must be a well-formed SHA-256 that is CURRENTLY attached to this node.
+        if dec == "approved":
+            reviewed = r.get("evidence_hashes_reviewed") or []
+            if not reviewed:
+                problems.append(f"{where}: approved without listing evidence_hashes_reviewed")
+            for h in reviewed:
+                if not (isinstance(h, str) and _SHA256_RE.match(h.strip().lower())):
+                    problems.append(f"{where}: evidence hash '{h}' is not a well-formed SHA-256")
+            # Bind to CURRENT node evidence (when the graph resolves this node and
+            # carries evidence): a reviewed hash must match the node's current
+            # evidence, catching a stale or copied hash.
+            if node_hashes is not None and aid:
+                current = node_hashes.get(aid)
+                if current is None:
+                    tail = aid.split("ASR-")[-1] if aid.startswith("ASR-") else aid
+                    current = node_hashes.get(tail)
+                if current:
+                    stale = [h for h in reviewed if h not in current
+                             and (h.split("sha256:")[-1] if isinstance(h, str) else h) not in
+                             {c.split("sha256:")[-1] for c in current}]
+                    if stale:
+                        problems.append(f"{where}: approved evidence hash(es) do not match "
+                                        f"the node's current evidence (stale or from another "
+                                        f"node): {stale[:3]}")
+        # Referential: the assurance_id must resolve, if the graph is present.
         if graph_ids is not None and aid and aid not in graph_ids:
             # Allow an ASR- prefixed id whose tail is a real rule/ksi id.
             tail = aid.split("ASR-")[-1] if aid.startswith("ASR-") else aid

@@ -64,12 +64,13 @@ def install_deps():
     if not missing:
         out("  all present.")
         return True
-    out(f"  installing: {', '.join(DEPS)}")
+    out("  installing from requirements.txt (pinned)")
+    req = os.path.join(BASE, "requirements.txt")
     code = subprocess.run(
-        [sys.executable, "-m", "pip", "install", "--quiet"] + DEPS).returncode
+        [sys.executable, "-m", "pip", "install", "--quiet", "-r", req]).returncode
     if code != 0:
         out("  FAIL: could not install dependencies. Install them by hand:")
-        out("    pip install " + " ".join(DEPS))
+        out("    python -m pip install -r requirements.txt")
         return False
     return True
 

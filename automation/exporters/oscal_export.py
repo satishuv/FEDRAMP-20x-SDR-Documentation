@@ -226,7 +226,16 @@ def sdr_to_oscal(sdr, timestamp=None):
                     }
                 ],
             },
-            "import-ap": {"href": "#"},
+            "import-ap": {
+                "href": "#no-assessment-plan",
+                "remarks": ("EXPERIMENTAL export. No FedRAMP 20x Assessment Plan "
+                            "exists to import; OSCAL Assessment Results require an "
+                            "import-ap, so this is a self-reference placeholder. "
+                            "This document is a machine-readable convenience export "
+                            "of the SDR, is not validated against the NIST OSCAL "
+                            "schema here, and is not part of the native 20x "
+                            "submission. Do not treat it as a certified OSCAL AR."),
+            },
             "results": [result],
         }
     }
