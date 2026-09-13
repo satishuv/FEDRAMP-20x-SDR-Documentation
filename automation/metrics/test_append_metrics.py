@@ -60,6 +60,35 @@ def test_posture_datapoint_for_guardduty_ksi():
     assert dp == {"passing": 1, "total": 1}
 
 
+def test_history_persists_across_ephemeral_runs():
+    # Simulate the collector buildspec: each daily run is EPHEMERAL, so it must
+    # restore the prior history (from S3), append one datapoint, and persist it.
+    # If persistence works, day 2 sees day 1's datapoint; a run that started
+    # empty each time (the bug) would only ever hold one point.
+    import json
+    import tempfile
+    store = os.path.join(tempfile.mkdtemp(prefix="mh-"), "metric-history.json")
+
+    # Run 1: no prior history on disk (fresh ephemeral container) -> "restore"
+    # finds nothing -> start empty, append, persist.
+    hist = am.load(store, {}) or {}
+    am.append_run(hist, REGISTRY, config("COMPLIANT"), {}, date(2026, 9, 5))
+    with open(store, "w", encoding="utf-8", newline="\n") as f:
+        json.dump(hist, f, indent=1)
+
+    # Run 2: a NEW ephemeral container restores the persisted history, appends
+    # the next day, and persists again.
+    hist2 = am.load(store, {}) or {}
+    assert hist2.get("ksis"), "run 2 must restore run 1's persisted history"
+    am.append_run(hist2, REGISTRY, config("COMPLIANT"), {}, date(2026, 9, 6))
+    with open(store, "w", encoding="utf-8", newline="\n") as f:
+        json.dump(hist2, f, indent=1)
+
+    final = am.load(store, {})
+    assert len(final["ksis"]["KSI-A"]["series"]) == 2, \
+        "history must accumulate across ephemeral runs, not reset each run"
+
+
 def test_pruning_drops_old_points():
     hist = {}
     am.append_run(hist, REGISTRY, config("COMPLIANT"), {}, date(2024, 1, 1))

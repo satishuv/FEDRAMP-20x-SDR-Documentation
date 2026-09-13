@@ -43,9 +43,12 @@ TBD_MARKERS = ("TBD:", "TBD ", "Information has not been provided")
 # per-KSI service list names that service. This is a hint for provenance, not
 # a compliance decision.
 POSTURE_SERVICE_KEYS = {
-    "security_hub": "AWS Security Hub",
-    "access_analyzer": "Access Analyzer",
-    "inspector": "Amazon Inspector",
+    # Keys MUST match the collector's emitted service names (securityhub,
+    # accessanalyzer, inspector2), not security_hub / access_analyzer /
+    # inspector - a mismatch silently drops the telemetry.
+    "securityhub": "AWS Security Hub",
+    "accessanalyzer": "Access Analyzer",
+    "inspector2": "Amazon Inspector",
     "guardduty": "Amazon GuardDuty",
     "backup": "AWS Backup",
     "kms": "AWS Key Management Service",
@@ -177,7 +180,7 @@ def prefill_ksi(kid, record, ksi_entry, config_by_rule, posture_by_service):
             # Log-style services (GuardDuty, CloudTrail) are Audit Record; the
             # configuration-posture services are Configuration evidence.
             etype = ("Audit Record"
-                     if pf["service"] in ("guardduty", "cloudtrail", "security_hub")
+                     if pf["service"] in ("guardduty", "cloudtrail", "securityhub")
                      else "Configuration")
             new_ev.append({
                 "evidenceType": etype,
