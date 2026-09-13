@@ -32,6 +32,34 @@ PROFILE = os.path.join(BASE, "profiles", "common", "offering-profile.json")
 RECORDS = os.path.join(BASE, "sdr", "records", "records-store.json")
 
 
+def _obs_key(ev):
+    """A change signal for an evidence entry at a given location: its content
+    hash if present, else its observation timestamp, else its text."""
+    if not isinstance(ev, dict):
+        return None
+    return (ev.get("xEvidenceContentHash")
+            or ev.get("collected_at") or ev.get("observed_at")
+            or ev.get("evidenceText"))
+
+
+def _is_newer(new_ev, prior_ev):
+    """True when new_ev is a DIFFERENT (updated) observation than prior_ev at the
+    same location - a changed content hash or a later timestamp. Identical
+    observations are not 'newer' and do not replace."""
+    nk, pk = _obs_key(new_ev), _obs_key(prior_ev)
+    if nk is None or pk is None:
+        return nk != pk
+    if nk == pk:
+        return False
+    # Prefer a timestamp comparison when both carry one; otherwise a differing
+    # content hash is itself the change signal -> replace.
+    nt = new_ev.get("collected_at") or new_ev.get("observed_at")
+    pt = prior_ev.get("collected_at") or prior_ev.get("observed_at")
+    if nt and pt:
+        return str(nt) >= str(pt)
+    return True
+
+
 def load(path):
     with open(path, encoding="utf-8") as f:
         return json.load(f)
@@ -71,14 +99,37 @@ def main():
             if rec is None:
                 continue
             existing = rec.get("evidence", []) or []
-            seen = {e.get("evidenceLocation") for e in existing if isinstance(e, dict)}
+            # Upsert by stable evidence identity (evidenceLocation): a NEW
+            # observation at the same location must REPLACE the older entry when
+            # its content hash or timestamp changed, not be skipped. Skipping
+            # (the old behavior) silently retained stale third-party evidence.
+            by_loc = {}
+            ordered = []
+            for e in existing:
+                loc = e.get("evidenceLocation") if isinstance(e, dict) else None
+                if loc is not None:
+                    by_loc[loc] = e
+                ordered.append(loc)
             for ev in evidence:
-                if ev["evidenceLocation"] in seen:
+                loc = ev["evidenceLocation"]
+                prior = by_loc.get(loc)
+                if prior is None:
+                    by_loc[loc] = ev
+                    ordered.append(loc)
+                    attached += 1
+                elif _is_newer(ev, prior):
+                    by_loc[loc] = ev  # replace stale with the newer observation
+                    attached += 1
+                # else: identical/older observation, keep the existing entry.
+            # Rebuild preserving first-seen order.
+            rebuilt, done = [], set()
+            for loc in ordered:
+                if loc in done:
                     continue
-                existing.append(ev)
-                seen.add(ev["evidenceLocation"])
-                attached += 1
-            rec["evidence"] = existing
+                done.add(loc)
+                if loc in by_loc:
+                    rebuilt.append(by_loc[loc])
+            rec["evidence"] = rebuilt
         total_attached += attached
         print(f"'{name}': {len(evidence)} evidence entries applied to "
               f"{len(targets)} KSI(s) ({attached} attached after de-dup).")
