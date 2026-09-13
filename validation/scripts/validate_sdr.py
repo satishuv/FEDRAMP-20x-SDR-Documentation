@@ -154,6 +154,17 @@ def content_fidelity(cls, class_profile, sdr):
     problems = []
     rules, ksis, fam_frr, fam_ksi = canonical_maps()
 
+    # A rule id resolving in more than one applicability/subset branch is a
+    # dataset-fidelity problem: one definition would silently overwrite the
+    # other. canonical_maps records it; consume it as a HARD failure so an
+    # upstream dataset that introduces such a collision cannot be adopted
+    # silently. (Today's CR26 does not trigger this.)
+    collisions = rules.pop("__collisions__", None)
+    if collisions:
+        for rid, first, second in collisions:
+            problems.append(f"rule {rid} resolves in more than one dataset branch "
+                            f"({first} and {second}); one definition would overwrite "
+                            "the other (dataset-fidelity collision)")
     for e in class_profile["rules"]:
         rid = e["rule_id"]
         rule = rules.get(rid)
