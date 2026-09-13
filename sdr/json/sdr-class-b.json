@@ -32,7 +32,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "Example: Security Operations Manager"
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -61,7 +62,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -90,7 +92,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -119,7 +122,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -148,7 +152,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -177,7 +182,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -206,7 +212,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -235,7 +242,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -264,7 +272,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -293,7 +302,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -322,7 +332,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -351,7 +362,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -380,7 +392,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -409,7 +422,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -438,7 +452,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -467,7 +482,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -496,7 +512,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -525,7 +542,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -554,7 +572,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -583,7 +602,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -612,7 +632,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -641,7 +662,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -670,7 +692,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -699,7 +722,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -728,7 +752,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -757,7 +782,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -786,7 +812,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -815,7 +842,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -844,7 +872,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -873,7 +902,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -902,7 +932,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -931,7 +962,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -960,7 +992,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -989,7 +1022,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -1018,7 +1052,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -1047,7 +1082,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -1076,7 +1112,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -1105,7 +1142,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -1134,7 +1172,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -1163,7 +1202,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -1192,7 +1232,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -1221,7 +1262,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -1250,7 +1292,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -1279,7 +1322,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -1308,7 +1352,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -1337,7 +1382,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -1366,7 +1412,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -1395,7 +1442,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -1424,7 +1472,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -1453,7 +1502,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -1482,7 +1532,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -1511,7 +1562,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -1540,7 +1592,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -1569,7 +1622,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -1598,7 +1652,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "Example: Compliance Engineering Lead"
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -1627,7 +1682,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -1656,7 +1712,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -1685,7 +1742,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -1714,7 +1772,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -1743,7 +1802,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -1772,7 +1832,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -1801,7 +1862,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -1830,7 +1892,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -1859,7 +1922,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -1888,7 +1952,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -1917,7 +1982,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -1946,7 +2012,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -1975,7 +2042,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -2004,7 +2072,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -2033,7 +2102,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -2062,7 +2132,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -2091,7 +2162,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -2120,7 +2192,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -2149,7 +2222,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -2178,7 +2252,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -2207,7 +2282,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -2236,7 +2312,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -2265,7 +2342,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -2294,7 +2372,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -2323,7 +2402,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -2352,7 +2432,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -2381,7 +2462,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -2410,7 +2492,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -2439,7 +2522,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -2468,7 +2552,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -2497,7 +2582,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -2526,7 +2612,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -2555,7 +2642,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -2584,7 +2672,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -2613,7 +2702,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -2642,7 +2732,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -2671,7 +2762,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -2700,7 +2792,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -2729,7 +2822,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -2758,7 +2852,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -2787,7 +2882,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -2816,7 +2912,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -2845,7 +2942,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -2874,7 +2972,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -2903,7 +3002,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -2932,7 +3032,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -2961,7 +3062,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -2990,7 +3092,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -3019,7 +3122,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -3048,7 +3152,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -3077,7 +3182,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -3106,7 +3212,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -3135,7 +3242,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -3164,7 +3272,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -3193,7 +3302,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -3222,7 +3332,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -3251,7 +3362,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -3280,7 +3392,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -3309,7 +3422,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -3338,7 +3452,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -3367,7 +3482,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -3396,7 +3512,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -3425,7 +3542,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -3454,7 +3572,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -3483,7 +3602,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -3512,7 +3632,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -3541,7 +3662,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -3570,7 +3692,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "Example: Vulnerability Management Lead"
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -3599,7 +3722,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -3628,7 +3752,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -3657,7 +3782,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -3686,7 +3812,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -3715,7 +3842,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -3744,7 +3872,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -3773,7 +3902,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -3802,7 +3932,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -3831,7 +3962,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -3860,7 +3992,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -3889,7 +4022,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -3918,7 +4052,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -3947,7 +4082,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -3976,7 +4112,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -4005,7 +4142,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -4034,7 +4172,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -4063,7 +4202,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -4092,7 +4232,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -4121,7 +4262,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -4150,7 +4292,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -4179,7 +4322,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -4208,7 +4352,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -4237,7 +4382,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -4266,7 +4412,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -4295,7 +4442,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -4324,7 +4472,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -4353,7 +4502,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -4382,7 +4532,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -4411,7 +4562,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -4440,7 +4592,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -4469,7 +4622,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -4498,7 +4652,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -4527,7 +4682,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -4556,7 +4712,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -4585,7 +4742,8 @@
      "ruleArtifacts": [],
      "seniorOfficialAcceptance": "Not required: rule is followed",
      "owner": "TBD: Information has not been provided."
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   }
  ],
@@ -4620,7 +4778,8 @@
       "upToOneYear": "TBD: Information has not been provided.",
       "dailyDataReference": "TBD: Information has not been provided."
      }
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -4656,7 +4815,8 @@
       "upToOneYear": "TBD: Information has not been provided.",
       "dailyDataReference": "TBD: Information has not been provided."
      }
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -4689,7 +4849,8 @@
       "upToOneYear": "TBD: Information has not been provided.",
       "dailyDataReference": "TBD: Information has not been provided."
      }
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -4722,7 +4883,8 @@
       "upToOneYear": "TBD: Information has not been provided.",
       "dailyDataReference": "TBD: Information has not been provided."
      }
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -4755,7 +4917,8 @@
       "upToOneYear": "TBD: Information has not been provided.",
       "dailyDataReference": "TBD: Information has not been provided."
      }
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -4788,7 +4951,8 @@
       "upToOneYear": "TBD: Information has not been provided.",
       "dailyDataReference": "TBD: Information has not been provided."
      }
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -4821,7 +4985,8 @@
       "upToOneYear": "TBD: Information has not been provided.",
       "dailyDataReference": "TBD: Information has not been provided."
      }
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -4854,7 +5019,8 @@
       "upToOneYear": "TBD: Information has not been provided.",
       "dailyDataReference": "TBD: Information has not been provided."
      }
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -4887,7 +5053,8 @@
       "upToOneYear": "TBD: Information has not been provided.",
       "dailyDataReference": "TBD: Information has not been provided."
      }
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -4920,7 +5087,8 @@
       "upToOneYear": "TBD: Information has not been provided.",
       "dailyDataReference": "TBD: Information has not been provided."
      }
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -4953,7 +5121,8 @@
       "upToOneYear": "TBD: Information has not been provided.",
       "dailyDataReference": "TBD: Information has not been provided."
      }
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -4986,7 +5155,8 @@
       "upToOneYear": "TBD: Information has not been provided.",
       "dailyDataReference": "TBD: Information has not been provided."
      }
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -5019,7 +5189,8 @@
       "upToOneYear": "TBD: Information has not been provided.",
       "dailyDataReference": "TBD: Information has not been provided."
      }
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -5052,7 +5223,8 @@
       "upToOneYear": "TBD: Information has not been provided.",
       "dailyDataReference": "TBD: Information has not been provided."
      }
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -5088,7 +5260,8 @@
       "upToOneYear": "TBD: Information has not been provided.",
       "dailyDataReference": "TBD: Information has not been provided."
      }
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -5121,7 +5294,8 @@
       "upToOneYear": "TBD: Information has not been provided.",
       "dailyDataReference": "TBD: Information has not been provided."
      }
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -5154,7 +5328,8 @@
       "upToOneYear": "TBD: Information has not been provided.",
       "dailyDataReference": "TBD: Information has not been provided."
      }
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -5187,7 +5362,8 @@
       "upToOneYear": "TBD: Information has not been provided.",
       "dailyDataReference": "TBD: Information has not been provided."
      }
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -5220,7 +5396,8 @@
       "upToOneYear": "TBD: Information has not been provided.",
       "dailyDataReference": "TBD: Information has not been provided."
      }
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -5253,7 +5430,8 @@
       "upToOneYear": "TBD: Information has not been provided.",
       "dailyDataReference": "TBD: Information has not been provided."
      }
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -5286,7 +5464,8 @@
       "upToOneYear": "TBD: Information has not been provided.",
       "dailyDataReference": "TBD: Information has not been provided."
      }
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -5319,7 +5498,8 @@
       "upToOneYear": "TBD: Information has not been provided.",
       "dailyDataReference": "TBD: Information has not been provided."
      }
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -5352,7 +5532,8 @@
       "upToOneYear": "TBD: Information has not been provided.",
       "dailyDataReference": "TBD: Information has not been provided."
      }
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -5385,7 +5566,8 @@
       "upToOneYear": "TBD: Information has not been provided.",
       "dailyDataReference": "TBD: Information has not been provided."
      }
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -5418,7 +5600,8 @@
       "upToOneYear": "TBD: Information has not been provided.",
       "dailyDataReference": "TBD: Information has not been provided."
      }
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -5451,7 +5634,8 @@
       "upToOneYear": "TBD: Information has not been provided.",
       "dailyDataReference": "TBD: Information has not been provided."
      }
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -5484,7 +5668,8 @@
       "upToOneYear": "TBD: Information has not been provided.",
       "dailyDataReference": "TBD: Information has not been provided."
      }
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -5517,7 +5702,8 @@
       "upToOneYear": "TBD: Information has not been provided.",
       "dailyDataReference": "TBD: Information has not been provided."
      }
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -5550,7 +5736,8 @@
       "upToOneYear": "TBD: Information has not been provided.",
       "dailyDataReference": "TBD: Information has not been provided."
      }
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -5583,7 +5770,8 @@
       "upToOneYear": "TBD: Information has not been provided.",
       "dailyDataReference": "TBD: Information has not been provided."
      }
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -5616,7 +5804,8 @@
       "upToOneYear": "TBD: Information has not been provided.",
       "dailyDataReference": "TBD: Information has not been provided."
      }
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -5649,7 +5838,8 @@
       "upToOneYear": "TBD: Information has not been provided.",
       "dailyDataReference": "TBD: Information has not been provided."
      }
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -5682,7 +5872,8 @@
       "upToOneYear": "TBD: Information has not been provided.",
       "dailyDataReference": "TBD: Information has not been provided."
      }
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -5715,7 +5906,8 @@
       "upToOneYear": "TBD: Information has not been provided.",
       "dailyDataReference": "TBD: Information has not been provided."
      }
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -5748,7 +5940,8 @@
       "upToOneYear": "TBD: Information has not been provided.",
       "dailyDataReference": "TBD: Information has not been provided."
      }
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -5781,7 +5974,8 @@
       "upToOneYear": "TBD: Information has not been provided.",
       "dailyDataReference": "TBD: Information has not been provided."
      }
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -5814,7 +6008,8 @@
       "upToOneYear": "TBD: Information has not been provided.",
       "dailyDataReference": "TBD: Information has not been provided."
      }
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -5847,7 +6042,8 @@
       "upToOneYear": "TBD: Information has not been provided.",
       "dailyDataReference": "TBD: Information has not been provided."
      }
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -5880,7 +6076,8 @@
       "upToOneYear": "TBD: Information has not been provided.",
       "dailyDataReference": "TBD: Information has not been provided."
      }
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -5913,7 +6110,8 @@
       "upToOneYear": "TBD: Information has not been provided.",
       "dailyDataReference": "TBD: Information has not been provided."
      }
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -5946,7 +6144,8 @@
       "upToOneYear": "TBD: Information has not been provided.",
       "dailyDataReference": "TBD: Information has not been provided."
      }
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -5979,7 +6178,8 @@
       "upToOneYear": "TBD: Information has not been provided.",
       "dailyDataReference": "TBD: Information has not been provided."
      }
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -6012,7 +6212,8 @@
       "upToOneYear": "TBD: Information has not been provided.",
       "dailyDataReference": "TBD: Information has not been provided."
      }
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -6048,7 +6249,8 @@
       "upToOneYear": "TBD: Information has not been provided.",
       "dailyDataReference": "TBD: Information has not been provided."
      }
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -6081,7 +6283,8 @@
       "upToOneYear": "TBD: Information has not been provided.",
       "dailyDataReference": "TBD: Information has not been provided."
      }
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   },
   {
@@ -6114,7 +6317,8 @@
       "upToOneYear": "TBD: Information has not been provided.",
       "dailyDataReference": "TBD: Information has not been provided."
      }
-    }
+    },
+    "xAuthoringStatus": "Not Implemented"
    }
   }
  ]

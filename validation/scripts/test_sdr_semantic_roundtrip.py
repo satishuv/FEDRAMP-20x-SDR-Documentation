@@ -132,6 +132,30 @@ def test_generated_official_json_carries_semantic_for_every_entry():
             assert key in sem, f"{entry['ksiId']} missing {key}"
 
 
+def test_authoring_status_maps_to_official_enum():
+    # The official schema allows only Implemented / Not Implemented / Partially
+    # Implemented. Every richer authoring status must map into that set, and only
+    # Implemented / Partially Implemented pass through as-is.
+    OFFICIAL = {"Implemented", "Not Implemented", "Partially Implemented"}
+    cases = {
+        "Implemented": "Implemented",
+        "Partially Implemented": "Partially Implemented",
+        "Not Implemented": "Not Implemented",
+        "Planned": "Not Implemented",
+        "Gap": "Not Implemented",
+        "Not Applicable": "Not Implemented",
+        "Exception": "Not Implemented",
+        "Needs validation": "Not Implemented",
+        "FedRAMP pending": "Not Implemented",
+        "TBD": "Not Implemented",
+        "": "Not Implemented",
+    }
+    for authoring, expected in cases.items():
+        got = build_sdr.official_status(authoring)
+        assert got in OFFICIAL, f"{authoring!r} -> {got!r} not in official enum"
+        assert got == expected, f"{authoring!r} -> {got!r}, expected {expected!r}"
+
+
 def main():
     tests = [v for k, v in sorted(globals().items()) if k.startswith("test_")]
     passed = 0

@@ -87,6 +87,8 @@ The status vocabulary is deliberately narrow. Anything you cannot honestly claim
 
 The rule for moving to `Implemented`: a deterministic check passes, and a named human signs off. Automated collection alone is not enough, and neither is a person's opinion alone. This is not bureaucratic caution. A status you cannot defend under questioning is a finding waiting to happen, and it costs more to walk back than it ever saved.
 
+These are AUTHORING statuses. The official FedRAMP SDR schema allows only three values in the `frrImplementationStatus` / `ksiImplementationStatus` field: `Implemented`, `Not Implemented`, and `Partially Implemented`. The builder maps your authoring status onto that field (only `Implemented` and `Partially Implemented` pass through as-is; everything else - `Planned`, `Gap`, `Not Applicable`, `Exception`, `Needs validation`, `FedRAMP pending`, `TBD` - becomes `Not Implemented` in the official field) and preserves your exact authoring status in the record's extension (`providerExtensions.xAuthoringStatus`). So you can use the rich vocabulary above without producing a schema-invalid record, and the nuance (an `Exception` with senior-official acceptance, say) still travels with the SDR.
+
 ## A worked example
 
 Take `KSI-IAM-ELP`, least privilege enforcement. Here is the template state, with the `extension` block abbreviated: it actually ships with every field present and set to a `TBD` placeholder, plus a generated `fill_guidance` string describing what this indicator wants.
@@ -129,8 +131,18 @@ Filled in, at Class C, for a hypothetical offering. This is a synthetic example,
     "Test 2: The weekly unused-permission comparison. Pass requires no grant unused for more than 90 days without an open remediation ticket. Runs weekly."
   ],
   "evidence": [
-    "Daily scan output retained 400 days in the evidence bucket, one object per account per day.",
-    "Weekly comparison reports and the resulting ticket identifiers."
+    {
+      "evidenceType": "Report",
+      "evidenceDescription": "Daily least-privilege scan output, one object per account per day.",
+      "evidenceLocation": "s3://your-evidence-bucket/ksi-iam-elp/daily-scan/",
+      "evidenceText": "Daily scan output retained 400 days in the evidence bucket."
+    },
+    {
+      "evidenceType": "Report",
+      "evidenceDescription": "Weekly comparison reports and the resulting ticket identifiers.",
+      "evidenceLocation": "s3://your-evidence-bucket/ksi-iam-elp/weekly-comparison/",
+      "evidenceText": "Weekly comparison reports with ticket identifiers."
+    }
   ],
   "extension": {
     "owner": "Cloud Security Engineering Manager",

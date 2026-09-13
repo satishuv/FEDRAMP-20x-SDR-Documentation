@@ -30,6 +30,26 @@ RECORDS = os.path.join(BASE, "sdr", "records", "records-store.json")
 TBD = "TBD: Information has not been provided."
 
 
+# The official SDR schema constrains frr/ksiImplementationStatus to exactly
+# these three values. The record store uses a richer AUTHORING vocabulary
+# (Planned, Gap, Exception, Not Applicable, Needs validation, FedRAMP pending,
+# TBD, ...). Map the authoring status to the official enum for the schema field,
+# and preserve the authoring nuance in the extension (xFedRampSemantic /
+# xAuthoringStatus) so meaning is not lost. Only an explicit Implemented /
+# Partially Implemented counts as implemented; every other authoring state is
+# an honest "Not Implemented" in the official field.
+_OFFICIAL_STATUSES = {"Implemented", "Not Implemented", "Partially Implemented"}
+
+
+def official_status(authoring_status):
+    s = str(authoring_status or "").strip()
+    if s in _OFFICIAL_STATUSES:
+        return s
+    if s.lower() in ("partially implemented", "partial"):
+        return "Partially Implemented"
+    return "Not Implemented"
+
+
 def load(path):
     with open(path, encoding="utf-8") as f:
         return json.load(f)
@@ -162,7 +182,7 @@ def build_official(profile, rules, ksis, records):
         doc["fedRampRequirements"].append(
             {
                 "frrID": r["rule_id"],
-                "frrImplementationStatus": rec.get("implementation_status", "Not Implemented"),
+                "frrImplementationStatus": official_status(rec.get("implementation_status")),
                 "frrImplementation": rec.get("implementation", [TBD]),
                 "frrValidation": rec.get("validation", [TBD]),
                 "frrAssessment": rec.get("assessment", [TBD]),
@@ -182,6 +202,7 @@ def build_official(profile, rules, ksis, records):
                     # required information travels WITH the SDR rather than in a
                     # separate sidecar a consumer might miss.
                     "xFedRampSemantic": frr_semantic(rec),
+                    "xAuthoringStatus": rec.get("implementation_status", "Not Implemented"),
                 },
             }
         )
@@ -190,7 +211,7 @@ def build_official(profile, rules, ksis, records):
         doc["keySecurityIndicators"].append(
             {
                 "ksiId": k["ksi_id"],
-                "ksiImplementationStatus": rec.get("implementation_status", "Not Implemented"),
+                "ksiImplementationStatus": official_status(rec.get("implementation_status")),
                 "ksiImplementation": rec.get("implementation", [TBD]),
                 "ksiValidation": rec.get("validation", [TBD]),
                 "ksiAssessment": rec.get("assessment", [TBD]),
@@ -208,6 +229,7 @@ def build_official(profile, rules, ksis, records):
                     # fields, so the rest is carried here inside the submitted
                     # document.
                     "xFedRampSemantic": ksi_semantic(rec),
+                    "xAuthoringStatus": rec.get("implementation_status", "Not Implemented"),
                 },
             }
         )
