@@ -45,6 +45,7 @@ OFFERING_PROFILE = os.path.join(BASE, "profiles", "common", "offering-profile.js
 # profiles feed the record, the record feeds the Word file. Reordering these
 # does not fail loudly; it silently builds against stale inputs.
 BUILD_STEPS = [
+    ("validate_upstream.py", "validate the pinned dataset against the official rules schema + lock"),
     ("build_catalogs.py", "rule and indicator catalogs from the pinned dataset"),
     ("build_notes.py", "per-rule notes and family name expansions"),
     ("build_profiles.py", "per-class profiles, Class C overlay, Class D register"),
