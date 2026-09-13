@@ -117,6 +117,7 @@ TEST_SUITE = [
     "automation/collectors/test_evidence_lifecycle.py",
     "examples/shift-left/test_run_policy.py",
     "automation/sdrscan/test_checks.py",
+    "automation/sdrscan/test_mute_expiry.py",
     "validation/scripts/test_submission_readiness.py",
     "validation/scripts/test_cpo_semantics_adversarial.py",
 ]
@@ -1225,11 +1226,18 @@ def summary():
         # The report does not record whether a check is hard or advisory, so a
         # FAIL that did not raise the hard count must be an advisory one.
         soft = [c["check"] for c in checks if c.get("result") == "FAIL"]
-        verdict = "SHIPPABLE" if hard == 0 else "BLOCKED"
+        # "Ready" is reserved for submission preflight. The build gate answers
+        # only "is this structurally valid and faithful to the dataset", so it
+        # reports a structural verdict, not a shippability one.
+        verdict = ("BUILD PASS - structurally valid" if hard == 0
+                   else "BUILD BLOCKED")
         out(f"Build gate                   {verdict}, hard failures: {hard}")
         out(f"Checks                       {passed} of {len(checks)} passing")
         if hard == 0 and soft:
             out(f"Advisory failures            {', '.join(soft)}")
+        if hard == 0:
+            out("Submission readiness         run `python sdr.py package-preflight` "
+                "(structural pass is not submission-ready)")
         out(f"Dataset                      {report.get('generated', 'unknown')}")
 
     scan_files = sorted(glob.glob(SCAN_REPORT_GLOB))

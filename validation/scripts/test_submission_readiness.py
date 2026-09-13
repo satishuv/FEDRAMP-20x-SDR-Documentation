@@ -298,6 +298,17 @@ def main():
         rpub = _preflight(root)
         check("a bare-string CDS-CSO-PUB does NOT satisfy the structured rule",
               "not structurally complete" in rpub.stdout and rpub.returncode == 1)
+        # Dropping a single required CDS-CSO-PUB member (Sales Contact
+        # Information) must also block - the structured check is member-level.
+        import copy as _copy
+        pub_missing_sales = _copy.deepcopy(good_pub)
+        pub_missing_sales.pop("Sales Contact Information", None)
+        p["cpo_required_information"]["CDS-CSO-PUB"] = pub_missing_sales
+        json.dump(p, open(profile, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root)
+        rsales = _preflight(root)
+        check("a missing Sales Contact Information in CDS-CSO-PUB blocks",
+              "not structurally complete" in rsales.stdout and rsales.returncode == 1)
         p["cpo_required_information"]["CDS-CSO-PUB"] = good_pub
         json.dump(p, open(profile, "w", encoding="utf-8", newline="\n"), indent=1)
         _build(root)

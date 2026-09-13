@@ -420,16 +420,31 @@ def main():
     # scanned via their extracted document text, never as raw bytes, so
     # compressed binary runs cannot false-positive as account IDs.
     hits = []
-    for root, _dirs, files in os.walk(os.path.join(BASE, "sdr")):
-        for fn in files:
-            path = os.path.join(root, fn)
-            if fn.endswith(".docx"):
-                content = docx_body_text(path)
-            else:
-                content = open(path, encoding="utf-8", errors="ignore").read()
-            for pat, label in SENSITIVE_PATTERNS:
-                if pat.search(content):
-                    hits.append(f"{fn}: {label}")
+    # Scan the full customer bundle, not just sdr/: the delivered package also
+    # includes the CPO, OCR, SCG, event artifacts, the release manifest, and the
+    # crosswalk, and a leaked account id or key in any of those would ship.
+    scan_roots = [
+        os.path.join(BASE, "sdr"),
+        os.path.join(BASE, "package"),
+        os.path.join(BASE, "artifacts", "release-manifest.json"),
+        os.path.join(BASE, "traceability"),
+    ]
+    scan_files = []
+    for root in scan_roots:
+        if os.path.isfile(root):
+            scan_files.append(root)
+        elif os.path.isdir(root):
+            for r, _dirs, files in os.walk(root):
+                scan_files.extend(os.path.join(r, fn) for fn in files)
+    for path in scan_files:
+        fn = os.path.basename(path)
+        if fn.endswith(".docx"):
+            content = docx_body_text(path)
+        else:
+            content = open(path, encoding="utf-8", errors="ignore").read()
+        for pat, label in SENSITIVE_PATTERNS:
+            if pat.search(content):
+                hits.append(f"{fn}: {label}")
     check("no_sensitive_patterns", not hits, f"hits: {hits}")
 
     # 6. Content fidelity against the canonical dataset: every statement,

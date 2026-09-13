@@ -219,13 +219,24 @@ class Context:
 
 def load_mutelist():
     """Muting requires a justification and an expiry, so a muted finding is an
-    auditable decision rather than a way to hide a gap."""
+    auditable decision rather than a way to hide a gap. An EXPIRED or unparseable
+    expiry is fail-closed: the mute is dropped so the finding surfaces again."""
     if not os.path.exists(MUTELIST):
         return {}
     raw = load(MUTELIST)
     muted = {}
+    import datetime as _dt
+    today = _dt.date.today()
     for e in raw.get("mutes", []):
         if not e.get("justification") or not e.get("expires"):
+            continue
+        try:
+            expires = _dt.date.fromisoformat(str(e["expires"])[:10])
+        except (ValueError, TypeError):
+            # Unparseable expiry: do not honor the mute (fail closed).
+            continue
+        if expires <= today:
+            # Expired: the suppression no longer applies; the finding surfaces.
             continue
         muted[(e["check_id"], e.get("resource_id", "*"))] = e
     return muted
