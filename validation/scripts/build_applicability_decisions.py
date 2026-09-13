@@ -82,10 +82,16 @@ def _family_document_state(ds):
     out = {}
     for fam, node in (ds.get("FRR", {}) or {}).items():
         info = node.get("info", {}) if isinstance(node, dict) else {}
+        # FedRAMP effective metadata can be common (info.effective) or split into
+        # framework-specific blocks (info.20x.effective / info.rev5.effective).
+        # This framework is 20x Program, so prefer the 20x block, then common.
+        effective = (info.get("20x", {}) or {}).get("effective") or info.get("effective")
         out[fam] = {
             "document_status": info.get("status"),
             "tag": info.get("tag"),
-            "effective": info.get("effective"),
+            "effective": effective,
+            "effective_source": ("20x" if (info.get("20x", {}) or {}).get("effective")
+                                 else "common" if info.get("effective") else None),
         }
     for fam, node in (ds.get("KSI", {}) or {}).items():
         if isinstance(node, dict):

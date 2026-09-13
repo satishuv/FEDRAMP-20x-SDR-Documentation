@@ -111,11 +111,13 @@ def _derive_id(evidence):
 def verify_integrity(evidence, source_fact):
     """Recompute the hash of the source fact and compare to the stored hash on
     the evidence object. Returns (ok, detail). A mismatch is an integrity
-    failure: the artifact changed after the digest was recorded."""
+    failure: the artifact changed after the digest was recorded. The stored hash
+    is computed over the SANITIZED fact (the same projection persisted as
+    xSourceFact), so recompute over the same sanitized projection here."""
     stored = evidence.get("xEvidenceContentHash")
     if not stored:
         return False, "no stored content hash"
-    recomputed = ew.evidence_hash(source_fact)
+    recomputed = ew.evidence_hash(ew._sanitize_fact_for_evidence(source_fact))
     if recomputed != stored:
         return False, f"integrity-failed: stored {stored[:20]} != recomputed {recomputed[:20]}"
     return True, "integrity ok"

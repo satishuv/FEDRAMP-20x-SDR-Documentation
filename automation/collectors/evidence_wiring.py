@@ -96,6 +96,24 @@ def _pointer(service, check, region, location_base=None):
     return f"sdr://placeholder/{slug}  (replace with the real evidence-store URI)"
 
 
+def _sanitize_fact_for_evidence(fact):
+    """Return a non-sensitive projection of a collector fact for inclusion in
+    the public evidence object (xSourceFact). Keeps only an explicit allowlist
+    of fields that describe WHAT was checked and the outcome - never raw
+    resource ARNs, account ids, IPs, or full API payloads that could identify a
+    real environment or aid a threat actor (CDS-CSO-* sensitivity guidance).
+    Detailed raw material stays in the git-excluded private facts store."""
+    if not isinstance(fact, dict):
+        return {}
+    ALLOW = ("service", "check", "status", "region", "observed_at", "timestamp")
+    out = {k: fact[k] for k in ALLOW if k in fact}
+    # A short, human summary is allowed but truncated; never the full detail.
+    detail = fact.get("detail")
+    if isinstance(detail, str) and detail:
+        out["summary"] = detail[:120]
+    return out
+
+
 def fact_to_evidence(fact, location_base=None):
     """Convert one collector fact into an SDR evidence dict, or None if the
     fact records a read error (which is not evidence)."""
@@ -111,21 +129,26 @@ def fact_to_evidence(fact, location_base=None):
     detail = fact.get("detail", "")
     observed = fact.get("observed_at") or fact.get("timestamp")
 
+    # Sanitize once; hash the sanitized object AND persist it, so a reviewer/CI
+    # recompute over xSourceFact matches xEvidenceContentHash.
+    sanitized = _sanitize_fact_for_evidence(fact)
     evidence = {
         "evidenceType": ev_type,
         "evidenceDescription": f"{service}:{check} = {status}. {detail}".strip(),
         "evidenceLocation": _pointer(service, check, region, location_base),
         "evidenceText": f"{service}:{check} status={status} region={region}",
-        # Tamper-evident digest of the source fact. A reviewer or CI can
-        # recompute it to confirm the evidence entry reflects the fact that was
-        # collected and has not been silently edited. Carried in the extension
-        # namespace so the official evidence object stays schema-clean.
-        "xEvidenceContentHash": evidence_hash(fact),
-        # Persist the exact source fact the digest was computed over, so
-        # integrity is VERIFIABLE later (validate_evidence recomputes against it)
-        # rather than merely carrying a well-formed-looking hash. This is the
-        # provenance pointer, not a second copy of a remote artifact.
-        "xSourceFact": fact,
+        # Tamper-evident digest of the sanitized source fact. A reviewer or CI
+        # can recompute it to confirm the evidence entry reflects the fact that
+        # was collected and has not been silently edited. Carried in the
+        # extension namespace so the official evidence object stays schema-clean.
+        "xEvidenceContentHash": evidence_hash(sanitized),
+        # Persist a SANITIZED source fact the digest can be recomputed against.
+        # The full raw fact can identify a real environment and the facts store
+        # is git-excluded for that reason; CDS rules say not to include sensitive
+        # detail likely to help a threat actor. So xSourceFact carries an
+        # explicit allowlist of non-sensitive fields, and the digest is computed
+        # over that same sanitized object so integrity stays verifiable.
+        "xSourceFact": sanitized,
     }
     if observed:
         # SDR schema wants a date (not datetime) for evidence lastUpdated.

@@ -46,6 +46,10 @@
    "sha256": "92b2918106c0117ba84d14a5da33762dbb5df2acbf5303a806f6d4bbea98f60b"
   }
  },
+ "inputs": {
+  "profiles/common/offering-profile.json": "sha256:260e77a85a487c457ebfaf5b558e9c0e16be44c0244ee059b4f9653a6eaa6e6f",
+  "sdr/records/records-store.json": "sha256:005fda7b6c262db788be4b80c7d25588c63e7e503eb33cc633d3a6324547f2ed"
+ },
  "artifacts": {
   "package/cpo/cpo.json": "sha256:3f6aec5b9bda97902d2961c2ee47b4d2144419aa8ddf98bfddebcc1ce026717e",
   "package/cpo/cpo.md": "sha256:b9589cdfddac4e1e6f64b46bad9230703e5b366d414e1e5b92f0c824c5593c7c",
@@ -64,7 +68,7 @@
   "sdr/json/sdr-class-b-extensions.json": "sha256:efed72fcee4e4fcd7e511e833c6522850e3c9dfe2cb6a44fefd28ba109d8e5a9",
   "sdr/json/sdr-class-b.json": "sha256:3f492ecd76a8a229a923c63ed05ad08c4b0f81e43b918795974b024dd0b906e3",
   "sdr/json/sdr-class-b.oscal.json": "sha256:8673096d074df69ffd4b8f8cb797ab53f8ca148138e7d1fce16b03e1c7da34ae",
-  "traceability/applicability-decisions.json": "sha256:131891d8770c41be77e87c86c1a382b2bb6172ae1f44e82b96d3f030190ccf3b",
+  "traceability/applicability-decisions.json": "sha256:750a3102d6e0fdbd6d737a532f37a50688096785051656df9f444ccfc6b4cf2e",
   "traceability/assurance-graph.json": "sha256:623458f1104fe879b25aa2ce3d96a91d0a46cdcdec2ff2cb98e67bc94227ea35",
   "traceability/rev5-to-20x-crosswalk.csv": "sha256:54abb349fbf14d1d8ec15da7fe2de5615f132f14309dc3957a81563e5575db43"
  },

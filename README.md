@@ -2,7 +2,7 @@
 
 <p align="center">
   <strong>Build and maintain your FedRAMP 20x Certification Package from traceable, machine-readable facts, not hand-maintained documents.</strong><br>
-  One file of facts becomes a schema-validated Security Decision Record, Certification Package Overview, Ongoing Certification Report, Secure Configuration Guide, and the event-driven artifacts, every JSON validated against its official FedRAMP schema.
+  Two provider-owned inputs (offering metadata and security-decision facts) become a Security Decision Record, Certification Package Overview, Ongoing Certification Report, Secure Configuration Guide, and the event-driven artifacts. Every FedRAMP-defined JSON package artifact is validated against its corresponding official FedRAMP schema.
 </p>
 
 <p align="center">
@@ -59,7 +59,7 @@ A hand-maintained document set cannot satisfy that. It drifts from the requireme
 
 ## The approach
 
-In plain terms: you write facts about your system, and the framework turns them into a self-checking Certification Package authoring and validation workflow. You maintain one file; everything else is generated and validated for you. Some package components remain provider-supplied (the trust center and availability service, the fresh FedRAMP independent assessment and its overall summary, and the Secure Configuration Guide content); the framework models and preflight-gates them but does not host or produce them. A green build proves the package is well-formed and internally consistent, not that it is compliant or certified.
+In plain terms: you write facts about your system, and the framework turns them into a self-checking Certification Package authoring and validation workflow. You edit two provider-owned inputs (`profiles/common/offering-profile.json` for offering metadata and `sdr/records/records-store.json` for the security-decision facts); everything else is generated and validated for you. Some package components remain provider-supplied (the trust center and availability service, the fresh FedRAMP independent assessment and its overall summary, and the Secure Configuration Guide content); the framework models and preflight-gates them but does not host or produce them. A green build proves the package is well-formed and internally consistent, not that it is compliant or certified.
 
 <p align="center">
   <img src="docs/assets/architecture.svg" alt="How it works: your system's facts (records-store.json, the one file you edit) and the official rulebook (the pinned FedRAMP CR26 dataset and JSON schemas) feed the builder (python sdr.py all), which produces the full Certification Package (Security Decision Record, Certification Package Overview, Ongoing Certification Report, Secure Configuration Guide, and the event-driven incident, change, and vulnerability artifacts), every JSON validated against its official FedRAMP schema. Optional evidence sources (AWS collectors, and opt-in CrowdStrike Falcon and Wiz) attach hashed evidence. Two automatic checkers inspect the output: the fact-checker (validate_sdr.py plus validate_package.py) fails the build if a claim does not match the rulebook or a document does not match its schema, and the readiness scanner (sdrscan.py) scores how ready you are. Together they form a loop that points you back to what to fix next in your facts file. A daily drift check compares the pinned sources against upstream FedRAMP." width="820">
@@ -81,7 +81,7 @@ python sdr.py all
 
 That builds every deliverable, runs the validator, and prints a readiness summary. Expect `hard failures: 0` and a long list of open items: the repository ships as a template with honest placeholders, so open items are the correct result on a fresh clone.
 
-Then open `sdr/records/records-store.json` and start replacing `TBD` with facts about your system. That file is the only one you edit. See the [implementation guide](docs/implementation-guide.md).
+Then open `sdr/records/records-store.json` and start replacing `TBD` with facts about your system. Along with `profiles/common/offering-profile.json` (offering metadata), those are the two files you edit. See the [implementation guide](docs/implementation-guide.md).
 
 If you have GNU make, `make all` wraps the same command. To run the build steps individually, see [getting started](docs/getting-started.md).
 
