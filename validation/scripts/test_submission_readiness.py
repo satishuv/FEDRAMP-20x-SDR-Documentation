@@ -36,10 +36,10 @@ def check(name, cond):
         FAIL += 1; print(f"  FAIL {name}")
 
 
-def _fill(profile_path, now):
+def _fill(profile_path, now, cls="C"):
     prof = json.load(open(profile_path, encoding="utf-8"))
     prof.update({
-        "certification_class": "C",
+        "certification_class": cls,
         "organization_name": "Contoso Federal Cloud LLC",
         "offering_name": "Contoso Secure Platform",
         "offering_abbreviation": "CSP",
@@ -102,6 +102,21 @@ def _fill(profile_path, now):
             "application_form_reference": "APP-FORM-2026-CSP-0001",
         },
     })
+    if cls == "A":
+        # Class A: alternative-framework external assessment (FRC-CLA-ASF/EAM),
+        # within the past 12 months. FIA/SCG/AVR-MUST/MOT do not apply to A.
+        prof["external_assessment"] = {
+            "framework": "SOC 2 Type II",
+            "assessment_date": (now.date() - datetime.timedelta(days=60)).isoformat(),
+            "assessor": "Acme SOC 2 Auditors LLP",
+            "materials": [{
+                "type": "SOC2-TypeII-report",
+                "uri": "https://contoso.gov/soc2-2026.pdf",
+                "sha256": "sha256:" + "a" * 64,
+                "bridge_or_gap_letter_uri": "https://contoso.gov/bridge.pdf",
+                "next_assessment_date": (now.date() + datetime.timedelta(days=305)).isoformat(),
+            }],
+        }
     json.dump(prof, open(profile_path, "w", encoding="utf-8", newline="\n"), indent=1)
 
 
@@ -136,6 +151,15 @@ def _fill_records(root):
         ext["customer_risk"] = "No residual customer risk identified."
         ext["failure_response"] = "Documented runbook and on-call escalation."
         ext["responsibility"] = "Provider"
+        # SDR-CSO-FRR required items (FRR) / SDR-CSX-KSI required items (KSI).
+        ext["verification"] = f"Verified the implementation of {ident} is appropriate."
+        ext["independent_verification"] = f"Independent assessor verified {ident}."
+        ext["independent_validation"] = f"Independent assessor validated {ident}."
+        ext["assessor_responses"] = "No outstanding assessor comments."
+        if is_ksi:
+            ext["operating_cycle"] = "Continuous / daily persistent validation."
+            ext["measures_verification"] = f"Measures demonstrate {ident}."
+            ext["automation_verification"] = "Automation is accurate and sufficient."
         # Evidence with a resolvable inline source so integrity can recompute.
         fact = {"ident": ident, "status": "pass"}
         import hashlib as _h, json as _j
@@ -226,6 +250,26 @@ def main():
         r2 = _preflight(root)
         check("post-signoff change invalidates the manifest-bound signoff",
               "package_manifest_sha256 does not match" in r2.stdout and r2.returncode == 1)
+
+        # Class A end-to-end: only the 7 enumerated KSIs apply, FIA/SCG/AVR-MUST/
+        # MOT do not, and the alternative-framework external assessment does.
+        _fill(profile, now, cls="A")
+        _fill_records(root)
+        _build(root)
+        mhash_a = "sha256:" + hashlib.sha256(open(manifest, "rb").read()).hexdigest()
+        tag_a = json.load(open(manifest, encoding="utf-8")).get("release_tag")
+        reg_a = json.load(open(register, encoding="utf-8"))
+        reg_a["package_signoff"] = {
+            "decision": "approved", "reviewer": "Jane Provider, VP Security",
+            "timestamp": now.isoformat(), "release_tag": tag_a,
+            "package_manifest_sha256": mhash_a, "notes": "Reviewed full Class A package.",
+        }
+        json.dump(reg_a, open(register, "w", encoding="utf-8", newline="\n"), indent=1)
+        ra = _preflight(root)
+        check("fully-filled Class A offering reaches Submission ready (exit 0)",
+              ra.returncode == 0)
+        check("Class A is not blocked on the ~39 non-applicable KSIs",
+              "no implementation information" not in ra.stdout)
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
 

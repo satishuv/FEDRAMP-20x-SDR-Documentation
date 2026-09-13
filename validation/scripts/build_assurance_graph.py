@@ -123,6 +123,14 @@ def build_graph(cls):
     if class_profile is None:
         return None
     ksi_profile = load(KSI_PROFILE, {"indicators": []})
+    # Class A resolves only the 7 CLA-enumerated KSIs; build only those nodes so
+    # the graph matches the Class A SDR (the SDR omits the other 39, so building
+    # them would leave every one without an SDR output pointer).
+    if cls == "a":
+        class_a_ksis = (class_profile.get("meta", {}) or {}).get("class_a_ksis", {})
+        _applicable_ksi_ids = set(class_a_ksis.keys())
+    else:
+        _applicable_ksi_ids = {k["ksi_id"] for k in ksi_profile["indicators"]}
     records = load(RECORDS, {"frr": {}, "ksi": {}})
     sdr = load(os.path.join(BASE, "sdr", "json", f"sdr-class-{cls}.json"), {})
     sdr_frr_index = {e["frrID"]: i for i, e in enumerate(sdr.get("fedRampRequirements", []))}
@@ -175,6 +183,8 @@ def build_graph(cls):
     # KSI nodes.
     for k in ksi_profile["indicators"]:
         kid = k["ksi_id"]
+        if kid not in _applicable_ksi_ids:
+            continue
         rec = records.get("ksi", {}).get(kid, {})
         ext = rec.get("extension", {})
         i = sdr_ksi_index.get(kid)

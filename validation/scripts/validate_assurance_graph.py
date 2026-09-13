@@ -65,9 +65,14 @@ def main():
         missing = sorted(profile_rules - set(rule_nodes))[:5]
         extra = sorted(set(rule_nodes) - profile_rules)[:5]
         problems.append(f"rule node coverage mismatch (missing {missing}, extra {extra})")
-    ksi_ids = {k["ksi_id"] for k in ksi_profile["indicators"]}
+    # Class A resolves only the 7 CLA-enumerated KSIs, so the graph should carry
+    # exactly those for A, and all 46 otherwise.
+    if cls == "a":
+        ksi_ids = set(((class_profile.get("meta", {}) or {}).get("class_a_ksis", {}) or {}).keys())
+    else:
+        ksi_ids = {k["ksi_id"] for k in ksi_profile["indicators"]}
     if ksi_ids != set(ksi_nodes):
-        problems.append("KSI node coverage mismatch with the KSI profile")
+        problems.append("KSI node coverage mismatch with the applicable KSI set")
 
     # 3. Full chain present on every node.
     for rid, n in rule_nodes.items():
