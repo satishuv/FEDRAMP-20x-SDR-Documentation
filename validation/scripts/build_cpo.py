@@ -53,11 +53,15 @@ def val(v):
     return v if v not in (None, "") else TBD
 
 
-def _repository(desc):
-    # Minimal valid `repository` object per the CPO schema.
+def _repository(desc, url=None):
+    # Minimal valid `repository` object per the CPO schema. A provider-supplied
+    # url overrides the TBD placeholder; a TBD/unset value keeps the placeholder
+    # so preflight blocks on an unfilled trust center / SCG.
+    if not url or str(url).strip().startswith("TBD"):
+        url = TBD_URI
     return {
         "repositoryType": ["Website"],
-        "url": TBD_URI,
+        "url": url,
         "repositoryDescription": desc,
         "authenticationRequired": False,
     }
@@ -133,9 +137,11 @@ def build_cpo(profile):
             "serviceType": [stype],
             "deploymentModel": deploy,
             "trustCenter": _repository(
-                "FedRAMP-compatible trust center for Certification Data (CDS-CSO-UTC)."),
+                "FedRAMP-compatible trust center for Certification Data (CDS-CSO-UTC).",
+                profile.get("trust_center_uri")),
             "secureConfigurationGuidance": _repository(
-                "Secure Configuration Guide (SCG-CSO-RSC)."),
+                "Secure Configuration Guide (SCG-CSO-RSC).",
+                profile.get("secure_config_guide_uri")),
             "nextOngoingCertificationReportDate": next_ocr,
         },
         # contactInformation must contain at least a Security and a Sales

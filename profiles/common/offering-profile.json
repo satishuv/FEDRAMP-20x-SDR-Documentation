@@ -20,6 +20,8 @@
   "incident_contact": "TBD: Information has not been provided",
   "assessor": "TBD: Information has not been provided",
   "evidence_retention": "TBD: Information has not been provided",
+  "trust_center_uri": "TBD: URL of the FedRAMP-compatible trust center for Certification Data (CDS-CSO-UTC). Until set, the CPO carries a placeholder and preflight blocks submission.",
+  "secure_config_guide_uri": "TBD: URL of the published Secure Configuration Guide (SCG-CSO-RSC). Until set, the CPO carries a placeholder and preflight blocks submission.",
   "provider_verified_at": "TBD: ISO-8601 datetime the provider verified and validated the current offering. FRC-APP-FCP requires the initial package to be verified/validated within the previous 7 days of submission. Left as TBD in the template so `sdr.py preflight` reports it as a blocker until a provider fills it.",
   "external_assessment": {
     "note": "Required for Class A (FRC-CLA-ASF, FRC-CLA-EAM). Model the alternative-framework assessment as references; do NOT store confidential reports in this repository. All values TBD in the template.",
