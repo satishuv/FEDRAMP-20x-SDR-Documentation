@@ -159,6 +159,16 @@ def build_cpo(profile):
         f"Class {cls} Certification Package Overview scaffold. Required by "
         "CPO-CSO-OVR. Fill provider values in profiles/common/offering-profile.json; "
         "TBD markers show what a human still owes. Not a compliance claim.")
+    # CPO-CSO-OSA: Class B/C MUST include the assessor's overall assessment
+    # summary (from IVV-IAS-OSA) in the CPO, without inappropriate modification.
+    # Carried as a provider extension since the official CPO schema has no slot.
+    summary = profile.get("overall_assessment_summary")
+    if summary:
+        doc["xOverallAssessmentSummary"] = {
+            "cr26_rule": "CPO-CSO-OSA",
+            "source_rule": "IVV-IAS-OSA (assessor-supplied)",
+            "summary": summary,
+        }
     if assumptions:
         doc["_cpoAssumptions"] = assumptions
     return doc
