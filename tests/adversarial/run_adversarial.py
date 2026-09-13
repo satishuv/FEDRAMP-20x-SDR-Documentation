@@ -69,9 +69,10 @@ def test_class_c_must_shortfall_is_hard():
     import validate_sdr as vs
     assert vs.__dict__.get("EMPTY_STATEMENT_KSIS") is not None  # module imports clean
     # The force table is the load-bearing fact: C and D are MUST.
-    force = {"a": "MAY", "b": "SHOULD", "c": "MUST", "d": "MUST"}
+    from fedramp_constants import VVK_FORCE as force
     assert force["c"] == "MUST" and force["d"] == "MUST"
     assert force["b"] == "SHOULD"  # B is SHOULD, never silently MUST
+    assert force["a"] == "MAY"
 
 
 # --- Rev5 leakage: a rev5/Agency-only rule must not resolve into Class C ------
