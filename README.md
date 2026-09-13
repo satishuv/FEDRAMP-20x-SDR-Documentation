@@ -11,7 +11,7 @@
   <img alt="CR26 dataset" src="https://img.shields.io/badge/CR26%20dataset-2026.07.14.01-0b7285">
   <img alt="Classes" src="https://img.shields.io/badge/classes-A%20%7C%20B%20%7C%20C-1864ab">
   <img alt="Python" src="https://img.shields.io/badge/python-3.10%2B-3776ab">
-  <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-All%20Rights%20Reserved-c92a2a"></a>
+  <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-Permissive%20(AWS%20SAS)-2f9e44"></a>
 </p>
 
 <p align="center">
@@ -47,7 +47,7 @@
 >
 > - **No warranty. Use entirely at your own risk.** This software is provided "as is," without warranty of any kind. The authors and rights holders accept no liability for any use, misuse, or reliance on it or on anything it produces.
 >
-> **Ownership and rights.** This work is associated with and developed in the context of **Amazon Web Services (AWS) Security Assurance Services (SAS)**. AWS Security Assurance Services and its affiliates reserve all rights in and to this work to the fullest extent applicable. All AWS-related names, marks, and materials remain the property of Amazon Web Services, Inc. and its affiliates. Use of this repository does not transfer any such rights, and nothing here should be read as an official AWS position, product, or service. FedRAMP requirement text and schemas remain the property of their respective owners (see [License and rights](#license-and-rights)).
+> **Ownership and rights.** This work is associated with and developed in the context of **Amazon Web Services (AWS) Security Assurance Services (SAS)**, which owns its licensing. It is provided under a permissive license (see [License and rights](#license-and-rights)) that permits use, copy, modification, and distribution with attribution. All AWS-related names, marks, and materials remain the property of Amazon Web Services, Inc. and its affiliates and are not licensed for use except as customary attribution; nothing here should be read as an official AWS position, product, or service. FedRAMP requirement text and schemas remain the property of their respective owners.
 
 ---
 
@@ -174,7 +174,7 @@ Corrections to requirement interpretation are the most valuable contributions, a
 
 ## License and rights
 
-All rights reserved. See [LICENSE](LICENSE). This is not open-source software; no license or permission to use, copy, modify, or distribute is granted without prior express written permission of Amazon Web Services, Inc.
+Licensed under a permissive grant owned by AWS Security Assurance Services (SAS): you may use, copy, modify, and distribute the Work with attribution and the disclaimer, subject to the trademark and no-compliance-determination conditions. See [LICENSE](LICENSE). Final terms are subject to confirmation by AWS legal.
 
 This work is associated with **Amazon Web Services (AWS) Security Assurance Services (SAS)**. AWS Security Assurance Services and its affiliates reserve all rights in and to this work to the fullest extent applicable, and all AWS names, marks, and materials remain the property of Amazon Web Services, Inc. and its affiliates. Nothing here is an official AWS position, product, service, or endorsement.
 
