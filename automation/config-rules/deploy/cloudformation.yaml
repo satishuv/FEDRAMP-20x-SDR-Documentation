@@ -25,7 +25,7 @@ Resources:
           Effect: Allow
           Principal:
             AWS:
-              Fn::Sub: arn:aws:iam::${AWS::AccountId}:root
+              Fn::Sub: arn:${AWS::Partition}:iam::${AWS::AccountId}:root
           Action: kms:*
           Resource: '*'
         - Sid: AllowCloudWatchLogs
@@ -61,7 +61,7 @@ Resources:
             Service: lambda.amazonaws.com
           Action: sts:AssumeRole
       ManagedPolicyArns:
-      - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+      - Fn::Sub: arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
       Policies:
       - PolicyName: evidence-existence-readonly
         PolicyDocument:
@@ -72,7 +72,7 @@ Resources:
             - s3:GetObject
             - s3:GetObjectTagging
             Resource:
-              Fn::Sub: arn:aws:s3:::${EvidenceBucket}/*
+              Fn::Sub: arn:${AWS::Partition}:s3:::${EvidenceBucket}/*
           - Effect: Allow
             Action: config:PutEvaluations
             Resource: '*'

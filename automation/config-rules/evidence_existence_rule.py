@@ -50,16 +50,22 @@ def evaluate_evidence(s3_client, bucket, key, max_age_days, now=None):
     now = now or datetime.datetime.now(datetime.timezone.utc)
     try:
         head = s3_client.head_object(Bucket=bucket, Key=key)
-    except Exception as e:  # noqa: BLE001 - missing object is the NON_COMPLIANT case
+    except Exception as e:  # noqa: BLE001 - a genuine missing object is NON_COMPLIANT
         name = getattr(e, "response", {}).get("Error", {}).get("Code", type(e).__name__)
         if name in ("404", "NoSuchKey", "NotFound"):
             return {
                 "compliance_type": "NON_COMPLIANT",
                 "annotation": f"Evidence object s3://{bucket}/{key} does not exist.",
             }
+        # Any OTHER error (AccessDenied, throttling, service outage) is an
+        # INSTRUMENTATION failure, not a control failure. Collection failure is
+        # never silently a negative determination: report NOT_APPLICABLE with an
+        # explicit error annotation so a human investigates the access/config
+        # problem rather than the evidence being recorded as absent.
         return {
-            "compliance_type": "NON_COMPLIANT",
-            "annotation": f"Could not read evidence object ({name}).",
+            "compliance_type": "NOT_APPLICABLE",
+            "annotation": f"Could not read evidence object ({name}); this is a "
+                          "collection/instrumentation error, not a control failure.",
         }
     last_modified = head.get("LastModified")
     if last_modified is None:
@@ -112,11 +118,15 @@ def lambda_handler(event, context):  # noqa: ARG001 - context unused
     )
 
     invoking = json.loads(event.get("invokingEvent", "{}"))
+    # AWS Config provides the real account id in the invocation event; use it
+    # rather than a literal 'account' placeholder. Fall back to the env var,
+    # then to 'account' only if neither is present.
+    account_id = event.get("accountId") or os.environ.get("ACCOUNT_ID") or "account"
     config = boto3.client("config")
     config.put_evaluations(
         Evaluations=[{
             "ComplianceResourceType": "AWS::::Account",
-            "ComplianceResourceId": os.environ.get("ACCOUNT_ID", "account"),
+            "ComplianceResourceId": account_id,
             "ComplianceType": result["compliance_type"],
             "Annotation": result["annotation"][:256],
             "OrderingTimestamp": invoking.get(

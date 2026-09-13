@@ -52,6 +52,22 @@ def test_missing_object_is_noncompliant():
     assert "does not exist" in r["annotation"]
 
 
+def test_access_denied_is_not_a_control_failure():
+    # An instrumentation/permission error must NOT be reported as NON_COMPLIANT
+    # (collection failure != control failure). It is NOT_APPLICABLE with an
+    # explicit error annotation so a human investigates the access problem.
+    s3 = FakeS3(error=FakeS3Error("AccessDenied"))
+    r = rule.evaluate_evidence(s3, "b", "k", 365, now=NOW)
+    assert r["compliance_type"] == "NOT_APPLICABLE"
+    assert "instrumentation error" in r["annotation"]
+
+
+def test_throttling_is_not_a_control_failure():
+    s3 = FakeS3(error=FakeS3Error("ThrottlingException"))
+    r = rule.evaluate_evidence(s3, "b", "k", 365, now=NOW)
+    assert r["compliance_type"] == "NOT_APPLICABLE"
+
+
 def test_no_location_is_not_applicable():
     r = rule.evaluate_evidence(FakeS3(), "", "", 365, now=NOW)
     assert r["compliance_type"] == "NOT_APPLICABLE"

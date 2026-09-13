@@ -8,7 +8,7 @@ determination.
 import json
 import os
 
-from aws_cdk import App, Stack, CfnParameter, Duration
+from aws_cdk import App, Stack, CfnParameter, Duration, Aws
 from aws_cdk import aws_iam as iam
 from aws_cdk import aws_lambda as lambda_
 from aws_cdk import aws_s3 as s3
@@ -36,7 +36,7 @@ class EvidenceRulesStack(Stack):
         )
         role.add_to_policy(iam.PolicyStatement(
             actions=["s3:GetObject", "s3:GetObjectTagging"],
-            resources=[f"arn:aws:s3:::{{evidence_bucket.value_as_string}}/*"]))
+            resources=[f"arn:{Aws.PARTITION}:s3:::{evidence_bucket.value_as_string}/*"]))
         role.add_to_policy(iam.PolicyStatement(
             actions=["config:PutEvaluations"], resources=["*"]))
 
@@ -59,12 +59,12 @@ class EvidenceRulesStack(Stack):
             config.CfnConfigRule(
                 self, _cdk_id(rule["rule_name"]),
                 config_rule_name=rule["rule_name"],
-                description=f"{{rule['ksi_id']}}: {{rule['evidence']}}",
-                input_parameters={{
+                description=f"{rule['ksi_id']}: {rule['evidence']}",
+                input_parameters=json.dumps({
                     "evidence_bucket": evidence_bucket.value_as_string,
-                    "evidence_key": f"{{rule['rule_name']}}/evidence",
+                    "evidence_key": f"{rule['rule_name']}/evidence",
                     "max_age_days": rule["default_max_age_days"],
-                }},
+                }),
                 source=config.CfnConfigRule.SourceProperty(
                     owner="CUSTOM_LAMBDA",
                     source_identifier=fn.function_arn,
