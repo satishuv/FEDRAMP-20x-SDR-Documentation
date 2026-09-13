@@ -270,13 +270,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "OCR",
     "class": "B",
     "final_applicability": true,
@@ -291,13 +303,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "OCR",
     "class": "B",
     "final_applicability": true,
@@ -312,13 +336,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "OCR",
     "class": "B",
     "final_applicability": true,
@@ -333,13 +369,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "OCR",
     "class": "B",
     "final_applicability": true,
@@ -354,13 +402,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "OCR",
     "class": "B",
     "final_applicability": true,
@@ -375,13 +435,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "OCR",
     "class": "B",
     "final_applicability": true,
@@ -396,13 +468,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "OCR",
     "class": "B",
     "final_applicability": true,
@@ -417,13 +501,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "QTR",
     "class": "B",
     "final_applicability": true,
@@ -438,13 +534,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + class_variant",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "QTR",
     "class": "B",
     "final_applicability": true,
@@ -459,13 +567,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "QTR",
     "class": "B",
     "final_applicability": true,
@@ -480,13 +600,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "QTR",
     "class": "B",
     "final_applicability": true,
@@ -501,13 +633,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "QTR",
     "class": "B",
     "final_applicability": true,
@@ -522,13 +666,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "QTR",
     "class": "B",
     "final_applicability": true,
@@ -543,13 +699,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "QTR",
     "class": "B",
     "final_applicability": true,
@@ -564,13 +732,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "QTR",
     "class": "B",
     "final_applicability": true,
@@ -585,13 +765,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "QTR",
     "class": "B",
     "final_applicability": true,
@@ -606,13 +798,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "QTR",
     "class": "B",
     "final_applicability": true,
@@ -627,13 +831,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + class_variant",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -648,13 +864,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -669,13 +897,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -690,13 +930,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -711,13 +963,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -732,13 +996,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -753,13 +1029,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + class_variant",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -774,13 +1062,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -795,13 +1095,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -816,13 +1128,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -837,13 +1161,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -858,13 +1194,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -879,13 +1227,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "TRC",
     "class": "B",
     "final_applicability": true,
@@ -900,13 +1260,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "TRC",
     "class": "B",
     "final_applicability": true,
@@ -921,13 +1293,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "TRC",
     "class": "B",
     "final_applicability": true,
@@ -942,13 +1326,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "TRC",
     "class": "B",
     "final_applicability": true,
@@ -963,13 +1359,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "TRC",
     "class": "B",
     "final_applicability": true,
@@ -984,13 +1392,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "TRC",
     "class": "B",
     "final_applicability": true,
@@ -1005,13 +1425,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "UTC",
     "class": "B",
     "final_applicability": true,
@@ -1026,13 +1458,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "UTC",
     "class": "B",
     "final_applicability": true,
@@ -1047,13 +1491,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -1068,13 +1524,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -1089,13 +1557,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + class_variant",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -1110,13 +1590,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -1131,13 +1623,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + class_variant",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -1152,13 +1656,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -1173,13 +1689,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + class_variant",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSX",
     "class": "B",
     "final_applicability": true,
@@ -1194,13 +1722,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "APP",
     "class": "B",
     "final_applicability": true,
@@ -1215,13 +1755,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "APP",
     "class": "B",
     "final_applicability": true,
@@ -1236,13 +1788,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + class_variant",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "APP",
     "class": "B",
     "final_applicability": true,
@@ -1257,13 +1821,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "APP",
     "class": "B",
     "final_applicability": true,
@@ -1278,13 +1854,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "APP",
     "class": "B",
     "final_applicability": true,
@@ -1299,13 +1887,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "APP",
     "class": "B",
     "final_applicability": true,
@@ -1320,13 +1920,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -1341,13 +1953,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -1362,13 +1986,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -1383,13 +2019,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -1404,13 +2052,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -1425,13 +2085,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSX",
     "class": "B",
     "final_applicability": true,
@@ -1446,13 +2118,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + class_variant",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSX",
     "class": "B",
     "final_applicability": true,
@@ -1467,13 +2151,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + class_variant",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSX",
     "class": "B",
     "final_applicability": true,
@@ -1488,13 +2184,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + class_variant",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSX",
     "class": "B",
     "final_applicability": true,
@@ -1509,13 +2217,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -1530,13 +2250,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -1551,13 +2283,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -1572,13 +2316,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -1593,13 +2349,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + class_variant",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -1614,13 +2382,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + class_variant",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -1635,13 +2415,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + class_variant",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -1656,13 +2448,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -1677,13 +2481,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + class_variant",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -1698,13 +2514,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -1719,13 +2547,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -1740,13 +2580,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -1761,13 +2613,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -1782,13 +2646,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -1803,13 +2679,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -1824,13 +2712,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + class_variant",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSX",
     "class": "B",
     "final_applicability": true,
@@ -1845,13 +2745,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -1866,13 +2778,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -1887,13 +2811,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -1908,13 +2844,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -1929,13 +2877,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -2403,13 +3363,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "ADP",
     "class": "B",
     "final_applicability": true,
@@ -2424,13 +3396,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -2445,13 +3429,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -2466,13 +3462,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -2487,13 +3495,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -2508,13 +3528,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -2529,13 +3561,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -2550,13 +3594,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -2571,13 +3627,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -2592,13 +3660,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "RTR",
     "class": "B",
     "final_applicability": true,
@@ -2613,13 +3693,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "TRF",
     "class": "B",
     "final_applicability": true,
@@ -2634,13 +3726,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "TRF",
     "class": "B",
     "final_applicability": true,
@@ -2655,13 +3759,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "TRF",
     "class": "B",
     "final_applicability": true,
@@ -2676,13 +3792,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "TRF",
     "class": "B",
     "final_applicability": true,
@@ -2697,13 +3825,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "TRF",
     "class": "B",
     "final_applicability": true,
@@ -2718,13 +3858,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "TRF",
     "class": "B",
     "final_applicability": true,
@@ -2739,13 +3891,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -2760,13 +3924,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSO",
     "class": "B",
     "final_applicability": true,
@@ -2781,13 +3957,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + class_variant",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSX",
     "class": "B",
     "final_applicability": true,
@@ -2802,13 +3990,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CSX",
     "class": "B",
     "final_applicability": true,
@@ -4927,13 +6127,25 @@
     "Agencies"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Agencies'])",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "AGM",
     "class": "B",
     "final_applicability": false,
@@ -4948,13 +6160,25 @@
     "Agencies"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Agencies'])",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "AGM",
     "class": "B",
     "final_applicability": false,
@@ -4969,13 +6193,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": false,
    "reason": "subset types ['Rev5'] exclude 20x",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "APS",
     "class": "B",
     "final_applicability": false,
@@ -4990,13 +6226,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": false,
    "reason": "subset types ['Rev5'] exclude 20x",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CCL",
     "class": "B",
     "final_applicability": false,
@@ -5011,13 +6259,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": false,
    "reason": "subset types ['Rev5'] exclude 20x",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CCL",
     "class": "B",
     "final_applicability": false,
@@ -5032,13 +6292,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": false,
    "reason": "subset types ['Rev5'] exclude 20x",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CCL",
     "class": "B",
     "final_applicability": false,
@@ -5053,13 +6325,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": false,
    "reason": "subset classes ['A'] exclude B",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CLA",
     "class": "B",
     "final_applicability": false,
@@ -5074,13 +6358,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": false,
    "reason": "subset classes ['A'] exclude B",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CLA",
     "class": "B",
     "final_applicability": false,
@@ -5095,13 +6391,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": false,
    "reason": "subset classes ['A'] exclude B",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CLA",
     "class": "B",
     "final_applicability": false,
@@ -5116,13 +6424,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": false,
    "reason": "subset classes ['A'] exclude B",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CLA",
     "class": "B",
     "final_applicability": false,
@@ -5137,13 +6457,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": false,
    "reason": "subset classes ['A'] exclude B",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CLA",
     "class": "B",
     "final_applicability": false,
@@ -5158,13 +6490,25 @@
     "Providers"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": false,
    "reason": "subset classes ['A'] exclude B",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "CLA",
     "class": "B",
     "final_applicability": false,
@@ -5179,13 +6523,25 @@
     "FedRAMP"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['FedRAMP'])",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "FRP",
     "class": "B",
     "final_applicability": false,
@@ -5200,13 +6556,25 @@
     "Assessors"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Assessors'])",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "IAS",
     "class": "B",
     "final_applicability": false,
@@ -5221,13 +6589,25 @@
     "Assessors"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Assessors'])",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "IAS",
     "class": "B",
     "final_applicability": false,
@@ -5242,13 +6622,25 @@
     "Assessors"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Assessors'])",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "IAS",
     "class": "B",
     "final_applicability": false,
@@ -5263,13 +6655,25 @@
     "Assessors"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Assessors'])",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "IAS",
     "class": "B",
     "final_applicability": false,
@@ -5284,13 +6688,25 @@
     "Assessors"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Assessors'])",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "IAS",
     "class": "B",
     "final_applicability": false,
@@ -5305,13 +6721,25 @@
     "Assessors"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Assessors'])",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "IAS",
     "class": "B",
     "final_applicability": false,
@@ -5326,13 +6754,25 @@
     "Assessors"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Assessors'])",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "IAS",
     "class": "B",
     "final_applicability": false,
@@ -6106,13 +7546,25 @@
     "FedRAMP"
    ],
    "document_status": "stable",
-   "document_effective": null,
+   "document_effective": {
+    "is": "required",
+    "current_status": "Consolidated Rules for 2026",
+    "date": {
+     "obtain": "2026-07-04",
+     "maintain": "2027-01-01",
+     "optional_adoption": "2026-07-04",
+     "grace": {
+      "default": "2027-01-01",
+      "until_next_assessment": true
+     }
+    }
+   },
    "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['FedRAMP'])",
    "resolution_chain": {
     "document_status": "stable",
-    "effective_is": null,
+    "effective_is": "required",
     "subset": "FRP",
     "class": "B",
     "final_applicability": false,

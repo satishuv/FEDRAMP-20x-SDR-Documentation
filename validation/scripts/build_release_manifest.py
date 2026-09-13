@@ -93,6 +93,22 @@ def build(cls):
 
     dataset = sources.get("cr26_consolidated_rules", {})
 
+    # Submission-critical AUTHORITATIVE INPUTS. Some values here (provider
+    # verification date, assessment references, availability assertions) affect
+    # preflight without necessarily changing a generated artifact, so a signoff
+    # bound only to generated outputs could miss a post-signoff input change.
+    # Hashing them here folds them into the manifest hash the signoff binds to.
+    # The review register is deliberately EXCLUDED to avoid a circular hash.
+    input_files = [
+        "profiles/common/offering-profile.json",
+        "sdr/records/records-store.json",
+    ]
+    inputs = {}
+    for rel in input_files:
+        p = os.path.join(BASE, rel)
+        if os.path.exists(p):
+            inputs[rel] = sha256_file(p)
+
     return {
         "manifest_note": (
             "Cryptographic fingerprint of the generated Certification Package. "
@@ -105,6 +121,7 @@ def build(cls):
         "dataset_version": offering.get("dataset_version"),
         "dataset_sha256": dataset.get("sha256"),
         "schemas": dict(sorted(schemas.items())),
+        "inputs": dict(sorted(inputs.items())),
         "artifacts": dict(sorted(artifacts.items())),
         "artifact_count": len(artifacts),
         "release_tag": f"v{FRAMEWORK_VERSION}-cr26-{offering.get('dataset_version')}",
