@@ -24,14 +24,10 @@ def main():
         print("SKIP: aws-cdk-lib not installed; CI installs it and runs the synth")
         return 0
 
-    # Regenerate to guarantee we synth the current generator output.
-    gen = os.path.join(HERE, "generate_templates.py")
-    spec = importlib.util.spec_from_file_location("gen_templates", gen)
-    gmod = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(gmod)
-    gmod.write_all()
-
-    # Import the generated stack module and synthesize it.
+    # Synthesize the COMMITTED generated stack. The regenerate-and-diff CI gate
+    # already proves cdk_stack.py is current with the generator, so this test
+    # does not regenerate (and thus needs no yaml/CFN dependency) - it proves the
+    # committed CDK artifact actually synthesizes.
     sys.path.insert(0, HERE)
     from aws_cdk import App
     stack_path = os.path.join(HERE, "cdk_stack.py")
