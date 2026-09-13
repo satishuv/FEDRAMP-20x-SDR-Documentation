@@ -51,6 +51,7 @@
   "sdr/records/records-store.json": "sha256:005fda7b6c262db788be4b80c7d25588c63e7e503eb33cc633d3a6324547f2ed"
  },
  "artifacts": {
+  "package/certification-package-manifest.json": "sha256:e7ed39c540b78bd3161c9b2b02b36101783ab54d04d350d200c9af042c5b3163",
   "package/cpo/cpo.json": "sha256:54d5f459aba8ace2560f2bde410ac0735ce15f33c8b99019b32c030cc685c471",
   "package/cpo/cpo.md": "sha256:b9589cdfddac4e1e6f64b46bad9230703e5b366d414e1e5b92f0c824c5593c7c",
   "package/events/accepted-vulnerabilities-example.json": "sha256:976ee1c98c7b6ad3198806fa8c8acdb128ce1bffd8a1b58085476fd16bcd2e00",
@@ -72,7 +73,7 @@
   "traceability/assurance-graph.json": "sha256:623458f1104fe879b25aa2ce3d96a91d0a46cdcdec2ff2cb98e67bc94227ea35",
   "traceability/rev5-to-20x-crosswalk.csv": "sha256:54abb349fbf14d1d8ec15da7fe2de5615f132f14309dc3957a81563e5575db43"
  },
- "artifact_count": 20,
+ "artifact_count": 21,
  "release_tag": "v1.1.0-cr26-2026.07.14.01",
  "build": {
   "deterministic": true,

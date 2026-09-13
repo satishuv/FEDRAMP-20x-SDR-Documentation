@@ -77,11 +77,24 @@ def build(cls):
     sources = lock.get("sources", {})
 
     artifacts = {}
-    for glob in ARTIFACT_GLOBS:
-        rel = glob.format(c=cls)
+    missing = []
+    expected = [g.format(c=cls) for g in ARTIFACT_GLOBS]
+    # The package-scope manifest is a real customer-facing artifact and must be
+    # covered by the cryptographic release manifest too.
+    expected.append("package/certification-package-manifest.json")
+    for rel in expected:
         path = os.path.join(BASE, rel)
         if os.path.exists(path):
             artifacts[rel] = sha256_file(path)
+        else:
+            missing.append(rel)
+    if missing:
+        # A missing EXPECTED artifact must not be silently skipped: the manifest
+        # would then attest to an incomplete package. Fail the build.
+        raise SystemExit(
+            "release manifest: expected artifact(s) missing from the package; "
+            "the package is incomplete, refusing to fingerprint it: "
+            + ", ".join(missing))
 
     schemas = {}
     for key, entry in sources.items():
