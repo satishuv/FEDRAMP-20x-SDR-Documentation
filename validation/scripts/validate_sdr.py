@@ -102,12 +102,24 @@ def canonical_maps():
     """Rule and KSI lookup maps built directly from the canonical dataset."""
     ds = load(DATASET)
     rules = {}
-    for famblock in ds["FRR"].values():
-        for subsets in famblock.get("data", {}).values():
-            for items in subsets.values():
+    rule_provenance = {}  # rid -> (applicability, subset), to catch collisions
+    collisions = []
+    for fam, famblock in ds["FRR"].items():
+        for applicability, subsets in famblock.get("data", {}).items():
+            for subset, items in subsets.items():
                 for rid, rule in items.items():
                     if isinstance(rule, dict) and re.match(r"^[A-Z]{3}-[A-Z]{3}-[A-Z]{3}$", rid):
+                        if rid in rules:
+                            # A rule id must be unique across branches; a
+                            # collision would silently drop one definition.
+                            collisions.append((rid, rule_provenance[rid],
+                                               (applicability, subset)))
                         rules[rid] = rule
+                        rule_provenance[rid] = (applicability, subset)
+    if collisions:
+        # Surface rather than silently overwrite; the caller treats this as a
+        # hard fidelity problem.
+        rules["__collisions__"] = collisions
     ksis = {}
     fam_names_ksi = {}
     for fam, famblock in ds["KSI"].items():

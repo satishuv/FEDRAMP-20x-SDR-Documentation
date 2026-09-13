@@ -11,6 +11,7 @@
    "ksi_id": "KSI-CED-RAT",
    "family": "CED",
    "family_name": "Cybersecurity Education",
+   "family_status": "stable",
    "name": "Reviewing All Training",
    "statement": "The effectiveness of relevant cybersecurity education and training is persistently reviewed, including at least general training for all employees, role-specific training for employees in high risk roles, training for development and engineering staff on secure software delivery, and training for staff involved with incident response or disaster recovery.",
    "controls": [
@@ -26,12 +27,14 @@
     "at-3",
     "sr-11.1"
    ],
+   "varies_by_class": null,
    "status_note": "ok"
   },
   {
    "ksi_id": "KSI-CMT-LMC",
    "family": "CMT",
    "family_name": "Change Management",
+   "family_status": "stable",
    "name": "Logging Changes",
    "statement": "Modifications to the cloud service offering are logged and monitored.",
    "controls": [
@@ -43,12 +46,14 @@
     "cm-8.3",
     "ma-2"
    ],
+   "varies_by_class": null,
    "status_note": "ok"
   },
   {
    "ksi_id": "KSI-CMT-RMV",
    "family": "CMT",
    "family_name": "Change Management",
+   "family_status": "stable",
    "name": "Redeploying vs Modifying",
    "statement": "Changes to machine-based information resources are executed through the redeployment of version controlled resources rather than direct modification wherever reasonable.",
    "controls": [
@@ -60,12 +65,14 @@
     "cm-8.1",
     "si-3"
    ],
+   "varies_by_class": null,
    "status_note": "ok"
   },
   {
    "ksi_id": "KSI-CMT-RVP",
    "family": "CMT",
    "family_name": "Change Management",
+   "family_status": "stable",
    "name": "Reviewing Change Procedures",
    "statement": "The effectiveness of documented change management procedures is persistently reviewed.",
    "controls": [
@@ -76,12 +83,14 @@
     "cm-7.1",
     "cm-9"
    ],
+   "varies_by_class": null,
    "status_note": "ok"
   },
   {
    "ksi_id": "KSI-CMT-VTD",
    "family": "CMT",
    "family_name": "Change Management",
+   "family_status": "stable",
    "name": "Validating Throughout Deployment",
    "statement": "Persistent testing and validation of changes throughout deployment is automated.",
    "controls": [
@@ -90,36 +99,49 @@
     "cm-4.2",
     "si-2"
    ],
+   "varies_by_class": null,
    "status_note": "ok"
   },
   {
    "ksi_id": "KSI-CNA-DFP",
    "family": "CNA",
    "family_name": "Cloud Native Architecture",
+   "family_status": "stable",
    "name": "Defining Functionality and Privileges",
    "statement": "The functionality and privileges for infrastructure and services are strictly defined.",
    "controls": [
     "cm-2",
     "si-3"
    ],
+   "varies_by_class": null,
    "status_note": "ok"
   },
   {
    "ksi_id": "KSI-CNA-EIS",
    "family": "CNA",
    "family_name": "Cloud Native Architecture",
+   "family_status": "stable",
    "name": "Enforcing Intended State",
    "statement": null,
    "controls": [
     "ca-2.1",
     "ca-7.1"
    ],
-   "status_note": "empty statement in dataset"
+   "varies_by_class": {
+    "b": {
+     "statement": "**Optional:** Automated services are used to persistently assess the security of all machine-based information resources and automatically enforce their intended operational state."
+    },
+    "c": {
+     "statement": "Automated services are used to persistently assess the security of all machine-based information resources and automatically enforce their intended operational state."
+    }
+   },
+   "status_note": "ok"
   },
   {
    "ksi_id": "KSI-CNA-IBP",
    "family": "CNA",
    "family_name": "Cloud Native Architecture",
+   "family_status": "stable",
    "name": "Implementing Best Practices",
    "statement": "The use and configuration of third-party machine-based information resources is persistently compared against the original provider's best practices and guidance.",
    "controls": [
@@ -127,12 +149,14 @@
     "cm-2",
     "pl-10"
    ],
+   "varies_by_class": null,
    "status_note": "ok"
   },
   {
    "ksi_id": "KSI-CNA-MAT",
    "family": "CNA",
    "family_name": "Cloud Native Architecture",
+   "family_status": "stable",
    "name": "Minimizing Attack Surface",
    "statement": "Machine-based information resources are persistently reviewed to ensure they have a minimal attack surface and that lateral movement is minimized if compromised.",
    "controls": [
@@ -151,21 +175,25 @@
     "si-11",
     "si-16"
    ],
+   "varies_by_class": null,
    "status_note": "ok"
   },
   {
    "ksi_id": "KSI-CNA-OFA",
    "family": "CNA",
    "family_name": "Cloud Native Architecture",
+   "family_status": "stable",
    "name": "Optimizing for Availability",
    "statement": "Machine-based information resources are persistently reviewed to ensure they are appropriately optimized for high availability and rapid recovery.",
    "controls": [],
+   "varies_by_class": null,
    "status_note": "ok"
   },
   {
    "ksi_id": "KSI-CNA-RNT",
    "family": "CNA",
    "family_name": "Cloud Native Architecture",
+   "family_status": "stable",
    "name": "Restricting Network Traffic",
    "statement": "Machine-based information resources are persistently reviewed to ensure they are appropriately configured to limit inbound and outbound network traffic.",
    "controls": [
@@ -175,12 +203,14 @@
     "sc-7.5",
     "si-8"
    ],
+   "varies_by_class": null,
    "status_note": "ok"
   },
   {
    "ksi_id": "KSI-CNA-RVP",
    "family": "CNA",
    "family_name": "Cloud Native Architecture",
+   "family_status": "stable",
    "name": "Reviewing Protections",
    "statement": "The effectiveness of protection against denial of service attacks and other unwanted activity for machine-based information resources is persistently reviewed.",
    "controls": [
@@ -188,12 +218,14 @@
     "si-8",
     "si-8.2"
    ],
+   "varies_by_class": null,
    "status_note": "ok"
   },
   {
    "ksi_id": "KSI-CNA-ULN",
    "family": "CNA",
    "family_name": "Cloud Native Architecture",
+   "family_status": "stable",
    "name": "Using Logical Networking",
    "statement": "Logical networking and related capabilities are used and persistently reviewed to enforce traffic flow controls.",
    "controls": [
@@ -206,12 +238,14 @@
     "sc-8",
     "sc-10"
    ],
+   "varies_by_class": null,
    "status_note": "ok"
   },
   {
    "ksi_id": "KSI-IAM-AAM",
    "family": "IAM",
    "family_name": "Identity and Access Management",
+   "family_status": "stable",
    "name": "Automating Account Management",
    "statement": "The lifecycle and privileges of all accounts, roles, and groups are securely managed using automation.",
    "controls": [
@@ -225,12 +259,14 @@
     "ia-12.3",
     "ia-12.5"
    ],
+   "varies_by_class": null,
    "status_note": "ok"
   },
   {
    "ksi_id": "KSI-IAM-APM",
    "family": "IAM",
    "family_name": "Identity and Access Management",
+   "family_status": "stable",
    "name": "Adopting Passwordless Methods",
    "statement": "Secure passwordless methods are used for user authentication and authorization when feasible, otherwise strong passwords with phishing-resistant MFA is used.",
    "controls": [
@@ -248,12 +284,14 @@
     "ia-8",
     "sc-23"
    ],
+   "varies_by_class": null,
    "status_note": "ok"
   },
   {
    "ksi_id": "KSI-IAM-ELP",
    "family": "IAM",
    "family_name": "Identity and Access Management",
+   "family_status": "stable",
    "name": "Ensuring Least Privilege",
    "statement": "Identity and access management measures are used and persistently reviewed to ensure each user or device can only access the resources they need.",
    "controls": [
@@ -292,12 +330,14 @@
     "sc-39",
     "si-3"
    ],
+   "varies_by_class": null,
    "status_note": "ok"
   },
   {
    "ksi_id": "KSI-IAM-JIT",
    "family": "IAM",
    "family_name": "Identity and Access Management",
+   "family_status": "stable",
    "name": "Authorizing Just-in-Time",
    "statement": "A least-privileged, role and attribute-based, and just-in-time security authorization model is used and persistently reviewed for all user and non-user accounts and services.",
    "controls": [
@@ -340,12 +380,14 @@
     "sc-23",
     "sc-39"
    ],
+   "varies_by_class": null,
    "status_note": "ok"
   },
   {
    "ksi_id": "KSI-IAM-SNU",
    "family": "IAM",
    "family_name": "Identity and Access Management",
+   "family_status": "stable",
    "name": "Securing Non-User Authentication",
    "statement": "Appropriately secure authentication methods are used and persistently reviewed for non-user accounts and services.",
    "controls": [
@@ -357,12 +399,14 @@
     "ia-5.2",
     "ra-5.5"
    ],
+   "varies_by_class": null,
    "status_note": "ok"
   },
   {
    "ksi_id": "KSI-IAM-SUS",
    "family": "IAM",
    "family_name": "Identity and Access Management",
+   "family_status": "stable",
    "name": "Responding to Suspicious Activity",
    "statement": "Accounts with privileged access are disabled or otherwise secured in response to suspicious activity.",
    "controls": [
@@ -374,12 +418,14 @@
     "ps-4",
     "ps-8"
    ],
+   "varies_by_class": null,
    "status_note": "ok"
   },
   {
    "ksi_id": "KSI-INR-AAR",
    "family": "INR",
    "family_name": "Incident Response",
+   "family_status": "stable",
    "name": "Generating After Action Reports",
    "statement": "Incident after action reports are generated and lessons learned are persistently incorporated.",
    "controls": [
@@ -388,12 +434,14 @@
     "ir-4.1",
     "ir-8"
    ],
+   "varies_by_class": null,
    "status_note": "ok"
   },
   {
    "ksi_id": "KSI-INR-RIR",
    "family": "INR",
    "family_name": "Incident Response",
+   "family_status": "stable",
    "name": "Reviewing Incident Response Procedures",
    "statement": "The effectiveness of documented incident response procedures is persistently reviewed.",
    "controls": [
@@ -408,12 +456,14 @@
     "ir-8.1",
     "si-4.5"
    ],
+   "varies_by_class": null,
    "status_note": "ok"
   },
   {
    "ksi_id": "KSI-INR-RPI",
    "family": "INR",
    "family_name": "Incident Response",
+   "family_status": "stable",
    "name": "Reviewing Past Incidents",
    "statement": "Past incidents are persistently reviewed for patterns or vulnerabilities that were not previously apparent or identified.",
    "controls": [
@@ -423,23 +473,34 @@
     "ir-5",
     "ir-8"
    ],
+   "varies_by_class": null,
    "status_note": "ok"
   },
   {
    "ksi_id": "KSI-MLA-ALA",
    "family": "MLA",
    "family_name": "Monitoring, Logging, and Auditing",
+   "family_status": "stable",
    "name": "Authorizing Log Access",
    "statement": null,
    "controls": [
     "si-11"
    ],
-   "status_note": "empty statement in dataset"
+   "varies_by_class": {
+    "b": {
+     "statement": "**Optional:** A least-privileged, role and attribute-based, and just-in-time access authorization model is used and persistently reviewed for access to log data based on organizationally defined data sensitivity."
+    },
+    "c": {
+     "statement": "A least-privileged, role and attribute-based, and just-in-time access authorization model is used and persistently reviewed for access to log data based on organizationally defined data sensitivity."
+    }
+   },
+   "status_note": "ok"
   },
   {
    "ksi_id": "KSI-MLA-EVC",
    "family": "MLA",
    "family_name": "Monitoring, Logging, and Auditing",
+   "family_status": "stable",
    "name": "Evaluating Configurations",
    "statement": "The configuration of machine-based information resources, especially infrastructure as code, is persistently evaluated and tested.",
    "controls": [
@@ -448,12 +509,14 @@
     "cm-6",
     "si-7.7"
    ],
+   "varies_by_class": null,
    "status_note": "ok"
   },
   {
    "ksi_id": "KSI-MLA-LET",
    "family": "MLA",
    "family_name": "Monitoring, Logging, and Auditing",
+   "family_status": "stable",
    "name": "Logging Event Types",
    "statement": "A list of information resources and event types that will be logged, monitored, and audited is maintained and persistently reviewed to ensure these activities occur.",
    "controls": [
@@ -468,12 +531,14 @@
     "si-4.5",
     "si-7.7"
    ],
+   "varies_by_class": null,
    "status_note": "ok"
   },
   {
    "ksi_id": "KSI-MLA-OSM",
    "family": "MLA",
    "family_name": "Monitoring, Logging, and Auditing",
+   "family_status": "stable",
    "name": "Operating SIEM Capability",
    "statement": "A Security Information and Event Management (SIEM) or similar system(s) is used and persistently reviewed for centralized, tamper-resistant logging of events, activities, and changes.",
    "controls": [
@@ -496,12 +561,14 @@
     "si-4.4",
     "si-7.7"
    ],
+   "varies_by_class": null,
    "status_note": "ok"
   },
   {
    "ksi_id": "KSI-MLA-RVL",
    "family": "MLA",
    "family_name": "Monitoring, Logging, and Auditing",
+   "family_status": "stable",
    "name": "Reviewing Logs",
    "statement": "Logs are persistently reviewed and audited.",
    "controls": [
@@ -513,12 +580,14 @@
     "si-4",
     "si-4.4"
    ],
+   "varies_by_class": null,
    "status_note": "ok"
   },
   {
    "ksi_id": "KSI-PIY-GIV",
    "family": "PIY",
    "family_name": "Policy and Inventory",
+   "family_status": "stable",
    "name": "Generating Inventories",
    "statement": "Authoritative sources are used to automatically generate real-time inventories of all information resources when needed.",
    "controls": [
@@ -530,21 +599,25 @@
     "cm-12.1",
     "cp-2.8"
    ],
+   "varies_by_class": null,
    "status_note": "ok"
   },
   {
    "ksi_id": "KSI-PIY-RES",
    "family": "PIY",
    "family_name": "Policy and Inventory",
+   "family_status": "stable",
    "name": "Reviewing Executive Support",
    "statement": "Executive support for achieving the provider's security goals is persistently reviewed and demonstrated.",
    "controls": [],
+   "varies_by_class": null,
    "status_note": "ok"
   },
   {
    "ksi_id": "KSI-PIY-RIS",
    "family": "PIY",
    "family_name": "Policy and Inventory",
+   "family_status": "stable",
    "name": "Reviewing Investments in Security",
    "statement": "The effectiveness of the provider's investments in achieving security goals is persistently reviewed.",
    "controls": [
@@ -558,12 +631,14 @@
     "sa-3",
     "sr-2.1"
    ],
+   "varies_by_class": null,
    "status_note": "ok"
   },
   {
    "ksi_id": "KSI-PIY-RSD",
    "family": "PIY",
    "family_name": "Policy and Inventory",
+   "family_status": "stable",
    "name": "Reviewing Security in the SDLC",
    "statement": "The effectiveness of building security and privacy considerations into the Software Development Lifecycle and aligning with CISA Secure By Design principles is persistently reviewed.",
    "controls": [
@@ -580,23 +655,27 @@
     "si-11",
     "si-16"
    ],
+   "varies_by_class": null,
    "status_note": "ok"
   },
   {
    "ksi_id": "KSI-PIY-RVD",
    "family": "PIY",
    "family_name": "Policy and Inventory",
+   "family_status": "stable",
    "name": "Reviewing Vulnerability Disclosures",
    "statement": "The effectiveness of the provider's vulnerability disclosure program is persistently reviewed.",
    "controls": [
     "ra-5.11"
    ],
+   "varies_by_class": null,
    "status_note": "ok"
   },
   {
    "ksi_id": "KSI-RPL-ABO",
    "family": "RPL",
    "family_name": "Recovery Planning",
+   "family_status": "stable",
    "name": "Aligning Backups with Objectives",
    "statement": "The alignment of machine-based information resource backups with defined recovery objectives is persistently reviewed.",
    "controls": [
@@ -607,12 +686,14 @@
     "cp-10.2",
     "si-12"
    ],
+   "varies_by_class": null,
    "status_note": "ok"
   },
   {
    "ksi_id": "KSI-RPL-ARP",
    "family": "RPL",
    "family_name": "Recovery Planning",
+   "family_status": "stable",
    "name": "Aligning Recovery Plan",
    "statement": "The alignment of recovery plans with defined recovery objectives is persistently reviewed.",
    "controls": [
@@ -633,24 +714,28 @@
     "cp-10",
     "cp-10.2"
    ],
+   "varies_by_class": null,
    "status_note": "ok"
   },
   {
    "ksi_id": "KSI-RPL-RRO",
    "family": "RPL",
    "family_name": "Recovery Planning",
+   "family_status": "stable",
    "name": "Reviewing Recovery Objectives",
    "statement": "The desired Recovery Time Objectives (RTO) and Recovery Point Objectives (RPO) are defined and persistently reviewed for alignment with the provider's business needs and capabilities.",
    "controls": [
     "cp-2.3",
     "cp-10"
    ],
+   "varies_by_class": null,
    "status_note": "ok"
   },
   {
    "ksi_id": "KSI-RPL-TRC",
    "family": "RPL",
    "family_name": "Recovery Planning",
+   "family_status": "stable",
    "name": "Testing Recovery Capabilities",
    "statement": "The capability to recover from incidents and contingencies aligned with defined recovery objectives is persistently tested.",
    "controls": [
@@ -665,12 +750,14 @@
     "ir-3",
     "ir-3.2"
    ],
+   "varies_by_class": null,
    "status_note": "ok"
   },
   {
    "ksi_id": "KSI-SCR-MIT",
    "family": "SCR",
    "family_name": "Supply Chain Risk",
+   "family_status": "stable",
    "name": "Mitigating Supply Chain Risk",
    "statement": "Persistently identify, review, and mitigate potential supply chain risks.",
    "controls": [
@@ -687,12 +774,14 @@
     "ca-7.4",
     "sc-18"
    ],
+   "varies_by_class": null,
    "status_note": "ok"
   },
   {
    "ksi_id": "KSI-SCR-MON",
    "family": "SCR",
    "family_name": "Supply Chain Risk",
+   "family_status": "stable",
    "name": "Monitoring Supply Chain Risk",
    "statement": "Third party software information resources are automatically monitored for upstream vulnerabilities using mechanisms that may include contractual notification requirements or active monitoring services.",
    "controls": [
@@ -707,12 +796,14 @@
     "sr-6",
     "sr-8"
    ],
+   "varies_by_class": null,
    "status_note": "ok"
   },
   {
    "ksi_id": "KSI-SVC-ACM",
    "family": "SVC",
    "family_name": "Service Configuration",
+   "family_status": "stable",
    "name": "Automating Configuration Management",
    "statement": "The configuration of machine-based information resources is managed using automation and persistently reviewed for drift.",
    "controls": [
@@ -728,12 +819,14 @@
     "si-5",
     "sr-10"
    ],
+   "varies_by_class": null,
    "status_note": "ok"
   },
   {
    "ksi_id": "KSI-SVC-ASM",
    "family": "SVC",
    "family_name": "Service Configuration",
+   "family_status": "stable",
    "name": "Automating Secret Management",
    "statement": "Management, protection, and regular rotation of digital keys, certificates, and other secrets is automated and persistently reviewed.",
    "controls": [
@@ -743,12 +836,14 @@
     "sc-12",
     "sc-17"
    ],
+   "varies_by_class": null,
    "status_note": "ok"
   },
   {
    "ksi_id": "KSI-SVC-EIS",
    "family": "SVC",
    "family_name": "Service Configuration",
+   "family_status": "stable",
    "name": "Evaluating and Improving Security",
    "statement": "Information resources are persistently evaluated for opportunities to improve security and those improvements are persistently made.",
    "controls": [
@@ -762,35 +857,55 @@
     "si-4",
     "sr-10"
    ],
+   "varies_by_class": null,
    "status_note": "ok"
   },
   {
    "ksi_id": "KSI-SVC-PRR",
    "family": "SVC",
    "family_name": "Service Configuration",
+   "family_status": "stable",
    "name": "Preventing Residual Risk",
    "statement": null,
    "controls": [
     "sc-4"
    ],
-   "status_note": "empty statement in dataset"
+   "varies_by_class": {
+    "b": {
+     "statement": "**Optional:** Plans, procedures, and the state of information resources are persistently reviewed after making changes to limit and remove unwanted residual elements that would likely negatively affect the confidentiality, integrity, or availability of federal customer data."
+    },
+    "c": {
+     "statement": "Plans, procedures, and the state of information resources are persistently reviewed after making changes to limit and remove unwanted residual elements that would likely negatively affect the confidentiality, integrity, or availability of federal customer data."
+    }
+   },
+   "status_note": "ok"
   },
   {
    "ksi_id": "KSI-SVC-RUD",
    "family": "SVC",
    "family_name": "Service Configuration",
+   "family_status": "stable",
    "name": "Removing Unwanted Data",
    "statement": null,
    "controls": [
     "si-12.3",
     "si-18.4"
    ],
-   "status_note": "empty statement in dataset"
+   "varies_by_class": {
+    "b": {
+     "statement": "**Optional:** Unwanted federal customer data is removed promptly when requested by an agency in alignment with customer agreements, including from backups if appropriate; this typically applies when a customer spills information or when a customer seeks to remove information from a service due to a change in usage."
+    },
+    "c": {
+     "statement": "Unwanted federal customer data is removed promptly when requested by an agency in alignment with customer agreements, including from backups if appropriate; this typically applies when a customer spills information or when a customer seeks to remove information from a service due to a change in usage."
+    }
+   },
+   "status_note": "ok"
   },
   {
    "ksi_id": "KSI-SVC-SIN",
    "family": "SVC",
    "family_name": "Service Configuration",
+   "family_status": "stable",
    "name": "Securing Information",
    "statement": "Information is encrypted or otherwise secured from unwanted access or modification.",
    "controls": [
@@ -807,24 +922,35 @@
     "sc-28",
     "sc-28.1"
    ],
+   "varies_by_class": null,
    "status_note": "ok"
   },
   {
    "ksi_id": "KSI-SVC-VCM",
    "family": "SVC",
    "family_name": "Service Configuration",
+   "family_status": "stable",
    "name": "Validating Communications",
    "statement": null,
    "controls": [
     "sc-23",
     "si-7.1"
    ],
-   "status_note": "empty statement in dataset"
+   "varies_by_class": {
+    "b": {
+     "statement": "**Optional:** The authenticity and integrity of communications between machine-based information resources is persistently validated using automation."
+    },
+    "c": {
+     "statement": "The authenticity and integrity of communications between machine-based information resources is persistently validated using automation."
+    }
+   },
+   "status_note": "ok"
   },
   {
    "ksi_id": "KSI-SVC-VRI",
    "family": "SVC",
    "family_name": "Service Configuration",
+   "family_status": "stable",
    "name": "Validating Resource Integrity",
    "statement": "Use cryptographic methods to validate the integrity of machine-based information resources.",
    "controls": [
@@ -836,6 +962,7 @@
     "si-7.1",
     "sr-10"
    ],
+   "varies_by_class": null,
    "status_note": "ok"
   }
  ]

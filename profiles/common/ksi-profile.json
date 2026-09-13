@@ -194,7 +194,7 @@
     "ca-2.1",
     "ca-7.1"
    ],
-   "content_status": "FedRAMP pending: statement empty in official dataset",
+   "content_status": "stable",
    "minimum_automated_methods": {
     "class_a": 0,
     "class_b": 1,
@@ -722,7 +722,7 @@
    "controls": [
     "si-11"
    ],
-   "content_status": "FedRAMP pending: statement empty in official dataset",
+   "content_status": "stable",
    "minimum_automated_methods": {
     "class_a": 0,
     "class_b": 1,
@@ -1308,7 +1308,7 @@
    "controls": [
     "sc-4"
    ],
-   "content_status": "FedRAMP pending: statement empty in official dataset",
+   "content_status": "stable",
    "minimum_automated_methods": {
     "class_a": 0,
     "class_b": 1,
@@ -1333,7 +1333,7 @@
     "si-12.3",
     "si-18.4"
    ],
-   "content_status": "FedRAMP pending: statement empty in official dataset",
+   "content_status": "stable",
    "minimum_automated_methods": {
     "class_a": 0,
     "class_b": 1,
@@ -1393,7 +1393,7 @@
     "sc-23",
     "si-7.1"
    ],
-   "content_status": "FedRAMP pending: statement empty in official dataset",
+   "content_status": "stable",
    "minimum_automated_methods": {
     "class_a": 0,
     "class_b": 1,

@@ -61,7 +61,7 @@
   "package/ocr/ocr-example.md": "sha256:5121f3e692fee687be986182af2059b22174e6bd1eca7ef39963d67d21d054cf",
   "package/scg/secure-configuration-guide.md": "sha256:e33594964ad23ab3abef5798814c37c39fdadd3157258c5c23b76f70eab156d6",
   "sdr/human-readable/sdr-class-b.txt": "sha256:0acdc1fe064f5aad8bc6c0880b651d94327fcfa8a9070dc5458d8d83f0511bcf",
-  "sdr/json/sdr-class-b-extensions.json": "sha256:02b1c8b48c90b40e924613c1b51357cee5d1a93bdebf9e526116bd75c1f30f2b",
+  "sdr/json/sdr-class-b-extensions.json": "sha256:efed72fcee4e4fcd7e511e833c6522850e3c9dfe2cb6a44fefd28ba109d8e5a9",
   "sdr/json/sdr-class-b.json": "sha256:3f492ecd76a8a229a923c63ed05ad08c4b0f81e43b918795974b024dd0b906e3",
   "sdr/json/sdr-class-b.oscal.json": "sha256:8673096d074df69ffd4b8f8cb797ab53f8ca148138e7d1fce16b03e1c7da34ae",
   "traceability/applicability-decisions.json": "sha256:131891d8770c41be77e87c86c1a382b2bb6172ae1f44e82b96d3f030190ccf3b",
