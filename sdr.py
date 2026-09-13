@@ -74,6 +74,7 @@ BUILD_STEPS = [
 VALIDATION_GATE = [
     ("validation/scripts/validate_sdr.py", "SDR schema, coverage, minimums, hygiene, content fidelity"),
     ("validation/scripts/validate_package.py", "CPO/OCR against official schemas"),
+    ("validation/scripts/validate_cpo_semantics.py", "CPO rule-completeness (CPO-CSO-OVR/MTD, not just schema)"),
     ("validation/scripts/validate_assurance_graph.py", "assurance graph (full-chain traceability)"),
     ("validation/scripts/validate_reviews.py", "human review register (no machine-authored approvals)"),
     ("validation/scripts/validate_evidence.py", "live evidence-integrity gate (malformed/mismatched digests)"),
@@ -758,6 +759,32 @@ def cmd_preflight(args):
     if cpo_markers:
         blockers.append(f"generated CPO carries {len(cpo_markers)} template "
                         f"marker(s)/assumption(s): {'; '.join(cpo_markers)}")
+
+    # CPO semantic completeness (CPO-CSO-OVR / CPO-CSO-MTD): required-information
+    # items and metadata must be resolved, not TBD.
+    mtd = cpo.get("xCpoMetadata", {}) or {}
+    mtd_gaps = [f for f in ("responsible_official", "version", "last_updated", "source_of_update")
+                if _is_tbd(mtd.get(f))]
+    if mtd_gaps:
+        blockers.append(f"CPO metadata unresolved (CPO-CSO-MTD): {', '.join(mtd_gaps)}")
+    req_info = (cpo.get("xCpoRequiredInformation", {}) or {}).get("items", [])
+    req_gaps = [i.get("rule") for i in req_info if _is_tbd(i.get("provider_content"))]
+    if req_gaps:
+        blockers.append(f"CPO required information unresolved (CPO-CSO-OVR): "
+                        f"{', '.join(str(r) for r in req_gaps)}")
+
+    # document_review_needed: an applicable rule whose upstream family document
+    # is in an unfamiliar/placeholder lifecycle state must be human-reviewed
+    # before submission (fail safe, not silently treated as ordinary content).
+    decisions = load_json(os.path.join(BASE, "traceability", "applicability-decisions.json")) or {}
+    needs_doc_review = [d.get("rule_id") for d in decisions.get("decisions", [])
+                        if d.get("applicable") and d.get("document_review_needed")]
+    if needs_doc_review:
+        sample = ", ".join(str(r) for r in needs_doc_review[:8])
+        blockers.append(f"{len(needs_doc_review)} applicable rule(s) are in a family "
+                        f"with an unfamiliar/placeholder document lifecycle state and "
+                        f"need human review before submission: {sample}"
+                        + (" ..." if len(needs_doc_review) > 8 else ""))
 
     # Package component that is required but not implemented (from the manifest).
     manifest_pkg = load_json(os.path.join(BASE, "package",

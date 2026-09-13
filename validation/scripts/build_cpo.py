@@ -53,6 +53,53 @@ def val(v):
     return v if v not in (None, "") else TBD
 
 
+DATASET = os.path.join(BASE, "references", "fedramp-consolidated-rules.json")
+
+
+def _required_information_map(profile):
+    """Derive the CPO-CSO-OVR required-information list from the dataset (the
+    rules whose information the CPO MUST include) and pair each with the
+    provider's content pointer. The provider supplies a cpo_required_information
+    map keyed by rule id (e.g. CDS-CSO-SVC) in the offering profile; anything
+    unset is a TBD the CPO semantic validator/preflight will flag. Tracks
+    upstream: if FedRAMP changes the referenced list, this map changes with it."""
+    import re as _re
+    try:
+        ds = load(DATASET)
+    except (OSError, ValueError):
+        return {}
+    def _find(node, target):
+        if isinstance(node, dict):
+            if target in node:
+                return node[target]
+            for v in node.values():
+                r = _find(v, target)
+                if r is not None:
+                    return r
+        elif isinstance(node, list):
+            for v in node:
+                r = _find(v, target)
+                if r is not None:
+                    return r
+        return None
+    ovr = _find(ds, "CPO-CSO-OVR") or {}
+    refs = ovr.get("following_information", []) or []
+    provider = profile.get("cpo_required_information", {}) or {}
+    out = {"cr26_rule": "CPO-CSO-OVR",
+           "note": "Each referenced rule's information must appear in the CPO "
+                   "unless the rule does not apply to this class/type.",
+           "items": []}
+    for ref in refs:
+        m = _re.search(r"([A-Z]{3}-[A-Z]{3}-[A-Z]{3})", ref)
+        rid = m.group(1) if m else ref
+        out["items"].append({
+            "rule": rid,
+            "description": ref,
+            "provider_content": val(provider.get(rid)),
+        })
+    return out
+
+
 def _repository(desc, url=None):
     # Minimal valid `repository` object per the CPO schema. A provider-supplied
     # url overrides the TBD placeholder; a TBD/unset value keeps the placeholder
@@ -155,6 +202,20 @@ def build_cpo(profile):
             "assessorID": aid,
         },
     }
+    # CPO-CSO-MTD (MUST): basic metadata - responsible official, version,
+    # last-updated, source of update. Carried as a provider extension.
+    doc["xCpoMetadata"] = {
+        "cr26_rule": "CPO-CSO-MTD",
+        "responsible_official": val(profile.get("cpo_responsible_official")),
+        "version": val(profile.get("cpo_version")),
+        "last_updated": val(profile.get("cpo_last_updated")),
+        "source_of_update": val(profile.get("cpo_source_of_update")),
+    }
+    # CPO-CSO-OVR (MUST): the CPO must include the information required by the
+    # referenced rules. Derive that list from the dataset so it tracks upstream,
+    # and record the provider's per-rule content pointer. Applicability note
+    # (from the rule) is preserved: a rule that does not apply is not required.
+    doc["xCpoRequiredInformation"] = _required_information_map(profile)
     doc["_cpoNote"] = (
         f"Class {cls} Certification Package Overview scaffold. Required by "
         "CPO-CSO-OVR. Fill provider values in profiles/common/offering-profile.json; "
@@ -197,6 +258,23 @@ def render_md(profile, doc):
     a("")
     a("Assessor")
     a(f"Name: {doc['assessor']['name']}")
+    a("")
+    mtd = doc.get("xCpoMetadata", {})
+    a("Certification Package Overview metadata (CPO-CSO-MTD)")
+    a(f"Responsible official: {mtd.get('responsible_official')}")
+    a(f"Version: {mtd.get('version')}")
+    a(f"Last updated: {mtd.get('last_updated')}")
+    a(f"Source of update: {mtd.get('source_of_update')}")
+    a("")
+    summary = doc.get("xOverallAssessmentSummary")
+    if summary:
+        a("Overall assessment summary (CPO-CSO-OSA)")
+        a(str(summary.get("summary")))
+        a("")
+    req = doc.get("xCpoRequiredInformation", {})
+    a("Required information included in this Certification Package Overview (CPO-CSO-OVR)")
+    for item in req.get("items", []):
+        a(f"- {item.get('rule')} ({item.get('description')}): {item.get('provider_content')}")
     a("")
     a("This Certification Package Overview is a generated scaffold required by "
       "CPO-CSO-OVR. TBD markers indicate information a human must still supply. "

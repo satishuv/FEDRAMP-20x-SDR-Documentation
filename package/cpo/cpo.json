@@ -46,6 +46,64 @@
   "name": "TBD: Information has not been provided",
   "assessorID": "000000"
  },
+ "xCpoMetadata": {
+  "cr26_rule": "CPO-CSO-MTD",
+  "responsible_official": "TBD: CPO-CSO-MTD: name, title, and contact of the official responsible and accountable for the Certification Package.",
+  "version": "TBD: CPO-CSO-MTD: CPO version.",
+  "last_updated": "TBD: CPO-CSO-MTD: date and time of last update (ISO-8601).",
+  "source_of_update": "TBD: CPO-CSO-MTD: source of the update."
+ },
+ "xCpoRequiredInformation": {
+  "cr26_rule": "CPO-CSO-OVR",
+  "note": "Each referenced rule's information must appear in the CPO unless the rule does not apply to this class/type.",
+  "items": [
+   {
+    "rule": "CPO-CSO-MTD",
+    "description": "Certification Package Overview: CPO-CSO-MTD (Certification Package Overview Metadata)",
+    "provider_content": "TBD: Information has not been provided."
+   },
+   {
+    "rule": "CDS-CSO-PUB",
+    "description": "Certification Data Sharing: CDS-CSO-PUB (Public Information)",
+    "provider_content": "TBD: Information has not been provided."
+   },
+   {
+    "rule": "CDS-CSO-SVC",
+    "description": "Certification Data Sharing: CDS-CSO-SVC (Public Service List)",
+    "provider_content": "TBD: Information has not been provided."
+   },
+   {
+    "rule": "CDS-CSO-IRP",
+    "description": "Certification Data Sharing: CDS-CSO-IRP (Include Relevant Policies)",
+    "provider_content": "TBD: Information has not been provided."
+   },
+   {
+    "rule": "MAS-CSO-IIR",
+    "description": "Minimum Assessment Scope: MAS-CSO-IIR (Identify Information Resources)",
+    "provider_content": "TBD: Information has not been provided."
+   },
+   {
+    "rule": "MAS-CSO-FLO",
+    "description": "Minimum Assessment Scope: MAS-CSO-FLO (Information Flows and Security Categories)",
+    "provider_content": "TBD: Information has not been provided."
+   },
+   {
+    "rule": "MAS-CSO-TPR",
+    "description": "Minimum Assessment Scope: MAS-CSO-TPR (Third-Party Information Resources)",
+    "provider_content": "TBD: Information has not been provided."
+   },
+   {
+    "rule": "CMU-CSO-CMD",
+    "description": "Using Cryptographic Modules: CMU-CSO-CMD (Cryptographic Module Documentation)",
+    "provider_content": "TBD: Information has not been provided."
+   },
+   {
+    "rule": "IVV-CSO-ICP",
+    "description": "Independent Verification and Validation: IVV-CSO-ICP (Inclusion in Certification Package)",
+    "provider_content": "TBD: Information has not been provided."
+   }
+  ]
+ },
  "_cpoNote": "Class B Certification Package Overview scaffold. Required by CPO-CSO-OVR. Fill provider values in profiles/common/offering-profile.json; TBD markers show what a human still owes. Not a compliance claim.",
  "xOverallAssessmentSummary": {
   "cr26_rule": "CPO-CSO-OSA",

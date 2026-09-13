@@ -47,8 +47,8 @@
   }
  },
  "artifacts": {
-  "package/cpo/cpo.json": "sha256:afa48d6b649b088f2eab965bb1625a34af56580a4f345a265375e48eb4a6123b",
-  "package/cpo/cpo.md": "sha256:8d3b4ef48403c54fa99fc61ccc0b07bcab8479b358e6bb20e698993eb0ba3643",
+  "package/cpo/cpo.json": "sha256:3f6aec5b9bda97902d2961c2ee47b4d2144419aa8ddf98bfddebcc1ce026717e",
+  "package/cpo/cpo.md": "sha256:b9589cdfddac4e1e6f64b46bad9230703e5b366d414e1e5b92f0c824c5593c7c",
   "package/events/accepted-vulnerabilities-example.json": "sha256:976ee1c98c7b6ad3198806fa8c8acdb128ce1bffd8a1b58085476fd16bcd2e00",
   "package/events/historical-ver-activity-example.json": "sha256:af7982abac7fece1116a71119e5c2a43909c8e5a82e414194cf4b22a4909681e",
   "package/events/incident-report-final-example.json": "sha256:2e7a40a58e34085620a4514d0af48c46e2d8b0b2388527620a58962dde5bab3a",
