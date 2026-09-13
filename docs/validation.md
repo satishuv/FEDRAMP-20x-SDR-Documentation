@@ -13,7 +13,7 @@ flowchart LR
 
     OUT --> GATE
     OUT --> SCAN
-    GATE -->|all eight checks clean| SHIP
+    GATE -->|all checks clean| SHIP
     GATE -->|any hard failure| STOP
     SCAN --> LIST
 
@@ -32,7 +32,7 @@ The gate can pass while the scanner reports two thousand findings, and on a fres
 | | `validate_sdr.py` | `sdrscan.py` |
 |---|---|---|
 | Question | Is this package structurally sound and faithful to the dataset? | What is still missing before an assessor could sign it? |
-| Output | 8 aggregate checks, one exit code | One finding per resource per check, severity-ranked |
+| Output | 14 aggregate checks, one exit code | One finding per resource per check, severity-ranked |
 | Gates the build | Yes. Zero hard failures required | No. Reports only |
 | On a fresh template | Passes, with one expected soft failure | Thousands of findings, which is correct |
 | Supports | `FRC-CSO-JSN` schema conformance, `CDS-CSO-CBF` format consistency | `FRC-CSX-VVR` persistent verification, `CDS-CSO-CBF` |
@@ -43,11 +43,13 @@ The gate can pass while the scanner reports two thousand findings, and on a fres
 python sdr.py validate
 ```
 
-Eight checks, in order:
+Fourteen checks, in order:
 
 | Check | What it does | Failure means |
 |---|---|---|
 | `official_schema_validation` | Validates generated JSON against the pinned official FedRAMP SDR schema | The deliverable would be rejected. Zero errors required |
+| `dataset_version_agreement` | The dataset version pinned in the profile matches the dataset's own `info.version` | The record was built against a different dataset than it claims |
+| `pinned_schema_version_guard` | All nine pinned official schemas match their expected `$id` and version | A pinned schema drifted from the version the record targets |
 | `rule_coverage` | Compares rules present against the class profile, both directions | A rule is missing, or one appears that does not belong to the class |
 | `ksi_coverage` | All 46 indicators present for classes B and up | An indicator was dropped |
 | `ksi_required_fields` | Every indicator carries the six schema-required fields | A field the schema demands is absent |
@@ -55,18 +57,23 @@ Eight checks, in order:
 | `no_markdown_in_human_readable` | Deliverable text is clean plain text, no markdown symbols | Formatting leaked into a document meant to be read as text |
 | `no_sensitive_patterns` | Scans all deliverables for account identifiers, access keys, private keys | Something that must never be committed is in a deliverable |
 | `content_fidelity_against_dataset` | Re-derives every statement, name, force, and family expansion from the dataset and compares | Either a builder is wrong, or a generated file was hand-edited |
+| `semantic_completeness_cr26` | Every `SDR-CSO-FRR` and `SDR-CSX-KSI/KMT` required item is present (presence, not correctness) | A required semantic element is absent from the submitted SDR |
+| `no_stale_nist_800_63_3` | No superseded SP 800-63 edition is referenced (the current edition is SP 800-63-4) | Generated or authored content cites a superseded edition |
+| `evidence_linkage_for_populated_musts` | Populated KSIs carry an evidence entry (force `SHOULD` at Class B, `MUST` at C/D) | A populated KSI has no evidence; hard only where the force is `MUST` |
+| `sources_lock_consistency` | Every pinned source matches its recorded sha256 in `sources.lock.json` | A pinned source drifted from its lock hash |
 
-The line that gates the build is `hard failures: 0`.
+The line that gates the build is `hard failures: 0`. Two of these (`ksi_test_minimums` and `evidence_linkage_for_populated_musts`) are `SHOULD`-force advisories at Class B, so they report as soft failures during authoring and become hard only where the FedRAMP force is `MUST`.
 
 ### The one expected failure
 
-On a fresh clone you will see:
+On a fresh Class B clone you will see two advisory (soft) failures:
 
 ```
 FAIL: ksi_test_minimums | 43 KSIs below the FRC-CSX-VVK minimum for class B
+FAIL: evidence_linkage_for_populated_musts | populated KSIs with no evidence entry
 ```
 
-This is correct. `FRC-CSX-VVK` requires automated validation methods per indicator, and a template has none yet. It is classified as a soft failure during authoring so it does not block you from building while you work, and it becomes a hard failure at release. If it were a hard failure from the start, nobody could run the pipeline on a fresh clone, and the usual response would be to disable the check, which is worse.
+Both are correct and expected. `FRC-CSX-VVK` requires automated validation methods per indicator, and evidence linkage expects a populated KSI to carry evidence; a template has neither yet. At Class B the FedRAMP force for both is `SHOULD`, so they are classified as soft failures during authoring - they do not block the build - and `evidence_linkage_for_populated_musts` becomes a hard failure at Class C/D where the force is `MUST`. If they were hard from the start, nobody could run the pipeline on a fresh clone, and the usual response would be to disable the check, which is worse. `hard failures: 0` is the line that gates the build.
 
 ### Why content fidelity matters most
 
@@ -110,6 +117,41 @@ Reports carry no run timestamp by default so repeated scans of unchanged inputs 
 Against the shipped template the scanner reports thousands of failures. That is not a bug, and it is not softened. A template has genuinely open gaps, and a tool that reported green on an empty record would be worse than no tool. The scanner drives the filling-in work; it does not gate the build.
 
 Full check reference: [automation/sdrscan/README.md](../automation/sdrscan/README.md).
+
+## The full validation gate
+
+`validate_sdr.py` is the SDR checker described above, and it is the anchor of the gate. `python sdr.py validate` runs it together with the rest of the validation gate and the offline test suite (this is what continuous integration runs). The other gate checks, each independent and each a hard gate:
+
+| Gate check | What it enforces |
+|---|---|
+| `validate_sdr.py` | The fourteen SDR checks above (schema, version and lock guards, coverage, minimums, hygiene, content fidelity, semantic completeness, evidence linkage) |
+| `validate_package.py` | The CPO and OCR against their official FedRAMP schemas |
+| `validate_cpo_semantics.py` | CPO rule-completeness, not just schema: it independently derives the applicable `CPO-CSO-OVR` rule set from the dataset and checks structured completeness of the enumerated rules (`CDS-CSO-PUB`, `CDS-CSO-IRP`, `MAS-CSO-TPR`) |
+| `validate_assurance_graph.py` | Full-chain traceability across the assurance graph, class-scoped |
+| `validate_reviews.py` | The human review register carries no machine-authored approvals |
+| `validate_evidence.py` | Live evidence integrity: it recomputes digests and fails on malformed or mismatched ones |
+| `validate_package_consistency.py` | Cross-artifact consistency across the generated package |
+
+## Submission readiness (preflight)
+
+The build gate answers a structural question: is this package well-formed and faithful to the dataset? Submission readiness answers a stricter, separate question: is this package actually ready to hand to an assessor? That is `preflight`, and it is deliberately hard to fool.
+
+```bash
+python sdr.py package-preflight        # the generated package
+python sdr.py application-preflight     # package checks plus FedRAMP application prerequisites
+```
+
+Both are read-only, exit non-zero while anything blocks, and never author an approval. What preflight enforces, all grounded verbatim in the pinned dataset:
+
+- **Field-level readiness.** Every required `SDR-CSO-FRR` item (implementation/risk, verification, validation, independent verification, independent validation, assessor responses) and every required `SDR-CSX-KSI` item (measures, cycle, measures verification, automation verification, validation) is checked individually. A justified `N/A: <reason>` passes; a bare `N/A`, a `TBD`, or a placeholder blocks.
+- **Class-correct scope.** Class A is scoped to its seven enumerated KSIs; the CPO required-information set is the intersection of `CPO-CSO-OVR` with the resolved class rule set (Class A carries only `CDS-CSO-PUB` and `MAS-CSO-IIR`), and the `CPO-CSO-MTD` metadata gate only applies when that rule resolves for the class.
+- **Structured CPO completeness.** A bare sentence does not satisfy a rule that enumerates concrete items; `CDS-CSO-PUB`, `CDS-CSO-IRP`, and `MAS-CSO-TPR` are checked against their CR26-enumerated members.
+- **Class A external assessment (`FRC-CLA-ASF`/`FRC-CLA-EAM`).** The framework must be one FedRAMP approves (FedRAMP Rev5/Ready, SOC 2 Type II, GovRAMP) within the past 12 months, and the framework-specific material checklist must be complete.
+- **Recognized-assessor identity.** The `FRC-APP-FIA` initial assessment (Class B/C) requires the assessor's FedRAMP Recognition id; an `FRC-APP-USA` freshening of a 3-to-9-month-old assessment requires a Recognized reviewer id and a `reviewed_at` date on or after the original assessment.
+- **`FRC-CSX-MOT`.** Availability survivability (`CDS-CSO-AVR`) is a Class B/C blocker; entirely-missing KSIs are detected; the initial-certification exception is activated by an explicit contract (both boolean flags true plus descriptions/references and a current datapoint per in-scope KSI).
+- **Manifest-bound human signoff.** The signoff in the review register is bound to the release-manifest hash, and the manifest hashes the authoritative provider inputs (offering profile and records store). Any change to those inputs after signoff invalidates the signoff.
+
+Missing or stale evidence is reported as a readiness finding, never silently treated as a compliance pass, and the pipeline never authors an approval on a human's behalf.
 
 ## The full validation gate
 
