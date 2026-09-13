@@ -105,6 +105,7 @@ TEST_SUITE = [
     "automation/config-rules/deploy/test_generate_templates.py",
     "automation/config-rules/deploy/test_cdk_synth.py",
     "automation/collectors/test_collector_iam_matches.py",
+    "automation/collectors/test_thirdparty_upsert.py",
     "automation/storage/test_provision_store.py",
     "automation/ai/test_bedrock_boundary.py",
     "validation/scripts/test_dataset_diff.py",

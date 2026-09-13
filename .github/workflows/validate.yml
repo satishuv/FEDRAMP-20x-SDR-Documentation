@@ -71,6 +71,39 @@ jobs:
           name: validation-reports
           path: validation/reports/
 
+  security-scan:
+    # Static security analysis of ALL executable Python (root, automation,
+    # validation), not just automation/. Runs in CI on every PR so a security
+    # scan is a visible release signal rather than a local, bypassable hook.
+    # Report-only here (uploaded as an artifact): enforcement of a security-scan
+    # pass belongs to the internal release pipeline (ASH/Fortify against the
+    # release commit), which is the sanctioned gate for licensed scanners.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
+        with:
+          python-version: "3.12"
+      - name: Install bandit
+        run: pip install --quiet bandit==1.8.6
+      - name: Bandit static analysis (all executable Python, report-only)
+        run: |
+          # Report medium-or-higher severity at medium-or-higher confidence
+          # across the whole tree (tests/data excluded, B101 assert skipped).
+          # Non-blocking: writes a report the release process reviews.
+          bandit -r . \
+            --exclude ./automation/collectors/testdata,./.git \
+            --skip B101 \
+            --severity-level medium --confidence-level medium \
+            --format txt --output bandit-report.txt || true
+          echo "Bandit scan complete (report-only); see the uploaded artifact."
+      - name: Upload bandit report
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+        with:
+          name: bandit-security-report
+          path: bandit-report.txt
+
 
 
 
