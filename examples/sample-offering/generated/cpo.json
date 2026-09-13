@@ -18,7 +18,7 @@
    "repositoryType": [
     "Website"
    ],
-   "url": "https://example.provider.gov-placeholder/tbd",
+   "url": "[SAMPLE - fictional] trust_center_uri for Acme Cloud Widgets.",
    "repositoryDescription": "FedRAMP-compatible trust center for Certification Data (CDS-CSO-UTC).",
    "authenticationRequired": false
   },
@@ -26,11 +26,11 @@
    "repositoryType": [
     "Website"
    ],
-   "url": "https://example.provider.gov-placeholder/tbd",
+   "url": "[SAMPLE - fictional] secure_config_guide_uri for Acme Cloud Widgets.",
    "repositoryDescription": "Secure Configuration Guide (SCG-CSO-RSC).",
    "authenticationRequired": false
   },
-  "nextOngoingCertificationReportDate": "2026-01-01"
+  "nextOngoingCertificationReportDate": "2026-10-12"
  },
  "contactInformation": [
   {
@@ -46,5 +46,71 @@
   "name": "Example 3PAO (fictional)",
   "assessorID": "000000"
  },
- "_cpoNote": "Class B Certification Package Overview scaffold. Required by CPO-CSO-OVR. Fill provider values in profiles/common/offering-profile.json; TBD markers show what a human still owes. Not a compliance claim."
+ "xCpoMetadata": {
+  "cr26_rule": "CPO-CSO-MTD",
+  "responsible_official": "[SAMPLE - fictional] cpo_responsible_official for Acme Cloud Widgets.",
+  "version": "[SAMPLE - fictional] cpo_version for Acme Cloud Widgets.",
+  "last_updated": "[SAMPLE - fictional] cpo_last_updated for Acme Cloud Widgets.",
+  "source_of_update": "[SAMPLE - fictional] cpo_source_of_update for Acme Cloud Widgets."
+ },
+ "xCpoRequiredInformation": {
+  "cr26_rule": "CPO-CSO-OVR",
+  "note": "Each referenced rule's information must appear in the CPO unless the rule does not apply to this class/type.",
+  "items": [
+   {
+    "rule": "CPO-CSO-MTD",
+    "description": "Certification Package Overview: CPO-CSO-MTD (Certification Package Overview Metadata)",
+    "provider_content": "TBD: Information has not been provided."
+   },
+   {
+    "rule": "CDS-CSO-PUB",
+    "description": "Certification Data Sharing: CDS-CSO-PUB (Public Information)",
+    "provider_content": "TBD: Information has not been provided."
+   },
+   {
+    "rule": "CDS-CSO-SVC",
+    "description": "Certification Data Sharing: CDS-CSO-SVC (Public Service List)",
+    "provider_content": "TBD: Information has not been provided."
+   },
+   {
+    "rule": "CDS-CSO-IRP",
+    "description": "Certification Data Sharing: CDS-CSO-IRP (Include Relevant Policies)",
+    "provider_content": "TBD: Information has not been provided."
+   },
+   {
+    "rule": "MAS-CSO-IIR",
+    "description": "Minimum Assessment Scope: MAS-CSO-IIR (Identify Information Resources)",
+    "provider_content": "TBD: Information has not been provided."
+   },
+   {
+    "rule": "MAS-CSO-FLO",
+    "description": "Minimum Assessment Scope: MAS-CSO-FLO (Information Flows and Security Categories)",
+    "provider_content": "TBD: Information has not been provided."
+   },
+   {
+    "rule": "MAS-CSO-TPR",
+    "description": "Minimum Assessment Scope: MAS-CSO-TPR (Third-Party Information Resources)",
+    "provider_content": "TBD: Information has not been provided."
+   },
+   {
+    "rule": "CMU-CSO-CMD",
+    "description": "Using Cryptographic Modules: CMU-CSO-CMD (Cryptographic Module Documentation)",
+    "provider_content": "TBD: Information has not been provided."
+   },
+   {
+    "rule": "IVV-CSO-ICP",
+    "description": "Independent Verification and Validation: IVV-CSO-ICP (Inclusion in Certification Package)",
+    "provider_content": "TBD: Information has not been provided."
+   }
+  ]
+ },
+ "_cpoNote": "Class B Certification Package Overview scaffold. Required by CPO-CSO-OVR. Fill provider values in profiles/common/offering-profile.json; TBD markers show what a human still owes. Not a compliance claim.",
+ "xOverallAssessmentSummary": {
+  "cr26_rule": "CPO-CSO-OSA",
+  "source_rule": "IVV-IAS-OSA (assessor-supplied)",
+  "summary": "[SAMPLE - fictional] overall_assessment_summary for Acme Cloud Widgets."
+ },
+ "_cpoAssumptions": [
+  "nextOngoingCertificationReportDate is a placeholder (2026-10-12) derived from the dataset date + 3 months (CCM-OCR-AVL cadence); the provider must set next_ocr_date"
+ ]
 }

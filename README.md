@@ -59,7 +59,7 @@ A hand-maintained document set cannot satisfy that. It drifts from the requireme
 
 ## The approach
 
-In plain terms: you write facts about your system, and the framework turns them into an official, self-checking Certification Package. You maintain one file; everything else is generated and verified for you.
+In plain terms: you write facts about your system, and the framework turns them into a self-checking Certification Package authoring and validation workflow. You maintain one file; everything else is generated and validated for you. Some package components remain provider-supplied (the trust center and availability service, the fresh FedRAMP independent assessment and its overall summary, and the Secure Configuration Guide content); the framework models and preflight-gates them but does not host or produce them. A green build proves the package is well-formed and internally consistent, not that it is compliant or certified.
 
 <p align="center">
   <img src="docs/assets/architecture.svg" alt="How it works: your system's facts (records-store.json, the one file you edit) and the official rulebook (the pinned FedRAMP CR26 dataset and JSON schemas) feed the builder (python sdr.py all), which produces the full Certification Package (Security Decision Record, Certification Package Overview, Ongoing Certification Report, Secure Configuration Guide, and the event-driven incident, change, and vulnerability artifacts), every JSON validated against its official FedRAMP schema. Optional evidence sources (AWS collectors, and opt-in CrowdStrike Falcon and Wiz) attach hashed evidence. Two automatic checkers inspect the output: the fact-checker (validate_sdr.py plus validate_package.py) fails the build if a claim does not match the rulebook or a document does not match its schema, and the readiness scanner (sdrscan.py) scores how ready you are. Together they form a loop that points you back to what to fix next in your facts file. A daily drift check compares the pinned sources against upstream FedRAMP." width="820">
@@ -131,9 +131,9 @@ Both third-party evidence sources read a file the customer exports in their own 
 | Class | Rules resolved | Indicators | Automated methods per indicator | State |
 |---|---|---|---|---|
 | A | 41 | 7 mandatory | 0 required | Supported |
-| B | 158 | 46 | at least 1 | Supported |
-| C | 158 plus overlay | 46 | at least 2 | Supported |
-| D | 157 | 46 | at least 4 | Readiness register only. FedRAMP 20x Class D (High) is in Phase 4 development ([RFC-0033](https://www.fedramp.gov/rfcs/0033/)), pilot estimated FY27 Q1-Q2 |
+| B | 158 | 46 | 1 expected (SHOULD) | Supported |
+| C | 158 plus overlay | 46 | 2 required (MUST) | Supported |
+| D | 157 | 46 | 4 required (MUST) | Readiness register only. FedRAMP 20x Class D (High) is in Phase 4 development ([RFC-0033](https://www.fedramp.gov/rfcs/0033/)), pilot estimated FY27 Q1-Q2 |
 
 `FRD-CCL` describes the classes as assurance categories "increasing from minimal assurance at Class A to significant assurance at Class D." FedRAMP's current 20x guidance maps them to impact levels: Class A (Pilot), Class B (Low), Class C (Moderate), and the planned Class D (High), per the [FedRAMP 20x page](https://www.fedramp.gov/20x/). Those labels do not make the 20x indicator profile a renamed NIST SP 800-53B baseline, so this framework tracks the class but does not infer baseline equivalence.
 

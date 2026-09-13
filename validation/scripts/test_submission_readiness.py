@@ -97,6 +97,10 @@ def _fill(profile_path, now):
             "CMU-CSO-CMD": "FIPS-validated cryptographic modules documented.",
             "IVV-CSO-ICP": "Independent assessment results included per FIA.",
         },
+        "application_prerequisites": {
+            "marketplace_listing_uri": "https://marketplace.fedramp.gov/offerings/CSP",
+            "application_form_reference": "APP-FORM-2026-CSP-0001",
+        },
     })
     json.dump(prof, open(profile_path, "w", encoding="utf-8", newline="\n"), indent=1)
 

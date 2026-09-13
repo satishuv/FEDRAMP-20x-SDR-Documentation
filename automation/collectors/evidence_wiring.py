@@ -121,6 +121,11 @@ def fact_to_evidence(fact, location_base=None):
         # collected and has not been silently edited. Carried in the extension
         # namespace so the official evidence object stays schema-clean.
         "xEvidenceContentHash": evidence_hash(fact),
+        # Persist the exact source fact the digest was computed over, so
+        # integrity is VERIFIABLE later (validate_evidence recomputes against it)
+        # rather than merely carrying a well-formed-looking hash. This is the
+        # provenance pointer, not a second copy of a remote artifact.
+        "xSourceFact": fact,
     }
     if observed:
         # SDR schema wants a date (not datetime) for evidence lastUpdated.
