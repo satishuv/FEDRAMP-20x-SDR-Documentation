@@ -1,10 +1,14 @@
 #!/usr/bin/env python3
 """One entry point for the whole Security Decision Record (SDR) pipeline.
 
-Nothing here does any work of its own. It runs the same scripts, in the same
-order, that .github/workflows/validate.yml runs, so a passing local run and a
-passing continuous integration run mean the same thing. If this file and that
-workflow ever disagree, the workflow is correct and this file is the bug.
+Nothing here does any work of its own. `sdr.py validate` runs the same
+validation suite (validators + offline tests) that .github/workflows/validate.yml
+runs via `python sdr.py validate`, so the local and CI VALIDATION SUITES cannot
+drift. CI additionally enforces three gates OUTSIDE this command:
+regenerate-and-diff, a double-build reproducibility check, and scanner-catalog
+freshness. So a clean local run means the validation suite would pass in CI, not
+that every CI gate would. If this file and that workflow ever disagree on the
+suite, the workflow is correct and this file is the bug.
 
     python sdr.py all         build, validate, scan, then print a summary
     python sdr.py build       regenerate every deliverable
@@ -63,8 +67,9 @@ BUILD_STEPS = [
 
 # The authoritative validation gate. `cmd_validate` runs every entry, and CI
 # calls `python sdr.py validate` rather than listing scripts of its own, so the
-# local gate and the CI gate cannot drift. A local `sdr.py release` therefore
-# fails whenever CI would fail. Paths are relative to the repository root.
+# local and CI VALIDATION SUITES cannot drift. This is suite parity only: CI
+# also runs regenerate-and-diff, a reproducibility gate, and scanner-catalog
+# freshness outside this command. Paths are relative to the repository root.
 VALIDATION_GATE = [
     ("validation/scripts/validate_sdr.py", "SDR schema, coverage, minimums, hygiene, content fidelity"),
     ("validation/scripts/validate_package.py", "CPO/OCR against official schemas"),
@@ -100,6 +105,7 @@ TEST_SUITE = [
     "automation/ai/test_bedrock_boundary.py",
     "validation/scripts/test_dataset_diff.py",
     "validation/scripts/test_change_impact.py",
+    "validation/scripts/test_evidence_integrity.py",
     "validation/scripts/test_applicability.py",
     "automation/exporters/test_oscal_export.py",
     "automation/collectors/test_evidence_wiring.py",
@@ -550,8 +556,10 @@ def cmd_preflight(args):
                         blockers.append(f"Class A: materials[{i}] missing "
                                         f"type/uri/sha256 (FRC-CLA-EAM)")
 
-    # Record store: unresolved content is a readiness warning (the build gate
-    # already ships these as honest TBDs; a provider fills them before submit).
+    # Record store: bulk unresolved content stays a readiness warning (FedRAMP
+    # explicitly allows an honestly incomplete implementation). But generic
+    # "Information has not been provided" TBDs in REQUIRED semantic fields are
+    # different from an intentional not-implemented statement.
     records_path = os.path.join(BASE, "sdr", "records", "records-store.json")
     try:
         with open(records_path, encoding="utf-8") as f:
@@ -565,12 +573,56 @@ def cmd_preflight(args):
     except OSError:
         warnings.append("records-store.json not readable")
 
+    # Scan the GENERATED submission artifacts, not merely the input profile. A
+    # generated CPO carrying template markers, placeholder IDs/URLs, or recorded
+    # _cpoAssumptions must not reach "submission ready".
+    cpo = load_json(os.path.join(BASE, "package", "cpo", "cpo.json")) or {}
+    si = cpo.get("serviceIdentification", {}) or {}
+    cpo_markers = []
+    if str(si.get("fedRampPackageId", "")).startswith("TBD"):
+        cpo_markers.append("fedRampPackageId is TBD-PACKAGE-ID")
+    for field in ("website", "logo"):
+        if "placeholder" in str(si.get(field, "")).lower():
+            cpo_markers.append(f"CPO {field} is a placeholder URL")
+    assessor = cpo.get("assessor", {}) or {}
+    if assessor.get("assessorID") == "000000":
+        cpo_markers.append("CPO assessorID is the 000000 placeholder")
+    sp = cpo.get("serviceProperties", {}) or {}
+    for key in ("trustCenter", "secureConfigurationGuidance"):
+        url = (sp.get(key) or {}).get("url", "")
+        if "placeholder" in str(url).lower() or "example" in str(url).lower():
+            cpo_markers.append(f"CPO {key} is a placeholder URL")
+    if cpo.get("_cpoAssumptions"):
+        cpo_markers.append(f"CPO contains {len(cpo['_cpoAssumptions'])} unresolved "
+                           "generator assumption(s) (see _cpoAssumptions)")
+    if cpo_markers:
+        blockers.append(f"generated CPO carries {len(cpo_markers)} template "
+                        f"marker(s)/assumption(s): {'; '.join(cpo_markers)}")
+
+    # Package component that is required but not implemented (from the manifest).
+    manifest_pkg = load_json(os.path.join(BASE, "package",
+                                          "certification-package-manifest.json")) or {}
+    for name, comp in (manifest_pkg.get("certification_package", {}) or {}).items():
+        req = comp.get("required_for_initial_package")
+        required_here = req is True or (isinstance(req, str) and cls.upper() in req.upper())
+        if required_here and comp.get("status") in ("partial", "not_implemented"):
+            warnings.append(f"required package component '{name}' is {comp.get('status')}")
+
     # Package-level signoff MUST reference the current release-manifest hash.
     # One approved node in the assurance review register is NOT package approval.
     register = load_json(os.path.join(BASE, "sdr", "reviews", "review-register.json")) or {}
     signoff = register.get("package_signoff")
-    manifest = load_json(os.path.join(BASE, "artifacts", "release-manifest.json")) or {}
+    manifest_path = os.path.join(BASE, "artifacts", "release-manifest.json")
+    manifest = load_json(manifest_path) or {}
     manifest_tag = manifest.get("release_tag")
+    # Cryptographic binding: the SHA-256 of the exact manifest bytes the human
+    # signed. The tag (v1.0.0-cr26-...) can stay identical while provider facts,
+    # evidence, CPO, or SDR contents change; the hash cannot.
+    import hashlib as _hashlib
+    actual_manifest_sha = None
+    if os.path.isfile(manifest_path):
+        with open(manifest_path, "rb") as _mf:
+            actual_manifest_sha = "sha256:" + _hashlib.sha256(_mf.read()).hexdigest()
     if not signoff or signoff.get("decision") != "approved":
         blockers.append("no package_signoff recorded as approved "
                         "(package-level provider signoff is required to submit; "
@@ -581,6 +633,15 @@ def cmd_preflight(args):
             blockers.append(f"package_signoff is for a different release "
                             f"({signed_tag}) than the current manifest ({manifest_tag}); "
                             f"re-sign against the current package")
+        # The binding check: the signed manifest hash MUST equal the current one.
+        signed_sha = signoff.get("package_manifest_sha256")
+        if _is_tbd(signed_sha):
+            blockers.append("package_signoff.package_manifest_sha256 not set "
+                            "(the signoff must be bound to the exact manifest bytes)")
+        elif actual_manifest_sha and signed_sha != actual_manifest_sha:
+            blockers.append("package_signoff.package_manifest_sha256 does not match "
+                            "the current release manifest; a generated artifact "
+                            "changed since signoff - re-review and re-sign")
         for req in ("reviewer", "timestamp"):
             if _is_tbd(signoff.get(req)):
                 blockers.append(f"package_signoff.{req} not set")
@@ -767,6 +828,7 @@ def main(argv=None):
 
 if __name__ == "__main__":
     sys.exit(main())
+
 
 
 

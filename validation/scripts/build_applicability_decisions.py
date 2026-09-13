@@ -129,6 +129,20 @@ def build(cls):
         applicable, reason = decide(rule, cls, class_a_ids)
         fam = rule.get("_family")
         fam_state = doc_state.get(fam, {})
+        # Fail-safe on document lifecycle state: a KNOWN-current status (stable)
+        # with a familiar effective state flows through normal applicability. An
+        # unfamiliar, placeholder, or non-current document status is surfaced as
+        # an explicit human-review flag rather than silently treated as ordinary
+        # active content. We do NOT invent per-rule dates or change applicability
+        # from an invented rule; we only refuse to silently trust an unfamiliar
+        # upstream lifecycle state.
+        KNOWN_CURRENT_STATUS = {"stable"}
+        KNOWN_EFFECTIVE = {"required", None}
+        doc_status = fam_state.get("document_status")
+        eff = fam_state.get("effective")
+        eff_is = eff.get("is") if isinstance(eff, dict) else None
+        document_review_needed = (
+            doc_status not in KNOWN_CURRENT_STATUS or eff_is not in KNOWN_EFFECTIVE)
         entry = {
             "rule_id": rid,
             "family": fam,
@@ -136,19 +150,20 @@ def build(cls):
             "affects": rule.get("affects"),
             # Document-level (family) status/effective from the canonical
             # source, surfaced so applicability respects it. Not per-rule.
-            "document_status": fam_state.get("document_status"),
-            "document_effective": fam_state.get("effective"),
+            "document_status": doc_status,
+            "document_effective": eff,
+            "document_review_needed": document_review_needed,
             "applicable": applicable,
             "reason": reason,
             # The explicit resolution chain: document status -> effective ->
             # subset applicability -> class resolution -> final applicability.
             "resolution_chain": {
-                "document_status": fam_state.get("document_status"),
-                "effective_is": (fam_state.get("effective") or {}).get("is")
-                if isinstance(fam_state.get("effective"), dict) else None,
+                "document_status": doc_status,
+                "effective_is": eff_is,
                 "subset": rule.get("_subset"),
                 "class": cls.upper(),
                 "final_applicability": applicable,
+                "document_review_needed": document_review_needed,
             },
         }
         (included if applicable else excluded).append(entry)

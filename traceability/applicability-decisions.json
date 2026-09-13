@@ -26,6 +26,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -33,7 +34,8 @@
     "effective_is": "required",
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -56,6 +58,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -63,7 +66,8 @@
     "effective_is": "required",
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -86,6 +90,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -93,7 +98,8 @@
     "effective_is": "required",
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -116,6 +122,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -123,7 +130,8 @@
     "effective_is": "required",
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -146,6 +154,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -153,7 +162,8 @@
     "effective_is": "required",
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -176,6 +186,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -183,7 +194,8 @@
     "effective_is": "required",
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -206,6 +218,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -213,7 +226,8 @@
     "effective_is": "required",
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -236,6 +250,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -243,7 +258,8 @@
     "effective_is": "required",
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -255,6 +271,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -262,7 +279,8 @@
     "effective_is": null,
     "subset": "OCR",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -274,6 +292,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -281,7 +300,8 @@
     "effective_is": null,
     "subset": "OCR",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -293,6 +313,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -300,7 +321,8 @@
     "effective_is": null,
     "subset": "OCR",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -312,6 +334,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -319,7 +342,8 @@
     "effective_is": null,
     "subset": "OCR",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -331,6 +355,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -338,7 +363,8 @@
     "effective_is": null,
     "subset": "OCR",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -350,6 +376,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -357,7 +384,8 @@
     "effective_is": null,
     "subset": "OCR",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -369,6 +397,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -376,7 +405,8 @@
     "effective_is": null,
     "subset": "OCR",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -388,6 +418,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -395,7 +426,8 @@
     "effective_is": null,
     "subset": "QTR",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -407,6 +439,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + class_variant",
    "resolution_chain": {
@@ -414,7 +447,8 @@
     "effective_is": null,
     "subset": "QTR",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -426,6 +460,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -433,7 +468,8 @@
     "effective_is": null,
     "subset": "QTR",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -445,6 +481,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -452,7 +489,8 @@
     "effective_is": null,
     "subset": "QTR",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -464,6 +502,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -471,7 +510,8 @@
     "effective_is": null,
     "subset": "QTR",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -483,6 +523,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -490,7 +531,8 @@
     "effective_is": null,
     "subset": "QTR",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -502,6 +544,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -509,7 +552,8 @@
     "effective_is": null,
     "subset": "QTR",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -521,6 +565,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -528,7 +573,8 @@
     "effective_is": null,
     "subset": "QTR",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -540,6 +586,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -547,7 +594,8 @@
     "effective_is": null,
     "subset": "QTR",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -559,6 +607,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -566,7 +615,8 @@
     "effective_is": null,
     "subset": "QTR",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -578,6 +628,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + class_variant",
    "resolution_chain": {
@@ -585,7 +636,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -597,6 +649,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -604,7 +657,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -616,6 +670,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -623,7 +678,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -635,6 +691,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -642,7 +699,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -654,6 +712,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -661,7 +720,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -673,6 +733,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -680,7 +741,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -692,6 +754,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + class_variant",
    "resolution_chain": {
@@ -699,7 +762,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -711,6 +775,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -718,7 +783,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -730,6 +796,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -737,7 +804,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -749,6 +817,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -756,7 +825,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -768,6 +838,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -775,7 +846,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -787,6 +859,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -794,7 +867,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -806,6 +880,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -813,7 +888,8 @@
     "effective_is": null,
     "subset": "TRC",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -825,6 +901,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -832,7 +909,8 @@
     "effective_is": null,
     "subset": "TRC",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -844,6 +922,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -851,7 +930,8 @@
     "effective_is": null,
     "subset": "TRC",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -863,6 +943,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -870,7 +951,8 @@
     "effective_is": null,
     "subset": "TRC",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -882,6 +964,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -889,7 +972,8 @@
     "effective_is": null,
     "subset": "TRC",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -901,6 +985,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -908,7 +993,8 @@
     "effective_is": null,
     "subset": "TRC",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -920,6 +1006,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -927,7 +1014,8 @@
     "effective_is": null,
     "subset": "UTC",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -939,6 +1027,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -946,7 +1035,8 @@
     "effective_is": null,
     "subset": "UTC",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -958,6 +1048,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -965,7 +1056,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -977,6 +1069,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -984,7 +1077,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -996,6 +1090,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + class_variant",
    "resolution_chain": {
@@ -1003,7 +1098,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -1015,6 +1111,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -1022,7 +1119,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -1034,6 +1132,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + class_variant",
    "resolution_chain": {
@@ -1041,7 +1140,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -1053,6 +1153,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -1060,7 +1161,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -1072,6 +1174,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + class_variant",
    "resolution_chain": {
@@ -1079,7 +1182,8 @@
     "effective_is": null,
     "subset": "CSX",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -1091,6 +1195,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -1098,7 +1203,8 @@
     "effective_is": null,
     "subset": "APP",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -1110,6 +1216,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -1117,7 +1224,8 @@
     "effective_is": null,
     "subset": "APP",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -1129,6 +1237,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + class_variant",
    "resolution_chain": {
@@ -1136,7 +1245,8 @@
     "effective_is": null,
     "subset": "APP",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -1148,6 +1258,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -1155,7 +1266,8 @@
     "effective_is": null,
     "subset": "APP",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -1167,6 +1279,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -1174,7 +1287,8 @@
     "effective_is": null,
     "subset": "APP",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -1186,6 +1300,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -1193,7 +1308,8 @@
     "effective_is": null,
     "subset": "APP",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -1205,6 +1321,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -1212,7 +1329,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -1224,6 +1342,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -1231,7 +1350,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -1243,6 +1363,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -1250,7 +1371,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -1262,6 +1384,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -1269,7 +1392,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -1281,6 +1405,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -1288,7 +1413,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -1300,6 +1426,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -1307,7 +1434,8 @@
     "effective_is": null,
     "subset": "CSX",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -1319,6 +1447,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + class_variant",
    "resolution_chain": {
@@ -1326,7 +1455,8 @@
     "effective_is": null,
     "subset": "CSX",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -1338,6 +1468,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + class_variant",
    "resolution_chain": {
@@ -1345,7 +1476,8 @@
     "effective_is": null,
     "subset": "CSX",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -1357,6 +1489,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + class_variant",
    "resolution_chain": {
@@ -1364,7 +1497,8 @@
     "effective_is": null,
     "subset": "CSX",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -1376,6 +1510,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -1383,7 +1518,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -1395,6 +1531,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -1402,7 +1539,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -1414,6 +1552,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -1421,7 +1560,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -1433,6 +1573,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -1440,7 +1581,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -1452,6 +1594,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + class_variant",
    "resolution_chain": {
@@ -1459,7 +1602,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -1471,6 +1615,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + class_variant",
    "resolution_chain": {
@@ -1478,7 +1623,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -1490,6 +1636,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + class_variant",
    "resolution_chain": {
@@ -1497,7 +1644,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -1509,6 +1657,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -1516,7 +1665,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -1528,6 +1678,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + class_variant",
    "resolution_chain": {
@@ -1535,7 +1686,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -1547,6 +1699,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -1554,7 +1707,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -1566,6 +1720,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -1573,7 +1728,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -1585,6 +1741,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -1592,7 +1749,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -1604,6 +1762,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -1611,7 +1770,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -1623,6 +1783,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -1630,7 +1791,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -1642,6 +1804,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -1649,7 +1812,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -1661,6 +1825,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + class_variant",
    "resolution_chain": {
@@ -1668,7 +1833,8 @@
     "effective_is": null,
     "subset": "CSX",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -1680,6 +1846,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -1687,7 +1854,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -1699,6 +1867,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -1706,7 +1875,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -1718,6 +1888,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -1725,7 +1896,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -1737,6 +1909,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -1744,7 +1917,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -1756,6 +1930,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -1763,7 +1938,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -1787,6 +1963,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -1794,7 +1971,8 @@
     "effective_is": "required",
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -1818,6 +1996,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -1825,7 +2004,8 @@
     "effective_is": "required",
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -1849,6 +2029,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -1856,7 +2037,8 @@
     "effective_is": "required",
     "subset": "IIP",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -1880,6 +2062,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -1887,7 +2070,8 @@
     "effective_is": "required",
     "subset": "IIP",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -1911,6 +2095,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -1918,7 +2103,8 @@
     "effective_is": "required",
     "subset": "IIP",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -1941,6 +2127,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -1948,7 +2135,8 @@
     "effective_is": "required",
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -1971,6 +2159,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -1978,7 +2167,8 @@
     "effective_is": "required",
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -2001,6 +2191,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -2008,7 +2199,8 @@
     "effective_is": "required",
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -2031,6 +2223,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -2038,7 +2231,8 @@
     "effective_is": "required",
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -2061,6 +2255,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -2068,7 +2263,8 @@
     "effective_is": "required",
     "subset": "ENH",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -2091,6 +2287,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -2098,7 +2295,8 @@
     "effective_is": "required",
     "subset": "ENH",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -2121,6 +2319,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -2128,7 +2327,8 @@
     "effective_is": "required",
     "subset": "ENH",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -2151,6 +2351,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -2158,7 +2359,8 @@
     "effective_is": "required",
     "subset": "ENH",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -2181,6 +2383,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -2188,7 +2391,8 @@
     "effective_is": "required",
     "subset": "ENH",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -2200,6 +2404,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -2207,7 +2412,8 @@
     "effective_is": null,
     "subset": "ADP",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -2219,6 +2425,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -2226,7 +2433,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -2238,6 +2446,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -2245,7 +2454,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -2257,6 +2467,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -2264,7 +2475,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -2276,6 +2488,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -2283,7 +2496,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -2295,6 +2509,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -2302,7 +2517,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -2314,6 +2530,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -2321,7 +2538,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -2333,6 +2551,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -2340,7 +2559,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -2352,6 +2572,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -2359,7 +2580,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -2371,6 +2593,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -2378,7 +2601,8 @@
     "effective_is": null,
     "subset": "RTR",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -2390,6 +2614,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -2397,7 +2622,8 @@
     "effective_is": null,
     "subset": "TRF",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -2409,6 +2635,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -2416,7 +2643,8 @@
     "effective_is": null,
     "subset": "TRF",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -2428,6 +2656,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -2435,7 +2664,8 @@
     "effective_is": null,
     "subset": "TRF",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -2447,6 +2677,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -2454,7 +2685,8 @@
     "effective_is": null,
     "subset": "TRF",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -2466,6 +2698,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -2473,7 +2706,8 @@
     "effective_is": null,
     "subset": "TRF",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -2485,6 +2719,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -2492,7 +2727,8 @@
     "effective_is": null,
     "subset": "TRF",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -2504,6 +2740,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -2511,7 +2748,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -2523,6 +2761,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -2530,7 +2769,8 @@
     "effective_is": null,
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -2542,6 +2782,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + class_variant",
    "resolution_chain": {
@@ -2549,7 +2790,8 @@
     "effective_is": null,
     "subset": "CSX",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -2561,6 +2803,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -2568,7 +2811,8 @@
     "effective_is": null,
     "subset": "CSX",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -2592,6 +2836,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -2599,7 +2844,8 @@
     "effective_is": "required",
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -2623,6 +2869,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -2630,7 +2877,8 @@
     "effective_is": "required",
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -2654,6 +2902,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -2661,7 +2910,8 @@
     "effective_is": "required",
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -2685,6 +2935,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -2692,7 +2943,8 @@
     "effective_is": "required",
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -2716,6 +2968,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -2723,7 +2976,8 @@
     "effective_is": "required",
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -2747,6 +3001,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -2754,7 +3009,8 @@
     "effective_is": "required",
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -2778,6 +3034,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -2785,7 +3042,8 @@
     "effective_is": "required",
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -2809,6 +3067,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -2816,7 +3075,8 @@
     "effective_is": "required",
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -2840,6 +3100,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -2847,7 +3108,8 @@
     "effective_is": "required",
     "subset": "CSO",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -2871,6 +3133,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -2878,7 +3141,8 @@
     "effective_is": "required",
     "subset": "TFR",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -2902,6 +3166,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + class_variant",
    "resolution_chain": {
@@ -2909,7 +3174,8 @@
     "effective_is": "required",
     "subset": "TFR",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -2933,6 +3199,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -2940,7 +3207,8 @@
     "effective_is": "required",
     "subset": "TFR",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -2964,6 +3232,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + class_variant",
    "resolution_chain": {
@@ -2971,7 +3240,8 @@
     "effective_is": "required",
     "subset": "TFR",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -2995,6 +3265,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + class_variant",
    "resolution_chain": {
@@ -3002,7 +3273,8 @@
     "effective_is": "required",
     "subset": "TFR",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -3026,6 +3298,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + class_variant",
    "resolution_chain": {
@@ -3033,7 +3306,8 @@
     "effective_is": "required",
     "subset": "TFR",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -3057,6 +3331,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + class_variant",
    "resolution_chain": {
@@ -3064,7 +3339,8 @@
     "effective_is": "required",
     "subset": "TFR",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -3088,6 +3364,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -3095,7 +3372,8 @@
     "effective_is": "required",
     "subset": "TFR",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -3119,6 +3397,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -3126,7 +3405,8 @@
     "effective_is": "required",
     "subset": "EVA",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -3150,6 +3430,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -3157,7 +3438,8 @@
     "effective_is": "required",
     "subset": "EVA",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -3181,6 +3463,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -3188,7 +3471,8 @@
     "effective_is": "required",
     "subset": "EVA",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -3212,6 +3496,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -3219,7 +3504,8 @@
     "effective_is": "required",
     "subset": "EVA",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -3243,6 +3529,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -3250,7 +3537,8 @@
     "effective_is": "required",
     "subset": "EVA",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -3274,6 +3562,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -3281,7 +3570,8 @@
     "effective_is": "required",
     "subset": "EVA",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -3305,6 +3595,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -3312,7 +3603,8 @@
     "effective_is": "required",
     "subset": "EVA",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -3336,6 +3628,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -3343,7 +3636,8 @@
     "effective_is": "required",
     "subset": "RPT",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -3367,6 +3661,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -3374,7 +3669,8 @@
     "effective_is": "required",
     "subset": "RPT",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -3398,6 +3694,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -3405,7 +3702,8 @@
     "effective_is": "required",
     "subset": "RPT",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -3429,6 +3727,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -3436,7 +3735,8 @@
     "effective_is": "required",
     "subset": "RPT",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -3460,6 +3760,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -3467,7 +3768,8 @@
     "effective_is": "required",
     "subset": "RPT",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -3491,6 +3793,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -3498,7 +3801,8 @@
     "effective_is": "required",
     "subset": "RPT",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -3522,6 +3826,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + class_variant",
    "resolution_chain": {
@@ -3529,7 +3834,8 @@
     "effective_is": "required",
     "subset": "TFR",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -3553,6 +3859,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + class_variant",
    "resolution_chain": {
@@ -3560,7 +3867,8 @@
     "effective_is": "required",
     "subset": "TFR",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -3584,6 +3892,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -3591,7 +3900,8 @@
     "effective_is": "required",
     "subset": "TFR",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -3615,6 +3925,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + top_level",
    "resolution_chain": {
@@ -3622,7 +3933,8 @@
     "effective_is": "required",
     "subset": "TFR",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -3646,6 +3958,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + class_variant",
    "resolution_chain": {
@@ -3653,7 +3966,8 @@
     "effective_is": "required",
     "subset": "TFR",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -3677,6 +3991,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": true,
    "reason": "20x + Program + Class B + class_variant",
    "resolution_chain": {
@@ -3684,7 +3999,8 @@
     "effective_is": "required",
     "subset": "TFR",
     "class": "B",
-    "final_applicability": true
+    "final_applicability": true,
+    "document_review_needed": false
    }
   },
   {
@@ -3707,6 +4023,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['FedRAMP'])",
    "resolution_chain": {
@@ -3714,7 +4031,8 @@
     "effective_is": "required",
     "subset": "FRP",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -3737,6 +4055,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['FedRAMP'])",
    "resolution_chain": {
@@ -3744,7 +4063,8 @@
     "effective_is": "required",
     "subset": "FRP",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -3767,6 +4087,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['FedRAMP'])",
    "resolution_chain": {
@@ -3774,7 +4095,8 @@
     "effective_is": "required",
     "subset": "FRP",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -3797,6 +4119,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['FedRAMP'])",
    "resolution_chain": {
@@ -3804,7 +4127,8 @@
     "effective_is": "required",
     "subset": "FRP",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -3827,6 +4151,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['FedRAMP'])",
    "resolution_chain": {
@@ -3834,7 +4159,8 @@
     "effective_is": "required",
     "subset": "FRP",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -3857,6 +4183,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['FedRAMP'])",
    "resolution_chain": {
@@ -3864,7 +4191,8 @@
     "effective_is": "required",
     "subset": "FRP",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -3887,6 +4215,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['FedRAMP'])",
    "resolution_chain": {
@@ -3894,7 +4223,8 @@
     "effective_is": "required",
     "subset": "FRP",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -3917,6 +4247,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['FedRAMP'])",
    "resolution_chain": {
@@ -3924,7 +4255,8 @@
     "effective_is": "required",
     "subset": "FRP",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -3948,6 +4280,7 @@
      }
     }
    },
+   "document_review_needed": true,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Agencies'])",
    "resolution_chain": {
@@ -3955,7 +4288,8 @@
     "effective_is": "required",
     "subset": "AGC",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": true
    }
   },
   {
@@ -3979,6 +4313,7 @@
      }
     }
    },
+   "document_review_needed": true,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Agencies'])",
    "resolution_chain": {
@@ -3986,7 +4321,8 @@
     "effective_is": "required",
     "subset": "AGC",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": true
    }
   },
   {
@@ -4010,6 +4346,7 @@
      }
     }
    },
+   "document_review_needed": true,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Agencies'])",
    "resolution_chain": {
@@ -4017,7 +4354,8 @@
     "effective_is": "required",
     "subset": "AGC",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": true
    }
   },
   {
@@ -4041,6 +4379,7 @@
      }
     }
    },
+   "document_review_needed": true,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Agencies'])",
    "resolution_chain": {
@@ -4048,7 +4387,8 @@
     "effective_is": "required",
     "subset": "AGC",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": true
    }
   },
   {
@@ -4072,6 +4412,7 @@
      }
     }
    },
+   "document_review_needed": true,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Agencies'])",
    "resolution_chain": {
@@ -4079,7 +4420,8 @@
     "effective_is": "required",
     "subset": "AGC",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": true
    }
   },
   {
@@ -4103,6 +4445,7 @@
      }
     }
    },
+   "document_review_needed": true,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Agencies'])",
    "resolution_chain": {
@@ -4110,7 +4453,8 @@
     "effective_is": "required",
     "subset": "AGC",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": true
    }
   },
   {
@@ -4134,6 +4478,7 @@
      }
     }
    },
+   "document_review_needed": true,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Agencies'])",
    "resolution_chain": {
@@ -4141,7 +4486,8 @@
     "effective_is": "required",
     "subset": "AGC",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": true
    }
   },
   {
@@ -4165,6 +4511,7 @@
      }
     }
    },
+   "document_review_needed": true,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Agencies'])",
    "resolution_chain": {
@@ -4172,7 +4519,8 @@
     "effective_is": "required",
     "subset": "AGC",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": true
    }
   },
   {
@@ -4196,6 +4544,7 @@
      }
     }
    },
+   "document_review_needed": true,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Agencies'])",
    "resolution_chain": {
@@ -4203,7 +4552,8 @@
     "effective_is": "required",
     "subset": "AGC",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": true
    }
   },
   {
@@ -4227,6 +4577,7 @@
      }
     }
    },
+   "document_review_needed": true,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Agencies'])",
    "resolution_chain": {
@@ -4234,7 +4585,8 @@
     "effective_is": "required",
     "subset": "SPN",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": true
    }
   },
   {
@@ -4258,6 +4610,7 @@
      }
     }
    },
+   "document_review_needed": true,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Agencies'])",
    "resolution_chain": {
@@ -4265,7 +4618,8 @@
     "effective_is": "required",
     "subset": "USE",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": true
    }
   },
   {
@@ -4289,6 +4643,7 @@
      }
     }
    },
+   "document_review_needed": true,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Agencies'])",
    "resolution_chain": {
@@ -4296,7 +4651,8 @@
     "effective_is": "required",
     "subset": "USE",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": true
    }
   },
   {
@@ -4320,6 +4676,7 @@
      }
     }
    },
+   "document_review_needed": true,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Agencies'])",
    "resolution_chain": {
@@ -4327,7 +4684,8 @@
     "effective_is": "required",
     "subset": "USE",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": true
    }
   },
   {
@@ -4351,6 +4709,7 @@
      }
     }
    },
+   "document_review_needed": true,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Agencies'])",
    "resolution_chain": {
@@ -4358,7 +4717,8 @@
     "effective_is": "required",
     "subset": "USE",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": true
    }
   },
   {
@@ -4382,6 +4742,7 @@
      }
     }
    },
+   "document_review_needed": true,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Agencies'])",
    "resolution_chain": {
@@ -4389,7 +4750,8 @@
     "effective_is": "required",
     "subset": "USE",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": true
    }
   },
   {
@@ -4413,6 +4775,7 @@
      }
     }
    },
+   "document_review_needed": true,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Agencies'])",
    "resolution_chain": {
@@ -4420,7 +4783,8 @@
     "effective_is": "required",
     "subset": "USE",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": true
    }
   },
   {
@@ -4444,6 +4808,7 @@
      }
     }
    },
+   "document_review_needed": true,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Agencies'])",
    "resolution_chain": {
@@ -4451,7 +4816,8 @@
     "effective_is": "required",
     "subset": "USE",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": true
    }
   },
   {
@@ -4475,6 +4841,7 @@
      }
     }
    },
+   "document_review_needed": true,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Agencies'])",
    "resolution_chain": {
@@ -4482,7 +4849,8 @@
     "effective_is": "required",
     "subset": "USE",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": true
    }
   },
   {
@@ -4506,6 +4874,7 @@
      }
     }
    },
+   "document_review_needed": true,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Agencies'])",
    "resolution_chain": {
@@ -4513,7 +4882,8 @@
     "effective_is": "required",
     "subset": "USE",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": true
    }
   },
   {
@@ -4537,6 +4907,7 @@
      }
     }
    },
+   "document_review_needed": true,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Agencies'])",
    "resolution_chain": {
@@ -4544,7 +4915,8 @@
     "effective_is": "required",
     "subset": "USE",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": true
    }
   },
   {
@@ -4556,6 +4928,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Agencies'])",
    "resolution_chain": {
@@ -4563,7 +4936,8 @@
     "effective_is": null,
     "subset": "AGM",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -4575,6 +4949,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Agencies'])",
    "resolution_chain": {
@@ -4582,7 +4957,8 @@
     "effective_is": null,
     "subset": "AGM",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -4594,6 +4970,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": false,
    "reason": "subset types ['Rev5'] exclude 20x",
    "resolution_chain": {
@@ -4601,7 +4978,8 @@
     "effective_is": null,
     "subset": "APS",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -4613,6 +4991,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": false,
    "reason": "subset types ['Rev5'] exclude 20x",
    "resolution_chain": {
@@ -4620,7 +4999,8 @@
     "effective_is": null,
     "subset": "CCL",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -4632,6 +5012,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": false,
    "reason": "subset types ['Rev5'] exclude 20x",
    "resolution_chain": {
@@ -4639,7 +5020,8 @@
     "effective_is": null,
     "subset": "CCL",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -4651,6 +5033,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": false,
    "reason": "subset types ['Rev5'] exclude 20x",
    "resolution_chain": {
@@ -4658,7 +5041,8 @@
     "effective_is": null,
     "subset": "CCL",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -4670,6 +5054,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": false,
    "reason": "subset classes ['A'] exclude B",
    "resolution_chain": {
@@ -4677,7 +5062,8 @@
     "effective_is": null,
     "subset": "CLA",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -4689,6 +5075,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": false,
    "reason": "subset classes ['A'] exclude B",
    "resolution_chain": {
@@ -4696,7 +5083,8 @@
     "effective_is": null,
     "subset": "CLA",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -4708,6 +5096,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": false,
    "reason": "subset classes ['A'] exclude B",
    "resolution_chain": {
@@ -4715,7 +5104,8 @@
     "effective_is": null,
     "subset": "CLA",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -4727,6 +5117,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": false,
    "reason": "subset classes ['A'] exclude B",
    "resolution_chain": {
@@ -4734,7 +5125,8 @@
     "effective_is": null,
     "subset": "CLA",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -4746,6 +5138,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": false,
    "reason": "subset classes ['A'] exclude B",
    "resolution_chain": {
@@ -4753,7 +5146,8 @@
     "effective_is": null,
     "subset": "CLA",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -4765,6 +5159,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": false,
    "reason": "subset classes ['A'] exclude B",
    "resolution_chain": {
@@ -4772,7 +5167,8 @@
     "effective_is": null,
     "subset": "CLA",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -4784,6 +5180,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['FedRAMP'])",
    "resolution_chain": {
@@ -4791,7 +5188,8 @@
     "effective_is": null,
     "subset": "FRP",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -4803,6 +5201,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Assessors'])",
    "resolution_chain": {
@@ -4810,7 +5209,8 @@
     "effective_is": null,
     "subset": "IAS",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -4822,6 +5222,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Assessors'])",
    "resolution_chain": {
@@ -4829,7 +5230,8 @@
     "effective_is": null,
     "subset": "IAS",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -4841,6 +5243,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Assessors'])",
    "resolution_chain": {
@@ -4848,7 +5251,8 @@
     "effective_is": null,
     "subset": "IAS",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -4860,6 +5264,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Assessors'])",
    "resolution_chain": {
@@ -4867,7 +5272,8 @@
     "effective_is": null,
     "subset": "IAS",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -4879,6 +5285,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Assessors'])",
    "resolution_chain": {
@@ -4886,7 +5293,8 @@
     "effective_is": null,
     "subset": "IAS",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -4898,6 +5306,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Assessors'])",
    "resolution_chain": {
@@ -4905,7 +5314,8 @@
     "effective_is": null,
     "subset": "IAS",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -4917,6 +5327,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Assessors'])",
    "resolution_chain": {
@@ -4924,7 +5335,8 @@
     "effective_is": null,
     "subset": "IAS",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -4948,6 +5360,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Advisors'])",
    "resolution_chain": {
@@ -4955,7 +5368,8 @@
     "effective_is": "required",
     "subset": "CAS",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -4979,6 +5393,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Advisors'])",
    "resolution_chain": {
@@ -4986,7 +5401,8 @@
     "effective_is": "required",
     "subset": "CAS",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -5010,6 +5426,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Advisors'])",
    "resolution_chain": {
@@ -5017,7 +5434,8 @@
     "effective_is": "required",
     "subset": "CAS",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -5041,6 +5459,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['FedRAMP'])",
    "resolution_chain": {
@@ -5048,7 +5467,8 @@
     "effective_is": "required",
     "subset": "FRP",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -5072,6 +5492,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Assessors'])",
    "resolution_chain": {
@@ -5079,7 +5500,8 @@
     "effective_is": "required",
     "subset": "IAS",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -5103,6 +5525,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Assessors'])",
    "resolution_chain": {
@@ -5110,7 +5533,8 @@
     "effective_is": "required",
     "subset": "IAS",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -5134,6 +5558,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Assessors'])",
    "resolution_chain": {
@@ -5141,7 +5566,8 @@
     "effective_is": "required",
     "subset": "IAS",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -5165,6 +5591,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['FedRAMP'])",
    "resolution_chain": {
@@ -5172,7 +5599,8 @@
     "effective_is": "required",
     "subset": "FRP",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -5196,6 +5624,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['FedRAMP'])",
    "resolution_chain": {
@@ -5203,7 +5632,8 @@
     "effective_is": "required",
     "subset": "FRP",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -5227,6 +5657,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['FedRAMP'])",
    "resolution_chain": {
@@ -5234,7 +5665,8 @@
     "effective_is": "required",
     "subset": "FRP",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -5258,6 +5690,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Assessors'])",
    "resolution_chain": {
@@ -5265,7 +5698,8 @@
     "effective_is": "required",
     "subset": "IAS",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -5289,6 +5723,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Assessors'])",
    "resolution_chain": {
@@ -5296,7 +5731,8 @@
     "effective_is": "required",
     "subset": "IAS",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -5320,6 +5756,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Assessors'])",
    "resolution_chain": {
@@ -5327,7 +5764,8 @@
     "effective_is": "required",
     "subset": "IAS",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -5351,6 +5789,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Assessors'])",
    "resolution_chain": {
@@ -5358,7 +5797,8 @@
     "effective_is": "required",
     "subset": "IAS",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -5382,6 +5822,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Assessors'])",
    "resolution_chain": {
@@ -5389,7 +5830,8 @@
     "effective_is": "required",
     "subset": "IAS",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -5413,6 +5855,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Assessors'])",
    "resolution_chain": {
@@ -5420,7 +5863,8 @@
     "effective_is": "required",
     "subset": "IAS",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -5444,6 +5888,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Assessors'])",
    "resolution_chain": {
@@ -5451,7 +5896,8 @@
     "effective_is": "required",
     "subset": "IAS",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -5475,6 +5921,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Assessors'])",
    "resolution_chain": {
@@ -5482,7 +5929,8 @@
     "effective_is": "required",
     "subset": "IAS",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -5506,6 +5954,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Assessors'])",
    "resolution_chain": {
@@ -5513,7 +5962,8 @@
     "effective_is": "required",
     "subset": "IAS",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -5537,6 +5987,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Assessors'])",
    "resolution_chain": {
@@ -5544,7 +5995,8 @@
     "effective_is": "required",
     "subset": "IAS",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -5568,6 +6020,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Assessors'])",
    "resolution_chain": {
@@ -5575,7 +6028,8 @@
     "effective_is": "required",
     "subset": "IAS",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -5599,6 +6053,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Assessors'])",
    "resolution_chain": {
@@ -5606,7 +6061,8 @@
     "effective_is": "required",
     "subset": "IAS",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -5630,6 +6086,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Assessors'])",
    "resolution_chain": {
@@ -5637,7 +6094,8 @@
     "effective_is": "required",
     "subset": "IAS",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -5649,6 +6107,7 @@
    ],
    "document_status": "stable",
    "document_effective": null,
+   "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['FedRAMP'])",
    "resolution_chain": {
@@ -5656,7 +6115,8 @@
     "effective_is": null,
     "subset": "FRP",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -5680,6 +6140,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Agencies'])",
    "resolution_chain": {
@@ -5687,7 +6148,8 @@
     "effective_is": "required",
     "subset": "AGM",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -5711,6 +6173,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['Agencies'])",
    "resolution_chain": {
@@ -5718,7 +6181,8 @@
     "effective_is": "required",
     "subset": "AGM",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -5742,6 +6206,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['FedRAMP'])",
    "resolution_chain": {
@@ -5749,7 +6214,8 @@
     "effective_is": "required",
     "subset": "FRP",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   },
   {
@@ -5773,6 +6239,7 @@
      }
     }
    },
+   "document_review_needed": false,
    "applicable": false,
    "reason": "does not affect Providers (affects=['FedRAMP'])",
    "resolution_chain": {
@@ -5780,7 +6247,8 @@
     "effective_is": "required",
     "subset": "FRP",
     "class": "B",
-    "final_applicability": false
+    "final_applicability": false,
+    "document_review_needed": false
    }
   }
  ]
