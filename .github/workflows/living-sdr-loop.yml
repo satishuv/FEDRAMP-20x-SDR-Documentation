@@ -40,7 +40,7 @@ jobs:
         with:
           python-version: "3.12"
       - name: Install dependencies
-        run: pip install --quiet jsonschema referencing python-docx boto3
+        run: pip install --quiet -r requirements-ci.txt
       - name: Assume read-only role via OIDC
         uses: aws-actions/configure-aws-credentials@e3dd6a429d7300a6a4c196c26e071d42e0343502 # v4.0.2
         with:
@@ -52,17 +52,10 @@ jobs:
         run: python automation/metrics/append_metrics.py
       - name: Pre-fill draft fields from facts (writes a git-excluded sidecar)
         run: python automation/prefill/prefill_from_facts.py --write || true
-      - name: Regenerate deliverables
-        run: |
-          python validation/scripts/build_catalogs.py
-          python validation/scripts/build_notes.py
-          python validation/scripts/build_profiles.py
-          python validation/scripts/build_collector_registry.py
-          python validation/scripts/build_sdr.py
-          python validation/scripts/build_docx.py
-          python validation/scripts/build_crosswalk.py
+      - name: Regenerate the COMPLETE package (one build definition)
+        run: python sdr.py build
       - name: Validate before proposing anything
-        run: python validation/scripts/validate_sdr.py
+        run: python sdr.py validate --no-tests
       - name: Open a PR only if committed outputs changed
         env:
           GH_TOKEN: ${{ github.token }}
