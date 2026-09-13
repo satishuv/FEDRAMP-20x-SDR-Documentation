@@ -242,6 +242,44 @@ def main():
         check("TBD warning is scoped to applicable records",
               "applicable to Class" in r.stdout or r.returncode == 0)
 
+        # FRC-APP-USA freshening gate: a 4-month-old assessment must BLOCK unless
+        # a Recognized-service freshening review (with a recognition id) is
+        # recorded, then reach ready once it is.
+        p = json.load(open(profile, encoding="utf-8"))
+        fia = p["fedramp_independent_assessment"]
+        fia["completed_at"] = (now.date() - datetime.timedelta(days=120)).isoformat()
+        json.dump(p, open(profile, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root)
+        rfa = _preflight(root)
+        check("stale (4mo) assessment without a freshening review is blocked",
+              "FRC-APP-USA freshening" in rfa.stdout and rfa.returncode == 1)
+        fia["freshness_basis"] = "freshened"
+        fia["freshening"] = {
+            "reviewed_at": (now.date() - datetime.timedelta(days=10)).isoformat(),
+            "reviewed_by": "Acme FedRAMP Assessors LLC",
+            "reviewer_fedramp_id": "FR-ASSESSOR-0007",
+            "changes_reviewed_reference": "change-log-2026-Q3",
+        }
+        json.dump(p, open(profile, "w", encoding="utf-8", newline="\n"), indent=1)
+        # Restore current-assessment state for the signoff flow below.
+        fia_current = (now.date() - datetime.timedelta(days=30)).isoformat()
+        _build(root)
+        rfb = _preflight(root)
+        check("stale assessment with a Recognized-service freshening review clears FIA",
+              "FRC-APP-USA freshening" not in rfb.stdout)
+        p["fedramp_independent_assessment"]["completed_at"] = fia_current
+        p["fedramp_independent_assessment"].pop("freshening", None)
+        p["fedramp_independent_assessment"]["freshness_basis"] = "current"
+        json.dump(p, open(profile, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root)
+        # Re-sign against the current manifest so the post-signoff test below is clean.
+        mhash = "sha256:" + hashlib.sha256(open(manifest, "rb").read()).hexdigest()
+        tag = json.load(open(manifest, encoding="utf-8")).get("release_tag")
+        reg = json.load(open(register, encoding="utf-8"))
+        reg["package_signoff"]["package_manifest_sha256"] = mhash
+        reg["package_signoff"]["release_tag"] = tag
+        json.dump(reg, open(register, "w", encoding="utf-8", newline="\n"), indent=1)
+
         # Change a provider input after signoff; the bound signoff must fail.
         p = json.load(open(profile, encoding="utf-8"))
         p["business_purpose"] = str(p.get("business_purpose", "")) + " (edited after signoff)"

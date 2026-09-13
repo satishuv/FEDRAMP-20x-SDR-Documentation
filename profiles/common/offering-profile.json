@@ -45,7 +45,22 @@
     "completed_at": "TBD: YYYY-MM-DD the assessment was completed (must be within the previous 3 months for B/C)",
     "assessment_summary_uri": "TBD: location of the overall assessment summary (IVV-IAS-OSA)",
     "assessment_report_uri": "TBD: location reference (the report is NOT stored in this repository)",
-    "assessment_report_sha256": "TBD: hash of the referenced report"
+    "assessment_report_sha256": "TBD: hash of the referenced report",
+    "freshness_basis": "TBD: 'current' if completed within 3 months; 'freshened' if a Recognized service reviewed changes under FRC-APP-USA (required once the assessment is over 3 months old, and only valid up to 9 months)",
+    "freshening": {
+      "note": "FRC-APP-USA: only used when the initial assessment is 3-9 months old. The freshening MUST be performed by a FedRAMP Recognized independent assessment service.",
+      "reviewed_at": "TBD: YYYY-MM-DD the Recognized service reviewed the changes (must not be a future date)",
+      "reviewed_by": "TBD: name of the FedRAMP Recognized independent assessment service that performed the freshening review",
+      "reviewer_fedramp_id": "TBD: the freshening reviewer's FedRAMP Recognition id",
+      "changes_reviewed_reference": "TBD: reference to the record of changes reviewed between the original assessment and current status"
+    }
+  },
+  "metric_history_exception": {
+    "note": "FRC-CSX-MOT initial-certification exception: only for a NEW offering that cannot yet show the normal metric-of-time history. Provide the required mechanisms and a recorded commitment; when present, MOT preflight requires a CURRENT datapoint per in-scope KSI instead of the full history window. Omit this block entirely once real history exists.",
+    "mechanisms_in_place": "TBD: description of the mechanisms in place to produce the required KSI metrics going forward",
+    "commitment_to_meet_mot": "TBD: the provider's recorded commitment to meet the metric-of-time requirement",
+    "operating_since": "TBD: YYYY-MM-DD the offering began operating",
+    "responsible_official": "TBD: name, title, and contact of the official accountable for the commitment"
   },
   "overall_assessment_summary": "TBD: CPO-CSO-OSA (Class B/C MUST): the overall summary of the FedRAMP independent assessment, supplied by the assessor per IVV-IAS-OSA, included in the CPO without inappropriate modification. Provide the assessor's text or a URI reference.",
   "cpo_responsible_official": "TBD: CPO-CSO-MTD: name, title, and contact of the official responsible and accountable for the Certification Package.",
