@@ -559,21 +559,33 @@ def cmd_preflight(args):
                                         f"type/uri/sha256 (FRC-CLA-EAM)")
 
     # Record store: bulk unresolved content stays a readiness warning (FedRAMP
-    # explicitly allows an honestly incomplete implementation). But generic
-    # "Information has not been provided" TBDs in REQUIRED semantic fields are
-    # different from an intentional not-implemented statement.
-    records_path = os.path.join(BASE, "sdr", "records", "records-store.json")
-    try:
-        with open(records_path, encoding="utf-8") as f:
-            raw = f.read()
-        tbd = raw.count("TBD")
-        placeholders = raw.count("sdr://placeholder/")
-        if tbd:
-            warnings.append(f"{tbd} unresolved TBD placeholder(s) in the record store")
-        if placeholders:
-            warnings.append(f"{placeholders} unresolved sdr://placeholder/ evidence URI(s)")
-    except OSError:
-        warnings.append("records-store.json not readable")
+    # explicitly allows an honestly incomplete implementation). Count TBDs only
+    # within the records APPLICABLE to this class - counting the whole file
+    # would report TBDs in rules that do not apply (e.g. Class A resolves far
+    # fewer rules than the file contains), which is misleading.
+    records = load_json(os.path.join(BASE, "sdr", "records", "records-store.json")) or {}
+    class_profile = load_json(os.path.join(BASE, "profiles", f"class-{cls}", "profile.json")) or {}
+    applicable_frr = {r.get("rule_id") for r in class_profile.get("rules", [])}
+    ksi_profile = load_json(os.path.join(BASE, "profiles", "common", "ksi-profile.json")) or {}
+    applicable_ksi = {k.get("ksi_id") for k in ksi_profile.get("indicators", [])}
+
+    def _count_markers(rec):
+        blob = json.dumps(rec)
+        return blob.count("TBD"), blob.count("sdr://placeholder/")
+
+    tbd = placeholders = scoped_records = 0
+    for rid, rec in (records.get("frr", {}) or {}).items():
+        if rid in applicable_frr:
+            t, p = _count_markers(rec); tbd += t; placeholders += p; scoped_records += 1
+    for kid, rec in (records.get("ksi", {}) or {}).items():
+        if kid in applicable_ksi:
+            t, p = _count_markers(rec); tbd += t; placeholders += p; scoped_records += 1
+    if tbd:
+        warnings.append(f"{tbd} unresolved TBD placeholder(s) across {scoped_records} "
+                        f"records applicable to Class {cls.upper()}")
+    if placeholders:
+        warnings.append(f"{placeholders} unresolved sdr://placeholder/ evidence URI(s) "
+                        f"in applicable records")
 
     # Scan the GENERATED submission artifacts, not merely the input profile. A
     # generated CPO carrying template markers, placeholder IDs/URLs, or recorded
