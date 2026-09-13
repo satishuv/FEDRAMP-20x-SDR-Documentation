@@ -68,7 +68,7 @@
   "cpo_last_updated": "TBD: CPO-CSO-MTD: date and time of last update (ISO-8601).",
   "cpo_source_of_update": "TBD: CPO-CSO-MTD: source of the update.",
   "cpo_required_information": {
-    "note": "CPO-CSO-OVR: for each referenced rule, a pointer to (or summary of) the information in the CPO. Anything left unset is a preflight blocker. Keys are rule ids: CPO-CSO-MTD, CDS-CSO-PUB, CDS-CSO-SVC, CDS-CSO-IRP, MAS-CSO-IIR, MAS-CSO-FLO, MAS-CSO-TPR, CMU-CSO-CMD, IVV-CSO-ICP. Omit a key only if the rule genuinely does not apply to this class/type."
+    "note": "CPO-CSO-OVR: for each APPLICABLE referenced rule, a pointer to (or the actual) information required by that rule. Anything left unset is a preflight blocker. Keys are rule ids: CPO-CSO-MTD, CDS-CSO-PUB, CDS-CSO-SVC, CDS-CSO-IRP, MAS-CSO-IIR, MAS-CSO-FLO, MAS-CSO-TPR, CMU-CSO-CMD, IVV-CSO-ICP. Only the rules that resolve for your class/type are required (Class A resolves only CDS-CSO-PUB and MAS-CSO-IIR of this set); the builder omits non-applicable rules automatically. STRUCTURED rules: CDS-CSO-PUB must be an OBJECT whose keys are the CR26 CDS-CSO-PUB following_information items (each supplied); CDS-CSO-IRP and MAS-CSO-TPR must each be a non-empty ARRAY of records covering the CR26 per-record fields. A single sentence does NOT satisfy those three."
   },
   "availability_reporting": {
     "note": "CDS-CSO-AVR: a web service showing current and >=30 days historical core-service availability (including incidents) in both human-readable and machine-readable formats, available even when the primary offering is down. Class B and C MUST; Class A SHOULD. This repository references the provider's service; it does not host it.",

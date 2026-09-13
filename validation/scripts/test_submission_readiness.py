@@ -88,12 +88,46 @@ def _fill(profile_path, now, cls="C"):
         "cpo_source_of_update": "Initial certification package preparation",
         "cpo_required_information": {
             "CPO-CSO-MTD": "See metadata section.",
-            "CDS-CSO-PUB": "Public info published at https://contoso.gov/trust.",
+            "CDS-CSO-PUB": {
+                "FedRAMP ID": "FR2026-CSP-0001",
+                "Service Model": "SaaS",
+                "Deployment Model": "Government Community Cloud",
+                "Business Category": "IT Management",
+                "UEI Number": "ABC123DEF456",
+                "Sales Contact Information": "sales@contoso.gov",
+                "Security Contact Information": "security@contoso.gov",
+                "Product Website Link": "https://contoso.gov/product",
+                "Link to Product Logo": "https://contoso.gov/logo.png",
+                "Overall Service Description": "Contoso secure workflow platform.",
+                "Detailed list of specific services and their security categories": "https://contoso.gov/services",
+                "Link to Secure Configuration Guidance": "https://contoso.gov/scg",
+                "Overview of documentation supplied by the provider for the cloud service offering": "https://contoso.gov/docs",
+                "Link to Trust Center landing page that includes instructions on accessing information in the trust center": "https://contoso.gov/trust",
+                "Next Ongoing Certification Report date": "2027-03-01",
+                "Current FedRAMP Recognized independent assessment service": "Acme FedRAMP Assessors LLC (FR-ASSESSOR-0007)",
+            },
             "CDS-CSO-SVC": "Service list published at https://contoso.gov/services.",
-            "CDS-CSO-IRP": "Relevant policies referenced in the trust center.",
+            "CDS-CSO-IRP": [
+                {
+                    "Name of policy or procedure": "Access Control Policy",
+                    "Name of file document web page etc": "ac-policy.pdf",
+                    "Brief summary of policy or procedure": "Governs least-privilege access.",
+                    "Word count of document": "3200",
+                    "Current version": "2.1",
+                    "Date of last update": "2026-06-01",
+                    "Related FedRAMP Practices": "KSI-IAM-AAM",
+                },
+            ],
             "MAS-CSO-IIR": "Information resources enumerated in the SDR scope.",
             "MAS-CSO-FLO": "Information flows and security categories documented.",
-            "MAS-CSO-TPR": "Third-party resources listed in the package.",
+            "MAS-CSO-TPR": [
+                {
+                    "General usage and configuration": "Managed database service.",
+                    "Explanation or justification for use": "Primary datastore.",
+                    "Mitigation measures in place to reduce the potential impact to federal customer data": "Encryption at rest, VPC isolation.",
+                    "Compensating controls in place to reduce the potential impact to federal customer data": "Continuous monitoring alerts.",
+                },
+            ],
             "CMU-CSO-CMD": "FIPS-validated cryptographic modules documented.",
             "IVV-CSO-ICP": "Independent assessment results included per FIA.",
         },
@@ -139,7 +173,14 @@ def _fill_records(root):
     applicable_frr = {r["rule_id"] for r in class_profile.get("rules", [])}
     ksi_profile = json.load(open(os.path.join(root, "profiles", "common", "ksi-profile.json"),
                                  encoding="utf-8"))
-    applicable_ksi = {k["ksi_id"] for k in ksi_profile.get("indicators", [])}
+    if cls == "a":
+        # Match production preflight: Class A resolves only the 7 CLA-enumerated
+        # KSIs. Filling only those proves the ~39 non-applicable KSIs are left
+        # deliberately unanswered and still do not block (rather than the test
+        # quietly answering all 46 and never exercising the scoping).
+        applicable_ksi = set((class_profile.get("meta", {}) or {}).get("class_a_ksis", {}).keys())
+    else:
+        applicable_ksi = {k["ksi_id"] for k in ksi_profile.get("indicators", [])}
 
     def answer(rec, ident, is_ksi):
         rec["implementation_status"] = "Implemented"
@@ -242,6 +283,36 @@ def main():
         check("TBD warning is scoped to applicable records",
               "applicable to Class" in r.stdout or r.returncode == 0)
 
+        # Structured CPO semantics adversarial: a bare sentence for CDS-CSO-PUB
+        # must NOT satisfy the rule (it enumerates 16 concrete items). This is
+        # the "impossible to fool" property applied to the CPO.
+        p = json.load(open(profile, encoding="utf-8"))
+        good_pub = p["cpo_required_information"]["CDS-CSO-PUB"]
+        p["cpo_required_information"]["CDS-CSO-PUB"] = "Public information is documented."
+        json.dump(p, open(profile, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root)
+        rpub = _preflight(root)
+        check("a bare-string CDS-CSO-PUB does NOT satisfy the structured rule",
+              "not structurally complete" in rpub.stdout and rpub.returncode == 1)
+        p["cpo_required_information"]["CDS-CSO-PUB"] = good_pub
+        json.dump(p, open(profile, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root)
+
+        # A BARE "N/A" in a required FRR field must NOT count as answered - only
+        # a justified N/A does. Tamper one applicable record and confirm it blocks.
+        rp = os.path.join(root, "sdr", "records", "records-store.json")
+        recs = json.load(open(rp, encoding="utf-8"))
+        frr_id = next(iter(recs.get("frr", {})))
+        saved_impl = recs["frr"][frr_id].get("implementation")
+        recs["frr"][frr_id]["implementation"] = "N/A"
+        json.dump(recs, open(rp, "w", encoding="utf-8", newline="\n"), indent=1)
+        rna = _preflight(root)
+        check("a bare 'N/A' in a required FRR field is NOT accepted as answered",
+              rna.returncode == 1 and "SUBMISSION BLOCKERS" in rna.stdout)
+        recs["frr"][frr_id]["implementation"] = saved_impl
+        json.dump(recs, open(rp, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root)
+
         # FRC-APP-USA freshening gate: a 4-month-old assessment must BLOCK unless
         # a Recognized-service freshening review (with a recognition id) is
         # recorded, then reach ready once it is.
@@ -289,25 +360,49 @@ def main():
         check("post-signoff change invalidates the manifest-bound signoff",
               "package_manifest_sha256 does not match" in r2.stdout and r2.returncode == 1)
 
-        # Class A end-to-end: only the 7 enumerated KSIs apply, FIA/SCG/AVR-MUST/
-        # MOT do not, and the alternative-framework external assessment does.
-        _fill(profile, now, cls="A")
-        _fill_records(root)
-        _build(root)
-        mhash_a = "sha256:" + hashlib.sha256(open(manifest, "rb").read()).hexdigest()
-        tag_a = json.load(open(manifest, encoding="utf-8")).get("release_tag")
-        reg_a = json.load(open(register, encoding="utf-8"))
+        # Class A end-to-end on a FRESH tree (not the Class-C-filled one), so the
+        # ~39 non-applicable KSIs are genuinely never answered - proving they do
+        # not block, rather than being quietly filled. Only the 7 enumerated KSIs
+        # apply; FIA/SCG/AVR-MUST/MOT do not; the alternative-framework external
+        # assessment does.
+        root_a = os.path.join(tmp, "repo-a")
+        shutil.copytree(BASE, root_a, ignore=shutil.ignore_patterns(
+            ".git", "__pycache__", "*.log", ".tmp"))
+        profile_a = os.path.join(root_a, "profiles", "common", "offering-profile.json")
+        register_a = os.path.join(root_a, "sdr", "reviews", "review-register.json")
+        manifest_a = os.path.join(root_a, "artifacts", "release-manifest.json")
+        _fill(profile_a, now, cls="A")
+        _fill_records(root_a)
+        _build(root_a)
+        # Prove the fixture left the non-applicable KSIs unanswered on this fresh
+        # tree: exactly the 7 Class A KSIs carry implementation content.
+        recs_a = json.load(open(os.path.join(root_a, "sdr", "records", "records-store.json"),
+                                encoding="utf-8"))
+        answered_ksi = [kid for kid, rec in (recs_a.get("ksi", {}) or {}).items()
+                        if "Fictional but complete" in str(rec.get("implementation"))]
+        check("Class A fixture answered ONLY the 7 applicable KSIs, not all 46",
+              len(answered_ksi) == 7)
+        mhash_a = "sha256:" + hashlib.sha256(open(manifest_a, "rb").read()).hexdigest()
+        tag_a = json.load(open(manifest_a, encoding="utf-8")).get("release_tag")
+        reg_a = json.load(open(register_a, encoding="utf-8"))
         reg_a["package_signoff"] = {
             "decision": "approved", "reviewer": "Jane Provider, VP Security",
             "timestamp": now.isoformat(), "release_tag": tag_a,
             "package_manifest_sha256": mhash_a, "notes": "Reviewed full Class A package.",
         }
-        json.dump(reg_a, open(register, "w", encoding="utf-8", newline="\n"), indent=1)
-        ra = _preflight(root)
+        json.dump(reg_a, open(register_a, "w", encoding="utf-8", newline="\n"), indent=1)
+        ra = _preflight(root_a)
         check("fully-filled Class A offering reaches Submission ready (exit 0)",
               ra.returncode == 0)
         check("Class A is not blocked on the ~39 non-applicable KSIs",
               "no implementation information" not in ra.stdout)
+        # Class A CPO applicability: of the 9 OVR-referenced rules, only
+        # CDS-CSO-PUB and MAS-CSO-IIR resolve for Class A, so the generated CPO
+        # must carry exactly those two - not seven meaningless N/A entries.
+        cpo_a = json.load(open(os.path.join(root_a, "package", "cpo", "cpo.json"), encoding="utf-8"))
+        a_rules = {i.get("rule") for i in cpo_a.get("xCpoRequiredInformation", {}).get("items", [])}
+        check("Class A CPO required-info is applicability-scoped to its 2 OVR rules",
+              a_rules == {"CDS-CSO-PUB", "MAS-CSO-IIR"})
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
 

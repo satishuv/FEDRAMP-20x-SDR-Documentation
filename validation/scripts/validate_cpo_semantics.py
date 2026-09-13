@@ -31,11 +31,13 @@ CPO_MD = os.path.join(BASE, "package", "cpo", "cpo.md")
 DATASET = os.path.join(BASE, "references", "fedramp-consolidated-rules.json")
 
 
-def _expected_ovr_rules():
+def _expected_ovr_rules(cls=None):
     """INDEPENDENTLY derive the CPO-CSO-OVR required-rule set from CR26, so the
-    validator does not trust the builder's own items[] list. Returns the set of
-    rule ids referenced by CPO-CSO-OVR.following_information, or None if the
-    dataset/ rule is unavailable."""
+    validator does not trust the builder's own items[] list. When cls is given,
+    intersect with that class's resolved rule set, because CPO-CSO-OVR says its
+    referenced rules may not all apply to every class/type (e.g. Class A resolves
+    only CDS-CSO-PUB and MAS-CSO-IIR of the set). Returns the set of applicable
+    rule ids, or None if the dataset/rule is unavailable."""
     import re as _re
     ds = load(DATASET)
     if ds is None:
@@ -62,6 +64,13 @@ def _expected_ovr_rules():
         m = _re.search(r"([A-Z]{3}-[A-Z]{3}-[A-Z]{3})", ref)
         if m:
             ids.add(m.group(1))
+    if not ids:
+        return None
+    if cls:
+        cprof = load(os.path.join(BASE, "profiles", f"class-{cls.lower()}", "profile.json"))
+        if cprof:
+            applicable = {r["rule_id"] for r in (cprof.get("rules") or [])}
+            ids = ids & applicable
     return ids or None
 
 
@@ -103,7 +112,11 @@ def main():
         # INDEPENDENTLY derive the expected rule set from CR26 and require exact
         # set equality, so a builder that silently drops a required rule cannot
         # be rubber-stamped by a validator that only reads the builder's own list.
-        expected = _expected_ovr_rules()
+        # Scope to the class: CPO-CSO-OVR's referenced rules do not all apply to
+        # every class/type, so intersect with the resolved class rule set.
+        _off = load(os.path.join(BASE, "profiles", "common", "offering-profile.json")) or {}
+        _cls = (_off.get("certification_class") or "b")
+        expected = _expected_ovr_rules(_cls)
         actual = {i.get("rule") for i in req["items"]}
         if expected is not None and expected != actual:
             missing = sorted(expected - actual)

@@ -769,9 +769,11 @@ def cmd_preflight(args):
 
     def _answered(v):
         """A required field is answered when it has real content: non-empty and
-        not a TBD/placeholder. An explicit justified N/A ('N/A:' or 'Not
-        applicable') counts as answered - FedRAMP allows a justified
-        non-implementation - but a bare placeholder does not."""
+        not a TBD/placeholder. An explicit JUSTIFIED N/A counts as answered
+        (FedRAMP allows a justified non-implementation), but a BARE 'N/A' does
+        not - the whole point is that 'submission ready' cannot be satisfied by
+        a content-free token. A justified N/A must carry a reason after the
+        marker, e.g. 'N/A: <reason>' or 'Not applicable - <reason>'."""
         if isinstance(v, list):
             return any(_answered(x) for x in v)
         s = str(v or "").strip()
@@ -780,6 +782,17 @@ def cmd_preflight(args):
         if s.startswith("TBD") or "has not been provided" in s \
                 or "has not been performed" in s or s.startswith("sdr://placeholder/"):
             return False
+        # Bare N/A / not-applicable tokens without a justification do not count.
+        low = s.lower()
+        na_markers = ("n/a", "na", "not applicable", "not-applicable")
+        for m in na_markers:
+            if low == m:
+                return False
+            if low.startswith(m):
+                # Require a real justification after the marker (a separator plus
+                # at least a few characters of reason), not just "N/A." or "N/A -".
+                rest = s[len(m):].lstrip(" :.-\u2013\u2014").strip()
+                return len(rest) >= 3
         return True
 
     def _frr_gaps(rec):
@@ -874,7 +887,90 @@ def cmd_preflight(args):
     if mtd_gaps:
         blockers.append(f"CPO metadata unresolved (CPO-CSO-MTD): {', '.join(mtd_gaps)}")
     req_info = (cpo.get("xCpoRequiredInformation", {}) or {}).get("items", [])
-    req_gaps = [i.get("rule") for i in req_info if _is_tbd(i.get("provider_content"))]
+
+    # Structured semantic completeness. A bare non-TBD sentence like "Public
+    # information is documented." must NOT satisfy a rule that enumerates
+    # concrete required items (CDS-CSO-PUB, CDS-CSO-IRP, MAS-CSO-TPR). For those
+    # rules we derive the required members from CR26 and require the provider
+    # content to be a structured object/array actually covering them; for
+    # single-statement rules we keep the resolved (non-TBD) check.
+    import re as _re_cpo
+
+    def _cr26_following(rid):
+        ds = load_json(os.path.join(BASE, "references", "fedramp-consolidated-rules.json"))
+
+        def _find(node, target):
+            if isinstance(node, dict):
+                if target in node:
+                    return node[target]
+                for v in node.values():
+                    r = _find(v, target)
+                    if r is not None:
+                        return r
+            elif isinstance(node, list):
+                for v in node:
+                    r = _find(v, target)
+                    if r is not None:
+                        return r
+            return None
+
+        rule = _find(ds, rid) if ds else None
+        return (rule or {}).get("following_information", []) or []
+
+    # Rules whose required information is a structured object keyed by the CR26
+    # following_information items (checked member-by-member).
+    OBJECT_RULES = {"CDS-CSO-PUB"}
+    # Rules whose required information is a non-empty array of records, each
+    # covering the CR26 per-record fields.
+    ARRAY_RULES = {"CDS-CSO-IRP", "MAS-CSO-TPR"}
+
+    def _norm_key(item_text):
+        # Reduce a CR26 following_information phrase to a stable key: take the
+        # text before any parenthetical, lowercase, non-alnum -> underscore.
+        base = _re_cpo.split(r"\(", str(item_text))[0].strip().lower()
+        return _re_cpo.sub(r"[^a-z0-9]+", "_", base).strip("_")
+
+    req_gaps = []
+    struct_gaps = []
+    for i in req_info:
+        rid = i.get("rule")
+        content = i.get("provider_content")
+        if rid in OBJECT_RULES:
+            required = [_norm_key(x) for x in _cr26_following(rid)]
+            if not isinstance(content, dict):
+                struct_gaps.append(f"{rid} content must be a structured object "
+                                   f"covering its {len(required)} required items, "
+                                   "not a single string")
+                continue
+            have = {_norm_key(k): v for k, v in content.items()}
+            missing = [r for r in required if _is_tbd(have.get(r))]
+            if missing:
+                struct_gaps.append(f"{rid} missing/unresolved required item(s): "
+                                   f"{', '.join(missing[:6])}"
+                                   f"{'...' if len(missing) > 6 else ''}")
+        elif rid in ARRAY_RULES:
+            if not isinstance(content, list) or not content:
+                struct_gaps.append(f"{rid} content must be a non-empty array of "
+                                   "records covering each required field per entry")
+                continue
+            per_fields = [_norm_key(x) for x in _cr26_following(rid)]
+            for idx, rec in enumerate(content):
+                if not isinstance(rec, dict):
+                    struct_gaps.append(f"{rid}[{idx}] must be a record object")
+                    continue
+                rk = {_norm_key(k): v for k, v in rec.items()}
+                miss = [f for f in per_fields if _is_tbd(rk.get(f))]
+                if miss:
+                    struct_gaps.append(f"{rid}[{idx}] missing field(s): "
+                                       f"{', '.join(miss[:6])}")
+        else:
+            if _is_tbd(content):
+                req_gaps.append(rid)
+
+    if struct_gaps:
+        blockers.append("CPO required information is not structurally complete "
+                        "(CPO-CSO-OVR references CR26 enumerated items): "
+                        f"{'; '.join(struct_gaps)}")
     if req_gaps:
         blockers.append(f"CPO required information unresolved (CPO-CSO-OVR): "
                         f"{', '.join(str(r) for r in req_gaps)}")

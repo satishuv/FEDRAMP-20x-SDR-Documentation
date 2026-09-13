@@ -43,8 +43,21 @@ def test_dropped_rule_would_mismatch():
           expected != actual and "MAS-CSO-TPR" in (expected - actual))
 
 
+def test_class_a_expected_set_is_scoped():
+    # Class A resolves only CDS-CSO-PUB and MAS-CSO-IIR of the OVR set, so the
+    # expected set for A must be exactly those two - not the full nine (which
+    # would be a Class A false blocker).
+    a = vcs._expected_ovr_rules("a")
+    bc = vcs._expected_ovr_rules("b")
+    check("Class A expected OVR set is scoped to its 2 applicable rules",
+          a == {"CDS-CSO-PUB", "MAS-CSO-IIR"})
+    check("Class B expected OVR set is broader than Class A",
+          bc is not None and a is not None and a < bc)
+
+
 def main():
-    for t in (test_independent_set_is_nonempty, test_dropped_rule_would_mismatch):
+    for t in (test_independent_set_is_nonempty, test_dropped_rule_would_mismatch,
+              test_class_a_expected_set_is_scoped):
         print(t.__name__); t()
     print(f"\n{PASS}/{PASS + FAIL} passed")
     return 0 if FAIL == 0 else 1
