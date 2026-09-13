@@ -103,6 +103,10 @@ def main():
         r = _preflight(root)
         check("filled Class C offering reaches Submission ready (exit 0)", r.returncode == 0)
         check("preflight reports no blockers", "SUBMISSION BLOCKERS" not in r.stdout)
+        # The TBD warning must be applicability-SCOPED to the class, not a raw
+        # whole-file count (regression guard for the Class A over-count bug).
+        check("TBD warning is scoped to applicable records",
+              "applicable to Class" in r.stdout)
 
         # Change a provider input after signoff; the bound signoff must fail.
         p = json.load(open(profile, encoding="utf-8"))
