@@ -609,6 +609,14 @@ def cmd_preflight(args):
                             "not populated (FRC-APP-FIA MUST: a fresh FedRAMP "
                             "independent assessment by a FedRAMP Recognized service "
                             "within the previous 3 months)")
+        elif _is_tbd(fia.get("assessor_fedramp_id")):
+            # FRC-APP-FIA requires the assessment be completed by a FedRAMP
+            # Recognized independent assessment service - the recognition id is
+            # what evidences "Recognized". A name alone is insufficient.
+            blockers.append(f"Class {cls.upper()}: fedramp_independent_assessment "
+                            "has no assessor_fedramp_id (FRC-APP-FIA MUST be completed "
+                            "by a FedRAMP Recognized independent assessment service; "
+                            "record its FedRAMP Recognition id)")
         else:
             try:
                 when = _dt.date.fromisoformat(str(completed))
@@ -623,16 +631,30 @@ def cmd_preflight(args):
                     elif age > _dt.timedelta(days=91):  # >3 months: needs a recorded freshening
                         fr = fia.get("freshening") or {}
                         basis = str(fia.get("freshness_basis", ""))
+                        # FRC-APP-USA: the freshening MUST be performed by a
+                        # FedRAMP Recognized independent assessment service, so a
+                        # recognition id is required (not just a reviewer name),
+                        # and the review date must be a real, non-future date.
+                        reviewed_at = fr.get("reviewed_at")
+                        review_date_ok = False
+                        if not _is_tbd(reviewed_at):
+                            try:
+                                rd = _dt.date.fromisoformat(str(reviewed_at))
+                                review_date_ok = rd <= _dt.date.today()
+                            except ValueError:
+                                review_date_ok = False
                         fresh_ok = (basis == "freshened"
-                                    and not _is_tbd(fr.get("reviewed_at"))
+                                    and review_date_ok
                                     and not _is_tbd(fr.get("reviewed_by"))
+                                    and not _is_tbd(fr.get("reviewer_fedramp_id"))
                                     and not _is_tbd(fr.get("changes_reviewed_reference")))
                         if not fresh_ok:
                             blockers.append(f"Class {cls.upper()}: FedRAMP independent assessment "
                                             f"{completed} is older than 3 months and has no valid "
-                                            "FRC-APP-USA freshening review recorded "
-                                            "(fedramp_independent_assessment.freshening with "
-                                            "reviewed_at/reviewed_by/changes_reviewed_reference)")
+                                            "FRC-APP-USA freshening review recorded (a Recognized "
+                                            "service review: freshening with a valid reviewed_at "
+                                            "date, reviewed_by, reviewer_fedramp_id, and "
+                                            "changes_reviewed_reference)")
             except ValueError:
                 blockers.append(f"Class {cls.upper()}: FIA completed_at not a valid date: {completed}")
         # CPO-CSO-OSA: B/C MUST include the assessor overall summary in the CPO.
