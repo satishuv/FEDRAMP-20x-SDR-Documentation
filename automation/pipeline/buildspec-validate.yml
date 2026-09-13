@@ -35,7 +35,14 @@ phases:
 artifacts:
   base-directory: .
   files:
+    # The complete Certification Package: the SDR (JSON + human-readable), every
+    # generated package artifact (CPO, OCR, SCG, and the event-driven incident,
+    # change, and vulnerability artifacts), the deterministic release manifest,
+    # the validation reports, and the rev5->20x crosswalk. This is the full set a
+    # reviewer approves and that is published to S3 after human approval.
     - sdr/json/**/*
     - sdr/human-readable/**/*
+    - package/**/*
+    - artifacts/release-manifest.json
     - validation/reports/**/*
     - traceability/rev5-to-20x-crosswalk.*
