@@ -13,7 +13,7 @@
 | Guide | Covers |
 |---|---|
 | [Architecture](architecture.md) | The build flow, the operational pipeline, why the design is shaped this way, and the dataset traversal problem |
-| [Validation and readiness](validation.md) | The eight build-gate checks, the readiness scanner, determinism, upstream drift |
+| [Validation and readiness](validation.md) | The SDR build-gate checks, the full validation gate, submission-readiness preflight, the readiness scanner, determinism, upstream drift |
 | [Automation layers](automation.md) | What each layer may and may not decide, the read-only collectors, and the five opt-in AI-assist modules |
 | [OSCAL export](oscal-export.md) | Emitting the SDR as OSCAL for downstream governance, risk, and compliance tools |
 | [Continuous integration](ci-cd.md) | The four gates, GitHub Actions, the AWS CodePipeline reference |

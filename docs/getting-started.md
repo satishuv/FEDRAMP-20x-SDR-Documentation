@@ -20,14 +20,20 @@ cd FEDRAMP-20x-SDR-Documentation
 python sdr.py all
 ```
 
-`sdr.py` is a thin orchestrator. It runs the seven build steps in dependency order, then the validator, then the readiness scanner, then prints a summary. Available subcommands:
+`sdr.py` is a thin orchestrator. It runs the build steps in dependency order, then the validator, then the readiness scanner, then prints a summary. Available subcommands:
 
 | Command | What it does |
 |---|---|
 | `python sdr.py build` | Regenerates every deliverable |
-| `python sdr.py validate` | Runs the build gate only. Exit code is non-zero on a hard failure |
+| `python sdr.py validate` | Runs the full validation gate and offline test suite. Exit code is non-zero on a hard failure |
 | `python sdr.py scan` | Runs the readiness scanner and writes findings |
 | `python sdr.py all` | Build, then validate, then scan, then summarize |
+| `python sdr.py explain <rule/KSI>` | Explains one rule or indicator: requirement text, force, applicability, your record's status, and evidence |
+| `python sdr.py diff [old] [new]` | Shows what a dataset change would affect (read-only change impact) |
+| `python sdr.py review` | Reports the human review register (read-only) |
+| `python sdr.py release` | Build, full gate, and the reproducibility double-build, then prints the release tag |
+| `python sdr.py package-preflight` | Checks the generated package for submission blockers (read-only) |
+| `python sdr.py application-preflight` | Package checks plus FedRAMP application prerequisites (read-only). `preflight` is an alias |
 | `python sdr.py clean` | Removes Python caches and scanner reports. Leaves generated deliverables alone, because they are committed on purpose |
 
 If you have GNU make, `make build`, `make validate`, `make scan`, and `make all` wrap the same commands. `make reproducible` runs the build and then the same git diff the continuous integration gate runs.
@@ -66,18 +72,29 @@ That single `FAIL` line is expected and correct on a fresh clone. `FRC-CSX-VVK` 
 
 ## Running the steps by hand
 
-`sdr.py` exists so you do not have to, but the order matters if you run them individually, because each step consumes the previous step's output.
+`sdr.py build` runs the full pipeline (19 steps) so you do not have to, but the order matters if you run them individually, because each step consumes the previous step's output. The steps, in order, are:
 
-| Step | Command | Why it runs here |
-|---|---|---|
-| 1 | `python validation/scripts/build_catalogs.py` | Extracts the rule and indicator catalogs from the pinned dataset. Everything downstream reads these |
-| 2 | `python validation/scripts/build_notes.py` | Per-rule and per-indicator explainer notes, plus family name expansions. Needs the catalogs |
-| 3 | `python validation/scripts/build_profiles.py` | Per-class rule profiles, the Class C overlay, the Class D readiness register. Needs catalogs and family names |
-| 4 | `python validation/scripts/build_collector_registry.py` | Maps each indicator to concrete read-only AWS checks. Reads only the curated service map, so it can run at any point |
-| 5 | `python validation/scripts/build_sdr.py` | The official JSON, the extensions companion, and the plain-text record. Needs profiles, notes, and your record store |
-| 6 | `python validation/scripts/build_docx.py` | The authoring Word file with fill fields and inline guidance |
-| 7 | `python validation/scripts/build_crosswalk.py` | The Revision 5 to 20x crosswalk, derived from the dataset's own control mappings |
-| 8 | `python validation/scripts/validate_sdr.py` | The gate. Always last. Nothing ships unless this reports zero hard failures |
+1. `validate_upstream.py` - validate the pinned dataset against the official rules schema and the lock hashes
+2. `build_catalogs.py` - rule and indicator catalogs from the pinned dataset
+3. `build_notes.py` - per-rule notes and family name expansions
+4. `build_profiles.py` - per-class profiles, the Class C overlay, the Class D register
+5. `build_collector_registry.py` - indicator to read-only AWS check map
+6. `build_sdr.py` - the official JSON, the extensions companion, and the plain-text record
+7. `build_cpo.py` - the Certification Package Overview (`CPO-CSO-OVR`)
+8. `build_ocr.py` - an example Ongoing Certification Report (`CCM-OCR-AVL`)
+9. `build_scg.py` - the Secure Configuration Guide scaffold (`SCG-CSO-RSC/AUP`)
+10. `build_events.py` - example incident, significant-change, and vulnerability artifacts
+11. `automation/exporters/oscal_export.py` - the OSCAL export of the SDR
+12. `build_docx.py` - the authoring Word document
+13. `build_crosswalk.py` - the NIST SP 800-53 Revision 5 to 20x crosswalk
+14. `build_applicability_decisions.py` - the applicability decision ledger (included and excluded, with reasons)
+15. `build_assurance_graph.py` - the unified assurance graph joining every artifact
+16. `build_release_manifest.py` - the cryptographic release manifest of the package
+17. `validate_package_consistency.py` - the cross-artifact consistency check
+18. `build_reports.py` - the evidence-coverage and reviewer reports
+19. `build_visualization.py` - a self-contained HTML assurance-graph view
+
+Build scripts live in `validation/scripts/` except where a path is shown. If a step fails, the build stops, because later steps read what it writes.
 
 ## Choosing your class
 
@@ -89,7 +106,7 @@ The repository ships set to Class B. Change one field in `profiles/common/offeri
 }
 ```
 
-Then rerun steps 5, 6, and 8, or just `python sdr.py all`. See [certification classes](certification-classes.md) for what changes between them.
+Then rebuild with `python sdr.py all` (or `python sdr.py build`). See [certification classes](certification-classes.md) for what changes between them.
 
 ## Adoption models: greenfield and brownfield
 
@@ -130,12 +147,23 @@ python sdr.py explain KSI-CNA-RNT
 
 The output is grounded: the requirement text, force (MUST/SHOULD/MAY), and class applicability come verbatim from the pinned dataset, and the status, implementation, and evidence come from your record store. It states what is not yet filled rather than inventing text, and it never makes a compliance determination.
 
+## Checking submission readiness
+
+The build gate answers "is this package well-formed?" A separate, stricter check answers "is this package ready to submit?" - a field-level readiness gate that reports exactly what still blocks submission:
+
+```bash
+python sdr.py package-preflight
+python sdr.py application-preflight
+```
+
+`package-preflight` checks the generated package (every required SDR field answered, CPO required-information structurally complete, evidence resolvable, the class-correct assessment and availability rules satisfied, and a human signoff bound to the current release manifest). `application-preflight` adds the FedRAMP application prerequisites (marketplace listing, application form). Both are read-only, exit non-zero while anything blocks, and never author an approval. A bare `TBD`, an unjustified `N/A`, a missing Recognized-assessor id, or an input changed after signoff all keep it blocked. See [validation and readiness](validation.md#submission-readiness-preflight) for the full model.
+
 ## Troubleshooting
 
 | Symptom | Cause and fix |
 |---|---|
 | `ModuleNotFoundError: No module named 'jsonschema'` | Install the three prerequisites above. Note that `python-docx` imports as `docx`, which trips people up |
-| The validator reports content fidelity mismatches | You hand-edited a generated file. Regenerate with `python sdr.py build`. The only file you edit is the record store |
+| The validator reports content fidelity mismatches | You hand-edited a generated file. Regenerate with `python sdr.py build`. The files you edit are the record store and the offering profile, never a generated deliverable |
 | Word files differ between builds | Expected. The `.docx` container embeds file-entry timestamps, so bytes differ while content is identical. JSON, text, and CSV outputs are byte-stable, which is why the gate excludes `.docx` from its diff |
 | Continuous integration fails on a stale check catalog | You changed `automation/sdrscan/checks.py` without regenerating the catalog. Run `python automation/sdrscan/sdrscan.py --write-catalog` |
 | The drift check opened an issue | FedRAMP changed a pinned source. That is the system working. See [validation](validation.md#upstream-drift) |
