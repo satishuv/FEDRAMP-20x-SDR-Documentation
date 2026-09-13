@@ -77,18 +77,31 @@ function render(){{
  }});
  rows.sort((a,b)=>((a.rule_id||a.ksi_id||'')>(b.rule_id||b.ksi_id||'')?1:-1));
  const tb=document.getElementById('rows');
- tb.innerHTML=rows.map(n=>{{
+ // Build rows with DOM nodes and textContent ONLY. Provider-controlled strings
+ // (ids, statements, statuses) are never interpolated into innerHTML, so a
+ // value like </script> or <img onerror=...> cannot inject markup or script.
+ tb.textContent='';
+ for(const n of rows){{
   const id=n.rule_id||n.ksi_id||'?';
   const ev=(n.evidence||[]).length;
   const v=(n.validation||{{}}).result||'-';
   const vc=v==='PASS'?'pass':v==='FAIL'?'fail':'pend';
   const rv=(n.review||{{}}).review_status||'pending';
   const sum=(n.statement||n.summary||'').slice(0,90);
-  return `<tr><td><b>${{id}}</b></td>
-   <td><span class="kind ${{n.node_kind}}">${{n.node_kind}}</span></td>
-   <td>${{ev}}</td><td class="${{vc}}">${{v}}</td>
-   <td class="pend">${{rv}}</td><td>${{sum}}</td></tr>`;
- }}).join('');
+  const tr=document.createElement('tr');
+  const cells=[
+   ['',id,'b'], ['kind '+(n.node_kind||''),n.node_kind||'',null],
+   ['',String(ev),null], [vc,v,null], ['pend',rv,null], ['',sum,null]
+  ];
+  for(const [cls,txt,inner] of cells){{
+   const td=document.createElement('td');
+   if(cls) td.className=cls;
+   if(inner==='b'){{const b=document.createElement('b');b.textContent=txt;td.appendChild(b);}}
+   else td.textContent=txt;
+   tr.appendChild(td);
+  }}
+  tb.appendChild(tr);
+ }}
 }}
 render();
 </script></body></html>
@@ -111,11 +124,19 @@ def main():
     nodes = graph.get("nodes", [])
     rules = sum(1 for n in nodes if n.get("node_kind") == "rule")
     ksis = sum(1 for n in nodes if n.get("node_kind") == "ksi")
+    # Safe embedding in a <script> block: escape the characters that could end
+    # the script element or start a comment/CDATA, so a provider-controlled
+    # string containing </script> or <!-- cannot break out. These \uXXXX escapes
+    # are still valid JSON and parse identically.
+    raw = json.dumps(graph, separators=(",", ":"), sort_keys=True)
+    safe = (raw.replace("<", "\\u003c").replace(">", "\\u003e")
+               .replace("&", "\\u0026").replace("\u2028", "\\u2028")
+               .replace("\u2029", "\\u2029"))
     html = PAGE.format(
         cls=graph.get("certification_class", "?"),
         dataset=graph.get("dataset_version", "?"),
         count=len(nodes), rules=rules, ksis=ksis,
-        data=json.dumps(graph, separators=(",", ":"), sort_keys=True),
+        data=safe,
     )
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     with open(OUT, "w", encoding="utf-8", newline="\n") as f:

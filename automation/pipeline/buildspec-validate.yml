@@ -28,6 +28,23 @@ phases:
       - python automation/sdrscan/sdrscan.py --write-catalog
       - git diff --exit-code -- automation/sdrscan/check-catalog.json || { echo "FAIL. check-catalog.json is out of date with checks.py. Run: python automation/sdrscan/sdrscan.py --write-catalog"; exit 1; }
       - python automation/sdrscan/sdrscan.py --output-formats json,csv,html,txt --only-fails --no-colour --ignore-exit-code-3
+      # Submission-readiness preflight. A DRAFT build (the default) reports the
+      # readiness blockers so the human approver sees exactly what is unresolved,
+      # without failing the build - the public template legitimately has open
+      # gaps. A RELEASE build (RELEASE_MODE=true) makes preflight a HARD gate, so
+      # a package published as a customer/submission deliverable cannot ship with
+      # unresolved readiness blockers.
+      - |
+        if python sdr.py package-preflight; then
+          echo "package-preflight: READY (no submission blockers)."
+        else
+          echo "package-preflight: NOT READY - blockers above."
+          if [ "$RELEASE_MODE" = "true" ]; then
+            echo "FAIL. RELEASE_MODE is set and the package is not submission-ready."
+            exit 1
+          fi
+          echo "DRAFT build: readiness blockers reported, not gated. Set RELEASE_MODE=true to gate."
+        fi
   post_build:
     commands:
       - echo "Validation passed. Readiness scan attached. Packaging deliverables."

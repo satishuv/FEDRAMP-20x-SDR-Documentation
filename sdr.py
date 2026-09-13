@@ -118,6 +118,7 @@ TEST_SUITE = [
     "examples/shift-left/test_run_policy.py",
     "automation/sdrscan/test_checks.py",
     "automation/sdrscan/test_mute_expiry.py",
+    "validation/scripts/test_visualization_xss.py",
     "validation/scripts/test_submission_readiness.py",
     "validation/scripts/test_cpo_semantics_adversarial.py",
 ]
