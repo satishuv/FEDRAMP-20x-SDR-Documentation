@@ -103,6 +103,8 @@ TEST_SUITE = [
     "automation/metrics/test_metric_history_longitudinal.py",
     "automation/config-rules/test_evidence_existence_rule.py",
     "automation/config-rules/deploy/test_generate_templates.py",
+    "automation/config-rules/deploy/test_cdk_synth.py",
+    "automation/collectors/test_collector_iam_matches.py",
     "automation/storage/test_provision_store.py",
     "automation/ai/test_bedrock_boundary.py",
     "validation/scripts/test_dataset_diff.py",

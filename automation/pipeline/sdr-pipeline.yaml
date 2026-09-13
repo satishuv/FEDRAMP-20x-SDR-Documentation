@@ -355,8 +355,59 @@ Resources:
                   - s3:PutObject
                 Resource: !Sub "${EvidenceBucket.Arn}/facts/*"
               - Effect: Allow
+                # The full canonical read-only collector action set
+                # (automation/collectors/collectors.py READ_ONLY_ACTIONS). These
+                # are account-wide describe/list/get calls that do not support
+                # resource-level ARNs, so Resource "*" is the minimum grant. Kept
+                # in sync with the collector by test_collector_iam_matches.py
+                # (granted actions must be a superset of what collectors call).
                 Action:
+                  - accessanalyzer:ListAnalyzers
+                  - accessanalyzer:ListFindings
+                  - backup:ListBackupPlans
+                  - backup:ListProtectedResources
+                  - backup:ListRestoreTestingPlans
+                  - cloudformation:DescribeStackResourceDrifts
+                  - cloudformation:ListStacks
+                  - cloudtrail:DescribeTrails
+                  - cloudtrail:GetTrailStatus
+                  - codepipeline:GetPipeline
+                  - codepipeline:ListPipelines
                   - config:DescribeComplianceByConfigRule
+                  - config:DescribeConfigurationRecorderStatus
+                  - config:DescribeConfigurationRecorders
+                  - config:DescribeConformancePacks
+                  - config:GetConformancePackComplianceSummary
+                  - config:GetDiscoveredResourceCounts
+                  - dynamodb:DescribeTimeToLive
+                  - dynamodb:ListTables
+                  - ec2:DescribeNetworkAcls
+                  - ec2:DescribeSecurityGroups
+                  - ecr:DescribeRepositories
+                  - events:ListRules
+                  - guardduty:GetDetector
+                  - guardduty:ListDetectors
+                  - iam:GetAccountPasswordPolicy
+                  - iam:GetAccountSummary
+                  - iam:ListAccessKeys
+                  - iam:ListRoles
+                  - iam:ListUsers
+                  - inspector2:BatchGetAccountStatus
+                  - inspector2:ListCoverage
+                  - inspector2:ListFindings
+                  - kms:GetKeyRotationStatus
+                  - kms:ListKeys
+                  - s3:GetBucketEncryption
+                  - s3:GetBucketLifecycleConfiguration
+                  - s3:GetBucketPublicAccessBlock
+                  - s3:GetBucketVersioning
+                  - s3:ListAllMyBuckets
+                  - s3control:GetPublicAccessBlock
+                  - securityhub:DescribeHub
+                  - securityhub:GetFindings
+                  - sts:GetCallerIdentity
+                  - wafv2:ListResourcesForWebACL
+                  - wafv2:ListWebACLs
                 Resource: "*"
               - Effect: Allow
                 Action:
