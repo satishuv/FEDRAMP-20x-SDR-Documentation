@@ -113,6 +113,23 @@ def main():
         if got != want:
             problems.append(f"manifest hash mismatch for {rel}")
 
+    # Authoritative INPUTS must also match the manifest. Without this, a package
+    # can be signed, then an input (offering-profile / records-store) edited
+    # WITHOUT a rebuild: the manifest and the human signoff still match each
+    # other, but the current inputs no longer match the manifest. Revalidating
+    # inputs here makes that tamper path detectable (the signoff binds to the
+    # manifest, and the manifest must reflect the current inputs).
+    for rel, want in (manifest.get("inputs") or {}).items():
+        path = os.path.join(BASE, rel)
+        if not os.path.exists(path):
+            problems.append(f"manifest references missing input {rel}")
+            continue
+        got = sha256_file(path)
+        if got != want:
+            problems.append(f"manifest input hash mismatch for {rel} "
+                            "(an authoritative input changed without a rebuild; "
+                            "rebuild so the manifest and signoff reflect it)")
+
     if problems:
         print(f"FAIL: {len(problems)} cross-artifact inconsistency(ies):")
         for p in problems[:20]:

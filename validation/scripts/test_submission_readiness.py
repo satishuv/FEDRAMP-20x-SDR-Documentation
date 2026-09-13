@@ -365,6 +365,62 @@ def main():
         reg["package_signoff"]["release_tag"] = tag
         json.dump(reg, open(register, "w", encoding="utf-8", newline="\n"), indent=1)
 
+        # NO-REBUILD input tamper: edit an authoritative input but do NOT rebuild.
+        # The manifest and the human signoff still match each other, but the
+        # current input no longer matches the manifest. Package consistency must
+        # catch this (manifest.inputs revalidation), so preflight must block.
+        rp = os.path.join(root, "sdr", "records", "records-store.json")
+        saved_rs = open(rp, encoding="utf-8").read()
+        rs = json.loads(saved_rs)
+        rs["store_note"] = str(rs.get("store_note", "")) + " (tampered, no rebuild)"
+        json.dump(rs, open(rp, "w", encoding="utf-8", newline="\n"), indent=1)
+        rtamp = _preflight(root)  # deliberately no _build
+        rcons = subprocess.run(
+            [sys.executable, "validation/scripts/validate_package_consistency.py"],
+            cwd=root, capture_output=True, text=True)
+        check("editing records-store without a rebuild is caught (manifest input hash)",
+              rtamp.returncode == 1 and "validation gate does not pass" in rtamp.stdout
+              and "input hash mismatch" in rcons.stdout and rcons.returncode == 1)
+        open(rp, "w", encoding="utf-8", newline="\n").write(saved_rs)
+
+        # Placeholder evidence: a ready package must not point at an
+        # sdr://placeholder/ evidence URI in an applicable record.
+        rs2 = json.loads(open(rp, encoding="utf-8").read())
+        some_ksi = next(iter(rs2.get("ksi", {})))
+        ev = rs2["ksi"][some_ksi].setdefault("evidence", [])
+        ev.append({"evidenceType": "Report",
+                   "evidenceLocation": "sdr://placeholder/replace-me"})
+        json.dump(rs2, open(rp, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root)
+        rph = _preflight(root)
+        check("placeholder evidence URI in an applicable record blocks submission",
+              "sdr://placeholder/" in rph.stdout and rph.returncode == 1)
+        open(rp, "w", encoding="utf-8", newline="\n").write(saved_rs)
+        _build(root)
+
+        # SCG scaffold-only: the generated SCG is a template. For Class B/C it is a
+        # required component, so removing the real external SCG reference must block
+        # (a scaffold does not satisfy a required component).
+        psc = json.load(open(profile, encoding="utf-8"))
+        saved_scg = psc.get("secure_config_guide_uri")
+        psc["secure_config_guide_uri"] = "TBD: not yet published"
+        json.dump(psc, open(profile, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root)
+        rscg = _preflight(root)
+        check("Class C blocks when the SCG is only a scaffold with no completed artifact",
+              rscg.returncode == 1 and ("scaffold" in rscg.stdout or "secure_config_guide" in rscg.stdout
+                                        or "trust center" in rscg.stdout.lower()))
+        psc["secure_config_guide_uri"] = saved_scg
+        json.dump(psc, open(profile, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root)
+        # Re-sign against the restored manifest so the next test starts clean.
+        mhash = "sha256:" + hashlib.sha256(open(manifest, "rb").read()).hexdigest()
+        tag = json.load(open(manifest, encoding="utf-8")).get("release_tag")
+        reg = json.load(open(register, encoding="utf-8"))
+        reg["package_signoff"]["package_manifest_sha256"] = mhash
+        reg["package_signoff"]["release_tag"] = tag
+        json.dump(reg, open(register, "w", encoding="utf-8", newline="\n"), indent=1)
+
         # Change a provider input after signoff; the bound signoff must fail.
         p = json.load(open(profile, encoding="utf-8"))
         p["business_purpose"] = str(p.get("business_purpose", "")) + " (edited after signoff)"

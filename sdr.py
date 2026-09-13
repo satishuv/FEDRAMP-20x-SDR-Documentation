@@ -889,8 +889,13 @@ def cmd_preflight(args):
         warnings.append(f"{tbd} unresolved TBD placeholder(s) across {scoped_records} "
                         f"records applicable to Class {cls.upper()}")
     if placeholders:
-        warnings.append(f"{placeholders} unresolved sdr://placeholder/ evidence URI(s) "
-                        f"in applicable records")
+        # An explicit sdr://placeholder/ evidence URI in an applicable record is a
+        # "replace me" marker: the evidence location is not real. That must block
+        # submission, not merely warn - a ready package cannot point at placeholder
+        # evidence.
+        blockers.append(f"{placeholders} unresolved sdr://placeholder/ evidence URI(s) "
+                        f"in records applicable to Class {cls.upper()} (replace each "
+                        "with the real evidence location before submission)")
     if unanswered:
         sample = ", ".join(unanswered[:8])
         blockers.append(f"{len(unanswered)} applicable requirement(s) have no "
@@ -1049,11 +1054,29 @@ def cmd_preflight(args):
     for name, comp in (manifest_pkg.get("certification_package", {}) or {}).items():
         req = comp.get("required_for_initial_package")
         required_here = req is True or (isinstance(req, str) and cls.upper() in req.upper())
-        if required_here and comp.get("status") in ("partial", "not_implemented"):
+        if not required_here:
+            continue
+        status = comp.get("status")
+        if status in ("partial", "not_implemented"):
             blockers.append(f"required package component '{name}' is "
-                            f"'{comp.get('status')}' (a required component must be "
+                            f"'{status}' (a required component must be "
                             "complete, or its missing portion proven non-applicable "
                             "to this class, before submission)")
+        elif status == "scaffold_implemented":
+            # A generated scaffold is a template, not a finished artifact. It only
+            # counts when the provider has supplied the real completed artifact by
+            # reference. For the SCG (SCG-CSO-RSC), that reference is
+            # offering.secure_config_guide_uri; a scaffold with no real external
+            # artifact is a false-ready condition and must block.
+            ext_ref = None
+            if name == "secure_configuration_guide":
+                ext_ref = offering.get("secure_config_guide_uri")
+            if _is_tbd(ext_ref):
+                blockers.append(f"required package component '{name}' is only a "
+                                "generated scaffold and no completed external artifact "
+                                "is referenced (supply the real completed artifact - "
+                                "for the SCG, set offering.secure_config_guide_uri to "
+                                "the published guide - before submission)")
 
     # Package-level signoff MUST reference the current release-manifest hash.
     # One approved node in the assurance review register is NOT package approval.
