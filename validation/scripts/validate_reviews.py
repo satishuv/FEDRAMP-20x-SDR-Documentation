@@ -102,6 +102,23 @@ def main():
                                 "package approval must be a human act")
             if dec == "approved" and not signoff.get("release_tag"):
                 problems.append("package_signoff: approved without a release_tag to bind it to")
+            # Cryptographic binding: an approved signoff must carry the SHA-256
+            # of the manifest it approved, and it must match the current bytes.
+            if dec == "approved":
+                signed_sha = signoff.get("package_manifest_sha256")
+                if not signed_sha or str(signed_sha).startswith("TBD"):
+                    problems.append("package_signoff: approved without "
+                                    "package_manifest_sha256 binding it to the exact manifest")
+                else:
+                    manifest_path = os.path.join(BASE, "artifacts", "release-manifest.json")
+                    if os.path.isfile(manifest_path):
+                        import hashlib
+                        with open(manifest_path, "rb") as mf:
+                            actual = "sha256:" + hashlib.sha256(mf.read()).hexdigest()
+                        if signed_sha != actual:
+                            problems.append("package_signoff: package_manifest_sha256 "
+                                            "does not match the current release manifest "
+                                            "(a generated artifact changed since signoff)")
 
     if problems:
         for p in problems[:20]:

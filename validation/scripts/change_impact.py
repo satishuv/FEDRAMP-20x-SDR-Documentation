@@ -183,12 +183,16 @@ def main(argv=None):
         return 2
 
     result = compute(diff)
-    print(f"Change impact: {result['total_requiring_review']} rule(s) require "
-          "human review.")
+    print(f"Change impact: {result['total_requiring_review']} rule/KSI item(s) "
+          "require human review.")
     for imp in result["impacts"]:
         if imp["requires_human_review"]:
             print(f"  {imp['rule_id']} ({imp['change_type']}) -> classes "
                   f"{imp['affected_classes']}, outputs {len(imp['affected_outputs'])}")
+    for imp in result.get("ksi_impacts", []):
+        if imp["requires_human_review"]:
+            print(f"  {imp['ksi_id']} ({imp['change_type']}) -> collectors "
+                  f"{len(imp['affected_collectors'])}, outputs {len(imp['affected_outputs'])}")
     if args.json_out:
         with open(args.json_out, "w", encoding="utf-8", newline="\n") as f:
             json.dump(result, f, indent=2)
