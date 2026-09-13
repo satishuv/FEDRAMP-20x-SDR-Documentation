@@ -193,24 +193,32 @@ def ensure_store(session, bucket, region=None, object_lock=False,
             # ONLY a confirmed "no lifecycle configuration" means empty. Any
             # other error - including an unknown one with no error code - must
             # NOT be treated as empty, or a subsequent PUT could clobber unknown
-            # existing customer rules. Fail closed: skip the write.
+            # existing customer rules.
             if code == "NoSuchLifecycleConfiguration":
-                existing = []
+                existing = []  # confirmed empty: safe to create the rule
             else:
-                result.noop(f"could not read existing lifecycle config on '{bucket}' "
-                            f"({code or 'unknown error'}); skipped retention to "
-                            "avoid overwriting unknown existing rules")
-                existing = None
-        if existing is not None:
-            merged = existing + [our_rule]
-            if not dry_run:
-                s3.put_bucket_lifecycle_configuration(
-                    Bucket=bucket,
-                    LifecycleConfiguration={"Rules": merged})
-            preserved = f", preserving {len(existing)} existing rule(s)" if existing else ""
-            result.changed(
-                f"set lifecycle retention to {retention_days} days on '{bucket}' "
-                f"(current and noncurrent versions){preserved}")
+                # --retention-days was EXPLICITLY requested (we are inside
+                # `if retention_days is not None`) but the existing lifecycle
+                # configuration could not be read, so we can neither preserve it
+                # nor safely apply the requested retention. A successful (exit 0)
+                # run must mean the requested retention was actually applied, so
+                # fail LOUDLY rather than reporting success with retention absent.
+                # This matches the fail-closed contract of the Object Lock path.
+                raise RuntimeError(
+                    f"--retention-days ({retention_days}) was requested, but the "
+                    f"existing lifecycle configuration on '{bucket}' could not be "
+                    f"read ({code or 'unknown error'}). Refusing to overwrite an "
+                    "unknown lifecycle policy or to report success without the "
+                    "requested retention applied.")
+        merged = existing + [our_rule]
+        if not dry_run:
+            s3.put_bucket_lifecycle_configuration(
+                Bucket=bucket,
+                LifecycleConfiguration={"Rules": merged})
+        preserved = f", preserving {len(existing)} existing rule(s)" if existing else ""
+        result.changed(
+            f"set lifecycle retention to {retention_days} days on '{bucket}' "
+            f"(current and noncurrent versions){preserved}")
 
     return result
 
