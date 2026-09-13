@@ -28,6 +28,41 @@ import sys
 BASE = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 CPO = os.path.join(BASE, "package", "cpo", "cpo.json")
 CPO_MD = os.path.join(BASE, "package", "cpo", "cpo.md")
+DATASET = os.path.join(BASE, "references", "fedramp-consolidated-rules.json")
+
+
+def _expected_ovr_rules():
+    """INDEPENDENTLY derive the CPO-CSO-OVR required-rule set from CR26, so the
+    validator does not trust the builder's own items[] list. Returns the set of
+    rule ids referenced by CPO-CSO-OVR.following_information, or None if the
+    dataset/ rule is unavailable."""
+    import re as _re
+    ds = load(DATASET)
+    if ds is None:
+        return None
+
+    def _find(node, target):
+        if isinstance(node, dict):
+            if target in node:
+                return node[target]
+            for v in node.values():
+                r = _find(v, target)
+                if r is not None:
+                    return r
+        elif isinstance(node, list):
+            for v in node:
+                r = _find(v, target)
+                if r is not None:
+                    return r
+        return None
+
+    ovr = _find(ds, "CPO-CSO-OVR") or {}
+    ids = set()
+    for ref in ovr.get("following_information", []) or []:
+        m = _re.search(r"([A-Z]{3}-[A-Z]{3}-[A-Z]{3})", ref)
+        if m:
+            ids.add(m.group(1))
+    return ids or None
 
 
 def load(path, default=None):
@@ -65,6 +100,16 @@ def main():
     if not isinstance(req, dict) or not req.get("items"):
         hard.append("xCpoRequiredInformation (CPO-CSO-OVR) map is missing from the CPO")
     else:
+        # INDEPENDENTLY derive the expected rule set from CR26 and require exact
+        # set equality, so a builder that silently drops a required rule cannot
+        # be rubber-stamped by a validator that only reads the builder's own list.
+        expected = _expected_ovr_rules()
+        actual = {i.get("rule") for i in req["items"]}
+        if expected is not None and expected != actual:
+            missing = sorted(expected - actual)
+            extra = sorted(actual - expected)
+            hard.append(f"CPO required-information set does not match the CR26 "
+                        f"CPO-CSO-OVR rule set (missing {missing}, extra {extra})")
         for item in req["items"]:
             if _is_tbd(item.get("provider_content")):
                 unresolved.append(f"CPO required information for {item.get('rule')} "

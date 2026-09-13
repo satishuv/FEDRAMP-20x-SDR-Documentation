@@ -116,6 +116,7 @@ TEST_SUITE = [
     "examples/shift-left/test_run_policy.py",
     "automation/sdrscan/test_checks.py",
     "validation/scripts/test_submission_readiness.py",
+    "validation/scripts/test_cpo_semantics_adversarial.py",
 ]
 
 REQUIRED_MODULES = [
@@ -544,6 +545,16 @@ def cmd_preflight(args):
         blockers.append(f"{len(unresolved_required)} required offering-profile "
                         f"field(s) unresolved (TBD/placeholder): "
                         f"{', '.join(unresolved_required)}")
+
+    # The engine resolves 20x + Program only. If the profile claims a different
+    # path, the generated package would silently be the wrong applicability
+    # scope, so block rather than proceed.
+    cpath = str(offering.get("certification_path", "Program"))
+    if cpath != "Program":
+        blockers.append(f"certification_path is '{cpath}', but this framework "
+                        "resolves 20x Program-path requirements only; Agency path "
+                        "is not supported. Set certification_path to 'Program' or "
+                        "do not rely on this package for an Agency-path application.")
 
     # FRC-APP-FCP: provider verification freshness (7 days, real timedelta).
     verified = offering.get("provider_verified_at")
@@ -1123,6 +1134,7 @@ def main(argv=None):
 
 if __name__ == "__main__":
     sys.exit(main())
+
 
 
 

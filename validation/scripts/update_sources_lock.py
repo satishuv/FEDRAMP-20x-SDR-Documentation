@@ -47,10 +47,18 @@ def main(argv=None):
     entry["sha256"] = digest
     if args.upstream_commit:
         entry["upstream_commit"] = args.upstream_commit
+    # Also refresh the rules-schema lock entry so a dataset+schema adoption is
+    # atomic and validate_upstream's schema-hash check passes on the new pair.
+    schema_path = os.path.join(BASE, "references", "fedramp-consolidated-rules.schema.json")
+    if os.path.isfile(schema_path) and "cr26_rules_schema" in lock["sources"]:
+        sc = lock["sources"]["cr26_rules_schema"]
+        sc["sha256"] = _sha256(schema_path)
+        if args.upstream_commit:
+            sc["upstream_commit"] = args.upstream_commit
     with open(LOCK, "w", encoding="utf-8", newline="\n") as f:
         json.dump(lock, f, indent=1)
     print(f"sources.lock updated: cr26_consolidated_rules version={version} "
-          f"sha256={digest[:16]}...")
+          f"sha256={digest[:16]}... (rules schema entry refreshed too)")
     return 0
 
 
