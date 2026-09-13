@@ -20,13 +20,25 @@ phases:
         LATEST=$(ls -t automation/facts/*.json | head -1)
         aws s3 cp "$LATEST" "s3://$EVIDENCE_BUCKET/facts/$(basename "$LATEST")"
       # 2. RESTORE the prior metric history so the longitudinal SDR-CSX-KMT /
-      #    FRC-CSX-MOT history accumulates across ephemeral runs. An ephemeral
-      #    CodeBuild run has no prior state on disk; without this restore, every
-      #    run would start an empty history and MOT/KMT would never build up.
+      #    FRC-CSX-MOT history accumulates across ephemeral runs.
+      #    FAIL-CLOSED: a genuine "object does not exist" (first run) is allowed,
+      #    but ANY other restore error (AccessDenied, KMS, throttling, outage)
+      #    must ABORT before step 3/4 rebuild and overwrite the durable history.
+      #    Treating every failure as "first run" (the old `|| echo`) could clobber
+      #    valid history on a transient S3 error.
       - |
-        aws s3 cp "s3://$EVIDENCE_BUCKET/metrics/metric-history.json" \
-          automation/metrics/metric-history.json || \
-          echo "No prior metric-history.json in the bucket; starting a new history."
+        set -e
+        KEY="s3://$EVIDENCE_BUCKET/metrics/metric-history.json"
+        if aws s3 cp "$KEY" automation/metrics/metric-history.json 2>/tmp/restore.err; then
+          echo "Restored prior metric history."
+        elif grep -qiE "Not Found|does not exist|NoSuchKey|404" /tmp/restore.err; then
+          echo "No prior metric-history.json (confirmed missing); first run, starting a new history."
+        else
+          echo "FAIL. Could not restore metric history and the object is not confirmed missing:"
+          cat /tmp/restore.err
+          echo "Aborting so a transient error does not overwrite durable KMT/MOT history."
+          exit 1
+        fi
       # 3. Append today's datapoint per KSI to the (restored) history.
       - python automation/metrics/append_metrics.py
       # 4. PERSIST the updated history back to the bucket for the next run.

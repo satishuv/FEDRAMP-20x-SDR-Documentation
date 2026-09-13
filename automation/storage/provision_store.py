@@ -107,13 +107,14 @@ def ensure_store(session, bucket, region=None, object_lock=False,
 
     exists = _bucket_exists(s3, bucket)
 
-    # 1. Create the bucket if it does not exist.
+    # 1. Create the bucket if it does not exist. Object Lock at creation still
+    #    needs ObjectLockEnabledForBucket; the DEFAULT RETENTION rule is applied
+    #    in step 3 (after versioning), for both new and existing buckets.
     if not exists:
         create_args = {"Bucket": bucket}
         # us-east-1 must NOT send a LocationConstraint; every other region must.
         if region and region != "us-east-1":
             create_args["CreateBucketConfiguration"] = {"LocationConstraint": region}
-        # Object Lock is turned on at creation via ObjectLockEnabledForBucket.
         if object_lock:
             create_args["ObjectLockEnabledForBucket"] = True
         if not dry_run:
@@ -123,34 +124,11 @@ def ensure_store(session, bucket, region=None, object_lock=False,
                        + (" with Object Lock enabled" if object_lock else ""))
     else:
         result.noop(f"bucket '{bucket}' already exists")
-        if object_lock and not dry_run:
-            # Object Lock CAN be enabled on an existing VERSIONED bucket (AWS now
-            # supports this via PutObjectLockConfiguration; versioning is a
-            # prerequisite and is ensured in step 2). Enable it with an explicit
-            # default retention so it is real WORM, not a bare flag.
-            try:
-                s3.put_object_lock_configuration(
-                    Bucket=bucket,
-                    ObjectLockConfiguration={
-                        "ObjectLockEnabled": "Enabled",
-                        "Rule": {"DefaultRetention": {
-                            "Mode": object_lock_mode,
-                            "Days": object_lock_days,
-                        }},
-                    })
-                result.changed(f"enable Object Lock on existing bucket '{bucket}' "
-                               f"with default {object_lock_mode} retention of "
-                               f"{object_lock_days} days")
-            except Exception as e:  # noqa: BLE001
-                code = getattr(e, "response", {}).get("Error", {}).get("Code", type(e).__name__)
-                result.noop(f"could not enable Object Lock on '{bucket}' ({code}); "
-                            "Object Lock requires versioning and appropriate "
-                            "permissions - enable versioning first and retry")
 
-    # 2. Enable versioning (the core requested feature). Idempotent.
-    current = None
-    if exists:
-        current = _versioning_status(s3, bucket)
+    # 2. Enable versioning (the core requested feature, and a PREREQUISITE for
+    #    Object Lock). Must happen BEFORE any Object Lock configuration.
+    #    Idempotent; never suspends.
+    current = _versioning_status(s3, bucket) if exists else None
     if current == "Enabled":
         result.noop(f"versioning already Enabled on '{bucket}'")
     else:
@@ -160,6 +138,34 @@ def ensure_store(session, bucket, region=None, object_lock=False,
                 VersioningConfiguration={"Status": "Enabled"})
         prior = f" (was {current})" if current else ""
         result.changed(f"enable versioning on '{bucket}'{prior}")
+
+    # 2b. Object Lock default retention (AFTER versioning is enabled). Applies to
+    #     both a newly-created Object-Lock bucket and an existing versioned one.
+    #     If the caller explicitly asked for --object-lock and AWS refuses it,
+    #     this RAISES (a refused WORM request must not be a silent success).
+    if object_lock and not dry_run:
+        try:
+            s3.put_object_lock_configuration(
+                Bucket=bucket,
+                ObjectLockConfiguration={
+                    "ObjectLockEnabled": "Enabled",
+                    "Rule": {"DefaultRetention": {
+                        "Mode": object_lock_mode,
+                        "Days": object_lock_days,
+                    }},
+                })
+            result.changed(f"configure Object Lock default retention on '{bucket}' "
+                           f"({object_lock_mode}, {object_lock_days} days)")
+        except Exception as e:  # noqa: BLE001
+            code = getattr(e, "response", {}).get("Error", {}).get("Code", type(e).__name__)
+            raise RuntimeError(
+                f"Object Lock was requested (--object-lock) but could not be "
+                f"configured on '{bucket}' ({code}). Object Lock requires "
+                "versioning (now enabled) and appropriate permissions; refusing "
+                "to report a successful provisioning run with Object Lock absent.")
+    elif object_lock and dry_run:
+        result.noop(f"would configure Object Lock default retention on '{bucket}' "
+                    f"({object_lock_mode}, {object_lock_days} days)")
 
     # 3. Optional lifecycle retention. Provider policy choice; only added when
     #    an explicit retention is passed. Never a default.
@@ -184,11 +190,16 @@ def ensure_store(session, bucket, region=None, object_lock=False,
                         if r.get("ID") != "sdr-store-retention"]
         except Exception as e:  # noqa: BLE001
             code = getattr(e, "response", {}).get("Error", {}).get("Code", "")
-            if code not in ("NoSuchLifecycleConfiguration", ""):
-                # A real read error (AccessDenied, etc.): do not risk clobbering
-                # an unknown existing configuration - surface and skip the write.
+            # ONLY a confirmed "no lifecycle configuration" means empty. Any
+            # other error - including an unknown one with no error code - must
+            # NOT be treated as empty, or a subsequent PUT could clobber unknown
+            # existing customer rules. Fail closed: skip the write.
+            if code == "NoSuchLifecycleConfiguration":
+                existing = []
+            else:
                 result.noop(f"could not read existing lifecycle config on '{bucket}' "
-                            f"({code}); skipped retention to avoid overwriting it")
+                            f"({code or 'unknown error'}); skipped retention to "
+                            "avoid overwriting unknown existing rules")
                 existing = None
         if existing is not None:
             merged = existing + [our_rule]

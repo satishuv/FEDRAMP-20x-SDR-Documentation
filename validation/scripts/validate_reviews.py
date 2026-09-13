@@ -122,14 +122,26 @@ def main():
                 if current is None:
                     tail = aid.split("ASR-")[-1] if aid.startswith("ASR-") else aid
                     current = node_hashes.get(tail)
-                if current:
-                    stale = [h for h in reviewed if h not in current
-                             and (h.split("sha256:")[-1] if isinstance(h, str) else h) not in
-                             {c.split("sha256:")[-1] for c in current}]
-                    if stale:
-                        problems.append(f"{where}: approved evidence hash(es) do not match "
-                                        f"the node's current evidence (stale or from another "
-                                        f"node): {stale[:3]}")
+            # Bind to CURRENT node evidence: the reviewed set must EQUAL the
+            # node's current evidence-hash set (not merely be a subset), so that
+            # adding evidence after an approval invalidates the stale approval.
+            if node_hashes is not None and aid and reviewed:
+                current = node_hashes.get(aid)
+                if current is None:
+                    tail = aid.split("ASR-")[-1] if aid.startswith("ASR-") else aid
+                    current = node_hashes.get(tail)
+                if current is not None:  # node resolves in the graph (may be empty)
+                    def _norm(h):
+                        return h.split("sha256:")[-1].strip().lower() if isinstance(h, str) else h
+                    rev_set = {_norm(h) for h in reviewed}
+                    cur_set = {_norm(h) for h in current}
+                    if rev_set != cur_set:
+                        missing = sorted(cur_set - rev_set)
+                        extra = sorted(rev_set - cur_set)
+                        problems.append(f"{where}: approved evidence set does not EQUAL the "
+                                        f"node's current evidence (approval is stale; "
+                                        f"re-review). unreviewed-current={missing[:3]} "
+                                        f"reviewed-not-current={extra[:3]}")
         # Referential: the assurance_id must resolve, if the graph is present.
         if graph_ids is not None and aid and aid not in graph_ids:
             # Allow an ASR- prefixed id whose tail is a real rule/ksi id.

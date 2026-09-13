@@ -63,3 +63,8 @@ artifacts:
     - artifacts/release-manifest.json
     - validation/reports/**/*
     - traceability/rev5-to-20x-crosswalk.*
+  exclude-paths:
+    # The OSCAL export is EXPERIMENTAL/reference-only (see the package manifest,
+    # included_in_customer_submission_bundle: false) and is NOT part of the
+    # native 20x submission. Exclude it so the delivered bytes match that intent.
+    - "sdr/json/**/*.oscal.json"

@@ -106,6 +106,7 @@ TEST_SUITE = [
     "automation/config-rules/deploy/test_cdk_synth.py",
     "automation/collectors/test_collector_iam_matches.py",
     "automation/collectors/test_thirdparty_upsert.py",
+    "automation/pipeline/test_release_gate.py",
     "automation/storage/test_provision_store.py",
     "automation/ai/test_bedrock_boundary.py",
     "validation/scripts/test_dataset_diff.py",
@@ -935,6 +936,15 @@ def cmd_preflight(args):
     if cpo.get("_cpoAssumptions"):
         cpo_markers.append(f"CPO contains {len(cpo['_cpoAssumptions'])} unresolved "
                            "generator assumption(s) (see _cpoAssumptions)")
+    # CDS-CSO-PUB requires BOTH Sales Contact Information and Security Contact
+    # Information. Assert directly on the GENERATED CPO contactInformation so
+    # there is a single unambiguous check on the delivered artifact (not only via
+    # the structured required-information map).
+    for contact in (cpo.get("contactInformation") or []):
+        ctype = contact.get("contactType", "?")
+        if ctype in ("Sales", "Security") and _is_tbd(contact.get("contactName")):
+            cpo_markers.append(f"CPO {ctype} contactName is unresolved (CDS-CSO-PUB "
+                               "requires both Sales and Security contact information)")
     if cpo_markers:
         blockers.append(f"generated CPO carries {len(cpo_markers)} template "
                         f"marker(s)/assumption(s): {'; '.join(cpo_markers)}")

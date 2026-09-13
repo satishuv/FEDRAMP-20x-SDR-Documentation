@@ -86,6 +86,17 @@ def test_node_review_malformed_hash_is_rejected():
     assert code == 1, "a malformed evidence hash must fail"
 
 
+def test_node_review_invalidated_by_added_evidence():
+    # Approval was over {GOOD_HASH}; the node now has {GOOD_HASH, EXTRA}. The
+    # approval must no longer be valid (reviewed must EQUAL current, not subset).
+    extra = "sha256:" + "c" * 64
+    graph = {"nodes": [{"ksi_id": "KSI-IAM-AAM",
+                        "evidence": [{"xEvidenceContentHash": GOOD_HASH},
+                                     {"xEvidenceContentHash": extra}]}]}
+    code = _run_main_with(_approved([GOOD_HASH]), graph)
+    assert code == 1, "adding evidence after approval must invalidate the stale review"
+
+
 def test_good_human_review_passes():
     r = {"review_id": "REV-1", "assurance_id": "FRC-CSO-PKG", "reviewer": "Jane Doe",
          "role": "Security Reviewer", "decision": "approved",

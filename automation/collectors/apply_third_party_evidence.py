@@ -60,6 +60,44 @@ def _is_newer(new_ev, prior_ev):
     return True
 
 
+def _upsert_evidence(existing, incoming):
+    """Merge `incoming` third-party evidence into `existing`, returning
+    (merged_list, attached_count).
+
+    Preserves EVERY existing entry verbatim, including entries with no
+    evidenceLocation (manual/prefill evidence is legitimate and the official SDR
+    schema does not require evidenceLocation). Only entries that DO carry an
+    evidenceLocation are candidates for location-based upsert: an incoming entry
+    replaces an existing one at the same location when it is a newer observation;
+    a new location is appended; an incoming entry with no location is appended.
+    Existing order is preserved; upserts replace in place."""
+    merged = []
+    idx_by_loc = {}
+    for e in existing:
+        loc = e.get("evidenceLocation") if isinstance(e, dict) else None
+        merged.append(e)
+        if loc:  # only track keyable (located) entries; location-less kept as-is
+            idx_by_loc[loc] = len(merged) - 1
+    attached = 0
+    for ev in incoming:
+        loc = ev.get("evidenceLocation") if isinstance(ev, dict) else None
+        if not loc:
+            merged.append(ev)
+            attached += 1
+            continue
+        if loc in idx_by_loc:
+            prior = merged[idx_by_loc[loc]]
+            if _is_newer(ev, prior):
+                merged[idx_by_loc[loc]] = ev  # replace stale in place
+                attached += 1
+            # else identical/older: keep existing
+        else:
+            merged.append(ev)
+            idx_by_loc[loc] = len(merged) - 1
+            attached += 1
+    return merged, attached
+
+
 def load(path):
     with open(path, encoding="utf-8") as f:
         return json.load(f)
@@ -99,37 +137,8 @@ def main():
             if rec is None:
                 continue
             existing = rec.get("evidence", []) or []
-            # Upsert by stable evidence identity (evidenceLocation): a NEW
-            # observation at the same location must REPLACE the older entry when
-            # its content hash or timestamp changed, not be skipped. Skipping
-            # (the old behavior) silently retained stale third-party evidence.
-            by_loc = {}
-            ordered = []
-            for e in existing:
-                loc = e.get("evidenceLocation") if isinstance(e, dict) else None
-                if loc is not None:
-                    by_loc[loc] = e
-                ordered.append(loc)
-            for ev in evidence:
-                loc = ev["evidenceLocation"]
-                prior = by_loc.get(loc)
-                if prior is None:
-                    by_loc[loc] = ev
-                    ordered.append(loc)
-                    attached += 1
-                elif _is_newer(ev, prior):
-                    by_loc[loc] = ev  # replace stale with the newer observation
-                    attached += 1
-                # else: identical/older observation, keep the existing entry.
-            # Rebuild preserving first-seen order.
-            rebuilt, done = [], set()
-            for loc in ordered:
-                if loc in done:
-                    continue
-                done.add(loc)
-                if loc in by_loc:
-                    rebuilt.append(by_loc[loc])
-            rec["evidence"] = rebuilt
+            rec["evidence"], n = _upsert_evidence(existing, evidence)
+            attached += n
         total_attached += attached
         print(f"'{name}': {len(evidence)} evidence entries applied to "
               f"{len(targets)} KSI(s) ({attached} attached after de-dup).")

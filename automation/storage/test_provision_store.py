@@ -159,6 +159,45 @@ def test_object_lock_on_existing_versioned_bucket_configures_retention():
     assert rule["Mode"] == "COMPLIANCE" and rule["Days"] == 400
 
 
+def test_object_lock_enables_versioning_before_lock_on_existing_unversioned():
+    # An existing UNVERSIONED bucket: versioning MUST be enabled before the
+    # Object Lock configuration call (AWS requires versioning for Object Lock).
+    s3 = FakeS3(exists=True, versioning=None)
+    ensure_store(FakeSession(s3), "b", object_lock=True)
+    kinds = [c[0] for c in s3.calls]
+    assert "put_bucket_versioning" in kinds and "put_object_lock_configuration" in kinds
+    assert kinds.index("put_bucket_versioning") < kinds.index("put_object_lock_configuration"), \
+        "versioning must be enabled before Object Lock on an existing bucket"
+
+
+def test_explicit_object_lock_failure_raises_not_noop():
+    # If --object-lock is requested and AWS refuses it, the run must FAIL, not
+    # report a successful provisioning with Object Lock silently absent.
+    class LockRefuser(FakeS3):
+        def put_object_lock_configuration(self, **_kw):
+            raise FakeS3Error("AccessDenied")
+    s3 = LockRefuser(exists=True, versioning="Enabled")
+    raised = False
+    try:
+        ensure_store(FakeSession(s3), "b", object_lock=True)
+    except RuntimeError:
+        raised = True
+    assert raised, "a refused Object Lock request must raise, not no-op"
+
+
+def test_lifecycle_read_error_is_fail_closed():
+    # If reading the existing lifecycle config fails with anything other than a
+    # confirmed NoSuchLifecycleConfiguration, the provisioner must NOT PUT a
+    # lifecycle configuration (it could clobber unknown customer rules).
+    class LcReadError(FakeS3):
+        def get_bucket_lifecycle_configuration(self, **_kw):
+            raise FakeS3Error("AccessDenied")
+    s3 = LcReadError(exists=True, versioning="Enabled")
+    ensure_store(FakeSession(s3), "b", retention_days=365)
+    assert not any(c[0] == "put_bucket_lifecycle_configuration" for c in s3.calls), \
+        "a non-NoSuchLifecycleConfiguration read error must skip the lifecycle PUT"
+
+
 def test_retention_preserves_existing_lifecycle_rules():
     # A blind PUT would wipe a customer's existing lifecycle rules. The
     # provisioner must merge: keep unrelated rules, add/replace only ours.
