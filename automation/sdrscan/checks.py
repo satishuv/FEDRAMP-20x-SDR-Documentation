@@ -165,7 +165,13 @@ def markdown_hits(text):
 
 def sensitive_hits(ctx):
     patterns = [
-        (re.compile(r"\b\d{12}\b"), "possible AWS account ID"),
+        # A real AWS account ID is a standalone 12-digit number. Exclude a
+        # 12-digit run inside a hyphen-delimited hex token (a UUID), adjacent to
+        # hex/hyphen context: those are generated identifiers (e.g. OSCAL uuid
+        # fields), not account IDs. This MUST match the validator's pattern in
+        # validation/scripts/validate_sdr.py so the readiness scanner and the
+        # hard gate never disagree about what is sensitive.
+        (re.compile(r"(?<![0-9A-Fa-f-])\d{12}(?![0-9A-Fa-f-])"), "possible AWS account ID"),
         (re.compile(r"AKIA[0-9A-Z]{16}"), "AWS access key ID"),
         (re.compile(r"-----BEGIN (RSA |EC )?PRIVATE KEY-----"), "private key"),
     ]
