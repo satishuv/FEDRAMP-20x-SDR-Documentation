@@ -23,7 +23,7 @@ PROFILES = os.path.join(BASE, "profiles")
 CANONICAL = os.path.join(BASE, "references", "fedramp-consolidated-rules.json")
 
 # FRC-CSX-VVK: minimum automated verification/validation methods per KSI.
-VVK_MINIMUM = {"a": 0, "b": 1, "c": 2, "d": 4}
+from fedramp_constants import VVK_MINIMUM
 
 # Subsets that are scoped to a single class by their statement text rather than
 # a varies_by_class block. CLA rules apply only to providers seeking Class A

@@ -42,7 +42,9 @@ REGISTER = os.path.join(BASE, "sdr", "reviews", "review-register.json")
 OUT = os.path.join(BASE, "traceability", "assurance-graph.json")
 
 # FRC-CSX-VVK force per class, verified against the dataset.
-VVK_FORCE = {"a": "MAY", "b": "SHOULD", "c": "MUST", "d": "MUST"}
+# FRC-CSX-VVK force per class comes from the single canonical constants module
+# so this file cannot disagree with the validators about a MUST vs SHOULD.
+from fedramp_constants import VVK_FORCE
 
 
 def _review_index():

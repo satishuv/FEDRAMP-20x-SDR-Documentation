@@ -26,6 +26,9 @@ import re
 import sys
 import zipfile
 
+# Single source of truth for FRC-CSX-VVK force/minimum (same directory).
+from fedramp_constants import VVK_FORCE
+
 BASE = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 SCHEMA_DIR = os.path.join(BASE, "artifacts", "schemas", "official")
 SDR_SCHEMA = os.path.join(SCHEMA_DIR, "fedramp-security-decision-record-schema-2026-06-24.json")
@@ -364,7 +367,6 @@ def main():
     # but which FedRAMP does not mandate. Never label a Class B SHOULD as a
     # FedRAMP requirement. This repository may still treat >= 1 as a release
     # policy stricter than FedRAMP, but that is repository policy, not a MUST.
-    VVK_FORCE = {"a": "MAY", "b": "SHOULD", "c": "MUST", "d": "MUST"}
     force = VVK_FORCE.get(cls, "SHOULD")
     below_min = [r["ksi_id"] for r in ksi_results if not r["meets_test_minimum"]]
     # A shortfall is a hard failure only where FedRAMP force is MUST (Class C/D)
@@ -505,7 +507,6 @@ def main():
     # "every implemented MUST has traceable evidence" expectation an explicit
     # gate rather than only a readiness-scanner observation. Template TBD
     # records and lower-force classes are reported, not failed.
-    VVK_FORCE = {"a": "MAY", "b": "SHOULD", "c": "MUST", "d": "MUST"}
     force = VVK_FORCE.get(cls, "SHOULD")
     linkage_gaps = []
     for k in sdr["keySecurityIndicators"]:
