@@ -82,4 +82,4 @@ By participating you agree to the [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## License
 
-All rights in this repository are reserved by Amazon Web Services, Inc. and/or its affiliates (see [LICENSE](LICENSE)); this is not open-source software. By submitting a contribution you assign all rights in it to Amazon Web Services, Inc. and confirm you are authorized to do so. FedRAMP requirement text and schemas remain works of the United States government, published at [github.com/FedRAMP/rules](https://github.com/FedRAMP/rules).
+This repository is licensed under a permissive grant owned by AWS Security Assurance Services (SAS) (see [LICENSE](LICENSE)). By submitting a contribution you agree it is licensed under the same terms as the Work (inbound = outbound) and confirm you are authorized to submit it. FedRAMP requirement text and schemas remain works of the United States government, published at [github.com/FedRAMP/rules](https://github.com/FedRAMP/rules). Final license terms are subject to confirmation by AWS legal.

@@ -317,9 +317,10 @@ def summarise(findings):
 
 
 def rule_rollup(findings):
-    """Compliance-framework view: for each FedRAMP rule cited by any check, how
-    many findings pass, fail or need a human. This is the sdrscan equivalent of
-    Prowler's per-framework compliance report."""
+    """Per-rule record-completeness view: for each FedRAMP rule cited by any
+    check, how many findings the record satisfies, has a gap on, or leaves for a
+    human. This describes RECORD COMPLETENESS, not a compliance verdict; the
+    assessor and the program decide compliance, never this scanner."""
     roll = {}
     for f in findings:
         for basis in f["fedRampBasis"]:
@@ -329,8 +330,10 @@ def rule_rollup(findings):
             r["checks"].add(f["checkId"])
     for r in roll.values():
         r["checks"] = sorted(r["checks"])
-        r["status"] = ("NOT MET" if r["FAIL"] else
-                       "NEEDS REVIEW" if r["MANUAL"] or r["MUTED"] else "MET")
+        # Record-focused language, deliberately NOT "MET / NOT MET" which reads
+        # as a compliance determination.
+        r["status"] = ("RECORD GAP" if r["FAIL"] else
+                       "HUMAN REVIEW" if r["MANUAL"] or r["MUTED"] else "RECORD COMPLETE")
     return [roll[k] for k in sorted(roll)]
 
 
@@ -394,7 +397,9 @@ def write_text(path, doc):
     a(f"Failing: {s['fail']}")
     a(f"Needs human confirmation: {s['manual']}")
     a(f"Muted with justification: {s['muted']}")
-    a(f"Readiness: {s['readiness_percent']} percent of decidable findings pass")
+    a(f"Record completeness: {s['readiness_percent']} percent of decidable findings "
+      "pass (how much of the record is filled with defensible facts, not a "
+      "compliance or security score)")
     a("")
     a("Failing findings by severity:")
     for sev in SEVERITY_ORDER:
@@ -486,7 +491,7 @@ def write_html(path, doc):
  <div class="card"><b>{s['pass']}</b>passing</div>
  <div class="card"><b>{s['manual']}</b>needs a human</div>
  <div class="card"><b>{s['muted']}</b>muted</div>
- <div class="card"><b>{s['readiness_percent']}%</b>readiness</div>
+ <div class="card"><b>{s['readiness_percent']}%</b>record complete</div>
 </div>
 <p>Readiness counts only findings the record can decide on its own. Findings
  that need a human are excluded so a record cannot look better by having more
@@ -535,7 +540,7 @@ def print_terminal(doc, only_fails, colour):
     print(f"  {c('PASS', 'PASS')}   {s['pass']}")
     print(f"  {c('MANUAL', 'MANUAL')} {s['manual']}")
     print(f"  {c('MUTED', 'MUTED')}  {s['muted']}")
-    print(f"  readiness {s['readiness_percent']} percent of decidable findings")
+    print(f"  record completeness {s['readiness_percent']} percent of decidable findings")
     worst = [sev for sev in SEVERITY_ORDER if s["by_severity"][sev]["FAIL"]]
     if worst:
         print("  failing severities: " +
