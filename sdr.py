@@ -836,8 +836,28 @@ def cmd_preflight(args):
             if _is_tbd(signoff.get(req)):
                 blockers.append(f"package_signoff.{req} not set")
 
+    # Application-scope prerequisites (application-preflight only): FedRAMP's
+    # applying rules require the provider to already be listed in the FedRAMP
+    # Marketplace and to complete the FedRAMP Certification Application Form.
+    # These are NOT properties of the generated package, so package-preflight
+    # does not check them; application-preflight does.
+    scope = getattr(args, "command", "preflight")
+    application_scope = scope in ("application-preflight", "preflight")
+    if application_scope:
+        app = offering.get("application_prerequisites") or {}
+        if _is_tbd(app.get("marketplace_listing_uri")):
+            blockers.append("application: provider is not confirmed listed in the "
+                            "FedRAMP Marketplace (set application_prerequisites."
+                            "marketplace_listing_uri)")
+        if _is_tbd(app.get("application_form_reference")):
+            blockers.append("application: FedRAMP Certification Application Form not "
+                            "referenced (set application_prerequisites.application_form_reference)")
+
     out()
-    out(f"FedRAMP submission preflight (Class {cls.upper()})")
+    label = ("FedRAMP APPLICATION preflight" if scope == "application-preflight"
+             else "FedRAMP PACKAGE preflight" if scope == "package-preflight"
+             else "FedRAMP submission preflight")
+    out(f"{label} (Class {cls.upper()})")
     out(RULE)
     if blockers:
         out(f"SUBMISSION BLOCKERS ({len(blockers)}):")
@@ -849,14 +869,22 @@ def cmd_preflight(args):
             out(f"    [WARN]  {w}")
     out()
     if blockers:
-        out("NOT submission ready. Resolve the blockers above. This is a "
-            "readiness check, not a compliance determination; FedRAMP and its "
-            "recognized assessor determine compliance.")
+        out("NOT ready. Resolve the blockers above. This is a readiness check, "
+            "not a compliance determination; FedRAMP and its recognized assessor "
+            "determine compliance.")
         return 1
-    out("Submission ready: no blockers found. Required provider fields are "
-        "filled, the package is freshly provider-verified, and a package-level "
-        "signoff exists against the current release manifest. This does NOT "
-        "mean compliant or certified; that is FedRAMP's determination.")
+    if scope == "package-preflight":
+        out("Package ready: the generated Certification Package has no blockers "
+            "(required fields filled, fresh provider verification, package-level "
+            "signoff bound to the current manifest). This is NOT an application-"
+            "readiness statement - run `sdr.py application-preflight` to also "
+            "check Marketplace listing and the application form. Not a compliance "
+            "or certification claim.")
+    else:
+        out("Application ready: no blockers found - the package is complete and "
+            "the FedRAMP application prerequisites (Marketplace listing, "
+            "application form) are referenced. This does NOT mean compliant or "
+            "certified; that is FedRAMP's determination.")
     return 0
 
 
@@ -987,7 +1015,9 @@ def build_parser():
     diff_p.add_argument("new", nargs="?", help="new dataset JSON (optional)")
     sub.add_parser("review", help="report the human review register (read-only)")
     rel_p = sub.add_parser("release", help="build, run the full gate + reproducibility, print the tag")
-    sub.add_parser("preflight", help="check FedRAMP submission blockers (read-only)")
+    sub.add_parser("preflight", help="alias for application-preflight (read-only)")
+    sub.add_parser("package-preflight", help="check the generated package for submission blockers (read-only)")
+    sub.add_parser("application-preflight", help="package checks PLUS FedRAMP application prerequisites (read-only)")
     return p
 
 
@@ -1012,6 +1042,8 @@ def main(argv=None):
         "review": cmd_review,
         "release": cmd_release,
         "preflight": cmd_preflight,
+        "package-preflight": cmd_preflight,
+        "application-preflight": cmd_preflight,
     }
     return handlers[args.command](args)
 

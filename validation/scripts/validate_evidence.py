@@ -70,6 +70,8 @@ def _resolve_source(e):
     kind is 'inline' or 'file'. Reads only LOCAL files inside the repo."""
     if "source_fact" in e:
         return e["source_fact"], "inline"
+    if "xSourceFact" in e:
+        return e["xSourceFact"], "inline"
     path = e.get("source_fact_path")
     uri = e.get("artifact_uri") or e.get("evidenceLocation")
     candidate = None

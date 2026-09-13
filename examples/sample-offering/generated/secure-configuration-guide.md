@@ -1,16 +1,22 @@
 # Secure Configuration Guide: Acme Cloud Widgets (ACW)
 
-This is a generated scaffold for the FedRAMP 20x Secure Configuration Guide required by SCG-CSO-RSC, with the acceptable-use component required by SCG-CSO-AUP. Sections marked TBD are filled by the provider. This document is referenced from the Certification Package Overview and is not a compliance claim.
+This is a generated scaffold for the FedRAMP 20x Secure Configuration Guide required by SCG-CSO-RSC, with the use-instructions component required by SCG-CSO-AUP. Sections marked TBD are filled by the provider. This document is referenced from the Certification Package Overview and is not a compliance claim.
 
 ## Purpose and scope
 
 How to securely configure and operate Acme Cloud Widgets. Scope: A fictional multi-tenant SaaS widget-processing platform used to demonstrate a populated SDR.
 
-## Secure configuration baseline (SCG-CSO-RSC)
+## Recommendations for secure configuration (SCG-CSO-RSC)
 
-- Recommended secure settings customers must apply: TBD: the provider supplies this.
+SCG-CSO-RSC requires guidance for securely accessing, configuring, operating, and decommissioning top-level administrative accounts, plus the security implications of top-level-admin-only settings.
+
+- How to securely ACCESS top-level administrative accounts: TBD: the provider supplies this.
+- How to securely CONFIGURE top-level administrative accounts: TBD: the provider supplies this.
+- How to securely OPERATE top-level administrative accounts: TBD: the provider supplies this.
+- How to securely DECOMMISSION top-level administrative accounts: TBD: the provider supplies this.
+- Security settings available ONLY to top-level administrators, and the security implications of each: TBD: the provider supplies this.
+- Other recommended secure settings customers must apply: TBD: the provider supplies this.
 - Default settings and which are secure out of the box: TBD: the provider supplies this.
-- Hardening steps and their rationale: TBD: the provider supplies this.
 - Infrastructure-as-code baseline, if provided (AWS CloudFormation): TBD: the provider supplies this.
 
 ## Customer responsibilities
@@ -18,10 +24,13 @@ How to securely configure and operate Acme Cloud Widgets. Scope: A fictional mul
 - Configuration the customer owns versus the provider: TBD: the provider supplies this.
 - Identity, access, and key management expectations: TBD: the provider supplies this.
 
-## Acceptable use policy (SCG-CSO-AUP)
+## Use instructions (SCG-CSO-AUP)
 
-- Permitted and prohibited uses of the service: TBD: the provider supplies this.
-- Consequences of misuse and reporting channel: TBD: the provider supplies this.
+SCG-CSO-AUP requires instructions that explain how to OBTAIN and USE the Secure Configuration Guide (this is NOT an acceptable-use policy).
+
+- Where and how to obtain this Secure Configuration Guide: TBD: the provider supplies this.
+- Intended audience and how to apply the guidance: TBD: the provider supplies this.
+- Any authentication or access-request needed to reach it: TBD: the provider supplies this.
 
 ## Change and version history
 
