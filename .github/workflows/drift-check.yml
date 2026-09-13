@@ -39,6 +39,7 @@ jobs:
             fi
           }
           check "CR26-dataset" "https://raw.githubusercontent.com/FedRAMP/rules/main/fedramp-consolidated-rules.json" "references/fedramp-consolidated-rules.json"
+          check "CR26-rules-schema" "https://raw.githubusercontent.com/FedRAMP/rules/main/schemas/fedramp-consolidated-rules.schema.json" "references/fedramp-consolidated-rules.schema.json"
           check "SDR-schema" "https://www.fedramp.gov/schemas/fedramp-security-decision-record-schema-2026-06-24.json" "artifacts/schemas/official/fedramp-security-decision-record-schema-2026-06-24.json"
           check "common-definitions-schema" "https://www.fedramp.gov/schemas/fedramp-common-definitions-schema-2026-06-24.json" "artifacts/schemas/official/fedramp-common-definitions-schema-2026-06-24.json"
           check "CPO-schema" "https://www.fedramp.gov/schemas/fedramp-certification-package-overview-schema-2026-06-24.json" "artifacts/schemas/official/fedramp-certification-package-overview-schema-2026-06-24.json"
