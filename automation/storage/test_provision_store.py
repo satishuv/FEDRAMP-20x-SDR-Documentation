@@ -175,7 +175,7 @@ def test_explicit_object_lock_failure_raises_not_noop():
     # report a successful provisioning with Object Lock silently absent.
     class LockRefuser(FakeS3):
         def put_object_lock_configuration(self, **_kw):
-            raise FakeS3Error("AccessDenied")
+            raise FakeClientError("AccessDenied")
     s3 = LockRefuser(exists=True, versioning="Enabled")
     raised = False
     try:
@@ -185,17 +185,39 @@ def test_explicit_object_lock_failure_raises_not_noop():
     assert raised, "a refused Object Lock request must raise, not no-op"
 
 
-def test_lifecycle_read_error_is_fail_closed():
-    # If reading the existing lifecycle config fails with anything other than a
-    # confirmed NoSuchLifecycleConfiguration, the provisioner must NOT PUT a
-    # lifecycle configuration (it could clobber unknown customer rules).
+def test_lifecycle_read_error_with_explicit_retention_raises():
+    # --retention-days was EXPLICITLY requested, but reading the existing
+    # lifecycle config fails with something other than a confirmed
+    # NoSuchLifecycleConfiguration (here AccessDenied). The provisioner must
+    # NEITHER PUT a lifecycle configuration (it could clobber unknown customer
+    # rules) NOR report success: it must RAISE (non-zero), so a successful run
+    # always means the requested retention was actually applied.
     class LcReadError(FakeS3):
         def get_bucket_lifecycle_configuration(self, **_kw):
-            raise FakeS3Error("AccessDenied")
+            raise FakeClientError("AccessDenied")
     s3 = LcReadError(exists=True, versioning="Enabled")
-    ensure_store(FakeSession(s3), "b", retention_days=365)
+    raised = False
+    try:
+        ensure_store(FakeSession(s3), "b", retention_days=365)
+    except RuntimeError:
+        raised = True
+    assert raised, "an unreadable lifecycle config with explicit retention must raise"
     assert not any(c[0] == "put_bucket_lifecycle_configuration" for c in s3.calls), \
-        "a non-NoSuchLifecycleConfiguration read error must skip the lifecycle PUT"
+        "no lifecycle PUT may be attempted when the existing config is unreadable"
+
+
+def test_lifecycle_read_error_without_retention_is_ignored():
+    # If --retention-days is NOT supplied, the lifecycle API is never touched at
+    # all, so a lifecycle read error is irrelevant and provisioning still
+    # succeeds (versioning is the only requested action).
+    class LcReadError(FakeS3):
+        def get_bucket_lifecycle_configuration(self, **_kw):
+            raise FakeClientError("AccessDenied")
+    s3 = LcReadError(exists=True, versioning="Enabled")
+    ensure_store(FakeSession(s3), "b")  # no retention_days
+    assert not any(c[0] == "put_bucket_lifecycle_configuration" for c in s3.calls)
+    assert not any(c[0] == "get_bucket_lifecycle_configuration" for c in s3.calls), \
+        "the lifecycle API must not be consulted when no retention was requested"
 
 
 def test_retention_preserves_existing_lifecycle_rules():
