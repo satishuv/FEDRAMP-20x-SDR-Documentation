@@ -47,6 +47,11 @@
   "assessorID": "000000"
  },
  "_cpoNote": "Class B Certification Package Overview scaffold. Required by CPO-CSO-OVR. Fill provider values in profiles/common/offering-profile.json; TBD markers show what a human still owes. Not a compliance claim.",
+ "xOverallAssessmentSummary": {
+  "cr26_rule": "CPO-CSO-OSA",
+  "source_rule": "IVV-IAS-OSA (assessor-supplied)",
+  "summary": "TBD: CPO-CSO-OSA (Class B/C MUST): the overall summary of the FedRAMP independent assessment, supplied by the assessor per IVV-IAS-OSA, included in the CPO without inappropriate modification. Provide the assessor's text or a URI reference."
+ },
  "_cpoAssumptions": [
   "deploymentModel assumed 'Public Cloud' because the offering profile deployment_model is unset/unknown",
   "nextOngoingCertificationReportDate is a placeholder (2026-10-12) derived from the dataset date + 3 months (CCM-OCR-AVL cadence); the provider must set next_ocr_date"

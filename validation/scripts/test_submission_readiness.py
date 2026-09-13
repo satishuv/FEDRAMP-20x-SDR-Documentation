@@ -61,6 +61,26 @@ def _fill(profile_path, now):
         "next_ocr_date": (now.date() + datetime.timedelta(days=90)).isoformat(),
         "trust_center_uri": "https://contoso.gov/trust",
         "secure_config_guide_uri": "https://contoso.gov/scg",
+        # FRC-APP-FIA (B/C MUST): fresh FedRAMP independent assessment < 3 months.
+        "fedramp_independent_assessment": {
+            "assessor_name": "Acme FedRAMP Assessors LLC",
+            "assessor_fedramp_id": "FR-ASSESSOR-0007",
+            "completed_at": (now.date() - datetime.timedelta(days=30)).isoformat(),
+            "assessment_summary_uri": "https://contoso.gov/assessment-summary.pdf",
+            "assessment_report_uri": "https://contoso.gov/assessment-report.pdf",
+            "assessment_report_sha256": "sha256:" + "b" * 64,
+        },
+        # CPO-CSO-OSA (B/C MUST): assessor overall summary in the CPO.
+        "overall_assessment_summary": "Assessor confirmed all in-scope KSIs "
+                                       "verified and validated; no critical findings.",
+        # CDS-CSO-AVR (B/C MUST): 30-day availability service, both formats.
+        "availability_reporting": {
+            "human_readable_uri": "https://contoso.gov/status",
+            "machine_readable_uri": "https://contoso.gov/status.json",
+            "history_days": 30,
+            "available_when_primary_unavailable": True,
+            "verified_at": now.date().isoformat(),
+        },
     })
     json.dump(prof, open(profile_path, "w", encoding="utf-8", newline="\n"), indent=1)
 

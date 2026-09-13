@@ -559,6 +559,60 @@ def cmd_preflight(args):
                         blockers.append(f"Class A: materials[{i}] missing "
                                         f"type/uri/sha256 (FRC-CLA-EAM)")
 
+    # FRC-APP-FIA: a fresh FedRAMP independent assessment within 3 months.
+    # Class B and C MUST; Class A MAY (so not a blocker for A). FRC-APP-USA
+    # allows freshening a stale assessment unless it is more than 9 months old.
+    if cls in ("b", "c"):
+        fia = offering.get("fedramp_independent_assessment") or {}
+        completed = fia.get("completed_at")
+        if _is_tbd(fia.get("assessor_name")) or _is_tbd(completed):
+            blockers.append(f"Class {cls.upper()}: fedramp_independent_assessment "
+                            "not populated (FRC-APP-FIA MUST: a fresh FedRAMP "
+                            "independent assessment by a FedRAMP Recognized service "
+                            "within the previous 3 months)")
+        else:
+            try:
+                when = _dt.date.fromisoformat(str(completed))
+                if when > _dt.date.today():
+                    blockers.append(f"Class {cls.upper()}: FIA completed_at is in the future: {completed}")
+                else:
+                    age = _dt.date.today() - when
+                    if age > _dt.timedelta(days=274):  # ~9 months: even freshening is barred
+                        blockers.append(f"Class {cls.upper()}: FedRAMP independent assessment "
+                                        f"{completed} is older than 9 months; FRC-APP-USA "
+                                        "freshening no longer applies - a new assessment is required")
+                    elif age > _dt.timedelta(days=91):  # >3 months: needs freshening
+                        warnings.append(f"Class {cls.upper()}: FedRAMP independent assessment "
+                                        f"{completed} is older than 3 months (FRC-APP-FIA); a "
+                                        "FRC-APP-USA freshening review by a Recognized assessor is required")
+            except ValueError:
+                blockers.append(f"Class {cls.upper()}: FIA completed_at not a valid date: {completed}")
+        # CPO-CSO-OSA: B/C MUST include the assessor overall summary in the CPO.
+        if _is_tbd(offering.get("overall_assessment_summary")):
+            blockers.append(f"Class {cls.upper()}: overall_assessment_summary not set "
+                            "(CPO-CSO-OSA MUST: include the assessor's overall assessment "
+                            "summary from IVV-IAS-OSA in the CPO)")
+
+    # CDS-CSO-AVR: availability reporting web service. Class B/C MUST, A SHOULD.
+    avr = offering.get("availability_reporting") or {}
+    avr_missing = (_is_tbd(avr.get("human_readable_uri")) or _is_tbd(avr.get("machine_readable_uri")))
+    if cls in ("b", "c"):
+        if avr_missing:
+            blockers.append(f"Class {cls.upper()}: availability_reporting requires BOTH a "
+                            "human_readable_uri AND a machine_readable_uri (CDS-CSO-AVR MUST)")
+        else:
+            hist = avr.get("history_days")
+            if isinstance(hist, int) and hist < 30 or (isinstance(hist, str) and hist.isdigit() and int(hist) < 30):
+                blockers.append(f"Class {cls.upper()}: availability history is < 30 days (CDS-CSO-AVR)")
+            elif _is_tbd(hist):
+                blockers.append(f"Class {cls.upper()}: availability_reporting.history_days not set (CDS-CSO-AVR: >= 30)")
+            if avr.get("available_when_primary_unavailable") is not True:
+                warnings.append(f"Class {cls.upper()}: availability service must remain available when "
+                                "the primary offering is down (CDS-CSO-AVR); confirm and set "
+                                "available_when_primary_unavailable=true (human-verified)")
+    elif cls == "a" and avr_missing:
+        warnings.append("Class A: availability_reporting is a SHOULD (CDS-CSO-AVR); not set")
+
     # Record store: bulk unresolved content stays a readiness warning (FedRAMP
     # explicitly allows an honestly incomplete implementation). Count TBDs only
     # within the records APPLICABLE to this class - counting the whole file
