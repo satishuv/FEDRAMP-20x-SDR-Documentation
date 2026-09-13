@@ -636,6 +636,44 @@ def cmd_preflight(args):
     elif cls == "a" and avr_missing:
         warnings.append("Class A: availability_reporting is a SHOULD (CDS-CSO-AVR); not set")
 
+    # FRC-CSX-MOT: historical KSI metrics from persistent validation. Class C
+    # MUST have >= 6 months for all KSIs; Class D >= 18 months; A/B advisory.
+    # Distinct from SDR-CSX-KMT formatting; this is a duration requirement.
+    mot_min_days = {"c": 183, "d": 548}.get(cls)
+    if mot_min_days:
+        history = load_json(os.path.join(BASE, "automation", "metrics", "metric-history.json"))
+        if not history:
+            blockers.append(f"Class {cls.upper()}: no KSI metric history found "
+                            f"(FRC-CSX-MOT MUST: persistent-validation history over at "
+                            f"least {'6' if cls == 'c' else '18'} months for all KSIs)")
+        else:
+            per = history.get("ksis", history) if isinstance(history, dict) else {}
+            short = []
+            # Compute span per KSI from datapoint dates.
+            import datetime as _d2
+            today = _d2.date.today()
+            for kid, entries in (per.items() if isinstance(per, dict) else []):
+                dates = []
+                for e in (entries if isinstance(entries, list) else []):
+                    ds_ = (e or {}).get("date") if isinstance(e, dict) else None
+                    if ds_:
+                        try:
+                            dates.append(_d2.date.fromisoformat(str(ds_)[:10]))
+                        except ValueError:
+                            pass
+                if not dates or (today - min(dates)) < _d2.timedelta(days=mot_min_days):
+                    short.append(kid)
+            if short:
+                blockers.append(f"Class {cls.upper()}: {len(short)} KSI(s) lack "
+                                f"{'6' if cls == 'c' else '18'} months of persistent-"
+                                f"validation history (FRC-CSX-MOT)")
+    elif cls in ("a", "b"):
+        # A MAY, B SHOULD - advisory only.
+        history = load_json(os.path.join(BASE, "automation", "metrics", "metric-history.json"))
+        if not history:
+            warnings.append(f"Class {cls.upper()}: no KSI metric history yet "
+                            f"(FRC-CSX-MOT is {'MAY' if cls == 'a' else 'SHOULD'} at this class)")
+
     # Record store: bulk unresolved content stays a readiness warning (FedRAMP
     # explicitly allows an honestly incomplete implementation). Count TBDs only
     # within the records APPLICABLE to this class - counting the whole file

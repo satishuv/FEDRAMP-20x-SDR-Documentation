@@ -6236,7 +6236,7 @@
    "name": "Enforcing Intended State",
    "family": "CNA",
    "family_name": "Cloud Native Architecture",
-   "content_status": "FedRAMP pending: statement empty in official dataset",
+   "content_status": "stable",
    "minimum_automated_methods": 1,
    "historical_metrics_required": "Summary of each metric over the past 30 days, and up to the past year where available.",
    "guidance": {
@@ -6989,7 +6989,7 @@
    "name": "Authorizing Log Access",
    "family": "MLA",
    "family_name": "Monitoring, Logging, and Auditing",
-   "content_status": "FedRAMP pending: statement empty in official dataset",
+   "content_status": "stable",
    "minimum_automated_methods": 1,
    "historical_metrics_required": "Summary of each metric over the past 30 days, and up to the past year where available.",
    "guidance": {
@@ -7841,7 +7841,7 @@
    "name": "Preventing Residual Risk",
    "family": "SVC",
    "family_name": "Service Configuration",
-   "content_status": "FedRAMP pending: statement empty in official dataset",
+   "content_status": "stable",
    "minimum_automated_methods": 1,
    "historical_metrics_required": "Summary of each metric over the past 30 days, and up to the past year where available.",
    "guidance": {
@@ -7879,7 +7879,7 @@
    "name": "Removing Unwanted Data",
    "family": "SVC",
    "family_name": "Service Configuration",
-   "content_status": "FedRAMP pending: statement empty in official dataset",
+   "content_status": "stable",
    "minimum_automated_methods": 1,
    "historical_metrics_required": "Summary of each metric over the past 30 days, and up to the past year where available.",
    "guidance": {
@@ -7967,7 +7967,7 @@
    "name": "Validating Communications",
    "family": "SVC",
    "family_name": "Service Configuration",
-   "content_status": "FedRAMP pending: statement empty in official dataset",
+   "content_status": "stable",
    "minimum_automated_methods": 1,
    "historical_metrics_required": "Summary of each metric over the past 30 days, and up to the past year where available.",
    "guidance": {

@@ -50,14 +50,19 @@ def extract_requirement(req_id, req, family, subset, applicability):
     return rec
 
 
-def subset_applicability(fam_info, subset):
-    # subset metadata may live in common info.subsets or in the
-    # path-specific info.20x.subsets / info.rev5.subsets blocks
-    for container in (
-        fam_info.get("subsets") or {},
-        (fam_info.get("20x") or {}).get("subsets") or {},
-        (fam_info.get("rev5") or {}).get("subsets") or {},
-    ):
+def subset_applicability(fam_info, subset, branch="all"):
+    # subset metadata may live in common info.subsets or in the path-specific
+    # info.20x.subsets / info.rev5.subsets blocks. Resolve common PLUS the
+    # matching framework-specific block only - a 20x rule must NEVER inherit
+    # rev5 subset metadata (and vice versa), per FedRAMP's guidance to resolve
+    # common + the matching framework block.
+    containers = [fam_info.get("subsets") or {}]
+    if branch == "20x":
+        containers.append((fam_info.get("20x") or {}).get("subsets") or {})
+    elif branch == "rev5":
+        containers.append((fam_info.get("rev5") or {}).get("subsets") or {})
+    # branch == "all": common only.
+    for container in containers:
         meta = container.get(subset)
         if isinstance(meta, dict):
             app = meta.get("applicability") or {}
@@ -83,7 +88,7 @@ def walk_frr(frr):
             for subset, reqs in buckets.items():
                 if not isinstance(reqs, dict):
                     continue
-                sub_app = subset_applicability(fam_info, subset)
+                sub_app = subset_applicability(fam_info, subset, applicability)
                 for req_id, req in reqs.items():
                     if not isinstance(req, dict):
                         continue
@@ -98,17 +103,26 @@ def walk_ksi(ksi):
     indicators = []
     for family, fam_data in ksi.items():
         inds = fam_data.get("indicators", {})
+        fam_status = fam_data.get("status")
         for ksi_id, ind in inds.items():
             indicators.append(
                 {
                     "ksi_id": ksi_id,
                     "family": family,
                     "family_name": fam_data.get("name"),
+                    "family_status": fam_status,
                     "name": ind.get("name"),
                     "statement": ind.get("statement"),
                     "controls": ind.get("controls"),
+                    # Preserve the official varies_by_class block: the schema
+                    # supports per-class KSI statements even if the current
+                    # dataset doesn't exercise it heavily. Dropping it would make
+                    # the normalizer lossy against the official schema.
+                    "varies_by_class": ind.get("varies_by_class"),
                     "status_note": (
-                        "empty statement in dataset" if not ind.get("statement") else "ok"
+                        "empty statement in dataset"
+                        if not (ind.get("statement") or ind.get("varies_by_class"))
+                        else "ok"
                     ),
                 }
             )
