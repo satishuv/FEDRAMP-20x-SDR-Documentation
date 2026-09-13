@@ -81,6 +81,22 @@ def _fill(profile_path, now):
             "available_when_primary_unavailable": True,
             "verified_at": now.date().isoformat(),
         },
+        # CPO-CSO-MTD metadata + CPO-CSO-OVR required information.
+        "cpo_responsible_official": "Jane Provider, VP Security, jane@contoso.gov",
+        "cpo_version": "1.0.0",
+        "cpo_last_updated": now.isoformat(),
+        "cpo_source_of_update": "Initial certification package preparation",
+        "cpo_required_information": {
+            "CPO-CSO-MTD": "See metadata section.",
+            "CDS-CSO-PUB": "Public info published at https://contoso.gov/trust.",
+            "CDS-CSO-SVC": "Service list published at https://contoso.gov/services.",
+            "CDS-CSO-IRP": "Relevant policies referenced in the trust center.",
+            "MAS-CSO-IIR": "Information resources enumerated in the SDR scope.",
+            "MAS-CSO-FLO": "Information flows and security categories documented.",
+            "MAS-CSO-TPR": "Third-party resources listed in the package.",
+            "CMU-CSO-CMD": "FIPS-validated cryptographic modules documented.",
+            "IVV-CSO-ICP": "Independent assessment results included per FIA.",
+        },
     })
     json.dump(prof, open(profile_path, "w", encoding="utf-8", newline="\n"), indent=1)
 

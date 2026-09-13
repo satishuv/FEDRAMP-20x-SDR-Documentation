@@ -48,6 +48,13 @@
     "assessment_report_sha256": "TBD: hash of the referenced report"
   },
   "overall_assessment_summary": "TBD: CPO-CSO-OSA (Class B/C MUST): the overall summary of the FedRAMP independent assessment, supplied by the assessor per IVV-IAS-OSA, included in the CPO without inappropriate modification. Provide the assessor's text or a URI reference.",
+  "cpo_responsible_official": "TBD: CPO-CSO-MTD: name, title, and contact of the official responsible and accountable for the Certification Package.",
+  "cpo_version": "TBD: CPO-CSO-MTD: CPO version.",
+  "cpo_last_updated": "TBD: CPO-CSO-MTD: date and time of last update (ISO-8601).",
+  "cpo_source_of_update": "TBD: CPO-CSO-MTD: source of the update.",
+  "cpo_required_information": {
+    "note": "CPO-CSO-OVR: for each referenced rule, a pointer to (or summary of) the information in the CPO. Anything left unset is a preflight blocker. Keys are rule ids: CPO-CSO-MTD, CDS-CSO-PUB, CDS-CSO-SVC, CDS-CSO-IRP, MAS-CSO-IIR, MAS-CSO-FLO, MAS-CSO-TPR, CMU-CSO-CMD, IVV-CSO-ICP. Omit a key only if the rule genuinely does not apply to this class/type."
+  },
   "availability_reporting": {
     "note": "CDS-CSO-AVR: a web service showing current and >=30 days historical core-service availability (including incidents) in both human-readable and machine-readable formats, available even when the primary offering is down. Class B and C MUST; Class A SHOULD. This repository references the provider's service; it does not host it.",
     "human_readable_uri": "TBD: URL of the human-readable availability page",
