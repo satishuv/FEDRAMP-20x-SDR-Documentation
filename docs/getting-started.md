@@ -40,17 +40,23 @@ If you have GNU make, `make build`, `make validate`, `make scan`, and `make all`
 
 ## What you should see
 
-The validator prints eight checks and one gating line:
+The validator prints fourteen checks and one gating line:
 
 ```text
 PASS: official_schema_validation | 0 schema errors
+PASS: dataset_version_agreement | pinned dataset info.version 2026.07.14.01 vs profile 2026.07.14.01
+PASS: pinned_schema_version_guard | all 9 pinned schemas match expected $id and version
 PASS: rule_coverage | missing: [] extra: [] (158/158 rules)
 PASS: ksi_coverage | 46/46 KSIs present
 PASS: ksi_required_fields | all KSIs carry the six schema-required fields
-FAIL: ksi_test_minimums | 43 KSIs below the FRC-CSX-VVK minimum for class B (expected in template state; hard failure only at release)
+FAIL: ksi_test_minimums | 43 KSIs below the FRC-CSX-VVK minimum for class B (SHOULD at Class B; advisory)
 PASS: no_markdown_in_human_readable | hits: []
 PASS: no_sensitive_patterns | hits: []
-PASS: content_fidelity_against_dataset | 0 mismatches (all statements, names, and forces match the dataset)
+PASS: content_fidelity_against_dataset | 0 mismatches
+PASS: semantic_completeness_cr26 | 0 required semantic elements absent
+PASS: no_stale_nist_800_63_3 | no superseded SP 800-63 edition referenced
+FAIL: evidence_linkage_for_populated_musts | populated KSIs with no evidence (SHOULD at Class B; advisory)
+PASS: sources_lock_consistency | every pinned source matches its recorded sha256
 hard failures: 0
 ```
 
@@ -60,13 +66,13 @@ Then `sdr.py all` closes with a summary:
 Readiness summary
 Certification class          Class B
 Build gate                   SHIPPABLE, hard failures: 0
-Checks                       7 of 8 passing
-Advisory failures            ksi_test_minimums
+Checks                       12 of 14 passing
+Advisory failures            ksi_test_minimums, evidence_linkage_for_populated_musts
 Dataset                      deterministic check against dataset 2026.07.14.01
 Assessment readiness         24.3% (531 pass, 1657 fail, 407 manual of 2595 findings)
 ```
 
-That single `FAIL` line is expected and correct on a fresh clone. `FRC-CSX-VVK` sets a per-indicator automated-method target that rises by class (recommended `SHOULD` at Class B with at least one method, required `MUST` at Class C with at least two), and a template has none yet. It is reported as an advisory failure during authoring and becomes a hard failure only at release. `hard failures: 0` is the line that gates the build.
+The two `FAIL` lines are expected and correct on a fresh clone. Both are `SHOULD`-force at Class B, so they are advisory during authoring: `ksi_test_minimums` reflects `FRC-CSX-VVK` (a per-indicator automated-method target that rises by class - `SHOULD` at B with at least one method, `MUST` at C with at least two), and `evidence_linkage_for_populated_musts` reflects that a populated KSI should carry evidence (`MUST`, and hard, only at Class C/D). A template has neither yet. `hard failures: 0` is the line that gates the build; at Class C/D these advisories become hard.
 
 24.3 percent readiness is also the correct starting number. It measures how much of your record is filled in with facts, not how secure your system is.
 

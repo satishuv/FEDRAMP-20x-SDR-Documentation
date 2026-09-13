@@ -11,7 +11,7 @@ pip install jsonschema referencing python-docx
 python sdr.py all
 ```
 
-`python sdr.py all` builds every deliverable, runs the 13-check validator and the package-schema validator, runs the readiness scanner, and prints a summary. On a fresh clone expect `hard failures: 0` and many open items: the repo ships as a template with honest `TBD` placeholders.
+`python sdr.py all` builds every deliverable, runs the 14-check SDR validator and the package-schema validator, runs the readiness scanner, and prints a summary. On a fresh clone expect `hard failures: 0` and many open items: the repo ships as a template with honest `TBD` placeholders.
 
 For a real engagement, copy the repository into a private fork and edit only two files:
 

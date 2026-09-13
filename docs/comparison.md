@@ -25,7 +25,7 @@ not an aspiration. Legend: implemented, partial, not applicable.
 | Requirements-to-evidence traceability | partial (rule to KSI) | no | no | implemented | Every SDR assertion is a structured object (`xFedRampSemantic`), presence-gated by `semantic_completeness_cr26` |
 | KSI implementation workflow | no | guidance | guidance | implemented | All 46 KSIs carry implementation/validation/tests/evidence, metrics, and the MOT window |
 | Human-readable SDR | no | no | no | implemented | Plain text and Word alongside the JSON; kept in sync per `CDS-CSO-CBF` |
-| Automated CI validation | rules self-check | site build | n/a | implemented | Build gate, 13 checks, plus package-schema validation and offline test suites |
+| Automated CI validation | rules self-check | site build | n/a | implemented | Build gate, 14 checks, plus package-schema validation and offline test suites |
 | Upstream drift detection | n/a | n/a | n/a | implemented | Daily hash-compare against `FedRAMP/rules`, opens an issue on change |
 | Rev5 related-control index | rule to KSI in JSON | no | no | implemented | Reverse index to NIST SP 800-53 Rev. 5 Release 5.2.0; labelled relatedness, not equivalence |
 | Explainability | no | no | no | implemented | `python sdr.py explain <RULE\|KSI>`, grounded in the dataset and the record |

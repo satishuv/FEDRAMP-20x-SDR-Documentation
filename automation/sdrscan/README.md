@@ -188,7 +188,7 @@ build_*.py  ---->  validate_sdr.py  ---->  sdrscan.py
                     sound?                  for an assessor?
 ```
 
-[validate_sdr.py](../../validation/scripts/validate_sdr.py) is the build gate. Eight aggregate checks, one exit code, runs on every commit. It answers "is the generated package structurally sound and faithful to the dataset". It protects the build and must stay green.
+[validate_sdr.py](../../validation/scripts/validate_sdr.py) is the build gate. Fourteen aggregate checks, one exit code, runs on every commit. It answers "is the generated package structurally sound and faithful to the dataset". It protects the build and must stay green.
 
 `sdrscan.py` is the readiness scanner. Thousands of per-resource findings, severity-ranked, each with a remediation. It answers "what is still missing before an assessor signs this". It is expected to report failures against a template, because a template genuinely has open gaps. It drives the work rather than gating it.
 
