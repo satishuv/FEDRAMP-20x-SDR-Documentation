@@ -143,13 +143,17 @@ def _fill(profile_path, now, cls="C"):
             "framework": "SOC 2 Type II",
             "assessment_date": (now.date() - datetime.timedelta(days=60)).isoformat(),
             "assessor": "Acme SOC 2 Auditors LLP",
-            "materials": [{
-                "type": "SOC2-TypeII-report",
-                "uri": "https://contoso.gov/soc2-2026.pdf",
-                "sha256": "sha256:" + "a" * 64,
-                "bridge_or_gap_letter_uri": "https://contoso.gov/bridge.pdf",
-                "next_assessment_date": (now.date() + datetime.timedelta(days=305)).isoformat(),
-            }],
+            "materials": [
+                {"type": "complete_report",
+                 "uri": "https://contoso.gov/soc2-2026.pdf",
+                 "sha256": "sha256:" + "a" * 64},
+                {"type": "verified_audit_engagement",
+                 "uri": "https://contoso.gov/soc2-engagement.pdf",
+                 "sha256": "sha256:" + "b" * 64},
+                {"type": "upcoming_report_schedule",
+                 "uri": "https://contoso.gov/soc2-schedule.pdf",
+                 "sha256": "sha256:" + "c" * 64},
+            ],
         }
     json.dump(prof, open(profile_path, "w", encoding="utf-8", newline="\n"), indent=1)
 
@@ -338,6 +342,16 @@ def main():
         rfb = _preflight(root)
         check("stale assessment with a Recognized-service freshening review clears FIA",
               "FRC-APP-USA freshening" not in rfb.stdout)
+        # A freshening dated BEFORE the original assessment is logically
+        # impossible and must not clear FIA (reviewed_at >= completed_at).
+        fia["freshening"]["reviewed_at"] = (now.date() - datetime.timedelta(days=200)).isoformat()
+        json.dump(p, open(profile, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root)
+        rfc = _preflight(root)
+        check("a freshening dated before the original assessment does NOT clear FIA",
+              "FRC-APP-USA freshening" in rfc.stdout and rfc.returncode == 1)
+        fia["freshening"]["reviewed_at"] = (now.date() - datetime.timedelta(days=10)).isoformat()
+        json.dump(p, open(profile, "w", encoding="utf-8", newline="\n"), indent=1)
         p["fedramp_independent_assessment"]["completed_at"] = fia_current
         p["fedramp_independent_assessment"].pop("freshening", None)
         p["fedramp_independent_assessment"]["freshness_basis"] = "current"
@@ -403,6 +417,92 @@ def main():
         a_rules = {i.get("rule") for i in cpo_a.get("xCpoRequiredInformation", {}).get("items", [])}
         check("Class A CPO required-info is applicability-scoped to its 2 OVR rules",
               a_rules == {"CDS-CSO-PUB", "MAS-CSO-IIR"})
+        # Class A CPO-CSO-MTD is NOT applicable, so TBD metadata must not block.
+        pa = json.load(open(profile_a, encoding="utf-8"))
+        for f in ("cpo_responsible_official", "cpo_version", "cpo_last_updated", "cpo_source_of_update"):
+            pa[f] = "TBD: intentionally left unresolved for Class A"
+        json.dump(pa, open(profile_a, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root_a)
+        rmtd = _preflight(root_a)
+        check("Class A is NOT blocked on unresolved CPO-CSO-MTD (not applicable to A)",
+              "CPO metadata unresolved" not in rmtd.stdout)
+
+        # FRC-CLA-ASF: an unapproved alternative framework must block.
+        pa["external_assessment"]["framework"] = "ISO 27001"
+        json.dump(pa, open(profile_a, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root_a)
+        rfw = _preflight(root_a)
+        check("Class A rejects an unapproved alternative framework (FRC-CLA-ASF)",
+              "not a FedRAMP-approved alternative framework" in rfw.stdout and rfw.returncode == 1)
+        pa["external_assessment"]["framework"] = "SOC 2 Type II"
+
+        # FRC-CLA-EAM: dropping a required SOC 2 material must block.
+        pa["external_assessment"]["materials"] = [
+            m for m in pa["external_assessment"]["materials"]
+            if m.get("type") != "verified_audit_engagement"
+        ]
+        json.dump(pa, open(profile_a, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root_a)
+        rmat = _preflight(root_a)
+        check("Class A blocks when a required SOC 2 material is missing (FRC-CLA-EAM)",
+              "Verified audit engagement documentation" in rmat.stdout and rmat.returncode == 1)
+
+        # FRC-CSX-MOT initial-certification EXCEPTION: a new Class C offering with
+        # no long metric history but a valid metric_history_exception (both flags
+        # true + descriptions + a current datapoint per KSI) must reach ready.
+        root_m = os.path.join(tmp, "repo-mot")
+        shutil.copytree(BASE, root_m, ignore=shutil.ignore_patterns(
+            ".git", "__pycache__", "*.log", ".tmp"))
+        profile_m = os.path.join(root_m, "profiles", "common", "offering-profile.json")
+        register_m = os.path.join(root_m, "sdr", "reviews", "review-register.json")
+        manifest_m = os.path.join(root_m, "artifacts", "release-manifest.json")
+        _fill(profile_m, now, cls="C")
+        _fill_records(root_m)
+        # Overwrite history with a SINGLE current datapoint per applicable KSI
+        # (not 8 months) - only the exception path can clear this.
+        ksi_prof = json.load(open(os.path.join(root_m, "profiles", "common", "ksi-profile.json"),
+                                  encoding="utf-8"))
+        cur = now.date().isoformat()
+        hist_m = {"ksis": {k["ksi_id"]: [{"date": cur, "status": "pass"}]
+                           for k in ksi_prof.get("indicators", [])}}
+        json.dump(hist_m, open(os.path.join(root_m, "automation", "metrics", "metric-history.json"),
+                               "w", encoding="utf-8", newline="\n"), indent=1)
+        pm = json.load(open(profile_m, encoding="utf-8"))
+        # Without the exception, one datapoint is NOT 6 months -> must block.
+        _build(root_m)
+        rmot0 = _preflight(root_m)
+        check("Class C with only current datapoints (no exception) is blocked on MOT",
+              "FRC-CSX-MOT" in rmot0.stdout and rmot0.returncode == 1)
+        # Activate the exception with the explicit contract.
+        pm["metric_history_exception"] = {
+            "mechanisms_in_place": True,
+            "mechanisms_description": "Persistent KSI validation mechanisms operational since launch.",
+            "commitment_to_meet_mot": True,
+            "commitment_reference": "Provider commitment approved by the CISO (2026-08).",
+            "operating_since": (now.date() - datetime.timedelta(days=40)).isoformat(),
+            "responsible_official": "Jane Provider, VP Security",
+        }
+        json.dump(pm, open(profile_m, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root_m)
+        mhash_m = "sha256:" + hashlib.sha256(open(manifest_m, "rb").read()).hexdigest()
+        tag_m = json.load(open(manifest_m, encoding="utf-8")).get("release_tag")
+        reg_m = json.load(open(register_m, encoding="utf-8"))
+        reg_m["package_signoff"] = {
+            "decision": "approved", "reviewer": "Jane Provider, VP Security",
+            "timestamp": now.isoformat(), "release_tag": tag_m,
+            "package_manifest_sha256": mhash_m, "notes": "Reviewed Class C initial-cert package.",
+        }
+        json.dump(reg_m, open(register_m, "w", encoding="utf-8", newline="\n"), indent=1)
+        rmot1 = _preflight(root_m)
+        check("Class C reaches ready via the FRC-CSX-MOT initial-certification exception",
+              rmot1.returncode == 0)
+        # Booleans-only (no descriptions) must NOT activate the exception.
+        pm["metric_history_exception"]["mechanisms_description"] = "TBD"
+        json.dump(pm, open(profile_m, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root_m)
+        rmot2 = _preflight(root_m)
+        check("MOT exception with a missing description does not activate",
+              "FRC-CSX-MOT" in rmot2.stdout and rmot2.returncode == 1)
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
 

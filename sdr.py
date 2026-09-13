@@ -572,11 +572,51 @@ def cmd_preflight(args):
     # Class A: external assessment materials (FRC-CLA-ASF / EAM).
     if cls == "a":
         ext = offering.get("external_assessment") or {}
-        if not ext or _is_tbd(ext.get("framework")) or _is_tbd(ext.get("assessment_date")):
+        # FRC-CLA-ASF permits ONLY these three alternative frameworks (verbatim
+        # from the dataset), and FRC-CLA-EAM requires framework-specific
+        # materials. Normalize the declared framework to a canonical key and
+        # reject anything outside the allowlist, then gate the required set.
+        FRAMEWORK_ALIASES = {
+            "soc2_type_ii": "soc2_type_ii", "soc 2 type ii": "soc2_type_ii",
+            "soc2": "soc2_type_ii", "soc 2": "soc2_type_ii",
+            "fedramp_rev5": "fedramp_rev5", "fedramp rev5": "fedramp_rev5",
+            "rev5": "fedramp_rev5", "fedramp ready": "fedramp_ready",
+            "fedramp_ready": "fedramp_ready",
+            "govramp": "govramp",
+        }
+        # Required material TYPES per framework (derived from FRC-CLA-EAM). Items
+        # marked "if applicable" in the rule are NOT force-gated here.
+        REQUIRED_MATERIALS = {
+            "soc2_type_ii": [
+                ("complete_report", "Complete SOC 2 Type II report"),
+                ("verified_audit_engagement", "Verified audit engagement documentation"),
+                ("upcoming_report_schedule", "Estimated schedule for upcoming report"),
+            ],
+            "fedramp_rev5": [
+                ("readiness_assessment_report", "Readiness Assessment Report"),
+                ("security_assessment_plan", "Security Assessment Plan"),
+            ],
+            "fedramp_ready": [
+                ("readiness_assessment_report", "Readiness Assessment Report"),
+                ("security_assessment_plan", "Security Assessment Plan"),
+            ],
+            "govramp": [
+                ("readiness_assessment_report", "Readiness Assessment Report"),
+                ("security_assessment_plan", "Security Assessment Plan"),
+            ],
+        }
+        raw_fw = ext.get("framework")
+        if not ext or _is_tbd(raw_fw) or _is_tbd(ext.get("assessment_date")):
             blockers.append("Class A: external_assessment not populated "
                             "(FRC-CLA-ASF/EAM require alternative-framework "
                             "assessment materials from the past 12 months)")
         else:
+            canon = FRAMEWORK_ALIASES.get(str(raw_fw).strip().lower())
+            if canon is None:
+                blockers.append(f"Class A: external_assessment.framework '{raw_fw}' is "
+                                "not a FedRAMP-approved alternative framework "
+                                "(FRC-CLA-ASF permits only FedRAMP Rev5 / FedRAMP "
+                                "Ready, SOC 2 Type II, or GovRAMP)")
             adate = ext.get("assessment_date")
             try:
                 when = _dt.date.fromisoformat(str(adate))
@@ -588,15 +628,21 @@ def cmd_preflight(args):
             except ValueError:
                 blockers.append(f"Class A: assessment_date not a valid date: {adate}")
             materials = ext.get("materials") or []
-            if not materials:
-                blockers.append("Class A: external_assessment.materials empty "
-                                "(FRC-CLA-EAM: supply the assessment materials as references)")
-            else:
-                for i, m in enumerate(materials):
-                    if not isinstance(m, dict) or _is_tbd(m.get("type")) \
-                            or _is_tbd(m.get("uri")) or _is_tbd(m.get("sha256")):
-                        blockers.append(f"Class A: materials[{i}] missing "
-                                        f"type/uri/sha256 (FRC-CLA-EAM)")
+            # Every supplied material must be a complete reference.
+            for i, m in enumerate(materials):
+                if not isinstance(m, dict) or _is_tbd(m.get("type")) \
+                        or _is_tbd(m.get("uri")) or _is_tbd(m.get("sha256")):
+                    blockers.append(f"Class A: materials[{i}] missing "
+                                    f"type/uri/sha256 (FRC-CLA-EAM)")
+            # The framework-specific required set (FRC-CLA-EAM) must all be present.
+            if canon is not None:
+                have_types = {str(m.get("type", "")).strip().lower()
+                              for m in materials if isinstance(m, dict)}
+                for key, label in REQUIRED_MATERIALS.get(canon, []):
+                    if key not in have_types:
+                        blockers.append(f"Class A: external_assessment is missing the "
+                                        f"required '{label}' material for {canon} "
+                                        f"(material type '{key}'; FRC-CLA-EAM)")
 
     # FRC-APP-FIA: a fresh FedRAMP independent assessment within 3 months.
     # Class B and C MUST; Class A MAY (so not a blocker for A). FRC-APP-USA
@@ -640,7 +686,9 @@ def cmd_preflight(args):
                         if not _is_tbd(reviewed_at):
                             try:
                                 rd = _dt.date.fromisoformat(str(reviewed_at))
-                                review_date_ok = rd <= _dt.date.today()
+                                # Valid, not in the future, and not before the
+                                # original assessment it claims to freshen.
+                                review_date_ok = (rd <= _dt.date.today() and rd >= when)
                             except ValueError:
                                 review_date_ok = False
                         fresh_ok = (basis == "freshened"
@@ -697,7 +745,9 @@ def cmd_preflight(args):
         # recorded commitment to meet the requirement going forward.
         exc = offering.get("metric_history_exception") or {}
         exc_valid = (exc.get("mechanisms_in_place") is True
+                     and not _is_tbd(exc.get("mechanisms_description"))
                      and exc.get("commitment_to_meet_mot") is True
+                     and not _is_tbd(exc.get("commitment_reference"))
                      and not _is_tbd(exc.get("operating_since"))
                      and not _is_tbd(exc.get("responsible_official")))
         history = load_json(os.path.join(BASE, "automation", "metrics", "metric-history.json"))
@@ -882,10 +932,15 @@ def cmd_preflight(args):
     # CPO semantic completeness (CPO-CSO-OVR / CPO-CSO-MTD): required-information
     # items and metadata must be resolved, not TBD.
     mtd = cpo.get("xCpoMetadata", {}) or {}
-    mtd_gaps = [f for f in ("responsible_official", "version", "last_updated", "source_of_update")
-                if _is_tbd(mtd.get(f))]
-    if mtd_gaps:
-        blockers.append(f"CPO metadata unresolved (CPO-CSO-MTD): {', '.join(mtd_gaps)}")
+    # CPO-CSO-MTD is only required when it resolves for this class/type (Class A's
+    # applicable CPO-CSO-OVR set is only CDS-CSO-PUB + MAS-CSO-IIR, so its CPO
+    # carries no metadata block and must not be blocked on one).
+    _applicable_rule_ids = {r["rule_id"] for r in (class_profile.get("rules") or [])}
+    if "CPO-CSO-MTD" in _applicable_rule_ids:
+        mtd_gaps = [f for f in ("responsible_official", "version", "last_updated", "source_of_update")
+                    if _is_tbd(mtd.get(f))]
+        if mtd_gaps:
+            blockers.append(f"CPO metadata unresolved (CPO-CSO-MTD): {', '.join(mtd_gaps)}")
     req_info = (cpo.get("xCpoRequiredInformation", {}) or {}).get("items", [])
 
     # Structured semantic completeness. A bare non-TBD sentence like "Public

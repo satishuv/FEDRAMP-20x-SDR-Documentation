@@ -56,9 +56,11 @@
     }
   },
   "metric_history_exception": {
-    "note": "FRC-CSX-MOT initial-certification exception: only for a NEW offering that cannot yet show the normal metric-of-time history. Provide the required mechanisms and a recorded commitment; when present, MOT preflight requires a CURRENT datapoint per in-scope KSI instead of the full history window. Omit this block entirely once real history exists.",
-    "mechanisms_in_place": "TBD: description of the mechanisms in place to produce the required KSI metrics going forward",
-    "commitment_to_meet_mot": "TBD: the provider's recorded commitment to meet the metric-of-time requirement",
+    "note": "FRC-CSX-MOT initial-certification exception: only for a NEW offering that cannot yet show the normal metric-of-time history. Set both booleans to true AND provide the descriptions/references; when valid, MOT preflight requires a CURRENT datapoint per in-scope KSI instead of the full history window. Omit or leave the booleans false once real history exists.",
+    "mechanisms_in_place": false,
+    "mechanisms_description": "TBD: description of the mechanisms in place to produce the required KSI metrics going forward (required when mechanisms_in_place is true)",
+    "commitment_to_meet_mot": false,
+    "commitment_reference": "TBD: reference to the provider's recorded commitment to meet the metric-of-time requirement (required when commitment_to_meet_mot is true)",
     "operating_since": "TBD: YYYY-MM-DD the offering began operating",
     "responsible_official": "TBD: name, title, and contact of the official accountable for the commitment"
   },
