@@ -8,8 +8,10 @@ Whichever you run, this is what must happen on every change:
 
 1. **Regenerate everything** from the pinned dataset and the record store.
 2. **Fail on any hand-edited output.** Regenerate, then diff. If a generated file differs from what the pipeline produces, the build fails. This turns "do not edit generated files" from a convention into an error.
-3. **Validate with zero hard failures.**
+3. **Validate with zero hard failures.** `python sdr.py validate` runs the full validation gate (SDR schema/coverage/fidelity, package schemas, CPO semantics, assurance-graph traceability, the human review register, evidence integrity, and cross-artifact consistency) plus the offline test suite. GitHub Actions additionally enforces a double-build reproducibility gate and the scanner-catalog freshness check.
 4. **Attach a readiness report** so a human approver can read it before signing.
+
+Submission readiness (`preflight`) is deliberately not one of these build-time gates: it is a stricter, separate check run at submission time. See [validation and readiness](validation.md#submission-readiness-preflight).
 
 ```mermaid
 flowchart LR

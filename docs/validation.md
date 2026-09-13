@@ -111,6 +111,41 @@ Against the shipped template the scanner reports thousands of failures. That is 
 
 Full check reference: [automation/sdrscan/README.md](../automation/sdrscan/README.md).
 
+## The full validation gate
+
+`validate_sdr.py` is the SDR checker described above, and it is the anchor of the gate. `python sdr.py validate` runs it together with the rest of the validation gate and the offline test suite (this is what continuous integration runs). The other gate checks, each independent and each a hard gate:
+
+| Gate check | What it enforces |
+|---|---|
+| `validate_sdr.py` | The eight SDR checks above (schema, coverage, minimums, hygiene, content fidelity) |
+| `validate_package.py` | The CPO and OCR against their official FedRAMP schemas |
+| `validate_cpo_semantics.py` | CPO rule-completeness, not just schema: it independently derives the applicable `CPO-CSO-OVR` rule set from the dataset and checks structured completeness of the enumerated rules (`CDS-CSO-PUB`, `CDS-CSO-IRP`, `MAS-CSO-TPR`) |
+| `validate_assurance_graph.py` | Full-chain traceability across the assurance graph, class-scoped |
+| `validate_reviews.py` | The human review register carries no machine-authored approvals |
+| `validate_evidence.py` | Live evidence integrity: it recomputes digests and fails on malformed or mismatched ones |
+| `validate_package_consistency.py` | Cross-artifact consistency across the generated package |
+
+## Submission readiness (preflight)
+
+The build gate answers a structural question: is this package well-formed and faithful to the dataset? Submission readiness answers a stricter, separate question: is this package actually ready to hand to an assessor? That is `preflight`, and it is deliberately hard to fool.
+
+```bash
+python sdr.py package-preflight        # the generated package
+python sdr.py application-preflight     # package checks plus FedRAMP application prerequisites
+```
+
+Both are read-only, exit non-zero while anything blocks, and never author an approval. What preflight enforces, all grounded verbatim in the pinned dataset:
+
+- **Field-level readiness.** Every required `SDR-CSO-FRR` item (implementation/risk, verification, validation, independent verification, independent validation, assessor responses) and every required `SDR-CSX-KSI` item (measures, cycle, measures verification, automation verification, validation) is checked individually. A justified `N/A: <reason>` passes; a bare `N/A`, a `TBD`, or a placeholder blocks.
+- **Class-correct scope.** Class A is scoped to its seven enumerated KSIs; the CPO required-information set is the intersection of `CPO-CSO-OVR` with the resolved class rule set (Class A carries only `CDS-CSO-PUB` and `MAS-CSO-IIR`), and the `CPO-CSO-MTD` metadata gate only applies when that rule resolves for the class.
+- **Structured CPO completeness.** A bare sentence does not satisfy a rule that enumerates concrete items; `CDS-CSO-PUB`, `CDS-CSO-IRP`, and `MAS-CSO-TPR` are checked against their CR26-enumerated members.
+- **Class A external assessment (`FRC-CLA-ASF`/`FRC-CLA-EAM`).** The framework must be one FedRAMP approves (FedRAMP Rev5/Ready, SOC 2 Type II, GovRAMP) within the past 12 months, and the framework-specific material checklist must be complete.
+- **Recognized-assessor identity.** The `FRC-APP-FIA` initial assessment (Class B/C) requires the assessor's FedRAMP Recognition id; an `FRC-APP-USA` freshening of a 3-to-9-month-old assessment requires a Recognized reviewer id and a `reviewed_at` date on or after the original assessment.
+- **`FRC-CSX-MOT`.** Availability survivability (`CDS-CSO-AVR`) is a Class B/C blocker; entirely-missing KSIs are detected; the initial-certification exception is activated by an explicit contract (both boolean flags true plus descriptions/references and a current datapoint per in-scope KSI).
+- **Manifest-bound human signoff.** The signoff in the review register is bound to the release-manifest hash, and the manifest hashes the authoritative provider inputs (offering profile and records store). Any change to those inputs after signoff invalidates the signoff.
+
+Missing or stale evidence is reported as a readiness finding, never silently treated as a compliance pass, and the pipeline never authors an approval on a human's behalf.
+
 ### Keeping the catalog in step
 
 The check registry is mirrored in `automation/sdrscan/check-catalog.json`, and continuous integration refuses a stale one. After changing `checks.py`:
