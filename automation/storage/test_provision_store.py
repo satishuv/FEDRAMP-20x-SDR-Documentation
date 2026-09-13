@@ -28,10 +28,12 @@ class FakeClientError(Exception):
 class FakeS3:
     """Records every call. head_bucket behavior is driven by `exists`/`owner`."""
 
-    def __init__(self, exists=False, versioning=None, forbidden=False):
+    def __init__(self, exists=False, versioning=None, forbidden=False,
+                 lifecycle_rules=None):
         self._exists = exists
         self._versioning = versioning  # None | "Enabled" | "Suspended"
         self._forbidden = forbidden
+        self._lifecycle_rules = lifecycle_rules  # None | list of existing rules
         self.calls = []
 
     def head_bucket(self, Bucket):
@@ -59,6 +61,18 @@ class FakeS3:
     def put_bucket_lifecycle_configuration(self, Bucket, LifecycleConfiguration):
         self.calls.append(("put_bucket_lifecycle_configuration", Bucket,
                            LifecycleConfiguration))
+        self._lifecycle_rules = LifecycleConfiguration["Rules"]
+        return {}
+
+    def get_bucket_lifecycle_configuration(self, Bucket):
+        self.calls.append(("get_bucket_lifecycle_configuration", Bucket))
+        if self._lifecycle_rules is None:
+            raise FakeClientError("NoSuchLifecycleConfiguration")
+        return {"Rules": list(self._lifecycle_rules)}
+
+    def put_object_lock_configuration(self, Bucket, ObjectLockConfiguration):
+        self.calls.append(("put_object_lock_configuration", Bucket,
+                           ObjectLockConfiguration))
         return {}
 
 
@@ -126,11 +140,42 @@ def test_us_east_1_omits_location_constraint():
     assert "CreateBucketConfiguration" not in create[1]
 
 
-def test_object_lock_only_at_creation():
+def test_object_lock_at_bucket_creation():
     s3 = FakeS3(exists=False)
     ensure_store(FakeSession(s3), "b", region="us-east-1", object_lock=True)
     create = [c for c in s3.calls if c[0] == "create_bucket"][0]
     assert create[1]["ObjectLockEnabledForBucket"] is True
+
+
+def test_object_lock_on_existing_versioned_bucket_configures_retention():
+    # AWS supports enabling Object Lock on an existing versioned bucket; the
+    # provisioner must configure a real default retention, not no-op.
+    s3 = FakeS3(exists=True, versioning="Enabled")
+    ensure_store(FakeSession(s3), "b", object_lock=True,
+                 object_lock_mode="COMPLIANCE", object_lock_days=400)
+    locks = [c for c in s3.calls if c[0] == "put_object_lock_configuration"]
+    assert locks, "Object Lock must be configured on an existing versioned bucket"
+    rule = locks[0][2]["Rule"]["DefaultRetention"]
+    assert rule["Mode"] == "COMPLIANCE" and rule["Days"] == 400
+
+
+def test_retention_preserves_existing_lifecycle_rules():
+    # A blind PUT would wipe a customer's existing lifecycle rules. The
+    # provisioner must merge: keep unrelated rules, add/replace only ours.
+    existing = [
+        {"ID": "customer-logs-expiry", "Status": "Enabled",
+         "Filter": {"Prefix": "logs/"}, "Expiration": {"Days": 30}},
+        {"ID": "customer-tmp-cleanup", "Status": "Enabled",
+         "Filter": {"Prefix": "tmp/"}, "Expiration": {"Days": 7}},
+    ]
+    s3 = FakeS3(exists=True, versioning="Enabled", lifecycle_rules=existing)
+    ensure_store(FakeSession(s3), "b", retention_days=365)
+    put = [c for c in s3.calls if c[0] == "put_bucket_lifecycle_configuration"][0]
+    ids = {r["ID"] for r in put[2]["Rules"]}
+    assert "customer-logs-expiry" in ids and "customer-tmp-cleanup" in ids, \
+        "existing customer lifecycle rules must survive"
+    assert "sdr-store-retention" in ids, "our retention rule must be added"
+    assert len(put[2]["Rules"]) == 3
 
 
 def test_forbidden_bucket_is_refused_not_created_over():

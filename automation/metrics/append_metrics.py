@@ -63,9 +63,13 @@ def load_facts():
 
 
 POSTURE_SERVICE_KEYS = {
-    "security_hub": "AWS Security Hub",
-    "access_analyzer": "Access Analyzer",
-    "inspector": "Amazon Inspector",
+    # Keys MUST match the service names the collectors actually emit
+    # (automation/collectors/collectors.py _fact(service=...)): securityhub,
+    # accessanalyzer, inspector2 - not security_hub / access_analyzer /
+    # inspector. A mismatch silently drops the telemetry.
+    "securityhub": "AWS Security Hub",
+    "accessanalyzer": "Access Analyzer",
+    "inspector2": "Amazon Inspector",
     "guardduty": "Amazon GuardDuty",
     "backup": "AWS Backup",
     "kms": "AWS Key Management Service",

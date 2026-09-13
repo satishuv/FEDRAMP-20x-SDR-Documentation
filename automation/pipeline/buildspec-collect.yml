@@ -10,10 +10,26 @@ phases:
     runtime-versions:
       python: 3.12
     commands:
-      - pip install --quiet boto3
+      # Pinned to match the repository's CI dependency set (reproducible builds).
+      - pip install --quiet -r requirements-ci.txt
   build:
     commands:
+      # 1. Collect today's read-only facts.
       - python automation/collectors/collect_facts.py
       - |
         LATEST=$(ls -t automation/facts/*.json | head -1)
         aws s3 cp "$LATEST" "s3://$EVIDENCE_BUCKET/facts/$(basename "$LATEST")"
+      # 2. RESTORE the prior metric history so the longitudinal SDR-CSX-KMT /
+      #    FRC-CSX-MOT history accumulates across ephemeral runs. An ephemeral
+      #    CodeBuild run has no prior state on disk; without this restore, every
+      #    run would start an empty history and MOT/KMT would never build up.
+      - |
+        aws s3 cp "s3://$EVIDENCE_BUCKET/metrics/metric-history.json" \
+          automation/metrics/metric-history.json || \
+          echo "No prior metric-history.json in the bucket; starting a new history."
+      # 3. Append today's datapoint per KSI to the (restored) history.
+      - python automation/metrics/append_metrics.py
+      # 4. PERSIST the updated history back to the bucket for the next run.
+      - |
+        aws s3 cp automation/metrics/metric-history.json \
+          "s3://$EVIDENCE_BUCKET/metrics/metric-history.json"

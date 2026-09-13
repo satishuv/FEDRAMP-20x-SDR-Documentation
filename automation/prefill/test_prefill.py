@@ -62,6 +62,21 @@ def test_posture_fact_prefills():
     assert any("guardduty.detector = ENABLED" in t for t in rec["tests"])
 
 
+def test_securityhub_posture_prefills_with_collector_service_name():
+    # The collector emits service="securityhub" (not "security_hub"). This
+    # proves the downstream mapping uses the collector's real name, so the
+    # telemetry is not silently dropped (regression for the service-name drift).
+    ksi_entry = {"services": ["AWS Security Hub"], "checks": []}
+    posture = {"securityhub": [{"service": "securityhub", "check": "enabled",
+                                "status": "ENABLED", "detail": "Security Hub ENABLED",
+                                "collected_at": "2026-09-06T00:00:00+00:00",
+                                "region": "us-east-1"}]}
+    rec = blank_ksi_record()
+    changed, _ = pf.prefill_ksi("KSI-MLA-XXX", rec, ksi_entry, {}, posture)
+    assert changed, "a securityhub posture fact must prefill an AWS Security Hub KSI"
+    assert any("securityhub.enabled = ENABLED" in t for t in rec["tests"])
+
+
 def test_never_touches_status_or_assessment():
     ksi_entry = {
         "services": ["AWS Config"],

@@ -93,7 +93,8 @@ def _versioning_status(s3, bucket):
 
 
 def ensure_store(session, bucket, region=None, object_lock=False,
-                 retention_days=None, dry_run=False):
+                 retention_days=None, dry_run=False,
+                 object_lock_mode="GOVERNANCE", object_lock_days=365):
     """Ensure the durable store bucket exists with versioning ENABLED.
 
     Safety-additive only: creates the bucket if absent, enables versioning if
@@ -112,7 +113,7 @@ def ensure_store(session, bucket, region=None, object_lock=False,
         # us-east-1 must NOT send a LocationConstraint; every other region must.
         if region and region != "us-east-1":
             create_args["CreateBucketConfiguration"] = {"LocationConstraint": region}
-        # Object Lock can only be turned on at creation time.
+        # Object Lock is turned on at creation via ObjectLockEnabledForBucket.
         if object_lock:
             create_args["ObjectLockEnabledForBucket"] = True
         if not dry_run:
@@ -122,12 +123,29 @@ def ensure_store(session, bucket, region=None, object_lock=False,
                        + (" with Object Lock enabled" if object_lock else ""))
     else:
         result.noop(f"bucket '{bucket}' already exists")
-        if object_lock:
-            # Object Lock cannot be enabled after creation on an existing bucket
-            # with objects; surface this rather than silently no-op.
-            result.noop("Object Lock requested but bucket already exists; "
-                        "Object Lock can only be enabled at creation time "
-                        "(recreate the bucket empty to add it)")
+        if object_lock and not dry_run:
+            # Object Lock CAN be enabled on an existing VERSIONED bucket (AWS now
+            # supports this via PutObjectLockConfiguration; versioning is a
+            # prerequisite and is ensured in step 2). Enable it with an explicit
+            # default retention so it is real WORM, not a bare flag.
+            try:
+                s3.put_object_lock_configuration(
+                    Bucket=bucket,
+                    ObjectLockConfiguration={
+                        "ObjectLockEnabled": "Enabled",
+                        "Rule": {"DefaultRetention": {
+                            "Mode": object_lock_mode,
+                            "Days": object_lock_days,
+                        }},
+                    })
+                result.changed(f"enable Object Lock on existing bucket '{bucket}' "
+                               f"with default {object_lock_mode} retention of "
+                               f"{object_lock_days} days")
+            except Exception as e:  # noqa: BLE001
+                code = getattr(e, "response", {}).get("Error", {}).get("Code", type(e).__name__)
+                result.noop(f"could not enable Object Lock on '{bucket}' ({code}); "
+                            "Object Lock requires versioning and appropriate "
+                            "permissions - enable versioning first and retry")
 
     # 2. Enable versioning (the core requested feature). Idempotent.
     current = None
@@ -148,19 +166,40 @@ def ensure_store(session, bucket, region=None, object_lock=False,
     if retention_days is not None:
         if retention_days <= 0:
             raise ValueError("--retention-days must be a positive integer")
-        if not dry_run:
-            s3.put_bucket_lifecycle_configuration(
-                Bucket=bucket,
-                LifecycleConfiguration={"Rules": [{
-                    "ID": "sdr-store-retention",
-                    "Status": "Enabled",
-                    "Filter": {"Prefix": ""},
-                    "NoncurrentVersionExpiration": {"NoncurrentDays": retention_days},
-                    "Expiration": {"Days": retention_days},
-                }]})
-        result.changed(
-            f"set lifecycle retention to {retention_days} days on '{bucket}' "
-            "(current and noncurrent versions)")
+        our_rule = {
+            "ID": "sdr-store-retention",
+            "Status": "Enabled",
+            "Filter": {"Prefix": ""},
+            "NoncurrentVersionExpiration": {"NoncurrentDays": retention_days},
+            "Expiration": {"Days": retention_days},
+        }
+        # PutBucketLifecycleConfiguration REPLACES the entire configuration, so a
+        # blind PUT would wipe a customer's existing lifecycle rules. Fetch the
+        # current rules first and preserve every rule that is not ours; then
+        # replace/add only the sdr-store-retention rule. Safety-additive.
+        existing = []
+        try:
+            resp = s3.get_bucket_lifecycle_configuration(Bucket=bucket)
+            existing = [r for r in (resp.get("Rules") or [])
+                        if r.get("ID") != "sdr-store-retention"]
+        except Exception as e:  # noqa: BLE001
+            code = getattr(e, "response", {}).get("Error", {}).get("Code", "")
+            if code not in ("NoSuchLifecycleConfiguration", ""):
+                # A real read error (AccessDenied, etc.): do not risk clobbering
+                # an unknown existing configuration - surface and skip the write.
+                result.noop(f"could not read existing lifecycle config on '{bucket}' "
+                            f"({code}); skipped retention to avoid overwriting it")
+                existing = None
+        if existing is not None:
+            merged = existing + [our_rule]
+            if not dry_run:
+                s3.put_bucket_lifecycle_configuration(
+                    Bucket=bucket,
+                    LifecycleConfiguration={"Rules": merged})
+            preserved = f", preserving {len(existing)} existing rule(s)" if existing else ""
+            result.changed(
+                f"set lifecycle retention to {retention_days} days on '{bucket}' "
+                f"(current and noncurrent versions){preserved}")
 
     return result
 
@@ -177,11 +216,19 @@ def main(argv=None):
     ap.add_argument("--region", default=None,
                     help="Region to create the bucket in (defaults to profile/env)")
     ap.add_argument("--object-lock", action="store_true",
-                    help="Enable Object Lock (WORM) at bucket creation for "
-                         "write-once tamper-evidence")
+                    help="Enable Object Lock (WORM). Applied at creation for a new "
+                         "bucket, or via PutObjectLockConfiguration on an existing "
+                         "versioned bucket, with a default retention rule")
+    ap.add_argument("--object-lock-mode", default="GOVERNANCE",
+                    choices=["GOVERNANCE", "COMPLIANCE"],
+                    help="Object Lock default retention mode (default GOVERNANCE)")
+    ap.add_argument("--object-lock-days", type=int, default=365,
+                    help="Object Lock default retention period in days (default 365)")
     ap.add_argument("--retention-days", type=int, default=None,
                     help="Optional lifecycle retention in days (provider policy "
-                         "choice; 20x's KSI metric-history window is ~1 year)")
+                         "choice; 20x's KSI metric-history window is ~1 year). "
+                         "This is lifecycle expiry, distinct from Object Lock "
+                         "retention, and it merges with existing lifecycle rules")
     ap.add_argument("--dry-run", action="store_true",
                     help="Report what would change without calling AWS")
     args = ap.parse_args(argv)
@@ -214,6 +261,8 @@ def main(argv=None):
         result = ensure_store(
             session, args.bucket, region=region,
             object_lock=args.object_lock,
+            object_lock_mode=args.object_lock_mode,
+            object_lock_days=args.object_lock_days,
             retention_days=args.retention_days,
             dry_run=args.dry_run)
     except (PermissionError, ValueError) as e:

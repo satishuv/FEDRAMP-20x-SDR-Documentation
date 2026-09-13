@@ -355,6 +355,14 @@ Resources:
                   - s3:PutObject
                 Resource: !Sub "${EvidenceBucket.Arn}/facts/*"
               - Effect: Allow
+                # Restore (Get) the prior metric history and persist (Put) the
+                # updated one, so SDR-CSX-KMT / FRC-CSX-MOT history accumulates
+                # across ephemeral collector runs.
+                Action:
+                  - s3:GetObject
+                  - s3:PutObject
+                Resource: !Sub "${EvidenceBucket.Arn}/metrics/*"
+              - Effect: Allow
                 # The full canonical read-only collector action set
                 # (automation/collectors/collectors.py READ_ONLY_ACTIONS). These
                 # are account-wide describe/list/get calls that do not support

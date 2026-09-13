@@ -13,7 +13,11 @@ read-only collectors and run explicitly.
 - **Bucket versioning enabled** — the core feature. Every write keeps prior
   versions, so history is recoverable and tamper-evident.
 - Optional **Object Lock (WORM)** (`--object-lock`) for write-once
-  tamper-evidence. Object Lock can only be enabled at bucket creation.
+  tamper-evidence, with a real default retention rule (`--object-lock-mode`
+  GOVERNANCE|COMPLIANCE and `--object-lock-days`). Applied at bucket creation for
+  a new bucket, or via PutObjectLockConfiguration on an existing versioned
+  bucket. Object Lock retention is distinct from `--retention-days` lifecycle
+  expiry, which merges with (never replaces) any existing lifecycle rules.
 - Optional **lifecycle retention** (`--retention-days N`) — a provider policy
   choice, not a default.
 

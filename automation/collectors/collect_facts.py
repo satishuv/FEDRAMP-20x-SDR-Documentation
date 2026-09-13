@@ -1,9 +1,12 @@
 # Layer 1 facts collector: execute the collectable checks in registry.json
 # against an AWS account, read-only, and write a timestamped facts store.
 #
-# Read-only by construction: the only AWS calls made are
-# config:DescribeComplianceByConfigRule and sts:GetCallerIdentity. Run with
-# ReadOnly or least-privilege credentials; never with admin credentials.
+# Read-only by construction: every AWS call is a describe/list/get enumerated in
+# automation/collectors/collectors.py READ_ONLY_ACTIONS (Security Hub, Access
+# Analyzer, Inspector, GuardDuty, Config, CloudTrail, S3, IAM, and more), plus
+# sts:GetCallerIdentity. The deployed CollectorRole grants exactly that set and
+# is what enforces read-only behavior in the AWS path. Run with ReadOnly or
+# least-privilege credentials; never with admin credentials.
 #
 # Facts are telemetry, not statuses. This script never writes to the record
 # store and never marks anything Implemented; it produces evidence for a
