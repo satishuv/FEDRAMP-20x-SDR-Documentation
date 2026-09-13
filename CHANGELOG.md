@@ -6,14 +6,36 @@ One project-specific convention: the pinned FedRAMP dataset version is recorded 
 
 ## Unreleased
 
+## 1.1.0, 2026-09-13
+
 Pinned dataset: `2026.07.14.01`
+
+This release freezes the v1 architecture after five rounds of external review. The
+theme is a strict, class-correct submission-readiness engine and an explicit trust
+boundary from authoritative FedRAMP sources through to human signoff and preflight.
+No new subsystem, agent, evidence model, or package format was introduced; these are
+correctness and hardening changes grounded verbatim in the pinned CR26 dataset.
 
 ### Added
 
+- `validate_upstream.py`: validates the pinned dataset against the official rules schema and verifies both the dataset and rules-schema lock hashes; wired as build step 1 and into the daily drift check. `update_sources_lock.py` refreshes both lock entries atomically.
+- Field-level submission readiness: `SDR-CSO-FRR` (7 required items) and `SDR-CSX-KSI` (5 required items) are each gated individually; a justified `N/A` counts, a bare `N/A` or a `TBD`/placeholder does not.
+- Class A applicability throughout: preflight, the assurance-graph builder, and its validator all resolve Class A to its 7 CLA-enumerated KSIs; the CPO required-information set intersects `CPO-CSO-OVR` with the resolved class rule set (Class A carries only `CDS-CSO-PUB` + `MAS-CSO-IIR`); the `CPO-CSO-MTD` metadata gate is class-aware.
+- Structured CPO semantic completeness: `CDS-CSO-PUB`, `CDS-CSO-IRP`, and `MAS-CSO-TPR` are validated against the CR26-enumerated members, so a bare sentence no longer satisfies a rule that enumerates concrete items. `validate_cpo_semantics.py` independently derives the expected `CPO-CSO-OVR` rule set from CR26 and hard-fails on a missing or extra entry.
+- Class A external assessment (`FRC-CLA-ASF`/`FRC-CLA-EAM`): the framework is checked against the approved allowlist (FedRAMP Rev5/Ready, SOC 2 Type II, GovRAMP) and the framework-specific material checklist is enforced.
+- Recognized-assessor identity: `FRC-APP-FIA` requires the assessor's FedRAMP Recognition id; `FRC-APP-USA` freshening requires a Recognized reviewer id and a valid `reviewed_at` date on or after the original assessment.
+- `FRC-CSX-MOT`: availability survivability (`CDS-CSO-AVR`) is a B/C blocker; entirely-missing KSIs are detected; the initial-certification exception is modeled with an explicit boolean+description contract in the profile and enforced in preflight.
+- Signoff input binding: the release manifest hashes the authoritative provider inputs (offering profile, records store) alongside generated artifacts, so a post-signoff input change invalidates the manifest-bound signoff.
+- Evidence sanitization: `xSourceFact` is an allowlisted projection and the integrity digest is computed over that same projection, so recompute stays verifiable without over-exposing environment detail.
+- The CodeBuild pipeline exports the complete Certification Package (`package/**` plus the release manifest), not an SDR-only subset.
 - `automation/exporters/oscal_export.py`: an OSCAL export of the Security Decision Record. It reads a generated SDR JSON and emits an OSCAL Assessment Results document alongside it (`sdr/json/sdr-class-<x>.oscal.json`), so the same verified facts are available in the machine-readable interchange format that agency governance, risk, and compliance tools ingest. It is a pure read-transform-write adapter: it never queries AWS, never runs a determination, passes every status through verbatim (`Not Implemented` stays `not-satisfied`), never invents satisfaction, and skips `TBD` evidence rather than emitting a fake resource. Wired into the build pipeline and `sdr.py`; 7 offline tests. See `docs/oscal-export.md`. The export makes no claim about whether any FedRAMP process requires OSCAL; it simply provides the option.
 - `automation/collectors/evidence_wiring.py`: turns read-only collector facts into schema-valid `ksiEvidence[]` entries (populating the official schema's existing `evidenceType`/`evidenceDescription`/`evidenceLocation`/`evidenceText` fields) so the SDR's evidence array is fed from telemetry instead of left empty. It never changes a status, and when it cannot know the durable artifact URI it emits an obvious `sdr://` placeholder for a human to replace rather than fabricating an https link. 9 offline tests.
 - `examples/shift-left/`: a policy-as-code pre-deploy gate sibling to the SDR framework, matching the AWS Security Assurance Services compliance-engineering demo. An OPA/Rego rule and an equivalent CFN Guard rule enforce S3 TLS-in-transit against terraform-plan JSON; a local runner uses `opa` if present and otherwise a pure-Python evaluator of the same rule, with pass-is-silent / fail-blocks semantics, an `--alert` dev mode, and optional JSON evidence output. It never writes to the record store or sets an SDR status. 8 offline tests.
 - `docs/references/compliance-engineering-control-model.md` and `docs/references/oscal-and-machine-readable-packages.md`: distilled, sourced reference notes positioning the framework within the broader AWS control stack (preventive, detective, responsive, shift-left) and recording OSCAL context (the 2022 AWS OSCAL SSP milestone and RFC-0024), each with primary-source links.
+
+### Changed
+
+- `submission ready` is now strict and field-level rather than satisfied by a populated implementation field, and its definition is enforced by an end-to-end readiness test suite (20 assertions) with adversarial coverage for each hardened rule.
 
 ## 1.0.0, 2026-09-08
 
