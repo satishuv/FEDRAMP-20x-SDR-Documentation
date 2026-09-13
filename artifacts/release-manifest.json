@@ -68,12 +68,11 @@
   "sdr/human-readable/sdr-class-b.txt": "sha256:0acdc1fe064f5aad8bc6c0880b651d94327fcfa8a9070dc5458d8d83f0511bcf",
   "sdr/json/sdr-class-b-extensions.json": "sha256:efed72fcee4e4fcd7e511e833c6522850e3c9dfe2cb6a44fefd28ba109d8e5a9",
   "sdr/json/sdr-class-b.json": "sha256:dd43e02f63546d9576ac3e079fba0c9f7beabe505f4c3a727b1e076ff7267129",
-  "sdr/json/sdr-class-b.oscal.json": "sha256:baf498c49c2a0d3f0fad8c714d92a946d96d636dbea85b6bca311d4015e6e12e",
   "traceability/applicability-decisions.json": "sha256:750a3102d6e0fdbd6d737a532f37a50688096785051656df9f444ccfc6b4cf2e",
   "traceability/assurance-graph.json": "sha256:623458f1104fe879b25aa2ce3d96a91d0a46cdcdec2ff2cb98e67bc94227ea35",
   "traceability/rev5-to-20x-crosswalk.csv": "sha256:54abb349fbf14d1d8ec15da7fe2de5615f132f14309dc3957a81563e5575db43"
  },
- "artifact_count": 21,
+ "artifact_count": 20,
  "release_tag": "v1.1.0-cr26-2026.07.14.01",
  "build": {
   "deterministic": true,

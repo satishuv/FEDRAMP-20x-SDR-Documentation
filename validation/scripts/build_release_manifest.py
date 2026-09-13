@@ -34,7 +34,8 @@ FRAMEWORK_VERSION = "1.1.0"
 ARTIFACT_GLOBS = [
     "sdr/json/sdr-class-{c}.json",
     "sdr/json/sdr-class-{c}-extensions.json",
-    "sdr/json/sdr-class-{c}.oscal.json",
+    # The OSCAL export (sdr-class-{c}.oscal.json) is experimental/reference-only
+    # and excluded from the customer bundle, so it is NOT fingerprinted here.
     "sdr/human-readable/sdr-class-{c}.txt",
     "package/cpo/cpo.json",
     "package/cpo/cpo.md",

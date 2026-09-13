@@ -38,6 +38,28 @@ def main():
     check("an older observation does not replace",
           ap._is_newer(old, newer) is False)
 
+    # Location-less / manual / prefill evidence (no evidenceLocation) is
+    # legitimate and must be preserved verbatim by the upsert - never dropped.
+    manual = {"evidenceType": "Report",
+              "evidenceText": "Manual attestation, reviewed 2026-09-01",
+              "lastUpdated": "2026-09-01"}
+    located = {"evidenceLocation": loc, "evidenceText": "old",
+               "xEvidenceContentHash": "sha256:" + "a" * 64,
+               "collected_at": "2026-09-01T00:00:00+00:00"}
+    merged, _ = ap._upsert_evidence([manual, located], [newer])
+    check("location-less manual evidence is preserved by the upsert",
+          manual in merged)
+    check("located evidence is upserted (newer replaces old)",
+          any(e.get("xEvidenceContentHash") == newer["xEvidenceContentHash"] for e in merged))
+    check("upsert does not drop or duplicate the manual entry",
+          sum(1 for e in merged if e is manual or e == manual) == 1)
+
+    # A brand-new location-less incoming entry is appended, not dropped.
+    merged2, n2 = ap._upsert_evidence([located], [{"evidenceType": "Report",
+                                                   "evidenceText": "new manual"}])
+    check("a location-less incoming entry is appended",
+          any(e.get("evidenceText") == "new manual" for e in merged2) and n2 == 1)
+
     print(f"\n{passed}/{passed + failed} third-party upsert checks passed")
     return 0 if failed == 0 else 1
 
