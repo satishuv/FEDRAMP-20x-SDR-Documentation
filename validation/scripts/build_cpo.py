@@ -85,13 +85,31 @@ def _required_information_map(profile):
     ovr = _find(ds, "CPO-CSO-OVR") or {}
     refs = ovr.get("following_information", []) or []
     provider = profile.get("cpo_required_information", {}) or {}
+
+    # Applicability: CPO-CSO-OVR itself says its referenced rules "may not all
+    # apply to every class/type" and non-applicable information is not required.
+    # The resolved class profile is the authoritative applicable-rule set, so a
+    # referenced rule that is not in this class's profile is not emitted (this is
+    # what keeps Class A - which resolves only CDS-CSO-PUB and MAS-CSO-IIR of the
+    # OVR set - from carrying seven meaningless N/A entries).
+    cls_short = (profile.get("certification_class") or "b").lower()
+    try:
+        cprof = load(os.path.join(BASE, "profiles", f"class-{cls_short}", "profile.json"))
+        applicable_rules = {r["rule_id"] for r in (cprof.get("rules") or [])}
+    except (OSError, ValueError, KeyError):
+        applicable_rules = None  # cannot scope: fall back to emitting all
+
     out = {"cr26_rule": "CPO-CSO-OVR",
            "note": "Each referenced rule's information must appear in the CPO "
-                   "unless the rule does not apply to this class/type.",
+                   "unless the rule does not apply to this class/type. The "
+                   "applicable set is the intersection of CPO-CSO-OVR's "
+                   "referenced rules with this class's resolved rule set.",
            "items": []}
     for ref in refs:
         m = _re.search(r"([A-Z]{3}-[A-Z]{3}-[A-Z]{3})", ref)
         rid = m.group(1) if m else ref
+        if applicable_rules is not None and rid not in applicable_rules:
+            continue  # not applicable to this class/type - omit per CPO-CSO-OVR
         out["items"].append({
             "rule": rid,
             "description": ref,

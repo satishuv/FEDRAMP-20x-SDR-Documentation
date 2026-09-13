@@ -47,11 +47,11 @@
   }
  },
  "inputs": {
-  "profiles/common/offering-profile.json": "sha256:0caeea8fd4965b7890113bbb075cde59f351b275fa14d26844c07b995e4e8aec",
+  "profiles/common/offering-profile.json": "sha256:bac5dce003e12a6a38543c21292285ad35abcb9630239c638c1964ea88388431",
   "sdr/records/records-store.json": "sha256:005fda7b6c262db788be4b80c7d25588c63e7e503eb33cc633d3a6324547f2ed"
  },
  "artifacts": {
-  "package/cpo/cpo.json": "sha256:3f6aec5b9bda97902d2961c2ee47b4d2144419aa8ddf98bfddebcc1ce026717e",
+  "package/cpo/cpo.json": "sha256:54d5f459aba8ace2560f2bde410ac0735ce15f33c8b99019b32c030cc685c471",
   "package/cpo/cpo.md": "sha256:b9589cdfddac4e1e6f64b46bad9230703e5b366d414e1e5b92f0c824c5593c7c",
   "package/events/accepted-vulnerabilities-example.json": "sha256:976ee1c98c7b6ad3198806fa8c8acdb128ce1bffd8a1b58085476fd16bcd2e00",
   "package/events/historical-ver-activity-example.json": "sha256:af7982abac7fece1116a71119e5c2a43909c8e5a82e414194cf4b22a4909681e",

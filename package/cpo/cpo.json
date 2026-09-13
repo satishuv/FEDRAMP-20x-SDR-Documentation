@@ -55,7 +55,7 @@
  },
  "xCpoRequiredInformation": {
   "cr26_rule": "CPO-CSO-OVR",
-  "note": "Each referenced rule's information must appear in the CPO unless the rule does not apply to this class/type.",
+  "note": "Each referenced rule's information must appear in the CPO unless the rule does not apply to this class/type. The applicable set is the intersection of CPO-CSO-OVR's referenced rules with this class's resolved rule set.",
   "items": [
    {
     "rule": "CPO-CSO-MTD",
