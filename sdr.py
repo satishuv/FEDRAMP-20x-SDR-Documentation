@@ -158,6 +158,19 @@ def run(script_path, args=None, label=None):
     return proc.returncode
 
 
+def _validation_gate_only():
+    """Run the VALIDATION_GATE validators (no test suite), quietly, returning 0
+    only if every gate passes. Used as a preflight precondition so a package
+    that fails structural validation can never be reported submission-ready."""
+    failures = 0
+    for rel, _label in VALIDATION_GATE:
+        proc = subprocess.run([sys.executable, os.path.join(BASE, rel)],
+                              cwd=BASE, capture_output=True, text=True)
+        if proc.returncode != 0:
+            failures += 1
+    return 1 if failures else 0
+
+
 def check_dependencies():
     """Refuse to start rather than fail three steps in with an import error."""
     missing = []
@@ -479,6 +492,16 @@ def cmd_preflight(args):
     blockers = []
     warnings = []
 
+    # A package cannot be "submission ready" if it does not even pass the
+    # validation gate (schema, semantic completeness, evidence integrity, review
+    # integrity, assurance graph, package consistency). Run the gate-only path
+    # (validators, no tests) as a hard precondition.
+    out("Preflight precondition: running the validation gate...")
+    if _validation_gate_only() != 0:
+        blockers.append("the validation gate does not pass (schema/semantic/"
+                        "evidence/review/consistency); submission is impossible "
+                        "until `python sdr.py validate` is clean")
+
     def _is_tbd(v):
         return v is None or str(v).strip() == "" or str(v).strip().startswith("TBD") \
             or "placeholder" in str(v).lower() or "has not been provided" in str(v).lower()
@@ -628,19 +651,49 @@ def cmd_preflight(args):
         blob = json.dumps(rec)
         return blob.count("TBD"), blob.count("sdr://placeholder/")
 
+    def _is_unanswered(rec):
+        """An applicable record is UNANSWERED (a submission blocker) when its
+        implementation is still the generic 'has not been provided' placeholder
+        or an empty/TBD implementation. This is different from an honest
+        Not Implemented record that carries a real rationale/risk/owner - FedRAMP
+        allows the latter, but a placeholder is not implementation information."""
+        impl = rec.get("implementation")
+        impl_txt = json.dumps(impl) if impl is not None else ""
+        status = str(rec.get("implementation_status", ""))
+        if not impl or "has not been provided" in impl_txt or "TBD:" in impl_txt:
+            return True
+        # A Not Implemented / Partially Implemented status must carry rationale.
+        if status in ("Not Implemented", "Partially Implemented"):
+            ext = rec.get("extension", {}) or {}
+            has_rationale = any(not _is_tbd(ext.get(k)) for k in
+                                ("customer_risk", "failure_response", "responsibility"))
+            return not has_rationale
+        return False
+
     tbd = placeholders = scoped_records = 0
+    unanswered = []
     for rid, rec in (records.get("frr", {}) or {}).items():
         if rid in applicable_frr:
             t, p = _count_markers(rec); tbd += t; placeholders += p; scoped_records += 1
+            if _is_unanswered(rec):
+                unanswered.append(rid)
     for kid, rec in (records.get("ksi", {}) or {}).items():
         if kid in applicable_ksi:
             t, p = _count_markers(rec); tbd += t; placeholders += p; scoped_records += 1
+            if _is_unanswered(rec):
+                unanswered.append(kid)
     if tbd:
         warnings.append(f"{tbd} unresolved TBD placeholder(s) across {scoped_records} "
                         f"records applicable to Class {cls.upper()}")
     if placeholders:
         warnings.append(f"{placeholders} unresolved sdr://placeholder/ evidence URI(s) "
                         f"in applicable records")
+    if unanswered:
+        sample = ", ".join(unanswered[:8])
+        blockers.append(f"{len(unanswered)} applicable requirement(s) have no "
+                        f"implementation information (still placeholder/TBD, not an "
+                        f"honest Not-Implemented with rationale): {sample}"
+                        + (" ..." if len(unanswered) > 8 else ""))
 
     # Scan the GENERATED submission artifacts, not merely the input profile. A
     # generated CPO carrying template markers, placeholder IDs/URLs, or recorded
@@ -675,7 +728,10 @@ def cmd_preflight(args):
         req = comp.get("required_for_initial_package")
         required_here = req is True or (isinstance(req, str) and cls.upper() in req.upper())
         if required_here and comp.get("status") in ("partial", "not_implemented"):
-            warnings.append(f"required package component '{name}' is {comp.get('status')}")
+            blockers.append(f"required package component '{name}' is "
+                            f"'{comp.get('status')}' (a required component must be "
+                            "complete, or its missing portion proven non-applicable "
+                            "to this class, before submission)")
 
     # Package-level signoff MUST reference the current release-manifest hash.
     # One approved node in the assurance review register is NOT package approval.

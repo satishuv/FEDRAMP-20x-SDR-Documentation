@@ -38,9 +38,9 @@
   "certification_data_sharing": {
    "cr26_rules": ["CDS-CSO-PUB", "CDS-CSO-SVC", "CDS-CSO-UTC", "CDS-CSO-CBF", "CDS-CSO-AVR"],
    "required_for_initial_package": true,
-   "status": "partial",
+   "status": "modeled_as_references",
    "generated_artifact": null,
-   "note": "CDS-CSO-CBF (JSON and human-readable stay in sync) is supported by the paired SDR outputs. CDS-CSO-UTC requires a FedRAMP-compatible trust center and CDS-CSO-AVR requires a Class C availability service; neither is implemented by this repository, and a public GitHub Pages site is not a trust center."
+   "note": "CDS-CSO-CBF (JSON and human-readable stay in sync) is supported by the paired SDR outputs. CDS-CSO-UTC (trust center) is modeled as the provider-supplied trust_center_uri, and CDS-CSO-AVR (availability reporting: Class A SHOULD, Class B and C MUST - a 30-day current+historical availability web service in both human- and machine-readable formats, available when the primary offering is down) is modeled as the provider-supplied availability_reporting block. This repository references those provider-hosted services rather than hosting them; `sdr.py preflight` blocks a B/C submission until they are populated. A public GitHub Pages site is not a trust center."
   },
   "external_assessment_materials": {
    "cr26_rules": ["FRC-CLA-ASF", "FRC-CLA-EAM", "FRC-CLA-IVV"],
