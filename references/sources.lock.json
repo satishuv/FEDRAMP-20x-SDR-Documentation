@@ -10,7 +10,8 @@
    "pinned_path": "references/fedramp-consolidated-rules.json",
    "sha256": "135707003f0aaa5ceb10d7d32c2681e5b1585a4eaf4403d0d135837787e5ae8e",
    "status": "current",
-   "notes": "The official guidance site states AI agents and automation must use the machine-readable repositories, not the rendered HTML at fedramp.gov."
+   "notes": "The official guidance site states AI agents and automation must use the machine-readable repositories, not the rendered HTML at fedramp.gov.",
+   "upstream_commit": "58efbf3d898496dd4a3a419eba78e458bbad5cb6"
   },
   "sdr_schema": {
    "description": "Official FedRAMP Security Decision Record JSON schema.",
@@ -103,6 +104,15 @@
    "status": "final",
    "upstream": "https://pages.nist.gov/800-63-4/",
    "notes": "SP 800-63-4 is final and supersedes SP 800-63-3. New normative material must not cite 800-63-3 as current; a validator regression check guards against a stale reference."
+  },
+  "cr26_rules_schema": {
+   "description": "Official FedRAMP Consolidated Rules JSON Schema; source of truth for the dataset structure. The pinned dataset is validated against this before any catalog is derived.",
+   "upstream_repo": "https://github.com/FedRAMP/rules",
+   "upstream_raw": "https://raw.githubusercontent.com/FedRAMP/rules/main/schemas/fedramp-consolidated-rules.schema.json",
+   "upstream_commit": "58efbf3d898496dd4a3a419eba78e458bbad5cb6",
+   "pinned_path": "references/fedramp-consolidated-rules.schema.json",
+   "sha256": "ab0d267979ef7c3dd97cf253326d19725b6e945f3784364a8491091a47bdc147",
+   "status": "current"
   }
  }
 }

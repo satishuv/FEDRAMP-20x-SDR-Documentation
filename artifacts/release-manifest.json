@@ -17,6 +17,10 @@
    "version": "0.1.4",
    "sha256": "0fa563b23e48f8f670ac8fe3d87ac49bb7099f68e1e54a17ba03424e787d60e0"
   },
+  "cr26_rules_schema": {
+   "version": null,
+   "sha256": "ab0d267979ef7c3dd97cf253326d19725b6e945f3784364a8491091a47bdc147"
+  },
   "historical_ver_activity_schema": {
    "version": "0.1.1",
    "sha256": "51011860138687f25b858b840eefe2b077f31a183ba5d625c461ac296c58df9f"
