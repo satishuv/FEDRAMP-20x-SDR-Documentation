@@ -113,6 +113,7 @@ TEST_SUITE = [
     "automation/collectors/test_evidence_lifecycle.py",
     "examples/shift-left/test_run_policy.py",
     "automation/sdrscan/test_checks.py",
+    "validation/scripts/test_submission_readiness.py",
 ]
 
 REQUIRED_MODULES = [
@@ -829,6 +830,7 @@ def main(argv=None):
 
 if __name__ == "__main__":
     sys.exit(main())
+
 
 
 
