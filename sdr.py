@@ -492,6 +492,10 @@ def cmd_preflight(args):
     cls = current_class().lower()
     blockers = []
     warnings = []
+    # Loaded once, early, because both the MOT gate and the applicable-record
+    # scan need them.
+    class_profile = load_json(os.path.join(BASE, "profiles", f"class-{cls}", "profile.json")) or {}
+    ksi_profile = load_json(os.path.join(BASE, "profiles", "common", "ksi-profile.json")) or {}
 
     # A package cannot be "submission ready" if it does not even pass the
     # validation gate (schema, semantic completeness, evidence integrity, review
@@ -605,10 +609,19 @@ def cmd_preflight(args):
                         blockers.append(f"Class {cls.upper()}: FedRAMP independent assessment "
                                         f"{completed} is older than 9 months; FRC-APP-USA "
                                         "freshening no longer applies - a new assessment is required")
-                    elif age > _dt.timedelta(days=91):  # >3 months: needs freshening
-                        warnings.append(f"Class {cls.upper()}: FedRAMP independent assessment "
-                                        f"{completed} is older than 3 months (FRC-APP-FIA); a "
-                                        "FRC-APP-USA freshening review by a Recognized assessor is required")
+                    elif age > _dt.timedelta(days=91):  # >3 months: needs a recorded freshening
+                        fr = fia.get("freshening") or {}
+                        basis = str(fia.get("freshness_basis", ""))
+                        fresh_ok = (basis == "freshened"
+                                    and not _is_tbd(fr.get("reviewed_at"))
+                                    and not _is_tbd(fr.get("reviewed_by"))
+                                    and not _is_tbd(fr.get("changes_reviewed_reference")))
+                        if not fresh_ok:
+                            blockers.append(f"Class {cls.upper()}: FedRAMP independent assessment "
+                                            f"{completed} is older than 3 months and has no valid "
+                                            "FRC-APP-USA freshening review recorded "
+                                            "(fedramp_independent_assessment.freshening with "
+                                            "reviewed_at/reviewed_by/changes_reviewed_reference)")
             except ValueError:
                 blockers.append(f"Class {cls.upper()}: FIA completed_at not a valid date: {completed}")
         # CPO-CSO-OSA: B/C MUST include the assessor overall summary in the CPO.
@@ -631,9 +644,9 @@ def cmd_preflight(args):
             elif _is_tbd(hist):
                 blockers.append(f"Class {cls.upper()}: availability_reporting.history_days not set (CDS-CSO-AVR: >= 30)")
             if avr.get("available_when_primary_unavailable") is not True:
-                warnings.append(f"Class {cls.upper()}: availability service must remain available when "
-                                "the primary offering is down (CDS-CSO-AVR); confirm and set "
-                                "available_when_primary_unavailable=true (human-verified)")
+                blockers.append(f"Class {cls.upper()}: the availability service MUST remain "
+                                "available when the primary offering is down (CDS-CSO-AVR); "
+                                "set available_when_primary_unavailable=true (human-verified)")
     elif cls == "a" and avr_missing:
         warnings.append("Class A: availability_reporting is a SHOULD (CDS-CSO-AVR); not set")
 
@@ -642,20 +655,41 @@ def cmd_preflight(args):
     # Distinct from SDR-CSX-KMT formatting; this is a duration requirement.
     mot_min_days = {"c": 183, "d": 548}.get(cls)
     if mot_min_days:
+        import datetime as _d2
+        today = _d2.date.today()
+        # FRC-CSX-MOT applies to ALL KSIs. Class C/D resolve all 46.
+        mot_ksis = {k.get("ksi_id") for k in ksi_profile.get("indicators", [])}
+        # Initial-certification exception: if the service has not operated with
+        # metrics long enough, the provider needs mechanisms in place and a
+        # recorded commitment to meet the requirement going forward.
+        exc = offering.get("metric_history_exception") or {}
+        exc_valid = (exc.get("mechanisms_in_place") is True
+                     and exc.get("commitment_to_meet_mot") is True
+                     and not _is_tbd(exc.get("operating_since"))
+                     and not _is_tbd(exc.get("responsible_official")))
         history = load_json(os.path.join(BASE, "automation", "metrics", "metric-history.json"))
-        if not history:
-            blockers.append(f"Class {cls.upper()}: no KSI metric history found "
-                            f"(FRC-CSX-MOT MUST: persistent-validation history over at "
-                            f"least {'6' if cls == 'c' else '18'} months for all KSIs)")
+        per = (history.get("ksis", history) if isinstance(history, dict) else {}) or {}
+        if exc_valid:
+            # Exception path: require mechanisms + current validation data
+            # (at least one recent datapoint per KSI), not 6 months.
+            missing_now = [k for k in mot_ksis if not (isinstance(per.get(k), list) and per.get(k))]
+            if missing_now:
+                blockers.append(f"Class {cls.upper()}: initial-certification MOT exception is "
+                                f"recorded, but {len(missing_now)} KSI(s) have no current "
+                                "validation datapoint yet (FRC-CSX-MOT: mechanisms must be "
+                                "operational and producing data)")
+        elif not history:
+            blockers.append(f"Class {cls.upper()}: no KSI metric history found (FRC-CSX-MOT "
+                            f"MUST: {'6' if cls == 'c' else '18'} months for ALL KSIs, OR a "
+                            "recorded initial-certification exception with mechanisms in place "
+                            "and a commitment to meet the requirement)")
         else:
-            per = history.get("ksis", history) if isinstance(history, dict) else {}
+            # Missing KSIs (in scope but absent from history) are blockers.
+            missing = sorted(mot_ksis - set(per))
             short = []
-            # Compute span per KSI from datapoint dates.
-            import datetime as _d2
-            today = _d2.date.today()
-            for kid, entries in (per.items() if isinstance(per, dict) else []):
+            for kid in mot_ksis & set(per):
                 dates = []
-                for e in (entries if isinstance(entries, list) else []):
+                for e in (per.get(kid) or []):
                     ds_ = (e or {}).get("date") if isinstance(e, dict) else None
                     if ds_:
                         try:
@@ -664,10 +698,15 @@ def cmd_preflight(args):
                             pass
                 if not dates or (today - min(dates)) < _d2.timedelta(days=mot_min_days):
                     short.append(kid)
+            if missing:
+                blockers.append(f"Class {cls.upper()}: {len(missing)} in-scope KSI(s) are "
+                                f"entirely absent from the metric history (FRC-CSX-MOT covers "
+                                f"ALL KSIs): {', '.join(missing[:8])}"
+                                + (" ..." if len(missing) > 8 else ""))
             if short:
                 blockers.append(f"Class {cls.upper()}: {len(short)} KSI(s) lack "
-                                f"{'6' if cls == 'c' else '18'} months of persistent-"
-                                f"validation history (FRC-CSX-MOT)")
+                                f"{'6' if cls == 'c' else '18'} months of persistent-validation "
+                                "history (FRC-CSX-MOT; or record an initial-certification exception)")
     elif cls in ("a", "b"):
         # A MAY, B SHOULD - advisory only.
         history = load_json(os.path.join(BASE, "automation", "metrics", "metric-history.json"))
@@ -681,46 +720,75 @@ def cmd_preflight(args):
     # would report TBDs in rules that do not apply (e.g. Class A resolves far
     # fewer rules than the file contains), which is misleading.
     records = load_json(os.path.join(BASE, "sdr", "records", "records-store.json")) or {}
-    class_profile = load_json(os.path.join(BASE, "profiles", f"class-{cls}", "profile.json")) or {}
     applicable_frr = {r.get("rule_id") for r in class_profile.get("rules", [])}
-    ksi_profile = load_json(os.path.join(BASE, "profiles", "common", "ksi-profile.json")) or {}
-    applicable_ksi = {k.get("ksi_id") for k in ksi_profile.get("indicators", [])}
+    # Class A resolves only the 7 CLA-enumerated KSIs, not all 46. Use the
+    # class-A profile's enumeration (the same source the SDR validator trusts)
+    # so preflight does not falsely block on the ~39 KSIs that do not apply to A.
+    if cls == "a":
+        class_a_ksis = (class_profile.get("meta", {}) or {}).get("class_a_ksis", {})
+        applicable_ksi = set(class_a_ksis.keys()) if class_a_ksis else set()
+    else:
+        applicable_ksi = {k.get("ksi_id") for k in ksi_profile.get("indicators", [])}
 
     def _count_markers(rec):
         blob = json.dumps(rec)
         return blob.count("TBD"), blob.count("sdr://placeholder/")
 
-    def _is_unanswered(rec):
-        """An applicable record is UNANSWERED (a submission blocker) when its
-        implementation is still the generic 'has not been provided' placeholder
-        or an empty/TBD implementation. This is different from an honest
-        Not Implemented record that carries a real rationale/risk/owner - FedRAMP
-        allows the latter, but a placeholder is not implementation information."""
-        impl = rec.get("implementation")
-        impl_txt = json.dumps(impl) if impl is not None else ""
-        status = str(rec.get("implementation_status", ""))
-        if not impl or "has not been provided" in impl_txt or "TBD:" in impl_txt:
-            return True
-        # A Not Implemented / Partially Implemented status must carry rationale.
-        if status in ("Not Implemented", "Partially Implemented"):
-            ext = rec.get("extension", {}) or {}
-            has_rationale = any(not _is_tbd(ext.get(k)) for k in
-                                ("customer_risk", "failure_response", "responsibility"))
-            return not has_rationale
-        return False
+    def _answered(v):
+        """A required field is answered when it has real content: non-empty and
+        not a TBD/placeholder. An explicit justified N/A ('N/A:' or 'Not
+        applicable') counts as answered - FedRAMP allows a justified
+        non-implementation - but a bare placeholder does not."""
+        if isinstance(v, list):
+            return any(_answered(x) for x in v)
+        s = str(v or "").strip()
+        if not s:
+            return False
+        if s.startswith("TBD") or "has not been provided" in s \
+                or "has not been performed" in s or s.startswith("sdr://placeholder/"):
+            return False
+        return True
+
+    def _frr_gaps(rec):
+        """Missing required SDR-CSO-FRR items for one FRR record (7 items;
+        rule-specific artifacts are 'if applicable' so not gated)."""
+        ext = rec.get("extension", {}) or {}
+        checks = {
+            "implementation/risk": rec.get("implementation"),
+            "verification": ext.get("verification"),
+            "validation": rec.get("validation"),
+            "independent_verification": ext.get("independent_verification"),
+            "independent_validation": ext.get("independent_validation"),
+            "responses": ext.get("assessor_responses"),
+        }
+        return [k for k, v in checks.items() if not _answered(v)]
+
+    def _ksi_gaps(rec):
+        """Missing required SDR-CSX-KSI items for one KSI record (5 items)."""
+        ext = rec.get("extension", {}) or {}
+        checks = {
+            "measures": rec.get("implementation") or ext.get("measures"),
+            "cycle": ext.get("operating_cycle") or ext.get("cycle"),
+            "measures_verification": ext.get("measures_verification"),
+            "automation_verification": ext.get("automation_verification"),
+            "validation": rec.get("validation"),
+        }
+        return [k for k, v in checks.items() if not _answered(v)]
 
     tbd = placeholders = scoped_records = 0
     unanswered = []
     for rid, rec in (records.get("frr", {}) or {}).items():
         if rid in applicable_frr:
             t, p = _count_markers(rec); tbd += t; placeholders += p; scoped_records += 1
-            if _is_unanswered(rec):
-                unanswered.append(rid)
+            gaps = _frr_gaps(rec)
+            if gaps:
+                unanswered.append(f"{rid} (missing: {','.join(gaps)})")
     for kid, rec in (records.get("ksi", {}) or {}).items():
         if kid in applicable_ksi:
             t, p = _count_markers(rec); tbd += t; placeholders += p; scoped_records += 1
-            if _is_unanswered(rec):
-                unanswered.append(kid)
+            gaps = _ksi_gaps(rec)
+            if gaps:
+                unanswered.append(f"{kid} (missing: {','.join(gaps)})")
     if tbd:
         warnings.append(f"{tbd} unresolved TBD placeholder(s) across {scoped_records} "
                         f"records applicable to Class {cls.upper()}")
@@ -746,10 +814,15 @@ def cmd_preflight(args):
         if "placeholder" in str(si.get(field, "")).lower():
             cpo_markers.append(f"CPO {field} is a placeholder URL")
     assessor = cpo.get("assessor", {}) or {}
-    if assessor.get("assessorID") == "000000":
+    # Class A FedRAMP assessment is MAY (FRC-APP-FIA), so a placeholder assessor
+    # id does not block Class A; it blocks B/C/D where the assessment is MUST.
+    if assessor.get("assessorID") == "000000" and cls != "a":
         cpo_markers.append("CPO assessorID is the 000000 placeholder")
     sp = cpo.get("serviceProperties", {}) or {}
     for key in ("trustCenter", "secureConfigurationGuidance"):
+        # The Secure Configuration Guide applies to Class B/C/D, not A.
+        if key == "secureConfigurationGuidance" and cls == "a":
+            continue
         url = (sp.get(key) or {}).get("url", "")
         if "placeholder" in str(url).lower() or "example" in str(url).lower():
             cpo_markers.append(f"CPO {key} is a placeholder URL")
