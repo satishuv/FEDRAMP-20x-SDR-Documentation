@@ -59,7 +59,7 @@
   "package/events/vulnerability-detail-report-example.json": "sha256:f0098b2efbb1a276df48b8509f48408f8421ec28d4c5815ee525531c0c773897",
   "package/ocr/ocr-example.json": "sha256:9c5686660493baeca002a058fc3d37446472cb7ca05cd80b0f1f76421649e314",
   "package/ocr/ocr-example.md": "sha256:5121f3e692fee687be986182af2059b22174e6bd1eca7ef39963d67d21d054cf",
-  "package/scg/secure-configuration-guide.md": "sha256:ee04320be6d203ff453602723a17cfd4145a444f2e9715b63027b7c44dd219a8",
+  "package/scg/secure-configuration-guide.md": "sha256:e33594964ad23ab3abef5798814c37c39fdadd3157258c5c23b76f70eab156d6",
   "sdr/human-readable/sdr-class-b.txt": "sha256:0acdc1fe064f5aad8bc6c0880b651d94327fcfa8a9070dc5458d8d83f0511bcf",
   "sdr/json/sdr-class-b-extensions.json": "sha256:02b1c8b48c90b40e924613c1b51357cee5d1a93bdebf9e526116bd75c1f30f2b",
   "sdr/json/sdr-class-b.json": "sha256:3f492ecd76a8a229a923c63ed05ad08c4b0f81e43b918795974b024dd0b906e3",
