@@ -20,7 +20,7 @@ Because the shipped template has thousands of open items, and saying so is the c
 
 ## Why does the validator show a FAIL but say "hard failures: 0"?
 
-That is `ksi_test_minimums`, and it is expected on a fresh clone. `FRC-CSX-VVK` requires automated validation methods per indicator and a template has none yet. It is a soft failure during authoring and a hard failure at release, so you can build while you work without anyone being tempted to disable the check. Detail in [validation](validation.md#the-one-expected-failure).
+That is `ksi_test_minimums`, and it is expected on a fresh clone. `FRC-CSX-VVK` sets a per-indicator automated-method target that rises by class, and a template has none yet. At Class B the force is `SHOULD`, so it is an advisory (soft) failure, not a hard one; it becomes a hard failure at Class C and D where the force is `MUST`. `python sdr.py release` does not turn the Class B `SHOULD` into a FedRAMP `MUST`. On a fresh Class B clone you will also see `evidence_linkage_for_populated_musts` as a second advisory. Detail in [validation](validation.md#the-one-expected-failure).
 
 ## Can I edit the generated JSON directly?
 

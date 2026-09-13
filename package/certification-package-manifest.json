@@ -91,10 +91,10 @@
  },
  "interoperability_exports": {
   "oscal": {
-   "status": "implemented",
+   "status": "experimental",
    "generated_artifact": "sdr/json/sdr-class-<class>.oscal.json",
    "required": false,
-   "note": "No CR26 rule makes OSCAL the native 20x SDR submission format. This is a derived interoperability export only, not a FedRAMP 20x submission artifact."
+   "note": "EXPERIMENTAL, reference/interoperability only. No CR26 rule makes OSCAL the native 20x SDR submission format; this is a derived export, not a FedRAMP 20x submission artifact, and it is NOT validated against the NIST OSCAL schema. Excluded from the customer submission bundle until schema-validated against a real consuming GRC tool."
   }
  }
 }
