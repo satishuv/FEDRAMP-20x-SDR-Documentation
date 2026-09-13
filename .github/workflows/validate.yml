@@ -27,23 +27,7 @@ jobs:
         run: pip install --quiet -r requirements-ci.txt
       - name: Regenerate all deliverables
         run: |
-          python validation/scripts/build_catalogs.py
-          python validation/scripts/build_notes.py
-          python validation/scripts/build_profiles.py
-          python validation/scripts/build_collector_registry.py
-          python validation/scripts/build_sdr.py
-          python validation/scripts/build_cpo.py
-          python validation/scripts/build_ocr.py
-          python validation/scripts/build_scg.py
-          python validation/scripts/build_events.py
-          python automation/exporters/oscal_export.py
-          python validation/scripts/build_docx.py
-          python validation/scripts/build_crosswalk.py
-          python validation/scripts/build_applicability_decisions.py
-          python validation/scripts/build_assurance_graph.py
-          python validation/scripts/build_release_manifest.py
-          python validation/scripts/build_reports.py
-          python validation/scripts/build_visualization.py
+          python sdr.py build
       - name: Refuse hand-edited generated files
         run: |
           git diff --exit-code -- . ':(exclude)*.docx' || {

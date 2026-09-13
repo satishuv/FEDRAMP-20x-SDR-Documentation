@@ -19,18 +19,12 @@ phases:
     runtime-versions:
       python: 3.12
     commands:
-      - pip install --quiet jsonschema referencing python-docx
+      - pip install --quiet -r requirements-ci.txt
   build:
     commands:
-      - python validation/scripts/build_catalogs.py
-      - python validation/scripts/build_notes.py
-      - python validation/scripts/build_profiles.py
-      - python validation/scripts/build_collector_registry.py
-      - python validation/scripts/build_sdr.py
-      - python validation/scripts/build_docx.py
-      - python validation/scripts/build_crosswalk.py
+      - python sdr.py build
       - git diff --exit-code -- . ':(exclude)*.docx' || { echo "FAIL. Generated outputs differ from committed files. Never edit generated files by hand; edit sdr/records/records-store.json and regenerate."; exit 1; }
-      - python validation/scripts/validate_sdr.py
+      - python sdr.py validate --no-tests
       - python automation/sdrscan/sdrscan.py --write-catalog
       - git diff --exit-code -- automation/sdrscan/check-catalog.json || { echo "FAIL. check-catalog.json is out of date with checks.py. Run: python automation/sdrscan/sdrscan.py --write-catalog"; exit 1; }
       - python automation/sdrscan/sdrscan.py --output-formats json,csv,html,txt --only-fails --no-colour --ignore-exit-code-3

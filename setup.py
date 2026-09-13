@@ -159,7 +159,13 @@ def main():
     if code == 0:
         out("The build gate passed (0 hard failures). Open items are expected "
             "on a fresh record; they are your fill-in list, not errors.")
-    return 0  # onboarding succeeded even if the template has open items
+        return 0
+    # A genuine build or validation failure must NOT be masked as success.
+    # Open readiness findings do not raise this code (cmd_all returns 1 only on
+    # a build error or a validation HARD failure), so a nonzero here is real.
+    out("The build/validation step FAILED. Fix the cause above before relying "
+        "on the generated package.")
+    return code
 
 
 if __name__ == "__main__":

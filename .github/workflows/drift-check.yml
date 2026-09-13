@@ -110,42 +110,41 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -e
-          pip install --quiet jsonschema referencing python-docx
+          pip install --quiet -r requirements-ci.txt
           cp references/fedramp-consolidated-rules.json /tmp/dataset-old.json
           curl -sL --max-time 60 \
             "https://raw.githubusercontent.com/FedRAMP/rules/main/fedramp-consolidated-rules.json" \
             -o references/fedramp-consolidated-rules.json
+          # Also refresh the official rules schema (item 1: keep the schema pinned
+          # and validated on every upstream adoption).
+          curl -sL --max-time 60 \
+            "https://raw.githubusercontent.com/FedRAMP/rules/main/schemas/fedramp-consolidated-rules.schema.json" \
+            -o references/fedramp-consolidated-rules.schema.json
           NEWVER=$(python -c "import json;print(json.load(open('references/fedramp-consolidated-rules.json'))['info']['version'])")
-          # Report which rules materially changed (force / applicability /
-          # statement) between the old and new dataset, for the PR body.
+          UPSTREAM_SHA=$(git ls-remote https://github.com/FedRAMP/rules main | cut -f1)
+          # Report material rule + KSI changes for the PR body.
           python validation/scripts/dataset_diff.py /tmp/dataset-old.json \
             references/fedramp-consolidated-rules.json --json /tmp/dataset-diff.json \
             | tee /tmp/dataset-diff.txt
-          # Compute downstream impact on THIS provider's package: which classes,
-          # records, and generated outputs each changed rule affects, and which
-          # need human review. Attached to the PR alongside the raw diff.
           python validation/scripts/change_impact.py --diff /tmp/dataset-diff.json \
             --json /tmp/change-impact.json \
             | tee /tmp/change-impact.txt
-          # Bump the profile dataset_version so the new dataset_version_agreement
-          # gate passes; build_profiles derives it from the dataset on rebuild.
-          python validation/scripts/build_catalogs.py
-          python validation/scripts/build_notes.py
-          python validation/scripts/build_profiles.py
-          python validation/scripts/build_collector_registry.py
-          python validation/scripts/build_sdr.py
-          python validation/scripts/build_docx.py
-          python validation/scripts/build_crosswalk.py
-          python validation/scripts/validate_sdr.py
+          # Generate the proposed source lock as PART of the reviewable PR, so
+          # the new file and the lock agree (do NOT disable the lock check).
+          python validation/scripts/update_sources_lock.py --upstream-commit "$UPSTREAM_SHA"
+          # Regenerate the COMPLETE package (one build definition) and run the
+          # full validation suite - not a partial script list.
+          python sdr.py build
+          python sdr.py validate --no-tests
           BRANCH="drift/dataset-$NEWVER"
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git checkout -b "$BRANCH"
           git add -- . ':(exclude)*.docx'
-          git commit -m "chore: regenerate deliverables for CR26 dataset $NEWVER"
+          git commit -m "chore: adopt CR26 dataset $NEWVER (lock + full regenerate)"
           git push -u origin "$BRANCH" || { echo "branch may already exist"; exit 0; }
           DIFF_SUMMARY=$(cat /tmp/dataset-diff.txt 2>/dev/null || echo "(diff unavailable)")
           IMPACT_SUMMARY=$(cat /tmp/change-impact.txt 2>/dev/null || echo "(impact unavailable)")
-          gh pr create --title "CR26 dataset update: regenerate to $NEWVER" \
-            --body "$(printf 'The pinned CR26 dataset drifted from upstream. This PR pulls the new dataset and regenerates every deliverable deterministically.\n\n## Material rule changes (force / applicability / statement)\n```\n%s\n```\n\n## Downstream impact on this package\n```\n%s\n```\n\nREVIEW the requirement-text diff and the impact report before merging: confirm which rules changed, which classes/records/outputs are affected, and whether any provider records need revisiting. No status was changed and no assessment was written.' "$DIFF_SUMMARY" "$IMPACT_SUMMARY")" \
+          gh pr create --title "CR26 dataset update: adopt $NEWVER" \
+            --body "$(printf 'The pinned CR26 dataset drifted from upstream. This PR validates the new dataset against the official rules schema, updates the source lock (version/hash/upstream commit), and regenerates the COMPLETE package via `python sdr.py build` + `python sdr.py validate`.\n\n## Material rule and KSI changes\n```\n%s\n```\n\n## Downstream impact on this package\n```\n%s\n```\n\nREVIEW the diff and impact before merging. No status was changed and no assessment was written.' "$DIFF_SUMMARY" "$IMPACT_SUMMARY")" \
             || echo "PR may already exist for this dataset version."
