@@ -145,6 +145,32 @@ def test_register_rejects_non_adapter():
     raise AssertionError("register_adapter should reject a non-adapter")
 
 
+def test_real_collector_fact_shape_preserves_timestamp():
+    # REGRESSION: the live AWS collector (collectors._fact) emits collected_at,
+    # NOT observed_at. Feed the ACTUAL collector fact shape through
+    # fact_to_evidence and confirm the collection timestamp survives - both as
+    # a populated lastUpdated and inside the sanitized xSourceFact. Before the
+    # fix, collected_at was dropped by the allowlist, so lastUpdated came back
+    # empty and the digest did not cover the timestamp.
+    try:
+        import collectors as col
+        real_fact = col._fact("s3", "public_access_block", "OBSERVED",
+                               "All buckets block public access", "us-east-1")
+    except Exception:
+        # Fall back to the documented shape if collectors can't import offline.
+        real_fact = {"service": "s3", "check": "public_access_block",
+                     "status": "OBSERVED", "detail": "x", "region": "us-east-1",
+                     "collected_at": "2026-09-14T00:00:00+00:00"}
+    assert "collected_at" in real_fact and "observed_at" not in real_fact
+    ev = ew.fact_to_evidence(real_fact)
+    assert ev is not None
+    assert ev["lastUpdated"], "lastUpdated must be populated from collected_at"
+    assert ev["lastUpdated"] == str(real_fact["collected_at"])[:10]
+    # collected_at must be carried in the sanitized source fact so the digest
+    # covers it and a reviewer can recompute.
+    assert ev["xSourceFact"].get("collected_at") == real_fact["collected_at"]
+
+
 def _run_direct():
     fns = [g for n, g in sorted(globals().items()) if n.startswith("test_") and callable(g)]
     for fn in fns:

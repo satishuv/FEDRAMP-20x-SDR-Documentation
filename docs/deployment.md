@@ -7,7 +7,7 @@ This framework is a local, offline generator. Running it needs no cloud account 
 ```bash
 git clone https://github.com/satishuv/FEDRAMP-20x-SDR-Documentation.git
 cd FEDRAMP-20x-SDR-Documentation
-pip install jsonschema referencing python-docx
+pip install -r requirements.txt
 python sdr.py all
 ```
 

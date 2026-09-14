@@ -128,7 +128,7 @@ flowchart TB
 
     subgraph evidence["The evidence loop, daily"]
         direction LR
-        COLL["Facts collector<br/>two read-only AWS calls,<br/>refuses admin credentials"] --> EV["Evidence store<br/>timestamped facts,<br/>never committed"]
+        COLL["Facts collector<br/>enumerated read-only AWS calls,<br/>refuses admin credentials"] --> EV["Evidence store<br/>timestamped facts,<br/>never committed"]
         EV --> READ["You read the facts<br/>and decide what<br/>they demonstrate"]
     end
 
@@ -161,7 +161,7 @@ Notice where the humans sit. Approval before publication, judgment between a col
 
 **The validator does not trust the builders.** `validate_sdr.py` re-derives every statement, name, force level, and family expansion from the dataset through its own resolution path, then compares against what the builders produced. A bug in a builder cannot pass validation just because the validator shares its assumptions. This is the check that makes the traceability claim real rather than aspirational.
 
-**One editable surface, enforced.** Continuous integration regenerates everything and fails if any generated file differs from what the pipeline produces. That converts "please do not hand-edit the outputs" from a convention into a build error.
+**Provider-owned inputs, enforced.** Continuous integration regenerates everything and fails if any generated file differs from what the pipeline produces. That converts "please do not hand-edit the outputs" from a convention into a build error.
 
 **Determinism, deliberately.** Generated JSON, text, and CSV carry no run timestamps and are byte-identical across runs of unchanged inputs, verified by double-run hash comparison. Anyone can regenerate your package and confirm it matches what you shipped. Word files are the exception: their zip container embeds file-entry timestamps, so bytes differ while content is identical.
 

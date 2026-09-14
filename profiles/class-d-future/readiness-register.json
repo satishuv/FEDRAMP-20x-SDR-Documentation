@@ -1,8 +1,8 @@
 {
  "meta": {
   "derived_from": "rule-catalog.json / ksi-catalog.json",
-  "dataset_version": "2026.07.14.01",
-  "generated": "deterministic build from dataset 2026.07.14.01",
+  "dataset_version": "2026.09.13.02",
+  "generated": "deterministic build from dataset 2026.09.13.02",
   "path": "FedRAMP 20x Program Certification",
   "filter": "rules whose affects includes Providers",
   "status": "FedRAMP pending",
@@ -188,7 +188,7 @@
     null,
     null
    ],
-   "statement_d": "Providers with Class D Certifications MUST responsibly notify all affected parties of ongoing activity as new information becomes available during incident response for FedRAMP Reportable Incidents, including updates (or lack of updates) to all previously reported information and as much of the the following additional information that is available and/or the current relevant status for each item:"
+   "statement_d": "Providers with Class D Certifications MUST responsibly notify all affected parties of ongoing activity as new information becomes available during incident response for FedRAMP Reportable Incidents, including updates (or lack of updates) to all previously reported information and as much of the following additional information that is available and/or the current relevant status for each item:"
   },
   {
    "rule_id": "IEC-CSO-FIR",
@@ -488,7 +488,7 @@
    "subset": "OCR",
    "name": "Report Availability",
    "force": "MUST",
-   "statement": "Providers MUST supply an Ongoing Certification Report to all necessary parties every 3 months, covering the entire period since the previous summary, in a consistent format that is human readable; this report MUST include high-level summaries of at least the following information:",
+   "statement": "Providers MUST supply an Ongoing Certification Report to all necessary parties every 3 months, covering the entire period since the previous summary, in a consistent format that is human readable; this report MUST include high-level summaries of at least the following information (if applicable):",
    "timeframe_type": null,
    "timeframe_num": null,
    "resolution": "top_level",
@@ -1315,7 +1315,7 @@
    "subset": "CSO",
    "name": "Ongoing Incident Reports",
    "force": "MUST",
-   "statement": "Providers with Class D Certifications MUST responsibly notify all affected parties of ongoing activity as new information becomes available during incident response for FedRAMP Reportable Incidents, including updates (or lack of updates) to all previously reported information and as much of the the following additional information that is available and/or the current relevant status for each item:",
+   "statement": "Providers with Class D Certifications MUST responsibly notify all affected parties of ongoing activity as new information becomes available during incident response for FedRAMP Reportable Incidents, including updates (or lack of updates) to all previously reported information and as much of the following additional information that is available and/or the current relevant status for each item:",
    "timeframe_type": null,
    "timeframe_num": null,
    "resolution": "class_variant",

@@ -1,8 +1,8 @@
 {
  "meta": {
   "derived_from": "rule-catalog.json / ksi-catalog.json",
-  "dataset_version": "2026.07.14.01",
-  "generated": "deterministic build from dataset 2026.07.14.01",
+  "dataset_version": "2026.09.13.02",
+  "generated": "deterministic build from dataset 2026.09.13.02",
   "path": "FedRAMP 20x Program Certification",
   "filter": "rules whose affects includes Providers",
   "class_a_note": "Class A applicability is enumerated by FRC-CLA-MFR (mandatory), FRC-CLA-RFR (recommended), and FRC-CLA-OFR (optional), parsed directly from the canonical dataset. It is NOT blanket provider-rule applicability. On-ramp: SOC 2 Type II, Rev5, or GovRAMP completed within the past 12 months (FRC-CLA-ASF). Agencies are limited to 12 months of use unless the provider actively pursues Class B, C, or D (AGU-USE-CLA).",
@@ -72,7 +72,7 @@
    "name": "Report Availability",
    "class_a_obligation": "mandatory",
    "force": "MUST",
-   "statement": "Providers MUST supply an Ongoing Certification Report to all necessary parties every 3 months, covering the entire period since the previous summary, in a consistent format that is human readable; this report MUST include high-level summaries of at least the following information:",
+   "statement": "Providers MUST supply an Ongoing Certification Report to all necessary parties every 3 months, covering the entire period since the previous summary, in a consistent format that is human readable; this report MUST include high-level summaries of at least the following information (if applicable):",
    "timeframe_type": null,
    "timeframe_num": null,
    "resolution": "top_level",
@@ -412,7 +412,7 @@
    "name": "Ongoing Incident Reports",
    "class_a_obligation": "recommended",
    "force": "SHOULD",
-   "statement": "Providers with Class A Certifications SHOULD responsibly notify all affected parties of ongoing activity as new information becomes available during incident response for FedRAMP Reportable Incidents, including updates (or lack of updates) to all previously reported information and as much of the the following additional information that is available and/or the current relevant status for each item:",
+   "statement": "Providers with Class A Certifications SHOULD responsibly notify all affected parties of ongoing activity as new information becomes available during incident response for FedRAMP Reportable Incidents, including updates (or lack of updates) to all previously reported information and as much of the following additional information that is available and/or the current relevant status for each item:",
    "timeframe_type": null,
    "timeframe_num": null,
    "resolution": "class_variant",

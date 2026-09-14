@@ -10,7 +10,7 @@ attestation, or evidence of compliance.
 - A record store with every indicator's `implementation` and `validation`
   narrative filled with sample prose (clearly labelled `[SAMPLE - fictional]`).
 - A completed offering profile (fictional Acme identity, Class B).
-- A build that passes the gate: `Build gate SHIPPABLE, hard failures: 0`.
+- A build that passes the gate: `Build gate BUILD PASS - structurally valid, hard failures: 0`.
 
 ## What it deliberately does NOT do
 

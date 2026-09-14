@@ -19,7 +19,7 @@ Please report:
 - **Data exposure.** Any path by which customer data, account identifiers, credentials, endpoints, or restricted report content could end up in a committed artifact. Including a case the `no_sensitive_patterns` check fails to catch.
 - **Evidence integrity.** Any way to make the validator pass on a record that misrepresents reality. A bypass of `content_fidelity_against_dataset` is the highest severity issue in the project, because that check is what makes the traceability claim real.
 - **Status integrity.** Any path by which a status reaches `Implemented` without a deterministic check plus human sign-off. Automated collection alone must never be sufficient.
-- **Collector scope.** Any way the facts collector performs an action beyond its two read-only API calls, or accepts credentials it should refuse.
+- **Collector scope.** Any way the facts collector performs an action beyond its enumerated read-only API allowlist (READ_ONLY_ACTIONS; the deployed CollectorRole is the enforcement boundary), or accepts credentials it should refuse.
 - **Supply chain.** An unpinned action, a dependency confusion path, or anything that lets code you did not review run in the pipeline.
 
 Also worth reporting even though it is not strictly a vulnerability: a case where a generated deliverable misstates a FedRAMP requirement. A provider could act on that, and the consequence is comparable.

@@ -172,6 +172,13 @@ def ensure_store(session, bucket, region=None, object_lock=False,
     if retention_days is not None:
         if retention_days <= 0:
             raise ValueError("--retention-days must be a positive integer")
+        if dry_run and not exists:
+            # The bucket was only SIMULATED (dry-run, did not exist), so there is
+            # nothing to read a lifecycle configuration from - a GET would raise
+            # NoSuchBucket. Report the plan instead of touching the API.
+            result.noop(f"would set lifecycle retention to {retention_days} days on "
+                        f"'{bucket}' (new bucket; no existing rules to preserve)")
+            return result
         our_rule = {
             "ID": "sdr-store-retention",
             "Status": "Enabled",

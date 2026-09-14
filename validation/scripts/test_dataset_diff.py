@@ -71,8 +71,10 @@ def test_ksi_family_change_detected():
 def test_no_change_reports_empty():
     d = dd.diff_datasets(OLD, OLD)
     assert d["summary"] == {"added": 0, "removed": 0, "changed": 0,
-                            "force_changes": 0, "ksis_added": 0,
-                            "ksis_removed": 0, "ksis_changed": 0}
+                            "force_changes": 0, "timeframe_changes": 0,
+                            "ksis_added": 0, "ksis_removed": 0, "ksis_changed": 0,
+                            "definitions_added": 0, "definitions_removed": 0,
+                            "definitions_changed": 0}
 
 
 def test_ksi_statement_change_detected():
@@ -91,6 +93,53 @@ def test_ksi_statement_change_detected():
                     "individual KSI statement change not detected"
                 return
     # No KSI with a statement found; nothing to assert.
+
+
+def test_timeframe_range_change_detected():
+    # A rule that gains timeframe_num_min/timeframe_num_max (the CR26
+    # 2026.09.13.02 structure) must be reported as a timeframe change, not
+    # silently dropped by a name/force/statement-only diff.
+    import copy
+    new = copy.deepcopy(OLD)
+    frr = new.get("FRR", {})
+
+    def first_rule(node):
+        if isinstance(node, dict):
+            for k, v in node.items():
+                if isinstance(v, dict) and ("force" in v or "statement" in v) \
+                        and dd.RULE_ID.match(k or ""):
+                    return v
+                r = first_rule(v)
+                if r is not None:
+                    return r
+        elif isinstance(node, list):
+            for v in node:
+                r = first_rule(v)
+                if r is not None:
+                    return r
+        return None
+
+    rule = first_rule(frr)
+    assert rule is not None, "no FRR rule found to mutate"
+    rule["timeframe_type"] = "bizdays"
+    rule["timeframe_num_min"] = 3
+    rule["timeframe_num_max"] = 10
+    d = dd.diff_datasets(OLD, new)
+    assert d["summary"]["timeframe_changes"] >= 1, \
+        "timeframe range change not reported"
+    assert any("timeframe" in c["changes"] for c in d["rules_changed"])
+
+
+def test_definition_change_detected():
+    # An added or changed FRD controlled definition must be reported, since a
+    # definition change can shift the meaning of every rule using the term.
+    import copy
+    new = copy.deepcopy(OLD)
+    new.setdefault("FRD", {})["FRD-TEST"] = {"definition": "A brand new term."}
+    d = dd.diff_datasets(OLD, new)
+    assert "FRD-TEST" in d["definitions_added"], \
+        "added definition not detected"
+    assert d["summary"]["definitions_added"] >= 1
 
 
 def _run_all():

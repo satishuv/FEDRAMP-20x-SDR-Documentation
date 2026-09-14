@@ -88,6 +88,40 @@ def _resolve_source(e):
     return None, "no resolvable source"
 
 
+def classify_entry(e, hash_fn=None):
+    """Pure integrity decision for one evidence entry. Returns
+    (outcome, message) where outcome is 'verified' | 'finding' | 'hard'.
+    hash_fn is the canonical evidence hash implementation (or None if it could
+    not be imported). Keeping this pure makes the fail-closed contract testable
+    without disk I/O; main() calls it for every entry."""
+    loc = e.get("evidenceLocation", "") or e.get("artifact_uri", "")
+    h = e.get("xEvidenceContentHash") or e.get("stored_sha256")
+    if not h:
+        return ("finding", "no content hash yet")
+    if not HASH_RE.match(str(h)):
+        return ("hard", f"malformed content hash {h!r} (expected 'sha256:<64 hex>')")
+    if isinstance(loc, str) and loc.startswith("sdr://placeholder/"):
+        return ("finding", "placeholder location (not yet real)")
+    source, kind = _resolve_source(e)
+    if source is None:
+        return ("finding", f"integrity unverifiable ({kind}) - stored hash is "
+                           "well-formed but no source to recompute")
+    if hash_fn is None:
+        # Fail CLOSED: the validator claims real cryptographic verification, so
+        # losing the canonical hash implementation means it CANNOT verify
+        # integrity - a hard failure, not a soft "unverifiable" finding.
+        # Inability to perform an integrity check is not successful validation.
+        return ("hard", "INTEGRITY UNVERIFIABLE - the canonical evidence hash "
+                        "implementation (evidence_wiring.evidence_hash) could not "
+                        "be imported; refusing to pass evidence integrity without "
+                        "the ability to recompute the digest")
+    if hash_fn(source) != h:
+        return ("hard", f"INTEGRITY FAILED - stored {str(h)[:20]} != recomputed "
+                        f"{hash_fn(source)[:20]} (content changed after the digest "
+                        "was recorded)")
+    return ("verified", "")
+
+
 def main():
     records = load(RECORDS, {"frr": {}, "ksi": {}})
     hard, findings = [], []
@@ -95,33 +129,11 @@ def main():
 
     for oid, section, e in iter_evidence(records):
         checked += 1
-        loc = e.get("evidenceLocation", "") or e.get("artifact_uri", "")
-        h = e.get("xEvidenceContentHash") or e.get("stored_sha256")
-        if not h:
-            findings.append(f"{section}:{oid}: no content hash yet")
-            continue
-        if not HASH_RE.match(str(h)):
-            hard.append(f"{section}:{oid}: malformed content hash {h!r} "
-                        "(expected 'sha256:<64 hex>')")
-            continue
-        if isinstance(loc, str) and loc.startswith("sdr://placeholder/"):
-            findings.append(f"{section}:{oid}: placeholder location (not yet real)")
-            continue
-        # Real cryptographic verification where a source resolves.
-        source, kind = _resolve_source(e)
-        if source is None:
-            findings.append(f"{section}:{oid}: integrity unverifiable ({kind}) - "
-                            "stored hash is well-formed but no source to recompute")
-            continue
-        if _evidence_hash is None:
-            findings.append(f"{section}:{oid}: integrity unverifiable "
-                            "(evidence_hash unavailable)")
-            continue
-        recomputed = _evidence_hash(source)
-        if recomputed != h:
-            hard.append(f"{section}:{oid}: INTEGRITY FAILED - stored {str(h)[:20]} "
-                        f"!= recomputed {recomputed[:20]} (content changed after "
-                        "the digest was recorded)")
+        outcome, msg = classify_entry(e, _evidence_hash)
+        if outcome == "hard":
+            hard.append(f"{section}:{oid}: {msg}")
+        elif outcome == "finding":
+            findings.append(f"{section}:{oid}: {msg}")
         else:
             verified += 1
 

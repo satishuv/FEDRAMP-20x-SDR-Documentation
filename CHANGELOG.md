@@ -6,6 +6,37 @@ One project-specific convention: the pinned FedRAMP dataset version is recorded 
 
 ## Unreleased
 
+## 1.2.0, 2026-09-14
+
+Pinned dataset: `2026.09.13.02`
+
+Maintenance release adopting the FedRAMP CR26 upstream update published 2026-09-13.
+Triggered by an authoritative source change, not by feature work; the v1 architecture
+remains frozen.
+
+- Refreshed the pinned CR26 dataset and its structure schema from `2026.07.14.01` to
+  `2026.09.13.02` (upstream commit `58487bda`), re-locked in `sources.lock.json`. The
+  update added timeframe range fields (`timeframe_num_min`/`timeframe_num_max`, e.g. on
+  `CCM-QTR-SAR`), top-level timing on six rules, and the force-of-rule definitions
+  `FRD-MAY`/`FRD-MST`/`FRD-MNT`/`FRD-SHD`/`FRD-SNT`. No rules were added or removed.
+- Made the rule catalog a lossless projection of top-level timing, including the new
+  min/max range pair, so richer official timing semantics are preserved through
+  catalog and class profiles rather than silently dropped.
+- Expanded `dataset_diff.py` to report timeframe, artifacts, following-information,
+  `varies_by_class`, and FRD definition add/remove/change deltas, with adversarial
+  tests for the range and definition cases.
+- Fixed a collector/evidence timestamp mismatch: the live collector emits
+  `collected_at`, which the evidence sanitizer allowlist and timestamp resolution now
+  preserve, so `lastUpdated` is populated and the digest covers the timestamp.
+- Made the evidence-integrity validator fail closed: if the canonical hash
+  implementation cannot be imported, a resolvable evidence entry is a hard failure, not
+  a soft finding.
+- Storage: a dry-run against a nonexistent bucket with explicit `--retention-days` now
+  reports a plan without querying lifecycle on the never-created bucket.
+- Documentation sync: corrected stale "two read-only AWS calls" / "one editable
+  surface" descriptions, the pinned dataset version references, the build-gate verdict
+  wording, and unpinned install samples.
+
 ## 1.1.0, 2026-09-13
 
 Pinned dataset: `2026.07.14.01`

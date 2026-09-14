@@ -7,7 +7,7 @@ Goal: a validated Security Decision Record on your machine, and a clear picture 
 Python 3.10 or later, and three packages.
 
 ```bash
-pip install jsonschema referencing python-docx
+pip install -r requirements.txt
 ```
 
 No AWS account is needed. Nothing in the build path makes a network call: the FedRAMP dataset and both official schemas are pinned in the repository.
@@ -44,7 +44,7 @@ The validator prints fourteen checks and one gating line:
 
 ```text
 PASS: official_schema_validation | 0 schema errors
-PASS: dataset_version_agreement | pinned dataset info.version 2026.07.14.01 vs profile 2026.07.14.01
+PASS: dataset_version_agreement | pinned dataset info.version 2026.09.13.02 vs profile 2026.09.13.02
 PASS: pinned_schema_version_guard | all 9 pinned schemas match expected $id and version
 PASS: rule_coverage | missing: [] extra: [] (158/158 rules)
 PASS: ksi_coverage | 46/46 KSIs present
@@ -65,10 +65,10 @@ Then `sdr.py all` closes with a summary:
 ```text
 Readiness summary
 Certification class          Class B
-Build gate                   SHIPPABLE, hard failures: 0
+Build gate                   BUILD PASS - structurally valid, hard failures: 0
 Checks                       12 of 14 passing
 Advisory failures            ksi_test_minimums, evidence_linkage_for_populated_musts
-Dataset                      deterministic check against dataset 2026.07.14.01
+Dataset                      deterministic check against dataset 2026.09.13.02
 Assessment readiness         24.3% (531 pass, 1657 fail, 407 manual of 2595 findings)
 ```
 

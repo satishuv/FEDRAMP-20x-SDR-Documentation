@@ -67,6 +67,22 @@ def test_matching_hash_passes():
     check("matching hash produces no hard failure", not _count_hard(records))
 
 
+def test_missing_hash_helper_is_hard_fail_not_finding():
+    # FAIL-CLOSED: if the canonical evidence hash implementation cannot be
+    # imported, a resolvable evidence entry must be a HARD failure - the
+    # validator cannot perform the integrity check it claims to. Previously this
+    # produced a soft finding and the gate stayed green.
+    fact = {"service": "iam", "check": "mfa", "status": "pass"}
+    e = {"source_fact": fact, "xEvidenceContentHash": "sha256:" + "a" * 64,
+         "evidenceLocation": "s3://bucket/key"}
+    outcome_ok, _ = ve.classify_entry(e, hash_fn=evidence_hash)
+    outcome_none, _ = ve.classify_entry(e, hash_fn=None)
+    check("with hash helper, a resolvable entry is verified or hard (not skipped)",
+          outcome_ok in ("verified", "hard"))
+    check("WITHOUT hash helper, a resolvable entry is a HARD failure",
+          outcome_none == "hard")
+
+
 def test_frr_evidence_is_read():
     fact = {"artifact": "config-snapshot", "value": 42}
     wrong = "sha256:" + "a" * 64
@@ -79,7 +95,8 @@ def test_frr_evidence_is_read():
 
 def main():
     for t in (test_wrong_hash_over_resolvable_source_is_hard_fail,
-              test_matching_hash_passes, test_frr_evidence_is_read):
+              test_matching_hash_passes, test_missing_hash_helper_is_hard_fail_not_finding,
+              test_frr_evidence_is_read):
         print(t.__name__); t()
     print(f"\n{PASS}/{PASS + FAIL} passed")
     return 0 if FAIL == 0 else 1
