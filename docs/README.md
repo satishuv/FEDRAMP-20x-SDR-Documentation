@@ -7,7 +7,6 @@
 | [Getting started](getting-started.md) | You want a validated Security Decision Record on your machine in five minutes |
 | [Implementation guide](implementation-guide.md) | You are filling in your own facts and need to know what each field wants |
 | [Certification classes](certification-classes.md) | You are choosing between Class A, B, and C, or planning for D |
-| [Consultant guide](consultant-guide.md) | You are an AWS security consultant using this for 20x assessments (greenfield/brownfield): full architecture, read-only collection, KSI coverage, opt-ins, install/use, FAQ |
 
 ## Understanding it
 
