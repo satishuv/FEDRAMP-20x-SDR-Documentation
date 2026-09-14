@@ -28,7 +28,7 @@ OFFERING = os.path.join(BASE, "profiles", "common", "offering-profile.json")
 LOCK = os.path.join(BASE, "references", "sources.lock.json")
 OUT = os.path.join(BASE, "artifacts", "release-manifest.json")
 
-FRAMEWORK_VERSION = "1.1.0"
+FRAMEWORK_VERSION = "1.2.0"
 
 # Generated artifacts fingerprinted, per class. Text/JSON only (deterministic).
 ARTIFACT_GLOBS = [

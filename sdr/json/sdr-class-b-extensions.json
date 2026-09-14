@@ -11,8 +11,8 @@
   ],
   "sdr_version": "0.1.0",
   "schema_version": "2026-06-24",
-  "dataset_version": "2026.07.14.01",
-  "generated": "deterministic build from dataset 2026.07.14.01",
+  "dataset_version": "2026.09.13.02",
+  "generated": "deterministic build from dataset 2026.09.13.02",
   "source_of_update": "build_sdr.py generator"
  },
  "frr": {
@@ -323,7 +323,7 @@
    "family": "CCM",
    "family_name": "Collaborative Continuous Monitoring",
    "guidance": {
-    "what_it_looks_for": "Providers MUST supply an Ongoing Certification Report to all necessary parties every 3 months, covering the entire period since the previous summary, in a consistent format that is human readable; this report MUST include high-level summaries of at least the following information:",
+    "what_it_looks_for": "Providers MUST supply an Ongoing Certification Report to all necessary parties every 3 months, covering the entire period since the previous summary, in a consistent format that is human readable; this report MUST include high-level summaries of at least the following information (if applicable):",
     "official_notes": [],
     "how_to_comply": "Establish the quarterly Ongoing Certification Report and Quarterly Review cadence: a named owner, a calendar, a consistent format, a feedback mechanism, and public next-report and next-review dates in the certification data.",
     "evidence_required": [
@@ -2660,7 +2660,7 @@
    "family": "IEC",
    "family_name": "Incident Evaluation and Communication",
    "guidance": {
-    "what_it_looks_for": "Providers with Class B Certifications MUST responsibly notify all affected parties of ongoing activity as new information becomes available during incident response for FedRAMP Reportable Incidents, including updates (or lack of updates) to all previously reported information and as much of the the following additional information that is available and/or the current relevant status for each item:",
+    "what_it_looks_for": "Providers with Class B Certifications MUST responsibly notify all affected parties of ongoing activity as new information becomes available during incident response for FedRAMP Reportable Incidents, including updates (or lack of updates) to all previously reported information and as much of the following additional information that is available and/or the current relevant status for each item:",
     "official_notes": [],
     "how_to_comply": "Define incident evaluation and reporting procedures with the FedRAMP Reportable Incident test, the Potential Agency Impact N-rating scale, and the class-specific reporting timeframes. Wire detection (GuardDuty, Security Hub) to an on-call process that can meet the clock.",
     "evidence_required": [

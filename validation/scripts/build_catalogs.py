@@ -30,6 +30,15 @@ def extract_requirement(req_id, req, family, subset, applicability):
         "force": req.get("force"),
         "statement": req.get("statement"),
         "affects": req.get("affects"),
+        # Preserve top-level timing semantics losslessly. CR26 2026.09.13.02
+        # added a min/max range pair (e.g. CCM-QTR-SAR: bizdays 3..10) alongside
+        # the single-value timeframe_num, and several rules (CCM-OCR-AVL,
+        # IVV-CSF-MCA, MKT-CAS-RFR, MKT-IIP-DLA, VDR-TFR-NMV) now carry top-level
+        # timing that the previous projection dropped entirely. Keep all four.
+        "timeframe_type": req.get("timeframe_type"),
+        "timeframe_num": req.get("timeframe_num"),
+        "timeframe_num_min": req.get("timeframe_num_min"),
+        "timeframe_num_max": req.get("timeframe_num_max"),
         "varies_by_class": None,
         "schema": req.get("schema"),
         "reference": req.get("reference"),
@@ -45,6 +54,8 @@ def extract_requirement(req_id, req, family, subset, applicability):
                     "force": v.get("force"),
                     "timeframe_type": v.get("timeframe_type"),
                     "timeframe_num": v.get("timeframe_num"),
+                    "timeframe_num_min": v.get("timeframe_num_min"),
+                    "timeframe_num_max": v.get("timeframe_num_max"),
                 }
         rec["varies_by_class"] = variants
     return rec

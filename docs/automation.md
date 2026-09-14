@@ -44,7 +44,7 @@ The collected facts and the metric history are the only data the framework produ
 
 Today the collectors write dated facts to `automation/facts/` and the appender writes one datapoint per indicator to `automation/metrics/metric-history.json`. Both are git-excluded because they derive from a real account, and the appender retains a little over one year (`RETAIN_DAYS = 400`). That is the template default; a real deployment persists these in the provider's own account or a private store, which the living-SDR workflow assumes and never commits.
 
-What 20x specifies (verified against the pinned CR26 dataset `2026.07.14.01`):
+What 20x specifies (verified against the pinned CR26 dataset `2026.09.13.02`):
 
 - KSI metric history (`SDR-CSX-KMT` with `FRC-CSX-MOT`): Class B keeps a 30-day summary and an up-to-one-year summary per indicator; Class C keeps those plus all daily metric data up to the past year; Class D must significantly supersede the lower classes, with specifics set during the 20x Phase 4 Pilot. The governing window is **up to one year**, which is why the appender retains about a year.
 - Significant Change Notifications (`SCN-CSO-HIS`): 12 months of history.

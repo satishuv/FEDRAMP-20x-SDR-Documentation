@@ -6,7 +6,7 @@ Never call the framework version a "FedRAMP version."
 ## Two versions, always both
 
 - Framework version: semantic version of this repository's code and generators (e.g. `1.0.0`).
-- CR26 dataset version: the pinned FedRAMP Consolidated Rules for 2026 release the package was built against (e.g. `2026.07.14.01`).
+- CR26 dataset version: the pinned FedRAMP Consolidated Rules for 2026 release the package was built against (e.g. `2026.09.13.02`).
 
 The release manifest (`artifacts/release-manifest.json`) records both, plus the
 pinned schema versions and a SHA-256 of every generated artifact, so any release
@@ -18,7 +18,7 @@ can be reconstructed and verified.
 v<framework-version>-cr26-<dataset-version>
 ```
 
-Example: `v1.0.0-cr26-2026.07.14.01`
+Example: `v1.0.0-cr26-2026.09.13.02`
 
 The manifest emits this as `release_tag`. Tagging a release with this string
 means: this framework version, built against this CR26 dataset, produced the

@@ -185,6 +185,18 @@ def test_explicit_object_lock_failure_raises_not_noop():
     assert raised, "a refused Object Lock request must raise, not no-op"
 
 
+def test_dry_run_new_bucket_with_retention_reads_no_lifecycle():
+    # A nonexistent bucket + dry_run + explicit retention: the bucket is only
+    # simulated, so the provisioner must NOT query lifecycle (which would raise
+    # NoSuchBucket) and must perform zero writes - just a plan.
+    s3 = FakeS3(exists=False)
+    ensure_store(FakeSession(s3), "brand-new", retention_days=365, dry_run=True)
+    assert not any(c[0] == "get_bucket_lifecycle_configuration" for c in s3.calls), \
+        "must not read lifecycle on a simulated (never-created) bucket"
+    assert not any(c[0] == "put_bucket_lifecycle_configuration" for c in s3.calls)
+    assert not any(c[0] == "create_bucket" for c in s3.calls), "dry-run writes nothing"
+
+
 def test_lifecycle_read_error_with_explicit_retention_raises():
     # --retention-days was EXPLICITLY requested, but reading the existing
     # lifecycle config fails with something other than a confirmed

@@ -8,7 +8,7 @@
 <p align="center">
   <a href="https://github.com/satishuv/FEDRAMP-20x-SDR-Documentation/actions/workflows/validate.yml"><img alt="Validate" src="https://github.com/satishuv/FEDRAMP-20x-SDR-Documentation/actions/workflows/validate.yml/badge.svg"></a>
   <a href="https://github.com/satishuv/FEDRAMP-20x-SDR-Documentation/actions/workflows/drift-check.yml"><img alt="Upstream drift" src="https://github.com/satishuv/FEDRAMP-20x-SDR-Documentation/actions/workflows/drift-check.yml/badge.svg"></a>
-  <img alt="CR26 dataset" src="https://img.shields.io/badge/CR26%20dataset-2026.07.14.01-0b7285">
+  <img alt="CR26 dataset" src="https://img.shields.io/badge/CR26%20dataset-2026.09.13.02-0b7285">
   <img alt="Classes" src="https://img.shields.io/badge/classes-A%20%7C%20B%20%7C%20C-1864ab">
   <img alt="Python" src="https://img.shields.io/badge/python-3.10%2B-3776ab">
   <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-Permissive%20(AWS%20SAS)-2f9e44"></a>
@@ -23,7 +23,7 @@
 </p>
 
 <p align="center">
-  <sub>Pinned to CR26 dataset <code>2026.07.14.01</code>. A scheduled <a href="https://github.com/satishuv/FEDRAMP-20x-SDR-Documentation/actions/workflows/drift-check.yml">drift check</a> hash-compares the pinned dataset and schemas against <a href="https://github.com/FedRAMP/rules">github.com/FedRAMP/rules</a> daily and opens an issue on any change. Green drift badge above means the pin still matches upstream.</sub>
+  <sub>Pinned to CR26 dataset <code>2026.09.13.02</code>. A scheduled <a href="https://github.com/satishuv/FEDRAMP-20x-SDR-Documentation/actions/workflows/drift-check.yml">drift check</a> hash-compares the pinned dataset and schemas against <a href="https://github.com/FedRAMP/rules">github.com/FedRAMP/rules</a> daily and opens an issue on any change. Green drift badge above means the pin still matches upstream.</sub>
 </p>
 
 ---
@@ -74,7 +74,7 @@ Requirement text is never typed by hand. It is resolved from the canonical FedRA
 ```bash
 git clone https://github.com/satishuv/FEDRAMP-20x-SDR-Documentation.git
 cd FEDRAMP-20x-SDR-Documentation
-pip install jsonschema referencing python-docx
+pip install -r requirements.txt
 
 python sdr.py all
 ```
@@ -106,7 +106,7 @@ Every JSON artifact below is validated against its official FedRAMP schema; the 
 
 You do not deploy this framework to run it: it is a local, offline generator. `python sdr.py all` produces every artifact on your machine with no cloud account and no network. Where "deployment" matters is publishing the finished package and wiring continuous verification. Three paths, smallest first:
 
-1. Local only. Clone, `pip install jsonschema referencing python-docx`, run `python sdr.py all`. This is the whole tool. Everything else is optional.
+1. Local only. Clone, `pip install -r requirements.txt`, run `python sdr.py all`. This is the whole tool. Everything else is optional.
 2. Continuous integration. The included GitHub Actions `validate.yml` runs the build gate on every push and pull request; `drift-check.yml` hash-compares the pinned FedRAMP sources against upstream daily and opens an issue on any change. Fork, and both run for free with no secrets. Security scanning (ASH and Fortify) runs as a local pre-commit gate, not in CI: install it once per clone with `scripts/install-fortify-hook.ps1`.
 3. Provider pipeline in your own AWS account. `automation/pipeline/` holds a deployable AWS CodePipeline reference (regenerate, validate, human-approval gate, publish to a versioned encrypted S3 bucket that can back a trust center). See [continuous integration](docs/ci-cd.md) and [the deployment guide](docs/deployment.md).
 
@@ -137,7 +137,7 @@ Both third-party evidence sources read a file the customer exports in their own 
 
 `FRD-CCL` describes the classes as assurance categories "increasing from minimal assurance at Class A to significant assurance at Class D." FedRAMP's current 20x guidance maps them to impact levels: Class A (Pilot), Class B (Low), Class C (Moderate), and the planned Class D (High), per the [FedRAMP 20x page](https://www.fedramp.gov/20x/). Those labels do not make the 20x indicator profile a renamed NIST SP 800-53B baseline, so this framework tracks the class but does not infer baseline equivalence.
 
-Derived from the CR26 dataset at version `2026.07.14.01`: 234 rules in 20x scope out of 246 total entries, the remaining 12 being rev5-only, plus 46 Key Security Indicators across 10 families.
+Derived from the CR26 dataset at version `2026.09.13.02`: 234 rules in 20x scope out of 246 total entries, the remaining 12 being rev5-only, plus 46 Key Security Indicators across 10 families.
 
 ## What this is not
 

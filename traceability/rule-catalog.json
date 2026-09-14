@@ -1,8 +1,8 @@
 {
  "meta": {
   "derived_from": "fedramp-consolidated-rules.json",
-  "dataset_version": "2026.07.14.01",
-  "generated": "deterministic build from dataset 2026.07.14.01",
+  "dataset_version": "2026.09.13.02",
+  "generated": "deterministic build from dataset 2026.09.13.02",
   "scope": "FRR requirements applicable to 20x (data.all and data.20x); all KSI indicators"
  },
  "count": 234,
@@ -18,6 +18,10 @@
    "affects": [
     "FedRAMP"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -52,6 +56,10 @@
    "affects": [
     "FedRAMP"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -86,6 +94,10 @@
    "affects": [
     "FedRAMP"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -120,6 +132,10 @@
    "affects": [
     "FedRAMP"
    ],
+   "timeframe_type": "bizdays",
+   "timeframe_num": 10,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -154,6 +170,10 @@
    "affects": [
     "FedRAMP"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -188,6 +208,10 @@
    "affects": [
     "FedRAMP"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -222,6 +246,10 @@
    "affects": [
     "FedRAMP"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -256,6 +284,10 @@
    "affects": [
     "FedRAMP"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -290,6 +322,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -324,6 +360,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -358,6 +398,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -392,6 +436,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -426,6 +474,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -460,6 +512,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -494,6 +550,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -528,6 +588,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -562,6 +626,10 @@
    "affects": [
     "Agencies"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -597,6 +665,10 @@
    "affects": [
     "Agencies"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -632,6 +704,10 @@
    "affects": [
     "Agencies"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -667,6 +743,10 @@
    "affects": [
     "Agencies"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -702,6 +782,10 @@
    "affects": [
     "Agencies"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -737,6 +821,10 @@
    "affects": [
     "Agencies"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -772,6 +860,10 @@
    "affects": [
     "Agencies"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -807,6 +899,10 @@
    "affects": [
     "Agencies"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": "Agency Liaison Program",
@@ -842,6 +938,10 @@
    "affects": [
     "Agencies"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -877,6 +977,10 @@
    "affects": [
     "Agencies"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": "Using a FedRAMP Certified Cloud Service Offering",
@@ -912,6 +1016,10 @@
    "affects": [
     "Agencies"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -947,6 +1055,10 @@
    "affects": [
     "Agencies"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -982,6 +1094,10 @@
    "affects": [
     "Agencies"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -1017,6 +1133,10 @@
    "affects": [
     "Agencies"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -1052,6 +1172,10 @@
    "affects": [
     "Agencies"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -1087,6 +1211,10 @@
    "affects": [
     "Agencies"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -1122,6 +1250,10 @@
    "affects": [
     "Agencies"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -1157,6 +1289,10 @@
    "affects": [
     "Agencies"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -1192,6 +1328,10 @@
    "affects": [
     "Agencies"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -1227,6 +1367,10 @@
    "affects": [
     "Agencies"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -1259,6 +1403,10 @@
    "affects": [
     "Agencies"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -1293,6 +1441,10 @@
    "affects": [
     "Agencies"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -1323,10 +1475,14 @@
    "applicability": "all",
    "name": "Report Availability",
    "force": "MUST",
-   "statement": "Providers MUST supply an Ongoing Certification Report to all necessary parties every 3 months, covering the entire period since the previous summary, in a consistent format that is human readable; this report MUST include high-level summaries of at least the following information:",
+   "statement": "Providers MUST supply an Ongoing Certification Report to all necessary parties every 3 months, covering the entire period since the previous summary, in a consistent format that is human readable; this report MUST include high-level summaries of at least the following information (if applicable):",
    "affects": [
     "Providers"
    ],
+   "timeframe_type": "months",
+   "timeframe_num": 3,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": {
     "name": "FedRAMP Ongoing Certification Report (CCM-OCR-AVL)",
@@ -1364,6 +1520,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -1398,6 +1558,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -1432,6 +1596,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -1466,6 +1634,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -1500,6 +1672,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -1534,6 +1710,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -1568,30 +1748,42 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": {
     "a": {
      "statement": "Providers with Class A Certifications MAY host a synchronous Quarterly Review every 3 months, open to all necessary parties, to review aspects of the most recent Ongoing Certification Reports that the provider determines are of the most relevance to agencies.",
      "force": "MAY",
      "timeframe_type": "months",
-     "timeframe_num": 3
+     "timeframe_num": 3,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "b": {
      "statement": "Providers with Class B Certifications SHOULD host a synchronous Quarterly Review every 3 months, open to all necessary parties, to review aspects of the most recent Ongoing Certification Reports that the provider determines are of the most relevance to agencies.",
      "force": "SHOULD",
      "timeframe_type": "months",
-     "timeframe_num": 3
+     "timeframe_num": 3,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "c": {
      "statement": "Providers with Class C Certifications MUST host a synchronous Quarterly Review every 3 months, open to all necessary parties, to review aspects of the most recent Ongoing Certification Reports that the provider determines are of the most relevance to agencies.",
      "force": "MUST",
      "timeframe_type": "months",
-     "timeframe_num": 3
+     "timeframe_num": 3,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "d": {
      "statement": "Providers with Class D Certifications MUST host a synchronous Quarterly Review every 3 months, open to all necessary parties, to review aspects of the most recent Ongoing Certification Reports that the provider determines are of the most relevance to agencies.",
      "force": "MUST",
      "timeframe_type": "months",
-     "timeframe_num": 3
+     "timeframe_num": 3,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     }
    },
    "schema": null,
@@ -1627,6 +1819,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -1661,6 +1857,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -1695,6 +1895,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -1729,6 +1933,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": "bizdays",
+   "timeframe_num": null,
+   "timeframe_num_min": 3,
+   "timeframe_num_max": 10,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -1763,6 +1971,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -1797,6 +2009,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -1831,6 +2047,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -1865,6 +2085,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -1899,6 +2123,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -1933,6 +2161,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": {
     "name": "FedRAMP Certification Package Overview (FRC-CSO-PKG)",
@@ -1970,6 +2202,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": {
     "name": "FedRAMP Certification Package Overview (FRC-CSO-PKG)",
@@ -2007,6 +2243,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -2041,6 +2281,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": "weeks",
+   "timeframe_num": 2,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -2075,30 +2319,42 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": {
     "a": {
      "statement": "Providers with Class A Certifications SHOULD maintain a web service, available to all necessary parties, that indicates current and historical availability of core services within the cloud service offering over at least the past 30 days, including availability incidents, in both human-readable and machine-readable formats; this service SHOULD be available even if the primary cloud service offering is unavailable.",
      "force": "SHOULD",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "b": {
      "statement": "Providers with Class B Certifications MUST maintain a web service, available to all necessary parties, that indicates current and historical availability of core services within the cloud service offering over at least the past 30 days, including availability incidents, in both human-readable and machine-readable formats; this service MUST be available even if the primary cloud service offering is unavailable.",
      "force": "MUST",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "c": {
      "statement": "Providers with Class C Certifications MUST maintain a web service, available to all necessary parties, that indicates current and historical availability of core services within the cloud service offering over at least the past 30 days, including availability incidents, in both human-readable and machine-readable formats; this service MUST be available even if the primary cloud service offering is unavailable.",
      "force": "MUST",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "d": {
      "statement": "Providers with Class D Certifications MUST maintain a web service, available to all necessary parties, that indicates current and historical availability of core services within the cloud service offering over at least the past 30 days, including availability incidents, in both human-readable and machine-readable formats; this service MUST be available even if the primary cloud service offering is unavailable.",
      "force": "MUST",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     }
    },
    "schema": null,
@@ -2134,6 +2390,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": {
     "name": "FedRAMP Certification Package Overview (FRC-CSO-PKG)",
@@ -2171,6 +2431,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -2205,6 +2469,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -2239,6 +2507,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -2273,6 +2545,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -2307,30 +2583,42 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": {
     "a": {
      "statement": "Providers with Class A Certifications MAY supply per-service FedRAMP Certification materials.",
      "force": "MAY",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "b": {
      "statement": "Providers with Class B Certifications MAY supply per-service FedRAMP Certification materials.",
      "force": "MAY",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "c": {
      "statement": "Providers with Class C Certifications MAY supply per-service FedRAMP Certification materials.",
      "force": "MAY",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "d": {
      "statement": "Providers with Class D Certifications MUST supply per-service FedRAMP Certification materials.",
      "force": "MUST",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     }
    },
    "schema": null,
@@ -2366,6 +2654,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -2400,6 +2692,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -2434,6 +2730,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -2468,6 +2768,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -2502,6 +2806,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -2536,6 +2844,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -2570,6 +2882,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -2604,6 +2920,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": "bizdays",
+   "timeframe_num": 5,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -2638,6 +2958,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -2672,6 +2996,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -2706,30 +3034,42 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": {
     "a": {
      "statement": "Providers with Class A Certifications MAY use cryptographic modules or update streams of cryptographic modules with active validations under the NIST Cryptographic Module Validation Program when using cryptographic services to protect federal customer data.",
      "force": "MAY",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "b": {
      "statement": "Providers with Class B Certifications MAY use cryptographic modules or update streams of cryptographic modules with active validations under the NIST Cryptographic Module Validation Program when using cryptographic services to protect federal customer data.",
      "force": "MAY",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "c": {
      "statement": "Providers with Class C Certifications SHOULD use cryptographic modules or update streams of cryptographic modules with active validations under the NIST Cryptographic Module Validation Program when using cryptographic services to protect federal customer data.",
      "force": "SHOULD",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "d": {
      "statement": "Providers with Class D Certifications MUST use cryptographic modules or update streams of cryptographic modules with active validations under the NIST Cryptographic Module Validation Program when using cryptographic services to protect federal customer data.",
      "force": "MUST",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     }
    },
    "schema": null,
@@ -2765,6 +3105,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -2799,6 +3143,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": {
     "name": "FedRAMP Certification Package Overview Schema",
@@ -2836,6 +3184,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -2870,30 +3222,42 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": {
     "a": {
      "statement": "Providers seeking Class A Certification MAY also include an overall summary of their FedRAMP independent assessment in their Certification Package Overview.",
      "force": "MAY",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "b": {
      "statement": "Providers seeking Class B Certification MUST also include the overall summary of their FedRAMP independent assessment, supplied by the assessor per IVV-IAS-OSA (Overall Summary of Assessment), in their Certification Package Overview.",
      "force": "MUST",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "c": {
      "statement": "Providers seeking Class C Certification MUST also include the overall summary of their FedRAMP independent assessment, supplied by the assessor per IVV-IAS-OSA (Overall Summary of Assessment), in their Certification Package Overview.",
      "force": "MUST",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "d": {
      "statement": "Providers seeking Class D Certification MUST also include the overall summary of their FedRAMP independent assessment, supplied by the assessor per IVV-IAS-OSA (Overall Summary of Assessment), in their Certification Package Overview.",
      "force": "MUST",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     }
    },
    "schema": null,
@@ -2929,30 +3293,42 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": {
     "a": {
      "statement": "Providers with 20x Class A Certifications SHOULD persistently maintain their FedRAMP Certification Package to ensure it is up to date and complete at least once every 3 months.",
      "force": "SHOULD",
      "timeframe_type": "months",
-     "timeframe_num": 3
+     "timeframe_num": 3,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "b": {
      "statement": "Providers with 20x Class B Certifications MUST persistently maintain their FedRAMP Certification Package to ensure it is up to date and complete at least once every month.",
      "force": "MUST",
      "timeframe_type": "months",
-     "timeframe_num": 1
+     "timeframe_num": 1,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "c": {
      "statement": "Providers with 20x Class C Certifications MUST persistently maintain their FedRAMP Certification Package to ensure it is up to date and complete at least once every 2 weeks.",
      "force": "MUST",
      "timeframe_type": "weeks",
-     "timeframe_num": 2
+     "timeframe_num": 2,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "d": {
      "statement": "Providers with 20x Class D Certifications MUST persistently maintain their FedRAMP Certification Package to ensure it is up to date and complete at least once every week.",
      "force": "MUST",
      "timeframe_type": "weeks",
-     "timeframe_num": 1
+     "timeframe_num": 1,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     }
    },
    "schema": null,
@@ -2987,6 +3363,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -3022,6 +3402,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": {
     "name": "FedRAMP Certification Package Overview (FRC-CSO-PKG)",
@@ -3060,6 +3444,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -3095,6 +3483,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -3130,6 +3522,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -3165,6 +3561,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -3195,6 +3595,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -3225,6 +3629,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -3255,6 +3663,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -3285,6 +3697,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -3315,6 +3731,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -3345,6 +3765,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -3380,6 +3804,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -3415,6 +3843,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -3450,30 +3882,42 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": {
     "a": {
      "statement": "Providers seeking Class A Certification MAY supply a fresh initial FedRAMP independent assessment that was completed by a FedRAMP Recognized independent assessment service within the previous 3 months.",
      "force": "MAY",
      "timeframe_type": "months",
-     "timeframe_num": 3
+     "timeframe_num": 3,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "b": {
      "statement": "Providers seeking Class B Certification MUST supply a fresh initial FedRAMP independent assessment that was completed by a FedRAMP Recognized independent assessment service within the previous 3 months.",
      "force": "MUST",
      "timeframe_type": "months",
-     "timeframe_num": 3
+     "timeframe_num": 3,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "c": {
      "statement": "Providers seeking Class C Certification MUST supply a fresh initial FedRAMP independent assessment that was completed by a FedRAMP Recognized independent assessment service within the previous 3 months.",
      "force": "MUST",
      "timeframe_type": "months",
-     "timeframe_num": 3
+     "timeframe_num": 3,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "d": {
      "statement": "Providers seeking Class D Certification MUST supply a fresh initial FedRAMP independent assessment that was completed by a FedRAMP Recognized independent assessment service within the previous 3 months.",
      "force": "MUST",
      "timeframe_type": "months",
-     "timeframe_num": 3
+     "timeframe_num": 3,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     }
    },
    "schema": null,
@@ -3510,6 +3954,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -3545,6 +3993,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -3580,6 +4032,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -3612,6 +4068,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -3624,7 +4084,6 @@
      "Agency"
     ],
     "classes": [
-     "A",
      "B",
      "C",
      "D"
@@ -3645,6 +4104,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -3657,7 +4120,6 @@
      "Agency"
     ],
     "classes": [
-     "A",
      "B",
      "C",
      "D"
@@ -3678,6 +4140,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -3690,7 +4156,6 @@
      "Agency"
     ],
     "classes": [
-     "A",
      "B",
      "C",
      "D"
@@ -3711,30 +4176,42 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": {
     "a": {
      "statement": "Providers seeking 20x Class A Certification MAY implement automated methods to persistently verify and validate the accuracy and completeness of Key Security Indicators.",
      "force": "MAY",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "b": {
      "statement": "Providers seeking 20x Class B Certification SHOULD implement automated methods to persistently verify and validate the accuracy and completeness of Key Security Indicators with at least 1 automated method for each Key Security Indicator.",
      "force": "SHOULD",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "c": {
      "statement": "Providers seeking 20x Class C Certification MUST implement automated methods to persistently verify and validate the accuracy and completeness of Key Security Indicators with at least 2 automated methods for each Key Security Indicator.",
      "force": "MUST",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "d": {
      "statement": "Providers seeking 20x Class D Certification MUST implement automated methods to persistently verify and validate the accuracy and completeness of Key Security Indicators with at least 4 automated methods for each Key Security Indicator.",
      "force": "MUST",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     }
    },
    "schema": null,
@@ -3768,30 +4245,42 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": {
     "a": {
      "statement": "Providers seeking 20x Class A Certification MAY supply historical metrics for Key Security Indicators.",
      "force": "MAY",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "b": {
      "statement": "Providers seeking 20x Class B Certification SHOULD supply historical metrics for Key Security Indicators.",
      "force": "SHOULD",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "c": {
      "statement": "Providers seeking 20x Class C Certification MUST supply historical metrics including status from persistent validation over at least the past 6 months for all Key Security Indicators.",
      "force": "MUST",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "d": {
      "statement": "Providers seeking 20x Class D Certification MUST provide historical metrics including status from persistent validation over at least the past 18 months for all Key Security Indicators.",
      "force": "MUST",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     }
    },
    "schema": null,
@@ -3825,30 +4314,42 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": {
     "a": {
      "statement": "Providers seeking 20x Class A Certification MAY implement automated methods to persistently verify and validate the accuracy and completeness of the Security Decision Record for FedRAMP rules when applicable.",
      "force": "MAY",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "b": {
      "statement": "Providers seeking 20x Class B Certification SHOULD implement automated methods to persistently verify and validate the accuracy and completeness of the Security Decision Record for FedRAMP rules when applicable.",
      "force": "SHOULD",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "c": {
      "statement": "Providers seeking 20x Class C Certification SHOULD implement automated methods to persistently verify and validate the accuracy and completeness of the Security Decision Record for FedRAMP rules when applicable.",
      "force": "SHOULD",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "d": {
      "statement": "Providers seeking 20x Class D Certification SHOULD implement automated methods to persistently verify and validate the accuracy and completeness of the Security Decision Record for FedRAMP rules when applicable.",
      "force": "SHOULD",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     }
    },
    "schema": null,
@@ -3882,6 +4383,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -3914,6 +4419,10 @@
    "affects": [
     "FedRAMP"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -3948,6 +4457,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -3982,6 +4495,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -4016,30 +4533,42 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": {
     "a": {
      "statement": "Providers with Class A Certifications SHOULD responsibly notify all affected parties after identifying FedRAMP Reportable Incidents by providing an Initial Incident Report with as much of the following information that is available at the time of reporting and/or the current relevant status for each item:",
      "force": "SHOULD",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "b": {
      "statement": "Providers with Class B Certifications MUST responsibly notify all affected parties after identifying FedRAMP Reportable Incidents by providing an Initial Incident Report with as much of the following information that is available at the time of reporting and/or the current relevant status for each item:",
      "force": "MUST",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "c": {
      "statement": "Providers with Class C Certifications MUST responsibly notify all affected parties after identifying FedRAMP Reportable Incidents by providing an Initial Incident Report with as much of the following information that is available at the time of reporting and/or the current relevant status for each item:",
      "force": "MUST",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "d": {
      "statement": "Providers with Class D Certifications MUST responsibly notify all affected parties after identifying FedRAMP Reportable Incidents by providing an Initial Incident Report with as much of the following information that is available at the time of reporting and/or the current relevant status for each item:",
      "force": "MUST",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     }
    },
    "schema": {
@@ -4078,30 +4607,42 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": {
     "a": {
-     "statement": "Providers with Class A Certifications SHOULD responsibly notify all affected parties of ongoing activity as new information becomes available during incident response for FedRAMP Reportable Incidents, including updates (or lack of updates) to all previously reported information and as much of the the following additional information that is available and/or the current relevant status for each item:",
+     "statement": "Providers with Class A Certifications SHOULD responsibly notify all affected parties of ongoing activity as new information becomes available during incident response for FedRAMP Reportable Incidents, including updates (or lack of updates) to all previously reported information and as much of the following additional information that is available and/or the current relevant status for each item:",
      "force": "SHOULD",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "b": {
-     "statement": "Providers with Class B Certifications MUST responsibly notify all affected parties of ongoing activity as new information becomes available during incident response for FedRAMP Reportable Incidents, including updates (or lack of updates) to all previously reported information and as much of the the following additional information that is available and/or the current relevant status for each item:",
+     "statement": "Providers with Class B Certifications MUST responsibly notify all affected parties of ongoing activity as new information becomes available during incident response for FedRAMP Reportable Incidents, including updates (or lack of updates) to all previously reported information and as much of the following additional information that is available and/or the current relevant status for each item:",
      "force": "MUST",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "c": {
-     "statement": "Providers with Class C Certifications MUST responsibly notify all affected parties of ongoing activity as new information becomes available during incident response for FedRAMP Reportable Incidents, including updates (or lack of updates) to all previously reported information and as much of the the following additional information that is available and/or the current relevant status for each item:",
+     "statement": "Providers with Class C Certifications MUST responsibly notify all affected parties of ongoing activity as new information becomes available during incident response for FedRAMP Reportable Incidents, including updates (or lack of updates) to all previously reported information and as much of the following additional information that is available and/or the current relevant status for each item:",
      "force": "MUST",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "d": {
-     "statement": "Providers with Class D Certifications MUST responsibly notify all affected parties of ongoing activity as new information becomes available during incident response for FedRAMP Reportable Incidents, including updates (or lack of updates) to all previously reported information and as much of the the following additional information that is available and/or the current relevant status for each item:",
+     "statement": "Providers with Class D Certifications MUST responsibly notify all affected parties of ongoing activity as new information becomes available during incident response for FedRAMP Reportable Incidents, including updates (or lack of updates) to all previously reported information and as much of the following additional information that is available and/or the current relevant status for each item:",
      "force": "MUST",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     }
    },
    "schema": {
@@ -4140,30 +4681,42 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": {
     "a": {
      "statement": "Providers with Class A Certifications MUST responsibly notify all affected parties by providing a Final Incident Report once the incident has been resolved and recovery is complete, including final updates to all previously reported information.",
      "force": "MUST",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "b": {
      "statement": "Providers with Class B Certifications MUST responsibly notify all affected parties by providing a Final Incident Report once the incident has been resolved and recovery is complete, including final updates to all previously reported information.",
      "force": "MUST",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "c": {
      "statement": "Providers with Class C Certifications MUST responsibly notify all affected parties by providing a Final Incident Report once the incident has been resolved and recovery is complete, including final updates to all previously reported information.",
      "force": "MUST",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "d": {
      "statement": "Providers with Class D Certifications MUST responsibly notify all affected parties by providing a Final Incident Report once the incident has been resolved and recovery is complete, including final updates to all previously reported information.",
      "force": "MUST",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     }
    },
    "schema": {
@@ -4202,6 +4755,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": {
     "name": "FedRAMP Incident Report (IEC-CSO-IIR / IEC-CSO-OIR / IEC-CSO-FIR)",
@@ -4239,6 +4796,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -4273,30 +4834,42 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": {
     "a": {
      "statement": "Providers with Class A Certifications MAY persistently complete an independent verification and validation assessment of all applicable FedRAMP rules with a FedRAMP Recognized independent assessment service OR FedRAMP at least once per year; this is a FedRAMP independent assessment.",
      "force": "MAY",
      "timeframe_type": "years",
-     "timeframe_num": 1
+     "timeframe_num": 1,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "b": {
      "statement": "Providers with Class B Certifications MUST persistently complete an independent verification and validation assessment of all applicable FedRAMP rules with a FedRAMP Recognized independent assessment service OR FedRAMP at least once per year; this is a FedRAMP independent assessment.",
      "force": "MUST",
      "timeframe_type": "years",
-     "timeframe_num": 1
+     "timeframe_num": 1,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "c": {
      "statement": "Providers with Class C Certifications MUST persistently complete an independent verification and validation assessment of all applicable FedRAMP rules with a FedRAMP Recognized independent assessment service OR FedRAMP at least once per year; this is a FedRAMP independent assessment.",
      "force": "MUST",
      "timeframe_type": "years",
-     "timeframe_num": 1
+     "timeframe_num": 1,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "d": {
      "statement": "Providers with Class D Certifications MUST persistently complete an independent verification and validation assessment of all applicable FedRAMP rules with a FedRAMP Recognized independent assessment service OR FedRAMP at least once per year; this is a FedRAMP independent assessment.",
      "force": "MUST",
      "timeframe_type": "years",
-     "timeframe_num": 1
+     "timeframe_num": 1,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     }
    },
    "schema": null,
@@ -4332,6 +4905,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -4366,6 +4943,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -4400,6 +4981,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -4434,6 +5019,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -4468,6 +5057,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -4502,6 +5095,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -4536,6 +5133,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -4570,6 +5171,10 @@
    "affects": [
     "Assessors"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -4604,6 +5209,10 @@
    "affects": [
     "Assessors"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -4638,6 +5247,10 @@
    "affects": [
     "Assessors"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -4672,6 +5285,10 @@
    "affects": [
     "Assessors"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -4706,6 +5323,10 @@
    "affects": [
     "Assessors"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -4740,6 +5361,10 @@
    "affects": [
     "Assessors"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -4774,6 +5399,10 @@
    "affects": [
     "Assessors"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -4808,30 +5437,42 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": {
     "a": {
      "statement": "Providers with 20x Class A Certifications MUST meet the expectations of their underlying alternative security framework as part of their persistent independent verification and validation assessment.",
      "force": "MUST",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "b": {
      "statement": "Providers with 20x Class B Certifications MUST include all Key Security Indicators in a FedRAMP independent assessment at least once per year.",
      "force": "MUST",
      "timeframe_type": "years",
-     "timeframe_num": 1
+     "timeframe_num": 1,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "c": {
      "statement": "Providers with 20x Class C Certifications MUST include all Key Security Indicators in a FedRAMP independent assessment at least once per year.",
      "force": "MUST",
      "timeframe_type": "years",
-     "timeframe_num": 1
+     "timeframe_num": 1,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "d": {
      "statement": "Providers with 20x Class D Certifications MUST include all Key Security Indicators in a FedRAMP independent assessment at least once per year.",
      "force": "MUST",
      "timeframe_type": "years",
-     "timeframe_num": 1
+     "timeframe_num": 1,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     }
    },
    "schema": null,
@@ -4865,6 +5506,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -4899,6 +5544,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -4933,6 +5582,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": {
     "name": "FedRAMP Certification Package Overview (FRC-CSO-PKG)",
@@ -4970,6 +5623,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -5004,6 +5661,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -5038,6 +5699,10 @@
    "affects": [
     "FedRAMP"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": "Scope of FedRAMP",
@@ -5073,6 +5738,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -5108,6 +5777,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -5143,6 +5816,10 @@
    "affects": [
     "Assessors"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -5167,6 +5844,10 @@
    "affects": [
     "Assessors"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": {
     "name": "FedRAMP Assessor Information Schema",
@@ -5194,6 +5875,10 @@
    "affects": [
     "Assessors"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -5218,6 +5903,10 @@
    "affects": [
     "Advisors"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": {
     "name": "FedRAMP Advisory Service Information Schema",
@@ -5245,6 +5934,10 @@
    "affects": [
     "Advisors"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -5269,6 +5962,10 @@
    "affects": [
     "Advisors"
    ],
+   "timeframe_type": "bizdays",
+   "timeframe_num": 5,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -5293,6 +5990,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -5323,6 +6024,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -5353,6 +6058,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": "years",
+   "timeframe_num": 2,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -5383,6 +6092,10 @@
    "affects": [
     "FedRAMP"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -5407,6 +6120,10 @@
    "affects": [
     "FedRAMP"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -5431,6 +6148,10 @@
    "affects": [
     "FedRAMP"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -5455,6 +6176,10 @@
    "affects": [
     "Assessors"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -5479,6 +6204,10 @@
    "affects": [
     "Assessors"
    ],
+   "timeframe_type": "years",
+   "timeframe_num": 2,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -5503,6 +6232,10 @@
    "affects": [
     "Assessors"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": "A2LA Public Documents",
@@ -5527,6 +6260,10 @@
    "affects": [
     "Assessors"
    ],
+   "timeframe_type": "years",
+   "timeframe_num": 1,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -5551,6 +6288,10 @@
    "affects": [
     "Assessors"
    ],
+   "timeframe_type": "years",
+   "timeframe_num": 2,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -5575,6 +6316,10 @@
    "affects": [
     "Assessors"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -5599,6 +6344,10 @@
    "affects": [
     "Assessors"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -5623,6 +6372,10 @@
    "affects": [
     "Assessors"
    ],
+   "timeframe_type": "years",
+   "timeframe_num": 1,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -5647,6 +6400,10 @@
    "affects": [
     "Assessors"
    ],
+   "timeframe_type": "hours",
+   "timeframe_num": 48,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -5671,6 +6428,10 @@
    "affects": [
     "Assessors"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -5695,6 +6456,10 @@
    "affects": [
     "Assessors"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -5719,6 +6484,10 @@
    "affects": [
     "Assessors"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -5743,6 +6512,10 @@
    "affects": [
     "Assessors"
    ],
+   "timeframe_type": "years",
+   "timeframe_num": 2,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -5767,6 +6540,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": {
     "name": "FedRAMP Certification Package Overview (FRC-CSO-PKG)",
@@ -5804,6 +6581,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -5838,6 +6619,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -5872,6 +6657,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -5906,6 +6695,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -5940,6 +6733,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -5974,6 +6771,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -6008,6 +6809,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -6042,6 +6847,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -6076,6 +6885,10 @@
    "affects": [
     "FedRAMP"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -6110,6 +6923,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": {
     "name": "FedRAMP Significant Change Notification (SCN-CSO-INF)",
@@ -6147,6 +6964,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -6181,6 +7002,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": {
     "name": "FedRAMP Significant Change Notification (SCN-CSO-INF)",
@@ -6218,6 +7043,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -6252,6 +7081,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": {
     "name": "FedRAMP Significant Change Notifications Schema",
@@ -6289,6 +7122,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -6323,6 +7160,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -6357,6 +7198,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -6391,6 +7236,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": "bizdays",
+   "timeframe_num": 10,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -6425,6 +7274,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -6459,6 +7312,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": "bizdays",
+   "timeframe_num": 30,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -6493,6 +7350,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": "bizdays",
+   "timeframe_num": 10,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -6527,6 +7388,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": "bizdays",
+   "timeframe_num": 5,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -6561,6 +7426,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": "bizdays",
+   "timeframe_num": 5,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -6595,6 +7464,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": "bizdays",
+   "timeframe_num": 30,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -6629,6 +7502,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -6663,6 +7540,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": {
     "name": "FedRAMP Security Decision Record Schema",
@@ -6700,6 +7581,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -6734,6 +7619,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": {
     "name": "FedRAMP Security Decision Record Schema",
@@ -6769,30 +7658,42 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": {
     "a": {
      "statement": "Providers with 20x Class A Certifications MAY also include historical metrics in their Security Decision Record.",
      "force": "MAY",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "b": {
      "statement": "Providers with 20x Class B Certifications MUST also include historical metrics in their Security Decision Record, supplying at least the following information for each applicable Key Security Indicator:",
      "force": "MUST",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "c": {
      "statement": "Providers with 20x Class C Certifications MUST also include historical metrics in their Security Decision Record, supplying at least the following information for each applicable Key Security Indicator:",
      "force": "MUST",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "d": {
      "statement": "Providers with 20x Class D Certifications MUST significantly supersede the minimum requirements for lower Classes, with specifics to be set during the 20x Phase 4 Pilot.",
      "force": "MUST",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     }
    },
    "schema": {
@@ -6829,6 +7730,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -6863,6 +7768,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -6897,6 +7806,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -6931,6 +7844,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -6965,6 +7882,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -6999,6 +7920,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -7033,6 +7958,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -7067,6 +7996,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -7101,6 +8034,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -7135,6 +8072,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": "months",
+   "timeframe_num": 3,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -7169,30 +8110,42 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": {
     "a": {
      "statement": "Providers with Class A Certifications SHOULD persistently perform vulnerability detection on all information resources that are likely to drift, at least once every 3 months.",
      "force": "SHOULD",
      "timeframe_type": "months",
-     "timeframe_num": 3
+     "timeframe_num": 3,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "b": {
      "statement": "Providers with Class B Certifications SHOULD persistently perform vulnerability detection on all information resources that are likely to drift, at least once every month.",
      "force": "SHOULD",
      "timeframe_type": "months",
-     "timeframe_num": 1
+     "timeframe_num": 1,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "c": {
      "statement": "Providers with Class C Certifications SHOULD persistently perform vulnerability detection on all information resources that are likely to drift, at least once every 14 days.",
      "force": "SHOULD",
      "timeframe_type": "days",
-     "timeframe_num": 14
+     "timeframe_num": 14,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "d": {
      "statement": "Providers with Class D Certifications SHOULD persistently perform vulnerability detection on all information resources that are likely to drift, at least once every 7 days.",
      "force": "SHOULD",
      "timeframe_type": "days",
-     "timeframe_num": 7
+     "timeframe_num": 7,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     }
    },
    "schema": null,
@@ -7228,30 +8181,42 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": {
     "a": {
      "statement": "Providers with Class A Certifications SHOULD persistently perform vulnerability detection on all information resources that are NOT likely to drift, at least once every 6 months.",
      "force": "SHOULD",
      "timeframe_type": "months",
-     "timeframe_num": 6
+     "timeframe_num": 6,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "b": {
      "statement": "Providers with Class B Certifications SHOULD persistently perform vulnerability detection on all information resources that are NOT likely to drift, at least once every 6 months.",
      "force": "SHOULD",
      "timeframe_type": "months",
-     "timeframe_num": 6
+     "timeframe_num": 6,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "c": {
      "statement": "Providers with Class C Certifications SHOULD persistently perform vulnerability detection on all information resources that are NOT likely to drift, at least once every month.",
      "force": "SHOULD",
      "timeframe_type": "months",
-     "timeframe_num": 1
+     "timeframe_num": 1,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "d": {
      "statement": "Providers with Class D Certifications SHOULD persistently perform vulnerability detection on all information resources that are NOT likely to drift, at least once every month.",
      "force": "SHOULD",
      "timeframe_type": "months",
-     "timeframe_num": 1
+     "timeframe_num": 1,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     }
    },
    "schema": null,
@@ -7287,30 +8252,42 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": {
     "a": {
      "statement": "Providers with Class A Certifications SHOULD partially mitigate vulnerabilities, fully mitigate vulnerabilities, or remediate vulnerabilities to a lower potential agency impact within the timeframes from evaluation shown below, factoring for the current Potential Agency Impact N-rating as defined in VER-EVA-EPA (Estimate Potential Agency Impact), internet reachability, and likely exploitability.",
      "force": "SHOULD",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "b": {
      "statement": "Providers with Class B Certifications SHOULD partially mitigate vulnerabilities, fully mitigate vulnerabilities, or remediate vulnerabilities to a lower potential agency impact within the timeframes from evaluation shown below, factoring for the current Potential Agency Impact N-rating as defined in VER-EVA-EPA (Estimate Potential Agency Impact), internet reachability, and likely exploitability:",
      "force": "SHOULD",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "c": {
      "statement": "Providers with Class C Certifications SHOULD partially mitigate vulnerabilities, fully mitigate vulnerabilities, or remediate vulnerabilities to a lower Potential Agency Impact N-rating within the timeframes from evaluation shown below, factoring for the current Potential Agency Impact N-rating as defined in VER-EVA-EPA (Estimate Potential Agency Impact), internet reachability, and likely exploitability:",
      "force": "SHOULD",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "d": {
      "statement": "Providers with Class D Certifications SHOULD partially mitigate vulnerabilities, fully mitigate vulnerabilities, or remediate vulnerabilities to a lower Potential Agency Impact N-rating within the maximum timeframes from evaluation shown below, factoring for the current Potential Agency Impact N-rating as defined in VER-EVA-EPA (Estimate Potential Agency Impact), internet reachability, and likely exploitability:",
      "force": "SHOULD",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     }
    },
    "schema": null,
@@ -7346,6 +8323,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -7380,6 +8361,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": "CISA BOD 26-04",
@@ -7414,30 +8399,42 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": {
     "a": {
      "statement": "Providers with Class A Certifications SHOULD persistently perform vulnerability detection on representative samples of similar machine-based information resources, at least once every 14 days.",
      "force": "SHOULD",
      "timeframe_type": "days",
-     "timeframe_num": 14
+     "timeframe_num": 14,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "b": {
      "statement": "Providers with Class B Certifications SHOULD persistently perform vulnerability detection on representative samples of similar machine-based information resources, at least once every 7 days.",
      "force": "SHOULD",
      "timeframe_type": "days",
-     "timeframe_num": 7
+     "timeframe_num": 7,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "c": {
      "statement": "Providers with Class C Certifications SHOULD persistently perform vulnerability detection on representative samples of similar machine-based information resources, at least once every 3 days.",
      "force": "SHOULD",
      "timeframe_type": "days",
-     "timeframe_num": 3
+     "timeframe_num": 3,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "d": {
      "statement": "Providers with Class D Certifications SHOULD persistently perform vulnerability detection on representative samples of similar machine-based information resources, at least once per day.",
      "force": "SHOULD",
      "timeframe_type": "days",
-     "timeframe_num": 1
+     "timeframe_num": 1,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     }
    },
    "schema": null,
@@ -7473,24 +8470,34 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": {
     "a": {
      "statement": "Providers of FedRAMP 20x Class A offerings SHOULD verify and validate the status of machine-based information resources at least once every month.",
      "force": "SHOULD",
      "timeframe_type": "months",
-     "timeframe_num": 1
+     "timeframe_num": 1,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "b": {
      "statement": "Providers of FedRAMP 20x Class B offerings MUST verify and validate the status of machine-based information resources at least once every 7 days.",
      "force": "MUST",
      "timeframe_type": "days",
-     "timeframe_num": 7
+     "timeframe_num": 7,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "c": {
      "statement": "Providers of FedRAMP 20x Class C offerings MUST verify and validate the status of machine-based information resources at least once every 3 days.",
      "force": "MUST",
      "timeframe_type": "days",
-     "timeframe_num": 3
+     "timeframe_num": 3,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     }
    },
    "schema": null,
@@ -7526,6 +8533,10 @@
    "affects": [
     "FedRAMP"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -7560,6 +8571,10 @@
    "affects": [
     "FedRAMP"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -7594,6 +8609,10 @@
    "affects": [
     "Agencies"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -7628,6 +8647,10 @@
    "affects": [
     "Agencies"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -7662,6 +8685,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -7696,6 +8723,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -7730,6 +8761,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -7764,6 +8799,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -7798,6 +8837,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -7832,6 +8875,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -7866,6 +8913,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -7900,6 +8951,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": {
     "name": "FedRAMP Vulnerability Detail Report (VER-RPT-VDT)",
@@ -7937,6 +8992,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": {
     "name": "FedRAMP Vulnerability Detail Report (VER-RPT-VDT)",
@@ -7974,6 +9033,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": {
     "name": "FedRAMP Accepted Vulnerability Info (VER-RPT-AVI)",
@@ -8011,6 +9074,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -8045,6 +9112,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -8079,6 +9150,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -8113,6 +9188,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": "months",
+   "timeframe_num": 1,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -8147,6 +9226,10 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": "days",
+   "timeframe_num": 192,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": null,
    "schema": null,
    "reference": null,
@@ -8181,30 +9264,42 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": {
     "a": {
      "statement": "Providers with Class A Certifications MAY make all recent historical vulnerability detection and response activity available in JSON format for automated retrieval by all necessary parties (e.g. using an API service or similar); this information MAY be updated persistently, at least once every month.",
      "force": "MAY",
      "timeframe_type": "months",
-     "timeframe_num": 1
+     "timeframe_num": 1,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "b": {
      "statement": "Providers with Class B Certifications SHOULD make all recent historical vulnerability detection and response activity available in JSON format for automated retrieval by all necessary parties (e.g. using an API service or similar); this information SHOULD be updated persistently, at least once every month.",
      "force": "SHOULD",
      "timeframe_type": "months",
-     "timeframe_num": 1
+     "timeframe_num": 1,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "c": {
      "statement": "Providers with Class C Certifications SHOULD make all recent historical vulnerability detection and response activity available in JSON format for automated retrieval by all necessary parties (e.g. using an API service or similar); this information SHOULD be updated persistently, at least once every 14 days.",
      "force": "SHOULD",
      "timeframe_type": "days",
-     "timeframe_num": 14
+     "timeframe_num": 14,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "d": {
      "statement": "Providers with Class D Certifications SHOULD make all recent historical vulnerability detection and response activity available in JSON format for automated retrieval by all necessary parties (e.g. using an API service or similar); this information SHOULD be updated persistently, at least once every 7 days.",
      "force": "SHOULD",
      "timeframe_type": "days",
-     "timeframe_num": 7
+     "timeframe_num": 7,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     }
    },
    "schema": {
@@ -8243,30 +9338,42 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": {
     "a": {
      "statement": "Providers with Class A Certifications SHOULD evaluate ALL vulnerabilities as required by VER-EVA (Evaluation) within 14 days of detection.",
      "force": "SHOULD",
      "timeframe_type": "days",
-     "timeframe_num": 14
+     "timeframe_num": 14,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "b": {
      "statement": "Providers with Class B Certifications SHOULD evaluate ALL vulnerabilities as required by VER-EVA (Evaluation) within 7 days of detection.",
      "force": "SHOULD",
      "timeframe_type": "days",
-     "timeframe_num": 7
+     "timeframe_num": 7,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "c": {
      "statement": "Providers with Class C Certifications SHOULD evaluate ALL vulnerabilities as required by VER-EVA (Evaluation) within 5 days of detection.",
      "force": "SHOULD",
      "timeframe_type": "days",
-     "timeframe_num": 5
+     "timeframe_num": 5,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "d": {
      "statement": "Providers with Class D Certifications SHOULD evaluate ALL vulnerabilities as required by VER-EVA (Evaluation) within 2 days of detection.",
      "force": "SHOULD",
      "timeframe_type": "days",
-     "timeframe_num": 2
+     "timeframe_num": 2,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     }
    },
    "schema": null,
@@ -8302,30 +9409,42 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": {
     "a": {
      "statement": "Providers with Class A Certifications MAY treat internet-reachable likely exploitable vulnerabilities where Potential Agency Impact N-rating > 3 as a FedRAMP Reportable Incident until they are partially mitigated vulnerabilities at N3 or below.",
      "force": "MAY",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "b": {
      "statement": "Providers with Class B Certifications MAY treat internet-reachable likely exploitable vulnerabilities where Potential Agency Impact N-rating > 3 as a FedRAMP Reportable Incident until they are partially mitigated vulnerabilities at N3 or below.",
      "force": "MAY",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "c": {
      "statement": "Providers with Class C Certifications SHOULD treat internet-reachable likely exploitable vulnerabilities where Potential Agency Impact N-rating > 3 as a FedRAMP Reportable Incident until they are partially mitigated vulnerabilities at N3 or below.",
      "force": "SHOULD",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "d": {
      "statement": "Providers with Class D Certifications SHOULD treat internet-reachable likely exploitable vulnerabilities where Potential Agency Impact N-rating > 3 as a FedRAMP Reportable Incident until they are partially mitigated vulnerabilities at N3 or below.",
      "force": "SHOULD",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     }
    },
    "schema": null,
@@ -8361,30 +9480,42 @@
    "affects": [
     "Providers"
    ],
+   "timeframe_type": null,
+   "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "varies_by_class": {
     "a": {
      "statement": "Providers with Class A Certifications MAY treat likely exploitable vulnerabilities that are NOT internet-reachable where Potential Agency Impact N-rating = 5 as a FedRAMP Reportable Incident until they are partially mitigated vulnerabilities at N4 or below.",
      "force": "MAY",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "b": {
      "statement": "Providers with Class B Certifications MAY treat likely exploitable vulnerabilities that are NOT internet-reachable where Potential Agency Impact N-rating = 5 as a FedRAMP Reportable Incident until they are partially mitigated vulnerabilities at N4 or below.",
      "force": "MAY",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "c": {
      "statement": "Providers with Class C Certifications MAY treat likely exploitable vulnerabilities that are NOT internet-reachable where Potential Agency Impact N-rating = 5 as a FedRAMP Reportable Incident until they are partially mitigated vulnerabilities at N4 or below.",
      "force": "MAY",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     },
     "d": {
      "statement": "Providers with Class D Certifications SHOULD treat likely exploitable vulnerabilities that are NOT internet-reachable where Potential Agency Impact N-rating = 5 as a FedRAMP Reportable Incident until they are partially mitigated vulnerabilities at N4 or below.",
      "force": "SHOULD",
      "timeframe_type": null,
-     "timeframe_num": null
+     "timeframe_num": null,
+     "timeframe_num_min": null,
+     "timeframe_num_max": null
     }
    },
    "schema": null,

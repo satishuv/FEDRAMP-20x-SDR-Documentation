@@ -1,8 +1,8 @@
 {
  "meta": {
   "derived_from": "rule-catalog.json / ksi-catalog.json",
-  "dataset_version": "2026.07.14.01",
-  "generated": "deterministic build from dataset 2026.07.14.01",
+  "dataset_version": "2026.09.13.02",
+  "generated": "deterministic build from dataset 2026.09.13.02",
   "path": "FedRAMP 20x Program Certification",
   "filter": "rules whose affects includes Providers"
  },
@@ -190,13 +190,13 @@
     "name": "Ongoing Incident Reports",
     "class_b": {
      "force": "MUST",
-     "statement": "Providers with Class B Certifications MUST responsibly notify all affected parties of ongoing activity as new information becomes available during incident response for FedRAMP Reportable Incidents, including updates (or lack of updates) to all previously reported information and as much of the the following additional information that is available and/or the current relevant status for each item:",
+     "statement": "Providers with Class B Certifications MUST responsibly notify all affected parties of ongoing activity as new information becomes available during incident response for FedRAMP Reportable Incidents, including updates (or lack of updates) to all previously reported information and as much of the following additional information that is available and/or the current relevant status for each item:",
      "timeframe_num": null,
      "timeframe_type": null
     },
     "class_c": {
      "force": "MUST",
-     "statement": "Providers with Class C Certifications MUST responsibly notify all affected parties of ongoing activity as new information becomes available during incident response for FedRAMP Reportable Incidents, including updates (or lack of updates) to all previously reported information and as much of the the following additional information that is available and/or the current relevant status for each item:",
+     "statement": "Providers with Class C Certifications MUST responsibly notify all affected parties of ongoing activity as new information becomes available during incident response for FedRAMP Reportable Incidents, including updates (or lack of updates) to all previously reported information and as much of the following additional information that is available and/or the current relevant status for each item:",
      "timeframe_num": null,
      "timeframe_type": null
     }

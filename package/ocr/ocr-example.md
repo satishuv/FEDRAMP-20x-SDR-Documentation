@@ -1,13 +1,13 @@
 Ongoing Certification Report (EXAMPLE)
 
 Certification Package Overview: https://example.provider.gov-placeholder/cpo.json
-Report period: 2026-04-15 to 2026-07-14
+Report period: 2026-06-15 to 2026-09-13
 
 Changes to FedRAMP Certification Data
   - EXAMPLE: no changes to FedRAMP Certification Data during this period.
 
 Planned changes to FedRAMP Certification Data
-  Planning horizon through: 2026-10-12
+  Planning horizon through: 2026-12-12
   - EXAMPLE: no planned changes to Certification Data in the next 3 months.
 
 Accepted vulnerabilities: EXAMPLE: summary of accepted vulnerabilities this period. Replace with the provider's real summary; see the VER/accepted-vulnerability artifacts.

@@ -46,6 +46,19 @@ def _index_rules(dataset):
                     "force": val.get("force"),
                     "statement": val.get("statement"),
                     "applicability": next_applic,
+                    # Structured semantics that can change without touching the
+                    # statement text. CR26 2026.09.13.02 added timeframe ranges
+                    # and top-level timing to several rules; a diff that ignores
+                    # these silently under-reports a material rule change.
+                    "timeframe": {
+                        t: val.get(t) for t in
+                        ("timeframe_type", "timeframe_num",
+                         "timeframe_num_min", "timeframe_num_max")
+                        if t in val
+                    },
+                    "artifacts": val.get("artifacts"),
+                    "following_information": val.get("following_information"),
+                    "varies_by_class": val.get("varies_by_class"),
                 }
             walk(val, next_applic)
 
@@ -92,6 +105,26 @@ def _index_ksi_detail(dataset):
     return out
 
 
+def _index_definitions(dataset):
+    """Return {FRD-id: definition-text} from the FRD section. Walks defensively
+    since definitions may nest; a leaf is a dict carrying 'definition'."""
+    out = {}
+    frd = dataset.get("FRD", {})
+
+    def walk(node):
+        if isinstance(node, dict):
+            for k, v in node.items():
+                if isinstance(v, dict) and "definition" in v:
+                    out[k] = v.get("definition")
+                walk(v)
+        elif isinstance(node, list):
+            for v in node:
+                walk(v)
+
+    walk(frd)
+    return out
+
+
 def diff_datasets(old, new):
     old_rules = _index_rules(old)
     new_rules = _index_rules(new)
@@ -112,6 +145,19 @@ def diff_datasets(old, new):
                                        "new": n["applicability"]}
         if (o["statement"] or "") != (n["statement"] or ""):
             deltas["statement"] = {"old": o["statement"], "new": n["statement"]}
+        if o.get("timeframe") != n.get("timeframe"):
+            deltas["timeframe"] = {"old": o.get("timeframe"),
+                                   "new": n.get("timeframe")}
+        if o.get("artifacts") != n.get("artifacts"):
+            deltas["artifacts"] = {"old": o.get("artifacts"),
+                                   "new": n.get("artifacts")}
+        if o.get("following_information") != n.get("following_information"):
+            deltas["following_information"] = {
+                "old": o.get("following_information"),
+                "new": n.get("following_information")}
+        if o.get("varies_by_class") != n.get("varies_by_class"):
+            deltas["varies_by_class"] = {"old": o.get("varies_by_class"),
+                                         "new": n.get("varies_by_class")}
         if deltas:
             changed.append({"id": rid, "changes": deltas})
 
@@ -139,6 +185,17 @@ def diff_datasets(old, new):
         if kd:
             ksis_changed.append({"id": kid, "changes": kd})
 
+    # FRD (controlled definitions) add/remove/change. CR26 2026.09.13.02 added
+    # the force-of-rule definitions (FRD-MAY/MST/MNT/SHD/SNT); a definition
+    # change can shift the meaning of every rule that uses the term, so it is a
+    # material delta the engine must surface.
+    old_defs = _index_definitions(old)
+    new_defs = _index_definitions(new)
+    defs_added = sorted(set(new_defs) - set(old_defs))
+    defs_removed = sorted(set(old_defs) - set(new_defs))
+    defs_changed = sorted(k for k in set(old_defs) & set(new_defs)
+                          if old_defs[k] != new_defs[k])
+
     return {
         "rules_added": added,
         "rules_removed": removed,
@@ -148,14 +205,21 @@ def diff_datasets(old, new):
         "ksis_added": ksis_added,
         "ksis_removed": ksis_removed,
         "ksis_changed": ksis_changed,
+        "definitions_added": defs_added,
+        "definitions_removed": defs_removed,
+        "definitions_changed": defs_changed,
         "summary": {
             "added": len(added),
             "removed": len(removed),
             "changed": len(changed),
             "force_changes": sum(1 for c in changed if "force" in c["changes"]),
+            "timeframe_changes": sum(1 for c in changed if "timeframe" in c["changes"]),
             "ksis_added": len(ksis_added),
             "ksis_removed": len(ksis_removed),
             "ksis_changed": len(ksis_changed),
+            "definitions_added": len(defs_added),
+            "definitions_removed": len(defs_removed),
+            "definitions_changed": len(defs_changed),
         },
     }
 

@@ -18,7 +18,7 @@ These are the decisions that shaped the code, in the order they get applied when
 
 **Truth over convenience.** Requirement text is resolved from the canonical dataset at build time and compared against it again at validation time, through an independent code path. Nothing is transcribed by hand. When the framework does not know something, it says `TBD` rather than guessing, because a plausible guess in an authorization package is worse than an obvious hole.
 
-**One editable surface.** Humans edit `sdr/records/records-store.json`. Everything else is a build output. This is the single design choice that makes the rest possible: there is exactly one place where a fact can enter, so there is exactly one place to review.
+**Provider-owned inputs.** Humans edit two files: `sdr/records/records-store.json` (the security-decision facts) and `profiles/common/offering-profile.json` (offering identity, class, assessment and CPO inputs). Everything else is a build output. This is the design choice that makes the rest possible: there are exactly two places where a fact can enter, so there are exactly two places to review.
 
 **Determinism is a security property.** The same inputs produce byte-identical outputs, verified by double-run hash comparison. Generated files carry no run timestamps. This means a reviewer can regenerate your package and confirm it matches what you shipped, which is a much stronger claim than trusting the file you sent.
 

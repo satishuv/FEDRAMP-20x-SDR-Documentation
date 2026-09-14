@@ -4,7 +4,7 @@ Assessor-facing summary generated from the assurance graph. It is not a complian
 
 ## Package metadata
 - Certification class: B
-- Dataset version: 2026.07.14.01
+- Dataset version: 2026.09.13.02
 - Offering: Example PaaS Foundation (EPF)
 
 ## Requirement scope

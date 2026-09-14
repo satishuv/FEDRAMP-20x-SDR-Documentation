@@ -105,7 +105,8 @@ def _sanitize_fact_for_evidence(fact):
     Detailed raw material stays in the git-excluded private facts store."""
     if not isinstance(fact, dict):
         return {}
-    ALLOW = ("service", "check", "status", "region", "observed_at", "timestamp")
+    ALLOW = ("service", "check", "status", "region",
+             "collected_at", "observed_at", "timestamp")
     out = {k: fact[k] for k in ALLOW if k in fact}
     # A short, human summary is allowed but truncated; never the full detail.
     detail = fact.get("detail")
@@ -127,7 +128,12 @@ def fact_to_evidence(fact, location_base=None):
     region = fact.get("region", "unknown")
     ev_type, _kind = _SERVICE_EVIDENCE.get(service, (_DEFAULT_TYPE, service))
     detail = fact.get("detail", "")
-    observed = fact.get("observed_at") or fact.get("timestamp")
+    # The live AWS collector emits collected_at; synthetic/test facts may use
+    # observed_at or timestamp. Prefer collected_at so a real collected fact's
+    # lastUpdated is populated and the timestamp is captured in xSourceFact.
+    observed = (fact.get("collected_at")
+                or fact.get("observed_at")
+                or fact.get("timestamp"))
 
     # Sanitize once; hash the sanitized object AND persist it, so a reviewer/CI
     # recompute over xSourceFact matches xEvidenceContentHash.
