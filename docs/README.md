@@ -27,7 +27,6 @@
 | [Vision and mission](vision.md) | Where this is going, the principles behind it, and what it refuses to do |
 | [Scanner reference](../automation/sdrscan/README.md) | Every readiness check, output formats, mutelist |
 | [Shift-left policy-as-code](../examples/shift-left/README.md) | The pre-deploy OPA / CFN Guard gate sibling to the SDR |
-| [Reference: compliance-engineering control model](references/compliance-engineering-control-model.md) | Where the SDR sits in the broader AWS control stack |
 | [Reference: OSCAL and machine-readable packages](references/oscal-and-machine-readable-packages.md) | OSCAL context and primary sources |
 
 ## Reading order for a first authorization
