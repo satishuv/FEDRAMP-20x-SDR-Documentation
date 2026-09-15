@@ -286,7 +286,10 @@ def build_overlay(profile_b, profile_c):
         elif (
             prior["statement"] != entry["statement"]
             or prior["force"] != entry["force"]
+            or prior.get("timeframe_type") != entry.get("timeframe_type")
             or prior.get("timeframe_num") != entry.get("timeframe_num")
+            or prior.get("timeframe_num_min") != entry.get("timeframe_num_min")
+            or prior.get("timeframe_num_max") != entry.get("timeframe_num_max")
         ):
             overlay["changed"].append(
                 {
@@ -297,12 +300,16 @@ def build_overlay(profile_b, profile_c):
                         "statement": prior["statement"],
                         "timeframe_num": prior.get("timeframe_num"),
                         "timeframe_type": prior.get("timeframe_type"),
+                        "timeframe_num_min": prior.get("timeframe_num_min"),
+                        "timeframe_num_max": prior.get("timeframe_num_max"),
                     },
                     "class_c": {
                         "force": entry["force"],
                         "statement": entry["statement"],
                         "timeframe_num": entry.get("timeframe_num"),
                         "timeframe_type": entry.get("timeframe_type"),
+                        "timeframe_num_min": entry.get("timeframe_num_min"),
+                        "timeframe_num_max": entry.get("timeframe_num_max"),
                     },
                 }
             )

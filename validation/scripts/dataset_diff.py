@@ -40,7 +40,8 @@ def _index_rules(dataset):
             return
         for key, val in node.items():
             next_applic = key if key in APPLICABILITIES else applic
-            if isinstance(val, dict) and ("force" in val or "statement" in val) \
+            if isinstance(val, dict) and (
+                    "force" in val or "statement" in val or "varies_by_class" in val) \
                     and RULE_ID.match(key or ""):
                 out[key] = {
                     "force": val.get("force"),
@@ -243,8 +244,25 @@ def render(d):
                 lines.append(f"  ~ {c['id']} {field}: {delta['old']} -> {delta['new']}")
     for fam, delta in sorted(d["ksi_family_changes"].items()):
         lines.append(f"  ~ KSI {fam}: {delta['old']} -> {delta['new']}")
+    # Individual KSI changes (statement/controls), not just family counts.
+    for kid in d.get("ksis_added", []):
+        lines.append(f"  + KSI {kid}")
+    for kid in d.get("ksis_removed", []):
+        lines.append(f"  - KSI {kid}")
+    for c in d.get("ksis_changed", []):
+        lines.append(f"  ~ KSI {c['id']} {'/'.join(sorted(c['changes']))} changed")
+    # Controlled FedRAMP definitions (FRD): a definition change can shift the
+    # meaning of every rule that uses the term (e.g. MUST/SHOULD/MAY).
+    for fid in d.get("definitions_added", []):
+        lines.append(f"  + definition {fid}")
+    for fid in d.get("definitions_removed", []):
+        lines.append(f"  - definition {fid}")
+    for fid in d.get("definitions_changed", []):
+        lines.append(f"  ~ definition {fid} changed")
     if not (d["rules_added"] or d["rules_removed"] or d["rules_changed"]
-            or d["ksi_family_changes"]):
+            or d["ksi_family_changes"] or d.get("ksis_added") or d.get("ksis_removed")
+            or d.get("ksis_changed") or d.get("definitions_added")
+            or d.get("definitions_removed") or d.get("definitions_changed")):
         lines.append("  No material changes detected.")
     return "\n".join(lines)
 

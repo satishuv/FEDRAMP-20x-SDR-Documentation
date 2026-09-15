@@ -62,6 +62,34 @@ def test_out_of_scope_change_has_no_class_impact():
     assert imp["affected_outputs"] == []
 
 
+def test_definition_change_requires_review():
+    # A controlled FedRAMP definition (FRD) change must produce a review item,
+    # not be silently ignored (it can shift the meaning of every rule using it).
+    diff = {"rules_added": [], "rules_removed": [], "rules_changed": [],
+            "ksis_added": [], "ksis_removed": [], "ksis_changed": [],
+            "definitions_added": ["FRD-MST"], "definitions_removed": [],
+            "definitions_changed": ["FRD-SHD"], "summary": {}}
+    out = ci.compute(diff)
+    assert out.get("definition_impacts"), "definition changes produced no impact"
+    ids = {i["definition_id"] for i in out["definition_impacts"]}
+    assert {"FRD-MST", "FRD-SHD"} <= ids
+    assert all(i["requires_human_review"] for i in out["definition_impacts"])
+    assert out["total_requiring_review"] >= 2
+
+
+def test_applicability_change_forces_review_even_if_out_of_scope():
+    # A rule that changed applicability but is not in any current profile must
+    # still require review (old union new applicability), not be dropped.
+    diff = {"rules_added": [], "rules_removed": [],
+            "rules_changed": [{"id": "QQQ-QQQ-APP",
+                               "changes": {"applicability": {"old": "20x", "new": "rev5"}}}],
+            "summary": {}}
+    out = ci.compute(diff)
+    imp = next(i for i in out["impacts"] if i["rule_id"] == "QQQ-QQQ-APP")
+    assert imp["requires_human_review"] is True
+    assert imp.get("applicability_or_class_variance_changed") is True
+
+
 def main():
     tests = [v for k, v in sorted(globals().items()) if k.startswith("test_")]
     for t in tests:

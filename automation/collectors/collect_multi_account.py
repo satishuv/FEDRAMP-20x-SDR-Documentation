@@ -73,7 +73,15 @@ def assume_role_session(base_session, account, role_name, region,
                          "Use a read-only role.")
     import boto3
     sts = base_session.client("sts")
-    role_arn = f"arn:aws:iam::{account}:role/{role_name}"
+    # Derive the partition from the caller's own identity ARN rather than
+    # hardcoding "aws": GovCloud is "aws-us-gov", China is "aws-cn". A hardcoded
+    # commercial partition makes the assume-role ARN invalid in those regions.
+    try:
+        caller_arn = sts.get_caller_identity().get("Arn", "")
+        partition = caller_arn.split(":")[1] if caller_arn.startswith("arn:") else "aws"
+    except Exception:  # noqa: BLE001
+        partition = "aws"
+    role_arn = f"arn:{partition}:iam::{account}:role/{role_name}"
     creds = sts.assume_role(RoleArn=role_arn,
                             RoleSessionName=session_name)["Credentials"]
     return boto3.Session(
