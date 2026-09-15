@@ -363,6 +363,22 @@ Resources:
                   - s3:PutObject
                 Resource: !Sub "${EvidenceBucket.Arn}/metrics/*"
               - Effect: Allow
+                # Bucket-level ListBucket, scoped to the metrics/ prefix, is
+                # required so a first-run restore of a NOT-YET-EXISTENT
+                # metric-history.json returns 404 (NoSuchKey) rather than 403.
+                # Without s3:ListBucket, S3 returns 403 AccessDenied for a missing
+                # object, which the fail-closed restore treats as an abnormal
+                # error and aborts the first legitimate collection. The prefix
+                # condition keeps this from being a whole-bucket listing grant.
+                Action:
+                  - s3:ListBucket
+                Resource: !GetAtt EvidenceBucket.Arn
+                Condition:
+                  StringLike:
+                    "s3:prefix":
+                      - "metrics/*"
+                      - "metrics/metric-history.json"
+              - Effect: Allow
                 # The full canonical read-only collector action set
                 # (automation/collectors/collectors.py READ_ONLY_ACTIONS). These
                 # are account-wide describe/list/get calls that do not support
