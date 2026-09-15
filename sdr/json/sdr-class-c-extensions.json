@@ -11,8 +11,8 @@
   ],
   "sdr_version": "0.1.0",
   "schema_version": "2026-06-24",
-  "dataset_version": "2026.07.14.01",
-  "generated": "deterministic build from dataset 2026.07.14.01",
+  "dataset_version": "2026.09.13.02",
+  "generated": "deterministic build from dataset 2026.09.13.02",
   "source_of_update": "build_sdr.py generator"
  },
  "frr": {
@@ -323,7 +323,7 @@
    "family": "CCM",
    "family_name": "Collaborative Continuous Monitoring",
    "guidance": {
-    "what_it_looks_for": "Providers MUST supply an Ongoing Certification Report to all necessary parties every 3 months, covering the entire period since the previous summary, in a consistent format that is human readable; this report MUST include high-level summaries of at least the following information:",
+    "what_it_looks_for": "Providers MUST supply an Ongoing Certification Report to all necessary parties every 3 months, covering the entire period since the previous summary, in a consistent format that is human readable; this report MUST include high-level summaries of at least the following information (if applicable):",
     "official_notes": [],
     "how_to_comply": "Establish the quarterly Ongoing Certification Report and Quarterly Review cadence: a named owner, a calendar, a consistent format, a feedback mechanism, and public next-report and next-review dates in the certification data.",
     "evidence_required": [
@@ -2660,7 +2660,7 @@
    "family": "IEC",
    "family_name": "Incident Evaluation and Communication",
    "guidance": {
-    "what_it_looks_for": "Providers with Class C Certifications MUST responsibly notify all affected parties of ongoing activity as new information becomes available during incident response for FedRAMP Reportable Incidents, including updates (or lack of updates) to all previously reported information and as much of the the following additional information that is available and/or the current relevant status for each item:",
+    "what_it_looks_for": "Providers with Class C Certifications MUST responsibly notify all affected parties of ongoing activity as new information becomes available during incident response for FedRAMP Reportable Incidents, including updates (or lack of updates) to all previously reported information and as much of the following additional information that is available and/or the current relevant status for each item:",
     "official_notes": [],
     "how_to_comply": "Define incident evaluation and reporting procedures with the FedRAMP Reportable Incident test, the Potential Agency Impact N-rating scale, and the class-specific reporting timeframes. Wire detection (GuardDuty, Security Hub) to an on-call process that can meet the clock.",
     "evidence_required": [
@@ -6236,12 +6236,12 @@
    "name": "Enforcing Intended State",
    "family": "CNA",
    "family_name": "Cloud Native Architecture",
-   "content_status": "FedRAMP pending: statement empty in official dataset",
+   "content_status": "stable",
    "minimum_automated_methods": 2,
    "historical_metrics_required": "Class B summaries plus all daily metric data up to the past year where available.",
    "guidance": {
     "what_it_looks_for": "FedRAMP pending: no statement published yet for this indicator.",
-    "how_to_comply": "FedRAMP pending: this indicator has no statement in the official dataset yet. Track the dataset for updates before building anything specific.",
+    "how_to_comply": "Class-varying (optional/MAY at Class B, required at Class C): automated services persistently assess the security of all machine-based information resources and automatically enforce their intended operational state. Evidence: Config rules with auto-remediation, Systems Manager State Manager/associations, drift-detection and enforcement records over time.",
     "evidence_required": [
      "Explanation of measures (and their objectives) that demonstrate the Key Security Indicator, or an explanation of the reason and resulting risk to customers for not having measures available for that Key Security Indicator.",
      "Explanation of the cycle for any measures that are implemented persistently (if applicable).",
@@ -6989,12 +6989,12 @@
    "name": "Authorizing Log Access",
    "family": "MLA",
    "family_name": "Monitoring, Logging, and Auditing",
-   "content_status": "FedRAMP pending: statement empty in official dataset",
+   "content_status": "stable",
    "minimum_automated_methods": 2,
    "historical_metrics_required": "Class B summaries plus all daily metric data up to the past year where available.",
    "guidance": {
     "what_it_looks_for": "FedRAMP pending: no statement published yet for this indicator.",
-    "how_to_comply": "FedRAMP pending: this indicator has no statement in the official dataset yet. Track the dataset for updates before building anything specific.",
+    "how_to_comply": "Class-varying (optional/MAY at Class B, required at Class C): a least-privileged, role/attribute-based, just-in-time authorization model governs access to log data by data sensitivity, and is persistently reviewed. Evidence: IAM/Access Analyzer for log-store access, JIT-access records, periodic access reviews of the log data store.",
     "evidence_required": [
      "Explanation of measures (and their objectives) that demonstrate the Key Security Indicator, or an explanation of the reason and resulting risk to customers for not having measures available for that Key Security Indicator.",
      "Explanation of the cycle for any measures that are implemented persistently (if applicable).",
@@ -7841,12 +7841,12 @@
    "name": "Preventing Residual Risk",
    "family": "SVC",
    "family_name": "Service Configuration",
-   "content_status": "FedRAMP pending: statement empty in official dataset",
+   "content_status": "stable",
    "minimum_automated_methods": 2,
    "historical_metrics_required": "Class B summaries plus all daily metric data up to the past year where available.",
    "guidance": {
     "what_it_looks_for": "FedRAMP pending: no statement published yet for this indicator.",
-    "how_to_comply": "FedRAMP pending: this indicator has no statement in the official dataset yet. Track the dataset for updates before building anything specific.",
+    "how_to_comply": "Class-varying (optional/MAY at Class B, required at Class C): plans, procedures, and resource state are persistently reviewed after changes to limit and remove unwanted residual elements that could affect confidentiality, integrity, or availability of federal customer data. Evidence: post-change review records, drift/residual-resource cleanup logs.",
     "evidence_required": [
      "Explanation of measures (and their objectives) that demonstrate the Key Security Indicator, or an explanation of the reason and resulting risk to customers for not having measures available for that Key Security Indicator.",
      "Explanation of the cycle for any measures that are implemented persistently (if applicable).",
@@ -7879,12 +7879,12 @@
    "name": "Removing Unwanted Data",
    "family": "SVC",
    "family_name": "Service Configuration",
-   "content_status": "FedRAMP pending: statement empty in official dataset",
+   "content_status": "stable",
    "minimum_automated_methods": 2,
    "historical_metrics_required": "Class B summaries plus all daily metric data up to the past year where available.",
    "guidance": {
     "what_it_looks_for": "FedRAMP pending: no statement published yet for this indicator.",
-    "how_to_comply": "FedRAMP pending: this indicator has no statement in the official dataset yet. Track the dataset for updates before building anything specific.",
+    "how_to_comply": "Class-varying (optional/MAY at Class B, required at Class C): unwanted federal customer data is removed promptly when an agency requests it per customer agreements, including from backups where appropriate (e.g. data spill or usage change). Evidence: data-removal request handling records, backup-scoped deletion procedures and logs.",
     "evidence_required": [
      "Explanation of measures (and their objectives) that demonstrate the Key Security Indicator, or an explanation of the reason and resulting risk to customers for not having measures available for that Key Security Indicator.",
      "Explanation of the cycle for any measures that are implemented persistently (if applicable).",
@@ -7967,12 +7967,12 @@
    "name": "Validating Communications",
    "family": "SVC",
    "family_name": "Service Configuration",
-   "content_status": "FedRAMP pending: statement empty in official dataset",
+   "content_status": "stable",
    "minimum_automated_methods": 2,
    "historical_metrics_required": "Class B summaries plus all daily metric data up to the past year where available.",
    "guidance": {
     "what_it_looks_for": "FedRAMP pending: no statement published yet for this indicator.",
-    "how_to_comply": "FedRAMP pending: this indicator has no statement in the official dataset yet. Track the dataset for updates before building anything specific.",
+    "how_to_comply": "Class-varying (optional/MAY at Class B, required at Class C): the authenticity and integrity of communications between machine-based information resources is persistently validated using automation. Evidence: mutual-TLS/service-mesh identity validation, signed inter-service requests, automated integrity-verification records.",
     "evidence_required": [
      "Explanation of measures (and their objectives) that demonstrate the Key Security Indicator, or an explanation of the reason and resulting risk to customers for not having measures available for that Key Security Indicator.",
      "Explanation of the cycle for any measures that are implemented persistently (if applicable).",

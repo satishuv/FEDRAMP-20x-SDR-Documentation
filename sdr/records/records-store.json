@@ -7663,7 +7663,7 @@
   "KSI-CNA-EIS": {
    "implementation_status": "Not Implemented",
    "implementation": [
-    "FedRAMP pending: this indicator has no statement in the official dataset yet."
+    "TBD: Information has not been provided."
    ],
    "validation": [
     "TBD: Information has not been provided."
@@ -7694,7 +7694,7 @@
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
     "ksi_family": "CNA (Cloud Native Architecture)",
     "what_it_looks_for": "FedRAMP pending: no statement published yet for this indicator.",
-    "how_to_comply": "FedRAMP pending: this indicator has no statement in the official dataset yet. Track the dataset for updates before building anything specific.",
+    "how_to_comply": "Class-varying (optional/MAY at Class B, required at Class C): automated services persistently assess the security of all machine-based information resources and automatically enforce their intended operational state. Evidence: Config rules with auto-remediation, Systems Manager State Manager/associations, drift-detection and enforcement records over time.",
     "evidence_required": [
      "Explanation of measures (and their objectives) that demonstrate the Key Security Indicator, or an explanation of the reason and resulting risk to customers for not having measures available for that Key Security Indicator.",
      "Explanation of the cycle for any measures that are implemented persistently (if applicable).",
@@ -8450,7 +8450,7 @@
   "KSI-MLA-ALA": {
    "implementation_status": "Not Implemented",
    "implementation": [
-    "FedRAMP pending: this indicator has no statement in the official dataset yet."
+    "TBD: Information has not been provided."
    ],
    "validation": [
     "TBD: Information has not been provided."
@@ -8481,7 +8481,7 @@
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
     "ksi_family": "MLA (Monitoring, Logging, and Auditing)",
     "what_it_looks_for": "FedRAMP pending: no statement published yet for this indicator.",
-    "how_to_comply": "FedRAMP pending: this indicator has no statement in the official dataset yet. Track the dataset for updates before building anything specific.",
+    "how_to_comply": "Class-varying (optional/MAY at Class B, required at Class C): a least-privileged, role/attribute-based, just-in-time authorization model governs access to log data by data sensitivity, and is persistently reviewed. Evidence: IAM/Access Analyzer for log-store access, JIT-access records, periodic access reviews of the log data store.",
     "evidence_required": [
      "Explanation of measures (and their objectives) that demonstrate the Key Security Indicator, or an explanation of the reason and resulting risk to customers for not having measures available for that Key Security Indicator.",
      "Explanation of the cycle for any measures that are implemented persistently (if applicable).",
@@ -9381,7 +9381,7 @@
   "KSI-SVC-PRR": {
    "implementation_status": "Not Implemented",
    "implementation": [
-    "FedRAMP pending: this indicator has no statement in the official dataset yet."
+    "TBD: Information has not been provided."
    ],
    "validation": [
     "TBD: Information has not been provided."
@@ -9412,7 +9412,7 @@
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
     "ksi_family": "SVC (Service Configuration)",
     "what_it_looks_for": "FedRAMP pending: no statement published yet for this indicator.",
-    "how_to_comply": "FedRAMP pending: this indicator has no statement in the official dataset yet. Track the dataset for updates before building anything specific.",
+    "how_to_comply": "Class-varying (optional/MAY at Class B, required at Class C): plans, procedures, and resource state are persistently reviewed after changes to limit and remove unwanted residual elements that could affect confidentiality, integrity, or availability of federal customer data. Evidence: post-change review records, drift/residual-resource cleanup logs.",
     "evidence_required": [
      "Explanation of measures (and their objectives) that demonstrate the Key Security Indicator, or an explanation of the reason and resulting risk to customers for not having measures available for that Key Security Indicator.",
      "Explanation of the cycle for any measures that are implemented persistently (if applicable).",
@@ -9430,7 +9430,7 @@
   "KSI-SVC-RUD": {
    "implementation_status": "Not Implemented",
    "implementation": [
-    "FedRAMP pending: this indicator has no statement in the official dataset yet."
+    "TBD: Information has not been provided."
    ],
    "validation": [
     "TBD: Information has not been provided."
@@ -9461,7 +9461,7 @@
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
     "ksi_family": "SVC (Service Configuration)",
     "what_it_looks_for": "FedRAMP pending: no statement published yet for this indicator.",
-    "how_to_comply": "FedRAMP pending: this indicator has no statement in the official dataset yet. Track the dataset for updates before building anything specific.",
+    "how_to_comply": "Class-varying (optional/MAY at Class B, required at Class C): unwanted federal customer data is removed promptly when an agency requests it per customer agreements, including from backups where appropriate (e.g. data spill or usage change). Evidence: data-removal request handling records, backup-scoped deletion procedures and logs.",
     "evidence_required": [
      "Explanation of measures (and their objectives) that demonstrate the Key Security Indicator, or an explanation of the reason and resulting risk to customers for not having measures available for that Key Security Indicator.",
      "Explanation of the cycle for any measures that are implemented persistently (if applicable).",
@@ -9531,7 +9531,7 @@
   "KSI-SVC-VCM": {
    "implementation_status": "Not Implemented",
    "implementation": [
-    "FedRAMP pending: this indicator has no statement in the official dataset yet."
+    "TBD: Information has not been provided."
    ],
    "validation": [
     "TBD: Information has not been provided."
@@ -9562,7 +9562,7 @@
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
     "ksi_family": "SVC (Service Configuration)",
     "what_it_looks_for": "FedRAMP pending: no statement published yet for this indicator.",
-    "how_to_comply": "FedRAMP pending: this indicator has no statement in the official dataset yet. Track the dataset for updates before building anything specific.",
+    "how_to_comply": "Class-varying (optional/MAY at Class B, required at Class C): the authenticity and integrity of communications between machine-based information resources is persistently validated using automation. Evidence: mutual-TLS/service-mesh identity validation, signed inter-service requests, automated integrity-verification records.",
     "evidence_required": [
      "Explanation of measures (and their objectives) that demonstrate the Key Security Indicator, or an explanation of the reason and resulting risk to customers for not having measures available for that Key Security Indicator.",
      "Explanation of the cycle for any measures that are implemented persistently (if applicable).",

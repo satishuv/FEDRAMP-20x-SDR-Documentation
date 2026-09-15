@@ -15,6 +15,7 @@
    "family_name": "Cybersecurity Education",
    "name": "Reviewing All Training",
    "statement": "The effectiveness of relevant cybersecurity education and training is persistently reviewed, including at least general training for all employees, role-specific training for employees in high risk roles, training for development and engineering staff on secure software delivery, and training for staff involved with incident response or disaster recovery.",
+   "varies_by_class": null,
    "controls": [
     "cp-3",
     "ir-2",
@@ -49,6 +50,7 @@
    "family_name": "Change Management",
    "name": "Logging Changes",
    "statement": "Modifications to the cloud service offering are logged and monitored.",
+   "varies_by_class": null,
    "controls": [
     "au-2",
     "cm-3",
@@ -79,6 +81,7 @@
    "family_name": "Change Management",
    "name": "Redeploying vs Modifying",
    "statement": "Changes to machine-based information resources are executed through the redeployment of version controlled resources rather than direct modification wherever reasonable.",
+   "varies_by_class": null,
    "controls": [
     "cm-2",
     "cm-3",
@@ -109,6 +112,7 @@
    "family_name": "Change Management",
    "name": "Reviewing Change Procedures",
    "statement": "The effectiveness of documented change management procedures is persistently reviewed.",
+   "varies_by_class": null,
    "controls": [
     "cm-3",
     "cm-3.2",
@@ -138,6 +142,7 @@
    "family_name": "Change Management",
    "name": "Validating Throughout Deployment",
    "statement": "Persistent testing and validation of changes throughout deployment is automated.",
+   "varies_by_class": null,
    "controls": [
     "cm-3",
     "cm-3.2",
@@ -165,6 +170,7 @@
    "family_name": "Cloud Native Architecture",
    "name": "Defining Functionality and Privileges",
    "statement": "The functionality and privileges for infrastructure and services are strictly defined.",
+   "varies_by_class": null,
    "controls": [
     "cm-2",
     "si-3"
@@ -190,6 +196,14 @@
    "family_name": "Cloud Native Architecture",
    "name": "Enforcing Intended State",
    "statement": null,
+   "varies_by_class": {
+    "b": {
+     "statement": "**Optional:** Automated services are used to persistently assess the security of all machine-based information resources and automatically enforce their intended operational state."
+    },
+    "c": {
+     "statement": "Automated services are used to persistently assess the security of all machine-based information resources and automatically enforce their intended operational state."
+    }
+   },
    "controls": [
     "ca-2.1",
     "ca-7.1"
@@ -215,6 +229,7 @@
    "family_name": "Cloud Native Architecture",
    "name": "Implementing Best Practices",
    "statement": "The use and configuration of third-party machine-based information resources is persistently compared against the original provider's best practices and guidance.",
+   "varies_by_class": null,
    "controls": [
     "ac-17.3",
     "cm-2",
@@ -241,6 +256,7 @@
    "family_name": "Cloud Native Architecture",
    "name": "Minimizing Attack Surface",
    "statement": "Machine-based information resources are persistently reviewed to ensure they have a minimal attack surface and that lateral movement is minimized if compromised.",
+   "varies_by_class": null,
    "controls": [
     "ac-17.3",
     "ac-18.1",
@@ -278,6 +294,7 @@
    "family_name": "Cloud Native Architecture",
    "name": "Optimizing for Availability",
    "statement": "Machine-based information resources are persistently reviewed to ensure they are appropriately optimized for high availability and rapid recovery.",
+   "varies_by_class": null,
    "controls": [],
    "content_status": "stable",
    "minimum_automated_methods": {
@@ -300,6 +317,7 @@
    "family_name": "Cloud Native Architecture",
    "name": "Restricting Network Traffic",
    "statement": "Machine-based information resources are persistently reviewed to ensure they are appropriately configured to limit inbound and outbound network traffic.",
+   "varies_by_class": null,
    "controls": [
     "ac-17.3",
     "ca-9",
@@ -328,6 +346,7 @@
    "family_name": "Cloud Native Architecture",
    "name": "Reviewing Protections",
    "statement": "The effectiveness of protection against denial of service attacks and other unwanted activity for machine-based information resources is persistently reviewed.",
+   "varies_by_class": null,
    "controls": [
     "sc-5",
     "si-8",
@@ -354,6 +373,7 @@
    "family_name": "Cloud Native Architecture",
    "name": "Using Logical Networking",
    "statement": "Logical networking and related capabilities are used and persistently reviewed to enforce traffic flow controls.",
+   "varies_by_class": null,
    "controls": [
     "ac-12",
     "ac-17.3",
@@ -385,6 +405,7 @@
    "family_name": "Identity and Access Management",
    "name": "Automating Account Management",
    "statement": "The lifecycle and privileges of all accounts, roles, and groups are securely managed using automation.",
+   "varies_by_class": null,
    "controls": [
     "ac-2.2",
     "ac-2.3",
@@ -417,6 +438,7 @@
    "family_name": "Identity and Access Management",
    "name": "Adopting Passwordless Methods",
    "statement": "Secure passwordless methods are used for user authentication and authorization when feasible, otherwise strong passwords with phishing-resistant MFA is used.",
+   "varies_by_class": null,
    "controls": [
     "ac-3",
     "ia-5.1",
@@ -453,6 +475,7 @@
    "family_name": "Identity and Access Management",
    "name": "Ensuring Least Privilege",
    "statement": "Identity and access management measures are used and persistently reviewed to ensure each user or device can only access the resources they need.",
+   "varies_by_class": null,
    "controls": [
     "ac-2.5",
     "ac-2.6",
@@ -510,6 +533,7 @@
    "family_name": "Identity and Access Management",
    "name": "Authorizing Just-in-Time",
    "statement": "A least-privileged, role and attribute-based, and just-in-time security authorization model is used and persistently reviewed for all user and non-user accounts and services.",
+   "varies_by_class": null,
    "controls": [
     "ac-2",
     "ac-2.1",
@@ -571,6 +595,7 @@
    "family_name": "Identity and Access Management",
    "name": "Securing Non-User Authentication",
    "statement": "Appropriately secure authentication methods are used and persistently reviewed for non-user accounts and services.",
+   "varies_by_class": null,
    "controls": [
     "ac-2",
     "ac-2.2",
@@ -601,6 +626,7 @@
    "family_name": "Identity and Access Management",
    "name": "Responding to Suspicious Activity",
    "statement": "Accounts with privileged access are disabled or otherwise secured in response to suspicious activity.",
+   "varies_by_class": null,
    "controls": [
     "ac-2",
     "ac-2.1",
@@ -631,6 +657,7 @@
    "family_name": "Incident Response",
    "name": "Generating After Action Reports",
    "statement": "Incident after action reports are generated and lessons learned are persistently incorporated.",
+   "varies_by_class": null,
    "controls": [
     "ir-3",
     "ir-4",
@@ -658,6 +685,7 @@
    "family_name": "Incident Response",
    "name": "Reviewing Incident Response Procedures",
    "statement": "The effectiveness of documented incident response procedures is persistently reviewed.",
+   "varies_by_class": null,
    "controls": [
     "ir-4",
     "ir-4.1",
@@ -691,6 +719,7 @@
    "family_name": "Incident Response",
    "name": "Reviewing Past Incidents",
    "statement": "Past incidents are persistently reviewed for patterns or vulnerabilities that were not previously apparent or identified.",
+   "varies_by_class": null,
    "controls": [
     "ir-3",
     "ir-4",
@@ -719,6 +748,14 @@
    "family_name": "Monitoring, Logging, and Auditing",
    "name": "Authorizing Log Access",
    "statement": null,
+   "varies_by_class": {
+    "b": {
+     "statement": "**Optional:** A least-privileged, role and attribute-based, and just-in-time access authorization model is used and persistently reviewed for access to log data based on organizationally defined data sensitivity."
+    },
+    "c": {
+     "statement": "A least-privileged, role and attribute-based, and just-in-time access authorization model is used and persistently reviewed for access to log data based on organizationally defined data sensitivity."
+    }
+   },
    "controls": [
     "si-11"
    ],
@@ -743,6 +780,7 @@
    "family_name": "Monitoring, Logging, and Auditing",
    "name": "Evaluating Configurations",
    "statement": "The configuration of machine-based information resources, especially infrastructure as code, is persistently evaluated and tested.",
+   "varies_by_class": null,
    "controls": [
     "ca-7",
     "cm-2",
@@ -770,6 +808,7 @@
    "family_name": "Monitoring, Logging, and Auditing",
    "name": "Logging Event Types",
    "statement": "A list of information resources and event types that will be logged, monitored, and audited is maintained and persistently reviewed to ensure these activities occur.",
+   "varies_by_class": null,
    "controls": [
     "ac-2.4",
     "ac-6.9",
@@ -803,6 +842,7 @@
    "family_name": "Monitoring, Logging, and Auditing",
    "name": "Operating SIEM Capability",
    "statement": "A Security Information and Event Management (SIEM) or similar system(s) is used and persistently reviewed for centralized, tamper-resistant logging of events, activities, and changes.",
+   "varies_by_class": null,
    "controls": [
     "ac-17.1",
     "ac-20.1",
@@ -844,6 +884,7 @@
    "family_name": "Monitoring, Logging, and Auditing",
    "name": "Reviewing Logs",
    "statement": "Logs are persistently reviewed and audited.",
+   "varies_by_class": null,
    "controls": [
     "ac-2.4",
     "ac-6.9",
@@ -874,6 +915,7 @@
    "family_name": "Policy and Inventory",
    "name": "Generating Inventories",
    "statement": "Authoritative sources are used to automatically generate real-time inventories of all information resources when needed.",
+   "varies_by_class": null,
    "controls": [
     "cm-2.2",
     "cm-7.5",
@@ -904,6 +946,7 @@
    "family_name": "Policy and Inventory",
    "name": "Reviewing Executive Support",
    "statement": "Executive support for achieving the provider's security goals is persistently reviewed and demonstrated.",
+   "varies_by_class": null,
    "controls": [],
    "content_status": "stable",
    "minimum_automated_methods": {
@@ -926,6 +969,7 @@
    "family_name": "Policy and Inventory",
    "name": "Reviewing Investments in Security",
    "statement": "The effectiveness of the provider's investments in achieving security goals is persistently reviewed.",
+   "varies_by_class": null,
    "controls": [
     "ac-5",
     "ca-2",
@@ -958,6 +1002,7 @@
    "family_name": "Policy and Inventory",
    "name": "Reviewing Security in the SDLC",
    "statement": "The effectiveness of building security and privacy considerations into the Software Development Lifecycle and aligning with CISA Secure By Design principles is persistently reviewed.",
+   "varies_by_class": null,
    "controls": [
     "ac-5",
     "au-3.3",
@@ -993,6 +1038,7 @@
    "family_name": "Policy and Inventory",
    "name": "Reviewing Vulnerability Disclosures",
    "statement": "The effectiveness of the provider's vulnerability disclosure program is persistently reviewed.",
+   "varies_by_class": null,
    "controls": [
     "ra-5.11"
    ],
@@ -1017,6 +1063,7 @@
    "family_name": "Recovery Planning",
    "name": "Aligning Backups with Objectives",
    "statement": "The alignment of machine-based information resource backups with defined recovery objectives is persistently reviewed.",
+   "varies_by_class": null,
    "controls": [
     "cm-2.3",
     "cp-6",
@@ -1046,6 +1093,7 @@
    "family_name": "Recovery Planning",
    "name": "Aligning Recovery Plan",
    "statement": "The alignment of recovery plans with defined recovery objectives is persistently reviewed.",
+   "varies_by_class": null,
    "controls": [
     "cp-2",
     "cp-2.1",
@@ -1085,6 +1133,7 @@
    "family_name": "Recovery Planning",
    "name": "Reviewing Recovery Objectives",
    "statement": "The desired Recovery Time Objectives (RTO) and Recovery Point Objectives (RPO) are defined and persistently reviewed for alignment with the provider's business needs and capabilities.",
+   "varies_by_class": null,
    "controls": [
     "cp-2.3",
     "cp-10"
@@ -1110,6 +1159,7 @@
    "family_name": "Recovery Planning",
    "name": "Testing Recovery Capabilities",
    "statement": "The capability to recover from incidents and contingencies aligned with defined recovery objectives is persistently tested.",
+   "varies_by_class": null,
    "controls": [
     "cp-2.1",
     "cp-2.3",
@@ -1143,6 +1193,7 @@
    "family_name": "Supply Chain Risk",
    "name": "Mitigating Supply Chain Risk",
    "statement": "Persistently identify, review, and mitigate potential supply chain risks.",
+   "varies_by_class": null,
    "controls": [
     "ac-20",
     "ra-3.1",
@@ -1178,6 +1229,7 @@
    "family_name": "Supply Chain Risk",
    "name": "Monitoring Supply Chain Risk",
    "statement": "Third party software information resources are automatically monitored for upstream vulnerabilities using mechanisms that may include contractual notification requirements or active monitoring services.",
+   "varies_by_class": null,
    "controls": [
     "ac-20",
     "ca-3",
@@ -1211,6 +1263,7 @@
    "family_name": "Service Configuration",
    "name": "Automating Configuration Management",
    "statement": "The configuration of machine-based information resources is managed using automation and persistently reviewed for drift.",
+   "varies_by_class": null,
    "controls": [
     "ac-2.4",
     "cm-2",
@@ -1245,6 +1298,7 @@
    "family_name": "Service Configuration",
    "name": "Automating Secret Management",
    "statement": "Management, protection, and regular rotation of digital keys, certificates, and other secrets is automated and persistently reviewed.",
+   "varies_by_class": null,
    "controls": [
     "ac-17.2",
     "ia-5.2",
@@ -1273,6 +1327,7 @@
    "family_name": "Service Configuration",
    "name": "Evaluating and Improving Security",
    "statement": "Information resources are persistently evaluated for opportunities to improve security and those improvements are persistently made.",
+   "varies_by_class": null,
    "controls": [
     "cm-7.1",
     "cm-12.1",
@@ -1305,6 +1360,14 @@
    "family_name": "Service Configuration",
    "name": "Preventing Residual Risk",
    "statement": null,
+   "varies_by_class": {
+    "b": {
+     "statement": "**Optional:** Plans, procedures, and the state of information resources are persistently reviewed after making changes to limit and remove unwanted residual elements that would likely negatively affect the confidentiality, integrity, or availability of federal customer data."
+    },
+    "c": {
+     "statement": "Plans, procedures, and the state of information resources are persistently reviewed after making changes to limit and remove unwanted residual elements that would likely negatively affect the confidentiality, integrity, or availability of federal customer data."
+    }
+   },
    "controls": [
     "sc-4"
    ],
@@ -1329,6 +1392,14 @@
    "family_name": "Service Configuration",
    "name": "Removing Unwanted Data",
    "statement": null,
+   "varies_by_class": {
+    "b": {
+     "statement": "**Optional:** Unwanted federal customer data is removed promptly when requested by an agency in alignment with customer agreements, including from backups if appropriate; this typically applies when a customer spills information or when a customer seeks to remove information from a service due to a change in usage."
+    },
+    "c": {
+     "statement": "Unwanted federal customer data is removed promptly when requested by an agency in alignment with customer agreements, including from backups if appropriate; this typically applies when a customer spills information or when a customer seeks to remove information from a service due to a change in usage."
+    }
+   },
    "controls": [
     "si-12.3",
     "si-18.4"
@@ -1354,6 +1425,7 @@
    "family_name": "Service Configuration",
    "name": "Securing Information",
    "statement": "Information is encrypted or otherwise secured from unwanted access or modification.",
+   "varies_by_class": null,
    "controls": [
     "ac-1",
     "ac-17.2",
@@ -1389,6 +1461,14 @@
    "family_name": "Service Configuration",
    "name": "Validating Communications",
    "statement": null,
+   "varies_by_class": {
+    "b": {
+     "statement": "**Optional:** The authenticity and integrity of communications between machine-based information resources is persistently validated using automation."
+    },
+    "c": {
+     "statement": "The authenticity and integrity of communications between machine-based information resources is persistently validated using automation."
+    }
+   },
    "controls": [
     "sc-23",
     "si-7.1"
@@ -1414,6 +1494,7 @@
    "family_name": "Service Configuration",
    "name": "Validating Resource Integrity",
    "statement": "Use cryptographic methods to validate the integrity of machine-based information resources.",
+   "varies_by_class": null,
    "controls": [
     "cm-2.2",
     "cm-8.3",

@@ -8,7 +8,7 @@ AWS partition: aws (AWS Commercial)
 Primary region: us-east-1
 Disaster recovery region: us-west-2
 SDR version: 0.1.0
-Generated from dataset version: 2026.07.14.01
+Generated from dataset version: 2026.09.13.02
 Source of update: build_sdr.py generator
 
 This is a generic template record. Statements marked TBD require real
@@ -2670,9 +2670,9 @@ Owner: TBD: Information has not been provided.
 2.7 KSI-CNA-EIS Enforcing Intended State
 KSI: KSI-CNA-EIS
 Family: CNA (Cloud Native Architecture)
-Security outcome: FedRAMP pending, no statement in the official dataset yet.
+Security outcome: Automated services are used to persistently assess the security of all machine-based information resources and automatically enforce their intended operational state.
 Status: Not Implemented
-Implementation: FedRAMP pending: this indicator has no statement in the official dataset yet.
+Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
@@ -2990,9 +2990,9 @@ Owner: TBD: Information has not been provided.
 2.23 KSI-MLA-ALA Authorizing Log Access
 KSI: KSI-MLA-ALA
 Family: MLA (Monitoring, Logging, and Auditing)
-Security outcome: FedRAMP pending, no statement in the official dataset yet.
+Security outcome: A least-privileged, role and attribute-based, and just-in-time access authorization model is used and persistently reviewed for access to log data based on organizationally defined data sensitivity.
 Status: Not Implemented
-Implementation: FedRAMP pending: this indicator has no statement in the official dataset yet.
+Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
@@ -3370,9 +3370,9 @@ Owner: TBD: Information has not been provided.
 2.42 KSI-SVC-PRR Preventing Residual Risk
 KSI: KSI-SVC-PRR
 Family: SVC (Service Configuration)
-Security outcome: FedRAMP pending, no statement in the official dataset yet.
+Security outcome: Plans, procedures, and the state of information resources are persistently reviewed after making changes to limit and remove unwanted residual elements that would likely negatively affect the confidentiality, integrity, or availability of federal customer data.
 Status: Not Implemented
-Implementation: FedRAMP pending: this indicator has no statement in the official dataset yet.
+Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
@@ -3390,9 +3390,9 @@ Owner: TBD: Information has not been provided.
 2.43 KSI-SVC-RUD Removing Unwanted Data
 KSI: KSI-SVC-RUD
 Family: SVC (Service Configuration)
-Security outcome: FedRAMP pending, no statement in the official dataset yet.
+Security outcome: Unwanted federal customer data is removed promptly when requested by an agency in alignment with customer agreements, including from backups if appropriate; this typically applies when a customer spills information or when a customer seeks to remove information from a service due to a change in usage.
 Status: Not Implemented
-Implementation: FedRAMP pending: this indicator has no statement in the official dataset yet.
+Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
@@ -3430,9 +3430,9 @@ Owner: Example: Security Engineering Lead
 2.45 KSI-SVC-VCM Validating Communications
 KSI: KSI-SVC-VCM
 Family: SVC (Service Configuration)
-Security outcome: FedRAMP pending, no statement in the official dataset yet.
+Security outcome: The authenticity and integrity of communications between machine-based information resources is persistently validated using automation.
 Status: Not Implemented
-Implementation: FedRAMP pending: this indicator has no statement in the official dataset yet.
+Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.

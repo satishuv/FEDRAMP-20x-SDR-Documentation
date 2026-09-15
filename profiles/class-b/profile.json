@@ -18,6 +18,8 @@
    "statement": "Providers MUST establish and maintain an email address to receive messages from FedRAMP; this inbox is a FedRAMP Security Inbox (FSI).",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -31,6 +33,8 @@
    "statement": "Providers MUST immediately notify FedRAMP of any changes to the email address for their FedRAMP Security Inbox.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -44,6 +48,8 @@
    "statement": "Providers MUST treat any email originating from an @fedramp.gov or @gsa.gov email address as if it was sent from FedRAMP by default; if such a message is confirmed to originate from someone other than FedRAMP then the FedRAMP Security Inbox rules no longer apply.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -57,6 +63,8 @@
    "statement": "Providers MUST receive and react to email messages from FedRAMP without disruption and without requiring additional actions from FedRAMP.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -70,6 +78,8 @@
    "statement": "Providers MUST complete the required actions in Emergency or Emergency Test designated messages sent by FedRAMP within the timeframe included in the message.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -83,6 +93,8 @@
    "statement": "Providers MUST route Emergency designated messages sent by FedRAMP to a senior security official for their awareness.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -96,6 +108,8 @@
    "statement": "Providers SHOULD complete the required actions in Important designated messages sent by FedRAMP within the timeframe specified in the message.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -109,6 +123,8 @@
    "statement": "Providers SHOULD promptly and automatically acknowledge the receipt of messages received from FedRAMP in their FedRAMP Security Inbox.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -120,8 +136,10 @@
    "name": "Report Availability",
    "force": "MUST",
    "statement": "Providers MUST supply an Ongoing Certification Report to all necessary parties every 3 months, covering the entire period since the previous summary, in a consistent format that is human readable; this report MUST include high-level summaries of at least the following information (if applicable):",
-   "timeframe_type": null,
-   "timeframe_num": null,
+   "timeframe_type": "months",
+   "timeframe_num": 3,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": {
     "name": "FedRAMP Ongoing Certification Report (CCM-OCR-AVL)",
@@ -138,6 +156,8 @@
    "statement": "Providers MUST supply the target date for their next Ongoing Certification Report with other public FedRAMP Certification Data.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -151,6 +171,8 @@
    "statement": "Providers MUST supply an asynchronous mechanism for all necessary parties to provide feedback or ask questions about each Ongoing Certification Report.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -164,6 +186,8 @@
    "statement": "Providers MUST supply an anonymized and desensitized summary of the feedback, questions, and answers about each Ongoing Certification Report as an addendum to the Ongoing Certification Report OR in the next Ongoing Certification Report.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -177,6 +201,8 @@
    "statement": "Providers MUST NOT irresponsibly disclose sensitive information in an Ongoing Certification Report that would likely have an adverse effect on the cloud service offering.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -190,6 +216,8 @@
    "statement": "Providers SHOULD establish a regular 3 month cycle for Ongoing Certification Reports that is spread out from the beginning, middle, or end of each quarter.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -203,6 +231,8 @@
    "statement": "Providers MAY responsibly supply some or all of the information an Ongoing Certification Report to the public or other parties if the provider determines doing so will NOT likely have an adverse effect on the cloud service offering.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -216,6 +246,8 @@
    "statement": "Providers with Class B Certifications SHOULD host a synchronous Quarterly Review every 3 months, open to all necessary parties, to review aspects of the most recent Ongoing Certification Reports that the provider determines are of the most relevance to agencies.",
    "timeframe_type": "months",
    "timeframe_num": 3,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "class_variant",
    "schema": null
   },
@@ -229,6 +261,8 @@
    "statement": "Providers MUST supply either a registration link or a downloadable calendar file with meeting information for Quarterly Reviews to all necessary parties.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -242,6 +276,8 @@
    "statement": "Providers MUST publicly supply the target date for their next Quarterly Review with other public FedRAMP Certification Data.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -255,6 +291,8 @@
    "statement": "Providers MUST NOT irresponsibly disclose sensitive information in a Quarterly Review that would likely have an adverse effect on the cloud service offering.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -266,8 +304,10 @@
    "name": "Schedule Around Reports",
    "force": "SHOULD",
    "statement": "Providers SHOULD regularly schedule Quarterly Reviews to occur at least 3 business days after releasing an Ongoing Certification Report AND within 10 business days of such release.",
-   "timeframe_type": null,
+   "timeframe_type": "bizdays",
    "timeframe_num": null,
+   "timeframe_num_min": 3,
+   "timeframe_num_max": 10,
    "resolution": "top_level",
    "schema": null
   },
@@ -281,6 +321,8 @@
    "statement": "Providers SHOULD supply additional information in Quarterly Reviews that the provider determines is of interest, use, or otherwise relevant to agencies.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -294,6 +336,8 @@
    "statement": "Providers SHOULD record or transcribe Quarterly Reviews and supply them to all necessary parties.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -307,6 +351,8 @@
    "statement": "Providers SHOULD NOT invite third parties to attend Quarterly Reviews intended for agencies unless they have specific relevance.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -320,6 +366,8 @@
    "statement": "Providers MAY responsibly supply recordings or transcriptions of Quarterly Reviews to the public or other parties ONLY if the provider removes all agency information (comments, questions, names, etc.) AND determines doing so will NOT likely have an adverse effect on the cloud service offering.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -333,6 +381,8 @@
    "statement": "Providers MAY responsibly supply content prepared for a Quarterly Review to the public or other parties if the provider determines doing so will NOT likely have an adverse effect on the cloud service offering.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -346,6 +396,8 @@
    "statement": "Providers MUST publicly share up-to-date information about the cloud service offering in both human-readable and JSON formats, including at least the following information that is available and applicable:",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": {
     "name": "FedRAMP Certification Package Overview (FRC-CSO-PKG)",
@@ -362,6 +414,8 @@
    "statement": "Providers MUST publicly share a detailed list of specific services and their security categories that are included in the cloud service offering using clear feature or service names that align with standard public marketing materials; this list MUST be complete enough for a potential customer to determine which services are and are not included in the FedRAMP Minimum Assessment Scope without requesting access to underlying FedRAMP Certification Data.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": {
     "name": "FedRAMP Certification Package Overview (FRC-CSO-PKG)",
@@ -378,6 +432,8 @@
    "statement": "Providers MUST always include the FedRAMP ID of the related cloud service offering in all FedRAMP Certification Data once assigned, including all reports, notifications, and other communication that results from FedRAMP rules.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -389,8 +445,10 @@
    "name": "FedRAMP Certification Reports",
    "force": "MUST",
    "statement": "Providers MUST include FedRAMP Certification Reports with their FedRAMP Certification Data without inappropriate modifications, and make such reports available within 2 weeks of receiving the materials from FedRAMP.",
-   "timeframe_type": null,
-   "timeframe_num": null,
+   "timeframe_type": "weeks",
+   "timeframe_num": 2,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -404,6 +462,8 @@
    "statement": "Providers with Class B Certifications MUST maintain a web service, available to all necessary parties, that indicates current and historical availability of core services within the cloud service offering over at least the past 30 days, including availability incidents, in both human-readable and machine-readable formats; this service MUST be available even if the primary cloud service offering is unavailable.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "class_variant",
    "schema": null
   },
@@ -417,6 +477,8 @@
    "statement": "Providers MUST use a FedRAMP-compatible trust center to store and share FedRAMP Certification Data with all necessary parties.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": {
     "name": "FedRAMP Certification Package Overview (FRC-CSO-PKG)",
@@ -433,6 +495,8 @@
    "statement": "Providers MUST use automation to ensure information remains consistent between human-readable and machine-readable formats when FedRAMP Certification Data is provided in both formats.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -446,6 +510,8 @@
    "statement": "Providers MUST provide sufficient information in FedRAMP Certification Data to support agency authorization decisions but SHOULD NOT include sensitive information that would likely enable a threat actor to gain unauthorized access, cause harm, disrupt operations, or otherwise have a negative adverse impact on the cloud service offering.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -459,6 +525,8 @@
    "statement": "Providers MUST supply all relevant policies and procedures in the FedRAMP Certification Data, including a human-readable and machine-readable reference that explains at least the following about each included policy and procedure:",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -472,6 +540,8 @@
    "statement": "Providers MUST supply snapshots of FedRAMP Certification Data aligned to Ongoing Certification Reports to all necessary parties; these snapshots MUST be available for the duration of FedRAMP Certification.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -485,6 +555,8 @@
    "statement": "Providers with Class B Certifications MAY supply per-service FedRAMP Certification materials.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "class_variant",
    "schema": null
   },
@@ -498,6 +570,8 @@
    "statement": "Providers MAY responsibly share some or all of the information in a FedRAMP Certification Package publicly or with other parties if the provider determines doing so will NOT likely have an adverse effect on the cloud service offering.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -511,6 +585,8 @@
    "statement": "Trust centers MUST share FedRAMP Certification Data with all necessary parties without interruption.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -524,6 +600,8 @@
    "statement": "Trust centers MUST provide documented programmatic access to all FedRAMP Certification Data, including programmatic access to human-readable materials.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -537,6 +615,8 @@
    "statement": "Trust centers MUST maintain an inventory and history of federal agency users or systems with access to FedRAMP Certification Data and MUST make this information available to FedRAMP upon request.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -550,6 +630,8 @@
    "statement": "Trust centers MUST log access to FedRAMP Certification Data and store summaries of access for at least six months; such information, as it pertains to specific parties, SHOULD be made available upon request by those parties.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -563,6 +645,8 @@
    "statement": "Trust centers SHOULD make FedRAMP Certification Data available to view and download in both human-readable and machine-readable formats.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -576,6 +660,8 @@
    "statement": "Trust centers SHOULD include features that encourage all necessary parties to provision and manage access to FedRAMP Certification Data for their users and services directly.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -587,8 +673,10 @@
    "name": "Agency Access Denial",
    "force": "MUST",
    "statement": "Providers MUST notify FedRAMP within 5 business days of denying an agency access request for FedRAMP Certification Data.",
-   "timeframe_type": null,
-   "timeframe_num": null,
+   "timeframe_type": "bizdays",
+   "timeframe_num": 5,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -602,6 +690,8 @@
    "statement": "Providers SHOULD supply access to the FedRAMP Certification Package with agencies upon request.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -615,6 +705,8 @@
    "statement": "Providers MUST document the cryptographic modules used in each service (or groups of services that use the same modules) where cryptographic services are used to protect federal customer data, including whether these modules are validated under the NIST Cryptographic Module Validation Program or are update streams of such modules.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -628,6 +720,8 @@
    "statement": "Providers with Class B Certifications MAY use cryptographic modules or update streams of cryptographic modules with active validations under the NIST Cryptographic Module Validation Program when using cryptographic services to protect federal customer data.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "class_variant",
    "schema": null
   },
@@ -641,6 +735,8 @@
    "statement": "Providers SHOULD configure agency tenants by default to use cryptographic services that use cryptographic modules or update streams of cryptographic modules with active validations under the NIST Cryptographic Module Validation Program when such modules are available.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -654,6 +750,8 @@
    "statement": "Providers MUST supply a Certification Package Overview within their FedRAMP Certification Package, in both human-readable and JSON formats, that includes at least all of the information required by the following rules:",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": {
     "name": "FedRAMP Certification Package Overview Schema",
@@ -670,6 +768,8 @@
    "statement": "Providers MUST also include the following basic metadata in their Certification Package Overview:",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -683,6 +783,8 @@
    "statement": "Providers seeking Class B Certification MUST also include the overall summary of their FedRAMP independent assessment, supplied by the assessor per IVV-IAS-OSA (Overall Summary of Assessment), in their Certification Package Overview.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "class_variant",
    "schema": null
   },
@@ -696,6 +798,8 @@
    "statement": "Providers with 20x Class B Certifications MUST persistently maintain their FedRAMP Certification Package to ensure it is up to date and complete at least once every month.",
    "timeframe_type": "months",
    "timeframe_num": 1,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "class_variant",
    "schema": null
   },
@@ -709,6 +813,8 @@
    "statement": "Providers MUST identify a target FedRAMP Certification Profile and apply all relevant FedRAMP Practices to the cloud service offering.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -722,6 +828,8 @@
    "statement": "Providers seeking a Certification MUST supply a complete FedRAMP Certification Package to FedRAMP for initial certification; the FedRAMP Certification Package MUST include at least the following information:",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": {
     "name": "FedRAMP Certification Package Overview (FRC-CSO-PKG)",
@@ -738,6 +846,8 @@
    "statement": "Providers MUST supply machine-readable information in JSON documents that are valid against the corresponding JSON schema when a rule contains a FedRAMP JSON schema, UNLESS otherwise specified in the rule.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -751,6 +861,8 @@
    "statement": "Providers MUST maintain responsibility and accountability for the accuracy and completeness of all information in the FedRAMP Certification Package, especially when they engage a third party (such as an independent assessor, advisory service, or external tools) to supply information on their behalf.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -764,6 +876,8 @@
    "statement": "Providers MUST NOT seek both FedRAMP Rev5 Program Certification and FedRAMP 20x Program Certification for the same cloud service offering; pick one type.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -777,6 +891,8 @@
    "statement": "Providers MUST be listed in the FedRAMP Marketplace before applying for FedRAMP Certification, including:",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -790,6 +906,8 @@
    "statement": "Providers MUST complete the FedRAMP Certification Application Form in full to request an initial assessment by FedRAMP.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -803,6 +921,8 @@
    "statement": "Providers MUST supply a fresh initial FedRAMP Certification Package that shows the current status of the cloud service offering as verified and validated by the provider within the previous 7 days.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -816,6 +936,8 @@
    "statement": "Providers seeking Class B Certification MUST supply a fresh initial FedRAMP independent assessment that was completed by a FedRAMP Recognized independent assessment service within the previous 3 months.",
    "timeframe_type": "months",
    "timeframe_num": 3,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "class_variant",
    "schema": null
   },
@@ -829,6 +951,8 @@
    "statement": "Providers MUST NOT use a third party to apply for a FedRAMP Certification on their behalf; this includes independent assessment services.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -842,6 +966,8 @@
    "statement": "Providers MAY freshen a stale initial independent verification and validation assessment by having a FedRAMP Recognized independent assessment service review any changes between the original assessment and the current status of the cloud service offering in place of a full re-assessment, UNLESS the stale assessment is more than 9 months old.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -855,6 +981,8 @@
    "statement": "Providers seeking 20x Class B Certification SHOULD implement automated methods to persistently verify and validate the accuracy and completeness of Key Security Indicators with at least 1 automated method for each Key Security Indicator.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "class_variant",
    "schema": null
   },
@@ -868,6 +996,8 @@
    "statement": "Providers seeking 20x Class B Certification SHOULD supply historical metrics for Key Security Indicators.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "class_variant",
    "schema": null
   },
@@ -881,6 +1011,8 @@
    "statement": "Providers seeking 20x Class B Certification SHOULD implement automated methods to persistently verify and validate the accuracy and completeness of the Security Decision Record for FedRAMP rules when applicable.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "class_variant",
    "schema": null
   },
@@ -894,6 +1026,8 @@
    "statement": "Providers SHOULD apply ALL Key Security Indicators to ALL aspects of their cloud service offering that are within the FedRAMP Minimum Assessment Scope.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -907,6 +1041,8 @@
    "statement": "Providers MUST promptly evaluate incidents to determine if they affect confidentiality or integrity of federal customer data or are likely to affect confidentiality or integrity of federal customer data; such incidents are FedRAMP Reportable Incidents and must be reported following the FedRAMP Incident Evaluation and Communication rules.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -920,6 +1056,8 @@
    "statement": "Providers MUST treat FedRAMP Reportable Incidents as if they have a Potential Agency Impact N-rating (PAIN) of 5 UNLESS they promptly estimate the PAIN rating following the rule in IEC-CSO-EFI (Estimate Federal Impact).",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -933,6 +1071,8 @@
    "statement": "Providers with Class B Certifications MUST responsibly notify all affected parties after identifying FedRAMP Reportable Incidents by providing an Initial Incident Report with as much of the following information that is available at the time of reporting and/or the current relevant status for each item:",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "class_variant",
    "schema": {
     "name": "FedRAMP Incident Report (IEC-CSO-IIR / IEC-CSO-OIR / IEC-CSO-FIR)",
@@ -949,6 +1089,8 @@
    "statement": "Providers with Class B Certifications MUST responsibly notify all affected parties of ongoing activity as new information becomes available during incident response for FedRAMP Reportable Incidents, including updates (or lack of updates) to all previously reported information and as much of the following additional information that is available and/or the current relevant status for each item:",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "class_variant",
    "schema": {
     "name": "FedRAMP Incident Report (IEC-CSO-IIR / IEC-CSO-OIR / IEC-CSO-FIR)",
@@ -965,6 +1107,8 @@
    "statement": "Providers with Class B Certifications MUST responsibly notify all affected parties by providing a Final Incident Report once the incident has been resolved and recovery is complete, including final updates to all previously reported information.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "class_variant",
    "schema": {
     "name": "FedRAMP Incident Report (IEC-CSO-IIR / IEC-CSO-OIR / IEC-CSO-FIR)",
@@ -981,6 +1125,8 @@
    "statement": "Providers SHOULD promptly estimate the likely adverse impact of an incident on agency customers to assign a Potential Agency Impact N-rating; this step is called Incident Rating.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": {
     "name": "FedRAMP Incident Report (IEC-CSO-IIR / IEC-CSO-OIR / IEC-CSO-FIR)",
@@ -997,6 +1143,8 @@
    "statement": "Providers SHOULD use automation to minimize human intervention in the process of reporting FedRAMP Reportable Incidents to all affected parties.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1010,6 +1158,8 @@
    "statement": "Providers with Class B Certifications MUST persistently complete an independent verification and validation assessment of all applicable FedRAMP rules with a FedRAMP Recognized independent assessment service OR FedRAMP at least once per year; this is a FedRAMP independent assessment.",
    "timeframe_type": "years",
    "timeframe_num": 1,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "class_variant",
    "schema": null
   },
@@ -1023,6 +1173,8 @@
    "statement": "Providers MUST supply evidence to all necessary assessors of the implementation of the measures that have been documented to meet FedRAMP Practices; this evidence is the result of verification.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1036,6 +1188,8 @@
    "statement": "Providers MUST supply evidence to all necessary assessors of the effectiveness of the measures that have been implemented to meet FedRAMP Practices; this evidence is the result of validation.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1049,6 +1203,8 @@
    "statement": "Providers MUST supply the results of FedRAMP independent assessments in their FedRAMP Certification Package without inappropriate modification.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1062,6 +1218,8 @@
    "statement": "Providers MUST document and explain the use of representative samples during verification and validation when using representative samples as allowed by IVV-CSO-USR (Use Representative Samples).",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1075,6 +1233,8 @@
    "statement": "Providers SHOULD supply all necessary assessors with technical explanations, demonstrations, and other relevant supporting information about the technical capabilities they employ to address FedRAMP rules; this SHOULD be supplied as necessary to ensure the assessor can effectively complete verification and validation.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1088,6 +1248,8 @@
    "statement": "Providers MAY use representative samples as appropriate during verification and validation.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1101,6 +1263,8 @@
    "statement": "Providers MAY ask for and accept advice from their assessor during assessment regarding techniques and procedures that will improve their security posture or the effectiveness, clarity, and accuracy of their verification, validation and reporting procedures, UNLESS doing so is likely to compromise the objectivity and integrity of the assessment.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1114,6 +1278,8 @@
    "statement": "Providers with 20x Class B Certifications MUST include all Key Security Indicators in a FedRAMP independent assessment at least once per year.",
    "timeframe_type": "years",
    "timeframe_num": 1,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "class_variant",
    "schema": null
   },
@@ -1127,6 +1293,8 @@
    "statement": "Providers MUST identify a set of information resources to assess for FedRAMP Certification that includes all information resources that are likely to handle federal customer data or likely to impact the confidentiality, integrity, or availability of federal customer data handled by the cloud service offering; this set of information resources is the cloud service offering.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1140,6 +1308,8 @@
    "statement": "Providers MUST clearly identify, document, and explain information flows and security categories for ALL information resources or sets of information resources in the cloud service offering.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1153,6 +1323,8 @@
    "statement": "Providers MUST address the potential impact to federal customer data from third-party information resources used by the cloud service offering, ONLY IF MAS-CSO-IIR (Identify Information Resources) APPLIES, by documenting the following information about each applicable third-party information resource:",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": {
     "name": "FedRAMP Certification Package Overview (FRC-CSO-PKG)",
@@ -1169,6 +1341,8 @@
    "statement": "Providers MUST include metadata (including metadata about federal customer data) in the Minimum Assessment Scope ONLY IF MAS-CSO-IIR (Identify Information Resources) APPLIES.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1182,6 +1356,8 @@
    "statement": "Providers MAY include additional materials about other information resources that are not part of the cloud service offering in a FedRAMP Certification Package supplement; these resources will not be FedRAMP Certified and MUST be clearly marked and separated from the cloud service offering.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1195,6 +1371,8 @@
    "statement": "Providers MUST address at least these FedRAMP rules to apply for a new FedRAMP Marketplace listing OR to request updates to an existing listing:",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1208,6 +1386,8 @@
    "statement": "Providers MUST notify FedRAMP using the FedRAMP Marketplace Providing Listing Request Form to request a listing in the FedRAMP Marketplace.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1221,6 +1401,8 @@
    "statement": "Providers MUST demonstrate that a cloud service offering is intended for one of the following use cases:",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1234,6 +1416,8 @@
    "statement": "Providers MUST demonstrate continuous progress towards a FedRAMP Certification, documented in their Trust Center or website and updated at least quarterly; progress is measured by the provider against documented goals and milestones.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1245,8 +1429,10 @@
    "name": "Deadline for Assessment",
    "force": "MUST",
    "statement": "Providers MUST demonstrate that an assessment for a FedRAMP Certification Class B, C, or D has been scheduled within 2 years of initial listing in the Initial Implementation Phase.",
-   "timeframe_type": null,
-   "timeframe_num": null,
+   "timeframe_type": "years",
+   "timeframe_num": 2,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1260,6 +1446,8 @@
    "statement": "Providers MUST create, maintain, and make available recommendations for securely configuring their cloud services (the Secure Configuration Guide) that includes at least the following information:",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": {
     "name": "FedRAMP Certification Package Overview (FRC-CSO-PKG)",
@@ -1276,6 +1464,8 @@
    "statement": "Providers MUST include instructions in the FedRAMP Certification Package that explain how to obtain and use the Secure Configuration Guide.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1289,6 +1479,8 @@
    "statement": "Providers SHOULD make the Secure Configuration Guide available publicly.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1302,6 +1494,8 @@
    "statement": "Providers SHOULD set all settings to their recommended secure defaults for top-level administrative accounts and privileged accounts when initially provisioned.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1315,6 +1509,8 @@
    "statement": "Providers SHOULD offer the capability to compare all current settings for top-level administrative accounts and privileged accounts to the recommended secure defaults.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1328,6 +1524,8 @@
    "statement": "Providers SHOULD offer the capability to export all security settings in a machine-readable format.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1341,6 +1539,8 @@
    "statement": "Providers SHOULD offer the capability to view and adjust security settings via an API or similar capability.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1354,6 +1554,8 @@
    "statement": "Providers SHOULD also provide the Secure Configuration Guide in a machine-readable format that can be used by customers or third-party tools to compare against current settings.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1367,6 +1569,8 @@
    "statement": "Providers SHOULD provide versioning and a release history for recommended secure default settings for top-level administrative accounts and privileged accounts as they are adjusted over time.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1380,6 +1584,8 @@
    "statement": "Providers MUST evaluate all potential significant changes to determine the type of significant change and follow the appropriate Significant Change Notification rules.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": {
     "name": "FedRAMP Significant Change Notification (SCN-CSO-INF)",
@@ -1396,6 +1602,8 @@
    "statement": "Providers MUST maintain auditable records of the significant change evaluation activities required by SCN-CSO-EVA (Evaluate Changes) and make them available to FedRAMP as requested.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1409,6 +1617,8 @@
    "statement": "Providers MUST include at least the following information in Significant Change Notifications:",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": {
     "name": "FedRAMP Significant Change Notification (SCN-CSO-INF)",
@@ -1425,6 +1635,8 @@
    "statement": "Providers MUST keep 12 months of historical Significant Change Notifications available with their FedRAMP Certification Data.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1438,6 +1650,8 @@
    "statement": "Providers MUST make ALL Significant Change Notifications and related audit records available in human-readable and JSON formats.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": {
     "name": "FedRAMP Significant Change Notifications Schema",
@@ -1454,6 +1668,8 @@
    "statement": "Providers MAY include additional relevant information in Significant Change Notifications.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1467,6 +1683,8 @@
    "statement": "Providers MAY notify necessary parties in a variety of ways as long as the mechanism for notification is clearly documented in the FedRAMP Certification Package and easily accessible.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1480,6 +1698,8 @@
    "statement": "Providers MAY execute significant changes (including transformative changes) during an emergency or incident without following the Significant Change Notification rules in advance. In such emergencies, providers MUST follow all relevant procedures, notify all necessary parties, retroactively provide all Significant Change Notification materials, and complete appropriate assessment after the incident.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1491,8 +1711,10 @@
    "name": "Notification Requirements",
    "force": "MUST",
    "statement": "Providers MUST notify all necessary parties within 10 business days after finishing adaptive changes, also including the following information:",
-   "timeframe_type": null,
-   "timeframe_num": null,
+   "timeframe_type": "bizdays",
+   "timeframe_num": 10,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1506,6 +1728,8 @@
    "statement": "Providers SHOULD NOT make formal Significant Change Notifications for routine recurring changes; this type of change is exempted from notification requirements.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1517,8 +1741,10 @@
    "name": "Notification of Initial Plans",
    "force": "MUST",
    "statement": "Providers MUST notify all necessary parties of initial plans for transformative changes at least 30 business days before starting transformative changes, including a summary of any likely security impacts or changes in risk.",
-   "timeframe_type": null,
-   "timeframe_num": null,
+   "timeframe_type": "bizdays",
+   "timeframe_num": 30,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1530,8 +1756,10 @@
    "name": "Notification of Final Plans",
    "force": "MUST",
    "statement": "Providers MUST notify all necessary parties of final plans for transformative changes at least 10 business days before starting transformative changes, including updates to all previously sent information.",
-   "timeframe_type": null,
-   "timeframe_num": null,
+   "timeframe_type": "bizdays",
+   "timeframe_num": 10,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1543,8 +1771,10 @@
    "name": "Notification After Finishing",
    "force": "MUST",
    "statement": "Providers MUST notify all necessary parties within 5 business days after finishing transformative changes, including updates to all previously sent information.",
-   "timeframe_type": null,
-   "timeframe_num": null,
+   "timeframe_type": "bizdays",
+   "timeframe_num": 5,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1556,8 +1786,10 @@
    "name": "Notification After Verification",
    "force": "MUST",
    "statement": "Providers MUST notify all necessary parties within 5 business days after completing the verification, assessment, and/or validation of transformative changes, also including the following information:",
-   "timeframe_type": null,
-   "timeframe_num": null,
+   "timeframe_type": "bizdays",
+   "timeframe_num": 5,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1569,8 +1801,10 @@
    "name": "Update Documentation",
    "force": "MUST",
    "statement": "Providers MUST publish updated service documentation and other materials to reflect transformative changes within 30 business days after finishing transformative changes.",
-   "timeframe_type": null,
-   "timeframe_num": null,
+   "timeframe_type": "bizdays",
+   "timeframe_num": 30,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1584,6 +1818,8 @@
    "statement": "Providers SHOULD engage a third-party assessor to review the scope and impact of the planned change before starting transformative changes if human validation is necessary; such reviews SHOULD be limited to security decisions that require human validation.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1597,6 +1833,8 @@
    "statement": "Providers MUST supply a Security Decision Record, in both human-readable and JSON formats, that includes at least all of the following information for each applicable FedRAMP rule:",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": {
     "name": "FedRAMP Security Decision Record Schema",
@@ -1613,6 +1851,8 @@
    "statement": "Providers MUST also include the following basic metadata in their Security Decision Record:",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1626,6 +1866,8 @@
    "statement": "Providers MUST also include short and simple high-level summaries of at least the following for each applicable Key Security Indicator:",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": {
     "name": "FedRAMP Security Decision Record Schema",
@@ -1642,6 +1884,8 @@
    "statement": "Providers with 20x Class B Certifications MUST also include historical metrics in their Security Decision Record, supplying at least the following information for each applicable Key Security Indicator:",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "class_variant",
    "schema": {
     "name": "FedRAMP Security Decision Record Schema",
@@ -1658,6 +1902,8 @@
    "statement": "Providers MUST systematically, persistently, and promptly discover and identify vulnerabilities within their cloud service offering using appropriate techniques such as assessment, scanning, threat intelligence, vulnerability disclosure mechanisms, bug bounties, penetration testing, incident response, automated control testing, supply chain monitoring, and other relevant capabilities; this process is called vulnerability detection. Vulnerability detection includes persistently verifying and validating that information resources and processes are operating as intended and documented for FedRAMP Practices.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1671,6 +1917,8 @@
    "statement": "Providers MUST systematically, persistently, and promptly track, evaluate, monitor, mitigate, remediate, assess exploitation of, report, and otherwise manage all detected vulnerabilities within their cloud service offering; this process is called vulnerability response.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1684,6 +1932,8 @@
    "statement": "Providers MUST treat problems or failures with their vulnerability detection and response processes as vulnerabilities.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1697,6 +1947,8 @@
    "statement": "Providers SHOULD make design and architecture decisions for their cloud service offering that mitigate the risk of vulnerabilities by default AND decrease the risk and complexity of vulnerability detection and response.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1710,6 +1962,8 @@
    "statement": "Providers SHOULD use automated services to improve and streamline vulnerability detection and response.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1723,6 +1977,8 @@
    "statement": "Providers SHOULD automatically perform vulnerability detection on representative samples of new or significantly changed information resources.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1736,6 +1992,8 @@
    "statement": "Providers SHOULD NOT weaken the security of information resources to facilitate vulnerability scanning, detection, or assessment activities.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1749,6 +2007,8 @@
    "statement": "Providers SHOULD NOT deploy or otherwise activate new machine-based information resources with Known Exploited Vulnerabilities.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1762,6 +2022,8 @@
    "statement": "Providers MAY sample effectively identical information resources, especially machine-based information resources, when performing vulnerability detection UNLESS doing so would decrease the efficiency or effectiveness of vulnerability detection.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1773,8 +2035,10 @@
    "name": "Non-Machine Verification and Validation",
    "force": "MUST",
    "statement": "Providers MUST verify and validate the status of non-machine-based information resources at least once every 3 months.",
-   "timeframe_type": null,
-   "timeframe_num": null,
+   "timeframe_type": "months",
+   "timeframe_num": 3,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1788,6 +2052,8 @@
    "statement": "Providers with Class B Certifications SHOULD persistently perform vulnerability detection on all information resources that are likely to drift, at least once every month.",
    "timeframe_type": "months",
    "timeframe_num": 1,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "class_variant",
    "schema": null
   },
@@ -1801,6 +2067,8 @@
    "statement": "Providers with Class B Certifications SHOULD persistently perform vulnerability detection on all information resources that are NOT likely to drift, at least once every 6 months.",
    "timeframe_type": "months",
    "timeframe_num": 6,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "class_variant",
    "schema": null
   },
@@ -1814,6 +2082,8 @@
    "statement": "Providers with Class B Certifications SHOULD partially mitigate vulnerabilities, fully mitigate vulnerabilities, or remediate vulnerabilities to a lower potential agency impact within the timeframes from evaluation shown below, factoring for the current Potential Agency Impact N-rating as defined in VER-EVA-EPA (Estimate Potential Agency Impact), internet reachability, and likely exploitability:",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "class_variant",
    "schema": null
   },
@@ -1827,6 +2097,8 @@
    "statement": "Providers SHOULD mitigate or remediate remaining vulnerabilities during routine operations as determined necessary by the provider.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1840,6 +2112,8 @@
    "statement": "Providers SHOULD remediate Known Exploited Vulnerabilities according to the due dates in the CISA Known Exploited Vulnerabilities Catalog (even if the vulnerability has been fully mitigated) as required by CISA Binding Operational Directive (BOD) 26-04 or any successor guidance from CISA.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1853,6 +2127,8 @@
    "statement": "Providers with Class B Certifications SHOULD persistently perform vulnerability detection on representative samples of similar machine-based information resources, at least once every 7 days.",
    "timeframe_type": "days",
    "timeframe_num": 7,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "class_variant",
    "schema": null
   },
@@ -1866,6 +2142,8 @@
    "statement": "Providers of FedRAMP 20x Class B offerings MUST verify and validate the status of machine-based information resources at least once every 7 days.",
    "timeframe_type": "days",
    "timeframe_num": 7,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "class_variant",
    "schema": null
   },
@@ -1879,6 +2157,8 @@
    "statement": "Providers MUST evaluate detected vulnerabilities, considering the context of the cloud service offering, to determine if they are likely exploitable vulnerabilities.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1892,6 +2172,8 @@
    "statement": "Providers MUST evaluate detected vulnerabilities, considering the context of the cloud service offering, to determine if they are internet-reachable vulnerabilities.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1905,6 +2187,8 @@
    "statement": "Providers MUST evaluate detected vulnerabilities, considering the context of the cloud service offering, to estimate the potential agency impact of exploitation on government customers AND assign one of the following Potential Agency Impact N-ratings (PAIN):",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1918,6 +2202,8 @@
    "statement": "Providers MUST assume the exploitation of vulnerabilities can be automated UNLESS they have evidence proving otherwise.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1931,6 +2217,8 @@
    "statement": "Providers SHOULD evaluate detected vulnerabilities, considering the context of the cloud service offering, to identify logical groupings of affected information resources that may improve the efficiency and effectiveness of vulnerability response by consolidating further activity; FedRAMP Vulnerability Detection and Response rules are then applied to these consolidated groupings of vulnerabilities instead of each individual detected instance.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1944,6 +2232,8 @@
    "statement": "Providers SHOULD evaluate detected vulnerabilities, considering the context of the cloud service offering, to determine if they are false positive vulnerabilities.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1957,6 +2247,8 @@
    "statement": "Providers SHOULD consider at least the following factors when considering the context of the cloud service offering to evaluate detected vulnerabilities:",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -1970,6 +2262,8 @@
    "statement": "Providers MUST report vulnerability detection and response activity (including persistent verification and validation) to all necessary parties persistently, summarizing ALL activity since the previous report; these reports are FedRAMP Certification Data and are subject to FedRAMP Certification Data Sharing rules.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": {
     "name": "FedRAMP Vulnerability Detail Report (VER-RPT-VDT)",
@@ -1986,6 +2280,8 @@
    "statement": "Providers MUST include the following information (if applicable) on detected vulnerabilities when reporting on vulnerability detection and response activity, UNLESS it is an accepted vulnerability:",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": {
     "name": "FedRAMP Vulnerability Detail Report (VER-RPT-VDT)",
@@ -2002,6 +2298,8 @@
    "statement": "Providers MUST include the following information on accepted vulnerabilities when reporting on vulnerability detection and response activity:",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": {
     "name": "FedRAMP Accepted Vulnerability Info (VER-RPT-AVI)",
@@ -2018,6 +2316,8 @@
    "statement": "Providers MUST NOT irresponsibly disclose specific sensitive information about vulnerabilities that would likely lead to exploitation, but MUST disclose sufficient information for informed risk-based decision-making to all necessary parties.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -2031,6 +2331,8 @@
    "statement": "Providers SHOULD include high-level overviews of ALL vulnerability detection and response activities conducted during this period for the cloud service offering; this includes vulnerability disclosure programs, bug bounty programs, penetration testing, assessments, etc.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -2044,6 +2346,8 @@
    "statement": "Providers MAY responsibly disclose vulnerabilities publicly or with other parties if the provider determines doing so will NOT likely lead to exploitation.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -2055,8 +2359,10 @@
    "name": "Monthly Activity Report",
    "force": "MUST",
    "statement": "Providers MUST report vulnerability detection and response activity to all necessary parties in a consistent format that is human readable at least monthly.",
-   "timeframe_type": null,
-   "timeframe_num": null,
+   "timeframe_type": "months",
+   "timeframe_num": 1,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -2068,8 +2374,10 @@
    "name": "Mark Accepted Vulnerabilities",
    "force": "MUST",
    "statement": "Providers MUST categorize any vulnerability that is not or will not be fully mitigated or remediated within 192 days of evaluation as an accepted vulnerability.",
-   "timeframe_type": null,
-   "timeframe_num": null,
+   "timeframe_type": "days",
+   "timeframe_num": 192,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "top_level",
    "schema": null
   },
@@ -2083,6 +2391,8 @@
    "statement": "Providers with Class B Certifications SHOULD make all recent historical vulnerability detection and response activity available in JSON format for automated retrieval by all necessary parties (e.g. using an API service or similar); this information SHOULD be updated persistently, at least once every month.",
    "timeframe_type": "months",
    "timeframe_num": 1,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "class_variant",
    "schema": {
     "name": "FedRAMP Historical Vulnerability Evaluation and Reporting Activity (VER-TFR-MRH)",
@@ -2099,6 +2409,8 @@
    "statement": "Providers with Class B Certifications SHOULD evaluate ALL vulnerabilities as required by VER-EVA (Evaluation) within 7 days of detection.",
    "timeframe_type": "days",
    "timeframe_num": 7,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "class_variant",
    "schema": null
   },
@@ -2112,6 +2424,8 @@
    "statement": "Providers with Class B Certifications MAY treat internet-reachable likely exploitable vulnerabilities where Potential Agency Impact N-rating > 3 as a FedRAMP Reportable Incident until they are partially mitigated vulnerabilities at N3 or below.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "class_variant",
    "schema": null
   },
@@ -2125,6 +2439,8 @@
    "statement": "Providers with Class B Certifications MAY treat likely exploitable vulnerabilities that are NOT internet-reachable where Potential Agency Impact N-rating = 5 as a FedRAMP Reportable Incident until they are partially mitigated vulnerabilities at N4 or below.",
    "timeframe_type": null,
    "timeframe_num": null,
+   "timeframe_num_min": null,
+   "timeframe_num_max": null,
    "resolution": "class_variant",
    "schema": null
   }
