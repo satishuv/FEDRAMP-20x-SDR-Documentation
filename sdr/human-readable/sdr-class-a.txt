@@ -8,7 +8,7 @@ AWS partition: aws (AWS Commercial)
 Primary region: us-east-1
 Disaster recovery region: us-west-2
 SDR version: 0.1.0
-Generated from dataset version: 2026.07.14.01
+Generated from dataset version: 2026.09.13.02
 Source of update: build_sdr.py generator
 
 This is a generic template record. Statements marked TBD require real
@@ -26,6 +26,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.2 AFC-CSO-INB Maintain a FedRAMP Security Inbox
@@ -37,6 +43,12 @@ Status: Not Implemented
 Implementation: Example (reference architecture, replace with your real implementation): A dedicated FedRAMP security inbox is maintained as a monitored distribution list reaching the security on-call rotation, separate from customer support channels. The address is registered with FedRAMP and published in the certification data.
 Validation: Example (reference architecture, replace with your real implementation): A monthly synthetic test email is sent to the inbox; the on-call rotation must acknowledge within the documented response window. Delivery, spam-filter, and distribution-list membership checks run monthly and after any mail-system change.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: Example: Security Operations Manager
 
 1.3 AFC-CSO-RCV Receive Email Without Disruption
@@ -48,6 +60,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.4 CCM-OCR-AVL Report Availability
@@ -59,6 +77,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.5 CCM-OCR-NRD Next Report Date
@@ -70,6 +94,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.6 CCM-QTR-MTG Quarterly Review Meeting
@@ -81,6 +111,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.7 CDS-CSO-AVR Availability Reporting
@@ -92,6 +128,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.8 CDS-CSO-PSM Per-Service Certification Materials
@@ -103,6 +145,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.9 CDS-CSO-PUB Public Information
@@ -114,6 +162,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.10 CDS-CSO-UTC Use Trust Centers
@@ -125,6 +179,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.11 CDS-UTC-AAD Agency Access Denial
@@ -136,6 +196,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.12 CMU-CSO-UVM Using Validated Cryptographic Modules
@@ -147,6 +213,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.13 CPO-CSX-CPM Certification Package Maintenance for 20x
@@ -158,6 +230,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.14 FRC-APP-FIA Fresh Independent Assessment
@@ -169,6 +247,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.15 FRC-CLA-ASF Approved Alternative Security Frameworks
@@ -180,6 +264,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.16 FRC-CLA-EAM External Assessment Materials
@@ -191,6 +281,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.17 FRC-CLA-IVV Optional Independent Verification and Validation
@@ -202,6 +298,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.18 FRC-CLA-MFR Mandatory FedRAMP Rules for Class A
@@ -213,6 +315,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.19 FRC-CLA-OFR Address Optional FedRAMP Rules for Class A
@@ -224,6 +332,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.20 FRC-CLA-RFR Recommended FedRAMP Rules for Class A
@@ -235,6 +349,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.21 FRC-CSO-JSN FedRAMP JSON Schemas
@@ -246,6 +366,12 @@ Status: Not Implemented
 Implementation: Example (reference architecture, replace with your real implementation): All machine-readable certification information is produced as JSON validated against the corresponding published FedRAMP JSON schema before release. The generation pipeline pins the current official schema, hash-compares it against the live published schema at each run, and fails the build on any validation error.
 Validation: Example (reference architecture, replace with your real implementation): Schema validation runs in CI on every change to certification data; results are retained with the build record. A scheduled job re-validates published artifacts weekly against the live schema to catch in-place schema updates.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: Example: Compliance Engineering Lead
 
 1.22 FRC-CSO-PKG FedRAMP Certification Package
@@ -257,6 +383,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.23 FRC-CSO-POP Pick One Program Certification Type
@@ -268,6 +400,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.24 IEC-CSO-EFR Evaluate FedRAMP Reportability
@@ -279,6 +417,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.25 IEC-CSO-FIR Final Incident Report
@@ -290,6 +434,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.26 IEC-CSO-IIR Initial Incident Report
@@ -301,6 +451,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.27 IEC-CSO-OIR Ongoing Incident Reports
@@ -312,6 +468,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.28 IVV-CSO-FIA FedRAMP Independent Assessments
@@ -323,6 +485,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.29 IVV-CSX-AIA Annual Independent Assessments for 20x
@@ -334,6 +502,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.30 MAS-CSO-IIR Identify Information Resources
@@ -345,6 +519,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.31 SDR-CSX-KMT Key Security Indicator Metrics
@@ -356,6 +536,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.32 VDR-CSO-DET Vulnerability Detection
@@ -367,6 +553,12 @@ Status: Not Implemented
 Implementation: Example (reference architecture, replace with your real implementation): Amazon Inspector continuously scans EC2 instances, ECR container images, and Lambda functions for software vulnerabilities across all in-scope accounts. Findings aggregate to Security Hub in the security tooling account. Coverage is verified against the asset inventory so every in-scope machine-based resource has an active scanning source.
 Validation: Example (reference architecture, replace with your real implementation): A daily job compares Inspector coverage status against the resource inventory from AWS Config; any in-scope resource without coverage opens a ticket. Finding ingestion freshness is checked daily so no source is silent for more than 24 hours.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: Example: Vulnerability Management Lead
 
 1.33 VDR-TFR-MVX Persistent Machine Verification and Validation for 20x
@@ -378,6 +570,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.34 VDR-TFR-PCD Persistently Complete Detection
@@ -389,6 +587,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.35 VDR-TFR-PDD Persistent Drift Detection
@@ -400,6 +604,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.36 VDR-TFR-PSD Persistent Sample Detection
@@ -411,6 +621,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.37 VDR-TFR-PVR Mitigation and Remediation Expectations
@@ -422,6 +638,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.38 VER-TFR-EVU Evaluate Vulnerabilities Quickly
@@ -433,6 +655,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.39 VER-TFR-IRI Internet-Reachable Incidents
@@ -444,6 +672,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.40 VER-TFR-MRH Historical Activity
@@ -455,6 +689,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 1.41 VER-TFR-NRI Non-Internet-Reachable Incidents
@@ -466,6 +706,12 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Implementation or nonimplementation risk: TBD: Information has not been provided.
+Verification: TBD: Information has not been provided.
+Independent verification: TBD: Information has not been provided.
+Independent validation: TBD: Information has not been provided.
+Responses to independent review comments: None recorded
+Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
 2. Key Security Indicators
@@ -478,8 +724,15 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 0
-Historical metrics required: Optional under SDR-CSX-KMT: Class A providers MAY include historical metrics; none are required.
+Historical metrics required for this class: Optional under SDR-CSX-KMT: Class A providers MAY include historical metrics; none are required.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -491,8 +744,15 @@ Status: Not Implemented
 Implementation: Example (reference architecture, replace with your real implementation): All modifications to the cloud service offering are made through version-controlled infrastructure as code deployed by the CI/CD pipeline. AWS CloudTrail organization trail records all management events in every account and region. AWS Config records configuration changes for all supported resource types. Manual changes are detected by comparing CloudTrail write events against pipeline deployment windows.
 Validation: Example (reference architecture, replace with your real implementation): A scheduled validation confirms the organization trail is logging, multi-region, and log-file validated, and that AWS Config recorders are running in every in-scope account and region. An EventBridge rule alerts on any out-of-pipeline write event by a non-pipeline principal.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 0
-Historical metrics required: Optional under SDR-CSX-KMT: Class A providers MAY include historical metrics; none are required.
+Historical metrics required for this class: Optional under SDR-CSX-KMT: Class A providers MAY include historical metrics; none are required.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: Example test 1: describe-trails confirms multi-region and log file validation are enabled and the trail is logging (every 6 hours).; Example test 2: Config aggregator query confirms recorder status is recording in 100 percent of in-scope accounts (daily).
 Owner: Example: Platform Engineering Lead
 
@@ -504,8 +764,15 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 0
-Historical metrics required: Optional under SDR-CSX-KMT: Class A providers MAY include historical metrics; none are required.
+Historical metrics required for this class: Optional under SDR-CSX-KMT: Class A providers MAY include historical metrics; none are required.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -517,8 +784,15 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 0
-Historical metrics required: Optional under SDR-CSX-KMT: Class A providers MAY include historical metrics; none are required.
+Historical metrics required for this class: Optional under SDR-CSX-KMT: Class A providers MAY include historical metrics; none are required.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -530,8 +804,15 @@ Status: Not Implemented
 Implementation: Example (reference architecture, replace with your real implementation): Workforce access uses AWS IAM Identity Center federated to the corporate identity provider. Passwordless FIDO2 security keys are the primary authentication method; where passwordless is not feasible, strong passwords with phishing-resistant MFA (FIDO2/WebAuthn) are enforced by the identity provider conditional access policy. Console password login without MFA is blocked. Programmatic access uses short-lived STS credentials only; no long-lived IAM user access keys exist.
 Validation: Example (reference architecture, replace with your real implementation): A daily AWS Config custom rule checks that no IAM users have console passwords or active access keys. A daily Identity Center API check confirms MFA enforcement is active for every permission set. A CloudTrail Lake query detects any console login event without MFA; any hit creates a high-priority ticket within 15 minutes.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: Example: percent of authentications using FIDO2; count of MFA-less console logins (target 0).
+Measurement cycle: Example: continuous enforcement, daily automated checks.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 0
-Historical metrics required: Optional under SDR-CSX-KMT: Class A providers MAY include historical metrics; none are required.
+Historical metrics required for this class: Optional under SDR-CSX-KMT: Class A providers MAY include historical metrics; none are required.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: Example test 1: config rule iam-user-no-passwords-or-keys returns COMPLIANT for all accounts (daily).; Example test 2: CloudTrail Lake query for console login events without MFA returns zero rows (daily).
 Owner: Example: Identity and Access Lead
 
@@ -543,8 +824,15 @@ Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 0
-Historical metrics required: Optional under SDR-CSX-KMT: Class A providers MAY include historical metrics; none are required.
+Historical metrics required for this class: Optional under SDR-CSX-KMT: Class A providers MAY include historical metrics; none are required.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -556,7 +844,14 @@ Status: Not Implemented
 Implementation: Example (reference architecture, replace with your real implementation): All federal information is encrypted in transit with TLS 1.2 or higher using FIPS-validated endpoints where required, and at rest with AWS KMS customer managed keys. S3 buckets enforce bucket-level encryption and deny unencrypted uploads by bucket policy. EBS volumes and RDS storage use KMS CMKs by default via account-level settings. Public access is blocked account-wide for S3.
 Validation: Example (reference architecture, replace with your real implementation): AWS Config managed rules check encrypted-volumes, rds-storage-encrypted, and S3 default encryption continuously. A daily query confirms account-level EBS default encryption and S3 Block Public Access remain enabled in every account.
 Independent assessment: TBD: Independent assessment has not been performed.
+Measures and objectives: TBD: Information has not been provided.
+Measurement cycle: TBD: Information has not been provided.
+Verification of measures: TBD: Information has not been provided.
+Verification of supporting automation: TBD: Information has not been provided.
 Minimum automated methods for this class: 0
-Historical metrics required: Optional under SDR-CSX-KMT: Class A providers MAY include historical metrics; none are required.
+Historical metrics required for this class: Optional under SDR-CSX-KMT: Class A providers MAY include historical metrics; none are required.
+Historical metrics, 30-day summary: TBD: Information has not been provided.
+Historical metrics, up to one year: TBD: Information has not been provided.
+Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
 Tests: Example test 1: Config rules encrypted-volumes and rds-storage-encrypted are COMPLIANT for all resources (continuous).; Example test 2: EBS default encryption and S3 Block Public Access report enabled for every in-scope account (daily).
 Owner: Example: Security Engineering Lead

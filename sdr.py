@@ -761,7 +761,13 @@ def cmd_preflight(args):
         if exc_valid:
             # Exception path: require mechanisms + current validation data
             # (at least one recent datapoint per KSI), not 6 months.
-            missing_now = [k for k in mot_ksis if not (isinstance(per.get(k), list) and per.get(k))]
+            # append_metrics stores each KSI as {"series": [...], ...}. Read the
+            # series list, not the object, when checking for a current datapoint.
+            def _series(entry):
+                if isinstance(entry, dict):
+                    return entry.get("series") or []
+                return entry if isinstance(entry, list) else []
+            missing_now = [k for k in mot_ksis if not _series(per.get(k))]
             if missing_now:
                 blockers.append(f"Class {cls.upper()}: initial-certification MOT exception is "
                                 f"recorded, but {len(missing_now)} KSI(s) have no current "
@@ -778,7 +784,10 @@ def cmd_preflight(args):
             short = []
             for kid in mot_ksis & set(per):
                 dates = []
-                for e in (per.get(kid) or []):
+                _entry = per.get(kid)
+                _pts = (_entry.get("series") if isinstance(_entry, dict)
+                        else _entry) or []
+                for e in _pts:
                     ds_ = (e or {}).get("date") if isinstance(e, dict) else None
                     if ds_:
                         try:

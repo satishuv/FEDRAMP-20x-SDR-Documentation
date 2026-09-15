@@ -1,9 +1,9 @@
 {
  "assessment-results": {
-  "uuid": "e1e931f8-b960-541a-b020-2bec92fd2201",
+  "uuid": "ccea77d1-93c0-5203-b297-752f7022dd6e",
   "metadata": {
    "title": "Security Decision Record (OSCAL export)",
-   "last-modified": "2026-07-14T00:00:00+00:00",
+   "last-modified": "2026-09-13T00:00:00+00:00",
    "version": "0.1.0",
    "oscal-version": "1.1.2",
    "props": [
@@ -20,10 +20,10 @@
   },
   "results": [
    {
-    "uuid": "10532b16-23ce-5c96-be02-81858fd85482",
+    "uuid": "ea18ac98-85ea-5fad-8485-c4c7ab46ff84",
     "title": "Security Decision Record - assessment results view",
     "description": "OSCAL Assessment Results view derived from the FedRAMP Security Decision Record. Findings and statuses are passed through from the SDR verbatim; this view adds no new determinations.",
-    "start": "2026-07-14T00:00:00+00:00",
+    "start": "2026-09-13T00:00:00+00:00",
     "findings": [
      {
       "uuid": "8b16e580-e65e-5407-be59-bc04d0d224ce",

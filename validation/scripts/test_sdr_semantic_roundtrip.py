@@ -156,6 +156,81 @@ def test_authoring_status_maps_to_official_enum():
         assert got == expected, f"{authoring!r} -> {got!r}, expected {expected!r}"
 
 
+def test_ksi_class_varying_statement_resolves_not_null():
+    # The 5 KSIs with a null top-level statement carry class-specific text under
+    # varies_by_class. The resolver must return the class statement, never None,
+    # and must differ per class where the dataset differs (B is "Optional:").
+    k = {
+        "ksi_id": "KSI-CNA-EIS",
+        "statement": None,
+        "varies_by_class": {
+            "b": {"statement": "**Optional:** do the thing."},
+            "c": {"statement": "Do the thing."},
+        },
+    }
+    assert build_sdr.ksi_statement_for_class(k, "b") == "**Optional:** do the thing."
+    assert build_sdr.ksi_statement_for_class(k, "c") == "Do the thing."
+    # A plain top-level KSI still resolves to its statement for any class.
+    plain = {"ksi_id": "KSI-IAM-MFA", "statement": "Use MFA."}
+    assert build_sdr.ksi_statement_for_class(plain, "b") == "Use MFA."
+
+
+def test_class_b_sdr_has_no_pending_statement_for_varies_by_class_ksis():
+    # Regression: the built Class B human-readable must NOT print the wrong
+    # "FedRAMP pending, no statement" line for the 5 class-varying KSIs.
+    path = os.path.join(BASE, "sdr", "human-readable", "sdr-class-b.txt")
+    if not os.path.exists(path):
+        return  # build not present in this checkout; skip
+    text = open(path, encoding="utf-8").read()
+    # The security-outcome for KSI-CNA-EIS must be a real statement.
+    assert "Enforcing Intended State" in text
+    # No KSI security outcome should be the pending sentinel (all 46 have text
+    # or a class-specific statement in 2026.09.13.02).
+    assert "Security outcome: FedRAMP pending" not in text
+
+
+def test_class_b_profile_preserves_timeframe_range():
+    # Regression: CCM-QTR-SAR carries a bizdays 3..10 range; CCM-OCR-AVL carries
+    # months/3 at the top level. Both must survive into the class profile.
+    path = os.path.join(BASE, "profiles", "class-b", "profile.json")
+    if not os.path.exists(path):
+        return
+    p = json.load(open(path, encoding="utf-8"))
+    rules = p.get("rules") or p.get("applicable_rules") or {}
+    it = rules if isinstance(rules, list) else list(rules.values())
+    by_id = {r.get("rule_id"): r for r in it if isinstance(r, dict)}
+    sar = by_id.get("CCM-QTR-SAR")
+    if sar:
+        assert sar.get("timeframe_type") == "bizdays"
+        assert sar.get("timeframe_num_min") == 3
+        assert sar.get("timeframe_num_max") == 10
+    avl = by_id.get("CCM-OCR-AVL")
+    if avl:
+        assert avl.get("timeframe_type") == "months"
+        assert avl.get("timeframe_num") == 3
+
+
+def test_all_class_sdr_outputs_match_pinned_dataset():
+    # Invariant: every committed A/B/C SDR output must carry the currently
+    # pinned CR26 dataset date. `sdr.py build` regenerates only the active class,
+    # so a dataset refresh could leave inactive-class outputs stale; this test
+    # makes that drift a loud failure instead of a silent inconsistency.
+    ds = json.load(open(os.path.join(BASE, "references",
+                                     "fedramp-consolidated-rules.json"), encoding="utf-8"))
+    ver = ds["info"]["version"]                 # e.g. 2026.09.13.02
+    ver_date = ver.replace(".", "-", 2)[:10]    # -> 2026-09-13
+    for cls in ("a", "b", "c"):
+        path = os.path.join(BASE, "sdr", "json", f"sdr-class-{cls}.json")
+        if not os.path.exists(path):
+            continue
+        doc = json.load(open(path, encoding="utf-8"))
+        last = str((doc.get("metadata") or {}).get("lastUpdated", ""))[:10]
+        assert last == ver_date, (
+            f"Class {cls.upper()} SDR lastUpdated {last} != pinned dataset date "
+            f"{ver_date}; regenerate all classes (SDR_BUILD_CLASS) after a "
+            "dataset refresh so committed cross-class outputs never drift")
+
+
 def main():
     tests = [v for k, v in sorted(globals().items()) if k.startswith("test_")]
     passed = 0

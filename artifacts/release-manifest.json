@@ -48,7 +48,7 @@
  },
  "inputs": {
   "profiles/common/offering-profile.json": "sha256:aaefc42a318bc6306c22643a931a130850561dd43c416100b6e784aa018384a8",
-  "sdr/records/records-store.json": "sha256:995fbcde61f1325197a7cc45cedba22d97bd10ef503ab7e63d5fe424b5386c2a"
+  "sdr/records/records-store.json": "sha256:d24e0753f7afe5dd0be9af65c177c85fba170cc6e901b1dc5943af01c7ea2b88"
  },
  "artifacts": {
   "package/certification-package-manifest.json": "sha256:9cae6d6ee3216e60c35fcdc427b1e485d5033c1eeb79f234b83e55ea6b6e1a0d",
@@ -65,11 +65,11 @@
   "package/ocr/ocr-example.json": "sha256:0066229cbf976f125c695b8548c4f5e4b7ee33d72e7a6515cea7aad9605004e4",
   "package/ocr/ocr-example.md": "sha256:8c7d18c869d2c5685717fa745313e48a6cdf7d53c7f1ca56a0d6106709e18b57",
   "package/scg/secure-configuration-guide.md": "sha256:e33594964ad23ab3abef5798814c37c39fdadd3157258c5c23b76f70eab156d6",
-  "sdr/human-readable/sdr-class-b.txt": "sha256:7defcfbe9195d7c9b61b1be05d4ce18e23193f6cd7ffc7376347806d36ba4167",
-  "sdr/json/sdr-class-b-extensions.json": "sha256:8372801b43c9cd90826ae2b63ebb6f4172559f57027f692b62f10b9e14aaacd3",
-  "sdr/json/sdr-class-b.json": "sha256:887195049be0b81d4f22fc7f4a9472e2018d4b5264e6fd5206c28ab996261521",
+  "sdr/human-readable/sdr-class-b.txt": "sha256:7ca2f4c84d920d5a7c17c69c16c4b9afef963d1ab7c685aa937831d9f5a05ae6",
+  "sdr/json/sdr-class-b-extensions.json": "sha256:aa818760edd394c2f83dd900e155e00d182cad196982e24a37e17adca395176c",
+  "sdr/json/sdr-class-b.json": "sha256:7ec2db51ef2f32bced36346e2ff99b238ba0cae4f58e236fe44607a84f7c6c1c",
   "traceability/applicability-decisions.json": "sha256:13ca770aae658ea9ae6a3655c759965854ca2646bafb1b6ded715120c1d13ff5",
-  "traceability/assurance-graph.json": "sha256:34e6046f0b8f123cb23ccca0ae6b102521b4366924c05a9684d8e64d5068f895",
+  "traceability/assurance-graph.json": "sha256:9ef3d1abc72aa271980a5ace600a9c8e062226e1e79f23aea574b980e29ecc80",
   "traceability/rev5-to-20x-crosswalk.csv": "sha256:54abb349fbf14d1d8ec15da7fe2de5615f132f14309dc3957a81563e5575db43"
  },
  "artifact_count": 20,

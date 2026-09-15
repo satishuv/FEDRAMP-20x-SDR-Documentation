@@ -4959,7 +4959,7 @@
    "ksiId": "KSI-CNA-EIS",
    "ksiImplementationStatus": "Not Implemented",
    "ksiImplementation": [
-    "FedRAMP pending: this indicator has no statement in the official dataset yet."
+    "TBD: Information has not been provided."
    ],
    "ksiValidation": [
     "TBD: Information has not been provided."
@@ -5506,7 +5506,7 @@
    "ksiId": "KSI-MLA-ALA",
    "ksiImplementationStatus": "Not Implemented",
    "ksiImplementation": [
-    "FedRAMP pending: this indicator has no statement in the official dataset yet."
+    "TBD: Information has not been provided."
    ],
    "ksiValidation": [
     "TBD: Information has not been provided."
@@ -6152,7 +6152,7 @@
    "ksiId": "KSI-SVC-PRR",
    "ksiImplementationStatus": "Not Implemented",
    "ksiImplementation": [
-    "FedRAMP pending: this indicator has no statement in the official dataset yet."
+    "TBD: Information has not been provided."
    ],
    "ksiValidation": [
     "TBD: Information has not been provided."
@@ -6186,7 +6186,7 @@
    "ksiId": "KSI-SVC-RUD",
    "ksiImplementationStatus": "Not Implemented",
    "ksiImplementation": [
-    "FedRAMP pending: this indicator has no statement in the official dataset yet."
+    "TBD: Information has not been provided."
    ],
    "ksiValidation": [
     "TBD: Information has not been provided."
@@ -6257,7 +6257,7 @@
    "ksiId": "KSI-SVC-VCM",
    "ksiImplementationStatus": "Not Implemented",
    "ksiImplementation": [
-    "FedRAMP pending: this indicator has no statement in the official dataset yet."
+    "TBD: Information has not been provided."
    ],
    "ksiValidation": [
     "TBD: Information has not been provided."

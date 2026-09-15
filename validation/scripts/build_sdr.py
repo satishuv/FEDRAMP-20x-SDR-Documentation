@@ -30,6 +30,23 @@ RECORDS = os.path.join(BASE, "sdr", "records", "records-store.json")
 TBD = "TBD: Information has not been provided."
 
 
+def ksi_statement_for_class(k, cls):
+    """Resolve a KSI's security-outcome statement for a certification class.
+
+    Five KSIs in CR26 (KSI-CNA-EIS, KSI-MLA-ALA, KSI-SVC-PRR, KSI-SVC-RUD,
+    KSI-SVC-VCM) carry a null top-level statement and put the real, class-varying
+    text under varies_by_class[b|c]. Emitting the top-level statement for those
+    silently drops the requirement text (or mislabels it "FedRAMP pending").
+    Prefer the class-specific statement; fall back to the top-level one; return
+    None only if neither exists."""
+    vbc = k.get("varies_by_class")
+    if isinstance(vbc, dict):
+        variant = vbc.get((cls or "").lower())
+        if isinstance(variant, dict) and variant.get("statement"):
+            return variant["statement"]
+    return k.get("statement")
+
+
 # The official SDR schema constrains frr/ksiImplementationStatus to exactly
 # these three values. The record store uses a richer AUTHORING vocabulary
 # (Planned, Gap, Exception, Not Applicable, Needs validation, FedRAMP pending,
@@ -434,8 +451,13 @@ def render_human(profile, rules, ksis, records, cls):
         a(f"2.{i} {k['ksi_id']} {k['name'] or ''}")
         a(f"KSI: {k['ksi_id']}")
         a(f"Family: {k['family']} ({k['family_name']})")
-        if k["statement"]:
-            a(f"Security outcome: {k['statement']}")
+        _stmt = ksi_statement_for_class(k, cls)
+        if _stmt:
+            # The human-readable SDR forbids markdown; the dataset marks the
+            # class-B optional variants with "**Optional:**". Render as plain
+            # text (JSON keeps the verbatim dataset statement).
+            _stmt_plain = _stmt.replace("**", "")
+            a(f"Security outcome: {_stmt_plain}")
         else:
             a("Security outcome: FedRAMP pending, no statement in the official dataset yet.")
         a(f"Status: {rec.get('implementation_status', 'Not Implemented')}")
@@ -463,7 +485,7 @@ def render_human(profile, rules, ksis, records, cls):
 
 def main():
     profile = load(PROFILE)
-    cls = profile["certification_class"].lower()
+    cls = (os.environ.get("SDR_BUILD_CLASS") or profile["certification_class"]).lower()
     if cls not in ("a", "b", "c"):
         print(f"Class {cls.upper()} SDR generation is not supported: "
               "Class D is FedRAMP pending (Phase 4 pilot).")

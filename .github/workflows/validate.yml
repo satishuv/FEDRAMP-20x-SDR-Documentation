@@ -27,6 +27,19 @@ jobs:
         run: pip install --quiet -r requirements-ci.txt
       - name: Regenerate all deliverables
         run: |
+          # Full build regenerates the ACTIVE class (per the offering profile).
+          python sdr.py build
+          # Also regenerate the inactive class SDR outputs so committed A/B/C
+          # never drift from the pinned dataset (the SDR_BUILD_CLASS override
+          # regenerates one class's SDR JSON/text without editing the profile).
+          # Order the ACTIVE class last so the release manifest and records-store
+          # backfill reflect it.
+          ACTIVE=$(python -c "import json;print((json.load(open('profiles/common/offering-profile.json')).get('certification_class') or 'b').lower())")
+          for c in a b c; do
+            if [ "$c" != "$ACTIVE" ]; then
+              SDR_BUILD_CLASS=$c python validation/scripts/build_sdr.py > /dev/null
+            fi
+          done
           python sdr.py build
       - name: Refuse hand-edited generated files
         run: |

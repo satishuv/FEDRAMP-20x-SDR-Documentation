@@ -102,12 +102,19 @@ def resolve_for_class(rule, cls):
                 "force": variant.get("force"),
                 "timeframe_type": variant.get("timeframe_type"),
                 "timeframe_num": variant.get("timeframe_num"),
+                "timeframe_num_min": variant.get("timeframe_num_min"),
+                "timeframe_num_max": variant.get("timeframe_num_max"),
                 "resolution": "class_variant",
             }
         if rule.get("statement"):
             return {
                 "statement": rule["statement"],
                 "force": rule.get("force"),
+                # Top-level timing still governs when no class variant matched.
+                "timeframe_type": rule.get("timeframe_type"),
+                "timeframe_num": rule.get("timeframe_num"),
+                "timeframe_num_min": rule.get("timeframe_num_min"),
+                "timeframe_num_max": rule.get("timeframe_num_max"),
                 "resolution": "top_level_with_other_class_variants",
             }
         return None
@@ -115,6 +122,13 @@ def resolve_for_class(rule, cls):
         return {
             "statement": rule["statement"],
             "force": rule.get("force"),
+            # Preserve top-level timing (e.g. CCM-OCR-AVL months/3, CCM-QTR-SAR
+            # bizdays 3..10). Dropping it made the profile show null timeframes
+            # for rules whose official statement carries a real cadence.
+            "timeframe_type": rule.get("timeframe_type"),
+            "timeframe_num": rule.get("timeframe_num"),
+            "timeframe_num_min": rule.get("timeframe_num_min"),
+            "timeframe_num_max": rule.get("timeframe_num_max"),
             "resolution": "top_level",
         }
     return None
@@ -202,6 +216,8 @@ def build_class_a_profile(rules, frr_tier, excluded_log=None):
                 "statement": resolved["statement"],
                 "timeframe_type": resolved.get("timeframe_type"),
                 "timeframe_num": resolved.get("timeframe_num"),
+                "timeframe_num_min": resolved.get("timeframe_num_min"),
+                "timeframe_num_max": resolved.get("timeframe_num_max"),
                 "resolution": resolved["resolution"],
                 "schema": rule.get("schema"),
             }
@@ -251,6 +267,8 @@ def build_class_profile(rules, cls, excluded_log=None):
                 "statement": resolved["statement"],
                 "timeframe_type": resolved.get("timeframe_type"),
                 "timeframe_num": resolved.get("timeframe_num"),
+                "timeframe_num_min": resolved.get("timeframe_num_min"),
+                "timeframe_num_max": resolved.get("timeframe_num_max"),
                 "resolution": resolved["resolution"],
                 "schema": rule.get("schema"),
             }
@@ -310,6 +328,11 @@ def build_ksi_profile(ksis, ksi_tier=None):
                 "family_name": k["family_name"],
                 "name": k["name"],
                 "statement": k["statement"],
+                # Preserve the per-class KSI statements: 5 KSIs (CNA-EIS, MLA-ALA,
+                # SVC-PRR, SVC-RUD, SVC-VCM) have a null top-level statement and
+                # carry the real, class-varying text here. The SDR/human-readable
+                # render resolves the class-specific statement from this block.
+                "varies_by_class": k.get("varies_by_class"),
                 "controls": k["controls"],
                 "content_status": (
                     "FedRAMP pending: statement empty in official dataset"

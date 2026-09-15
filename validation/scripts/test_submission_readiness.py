@@ -237,7 +237,10 @@ def _fill_records(root):
         for m in range(0, 8):  # ~8 months of monthly datapoints
             d = today - _d.timedelta(days=30 * m)
             pts.append({"date": d.isoformat(), "status": "pass"})
-        hist["ksis"][kid] = pts
+        # Use the REAL production shape append_metrics.py writes: each KSI is an
+        # object with a "series" list, not a bare list. A test-only bare-list
+        # shape previously masked a preflight bug that read per[kid] as a list.
+        hist["ksis"][kid] = {"series": pts}
     hp = os.path.join(root, "automation", "metrics", "metric-history.json")
     json.dump(hist, open(hp, "w", encoding="utf-8", newline="\n"), indent=1)
 
@@ -530,7 +533,7 @@ def main():
         ksi_prof = json.load(open(os.path.join(root_m, "profiles", "common", "ksi-profile.json"),
                                   encoding="utf-8"))
         cur = now.date().isoformat()
-        hist_m = {"ksis": {k["ksi_id"]: [{"date": cur, "status": "pass"}]
+        hist_m = {"ksis": {k["ksi_id"]: {"series": [{"date": cur, "status": "pass"}]}
                            for k in ksi_prof.get("indicators", [])}}
         json.dump(hist_m, open(os.path.join(root_m, "automation", "metrics", "metric-history.json"),
                                "w", encoding="utf-8", newline="\n"), indent=1)

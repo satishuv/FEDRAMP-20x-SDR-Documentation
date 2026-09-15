@@ -142,7 +142,7 @@
     "ca-2.1",
     "ca-7.1"
    ],
-   "how_to_comply_guidance": "FedRAMP pending: this indicator has no statement in the official dataset yet. Track the dataset for updates before building anything specific.",
+   "how_to_comply_guidance": "Class-varying (optional/MAY at Class B, required at Class C): automated services persistently assess the security of all machine-based information resources and automatically enforce their intended operational state. Evidence: Config rules with auto-remediation, Systems Manager State Manager/associations, drift-detection and enforcement records over time.",
    "guidance_label": "The compliance guidance is SAS advisory content naming typical AWS approaches. It is not an official FedRAMP requirement; the indicator statement governs."
   },
   "KSI-CNA-IBP": {
@@ -542,7 +542,7 @@
    "nist_controls": [
     "si-11"
    ],
-   "how_to_comply_guidance": "FedRAMP pending: this indicator has no statement in the official dataset yet. Track the dataset for updates before building anything specific.",
+   "how_to_comply_guidance": "Class-varying (optional/MAY at Class B, required at Class C): a least-privileged, role/attribute-based, just-in-time authorization model governs access to log data by data sensitivity, and is persistently reviewed. Evidence: IAM/Access Analyzer for log-store access, JIT-access records, periodic access reviews of the log data store.",
    "guidance_label": "The compliance guidance is SAS advisory content naming typical AWS approaches. It is not an official FedRAMP requirement; the indicator statement governs."
   },
   "KSI-MLA-EVC": {
@@ -976,7 +976,7 @@
    "nist_controls": [
     "sc-4"
    ],
-   "how_to_comply_guidance": "FedRAMP pending: this indicator has no statement in the official dataset yet. Track the dataset for updates before building anything specific.",
+   "how_to_comply_guidance": "Class-varying (optional/MAY at Class B, required at Class C): plans, procedures, and resource state are persistently reviewed after changes to limit and remove unwanted residual elements that could affect confidentiality, integrity, or availability of federal customer data. Evidence: post-change review records, drift/residual-resource cleanup logs.",
    "guidance_label": "The compliance guidance is SAS advisory content naming typical AWS approaches. It is not an official FedRAMP requirement; the indicator statement governs."
   },
   "KSI-SVC-RUD": {
@@ -993,7 +993,7 @@
     "si-12.3",
     "si-18.4"
    ],
-   "how_to_comply_guidance": "FedRAMP pending: this indicator has no statement in the official dataset yet. Track the dataset for updates before building anything specific.",
+   "how_to_comply_guidance": "Class-varying (optional/MAY at Class B, required at Class C): unwanted federal customer data is removed promptly when an agency requests it per customer agreements, including from backups where appropriate (e.g. data spill or usage change). Evidence: data-removal request handling records, backup-scoped deletion procedures and logs.",
    "guidance_label": "The compliance guidance is SAS advisory content naming typical AWS approaches. It is not an official FedRAMP requirement; the indicator statement governs."
   },
   "KSI-SVC-SIN": {
@@ -1037,7 +1037,7 @@
     "sc-23",
     "si-7.1"
    ],
-   "how_to_comply_guidance": "FedRAMP pending: this indicator has no statement in the official dataset yet. Track the dataset for updates before building anything specific.",
+   "how_to_comply_guidance": "Class-varying (optional/MAY at Class B, required at Class C): the authenticity and integrity of communications between machine-based information resources is persistently validated using automation. Evidence: mutual-TLS/service-mesh identity validation, signed inter-service requests, automated integrity-verification records.",
    "guidance_label": "The compliance guidance is SAS advisory content naming typical AWS approaches. It is not an official FedRAMP requirement; the indicator statement governs."
   },
   "KSI-SVC-VRI": {
