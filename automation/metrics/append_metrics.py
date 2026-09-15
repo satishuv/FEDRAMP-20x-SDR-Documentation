@@ -1,7 +1,7 @@
 # Metric-history appender (SDR-CSX-KMT accumulation).
 #
 # SDR-CSX-KMT requires, per applicable Key Security Indicator (verified against
-# the pinned dataset 2026.07.14.01):
+# the pinned CR26 dataset):
 #   Class B: a 30-day summary and an up-to-one-year summary.
 #   Class C: those two PLUS all daily metric data up to the past year.
 # None of that can be produced retroactively, so it has to accumulate. This

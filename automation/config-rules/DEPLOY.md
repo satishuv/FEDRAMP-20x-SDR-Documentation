@@ -58,8 +58,10 @@ two never drift):
   `config.amazonaws.com` invoke permission, and 11 `AWS::Config::ConfigRule`
   resources. `EvidenceBucket`, `LambdaCodeS3Bucket`, and `LambdaCodeS3Key` are
   template parameters.
-- `deploy/cdk_stack.py` + `deploy/cdk_app.py` — the equivalent CDK v2 (Python)
-  stack, also read from the manifest.
+- `deploy/cdk_stack.py` + `deploy/cdk_app.py` — a functional CDK v2 (Python)
+  reference stack, also read from the manifest. Not security-hardened to parity
+  with `cloudformation.yaml` (the canonical hardened path: KMS-encrypted logs
+  with 365-day retention, X-Ray tracing, reserved concurrency).
 
 ```bash
 python automation/config-rules/deploy/generate_templates.py            # write both

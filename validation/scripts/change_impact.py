@@ -125,6 +125,13 @@ def compute(diff):
         if force.get("new") == "MUST" and force.get("old") != "MUST":
             imp["force_escalation_to_must"] = True
             imp["requires_human_review"] = True
+        # A rule can LOSE applicability to a class (dropped from a class's rule
+        # set). It is then absent from the CURRENT profile, so class-membership
+        # alone would under-report it. Any applicability or class-variance change
+        # requires review regardless of current membership (old union new).
+        if "applicability" in c["changes"] or "varies_by_class" in c["changes"]:
+            imp["applicability_or_class_variance_changed"] = True
+            imp["requires_human_review"] = True
         imp["change_detail"] = c["changes"]
         impacts.append(imp)
 
@@ -142,19 +149,43 @@ def compute(diff):
 
     review_needed = [i["rule_id"] for i in impacts if i["requires_human_review"]]
     ksi_review_needed = [i["ksi_id"] for i in ksi_impacts if i["requires_human_review"]]
+
+    # Controlled FedRAMP definitions (FRD): a definition addition/removal/change
+    # can shift the meaning of every rule that uses the term (e.g. the force
+    # words MUST/MUST NOT/SHOULD/SHOULD NOT/MAY). We do not model a dependency
+    # graph; the safe rule is that ANY definition change requires human review.
+    definition_impacts = []
+    for change_type, key in (("added", "definitions_added"),
+                             ("removed", "definitions_removed"),
+                             ("changed", "definitions_changed")):
+        for fid in diff.get(key, []):
+            definition_impacts.append({
+                "definition_id": fid,
+                "change_type": change_type,
+                "requires_human_review": True,
+                "note": ("A controlled FedRAMP definition changed; review every "
+                         "rule that relies on this term before relying on the "
+                         "regenerated package."),
+            })
+    definitions_review_needed = [i["definition_id"] for i in definition_impacts]
+
     return {
         "impact_note": (
             "Downstream impact of upstream FedRAMP changes on this provider's "
             "package. Reading-only; changes nothing and sets no status. FRR "
             "changes map to classes/records/outputs; KSI changes map through the "
-            "collector registry to collectors/evidence/SDR node. No FRR->KSI "
-            "relationship is invented (the dataset carries none)."),
+            "collector registry to collectors/evidence/SDR node; FRD definition "
+            "changes always require human review. No FRR->KSI relationship is "
+            "invented (the dataset carries none)."),
         "source_summary": diff.get("summary", {}),
         "impacts": impacts,
         "ksi_impacts": ksi_impacts,
+        "definition_impacts": definition_impacts,
         "rules_requiring_review": sorted(review_needed),
         "ksis_requiring_review": sorted(ksi_review_needed),
-        "total_requiring_review": len(review_needed) + len(ksi_review_needed),
+        "definitions_requiring_review": sorted(definitions_review_needed),
+        "total_requiring_review": (len(review_needed) + len(ksi_review_needed)
+                                   + len(definitions_review_needed)),
     }
 
 

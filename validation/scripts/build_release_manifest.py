@@ -30,6 +30,44 @@ OUT = os.path.join(BASE, "artifacts", "release-manifest.json")
 
 FRAMEWORK_VERSION = "1.2.0"
 
+
+def _sha256_file(path):
+    if not os.path.exists(path):
+        return None
+    with open(path, "rb") as f:
+        return "sha256:" + hashlib.sha256(f.read()).hexdigest()
+
+
+def _source_provenance():
+    """Bind the manifest to the exact SOURCE that produced it, not just the
+    framework version (multiple commits can report 1.2.0). requirements hashes
+    are deterministic file hashes; git commit/tree are read best-effort and are
+    stable for a given checkout (so the reproducibility double-build still sees
+    a byte-identical manifest). Absent git (e.g. a tarball) they are null."""
+    prov = {
+        "requirements_sha256": _sha256_file(os.path.join(BASE, "requirements.txt")),
+        "requirements_ci_sha256": _sha256_file(os.path.join(BASE, "requirements-ci.txt")),
+        "source_commit": None,
+        "source_tree": None,
+    }
+    # A live git commit/tree must NOT be baked into every committed build: the
+    # commit hash cannot be known before the commit that contains the manifest
+    # (circular), and it would break the CI regenerate-and-diff gate. Record it
+    # only when explicitly cutting a release (SDR_RECORD_SOURCE_COMMIT=1), e.g.
+    # in the tag/release workflow, where the committed tree is fixed.
+    if os.environ.get("SDR_RECORD_SOURCE_COMMIT") == "1":
+        import subprocess
+        for key, args in (("source_commit", ["rev-parse", "HEAD"]),
+                          ("source_tree", ["rev-parse", "HEAD^{tree}"])):
+            try:
+                out = subprocess.run(["git", "-C", BASE, *args],
+                                     capture_output=True, text=True, timeout=10)
+                if out.returncode == 0 and out.stdout.strip():
+                    prov[key] = out.stdout.strip()
+            except Exception:  # noqa: BLE001
+                pass
+    return prov
+
 # Generated artifacts fingerprinted, per class. Text/JSON only (deterministic).
 ARTIFACT_GLOBS = [
     "sdr/json/sdr-class-{c}.json",
@@ -139,6 +177,7 @@ def build(cls):
         "artifacts": dict(sorted(artifacts.items())),
         "artifact_count": len(artifacts),
         "release_tag": f"v{FRAMEWORK_VERSION}-cr26-{offering.get('dataset_version')}",
+        "source_provenance": _source_provenance(),
         "build": {"deterministic": True, "generator": "build_release_manifest.py"},
     }
 

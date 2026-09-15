@@ -1,8 +1,13 @@
 #!/usr/bin/env python3
-"""CDK v2 (Python) stack equivalent of cloudformation.yaml, generated from
-rules-manifest.json by generate_templates.py. Do not edit by hand; re-run the
-generator. A COMPLIANT result from these rules is telemetry, not a compliance
-determination.
+"""CDK v2 (Python) stack for the Config evidence rule, generated from
+rules-manifest.json by generate_templates.py. This is a FUNCTIONAL reference
+deployment (Lambda + role + Config rule); it is NOT security-hardened to parity
+with cloudformation.yaml, which is the canonical hardened path and additionally
+provides a KMS-encrypted Lambda log group with 365-day retention, X-Ray active
+tracing, and reserved Lambda concurrency. Use cloudformation.yaml for a hardened
+deployment, or add those properties to this stack before using it as one. Do not
+edit by hand; re-run the generator. A COMPLIANT result from these rules is
+telemetry, not a compliance determination.
 """
 
 import json

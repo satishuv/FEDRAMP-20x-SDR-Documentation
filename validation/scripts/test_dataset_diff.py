@@ -142,6 +142,24 @@ def test_definition_change_detected():
     assert d["summary"]["definitions_added"] >= 1
 
 
+def test_varies_by_class_only_rule_is_recognized():
+    # A rule whose operative content lives ONLY in varies_by_class (null
+    # top-level force/statement, like FRC-CSX-MOT's shape) must be indexed and
+    # its change reported, not skipped by a force/statement-only recognizer.
+    import copy
+    base = {"FRR": {"XYZ": {"data": {"20x": {"CSX": {
+        "FRC-XXX-VBC": {"varies_by_class": {"b": {"statement": "b text", "force": "SHOULD"},
+                                            "c": {"statement": "c text", "force": "MUST"}}}
+    }}}}}}
+    new = copy.deepcopy(base)
+    new["FRR"]["XYZ"]["data"]["20x"]["CSX"]["FRC-XXX-VBC"]["varies_by_class"]["c"]["force"] = "MAY"
+    idx = dd._index_rules(base)
+    assert "FRC-XXX-VBC" in idx, "varies_by_class-only rule not indexed"
+    d = dd.diff_datasets(base, new)
+    assert any(c["id"] == "FRC-XXX-VBC" for c in d["rules_changed"]), \
+        "varies_by_class-only rule change not reported"
+
+
 def _run_all():
     tests = [v for k, v in sorted(globals().items())
              if k.startswith("test_") and callable(v)]

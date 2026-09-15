@@ -211,24 +211,24 @@ def test_class_b_profile_preserves_timeframe_range():
 
 
 def test_all_class_sdr_outputs_match_pinned_dataset():
-    # Invariant: every committed A/B/C SDR output must carry the currently
-    # pinned CR26 dataset date. `sdr.py build` regenerates only the active class,
-    # so a dataset refresh could leave inactive-class outputs stale; this test
-    # makes that drift a loud failure instead of a silent inconsistency.
+    # Invariant: every committed A/B/C SDR must be generated against the pinned
+    # dataset. Assert on the EXTENSIONS companion's dataset_version (source
+    # currency), NOT lastUpdated: lastUpdated can legitimately be a later
+    # provider record-update date (sdr_last_updated) and does not track the
+    # dataset version.
     ds = json.load(open(os.path.join(BASE, "references",
                                      "fedramp-consolidated-rules.json"), encoding="utf-8"))
-    ver = ds["info"]["version"]                 # e.g. 2026.09.13.02
-    ver_date = ver.replace(".", "-", 2)[:10]    # -> 2026-09-13
+    ver = ds["info"]["version"]
     for cls in ("a", "b", "c"):
-        path = os.path.join(BASE, "sdr", "json", f"sdr-class-{cls}.json")
+        path = os.path.join(BASE, "sdr", "json", f"sdr-class-{cls}-extensions.json")
         if not os.path.exists(path):
             continue
         doc = json.load(open(path, encoding="utf-8"))
-        last = str((doc.get("metadata") or {}).get("lastUpdated", ""))[:10]
-        assert last == ver_date, (
-            f"Class {cls.upper()} SDR lastUpdated {last} != pinned dataset date "
-            f"{ver_date}; regenerate all classes (SDR_BUILD_CLASS) after a "
-            "dataset refresh so committed cross-class outputs never drift")
+        got = (doc.get("metadata") or {}).get("dataset_version") or doc.get("dataset_version")
+        assert got == ver, (
+            f"Class {cls.upper()} SDR extensions dataset_version {got!r} != pinned "
+            f"{ver!r}; regenerate all classes (SDR_BUILD_CLASS) after a dataset "
+            "refresh so committed cross-class outputs never drift")
 
 
 def main():

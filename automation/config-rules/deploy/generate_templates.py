@@ -5,8 +5,10 @@ Reads ../rules-manifest.json and emits, deterministically, BOTH:
   - cloudformation.yaml : one Lambda (the shared evidence_existence_rule
     handler), an execution role, the config.amazonaws.com invoke permission,
     and 11 AWS::Config::ConfigRule resources (one per manifest rule).
-  - cdk_stack.py / cdk_app.py : the equivalent CDK v2 (Python) stack, also
-    read from the manifest so the two artifacts never drift.
+  - cdk_stack.py / cdk_app.py : a FUNCTIONAL CDK v2 (Python) reference stack,
+    also read from the manifest so the two artifacts never drift. It is not
+    security-hardened to parity with cloudformation.yaml (the canonical hardened
+    path); see the cdk_stack.py docstring for the specific gaps.
 
 Offline and deterministic: no AWS calls, stable ordering (manifest order),
 so re-running produces byte-identical output. This is a code generator, not a
@@ -224,10 +226,15 @@ def build_cfn(manifest):
 
 CDK_STACK_TEMPLATE = '''\
 #!/usr/bin/env python3
-"""CDK v2 (Python) stack equivalent of cloudformation.yaml, generated from
-rules-manifest.json by generate_templates.py. Do not edit by hand; re-run the
-generator. A COMPLIANT result from these rules is telemetry, not a compliance
-determination.
+"""CDK v2 (Python) stack for the Config evidence rule, generated from
+rules-manifest.json by generate_templates.py. This is a FUNCTIONAL reference
+deployment (Lambda + role + Config rule); it is NOT security-hardened to parity
+with cloudformation.yaml, which is the canonical hardened path and additionally
+provides a KMS-encrypted Lambda log group with 365-day retention, X-Ray active
+tracing, and reserved Lambda concurrency. Use cloudformation.yaml for a hardened
+deployment, or add those properties to this stack before using it as one. Do not
+edit by hand; re-run the generator. A COMPLIANT result from these rules is
+telemetry, not a compliance determination.
 """
 
 import json
