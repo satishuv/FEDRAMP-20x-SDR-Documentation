@@ -169,9 +169,13 @@ def build_graph(cls):
                 "independent_verification": ext.get("independent_verification", "TBD"),
             },
             "evidence": _evidence_nodes(ext.get("rule_artifacts")),
-            "validation": {
-                "result": "PASS" if rid in sdr_frr_index else "MISSING",
-                "validator": "deterministic",
+            "structural_linkage": {
+                # PRESENT means the requirement is present in the generated SDR
+                # (structural traceability), NOT a compliance pass. A generic
+                # "validation: PASS" was easy for a downstream consumer to
+                # misread as a determination; this framework makes none.
+                "result": "PRESENT" if rid in sdr_frr_index else "MISSING",
+                "checker": "deterministic-structural",
             },
             "review": dict(_review_for(review_idx, rid, ext.get("owner", "TBD")),
                            responses=ext.get("assessor_responses", "None recorded")),
@@ -210,9 +214,11 @@ def build_graph(cls):
                 "automation_verification": ext.get("automation_verification", "TBD"),
             },
             "evidence": _evidence_nodes(rec.get("evidence")),
-            "validation": {
-                "result": "PASS" if kid in sdr_ksi_index else "MISSING",
-                "validator": "deterministic",
+            "structural_linkage": {
+                # PRESENT = present in the generated SDR (traceability), not a
+                # compliance pass; this framework makes no determination.
+                "result": "PRESENT" if kid in sdr_ksi_index else "MISSING",
+                "checker": "deterministic-structural",
             },
             "review": _review_for(review_idx, kid, ext.get("owner", "TBD")),
             "outputs": {

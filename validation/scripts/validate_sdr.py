@@ -258,7 +258,20 @@ def main():
     report = {"generated": stamp, "class": cls.upper(), "checks": [], "hard_failures": 0}
 
     def check(name, passed, detail, hard=True):
-        report["checks"].append({"check": name, "result": "PASS" if passed else "FAIL", "detail": detail})
+        # Result vocabulary is legible to a non-author reader (e.g. an assessor):
+        #   PASS      - the check passed.
+        #   FAIL      - a HARD failure; blocks the build (counted in hard_failures).
+        #   ADVISORY  - a non-hard SHOULD-level shortfall; reported, never blocks.
+        # Emitting "FAIL" for an advisory shortfall alongside hard_failures 0 is
+        # confusing; ADVISORY makes the severity unambiguous. Downstream tooling
+        # should treat hard_failures (or result == "FAIL") as the blocking signal.
+        if passed:
+            result = "PASS"
+        elif hard:
+            result = "FAIL"
+        else:
+            result = "ADVISORY"
+        report["checks"].append({"check": name, "result": result, "detail": detail})
         if not passed and hard:
             report["hard_failures"] += 1
 

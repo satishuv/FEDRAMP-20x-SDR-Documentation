@@ -25,8 +25,8 @@ OFFERING = os.path.join(BASE, "profiles", "common", "offering-profile.json")
 GRAPH = os.path.join(BASE, "traceability", "assurance-graph.json")
 
 RULE_CHAIN = ["applicability", "provider_claim", "verification", "evidence",
-              "validation", "review", "outputs"]
-KSI_CHAIN = ["provider_claim", "verification", "evidence", "validation",
+              "structural_linkage", "review", "outputs"]
+KSI_CHAIN = ["provider_claim", "verification", "evidence", "structural_linkage",
              "review", "outputs"]
 
 

@@ -51,6 +51,7 @@
   "sdr/records/records-store.json": "sha256:d24e0753f7afe5dd0be9af65c177c85fba170cc6e901b1dc5943af01c7ea2b88"
  },
  "artifacts": {
+  "artifacts/sbom.cdx.json": "sha256:13b689b87d3ee5d291e3b1616ed40a33e4daeabcf7b2913b483847a6e4246b90",
   "package/certification-package-manifest.json": "sha256:9cae6d6ee3216e60c35fcdc427b1e485d5033c1eeb79f234b83e55ea6b6e1a0d",
   "package/cpo/cpo.json": "sha256:0cc8912a0ec662b78cde7c27d71c5dbd5258218202d56b762f02e88eccc805d3",
   "package/cpo/cpo.md": "sha256:80939b0778273f1c848b8d1f17a694343948225270c8bbfdd56403d5652909d9",
@@ -69,10 +70,10 @@
   "sdr/json/sdr-class-b-extensions.json": "sha256:aa818760edd394c2f83dd900e155e00d182cad196982e24a37e17adca395176c",
   "sdr/json/sdr-class-b.json": "sha256:7ec2db51ef2f32bced36346e2ff99b238ba0cae4f58e236fe44607a84f7c6c1c",
   "traceability/applicability-decisions.json": "sha256:13ca770aae658ea9ae6a3655c759965854ca2646bafb1b6ded715120c1d13ff5",
-  "traceability/assurance-graph.json": "sha256:9ef3d1abc72aa271980a5ace600a9c8e062226e1e79f23aea574b980e29ecc80",
+  "traceability/assurance-graph.json": "sha256:c2c023c999a4c6e2dcf426d6c94d2a81307da7ed2e1e0c09e85b03a0237438c6",
   "traceability/rev5-to-20x-crosswalk.csv": "sha256:54abb349fbf14d1d8ec15da7fe2de5615f132f14309dc3957a81563e5575db43"
  },
- "artifact_count": 20,
+ "artifact_count": 21,
  "release_tag": "v1.2.0-cr26-2026.09.13.02",
  "source_provenance": {
   "requirements_sha256": "sha256:03179c49545b8f934634f1c6b3981b0f282829a7489c9cccbf5843242e99c681",

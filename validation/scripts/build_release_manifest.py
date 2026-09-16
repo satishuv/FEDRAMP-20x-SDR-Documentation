@@ -91,6 +91,7 @@ ARTIFACT_GLOBS = [
     "traceability/assurance-graph.json",
     "traceability/applicability-decisions.json",
     "traceability/rev5-to-20x-crosswalk.csv",
+    "artifacts/sbom.cdx.json",
 ]
 
 
