@@ -33,6 +33,22 @@ REGISTRY = os.path.join(BASE, "automation", "collectors", "registry.json")
 FACTS_DIR = os.path.join(BASE, "automation", "facts")
 HISTORY = os.path.join(BASE, "automation", "metrics", "metric-history.json")
 
+# Route posture telemetry to KSI metrics using the SINGLE canonical collector
+# service registry, the same source prefill and AI use, so metric history cannot
+# ignore a service the collectors emit (a stale local whitelist previously
+# routed only six of the seventeen collected services - CloudFormation, WAF,
+# EC2, ECR, DynamoDB, EventBridge, Config, CloudTrail, S3, and IAM posture was
+# silently dropped from the metric even when a KSI named them).
+sys.path.insert(0, os.path.join(BASE, "automation", "collectors"))
+try:
+    from service_registry import SERVICE_DISPLAY_NAMES as POSTURE_SERVICE_KEYS
+except Exception as exc:  # fail loud: unrouted telemetry is the failure to prevent
+    raise RuntimeError(
+        "append_metrics could not import the canonical service registry "
+        "(automation/collectors/service_registry.py); refusing to run with an "
+        "unknown posture-service routing set: " + str(exc)
+    )
+
 RETAIN_DAYS = 400  # a little over a year, so "up to the past year" is covered
 
 
@@ -62,18 +78,6 @@ def load_facts():
     return config_by_rule, posture_by_service
 
 
-POSTURE_SERVICE_KEYS = {
-    # Keys MUST match the service names the collectors actually emit
-    # (automation/collectors/collectors.py _fact(service=...)): securityhub,
-    # accessanalyzer, inspector2 - not security_hub / access_analyzer /
-    # inspector. A mismatch silently drops the telemetry.
-    "securityhub": "AWS Security Hub",
-    "accessanalyzer": "Access Analyzer",
-    "inspector2": "Amazon Inspector",
-    "guardduty": "Amazon GuardDuty",
-    "backup": "AWS Backup",
-    "kms": "AWS Key Management Service",
-}
 GOOD_CONFIG = {"COMPLIANT"}
 GOOD_POSTURE = {"ENABLED", "PRESENT", "ACTIVE", "OBSERVED"}
 

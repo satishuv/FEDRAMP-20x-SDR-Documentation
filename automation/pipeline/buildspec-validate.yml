@@ -61,8 +61,11 @@ artifacts:
     - sdr/human-readable/**/*
     - package/**/*
     - artifacts/release-manifest.json
+    - artifacts/sbom.cdx.json
     - validation/reports/**/*
     - traceability/rev5-to-20x-crosswalk.*
+    - traceability/applicability-decisions.json
+    - traceability/assurance-graph.json
   exclude-paths:
     # The OSCAL export is EXPERIMENTAL/reference-only (see the package manifest,
     # included_in_customer_submission_bundle: false) and is NOT part of the
