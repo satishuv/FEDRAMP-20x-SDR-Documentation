@@ -37,6 +37,11 @@ phases:
       - |
         if python sdr.py package-preflight; then
           echo "package-preflight: READY (no submission blockers)."
+          if [ "$RELEASE_MODE" = "true" ]; then
+            echo "RELEASE_MODE: writing the release attestation (binds the "
+            echo "deterministic manifest hash to this exact git commit/tree)."
+            python validation/scripts/build_release_attestation.py
+          fi
         else
           echo "package-preflight: NOT READY - blockers above."
           if [ "$RELEASE_MODE" = "true" ]; then
@@ -61,6 +66,7 @@ artifacts:
     - sdr/human-readable/**/*
     - package/**/*
     - artifacts/release-manifest.json
+    - artifacts/release-attestation.json
     - artifacts/sbom.cdx.json
     - validation/reports/**/*
     - traceability/rev5-to-20x-crosswalk.*

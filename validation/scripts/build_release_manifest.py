@@ -39,34 +39,25 @@ def _sha256_file(path):
 
 
 def _source_provenance():
-    """Bind the manifest to the exact SOURCE that produced it, not just the
-    framework version (multiple commits can report 1.2.0). requirements hashes
-    are deterministic file hashes; git commit/tree are read best-effort and are
-    stable for a given checkout (so the reproducibility double-build still sees
-    a byte-identical manifest). Absent git (e.g. a tarball) they are null."""
-    prov = {
+    """Bind the manifest to the exact SOURCE that produced it, via deterministic
+    requirements hashes only. Git commit/tree are NOT recorded here: doing so
+    would either be circular (the commit hash cannot be known before the commit
+    that contains the manifest) or would mutate the manifest AFTER a human has
+    signed off against its hash, invalidating the signoff. Exact git source
+    provenance lives in a SEPARATE artifacts/release-attestation.json emitted by
+    build_release_attestation.py at release time, which binds this manifest's
+    SHA-256 to the git commit/tree without changing the signed manifest."""
+    return {
         "requirements_sha256": _sha256_file(os.path.join(BASE, "requirements.txt")),
         "requirements_ci_sha256": _sha256_file(os.path.join(BASE, "requirements-ci.txt")),
         "source_commit": None,
         "source_tree": None,
+        "provenance_note": ("Exact git commit/tree are recorded in "
+                            "artifacts/release-attestation.json at release time, "
+                            "not here, so this manifest stays byte-stable and a "
+                            "human signoff bound to its hash is never invalidated "
+                            "by adding provenance."),
     }
-    # A live git commit/tree must NOT be baked into every committed build: the
-    # commit hash cannot be known before the commit that contains the manifest
-    # (circular), and it would break the CI regenerate-and-diff gate. Record it
-    # only when explicitly cutting a release (SDR_RECORD_SOURCE_COMMIT=1), e.g.
-    # in the tag/release workflow, where the committed tree is fixed.
-    if os.environ.get("SDR_RECORD_SOURCE_COMMIT") == "1":
-        import subprocess
-        for key, args in (("source_commit", ["rev-parse", "HEAD"]),
-                          ("source_tree", ["rev-parse", "HEAD^{tree}"])):
-            try:
-                out = subprocess.run(["git", "-C", BASE, *args],
-                                     capture_output=True, text=True, timeout=10)
-                if out.returncode == 0 and out.stdout.strip():
-                    prov[key] = out.stdout.strip()
-            except Exception:  # noqa: BLE001
-                pass
-    return prov
 
 # Generated artifacts fingerprinted, per class. Text/JSON only (deterministic).
 ARTIFACT_GLOBS = [

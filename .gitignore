@@ -51,6 +51,13 @@ sdr/records/records-store.prefilled.json
 # Per-KSI daily metric history derives from a real account: never commit.
 automation/metrics/metric-history.json
 
+# The release attestation is release-only: it names a specific git commit/tree
+# and binds the deterministic manifest's hash to that source. It is produced at
+# release/publish time (sdr.py release) and uploaded as a build artifact, not
+# committed (a committed one would name its own pre-commit hash and trip the CI
+# regenerate-and-diff gate).
+artifacts/release-attestation.json
+
 # sdrscan reports are around 6 MB per scan and are regenerated on demand, so
 # they are treated like any other scanner output: not committed. Continuous
 # integration uploads them as build artifacts instead. The scan is

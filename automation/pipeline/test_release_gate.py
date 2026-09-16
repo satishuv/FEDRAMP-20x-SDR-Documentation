@@ -119,6 +119,25 @@ def main():
           not missing)
     check("the SBOM specifically is in the publish bundle",
           _covered("artifacts/sbom.cdx.json", files))
+    check("the release attestation is in the publish bundle",
+          _covered("artifacts/release-attestation.json", files))
+
+    # The attestation must bind the manifest by hash and must NOT be produced by
+    # mutating the manifest (the manifest's own source_commit stays null so a
+    # signoff bound to its hash survives).
+    import importlib.util
+    spec = importlib.util.spec_from_file_location(
+        "bra", os.path.join(BASE, "validation", "scripts", "build_release_attestation.py"))
+    bra = importlib.util.module_from_spec(spec); spec.loader.exec_module(bra)
+    att = bra.build_attestation()
+    manifest = json.load(open(MANIFEST, encoding="utf-8")) if os.path.exists(MANIFEST) else {}
+    import hashlib
+    manifest_sha = ("sha256:" + hashlib.sha256(open(MANIFEST, "rb").read()).hexdigest()
+                    if os.path.exists(MANIFEST) else None)
+    check("attestation binds the current manifest hash",
+          att and att.get("release_manifest_sha256") == manifest_sha)
+    check("manifest source_commit stays null (not mutated by release)",
+          (manifest.get("source_provenance", {}) or {}).get("source_commit") is None)
 
     print(f"\n{passed}/{passed + failed} release-gate checks passed")
     return 0 if failed == 0 else 1

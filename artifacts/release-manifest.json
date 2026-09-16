@@ -79,7 +79,8 @@
   "requirements_sha256": "sha256:03179c49545b8f934634f1c6b3981b0f282829a7489c9cccbf5843242e99c681",
   "requirements_ci_sha256": "sha256:a80ac357fcc06ac7c7122134d03e3d1c10dd1ac8fbbb11f2c32808e41330d0e2",
   "source_commit": null,
-  "source_tree": null
+  "source_tree": null,
+  "provenance_note": "Exact git commit/tree are recorded in artifacts/release-attestation.json at release time, not here, so this manifest stays byte-stable and a human signoff bound to its hash is never invalidated by adding provenance."
  },
  "build": {
   "deterministic": true,
