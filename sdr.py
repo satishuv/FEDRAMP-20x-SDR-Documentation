@@ -113,6 +113,7 @@ TEST_SUITE = [
     "automation/ai/test_bedrock_boundary.py",
     "validation/scripts/test_dataset_diff.py",
     "validation/scripts/test_change_impact.py",
+    "validation/scripts/test_sbom.py",
     "validation/scripts/test_evidence_integrity.py",
     "validation/scripts/test_applicability.py",
     "automation/exporters/test_oscal_export.py",
