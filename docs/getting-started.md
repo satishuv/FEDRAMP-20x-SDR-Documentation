@@ -95,10 +95,11 @@ The two `FAIL` lines are expected and correct on a fresh clone. Both are `SHOULD
 13. `build_crosswalk.py` - the NIST SP 800-53 Revision 5 to 20x crosswalk
 14. `build_applicability_decisions.py` - the applicability decision ledger (included and excluded, with reasons)
 15. `build_assurance_graph.py` - the unified assurance graph joining every artifact
-16. `build_release_manifest.py` - the cryptographic release manifest of the package
-17. `validate_package_consistency.py` - the cross-artifact consistency check
-18. `build_reports.py` - the evidence-coverage and reviewer reports
-19. `build_visualization.py` - a self-contained HTML assurance-graph view
+16. `build_sbom.py` - the CycloneDX software bill of materials of the framework's own pinned dependencies
+17. `build_release_manifest.py` - the cryptographic release manifest of the package (fingerprints the SBOM)
+18. `validate_package_consistency.py` - the cross-artifact consistency check
+19. `build_reports.py` - the evidence-coverage and reviewer reports
+20. `build_visualization.py` - a self-contained HTML assurance-graph view
 
 Build scripts live in `validation/scripts/` except where a path is shown. If a step fails, the build stops, because later steps read what it writes.
 
