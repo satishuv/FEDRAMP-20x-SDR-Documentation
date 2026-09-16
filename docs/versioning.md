@@ -10,7 +10,15 @@ Never call the framework version a "FedRAMP version."
 
 The release manifest (`artifacts/release-manifest.json`) records both, plus the
 pinned schema versions and a SHA-256 of every generated artifact, so any release
-can be reconstructed and verified.
+can be reconstructed and verified. It also records a `source_provenance` block:
+`requirements_sha256` and `requirements_ci_sha256` are recorded on every build;
+`source_commit` and `source_tree` are recorded ONLY by a release build (they are
+null in ordinary committed builds to keep the manifest diff-stable and avoid a
+circular commit hash). `python sdr.py release` stamps them automatically after
+the reproducibility gate passes; to stamp manually, run
+`SDR_RECORD_SOURCE_COMMIT=1 python validation/scripts/build_release_manifest.py`.
+Because two commits can share a framework version and dataset version, the
+`source_commit` is what binds a release manifest to an exact source tree.
 
 ## Release tag format
 

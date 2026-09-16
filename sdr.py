@@ -105,6 +105,7 @@ TEST_SUITE = [
     "automation/config-rules/deploy/test_generate_templates.py",
     "automation/config-rules/deploy/test_cdk_synth.py",
     "automation/collectors/test_collector_iam_matches.py",
+    "automation/collectors/test_service_registry.py",
     "automation/collectors/test_thirdparty_upsert.py",
     "automation/pipeline/test_release_gate.py",
     "automation/storage/test_provision_store.py",
@@ -464,6 +465,19 @@ def cmd_release(args):
     if code != 0:
         out("Reproducibility check failed; not releasable.")
         return code
+    # Reproducibility passed on the clean (null-provenance) manifest. NOW stamp
+    # the exact source provenance (git commit + tree) into the release manifest
+    # as a final release-only step, so v1.2.0-cr26-... is bound to an exact
+    # source, not just the framework version. Done after the double-build so it
+    # does not perturb the byte-identical reproducibility comparison.
+    os.environ["SDR_RECORD_SOURCE_COMMIT"] = "1"
+    try:
+        rc = run(os.path.join(SCRIPTS, "build_release_manifest.py"))
+    finally:
+        os.environ.pop("SDR_RECORD_SOURCE_COMMIT", None)
+    if rc != 0:
+        out("Could not stamp source provenance into the release manifest.")
+        return rc
     manifest = load_json(os.path.join(BASE, "artifacts", "release-manifest.json"))
     out()
     out("Release")
@@ -473,6 +487,8 @@ def cmd_release(args):
         out(f"Framework version            {manifest.get('framework_version', '?')}")
         out(f"Dataset version              {manifest.get('dataset_version', '?')}")
         out(f"Artifacts fingerprinted      {manifest.get('artifact_count', '?')}")
+        _prov = manifest.get("source_provenance", {}) or {}
+        out(f"Source commit                {_prov.get('source_commit') or '(not recorded)'}")
     out()
     out("This is a build-provenance record, not a compliance determination. A "
         "passing release gate means well-formed, consistent, and verified "
