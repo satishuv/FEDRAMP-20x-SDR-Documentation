@@ -159,7 +159,7 @@ Missing or stale evidence is reported as a readiness finding, never silently tre
 
 | Gate check | What it enforces |
 |---|---|
-| `validate_sdr.py` | The eight SDR checks above (schema, coverage, minimums, hygiene, content fidelity) |
+| `validate_sdr.py` | The 14 build-gate checks above (schema, coverage, minimums, hygiene, content fidelity, semantic completeness, source lock) |
 | `validate_package.py` | The CPO and OCR against their official FedRAMP schemas |
 | `validate_cpo_semantics.py` | CPO rule-completeness, not just schema: it independently derives the applicable `CPO-CSO-OVR` rule set from the dataset and checks structured completeness of the enumerated rules (`CDS-CSO-PUB`, `CDS-CSO-IRP`, `MAS-CSO-TPR`) |
 | `validate_assurance_graph.py` | Full-chain traceability across the assurance graph, class-scoped |

@@ -48,7 +48,7 @@ def label_para(doc, label, text, italic=False):
 
 def main():
     profile = load("profiles", "common", "offering-profile.json")
-    cls = profile["certification_class"].lower()
+    cls = (os.environ.get("SDR_BUILD_CLASS") or profile["certification_class"]).lower()
     if cls not in ("a", "b", "c"):
         print("Class D is FedRAMP pending; no authoring document generated.")
         return 1

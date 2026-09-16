@@ -231,6 +231,30 @@ def test_all_class_sdr_outputs_match_pinned_dataset():
             "refresh so committed cross-class outputs never drift")
 
 
+def test_all_class_authoring_docx_embed_pinned_dataset():
+    # DOCX bytes are nondeterministic (zip), so they are excluded from the CI
+    # byte-diff. Instead, check SEMANTICALLY that each class authoring DOCX
+    # embeds the pinned dataset version, so inactive-class Word files cannot
+    # silently fall behind a dataset refresh.
+    import re
+    import zipfile
+    ds = json.load(open(os.path.join(BASE, "references",
+                                     "fedramp-consolidated-rules.json"), encoding="utf-8"))
+    ver = ds["info"]["version"]
+    for cls in ("a", "b", "c"):
+        path = os.path.join(BASE, "sdr", "human-readable", f"sdr-class-{cls}-authoring.docx")
+        if not os.path.exists(path):
+            continue
+        with zipfile.ZipFile(path) as z:
+            xml = z.read("word/document.xml").decode("utf-8", "replace")
+        found = set(re.findall(r"2026\.\d{2}\.\d{2}\.\d{2}", xml))
+        assert found, f"Class {cls.upper()} authoring DOCX embeds no dataset version"
+        assert found == {ver}, (
+            f"Class {cls.upper()} authoring DOCX embeds {sorted(found)} != pinned "
+            f"{ver}; regenerate it (SDR_BUILD_CLASS={cls} build_docx.py) after a "
+            "dataset refresh")
+
+
 def main():
     tests = [v for k, v in sorted(globals().items()) if k.startswith("test_")]
     passed = 0

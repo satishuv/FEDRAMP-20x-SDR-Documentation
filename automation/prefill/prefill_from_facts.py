@@ -42,21 +42,16 @@ TBD_MARKERS = ("TBD:", "TBD ", "Information has not been provided")
 # Used only to attach a posture fact to the right KSIs when the registry's
 # per-KSI service list names that service. This is a hint for provenance, not
 # a compliance decision.
-POSTURE_SERVICE_KEYS = {
-    # Keys MUST match the collector's emitted service names (securityhub,
-    # accessanalyzer, inspector2), not security_hub / access_analyzer /
-    # inspector - a mismatch silently drops the telemetry.
-    "securityhub": "AWS Security Hub",
-    "accessanalyzer": "Access Analyzer",
-    "inspector2": "Amazon Inspector",
-    "guardduty": "Amazon GuardDuty",
-    "backup": "AWS Backup",
-    "kms": "AWS Key Management Service",
-    "config": "AWS Config",
-    "cloudtrail": "AWS CloudTrail",
-    "s3": "Amazon S3",
-    "iam": "IAM",
-}
+#
+# Sourced from the single canonical service registry
+# (automation/collectors/service_registry.py) so it never drifts behind the
+# collector's emitted services; test_service_registry.py asserts every
+# collector-emitted service is registered or explicitly telemetry-only.
+sys.path.insert(0, os.path.join(BASE, "automation", "collectors"))
+try:
+    from service_registry import SERVICE_DISPLAY_NAMES as POSTURE_SERVICE_KEYS
+except Exception:  # noqa: BLE001
+    POSTURE_SERVICE_KEYS = {}
 
 
 def load(path, default=None):

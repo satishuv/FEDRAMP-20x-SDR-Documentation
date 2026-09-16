@@ -169,7 +169,15 @@ def _explain_ksi(kid, cls):
              "(FRC-CSX-VVK: MAY at A, SHOULD at B, MUST at C and D)")
     L.append("")
     L.append("Security outcome (verbatim from the dataset):")
-    L.append(f"  {k.get('statement') or 'FedRAMP pending: no statement yet.'}")
+    # 5 KSIs carry a null top-level statement and the real text under
+    # varies_by_class[cls]; resolve the class-specific statement so explain
+    # matches the generated SDR instead of saying "FedRAMP pending".
+    _vbc = k.get("varies_by_class") or {}
+    _ksi_stmt = None
+    if isinstance(_vbc, dict) and isinstance(_vbc.get(cls), dict):
+        _ksi_stmt = _vbc[cls].get("statement")
+    _ksi_stmt = _ksi_stmt or k.get("statement")
+    L.append(f"  {_ksi_stmt or 'FedRAMP pending: no statement yet.'}")
     L.append("")
     L.append("How this record addresses it:")
     L.append(f"  Status: {rec.get('implementation_status', 'Not Implemented')}")
