@@ -6,6 +6,31 @@ One project-specific convention: the pinned FedRAMP dataset version is recorded 
 
 ## Unreleased
 
+- Added a fully-worked fictional Class C sample and an assessor-attack harness under
+  `examples/sample-offering-class-c/`. The sample fills a complete Class C package
+  (two automated methods per KSI, a six-month metric history, evidence, a Recognized
+  independent assessment, availability, a structured CPO, a manifest-bound signoff)
+  and drives it to `package-preflight`. The `--attack` mode tampers the ready package
+  one hollowing edit at a time and asserts each is blocked, including multi-field
+  combinations, while a justified `N/A: <reason>` across the same fields stays ready.
+- Fixed a human-readable render crash on structured `tests` entries: `build_sdr.py`,
+  `build_docx.py`, and `explain.py` coerce a structured test entry to readable text,
+  so a malformed test surfaces as a clear schema message rather than a `TypeError`.
+- Made `SDR-CSX-KMT` historical-metric summaries a `package-preflight` blocker at the
+  classes where they are a MUST (Class B: 30-day and up-to-one-year; Class C and D:
+  those plus a daily-data reference). Previously a package could reach ready with the
+  KMT summaries left unresolved because only the `FRC-CSX-MOT` duration was gated.
+- Hardened `package-preflight` against structurally complete but content-free
+  submissions: a new `_is_hollow` predicate rejects bare non-answer tokens (`N/A`,
+  `none`, `.`, `unknown`, and the like) in addition to `TBD`/empty/placeholder, while
+  a justified `N/A: <reason>` still passes. Applied to the CPO structured
+  required-information members, `CPO-CSO-OSA` summary, required offering-profile
+  fields, `FRC-APP-FIA` assessor name and Recognition id, Sales/Security contact
+  names, `CPO-CSO-MTD` metadata, and the two gate-unblocking conditions (the
+  `FRC-CSX-MOT` initial-certification exception narratives and the `FRC-APP-USA`
+  freshening reviewer/id/reference). Date, URI, and hash fields keep the narrower
+  placeholder test.
+
 ## 1.2.0, 2026-09-14
 
 Pinned dataset: `2026.09.13.02`
