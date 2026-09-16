@@ -535,6 +535,30 @@ def cmd_preflight(args):
         return v is None or str(v).strip() == "" or str(v).strip().startswith("TBD") \
             or "placeholder" in str(v).lower() or "has not been provided" in str(v).lower()
 
+    def _is_hollow(v):
+        """A content VALUE is hollow if it is TBD/empty/placeholder (per _is_tbd)
+        OR a bare non-answer token with no justification (e.g. 'N/A', 'none',
+        '.', 'unknown', 'tbc'). Presence of a required field is not enough: a
+        structurally complete but content-free answer must not satisfy a MUST.
+        A justified N/A ('N/A: <reason>') is NOT hollow - FedRAMP allows a
+        justified non-implementation. Used for CPO member values and required
+        narrative summaries, where the weaker _is_tbd would accept a non-answer."""
+        if _is_tbd(v):
+            return True
+        s = str(v).strip()
+        low = s.lower()
+        BARE = {"n/a", "na", "none", "nil", "null", "unknown", "tbc", "?",
+                ".", "-", "--", "...", "x", "see documentation", "see docs",
+                "not applicable", "not-applicable"}
+        if low in BARE:
+            return True
+        # A "N/A - <reason>" style value is only real if it carries a reason.
+        for m in ("n/a", "na", "not applicable", "not-applicable", "none"):
+            if low.startswith(m):
+                rest = s[len(m):].lstrip(" :.-\u2013\u2014").strip()
+                return len(rest) < 3
+        return False
+
     def _parse_dt(value):
         """Return (datetime, error). Requires timezone-aware; rejects future."""
         s = str(value).replace("Z", "+00:00")
@@ -729,7 +753,7 @@ def cmd_preflight(args):
             except ValueError:
                 blockers.append(f"Class {cls.upper()}: FIA completed_at not a valid date: {completed}")
         # CPO-CSO-OSA: B/C MUST include the assessor overall summary in the CPO.
-        if _is_tbd(offering.get("overall_assessment_summary")):
+        if _is_hollow(offering.get("overall_assessment_summary")):
             blockers.append(f"Class {cls.upper()}: overall_assessment_summary not set "
                             "(CPO-CSO-OSA MUST: include the assessor's overall assessment "
                             "summary from IVV-IAS-OSA in the CPO)")
@@ -1056,7 +1080,7 @@ def cmd_preflight(args):
                                    "not a single string")
                 continue
             have = {_norm_key(k): v for k, v in content.items()}
-            missing = [r for r in required if _is_tbd(have.get(r))]
+            missing = [r for r in required if _is_hollow(have.get(r))]
             if missing:
                 struct_gaps.append(f"{rid} missing/unresolved required item(s): "
                                    f"{', '.join(missing[:6])}"
@@ -1072,12 +1096,12 @@ def cmd_preflight(args):
                     struct_gaps.append(f"{rid}[{idx}] must be a record object")
                     continue
                 rk = {_norm_key(k): v for k, v in rec.items()}
-                miss = [f for f in per_fields if _is_tbd(rk.get(f))]
+                miss = [f for f in per_fields if _is_hollow(rk.get(f))]
                 if miss:
                     struct_gaps.append(f"{rid}[{idx}] missing field(s): "
                                        f"{', '.join(miss[:6])}")
         else:
-            if _is_tbd(content):
+            if _is_hollow(content):
                 req_gaps.append(rid)
 
     if struct_gaps:

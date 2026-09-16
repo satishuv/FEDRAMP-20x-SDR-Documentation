@@ -345,6 +345,29 @@ def main():
         rsales = _preflight(root)
         check("a missing Sales Contact Information in CDS-CSO-PUB blocks",
               "not structurally complete" in rsales.stdout and rsales.returncode == 1)
+        # Semantic-hollowness regression: every CDS-CSO-PUB member PRESENT but set
+        # to a bare "N/A" (structurally complete, content-free) must block. A
+        # presence-only check would accept this; the content check must reject it.
+        pub_hollow = _copy.deepcopy(good_pub)
+        for _k in list(pub_hollow.keys()):
+            pub_hollow[_k] = "N/A"
+        p["cpo_required_information"]["CDS-CSO-PUB"] = pub_hollow
+        json.dump(p, open(profile, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root)
+        rhollow = _preflight(root)
+        check("a CDS-CSO-PUB with all members bare 'N/A' blocks (hollow but structured)",
+              "not structurally complete" in rhollow.stdout and rhollow.returncode == 1)
+        # A JUSTIFIED N/A ("N/A: <reason>") on a member is still acceptable - the
+        # check rejects content-free non-answers, not honest justified ones.
+        pub_justified = _copy.deepcopy(good_pub)
+        for _k in list(pub_justified.keys()):
+            pub_justified[_k] = "N/A: not applicable to this SaaS boundary (fictional)."
+        p["cpo_required_information"]["CDS-CSO-PUB"] = pub_justified
+        json.dump(p, open(profile, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root)
+        rjust = _preflight(root)
+        check("a justified 'N/A: <reason>' CDS-CSO-PUB member is accepted (not over-blocked)",
+              "not structurally complete" not in rjust.stdout)
         p["cpo_required_information"]["CDS-CSO-PUB"] = good_pub
         json.dump(p, open(profile, "w", encoding="utf-8", newline="\n"), indent=1)
         _build(root)
