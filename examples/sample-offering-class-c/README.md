@@ -59,7 +59,7 @@ review had missed:
 
 The remaining assessor probes were already correctly blocked, confirming the
 readiness gating is robust against those vectors. The `--attack` harness runs
-one baseline (must be READY) plus 13 hollowing tampers (each must be BLOCKED):
+one baseline (must be READY) plus 17 hollowing tampers (each must be BLOCKED):
 
 - empty SDR-CSX-KMT historical-metric summaries (the gap above)
 - an `sdr://placeholder/` evidence URI in an applicable record
@@ -72,9 +72,25 @@ one baseline (must be READY) plus 13 hollowing tampers (each must be BLOCKED):
 - an FIA `completed_at` dated in the FUTURE (cannot complete in the future)
 - availability history shorter than 30 days (CDS-CSO-AVR)
 - a KSI "answered" with a bare `N/A` instead of an honest Not-Implemented
+- CPO CDS-CSO-PUB with all 16 required members set to bare `N/A` (gap #3)
+- CPO CDS-CSO-PUB with all members set to `"."` (single-char non-answer)
+- CPO CDS-CSO-IRP array-record fields all `N/A` (hollow structured records)
+- `overall_assessment_summary` set to bare `N/A` (CPO-CSO-OSA narrative)
 - a package signoff bound to the WRONG manifest SHA-256
 - a package signoff whose decision is not `approved`
 
 The two future-date probes matter specifically: a naive `now - date > 7 days`
 freshness check would treat a future date as zero days old and wrongly pass, so
 those probes guard against that class of bug.
+
+3. Semantic-hollowness gap in the CPO and assessment summary (the second real
+   finding). Preflight accepted a structurally complete CPO where every required
+   member was a bare `N/A` or `"."`: the structured-content check used `_is_tbd`
+   (catches only empty/TBD/placeholder) rather than checking content quality.
+   The same gap affected `overall_assessment_summary`. Fixed: a new `_is_hollow`
+   predicate combines `_is_tbd` with bare-non-answer detection (rejecting `N/A`,
+   `none`, `.`, `unknown`, etc.) and is applied to CPO member values and the
+   assessment summary. A justified `"N/A: <reason>"` (3+ chars of justification)
+   is still accepted -- the check rejects content-free tokens, not honest
+   justified non-implementations. The offline e2e guards both directions: hollow
+   blocks, and justified-N/A is not over-blocked.

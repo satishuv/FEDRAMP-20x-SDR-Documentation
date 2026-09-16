@@ -412,6 +412,50 @@ def attack():
         first["extension"]["measures_verification"] = "N/A"
     probe("a KSI answered with bare 'N/A' is not accepted as answered", _hollow_na_ksi)
 
+    # ---- Semantic-hollowness probes: structurally complete, content-free. ----
+    # These attack the weakest failure mode: a package that is SHAPED right but
+    # whose answers are non-answers. A presence/structure-only gate accepts them;
+    # a semantic gate must reject them.
+
+    def _fill_cpo(st, pr, hi, rid, value):
+        """Set every member of a CPO required-information entry to a hollow
+        non-answer, keeping the structure (all required keys present)."""
+        cri = pr.get("cpo_required_information", {})
+        entry = cri.get(rid)
+        if isinstance(entry, dict):
+            for k in list(entry.keys()):
+                if k == "note":
+                    continue
+                entry[k] = value
+        elif isinstance(entry, list):
+            for rec in entry:
+                if isinstance(rec, dict):
+                    for k in list(rec.keys()):
+                        rec[k] = value
+
+    # 12. CDS-CSO-PUB object with every required member set to a bare "N/A"
+    #     (structurally complete, semantically empty) -> must block.
+    probe("CPO CDS-CSO-PUB members all bare 'N/A' block (hollow but structured)",
+          lambda st, pr, hi: _fill_cpo(st, pr, hi, "CDS-CSO-PUB", "N/A"))
+
+    # 13. CDS-CSO-PUB members set to a single "." -> a one-char non-answer that
+    #     is neither empty nor a TBD marker must not pass as resolved.
+    probe("CPO CDS-CSO-PUB members all '.' block (single-char non-answer)",
+          lambda st, pr, hi: _fill_cpo(st, pr, hi, "CDS-CSO-PUB", "."))
+
+    # 14. Array-rule (CDS-CSO-IRP) record fields all "N/A" -> the per-record
+    #     fields are present but content-free; must block.
+    probe("CPO CDS-CSO-IRP record fields all 'N/A' block (hollow array record)",
+          lambda st, pr, hi: _fill_cpo(st, pr, hi, "CDS-CSO-IRP", "N/A"))
+
+    # 15. overall_assessment_summary reduced to a bare "N/A" -> a required
+    #     narrative that is a non-answer must not pass.
+    def _hollow_summary(st, pr, hi):
+        pr["overall_assessment_summary"] = "N/A"
+    probe("overall_assessment_summary of bare 'N/A' blocks", _hollow_summary)
+
+    # ---- end semantic-hollowness probes ----
+
     # 12. Manifest-bound signoff with the WRONG manifest SHA -> a signoff that
     #     does not bind the exact built manifest must block (tamper AFTER signing).
     def _noop(st, pr, hi):
