@@ -412,6 +412,20 @@ def main():
         rfb = _preflight(root)
         check("stale assessment with a Recognized-service freshening review clears FIA",
               "FRC-APP-USA freshening" not in rfb.stdout)
+        # Semantic-hollowness on an UNBLOCKING condition: a freshening whose
+        # reviewer/recognition-id is a bare "N/A" must NOT clear the stale FIA -
+        # a content-free freshening cannot loosen the gate.
+        fia["freshening"]["reviewed_by"] = "N/A"
+        fia["freshening"]["reviewer_fedramp_id"] = "N/A"
+        json.dump(p, open(profile, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root)
+        rfh = _preflight(root)
+        check("a freshening with a bare 'N/A' reviewer does NOT clear FIA",
+              "FRC-APP-USA freshening" in rfh.stdout and rfh.returncode == 1)
+        fia["freshening"]["reviewed_by"] = "Acme FedRAMP Assessors LLC"
+        fia["freshening"]["reviewer_fedramp_id"] = "FR-ASSESSOR-0007"
+        json.dump(p, open(profile, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root)
         # A freshening dated BEFORE the original assessment is logically
         # impossible and must not clear FIA (reviewed_at >= completed_at).
         fia["freshening"]["reviewed_at"] = (now.date() - datetime.timedelta(days=200)).isoformat()

@@ -587,7 +587,10 @@ def cmd_preflight(args):
         "certification_package_overview_uri", "security_contact",
         "incident_contact", "assessor", "evidence_retention",
     ]
-    unresolved_required = [f for f in REQUIRED_FIELDS if _is_tbd(offering.get(f))]
+    # A required field answered with a bare non-answer (N/A, none, '.') is not
+    # a real answer any more than a TBD is; a genuinely non-applicable required
+    # field would carry a justification. So use _is_hollow, not _is_tbd.
+    unresolved_required = [f for f in REQUIRED_FIELDS if _is_hollow(offering.get(f))]
     if unresolved_required:
         blockers.append(f"{len(unresolved_required)} required offering-profile "
                         f"field(s) unresolved (TBD/placeholder): "
@@ -677,8 +680,8 @@ def cmd_preflight(args):
             materials = ext.get("materials") or []
             # Every supplied material must be a complete reference.
             for i, m in enumerate(materials):
-                if not isinstance(m, dict) or _is_tbd(m.get("type")) \
-                        or _is_tbd(m.get("uri")) or _is_tbd(m.get("sha256")):
+                if not isinstance(m, dict) or _is_hollow(m.get("type")) \
+                        or _is_hollow(m.get("uri")) or _is_hollow(m.get("sha256")):
                     blockers.append(f"Class A: materials[{i}] missing "
                                     f"type/uri/sha256 (FRC-CLA-EAM)")
             # The framework-specific required set (FRC-CLA-EAM) must all be present.
@@ -697,12 +700,12 @@ def cmd_preflight(args):
     if cls in ("b", "c"):
         fia = offering.get("fedramp_independent_assessment") or {}
         completed = fia.get("completed_at")
-        if _is_tbd(fia.get("assessor_name")) or _is_tbd(completed):
+        if _is_hollow(fia.get("assessor_name")) or _is_tbd(completed):
             blockers.append(f"Class {cls.upper()}: fedramp_independent_assessment "
                             "not populated (FRC-APP-FIA MUST: a fresh FedRAMP "
                             "independent assessment by a FedRAMP Recognized service "
                             "within the previous 3 months)")
-        elif _is_tbd(fia.get("assessor_fedramp_id")):
+        elif _is_hollow(fia.get("assessor_fedramp_id")):
             # FRC-APP-FIA requires the assessment be completed by a FedRAMP
             # Recognized independent assessment service - the recognition id is
             # what evidences "Recognized". A name alone is insufficient.
@@ -740,9 +743,9 @@ def cmd_preflight(args):
                                 review_date_ok = False
                         fresh_ok = (basis == "freshened"
                                     and review_date_ok
-                                    and not _is_tbd(fr.get("reviewed_by"))
-                                    and not _is_tbd(fr.get("reviewer_fedramp_id"))
-                                    and not _is_tbd(fr.get("changes_reviewed_reference")))
+                                    and not _is_hollow(fr.get("reviewed_by"))
+                                    and not _is_hollow(fr.get("reviewer_fedramp_id"))
+                                    and not _is_hollow(fr.get("changes_reviewed_reference")))
                         if not fresh_ok:
                             blockers.append(f"Class {cls.upper()}: FedRAMP independent assessment "
                                             f"{completed} is older than 3 months and has no valid "
@@ -792,11 +795,11 @@ def cmd_preflight(args):
         # recorded commitment to meet the requirement going forward.
         exc = offering.get("metric_history_exception") or {}
         exc_valid = (exc.get("mechanisms_in_place") is True
-                     and not _is_tbd(exc.get("mechanisms_description"))
+                     and not _is_hollow(exc.get("mechanisms_description"))
                      and exc.get("commitment_to_meet_mot") is True
-                     and not _is_tbd(exc.get("commitment_reference"))
+                     and not _is_hollow(exc.get("commitment_reference"))
                      and not _is_tbd(exc.get("operating_since"))
-                     and not _is_tbd(exc.get("responsible_official")))
+                     and not _is_hollow(exc.get("responsible_official")))
         history = load_json(os.path.join(BASE, "automation", "metrics", "metric-history.json"))
         per = (history.get("ksis", history) if isinstance(history, dict) else {}) or {}
         if exc_valid:
@@ -1004,7 +1007,7 @@ def cmd_preflight(args):
     # the structured required-information map).
     for contact in (cpo.get("contactInformation") or []):
         ctype = contact.get("contactType", "?")
-        if ctype in ("Sales", "Security") and _is_tbd(contact.get("contactName")):
+        if ctype in ("Sales", "Security") and _is_hollow(contact.get("contactName")):
             cpo_markers.append(f"CPO {ctype} contactName is unresolved (CDS-CSO-PUB "
                                "requires both Sales and Security contact information)")
     if cpo_markers:
@@ -1020,7 +1023,7 @@ def cmd_preflight(args):
     _applicable_rule_ids = {r["rule_id"] for r in (class_profile.get("rules") or [])}
     if "CPO-CSO-MTD" in _applicable_rule_ids:
         mtd_gaps = [f for f in ("responsible_official", "version", "last_updated", "source_of_update")
-                    if _is_tbd(mtd.get(f))]
+                    if _is_hollow(mtd.get(f))]
         if mtd_gaps:
             blockers.append(f"CPO metadata unresolved (CPO-CSO-MTD): {', '.join(mtd_gaps)}")
     req_info = (cpo.get("xCpoRequiredInformation", {}) or {}).get("items", [])

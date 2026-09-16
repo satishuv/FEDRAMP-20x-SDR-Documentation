@@ -480,8 +480,104 @@ def attack():
         _j.dump(reg, open(reg_path, "w", encoding="utf-8", newline="\n"), indent=1)
     probe("a non-approved package_signoff blocks", _noop, post_sign=_reject_signoff)
 
+    # ---- Audit-coverage probes: the other content checks hardened to reject a
+    #      bare non-answer (each was _is_tbd, now _is_hollow). ----
+
+    # 16. A required offering-profile narrative reduced to bare "N/A".
+    def _hollow_required_field(st, pr, hi):
+        pr["business_purpose"] = "N/A"
+    probe("a required profile field of bare 'N/A' blocks", _hollow_required_field)
+
+    # 17. FIA assessor_name reduced to a bare "N/A".
+    def _hollow_assessor_name(st, pr, hi):
+        pr["fedramp_independent_assessment"]["assessor_name"] = "N/A"
+    probe("FIA assessor_name of bare 'N/A' blocks", _hollow_assessor_name)
+
+    # 18. FIA assessor_fedramp_id (the Recognition id) reduced to bare "N/A".
+    def _hollow_assessor_id(st, pr, hi):
+        pr["fedramp_independent_assessment"]["assessor_fedramp_id"] = "N/A"
+    probe("FIA assessor_fedramp_id of bare 'N/A' blocks", _hollow_assessor_id)
+
+    # 19. CPO metadata (CPO-CSO-MTD) responsible_official reduced to bare "N/A".
+    def _hollow_mtd(st, pr, hi):
+        pr["cpo_responsible_official"] = "N/A"
+    probe("CPO metadata responsible_official of bare 'N/A' blocks", _hollow_mtd)
+
+    # 20. Sales/Security contact reduced to a bare "N/A" (CPO contactName).
+    def _hollow_contact(st, pr, hi):
+        pr["security_contact"] = "N/A"
+        pr["sales_contact"] = "N/A"
+    probe("CPO Sales/Security contact of bare 'N/A' blocks", _hollow_contact)
+
+    # ---- Multi-tamper combination probes: several hollowing edits at once.
+    #      A real submission attempt hollows out many fields together; the
+    #      package must still block (defence in depth, not a single tripwire). ----
+
+    # 21. Hollow the ENTIRE CPO required-information map at once.
+    def _hollow_whole_cpo(st, pr, hi):
+        for rid in ("CDS-CSO-PUB", "CDS-CSO-IRP", "MAS-CSO-TPR", "CPO-CSO-MTD"):
+            _fill_cpo(st, pr, hi, rid, "N/A")
+    probe("[combo] the entire CPO required-information hollowed blocks", _hollow_whole_cpo)
+
+    # 22. Hollow every content field this exercise hardened, all together:
+    #     required narratives, assessor name+id, contacts, summary, CPO members,
+    #     and the KSI metric summaries. A package this empty must never be ready.
+    def _hollow_everything(st, pr, hi):
+        pr["business_purpose"] = "N/A"
+        pr["management_plane"] = "N/A"
+        pr["federal_information_types"] = "N/A"
+        pr["overall_assessment_summary"] = "N/A"
+        pr["security_contact"] = "N/A"
+        pr["sales_contact"] = "N/A"
+        pr["cpo_responsible_official"] = "N/A"
+        pr["fedramp_independent_assessment"]["assessor_name"] = "N/A"
+        pr["fedramp_independent_assessment"]["assessor_fedramp_id"] = "N/A"
+        for rid in ("CDS-CSO-PUB", "CDS-CSO-IRP", "MAS-CSO-TPR"):
+            _fill_cpo(st, pr, hi, rid, "N/A")
+        for rec in st["ksi"].values():
+            rec["historical_metrics"] = {"last_30_days": "N/A",
+                                         "up_to_one_year": "N/A",
+                                         "daily_data_reference": "N/A"}
+    probe("[combo] every hardened content field hollowed at once blocks",
+          _hollow_everything)
+
+    # 23. A subtle combo: structurally perfect, but each hollow field uses a
+    #     DIFFERENT non-answer token (N/A, '.', 'none', 'unknown') to test that
+    #     the detector is not keyed to a single token.
+    def _hollow_varied_tokens(st, pr, hi):
+        pr["business_purpose"] = "."
+        pr["overall_assessment_summary"] = "none"
+        pr["cpo_responsible_official"] = "unknown"
+        pr["fedramp_independent_assessment"]["assessor_name"] = "tbc"
+        _fill_cpo(st, pr, hi, "CDS-CSO-PUB", "-")
+    probe("[combo] varied non-answer tokens across fields all block",
+          _hollow_varied_tokens)
+
+    # 24. NEGATIVE combo: the SAME fields, but each carries a JUSTIFIED N/A
+    #     with a real reason. This must still be READY - the detector rejects
+    #     content-free tokens, not honest justified non-implementations, and a
+    #     combination of justified answers must not be over-blocked.
+    def _justified_combo(st, pr, hi):
+        why = "N/A: not applicable to this fictional SaaS boundary, per assessor."
+        pr["business_purpose"] = why
+        pr["overall_assessment_summary"] = why
+        pr["cpo_responsible_official"] = why
+        _fill_cpo(st, pr, hi, "CDS-CSO-PUB", why)
+
+    def _probe_ready(name, mutate):
+        nonlocal passed, failed
+        st, pr, hi = copy.deepcopy(base_store), copy.deepcopy(base_profile), copy.deepcopy(base_history)
+        mutate(st, pr, hi)
+        rc, _out = _preflight_rc(st, pr, hi)
+        if rc == 0:
+            passed += 1; print(f"  PASS (ready, not over-blocked) {name}")
+        else:
+            failed += 1; print(f"  FAIL (justified content wrongly BLOCKED) {name}")
+    _probe_ready("[combo] justified 'N/A: <reason>' across the same fields stays READY",
+                 _justified_combo)
+
     print(f"\n{passed}/{passed + failed} assessor-attack probes passed "
-          "(each tamper must be BLOCKED; baseline must be READY)")
+          "(each tamper must be BLOCKED; baseline + justified combo must be READY)")
     return 0 if failed == 0 else 1
 
 

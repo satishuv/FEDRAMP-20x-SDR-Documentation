@@ -78,6 +78,18 @@ one baseline (must be READY) plus 17 hollowing tampers (each must be BLOCKED):
 - `overall_assessment_summary` set to bare `N/A` (CPO-CSO-OSA narrative)
 - a package signoff bound to the WRONG manifest SHA-256
 - a package signoff whose decision is not `approved`
+- a required offering-profile field set to bare `N/A` (audit hardening)
+- FIA `assessor_name` and `assessor_fedramp_id` set to bare `N/A`
+- CPO metadata `responsible_official` set to bare `N/A` (CPO-CSO-MTD)
+- Sales/Security contact set to bare `N/A` (CDS-CSO-PUB contact)
+- [combo] the ENTIRE CPO required-information map hollowed at once
+- [combo] every hardened content field hollowed together
+- [combo] varied non-answer tokens (`.`, `none`, `unknown`, `tbc`, `-`) across fields
+
+Plus one NEGATIVE combination probe that must stay READY: the same fields all
+carrying a JUSTIFIED `"N/A: <reason>"`. This proves the hardening rejects
+content-free tokens without over-blocking honest justified non-implementations,
+even when many fields carry them at once.
 
 The two future-date probes matter specifically: a naive `now - date > 7 days`
 freshness check would treat a future date as zero days old and wrongly pass, so
