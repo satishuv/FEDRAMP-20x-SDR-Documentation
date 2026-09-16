@@ -57,7 +57,24 @@ review had missed:
    reference). The `--attack` harness and the offline e2e both regression-guard
    this.
 
-The remaining assessor probes (placeholder evidence, < 2 automated methods, a
-stale independent assessment, a non-survivable availability service) were already
-correctly blocked - confirming the readiness gating is robust against those
-vectors.
+The remaining assessor probes were already correctly blocked, confirming the
+readiness gating is robust against those vectors. The `--attack` harness runs
+one baseline (must be READY) plus 13 hollowing tampers (each must be BLOCKED):
+
+- empty SDR-CSX-KMT historical-metric summaries (the gap above)
+- an `sdr://placeholder/` evidence URI in an applicable record
+- fewer than 2 automated methods per KSI (FRC-CSX-VVK at Class C)
+- an independent assessment older than 9 months with no freshening
+- a non-survivable availability service (`available_when_primary_unavailable` false)
+- `provider_verified_at` older than 7 days (FRC-APP-FCP freshness)
+- `provider_verified_at` dated in the FUTURE (must not count as fresh)
+- `certification_path` set to Agency (the engine resolves Program path only)
+- an FIA `completed_at` dated in the FUTURE (cannot complete in the future)
+- availability history shorter than 30 days (CDS-CSO-AVR)
+- a KSI "answered" with a bare `N/A` instead of an honest Not-Implemented
+- a package signoff bound to the WRONG manifest SHA-256
+- a package signoff whose decision is not `approved`
+
+The two future-date probes matter specifically: a naive `now - date > 7 days`
+freshness check would treat a future date as zero days old and wrongly pass, so
+those probes guard against that class of bug.

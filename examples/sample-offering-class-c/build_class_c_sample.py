@@ -266,9 +266,11 @@ def generate_profile():
     return profile
 
 
-def _preflight_rc(store, profile, history):
+def _preflight_rc(store, profile, history, post_sign=None):
     """Apply the given in-memory inputs, build, sign, run package-preflight,
-    return (returncode, output). Always restores real inputs after."""
+    return (returncode, output). Always restores real inputs after. If post_sign
+    is given, it is called after the (correct) signoff is written and before
+    preflight runs, so a probe can tamper with the manifest-bound signoff."""
     tmp = tempfile.mkdtemp(prefix="sdr-attack-")
     baks = {}
     for real in (REAL_STORE, REAL_PROFILE, REAL_HISTORY):
@@ -284,6 +286,8 @@ def _preflight_rc(store, profile, history):
         subprocess.run([sys.executable, os.path.join(BASE, "sdr.py"), "build"],
                        cwd=BASE, capture_output=True, text=True)
         _record_signoff()
+        if post_sign is not None:
+            post_sign()
         pf = subprocess.run([sys.executable, os.path.join(BASE, "sdr.py"), "package-preflight"],
                             cwd=BASE, capture_output=True, text=True)
         return pf.returncode, (pf.stdout or "") + (pf.stderr or "")
@@ -316,11 +320,11 @@ def attack():
     base_history = generate_history(base_store)
     passed = failed = 0
 
-    def probe(name, mutate):
+    def probe(name, mutate, post_sign=None):
         nonlocal passed, failed
         st, pr, hi = copy.deepcopy(base_store), copy.deepcopy(base_profile), copy.deepcopy(base_history)
         mutate(st, pr, hi)
-        rc, _out = _preflight_rc(st, pr, hi)
+        rc, _out = _preflight_rc(st, pr, hi, post_sign=post_sign)
         blocked = rc != 0
         if blocked:
             passed += 1; print(f"  PASS (blocked) {name}")
@@ -366,6 +370,71 @@ def attack():
     def _avr_not_survivable(st, pr, hi):
         pr["availability_reporting"]["available_when_primary_unavailable"] = False
     probe("non-survivable availability service blocks", _avr_not_survivable)
+
+    # 6. Provider verification older than 7 days -> FRC-APP-FCP freshness, block.
+    def _stale_verification(st, pr, hi):
+        pr["provider_verified_at"] = (
+            TODAY - dt.timedelta(days=30)).isoformat() + "T00:00:00+00:00"
+    probe("provider_verified_at older than 7 days blocks", _stale_verification)
+
+    # 7. Provider verification dated in the FUTURE -> must not be accepted as
+    #    "within the previous 7 days"; a future date is not a valid verification.
+    def _future_verification(st, pr, hi):
+        pr["provider_verified_at"] = (
+            TODAY + dt.timedelta(days=5)).isoformat() + "T00:00:00+00:00"
+    probe("future-dated provider_verified_at does not pass freshness", _future_verification)
+
+    # 8. certification_path Agency -> the engine resolves Program-path only,
+    #    so an Agency-path claim must block (wrong applicability scope).
+    def _agency_path(st, pr, hi):
+        pr["certification_path"] = "Agency"
+    probe("Agency certification_path blocks (Program-path engine)", _agency_path)
+
+    # 9. FIA completed_at in the FUTURE -> an assessment cannot complete in the
+    #    future; must block rather than count as fresh.
+    def _future_fia(st, pr, hi):
+        pr["fedramp_independent_assessment"]["completed_at"] = (
+            TODAY + dt.timedelta(days=20)).isoformat()
+    probe("future-dated FIA completed_at blocks", _future_fia)
+
+    # 10. Availability history < 30 days -> CDS-CSO-AVR requires >= 30, block.
+    def _short_avr_history(st, pr, hi):
+        pr["availability_reporting"]["history_days"] = 10
+    probe("availability history < 30 days blocks (CDS-CSO-AVR)", _short_avr_history)
+
+    # 11. A KSI "answered" with a hollow N/A instead of an honest Not-Implemented
+    #     with rationale -> must be treated as unanswered and block. This is the
+    #     "impossible to fool with a non-answer" property for a KSI.
+    def _hollow_na_ksi(st, pr, hi):
+        first = next(iter(st["ksi"].values()))
+        first["implementation"] = ["N/A"]
+        first.setdefault("extension", {})["measures"] = "N/A"
+        first["extension"]["measures_verification"] = "N/A"
+    probe("a KSI answered with bare 'N/A' is not accepted as answered", _hollow_na_ksi)
+
+    # 12. Manifest-bound signoff with the WRONG manifest SHA -> a signoff that
+    #     does not bind the exact built manifest must block (tamper AFTER signing).
+    def _noop(st, pr, hi):
+        pass
+
+    def _corrupt_signoff_sha():
+        import json as _j
+        reg_path = os.path.join(BASE, "sdr", "reviews", "review-register.json")
+        reg = _j.load(open(reg_path, encoding="utf-8"))
+        reg["package_signoff"]["package_manifest_sha256"] = "sha256:" + ("0" * 64)
+        _j.dump(reg, open(reg_path, "w", encoding="utf-8", newline="\n"), indent=1)
+    probe("signoff bound to the WRONG manifest SHA blocks", _noop,
+          post_sign=_corrupt_signoff_sha)
+
+    # 13. Signoff decision not 'approved' -> a rejected/pending signoff cannot
+    #     make a package ready.
+    def _reject_signoff():
+        import json as _j
+        reg_path = os.path.join(BASE, "sdr", "reviews", "review-register.json")
+        reg = _j.load(open(reg_path, encoding="utf-8"))
+        reg["package_signoff"]["decision"] = "rejected"
+        _j.dump(reg, open(reg_path, "w", encoding="utf-8", newline="\n"), indent=1)
+    probe("a non-approved package_signoff blocks", _noop, post_sign=_reject_signoff)
 
     print(f"\n{passed}/{passed + failed} assessor-attack probes passed "
           "(each tamper must be BLOCKED; baseline must be READY)")
