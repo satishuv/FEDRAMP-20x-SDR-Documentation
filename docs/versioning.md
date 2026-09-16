@@ -61,11 +61,20 @@ signature badge.
 
 ## Software bill of materials (SBOM)
 
-Every build emits a deterministic CycloneDX SBOM of the framework's own pinned
-dependencies at `artifacts/sbom.cdx.json`, fingerprinted in the release manifest.
-A tool that asks providers to evidence their supply chain models its own: the
-SBOM lets a consumer see the exact components and versions the framework runs on
-and verify them against the manifest hash.
+Every build emits a deterministic CycloneDX SBOM at `artifacts/sbom.cdx.json`,
+fingerprinted in the release manifest. A tool that asks providers to evidence
+their supply chain models its own. The SBOM covers the framework's own
+DIRECTLY-PINNED top-level dependencies (the `name==version` entries in the
+requirements files) and lets a consumer verify them against the manifest hash.
+
+Scope, stated honestly: the SBOM lists the top-level packages the framework pins
+directly. Their transitive dependencies are pinned indirectly (they resolve to
+whatever the top-level pins allow) and are not enumerated, and the SBOM's own
+metadata records this (`sbom:scope = direct-top-level-pins`,
+`sbom:transitive-included = false`). A fully-resolved closure with per-package
+hashes would require a committed lock file produced by a resolver (pip-compile or
+uv); that is a separate supply-chain-tooling change tracked as follow-up. Until
+then, do not read this SBOM as the complete resolved dependency set.
 
 ## What a release means, and does not mean
 
