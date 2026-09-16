@@ -6,7 +6,7 @@
 PYTHON ?= python
 
 .DEFAULT_GOAL := help
-.PHONY: help install all build validate scan clean reproducible catalog
+.PHONY: help install all build validate scan clean reproducible catalog lock
 
 help: ## Show this help
 	@grep -hE '^[a-z-]+:.*?## ' $(MAKEFILE_LIST) \
@@ -14,6 +14,16 @@ help: ## Show this help
 
 install: ## Install the three runtime dependencies
 	$(PYTHON) -m pip install jsonschema referencing python-docx
+
+lock: ## Resolve a fully-hashed requirements.lock, then rebuild the SBOM from it
+	@echo "Resolving the full dependency closure with hashes into requirements.lock."
+	@echo "Run this in a CLEAN environment with network access (not the offline"
+	@echo "build sandbox), so the resolved versions are correct and complete."
+	$(PYTHON) -m piptools compile --generate-hashes --strip-extras \
+		--output-file requirements.lock requirements.txt requirements-ci.txt
+	$(PYTHON) validation/scripts/build_sbom.py
+	@echo "requirements.lock written and SBOM regenerated from the resolved closure."
+	@echo "Commit requirements.lock and the regenerated artifacts/sbom.cdx.json together."
 
 all: ## Build, validate, scan, then print a readiness summary
 	$(PYTHON) sdr.py all

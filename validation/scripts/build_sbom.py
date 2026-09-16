@@ -31,9 +31,12 @@ import sys
 BASE = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 REQ = os.path.join(BASE, "requirements.txt")
 REQ_CI = os.path.join(BASE, "requirements-ci.txt")
+LOCK = os.path.join(BASE, "requirements.lock")
 OUT = os.path.join(BASE, "artifacts", "sbom.cdx.json")
 
 PIN_RE = re.compile(r"^([A-Za-z0-9._-]+)==([A-Za-z0-9._-]+)\s*$")
+LOCK_PIN_RE = re.compile(r"^([A-Za-z0-9._-]+)==([A-Za-z0-9._!+-]+)")
+HASH_RE = re.compile(r"--hash=(sha256:[0-9a-f]+)")
 
 
 def _parse(path, scope):
@@ -50,22 +53,75 @@ def _parse(path, scope):
     return comps
 
 
-def build():
-    # Runtime deps are "required"; CI-only deps are "optional" (test/build).
-    comps = _parse(REQ, "required")
-    for name, (ver, _s) in _parse(REQ_CI, "optional").items():
-        comps.setdefault(name, (ver, "optional"))
+def _parse_lock(path):
+    """Parse a pip-compile / uv style requirements.lock: the fully-resolved
+    closure (direct + transitive) with per-package --hash lines. Returns
+    {name: (version, [hashes])} or None if there is no lock. This is what makes
+    the SBOM a COMPLETE resolved set rather than top-level pins only."""
+    if not os.path.exists(path):
+        return None
+    comps = {}
+    name = ver = None
+    hashes = []
+    def flush():
+        if name:
+            comps[name.lower()] = (ver, sorted(hashes))
+    for raw in open(path, encoding="utf-8"):
+        line = raw.strip()
+        if not line or line.startswith("#"):
+            continue
+        if line.startswith(("-r", "-c", "-e", "--index", "--extra-index",
+                            "--find-links", "--pre", "--no-")):
+            continue  # include/option directives, not packages or hashes
+        m = LOCK_PIN_RE.match(line)
+        if m:  # a new package line
+            flush()
+            name, ver, hashes = m.group(1), m.group(2), []
+            hashes += HASH_RE.findall(line)
+        else:  # a continuation line (usually a --hash=...)
+            hashes += HASH_RE.findall(line)
+    flush()
+    return comps or None
 
-    components = []
-    for name in sorted(comps):
-        ver, scope = comps[name]
-        components.append({
-            "type": "library",
-            "name": name,
-            "version": ver,
-            "scope": "required" if scope == "required" else "optional",
-            "purl": f"pkg:pypi/{name}@{ver}",
-        })
+
+def build():
+    lock = _parse_lock(LOCK)
+    if lock is not None:
+        # Complete resolved closure with hashes: the SBOM is the full set.
+        sbom_scope = "resolved-closure-with-hashes"
+        transitive_included = "true"
+        components = []
+        for name in sorted(lock):
+            ver, hashes = lock[name]
+            comp = {
+                "type": "library",
+                "name": name,
+                "version": ver,
+                "purl": f"pkg:pypi/{name}@{ver}",
+            }
+            if hashes:
+                comp["hashes"] = [
+                    {"alg": "SHA-256", "content": h.split(":", 1)[1]}
+                    for h in hashes if h.startswith("sha256:")
+                ]
+            components.append(comp)
+    else:
+        # No lock committed: honest top-level pins only (direct deps).
+        sbom_scope = "direct-top-level-pins"
+        transitive_included = "false"
+        comps = _parse(REQ, "required")
+        for name, (ver, _s) in _parse(REQ_CI, "optional").items():
+            comps.setdefault(name, (ver, "optional"))
+        components = []
+        for name in sorted(comps):
+            ver, scope = comps[name]
+            components.append({
+                "type": "library",
+                "name": name,
+                "version": ver,
+                "scope": "required" if scope == "required" else "optional",
+                "purl": f"pkg:pypi/{name}@{ver}",
+            })
 
     # Deterministic serial: hash of the component set (name@version), so an
     # unchanged dependency set is byte-identical across builds.
@@ -74,6 +130,23 @@ def build():
     ).hexdigest()
     serial = f"urn:uuid:{digest[0:8]}-{digest[8:12]}-{digest[12:16]}-{digest[16:20]}-{digest[20:32]}"
 
+    _locked = sbom_scope == "resolved-closure-with-hashes"
+    _desc = ("Provider-side FedRAMP 20x Certification Package framework. This "
+             "SBOM covers the framework's own "
+             + ("FULLY-RESOLVED Python dependency closure (direct plus "
+                "transitive) with per-package SHA-256 hashes, from the committed "
+                "requirements.lock."
+                if _locked else
+                "DIRECTLY-PINNED top-level Python dependencies (no committed "
+                "requirements.lock present, so the transitive closure is not "
+                "enumerated).")
+             + " It does not cover the provider's offering.")
+    _note = ("Transitive dependencies ARE enumerated with hashes from the "
+             "committed requirements.lock." if _locked else
+             "Transitive dependencies are pinned indirectly by the top-level "
+             "pins and are not enumerated. Commit a requirements.lock "
+             "(pip-compile/uv, see the Makefile 'lock' target) to upgrade this "
+             "SBOM to a fully-resolved hash-locked closure automatically.")
     sbom = {
         "bomFormat": "CycloneDX",
         "specVersion": "1.5",
@@ -83,24 +156,16 @@ def build():
             "component": {
                 "type": "application",
                 "name": "fedramp-20x-sdr-framework",
-                "description": ("Provider-side FedRAMP 20x Certification Package "
-                                "framework. This SBOM covers the framework's own "
-                                "DIRECTLY-PINNED top-level Python dependencies, not "
-                                "the provider's offering and not the full resolved "
-                                "transitive closure."),
+                "description": _desc,
             },
             "properties": [
-                {"name": "sbom:scope", "value": "direct-top-level-pins"},
-                {"name": "sbom:transitive-included", "value": "false"},
-                {"name": "sbom:note", "value": (
-                    "Transitive dependencies are pinned indirectly by the "
-                    "top-level pins and are not enumerated. A fully-resolved "
-                    "hash-locked closure requires a committed lock file "
-                    "(pip-compile/uv), tracked as follow-up.")},
+                {"name": "sbom:scope", "value": sbom_scope},
+                {"name": "sbom:transitive-included", "value": transitive_included},
+                {"name": "sbom:note", "value": _note},
             ],
             "note": ("Deterministic SBOM (no build timestamps; serial derived from "
                      "the component set). Fingerprinted in the release manifest. "
-                     "Scope: directly-pinned top-level dependencies only."),
+                     f"Scope: {sbom_scope}."),
         },
         "components": components,
     }
