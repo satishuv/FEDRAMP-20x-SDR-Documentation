@@ -60,6 +60,7 @@ BUILD_STEPS = [
     ("build_crosswalk.py", "NIST SP 800-53 Revision 5 to 20x crosswalk"),
     ("build_applicability_decisions.py", "applicability decision ledger (included and excluded, with reasons)"),
     ("build_assurance_graph.py", "unified assurance graph joining all artifacts"),
+    ("build_sbom.py", "CycloneDX SBOM of the framework's own pinned dependencies"),
     ("build_release_manifest.py", "cryptographic release manifest of the package"),
     ("validate_package_consistency.py", "cross-artifact consistency check"),
     ("build_reports.py", "evidence-coverage and reviewer reports"),
@@ -1260,9 +1261,9 @@ def summary():
         hard = report.get("hard_failures", "?")
         checks = report.get("checks", [])
         passed = sum(1 for c in checks if c.get("result") == "PASS")
-        # The report does not record whether a check is hard or advisory, so a
-        # FAIL that did not raise the hard count must be an advisory one.
-        soft = [c["check"] for c in checks if c.get("result") == "FAIL"]
+        # The report now labels non-hard shortfalls ADVISORY (hard failures are
+        # FAIL), so severity is explicit rather than inferred from the hard count.
+        soft = [c["check"] for c in checks if c.get("result") == "ADVISORY"]
         # "Ready" is reserved for submission preflight. The build gate answers
         # only "is this structurally valid and faithful to the dataset", so it
         # reports a structural verdict, not a shippability one.

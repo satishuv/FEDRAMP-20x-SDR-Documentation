@@ -13,7 +13,7 @@ flowchart LR
     PIN["Pinned in this repo<br/>references/ and artifacts/schemas/official/<br/>sha256 compared every session"]
     RS["sdr/records/records-store.json<br/>168 rule entries, 46 indicator entries<br/>the security-decision facts you edit"]
     OP["profiles/common/offering-profile.json<br/>your identity, certification class,<br/>assessment and CPO inputs"]
-    PIPE["Deterministic pipeline<br/>19 build steps, no network calls"]
+    PIPE["Deterministic pipeline<br/>20 build steps, no network calls"]
     OUT["Deliverables<br/>SDR (JSON, extensions, text, Word, OSCAL),<br/>CPO, OCR, SCG, event artifacts,<br/>Rev 5 crosswalk, release manifest"]
     GATE["validate_sdr.py + validation gate<br/>schema, coverage, fidelity, CPO semantics,<br/>evidence integrity; gates the build"]
     SCAN["sdrscan.py<br/>37 checks, one finding per rule<br/>and per indicator, reports only"]
@@ -50,7 +50,7 @@ Two inputs, one pipeline, two checkers with different jobs. The pinned dataset s
 
 The dotted edge is the one worth staring at. The gate does not read what the pipeline produced and assume it is right; it goes back to the pinned dataset and derives the same answer independently.
 
-Now the exact dependencies. This diagram shows the SDR-generation core; the full `build` runs 19 steps in dependency order (adding the CPO, OCR, SCG, event artifacts, OSCAL export, applicability ledger, assurance graph, and release manifest after the SDR is built - see [getting started](getting-started.md#running-the-steps-by-hand) for the complete list). Cylinders are files, rectangles are scripts, and the numbers are the order they run in:
+Now the exact dependencies. This diagram shows the SDR-generation core; the full `build` runs 20 steps in dependency order (adding the CPO, OCR, SCG, event artifacts, OSCAL export, applicability ledger, assurance graph, and release manifest after the SDR is built - see [getting started](getting-started.md#running-the-steps-by-hand) for the complete list). Cylinders are files, rectangles are scripts, and the numbers are the order they run in:
 
 ```mermaid
 flowchart LR

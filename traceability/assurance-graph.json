@@ -32,9 +32,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "Example: Security Operations Manager",
@@ -72,9 +72,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -112,9 +112,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -152,9 +152,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -192,9 +192,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -232,9 +232,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -272,9 +272,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -312,9 +312,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -352,9 +352,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -392,9 +392,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -432,9 +432,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -472,9 +472,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -512,9 +512,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -552,9 +552,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -592,9 +592,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -632,9 +632,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -672,9 +672,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -712,9 +712,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -752,9 +752,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -792,9 +792,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -832,9 +832,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -872,9 +872,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -912,9 +912,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -952,9 +952,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -992,9 +992,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -1032,9 +1032,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -1072,9 +1072,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -1112,9 +1112,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -1152,9 +1152,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -1192,9 +1192,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -1232,9 +1232,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -1272,9 +1272,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -1312,9 +1312,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -1352,9 +1352,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -1392,9 +1392,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -1432,9 +1432,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -1472,9 +1472,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -1512,9 +1512,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -1552,9 +1552,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -1592,9 +1592,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -1632,9 +1632,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -1672,9 +1672,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -1712,9 +1712,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -1752,9 +1752,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -1792,9 +1792,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -1832,9 +1832,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -1872,9 +1872,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -1912,9 +1912,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -1952,9 +1952,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -1992,9 +1992,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -2032,9 +2032,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -2072,9 +2072,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -2112,9 +2112,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -2152,9 +2152,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -2192,9 +2192,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "Example: Compliance Engineering Lead",
@@ -2232,9 +2232,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -2272,9 +2272,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -2312,9 +2312,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -2352,9 +2352,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -2392,9 +2392,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -2432,9 +2432,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -2472,9 +2472,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -2512,9 +2512,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -2552,9 +2552,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -2592,9 +2592,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -2632,9 +2632,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -2672,9 +2672,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -2712,9 +2712,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -2752,9 +2752,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -2792,9 +2792,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -2832,9 +2832,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -2872,9 +2872,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -2912,9 +2912,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -2952,9 +2952,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -2992,9 +2992,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -3032,9 +3032,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -3072,9 +3072,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -3112,9 +3112,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -3152,9 +3152,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -3192,9 +3192,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -3232,9 +3232,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -3272,9 +3272,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -3312,9 +3312,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -3352,9 +3352,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -3392,9 +3392,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -3432,9 +3432,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -3472,9 +3472,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -3512,9 +3512,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -3552,9 +3552,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -3592,9 +3592,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -3632,9 +3632,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -3672,9 +3672,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -3712,9 +3712,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -3752,9 +3752,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -3792,9 +3792,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -3832,9 +3832,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -3872,9 +3872,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -3912,9 +3912,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -3952,9 +3952,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -3992,9 +3992,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -4032,9 +4032,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -4072,9 +4072,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -4112,9 +4112,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -4152,9 +4152,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -4192,9 +4192,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -4232,9 +4232,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -4272,9 +4272,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -4312,9 +4312,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -4352,9 +4352,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -4392,9 +4392,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -4432,9 +4432,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -4472,9 +4472,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -4512,9 +4512,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -4552,9 +4552,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -4592,9 +4592,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -4632,9 +4632,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -4672,9 +4672,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -4712,9 +4712,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -4752,9 +4752,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -4792,9 +4792,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -4832,9 +4832,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -4872,9 +4872,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -4912,9 +4912,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "Example: Vulnerability Management Lead",
@@ -4952,9 +4952,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -4992,9 +4992,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -5032,9 +5032,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -5072,9 +5072,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -5112,9 +5112,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -5152,9 +5152,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -5192,9 +5192,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -5232,9 +5232,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -5272,9 +5272,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -5312,9 +5312,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -5352,9 +5352,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -5392,9 +5392,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -5432,9 +5432,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -5472,9 +5472,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -5512,9 +5512,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -5552,9 +5552,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -5592,9 +5592,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -5632,9 +5632,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -5672,9 +5672,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -5712,9 +5712,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -5752,9 +5752,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -5792,9 +5792,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -5832,9 +5832,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -5872,9 +5872,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -5912,9 +5912,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -5952,9 +5952,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -5992,9 +5992,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -6032,9 +6032,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -6072,9 +6072,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -6112,9 +6112,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -6152,9 +6152,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -6192,9 +6192,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -6232,9 +6232,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -6272,9 +6272,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -6312,9 +6312,9 @@
     "independent_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -6360,9 +6360,9 @@
     "automation_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -6406,9 +6406,9 @@
     "automation_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "Example: Platform Engineering Lead",
@@ -6449,9 +6449,9 @@
     "automation_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -6491,9 +6491,9 @@
     "automation_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -6531,9 +6531,9 @@
     "automation_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -6569,9 +6569,9 @@
     "automation_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -6607,9 +6607,9 @@
     "automation_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -6646,9 +6646,9 @@
     "automation_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -6696,9 +6696,9 @@
     "automation_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -6731,9 +6731,9 @@
     "automation_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -6772,9 +6772,9 @@
     "automation_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -6811,9 +6811,9 @@
     "automation_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -6855,9 +6855,9 @@
     "automation_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -6900,9 +6900,9 @@
     "automation_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -6952,9 +6952,9 @@
     "automation_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "Example: Identity and Access Lead",
@@ -7022,9 +7022,9 @@
     "automation_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -7096,9 +7096,9 @@
     "automation_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -7139,9 +7139,9 @@
     "automation_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -7182,9 +7182,9 @@
     "automation_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -7222,9 +7222,9 @@
     "automation_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -7268,9 +7268,9 @@
     "automation_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -7309,9 +7309,9 @@
     "automation_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -7346,9 +7346,9 @@
     "automation_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -7386,9 +7386,9 @@
     "automation_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -7432,9 +7432,9 @@
     "automation_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -7486,9 +7486,9 @@
     "automation_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -7529,9 +7529,9 @@
     "automation_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -7572,9 +7572,9 @@
     "automation_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -7607,9 +7607,9 @@
     "automation_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -7652,9 +7652,9 @@
     "automation_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -7700,9 +7700,9 @@
     "automation_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -7737,9 +7737,9 @@
     "automation_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -7779,9 +7779,9 @@
     "automation_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -7831,9 +7831,9 @@
     "automation_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -7869,9 +7869,9 @@
     "automation_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -7915,9 +7915,9 @@
     "automation_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -7963,9 +7963,9 @@
     "automation_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -8009,9 +8009,9 @@
     "automation_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -8056,9 +8056,9 @@
     "automation_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -8097,9 +8097,9 @@
     "automation_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -8142,9 +8142,9 @@
     "automation_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -8179,9 +8179,9 @@
     "automation_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -8217,9 +8217,9 @@
     "automation_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -8268,9 +8268,9 @@
     "automation_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "Example: Security Engineering Lead",
@@ -8306,9 +8306,9 @@
     "automation_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",
@@ -8349,9 +8349,9 @@
     "automation_verification": "TBD: Information has not been provided."
    },
    "evidence": [],
-   "validation": {
-    "result": "PASS",
-    "validator": "deterministic"
+   "structural_linkage": {
+    "result": "PRESENT",
+    "checker": "deterministic-structural"
    },
    "review": {
     "reviewer": "TBD: Information has not been provided.",

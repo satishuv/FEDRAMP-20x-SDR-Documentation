@@ -78,7 +78,7 @@ The two `FAIL` lines are expected and correct on a fresh clone. Both are `SHOULD
 
 ## Running the steps by hand
 
-`sdr.py build` runs the full pipeline (19 steps) so you do not have to, but the order matters if you run them individually, because each step consumes the previous step's output. The steps, in order, are:
+`sdr.py build` runs the full pipeline (20 steps) so you do not have to, but the order matters if you run them individually, because each step consumes the previous step's output. The steps, in order, are:
 
 1. `validate_upstream.py` - validate the pinned dataset against the official rules schema and the lock hashes
 2. `build_catalogs.py` - rule and indicator catalogs from the pinned dataset

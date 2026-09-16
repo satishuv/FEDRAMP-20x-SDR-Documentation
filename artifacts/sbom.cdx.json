@@ -1,0 +1,58 @@
+{
+ "bomFormat": "CycloneDX",
+ "specVersion": "1.5",
+ "serialNumber": "urn:uuid:8e53f1b6-ef5e-8ed7-7e31-92952e6b6a47",
+ "version": 1,
+ "metadata": {
+  "component": {
+   "type": "application",
+   "name": "fedramp-20x-sdr-framework",
+   "description": "Provider-side FedRAMP 20x Certification Package framework. SBOM covers the framework's own pinned Python dependencies, not the provider's offering."
+  },
+  "note": "Deterministic SBOM (no build timestamps; serial derived from the component set). Fingerprinted in the release manifest."
+ },
+ "components": [
+  {
+   "type": "library",
+   "name": "aws-cdk-lib",
+   "version": "2.251.0",
+   "scope": "optional",
+   "purl": "pkg:pypi/aws-cdk-lib@2.251.0"
+  },
+  {
+   "type": "library",
+   "name": "boto3",
+   "version": "1.40.70",
+   "scope": "optional",
+   "purl": "pkg:pypi/boto3@1.40.70"
+  },
+  {
+   "type": "library",
+   "name": "constructs",
+   "version": "10.5.1",
+   "scope": "optional",
+   "purl": "pkg:pypi/constructs@10.5.1"
+  },
+  {
+   "type": "library",
+   "name": "jsonschema",
+   "version": "4.26.0",
+   "scope": "required",
+   "purl": "pkg:pypi/jsonschema@4.26.0"
+  },
+  {
+   "type": "library",
+   "name": "python-docx",
+   "version": "1.2.0",
+   "scope": "required",
+   "purl": "pkg:pypi/python-docx@1.2.0"
+  },
+  {
+   "type": "library",
+   "name": "referencing",
+   "version": "0.37.0",
+   "scope": "required",
+   "purl": "pkg:pypi/referencing@0.37.0"
+  }
+ ]
+}

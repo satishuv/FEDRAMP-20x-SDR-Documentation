@@ -50,7 +50,7 @@ PAGE = """<!DOCTYPE html>
   <option value="">all kinds</option><option value="rule">rules</option><option value="ksi">KSIs</option>
  </select>
  <select id="val" onchange="render()">
-  <option value="">all validation</option><option value="PASS">PASS</option><option value="FAIL">FAIL</option>
+  <option value="">all linkage</option><option value="PRESENT">PRESENT</option><option value="MISSING">MISSING</option>
  </select>
 </div>
 <table><thead><tr>
@@ -72,7 +72,7 @@ function render(){{
   const text=JSON.stringify(n).toLowerCase();
   if(q && !text.includes(q)) return false;
   if(kind && n.node_kind!==kind) return false;
-  if(val && (n.validation||{{}}).result!==val) return false;
+  if(val && (n.structural_linkage||{{}}).result!==val) return false;
   return true;
  }});
  rows.sort((a,b)=>((a.rule_id||a.ksi_id||'')>(b.rule_id||b.ksi_id||'')?1:-1));
@@ -84,8 +84,8 @@ function render(){{
  for(const n of rows){{
   const id=n.rule_id||n.ksi_id||'?';
   const ev=(n.evidence||[]).length;
-  const v=(n.validation||{{}}).result||'-';
-  const vc=v==='PASS'?'pass':v==='FAIL'?'fail':'pend';
+  const v=(n.structural_linkage||{{}}).result||'-';
+  const vc=v==='PRESENT'?'pass':v==='MISSING'?'fail':'pend';
   const rv=(n.review||{{}}).review_status||'pending';
   const sum=(n.statement||n.summary||'').slice(0,90);
   const tr=document.createElement('tr');

@@ -32,6 +32,30 @@ The manifest emits this as `release_tag`. Tagging a release with this string
 means: this framework version, built against this CR26 dataset, produced the
 artifacts whose hashes are in the manifest.
 
+## Signing a release
+
+Sign the release tag so consumers can verify it came from a trusted maintainer,
+not just that a tag with the right name exists:
+
+```
+git tag -s v<framework>-cr26-<dataset> -m "FedRAMP 20x SDR framework <tag>"
+git push origin v<framework>-cr26-<dataset>
+```
+
+`-s` creates a GPG-signed tag (or configure `gpg.format=ssh` / sigstore for
+keyless signing per your organization's policy). Verify with
+`git tag -v <tag>`. Signing keys are the maintainer's own and are never held in
+this repository. A GitHub Release created from a signed tag carries the
+signature badge.
+
+## Software bill of materials (SBOM)
+
+Every build emits a deterministic CycloneDX SBOM of the framework's own pinned
+dependencies at `artifacts/sbom.cdx.json`, fingerprinted in the release manifest.
+A tool that asks providers to evidence their supply chain models its own: the
+SBOM lets a consumer see the exact components and versions the framework runs on
+and verify them against the manifest hash.
+
 ## What a release means, and does not mean
 
 A release passing the framework's gates means the framework release gate passed:
