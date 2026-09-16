@@ -559,6 +559,28 @@ def cmd_preflight(args):
                 return len(rest) < 3
         return False
 
+    def _is_missing_required_identity(v):
+        """Stricter than _is_hollow, for MANDATORY identity / reference / contact
+        fields that MUST name a real entity (the FedRAMP Recognized assessor and
+        its Recognition id, a freshening reviewer and id, the Sales and Security
+        contacts, the CPO responsible official). For these a MUST cannot be
+        satisfied by a non-applicability at all: a JUSTIFIED 'N/A: <reason>' is
+        still missing, because the requirement is to identify the entity, not to
+        explain why one is absent. So ANY N/A / not-applicable / none form is
+        missing here, unlike _is_hollow which permits a justified N/A for
+        narrative content."""
+        if _is_tbd(v):
+            return True
+        low = str(v).strip().lower()
+        if low in {"n/a", "na", "none", "nil", "null", "unknown", "tbc", "?",
+                   ".", "-", "--", "...", "x", "see documentation", "see docs",
+                   "not applicable", "not-applicable"}:
+            return True
+        for m in ("n/a", "na", "not applicable", "not-applicable", "none"):
+            if low.startswith(m):
+                return True
+        return False
+
     def _parse_dt(value):
         """Return (datetime, error). Requires timezone-aware; rejects future."""
         s = str(value).replace("Z", "+00:00")
@@ -588,9 +610,17 @@ def cmd_preflight(args):
         "incident_contact", "assessor", "evidence_retention",
     ]
     # A required field answered with a bare non-answer (N/A, none, '.') is not
-    # a real answer any more than a TBD is; a genuinely non-applicable required
-    # field would carry a justification. So use _is_hollow, not _is_tbd.
-    unresolved_required = [f for f in REQUIRED_FIELDS if _is_hollow(offering.get(f))]
+    # a real answer any more than a TBD is. Narrative required fields may carry a
+    # justified 'N/A: <reason>' (so _is_hollow), but identity / contact / URI
+    # required fields MUST name a real entity or location, where even a justified
+    # N/A is missing (so the stricter _is_missing_required_identity).
+    IDENTITY_REQUIRED = {"security_contact", "incident_contact", "assessor",
+                         "certification_package_overview_uri"}
+    unresolved_required = [
+        f for f in REQUIRED_FIELDS
+        if (_is_missing_required_identity(offering.get(f)) if f in IDENTITY_REQUIRED
+            else _is_hollow(offering.get(f)))
+    ]
     if unresolved_required:
         blockers.append(f"{len(unresolved_required)} required offering-profile "
                         f"field(s) unresolved (TBD/placeholder): "
@@ -680,8 +710,8 @@ def cmd_preflight(args):
             materials = ext.get("materials") or []
             # Every supplied material must be a complete reference.
             for i, m in enumerate(materials):
-                if not isinstance(m, dict) or _is_hollow(m.get("type")) \
-                        or _is_hollow(m.get("uri")) or _is_hollow(m.get("sha256")):
+                if not isinstance(m, dict) or _is_missing_required_identity(m.get("type")) \
+                        or _is_missing_required_identity(m.get("uri")) or _is_missing_required_identity(m.get("sha256")):
                     blockers.append(f"Class A: materials[{i}] missing "
                                     f"type/uri/sha256 (FRC-CLA-EAM)")
             # The framework-specific required set (FRC-CLA-EAM) must all be present.
@@ -700,12 +730,12 @@ def cmd_preflight(args):
     if cls in ("b", "c"):
         fia = offering.get("fedramp_independent_assessment") or {}
         completed = fia.get("completed_at")
-        if _is_hollow(fia.get("assessor_name")) or _is_tbd(completed):
+        if _is_missing_required_identity(fia.get("assessor_name")) or _is_tbd(completed):
             blockers.append(f"Class {cls.upper()}: fedramp_independent_assessment "
                             "not populated (FRC-APP-FIA MUST: a fresh FedRAMP "
                             "independent assessment by a FedRAMP Recognized service "
                             "within the previous 3 months)")
-        elif _is_hollow(fia.get("assessor_fedramp_id")):
+        elif _is_missing_required_identity(fia.get("assessor_fedramp_id")):
             # FRC-APP-FIA requires the assessment be completed by a FedRAMP
             # Recognized independent assessment service - the recognition id is
             # what evidences "Recognized". A name alone is insufficient.
@@ -743,9 +773,9 @@ def cmd_preflight(args):
                                 review_date_ok = False
                         fresh_ok = (basis == "freshened"
                                     and review_date_ok
-                                    and not _is_hollow(fr.get("reviewed_by"))
-                                    and not _is_hollow(fr.get("reviewer_fedramp_id"))
-                                    and not _is_hollow(fr.get("changes_reviewed_reference")))
+                                    and not _is_missing_required_identity(fr.get("reviewed_by"))
+                                    and not _is_missing_required_identity(fr.get("reviewer_fedramp_id"))
+                                    and not _is_missing_required_identity(fr.get("changes_reviewed_reference")))
                         if not fresh_ok:
                             blockers.append(f"Class {cls.upper()}: FedRAMP independent assessment "
                                             f"{completed} is older than 3 months and has no valid "
@@ -1007,7 +1037,7 @@ def cmd_preflight(args):
     # the structured required-information map).
     for contact in (cpo.get("contactInformation") or []):
         ctype = contact.get("contactType", "?")
-        if ctype in ("Sales", "Security") and _is_hollow(contact.get("contactName")):
+        if ctype in ("Sales", "Security") and _is_missing_required_identity(contact.get("contactName")):
             cpo_markers.append(f"CPO {ctype} contactName is unresolved (CDS-CSO-PUB "
                                "requires both Sales and Security contact information)")
     if cpo_markers:
@@ -1023,7 +1053,7 @@ def cmd_preflight(args):
     _applicable_rule_ids = {r["rule_id"] for r in (class_profile.get("rules") or [])}
     if "CPO-CSO-MTD" in _applicable_rule_ids:
         mtd_gaps = [f for f in ("responsible_official", "version", "last_updated", "source_of_update")
-                    if _is_hollow(mtd.get(f))]
+                    if _is_missing_required_identity(mtd.get(f))]
         if mtd_gaps:
             blockers.append(f"CPO metadata unresolved (CPO-CSO-MTD): {', '.join(mtd_gaps)}")
     req_info = (cpo.get("xCpoRequiredInformation", {}) or {}).get("items", [])

@@ -441,6 +441,20 @@ def main():
         p["fedramp_independent_assessment"]["freshness_basis"] = "current"
         json.dump(p, open(profile, "w", encoding="utf-8", newline="\n"), indent=1)
         _build(root)
+        # Mandatory-identity regression: a JUSTIFIED "N/A: <reason>" must NOT
+        # satisfy the assessor name (FRC-APP-FIA requires a real Recognized
+        # assessor identity, not an explanation of absence). Narrative fields
+        # accept a justified N/A; identity fields do not.
+        good_assessor = p["fedramp_independent_assessment"]["assessor_name"]
+        p["fedramp_independent_assessment"]["assessor_name"] = "N/A: alternate internal process (justification)."
+        json.dump(p, open(profile, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root)
+        rid = _preflight(root)
+        check("a justified 'N/A' assessor_name does NOT satisfy FRC-APP-FIA",
+              "fedramp_independent_assessment" in rid.stdout and rid.returncode == 1)
+        p["fedramp_independent_assessment"]["assessor_name"] = good_assessor
+        json.dump(p, open(profile, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root)
         # Re-sign against the current manifest so the post-signoff test below is clean.
         mhash = "sha256:" + hashlib.sha256(open(manifest, "rb").read()).hexdigest()
         tag = json.load(open(manifest, encoding="utf-8")).get("release_tag")

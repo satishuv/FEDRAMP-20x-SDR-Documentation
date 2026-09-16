@@ -556,12 +556,13 @@ def attack():
     # 24. NEGATIVE combo: the SAME fields, but each carries a JUSTIFIED N/A
     #     with a real reason. This must still be READY - the detector rejects
     #     content-free tokens, not honest justified non-implementations, and a
-    #     combination of justified answers must not be over-blocked.
+    #     combination of justified answers must not be over-blocked. NOTE: only
+    #     NARRATIVE fields belong here. Mandatory identity/contact fields are
+    #     tested separately below (a justified N/A must NOT satisfy them).
     def _justified_combo(st, pr, hi):
         why = "N/A: not applicable to this fictional SaaS boundary, per assessor."
         pr["business_purpose"] = why
         pr["overall_assessment_summary"] = why
-        pr["cpo_responsible_official"] = why
         _fill_cpo(st, pr, hi, "CDS-CSO-PUB", why)
 
     def _probe_ready(name, mutate):
@@ -573,11 +574,39 @@ def attack():
             passed += 1; print(f"  PASS (ready, not over-blocked) {name}")
         else:
             failed += 1; print(f"  FAIL (justified content wrongly BLOCKED) {name}")
-    _probe_ready("[combo] justified 'N/A: <reason>' across the same fields stays READY",
+    _probe_ready("[combo] justified 'N/A: <reason>' on NARRATIVE fields stays READY",
                  _justified_combo)
 
+    # ---- Mandatory-identity probes: a JUSTIFIED 'N/A: <reason>' must still BLOCK
+    #      for fields that MUST name a real entity. This is the false-ready edge
+    #      the hollow-value hardening opened (justified N/A accepted for an
+    #      identity), now closed with a stricter predicate. Each of these is a
+    #      BLOCK probe, not a ready probe. ----
+    JUST = "N/A: provider uses an alternate internal process (justification)."
+
+    def _just_assessor_name(st, pr, hi):
+        pr["fedramp_independent_assessment"]["assessor_name"] = JUST
+    probe("justified 'N/A' assessor_name still blocks (FRC-APP-FIA identity)",
+          _just_assessor_name)
+
+    def _just_assessor_id(st, pr, hi):
+        pr["fedramp_independent_assessment"]["assessor_fedramp_id"] = JUST
+    probe("justified 'N/A' assessor_fedramp_id still blocks (Recognition id)",
+          _just_assessor_id)
+
+    def _just_contacts(st, pr, hi):
+        pr["security_contact"] = JUST
+        pr["sales_contact"] = JUST
+    probe("justified 'N/A' Sales/Security contact still blocks (CDS-CSO-PUB)",
+          _just_contacts)
+
+    def _just_mtd_official(st, pr, hi):
+        pr["cpo_responsible_official"] = JUST
+    probe("justified 'N/A' CPO responsible_official still blocks (CPO-CSO-MTD)",
+          _just_mtd_official)
+
     print(f"\n{passed}/{passed + failed} assessor-attack probes passed "
-          "(each tamper must be BLOCKED; baseline + justified combo must be READY)")
+          "(each tamper must be BLOCKED; baseline + justified-narrative combo must be READY)")
     return 0 if failed == 0 else 1
 
 
