@@ -7,9 +7,23 @@
   "component": {
    "type": "application",
    "name": "fedramp-20x-sdr-framework",
-   "description": "Provider-side FedRAMP 20x Certification Package framework. SBOM covers the framework's own pinned Python dependencies, not the provider's offering."
+   "description": "Provider-side FedRAMP 20x Certification Package framework. This SBOM covers the framework's own DIRECTLY-PINNED top-level Python dependencies, not the provider's offering and not the full resolved transitive closure."
   },
-  "note": "Deterministic SBOM (no build timestamps; serial derived from the component set). Fingerprinted in the release manifest."
+  "properties": [
+   {
+    "name": "sbom:scope",
+    "value": "direct-top-level-pins"
+   },
+   {
+    "name": "sbom:transitive-included",
+    "value": "false"
+   },
+   {
+    "name": "sbom:note",
+    "value": "Transitive dependencies are pinned indirectly by the top-level pins and are not enumerated. A fully-resolved hash-locked closure requires a committed lock file (pip-compile/uv), tracked as follow-up."
+   }
+  ],
+  "note": "Deterministic SBOM (no build timestamps; serial derived from the component set). Fingerprinted in the release manifest. Scope: directly-pinned top-level dependencies only."
  },
  "components": [
   {

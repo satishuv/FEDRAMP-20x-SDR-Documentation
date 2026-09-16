@@ -51,7 +51,7 @@
   "sdr/records/records-store.json": "sha256:d24e0753f7afe5dd0be9af65c177c85fba170cc6e901b1dc5943af01c7ea2b88"
  },
  "artifacts": {
-  "artifacts/sbom.cdx.json": "sha256:13b689b87d3ee5d291e3b1616ed40a33e4daeabcf7b2913b483847a6e4246b90",
+  "artifacts/sbom.cdx.json": "sha256:7825740bc228bcd7715c6b6080a7c05b91c6674076b160e28fc8adbfdf76965b",
   "package/certification-package-manifest.json": "sha256:9cae6d6ee3216e60c35fcdc427b1e485d5033c1eeb79f234b83e55ea6b6e1a0d",
   "package/cpo/cpo.json": "sha256:0cc8912a0ec662b78cde7c27d71c5dbd5258218202d56b762f02e88eccc805d3",
   "package/cpo/cpo.md": "sha256:80939b0778273f1c848b8d1f17a694343948225270c8bbfdd56403d5652909d9",

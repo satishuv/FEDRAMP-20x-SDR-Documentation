@@ -1,11 +1,19 @@
 #!/usr/bin/env python3
-"""Generate a CycloneDX SBOM for this framework's own pinned dependencies.
+"""Generate a CycloneDX SBOM for this framework's own directly-pinned dependencies.
 
 A tool that asks providers to evidence their supply chain should model its own.
 This emits a deterministic (no timestamps, sorted) CycloneDX 1.5 JSON SBOM from
-the pinned requirements files, so a consumer can see exactly which components and
-exact versions the framework runs on, and verify them against the release
-manifest (which fingerprints this SBOM).
+the DIRECTLY-PINNED (`name==version`) entries in the requirements files, so a
+consumer can see the exact top-level components the framework declares, and
+verify them against the release manifest (which fingerprints this SBOM).
+
+Scope, stated honestly: this lists the top-level dependencies the framework
+pins directly (`==`). Their transitive dependencies are pinned INDIRECTLY (they
+resolve to whatever the top-level pins allow) and are NOT enumerated here. A
+fully-resolved closure with per-package hashes would require a committed lock
+file produced by a resolver (pip-compile or uv); that is a separate
+supply-chain-tooling change, tracked as follow-up. Until then this SBOM must not
+be read as the complete resolved dependency set.
 
     python validation/scripts/build_sbom.py
 
@@ -76,11 +84,23 @@ def build():
                 "type": "application",
                 "name": "fedramp-20x-sdr-framework",
                 "description": ("Provider-side FedRAMP 20x Certification Package "
-                                "framework. SBOM covers the framework's own pinned "
-                                "Python dependencies, not the provider's offering."),
+                                "framework. This SBOM covers the framework's own "
+                                "DIRECTLY-PINNED top-level Python dependencies, not "
+                                "the provider's offering and not the full resolved "
+                                "transitive closure."),
             },
+            "properties": [
+                {"name": "sbom:scope", "value": "direct-top-level-pins"},
+                {"name": "sbom:transitive-included", "value": "false"},
+                {"name": "sbom:note", "value": (
+                    "Transitive dependencies are pinned indirectly by the "
+                    "top-level pins and are not enumerated. A fully-resolved "
+                    "hash-locked closure requires a committed lock file "
+                    "(pip-compile/uv), tracked as follow-up.")},
+            ],
             "note": ("Deterministic SBOM (no build timestamps; serial derived from "
-                     "the component set). Fingerprinted in the release manifest."),
+                     "the component set). Fingerprinted in the release manifest. "
+                     "Scope: directly-pinned top-level dependencies only."),
         },
         "components": components,
     }
