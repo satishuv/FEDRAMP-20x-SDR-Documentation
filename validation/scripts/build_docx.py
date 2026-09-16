@@ -112,6 +112,11 @@ def main():
             line += f" | Class A obligation: {r['class_a_obligation']}"
         if r.get("timeframe_num"):
             line += f" | timeframe: {r['timeframe_num']} {r.get('timeframe_type') or ''}"
+        elif r.get("timeframe_num_min") is not None or r.get("timeframe_num_max") is not None:
+            lo, hi = r.get("timeframe_num_min"), r.get("timeframe_num_max")
+            rng = (f"{lo}-{hi}" if lo is not None and hi is not None
+                   else str(lo if lo is not None else hi))
+            line += f" | timeframe: {rng} {r.get('timeframe_type') or ''}"
         doc.add_paragraph(line)
         label_para(doc, "What it looks for:", r["statement"])
         for n in note.get("official_notes", []):

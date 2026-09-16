@@ -132,6 +132,22 @@ def compute(diff):
         if "applicability" in c["changes"] or "varies_by_class" in c["changes"]:
             imp["applicability_or_class_variance_changed"] = True
             imp["requires_human_review"] = True
+            # affected_classes above is CURRENT-profile membership only. When
+            # applicability or class-variance changed, a rule may have LEFT a
+            # class it used to be in, so current membership under-reports the
+            # true old-union-new impact. Union in any class explicitly named on
+            # either side of a varies_by_class change, and flag that the class
+            # list may still be incomplete (a full old-union-new needs the old
+            # profiles). The review requirement above already prevents a silent
+            # miss; this stops the class list from misreporting [] as "none".
+            vbc = c["changes"].get("varies_by_class", {})
+            named = set(imp["affected_classes"])
+            for side in ("old", "new"):
+                val = vbc.get(side) if isinstance(vbc, dict) else None
+                if isinstance(val, dict):
+                    named.update(k.upper() for k in val.keys())
+            imp["affected_classes"] = sorted(named)
+            imp["affected_classes_may_be_incomplete"] = True
         imp["change_detail"] = c["changes"]
         impacts.append(imp)
 
