@@ -124,41 +124,6 @@ Full check reference: [automation/sdrscan/README.md](../automation/sdrscan/READM
 
 | Gate check | What it enforces |
 |---|---|
-| `validate_sdr.py` | The fourteen SDR checks above (schema, version and lock guards, coverage, minimums, hygiene, content fidelity, semantic completeness, evidence linkage) |
-| `validate_package.py` | The CPO and OCR against their official FedRAMP schemas |
-| `validate_cpo_semantics.py` | CPO rule-completeness, not just schema: it independently derives the applicable `CPO-CSO-OVR` rule set from the dataset and checks structured completeness of the enumerated rules (`CDS-CSO-PUB`, `CDS-CSO-IRP`, `MAS-CSO-TPR`) |
-| `validate_assurance_graph.py` | Full-chain traceability across the assurance graph, class-scoped |
-| `validate_reviews.py` | The human review register carries no machine-authored approvals |
-| `validate_evidence.py` | Live evidence integrity: it recomputes digests and fails on malformed or mismatched ones |
-| `validate_package_consistency.py` | Cross-artifact consistency across the generated package |
-
-## Submission readiness (preflight)
-
-The build gate answers a structural question: is this package well-formed and faithful to the dataset? Submission readiness answers a stricter, separate question: is this package actually ready to hand to an assessor? That is `preflight`, and it is deliberately hard to fool.
-
-```bash
-python sdr.py package-preflight        # the generated package
-python sdr.py application-preflight     # package checks plus FedRAMP application prerequisites
-```
-
-Both are read-only, exit non-zero while anything blocks, and never author an approval. What preflight enforces, all grounded verbatim in the pinned dataset:
-
-- **Field-level readiness.** Every required `SDR-CSO-FRR` item (implementation/risk, verification, validation, independent verification, independent validation, assessor responses) and every required `SDR-CSX-KSI` item (measures, cycle, measures verification, automation verification, validation) is checked individually. A justified `N/A: <reason>` passes; a bare `N/A`, a `TBD`, or a placeholder blocks.
-- **Class-correct scope.** Class A is scoped to its seven enumerated KSIs; the CPO required-information set is the intersection of `CPO-CSO-OVR` with the resolved class rule set (Class A carries only `CDS-CSO-PUB` and `MAS-CSO-IIR`), and the `CPO-CSO-MTD` metadata gate only applies when that rule resolves for the class.
-- **Structured CPO completeness.** A bare sentence does not satisfy a rule that enumerates concrete items; `CDS-CSO-PUB`, `CDS-CSO-IRP`, and `MAS-CSO-TPR` are checked against their CR26-enumerated members.
-- **Class A external assessment (`FRC-CLA-ASF`/`FRC-CLA-EAM`).** The framework must be one FedRAMP approves (FedRAMP Rev5/Ready, SOC 2 Type II, GovRAMP) within the past 12 months, and the framework-specific material checklist must be complete.
-- **Recognized-assessor identity.** The `FRC-APP-FIA` initial assessment (Class B/C) requires the assessor's FedRAMP Recognition id; an `FRC-APP-USA` freshening of a 3-to-9-month-old assessment requires a Recognized reviewer id and a `reviewed_at` date on or after the original assessment.
-- **`FRC-CSX-MOT`.** Availability survivability (`CDS-CSO-AVR`) is a Class B/C blocker; entirely-missing KSIs are detected; the initial-certification exception is activated by an explicit contract (both boolean flags true plus descriptions/references and a current datapoint per in-scope KSI).
-- **Manifest-bound human signoff.** The signoff in the review register is bound to the release-manifest hash, and the manifest hashes the authoritative provider inputs (offering profile and records store). Any change to those inputs after signoff invalidates the signoff.
-
-Missing or stale evidence is reported as a readiness finding, never silently treated as a compliance pass, and the pipeline never authors an approval on a human's behalf.
-
-## The full validation gate
-
-`validate_sdr.py` is the SDR checker described above, and it is the anchor of the gate. `python sdr.py validate` runs it together with the rest of the validation gate and the offline test suite (this is what continuous integration runs). The other gate checks, each independent and each a hard gate:
-
-| Gate check | What it enforces |
-|---|---|
 | `validate_sdr.py` | The 14 build-gate checks above (schema, coverage, minimums, hygiene, content fidelity, semantic completeness, source lock) |
 | `validate_package.py` | The CPO and OCR against their official FedRAMP schemas |
 | `validate_cpo_semantics.py` | CPO rule-completeness, not just schema: it independently derives the applicable `CPO-CSO-OVR` rule set from the dataset and checks structured completeness of the enumerated rules (`CDS-CSO-PUB`, `CDS-CSO-IRP`, `MAS-CSO-TPR`) |
@@ -178,15 +143,18 @@ python sdr.py application-preflight     # package checks plus FedRAMP applicatio
 
 Both are read-only, exit non-zero while anything blocks, and never author an approval. What preflight enforces, all grounded verbatim in the pinned dataset:
 
-- **Field-level readiness.** Every required `SDR-CSO-FRR` item (implementation/risk, verification, validation, independent verification, independent validation, assessor responses) and every required `SDR-CSX-KSI` item (measures, cycle, measures verification, automation verification, validation) is checked individually. A justified `N/A: <reason>` passes; a bare `N/A`, a `TBD`, or a placeholder blocks.
+- **Field-level readiness, and no content-free non-answers.** Every required `SDR-CSO-FRR` item (implementation/risk, verification, validation, independent verification, independent validation, assessor responses) and every required `SDR-CSX-KSI` item (measures, cycle, measures verification, automation verification, validation) is checked individually. A field is not answered by a placeholder OR by a bare non-answer token: `TBD`, an empty value, `N/A`, `none`, `.`, `unknown`, and the like all block. A justified `N/A: <reason>` (a real reason after the marker) passes, because FedRAMP allows a justified non-implementation. This same content-quality test (a single `_is_hollow` predicate) is applied everywhere a required content value is read: the required offering-profile fields, the `FRC-APP-FIA` assessor name and FedRAMP Recognition id, the Sales and Security contact names, the `CPO-CSO-MTD` metadata, the `CPO-CSO-OSA` overall assessment summary, the CPO structured required-information members, and the two conditions that can UNBLOCK a gate (the `FRC-CSX-MOT` initial-certification exception narratives and the `FRC-APP-USA` freshening reviewer/id/reference). A content-free freshening or exception cannot loosen a gate. Date, URI, and hash fields keep the narrower placeholder test, since their own format check catches a non-answer.
+- **`SDR-CSX-KMT` historical-metric summaries.** For Class B and C (and D), the per-KSI historical-metric summaries are a MUST and a readiness blocker, not a warning: the 30-day and up-to-one-year summaries at Class B, plus a daily-data reference at Class C and D. Preflight blocks an unresolved (or content-free) KMT summary through the KSI unanswered-requirement gate. This is separate from the `FRC-CSX-MOT` duration gate, which checks that the metric HISTORY spans long enough; a package can satisfy the duration and still be blocked here for empty summaries.
 - **Class-correct scope.** Class A is scoped to its seven enumerated KSIs; the CPO required-information set is the intersection of `CPO-CSO-OVR` with the resolved class rule set (Class A carries only `CDS-CSO-PUB` and `MAS-CSO-IIR`), and the `CPO-CSO-MTD` metadata gate only applies when that rule resolves for the class.
-- **Structured CPO completeness.** A bare sentence does not satisfy a rule that enumerates concrete items; `CDS-CSO-PUB`, `CDS-CSO-IRP`, and `MAS-CSO-TPR` are checked against their CR26-enumerated members.
+- **Structured CPO completeness, member by member.** A bare sentence does not satisfy a rule that enumerates concrete items; `CDS-CSO-PUB`, `CDS-CSO-IRP`, and `MAS-CSO-TPR` are checked against their CR26-enumerated members, and each member VALUE must be real content (not a bare non-answer per the content-quality test above), not merely present.
 - **Class A external assessment (`FRC-CLA-ASF`/`FRC-CLA-EAM`).** The framework must be one FedRAMP approves (FedRAMP Rev5/Ready, SOC 2 Type II, GovRAMP) within the past 12 months, and the framework-specific material checklist must be complete.
 - **Recognized-assessor identity.** The `FRC-APP-FIA` initial assessment (Class B/C) requires the assessor's FedRAMP Recognition id; an `FRC-APP-USA` freshening of a 3-to-9-month-old assessment requires a Recognized reviewer id and a `reviewed_at` date on or after the original assessment.
 - **`FRC-CSX-MOT`.** Availability survivability (`CDS-CSO-AVR`) is a Class B/C blocker; entirely-missing KSIs are detected; the initial-certification exception is activated by an explicit contract (both boolean flags true plus descriptions/references and a current datapoint per in-scope KSI).
 - **Manifest-bound human signoff.** The signoff in the review register is bound to the release-manifest hash, and the manifest hashes the authoritative provider inputs (offering profile and records store). Any change to those inputs after signoff invalidates the signoff.
 
 Missing or stale evidence is reported as a readiness finding, never silently treated as a compliance pass, and the pipeline never authors an approval on a human's behalf.
+
+A fully-worked, fictional Class C package that exercises these readiness gates end to end, plus an assessor-attack harness that tampers a ready package one hollowing edit at a time and asserts each is blocked, lives in [examples/sample-offering-class-c/](../examples/sample-offering-class-c/README.md). Run its `--attack` mode to see the readiness gating defended against structurally-complete-but-content-free submissions.
 
 ### Keeping the catalog in step
 
