@@ -53,27 +53,19 @@ phases:
   post_build:
     commands:
       - echo "Validation passed. Readiness scan attached. Packaging deliverables."
+      # Assemble the customer bundle from EXACTLY what the release manifest
+      # fingerprints (the ACTIVE certification class only, plus shared package
+      # artifacts, manifest, and attestation). This is active-class-only and
+      # manifest-consistent by construction - it does not ship the inactive
+      # Class A/C SDRs the repo keeps current for traceability, nor the authoring
+      # .docx working files, nor the experimental OSCAL export.
+      - python validation/scripts/assemble_release_bundle.py
 
 artifacts:
   base-directory: .
   files:
-    # The complete Certification Package: the SDR (JSON + human-readable), every
-    # generated package artifact (CPO, OCR, SCG, and the event-driven incident,
-    # change, and vulnerability artifacts), the deterministic release manifest,
-    # the validation reports, and the rev5->20x crosswalk. This is the full set a
-    # reviewer approves and that is published to S3 after human approval.
-    - sdr/json/**/*
-    - sdr/human-readable/**/*
-    - package/**/*
-    - artifacts/release-manifest.json
-    - artifacts/release-attestation.json
-    - artifacts/sbom.cdx.json
+    # The active-class Certification Package, assembled to match the release
+    # manifest exactly. Only this bundle is the customer deliverable; the
+    # validation reports ride along (readiness evidence, not fingerprinted).
+    - artifacts/release-bundle/**/*
     - validation/reports/**/*
-    - traceability/rev5-to-20x-crosswalk.*
-    - traceability/applicability-decisions.json
-    - traceability/assurance-graph.json
-  exclude-paths:
-    # The OSCAL export is EXPERIMENTAL/reference-only (see the package manifest,
-    # included_in_customer_submission_bundle: false) and is NOT part of the
-    # native 20x submission. Exclude it so the delivered bytes match that intent.
-    - "sdr/json/**/*.oscal.json"

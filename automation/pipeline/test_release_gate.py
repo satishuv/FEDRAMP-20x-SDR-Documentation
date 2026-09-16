@@ -98,39 +98,49 @@ def main():
           or re.search(r'RELEASE_MODE[\s\S]{0,120}?true', vp) is not None)
 
     # Bundle-vs-manifest parity: every artifact the release manifest fingerprints
-    # for delivery must be covered by the publication bundle globs (and not
-    # excluded). This makes the SBOM-missing-from-bundle class of drift a test
-    # failure rather than a silent inconsistency the customer discovers.
-    files, excludes = _bundle_globs(buildspec)
+    # Active-class bundle: the publish path assembles the bundle from exactly
+    # what the release manifest fingerprints (active class only), not from
+    # all-class wildcards. Assert the buildspec publishes the assembled bundle
+    # and runs the assembler.
+    files, _excludes = _bundle_globs(buildspec)
+    check("buildspec publishes the assembled active-class bundle",
+          any("release-bundle" in g for g in files))
+    check("buildspec does NOT publish all-class SDR wildcards",
+          not any(g.startswith("sdr/json/**") or g.startswith("sdr/human-readable/**")
+                  for g in files))
+    check("buildspec runs the bundle assembler",
+          "assemble_release_bundle.py" in buildspec)
+
+    # Run the assembler and verify its output is manifest-complete and contains
+    # no inactive-class SDR. This makes bundle<->manifest drift and inactive-class
+    # leakage a test failure, not a silent inconsistency the customer discovers.
+    import importlib.util
+    spec_ab = importlib.util.spec_from_file_location(
+        "arb", os.path.join(BASE, "validation", "scripts", "assemble_release_bundle.py"))
+    arb = importlib.util.module_from_spec(spec_ab); spec_ab.loader.exec_module(arb)
+    res = arb.assemble()
     manifest = json.load(open(MANIFEST, encoding="utf-8")) if os.path.exists(MANIFEST) else {}
-    fingerprinted = []
-    arts = manifest.get("artifacts") or manifest.get("artifact_hashes") or {}
-    if isinstance(arts, dict):
-        fingerprinted = list(arts.keys())
-    elif isinstance(arts, list):
-        fingerprinted = [a.get("path") for a in arts if isinstance(a, dict) and a.get("path")]
-    # Delivery-intended = fingerprinted, not an OSCAL reference export, not a docx.
-    delivery = [p for p in fingerprinted
-                if p and not p.endswith(".oscal.json") and not p.endswith(".docx")]
-    missing = [p for p in delivery
-               if not _covered(p, files) or _covered(p, excludes)]
-    check("every delivery-intended fingerprinted artifact is in the publish bundle "
-          + (f"(missing: {missing[:5]})" if missing else ""),
-          not missing)
-    check("the SBOM specifically is in the publish bundle",
-          _covered("artifacts/sbom.cdx.json", files))
-    check("the release attestation is in the publish bundle",
-          _covered("artifacts/release-attestation.json", files))
+    active = (manifest.get("certification_class") or "").lower()
+    fingerprinted = sorted((manifest.get("artifacts") or {}).keys())
+    copied = set(res["copied"]) if res else set()
+    check("assembled bundle contains every fingerprinted artifact "
+          + (f"(missing: {[p for p in fingerprinted if p not in copied][:5]})"
+             if res and any(p not in copied for p in fingerprinted) else ""),
+          bool(res) and not res["missing"] and all(p in copied for p in fingerprinted))
+    stray = [p for p in copied if p.startswith("sdr/") and f"sdr-class-{active}" not in p]
+    check("assembled bundle contains NO inactive-class SDR"
+          + (f" (stray: {stray[:3]})" if stray else ""),
+          not stray)
+    check("the SBOM is in the assembled bundle",
+          "artifacts/sbom.cdx.json" in copied)
 
     # The attestation must bind the manifest by hash and must NOT be produced by
     # mutating the manifest (the manifest's own source_commit stays null so a
     # signoff bound to its hash survives).
-    import importlib.util
     spec = importlib.util.spec_from_file_location(
         "bra", os.path.join(BASE, "validation", "scripts", "build_release_attestation.py"))
     bra = importlib.util.module_from_spec(spec); spec.loader.exec_module(bra)
     att = bra.build_attestation()
-    manifest = json.load(open(MANIFEST, encoding="utf-8")) if os.path.exists(MANIFEST) else {}
     import hashlib
     manifest_sha = ("sha256:" + hashlib.sha256(open(MANIFEST, "rb").read()).hexdigest()
                     if os.path.exists(MANIFEST) else None)

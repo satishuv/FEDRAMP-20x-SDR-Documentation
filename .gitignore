@@ -58,6 +58,11 @@ automation/metrics/metric-history.json
 # regenerate-and-diff gate).
 artifacts/release-attestation.json
 
+# The assembled customer bundle is release-only (produced at publish time by
+# assemble_release_bundle.py, active-class-only). Uploaded as a build artifact,
+# not committed.
+artifacts/release-bundle/
+
 # sdrscan reports are around 6 MB per scan and are regenerated on demand, so
 # they are treated like any other scanner output: not committed. Continuous
 # integration uploads them as build artifacts instead. The scan is
