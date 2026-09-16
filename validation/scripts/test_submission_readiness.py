@@ -216,6 +216,14 @@ def _fill_records(root):
         if is_ksi:
             rec["evidence"] = [ev]
             rec["tests"] = ["automated-check-1", "automated-check-2"]
+            # SDR-CSX-KMT historical-metric summaries are a Class C MUST; fill
+            # them so a complete Class C record is genuinely complete (the
+            # preflight now gates unresolved KMT summaries at B/C/D).
+            rec["historical_metrics"] = {
+                "last_30_days": f"30/30 days passing for {ident} over the last 30 days.",
+                "up_to_one_year": f">=99% passing for {ident} across the available window.",
+                "daily_data_reference": f"https://contoso.gov/metrics/{ident}/daily.json",
+            }
         else:
             ext["rule_artifacts"] = [ev]
         return rec
@@ -289,6 +297,31 @@ def main():
         check("preflight reports no blockers", "SUBMISSION BLOCKERS" not in r.stdout)
         check("TBD warning is scoped to applicable records",
               "applicable to Class" in r.stdout or r.returncode == 0)
+
+        # Adversarial (regression for a real ready-but-hollow gap found by the
+        # Class C end-to-end exercise): a Class C package whose KSI historical-
+        # metric summaries (SDR-CSX-KMT, a Class C MUST) are all TBD must BLOCK,
+        # not reach ready. Empty them on the otherwise-ready package and re-check.
+        store_path = os.path.join(root, "sdr", "records", "records-store.json")
+        _store = json.load(open(store_path, encoding="utf-8"))
+        for _rec in _store.get("ksi", {}).values():
+            _rec["historical_metrics"] = {
+                "last_30_days": "TBD: Information has not been provided.",
+                "up_to_one_year": "TBD: Information has not been provided.",
+                "daily_data_reference": "TBD: Information has not been provided.",
+            }
+        json.dump(_store, open(store_path, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root)
+        r_kmt = _preflight(root)
+        check("empty SDR-CSX-KMT summaries block a Class C package", r_kmt.returncode == 1)
+        # Restore the filled records for the subsequent CPO adversarial stages.
+        _fill_records(root)
+        _build(root)
+        reg2 = json.load(open(register, encoding="utf-8"))
+        mhash2 = "sha256:" + hashlib.sha256(open(manifest, "rb").read()).hexdigest()
+        reg2["package_signoff"]["package_manifest_sha256"] = mhash2
+        reg2["package_signoff"]["release_tag"] = json.load(open(manifest, encoding="utf-8")).get("release_tag")
+        json.dump(reg2, open(register, "w", encoding="utf-8", newline="\n"), indent=1)
 
         # Structured CPO semantics adversarial: a bare sentence for CDS-CSO-PUB
         # must NOT satisfy the rule (it enumerates 16 concrete items). This is
