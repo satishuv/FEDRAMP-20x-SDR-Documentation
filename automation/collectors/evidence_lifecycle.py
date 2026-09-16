@@ -51,27 +51,30 @@ def _parse(ts):
 
 def classify_freshness(observed_at, now, freshness_policy_days=DEFAULT_FRESHNESS_DAYS,
                        collection_status="success"):
-    """Return (freshness_status, expires_at_iso) for one evidence observation.
-    A collection error short-circuits to 'collection-error'; no observation is
-    'missing'."""
+    """Return (freshness_status, fresh_until_iso, expires_at_iso) for one
+    evidence observation. Two distinct boundaries: 'fresh_until' is when the
+    evidence stops being current and becomes 'stale' (observed + policy);
+    'expires_at' is the hard expiry when it becomes 'expired' (observed + 2x
+    policy). A collection error short-circuits to 'collection-error'; no
+    observation is 'missing'."""
     if collection_status and collection_status != "success":
-        return "collection-error", None
+        return "collection-error", None, None
     obs = _parse(observed_at)
     if obs is None:
-        return "missing", None
+        return "missing", None, None
     if obs.tzinfo is None:
         obs = obs.replace(tzinfo=datetime.timezone.utc)
     now = now if now.tzinfo else now.replace(tzinfo=datetime.timezone.utc)
-    expires = obs + datetime.timedelta(days=freshness_policy_days)
+    fresh_until = obs + datetime.timedelta(days=freshness_policy_days)
     # Grace: 'stale' between the freshness window and 2x it; 'expired' beyond.
     hard_expiry = obs + datetime.timedelta(days=freshness_policy_days * 2)
-    if now <= expires:
+    if now <= fresh_until:
         status = "current"
     elif now <= hard_expiry:
         status = "stale"
     else:
         status = "expired"
-    return status, expires.isoformat()
+    return status, fresh_until.isoformat(), hard_expiry.isoformat()
 
 
 def lifecycle_record(evidence, now=None, freshness_policy_days=DEFAULT_FRESHNESS_DAYS,
@@ -82,7 +85,7 @@ def lifecycle_record(evidence, now=None, freshness_policy_days=DEFAULT_FRESHNESS
     now = now or datetime.datetime.now(datetime.timezone.utc)
     observed = evidence.get("lastUpdated") or evidence.get("observed_at")
     collection_status = evidence.get("collection_status", "success")
-    freshness, expires = classify_freshness(
+    freshness, fresh_until, expires = classify_freshness(
         observed, now, freshness_policy_days, collection_status)
     return {
         "evidence_id": evidence.get("evidence_id") or _derive_id(evidence),
@@ -93,6 +96,7 @@ def lifecycle_record(evidence, now=None, freshness_policy_days=DEFAULT_FRESHNESS
         "content_hash": evidence.get("xEvidenceContentHash"),
         "artifact_uri": evidence.get("evidenceLocation"),
         "freshness_policy_days": freshness_policy_days,
+        "fresh_until": fresh_until,
         "expires_at": expires,
         "freshness_status": freshness,
         "collection_status": collection_status,

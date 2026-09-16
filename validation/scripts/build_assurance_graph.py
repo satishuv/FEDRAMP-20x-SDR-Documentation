@@ -108,6 +108,7 @@ def _evidence_nodes(evidence):
                 lc = _lifecycle_record(e)
                 node["evidence_id"] = lc.get("evidence_id")
                 node["freshness_status"] = lc.get("freshness_status")
+                node["fresh_until"] = lc.get("fresh_until")
                 node["expires_at"] = lc.get("expires_at")
                 node["collection_status"] = lc.get("collection_status")
                 node["supersedes"] = lc.get("supersedes")

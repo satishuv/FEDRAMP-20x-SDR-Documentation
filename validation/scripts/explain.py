@@ -66,8 +66,10 @@ def _augment(lines, node, decision):
             fresh = e.get("observed_at") or "no date"
             lines.append(f"  - {e.get('type', '?')} {e.get('location', '')} "
                          f"[{e.get('sha256', 'no hash')}] observed {fresh}")
-        val = node.get("validation", {})
-        lines.append(f"Validation: {val.get('result', '?')} (by {val.get('validator', '?')})")
+        sl = node.get("structural_linkage", {}) or node.get("validation", {})
+        lines.append(f"Structural linkage: {sl.get('result', '?')} "
+                     f"({sl.get('checker', sl.get('validator', '?'))}) "
+                     "- traceability presence, not a compliance determination")
         rev = node.get("review", {})
         lines.append(f"Review: {rev.get('review_status', 'pending')} "
                      f"(reviewer {rev.get('reviewer', 'TBD')})")

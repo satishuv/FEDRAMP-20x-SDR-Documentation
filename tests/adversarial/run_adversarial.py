@@ -53,7 +53,7 @@ def test_untampered_evidence_passes_integrity():
 # --- Evidence expiry: stale/expired must NOT change status, only readiness ---
 def test_expired_evidence_is_flagged_not_compliance_changing():
     now = datetime.datetime(2026, 9, 30, tzinfo=datetime.timezone.utc)
-    status, _ = el.classify_freshness("2026-09-01T00:00:00Z", now, 1)
+    status, _, _ = el.classify_freshness("2026-09-01T00:00:00Z", now, 1)
     assert status == "expired"
     # The lifecycle classifies; it never returns or sets an implementation
     # status. Confirm the function's contract exposes no status field.

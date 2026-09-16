@@ -59,7 +59,9 @@ review had missed:
 
 The remaining assessor probes were already correctly blocked, confirming the
 readiness gating is robust against those vectors. The `--attack` harness runs
-one baseline (must be READY) plus 17 hollowing tampers (each must be BLOCKED):
+31 checks: two that must stay READY (the complete baseline, and a
+justified-`N/A: <reason>` on NARRATIVE fields) plus 29 hollowing tampers that
+must each be BLOCKED. The tampers include:
 
 - empty SDR-CSX-KMT historical-metric summaries (the gap above)
 - an `sdr://placeholder/` evidence URI in an applicable record
@@ -85,11 +87,17 @@ one baseline (must be READY) plus 17 hollowing tampers (each must be BLOCKED):
 - [combo] the ENTIRE CPO required-information map hollowed at once
 - [combo] every hardened content field hollowed together
 - [combo] varied non-answer tokens (`.`, `none`, `unknown`, `tbc`, `-`) across fields
+- a JUSTIFIED `N/A: <reason>` on a mandatory IDENTITY field still blocks:
+  the FIA assessor name and Recognition id, the Sales/Security contacts, and the
+  CPO responsible official must name a real entity, so even a justified
+  non-applicability is missing there (unlike narrative content)
 
-Plus one NEGATIVE combination probe that must stay READY: the same fields all
-carrying a JUSTIFIED `"N/A: <reason>"`. This proves the hardening rejects
-content-free tokens without over-blocking honest justified non-implementations,
-even when many fields carry them at once.
+Plus the two READY controls that must NOT be over-blocked: the complete baseline,
+and a JUSTIFIED `"N/A: <reason>"` across NARRATIVE fields (business purpose,
+assessment summary, CPO required-information members). Together these prove the
+hardening rejects content-free tokens and unjustified non-answers on mandatory
+identities, without over-blocking honest justified non-implementations on
+narrative content.
 
 The two future-date probes matter specifically: a naive `now - date > 7 days`
 freshness check would treat a future date as zero days old and wrongly pass, so
