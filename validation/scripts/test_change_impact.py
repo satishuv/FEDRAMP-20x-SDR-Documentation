@@ -90,6 +90,24 @@ def test_applicability_change_forces_review_even_if_out_of_scope():
     assert imp.get("applicability_or_class_variance_changed") is True
 
 
+def test_varies_by_class_loss_reports_old_union_new_classes():
+    # A rule that USED to vary by (and apply to) Class A but no longer does:
+    # current-profile membership would report [], under-reporting the impact.
+    # affected_classes must union in the class named on the OLD side, and the
+    # report must flag that the class list may be incomplete.
+    diff = {"rules_added": [], "rules_removed": [],
+            "rules_changed": [{"id": "ZZZ-ZZZ-VBC",
+                               "changes": {"varies_by_class": {
+                                   "old": {"a": "SHOULD", "b": "MUST"},
+                                   "new": {"b": "MUST"}}}}],
+            "summary": {}}
+    out = ci.compute(diff)
+    imp = next(i for i in out["impacts"] if i["rule_id"] == "ZZZ-ZZZ-VBC")
+    assert imp["requires_human_review"] is True
+    assert "A" in imp["affected_classes"]  # old-side class is not dropped
+    assert imp.get("affected_classes_may_be_incomplete") is True
+
+
 def main():
     tests = [v for k, v in sorted(globals().items()) if k.startswith("test_")]
     for t in tests:
