@@ -10,15 +10,26 @@ Never call the framework version a "FedRAMP version."
 
 The release manifest (`artifacts/release-manifest.json`) records both, plus the
 pinned schema versions and a SHA-256 of every generated artifact, so any release
-can be reconstructed and verified. It also records a `source_provenance` block:
-`requirements_sha256` and `requirements_ci_sha256` are recorded on every build;
-`source_commit` and `source_tree` are recorded ONLY by a release build (they are
-null in ordinary committed builds to keep the manifest diff-stable and avoid a
-circular commit hash). `python sdr.py release` stamps them automatically after
-the reproducibility gate passes; to stamp manually, run
-`SDR_RECORD_SOURCE_COMMIT=1 python validation/scripts/build_release_manifest.py`.
-Because two commits can share a framework version and dataset version, the
-`source_commit` is what binds a release manifest to an exact source tree.
+can be reconstructed and verified. Its `source_provenance` block records
+`requirements_sha256` and `requirements_ci_sha256` on every build; `source_commit`
+and `source_tree` stay null here on purpose.
+
+Exact git source provenance lives in a SEPARATE `artifacts/release-attestation.json`,
+not in the manifest. The reason is the signoff binding: the human package signoff
+(checked by `package-preflight`) is bound to the SHA-256 of the manifest's bytes,
+so if a release step wrote the git commit INTO the manifest, its hash would change
+and a prior signoff would silently go stale. The attestation instead binds the
+manifest's hash to the git commit/tree WITHOUT changing the manifest. The ordering
+is: build, validate, reproducibility, human signoff (binds the deterministic
+manifest), `package-preflight` (verifies that binding), then the attestation
+(binds that same manifest hash to the git source), then tag. `python sdr.py release`
+runs the gate and reproducibility and writes the attestation automatically; the
+deployed CodePipeline does the same under `RELEASE_MODE=true`. The attestation is
+release-only and git-excluded (a committed one would name its own pre-commit hash
+and trip the regenerate-and-diff gate); it is uploaded as a build artifact and
+published in the bundle. Because two commits can share a framework version and
+dataset version, the attestation's `source_commit` is what binds a release to an
+exact source tree.
 
 ## Release tag format
 

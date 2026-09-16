@@ -466,20 +466,19 @@ def cmd_release(args):
     if code != 0:
         out("Reproducibility check failed; not releasable.")
         return code
-    # Reproducibility passed on the clean (null-provenance) manifest. NOW stamp
-    # the exact source provenance (git commit + tree) into the release manifest
-    # as a final release-only step, so v1.2.0-cr26-... is bound to an exact
-    # source, not just the framework version. Done after the double-build so it
-    # does not perturb the byte-identical reproducibility comparison.
-    os.environ["SDR_RECORD_SOURCE_COMMIT"] = "1"
-    try:
-        rc = run(os.path.join(SCRIPTS, "build_release_manifest.py"))
-    finally:
-        os.environ.pop("SDR_RECORD_SOURCE_COMMIT", None)
+    # Reproducibility passed on the deterministic manifest. Do NOT mutate that
+    # manifest to add source provenance: it is what the human signoff binds to
+    # (package-preflight checks package_manifest_sha256 against it), so changing
+    # its bytes here would silently invalidate a prior signoff. Instead emit a
+    # SEPARATE release-attestation that binds this manifest's hash to the exact
+    # git commit/tree. Ordering: build -> validate -> reproducibility -> (human
+    # signoff + package-preflight, done separately) -> attestation -> tag.
+    rc = run(os.path.join(SCRIPTS, "build_release_attestation.py"))
     if rc != 0:
-        out("Could not stamp source provenance into the release manifest.")
+        out("Could not write the release attestation.")
         return rc
     manifest = load_json(os.path.join(BASE, "artifacts", "release-manifest.json"))
+    attestation = load_json(os.path.join(BASE, "artifacts", "release-attestation.json"))
     out()
     out("Release")
     out(RULE)
@@ -488,8 +487,14 @@ def cmd_release(args):
         out(f"Framework version            {manifest.get('framework_version', '?')}")
         out(f"Dataset version              {manifest.get('dataset_version', '?')}")
         out(f"Artifacts fingerprinted      {manifest.get('artifact_count', '?')}")
-        _prov = manifest.get("source_provenance", {}) or {}
-        out(f"Source commit                {_prov.get('source_commit') or '(not recorded)'}")
+    if attestation:
+        out(f"Source commit                {attestation.get('source_commit') or '(not recorded)'}")
+        out(f"Manifest hash (attested)     {attestation.get('release_manifest_sha256', '?')}")
+    out()
+    out("The release attestation binds the deterministic manifest hash to the "
+        "git source WITHOUT changing the manifest, so a human signoff bound to "
+        "that manifest stays valid. Confirm the package_signoff and "
+        "`package-preflight` are green against this same manifest before tagging.")
     out()
     out("This is a build-provenance record, not a compliance determination. A "
         "passing release gate means well-formed, consistent, and verified "
