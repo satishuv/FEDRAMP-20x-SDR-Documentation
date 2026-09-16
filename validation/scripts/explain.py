@@ -184,7 +184,20 @@ def _explain_ksi(kid, cls):
     for s in rec.get("implementation", []) or []:
         L.append(f"  Implementation: {s}")
     tests = rec.get("tests", []) or []
-    L.append(f"  Tests: {'; '.join(tests) if tests else 'None defined yet'}")
+
+    def _t(t):
+        if isinstance(t, dict):
+            m = t.get("method") or t.get("name") or t.get("description") or "test"
+            ex = []
+            if t.get("automated") is True:
+                ex.append("automated")
+            elif t.get("automated") is False:
+                ex.append("manual")
+            if t.get("cadence"):
+                ex.append(str(t["cadence"]))
+            return m + (f" ({', '.join(ex)})" if ex else "")
+        return str(t)
+    L.append(f"  Tests: {'; '.join(_t(t) for t in tests) if tests else 'None defined yet'}")
     ev = rec.get("evidence", []) or []
     L.append(f"  Evidence entries: {len(ev)}")
     for e in ev[:3]:

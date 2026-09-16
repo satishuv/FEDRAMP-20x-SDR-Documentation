@@ -163,8 +163,22 @@ def main():
         label_para(doc, "Validation:",
                    val[0] if val and "TBD" not in val[0] else FILL)
         tests = rec.get("tests", [])
+        # A test may be a plain string or a structured record ({method,
+        # automated, cadence}); coerce so a structured entry does not crash.
+        def _t(t):
+            if isinstance(t, dict):
+                m = t.get("method") or t.get("name") or t.get("description") or "test"
+                extra = []
+                if t.get("automated") is True:
+                    extra.append("automated")
+                elif t.get("automated") is False:
+                    extra.append("manual")
+                if t.get("cadence"):
+                    extra.append(str(t["cadence"]))
+                return m + (f" ({', '.join(extra)})" if extra else "")
+            return str(t)
         label_para(doc, "Tests:",
-                   "; ".join(tests) if tests else FILL)
+                   "; ".join(_t(t) for t in tests) if tests else FILL)
         label_para(doc, "Owner:",
                    ext.get("owner", FILL) if "TBD" not in ext.get("owner", "TBD") else FILL)
         label_para(doc, "Status:", rec.get("implementation_status", "Not Implemented"))

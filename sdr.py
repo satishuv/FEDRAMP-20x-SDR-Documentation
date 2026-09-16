@@ -892,7 +892,13 @@ def cmd_preflight(args):
         return [k for k, v in checks.items() if not _answered(v)]
 
     def _ksi_gaps(rec):
-        """Missing required SDR-CSX-KSI items for one KSI record (5 items)."""
+        """Missing required SDR-CSX-KSI items for one KSI record (5 items),
+        plus SDR-CSX-KMT historical-metric summaries where they are MUST.
+        SDR-CSX-KMT force by class: A MAY (not gated); B MUST (30-day + yearly
+        summaries); C/D MUST (those PLUS a daily-data reference). Presence of the
+        KMT keys is checked elsewhere; here we require the VALUES be resolved
+        (not TBD) so a Class B/C package cannot be 'ready' with empty metric
+        summaries - the gap this closes."""
         ext = rec.get("extension", {}) or {}
         checks = {
             "measures": rec.get("implementation") or ext.get("measures"),
@@ -901,6 +907,12 @@ def cmd_preflight(args):
             "automation_verification": ext.get("automation_verification"),
             "validation": rec.get("validation"),
         }
+        if cls in ("b", "c", "d"):
+            hm = rec.get("historical_metrics", {}) or {}
+            checks["kmt_last_30_days"] = hm.get("last_30_days")
+            checks["kmt_up_to_one_year"] = hm.get("up_to_one_year")
+            if cls in ("c", "d"):
+                checks["kmt_daily_data_reference"] = hm.get("daily_data_reference")
         return [k for k, v in checks.items() if not _answered(v)]
 
     tbd = placeholders = scoped_records = 0

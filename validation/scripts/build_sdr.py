@@ -47,6 +47,26 @@ def ksi_statement_for_class(k, cls):
     return k.get("statement")
 
 
+def _test_to_str(t):
+    """Render one KSI test entry as a readable string. A test may be a plain
+    string OR a structured record (e.g. {method, automated, cadence}); a
+    provider recording structured automated methods must not crash the
+    human-readable build. Coerce a dict to 'method (automated, cadence)'."""
+    if isinstance(t, str):
+        return t
+    if isinstance(t, dict):
+        method = t.get("method") or t.get("name") or t.get("description") or "test"
+        bits = []
+        if t.get("automated") is True:
+            bits.append("automated")
+        elif t.get("automated") is False:
+            bits.append("manual")
+        if t.get("cadence"):
+            bits.append(str(t["cadence"]))
+        return f"{method}" + (f" ({', '.join(bits)})" if bits else "")
+    return str(t)
+
+
 # The official SDR schema constrains frr/ksiImplementationStatus to exactly
 # these three values. The record store uses a richer AUTHORING vocabulary
 # (Planned, Gap, Exception, Not Applicable, Needs validation, FedRAMP pending,
@@ -477,7 +497,7 @@ def render_human(profile, rules, ksis, records, cls):
         a(f"Historical metrics, up to one year: {_val(hm.get('up_to_one_year'))}")
         a(f"Historical metrics, daily data reference (Class C): {_val(hm.get('daily_data_reference'))}")
         tests = rec.get("tests", [])
-        a(f"Tests: {'; '.join(tests) if tests else 'None defined yet'}")
+        a(f"Tests: {'; '.join(_test_to_str(t) for t in tests) if tests else 'None defined yet'}")
         a(f"Owner: {ext.get('owner', TBD)}")
         a("")
     return "\n".join(L)
