@@ -50,8 +50,13 @@ TBD_MARKERS = ("TBD:", "TBD ", "Information has not been provided")
 sys.path.insert(0, os.path.join(BASE, "automation", "collectors"))
 try:
     from service_registry import SERVICE_DISPLAY_NAMES as POSTURE_SERVICE_KEYS
-except Exception:  # noqa: BLE001
-    POSTURE_SERVICE_KEYS = {}
+except Exception as exc:  # fail loud: silent unrouted telemetry is the failure
+    raise RuntimeError(
+        "prefill_from_facts could not import the canonical service registry "
+        "(automation/collectors/service_registry.py); refusing to prefill with "
+        "an empty routing map that would silently drop posture telemetry: "
+        + str(exc)
+    )
 
 
 def load(path, default=None):

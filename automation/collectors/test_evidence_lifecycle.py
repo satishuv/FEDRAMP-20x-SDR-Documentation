@@ -20,27 +20,27 @@ def _fact(observed="2026-09-12T11:00:00Z", status="OBSERVED"):
 
 
 def test_current_within_window():
-    s, _ = el.classify_freshness("2026-09-12T11:00:00Z", NOW, 1)
+    s, _, _ = el.classify_freshness("2026-09-12T11:00:00Z", NOW, 1)
     assert s == "current"
 
 
 def test_stale_past_window():
-    s, _ = el.classify_freshness("2026-09-11T00:00:00Z", NOW, 1)
+    s, _, _ = el.classify_freshness("2026-09-11T00:00:00Z", NOW, 1)
     assert s == "stale"
 
 
 def test_expired_beyond_hard_expiry():
-    s, _ = el.classify_freshness("2026-09-01T00:00:00Z", NOW, 1)
+    s, _, _ = el.classify_freshness("2026-09-01T00:00:00Z", NOW, 1)
     assert s == "expired"
 
 
 def test_missing_when_no_observation():
-    s, _ = el.classify_freshness(None, NOW, 1)
+    s, _, _ = el.classify_freshness(None, NOW, 1)
     assert s == "missing"
 
 
 def test_collection_error_short_circuits():
-    s, _ = el.classify_freshness("2026-09-12T11:00:00Z", NOW, 1,
+    s, _, _ = el.classify_freshness("2026-09-12T11:00:00Z", NOW, 1,
                                  collection_status="ERROR:AccessDenied")
     assert s == "collection-error"
 
