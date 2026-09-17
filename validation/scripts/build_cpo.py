@@ -30,6 +30,8 @@ import os
 import sys
 
 BASE = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, os.path.join(BASE, "validation", "scripts"))
+from fedramp_time import add_calendar_months  # noqa: E402
 PROFILE = os.path.join(BASE, "profiles", "common", "offering-profile.json")
 OUT_JSON = os.path.join(BASE, "package", "cpo", "cpo.json")
 OUT_MD = os.path.join(BASE, "package", "cpo", "cpo.md")
@@ -176,8 +178,9 @@ def build_cpo(profile):
             d = _dt.date.fromisoformat(base)
         except ValueError:
             d = _dt.date.today()
-        # add ~3 months (90 days) as a placeholder cadence anchor
-        next_ocr = (d + _dt.timedelta(days=90)).isoformat()
+        # add 3 calendar months as a placeholder cadence anchor (CCM-OCR-AVL
+        # states the cadence in months, not days)
+        next_ocr = add_calendar_months(d, 3).isoformat()
         assumptions.append(f"nextOngoingCertificationReportDate is a placeholder "
                            f"({next_ocr}) derived from the dataset date + 3 months "
                            f"(CCM-OCR-AVL cadence); the provider must set next_ocr_date")

@@ -31,6 +31,8 @@ import os
 import sys
 
 BASE = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, os.path.join(BASE, "validation", "scripts"))
+from fedramp_time import add_calendar_months  # noqa: E402
 PROFILE = os.path.join(BASE, "profiles", "common", "offering-profile.json")
 OUT_DIR = os.path.join(BASE, "package", "events")
 
@@ -53,7 +55,7 @@ def build_all(profile):
     # clock, so examples are byte-stable across builds.
     dataset_date = "-".join(profile["dataset_version"].split(".")[:3])
     to_d = datetime.date.fromisoformat(dataset_date)
-    from_d = to_d - datetime.timedelta(days=90)
+    from_d = add_calendar_months(to_d, -3)
     from_dt = from_d.isoformat() + "T00:00:00Z"
     to_dt = to_d.isoformat() + "T00:00:00Z"
 

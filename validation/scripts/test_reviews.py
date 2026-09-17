@@ -97,6 +97,31 @@ def test_node_review_invalidated_by_added_evidence():
     assert code == 1, "adding evidence after approval must invalidate the stale review"
 
 
+def test_substring_assurance_id_is_rejected():
+    # A fake assurance_id that merely CONTAINS a real graph id as a substring
+    # must NOT resolve. Previously a 'g in aid' fallback accepted it.
+    reg = {"reviews": [{
+        "review_id": "R1", "assurance_id": "FAKE-KSI-IAM-AAM-INJECTED",
+        "reviewer": "Jane, VP Sec", "role": "Security Lead", "decision": "approved",
+        "reviewed_at": "2026-09-10T00:00:00+00:00",
+        "evidence_hashes_reviewed": [GOOD_HASH],
+    }]}
+    code = _run_main_with(reg, _graph_with_node_evidence(GOOD_HASH))
+    assert code == 1, "a substring-containing assurance_id must not resolve in the graph"
+
+
+def test_exact_asr_prefixed_id_resolves():
+    # ASR-<exact-id> is the one permitted transformation and must still resolve.
+    reg = {"reviews": [{
+        "review_id": "R1", "assurance_id": "ASR-KSI-IAM-AAM",
+        "reviewer": "Jane, VP Sec", "role": "Security Lead", "decision": "approved",
+        "reviewed_at": "2026-09-10T00:00:00+00:00",
+        "evidence_hashes_reviewed": [GOOD_HASH],
+    }]}
+    code = _run_main_with(reg, _graph_with_node_evidence(GOOD_HASH))
+    assert code == 0, "ASR-<exact graph id> must resolve"
+
+
 def test_good_human_review_passes():
     r = {"review_id": "REV-1", "assurance_id": "FRC-CSO-PKG", "reviewer": "Jane Doe",
          "role": "Security Reviewer", "decision": "approved",
