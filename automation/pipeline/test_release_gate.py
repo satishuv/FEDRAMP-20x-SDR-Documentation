@@ -89,6 +89,19 @@ def main():
           re.search(r'RELEASE_MODE.*=.*true', buildspec) is not None
           and "exit 1" in buildspec)
 
+    # Release-path parity: a RELEASE_MODE build must run the SAME full gate the
+    # GitHub/local release runs - the offline test suite (full `sdr.py validate`,
+    # NOT `validate --no-tests`) AND a double-build reproducibility check - so
+    # the AWS release path is not weaker than the GitHub release gate.
+    rel_branch = ""
+    m_rel = re.search(r'if \[ "\$RELEASE_MODE" = "true" \];[\s\S]*?else', buildspec)
+    if m_rel:
+        rel_branch = m_rel.group(0)
+    check("RELEASE_MODE build runs full validate (with tests), not --no-tests",
+          "sdr.py validate" in rel_branch and "validate --no-tests" not in rel_branch)
+    check("RELEASE_MODE build runs the reproducibility gate",
+          "cmd_reproducibility" in rel_branch)
+
     # The ValidateProject in the publish pipeline must set RELEASE_MODE=true.
     vp = pipeline.split("ValidateProject:", 1)[-1].split("DriftCheckProject:", 1)[0]
     check("publish pipeline ValidateProject sets RELEASE_MODE",

@@ -93,6 +93,8 @@ container embeds timestamps).
 
 ## Dependencies
 
-Runtime dependencies are pinned in `requirements.txt`; test dependencies in
-`requirements-dev.txt`. GitHub Actions are pinned to full commit SHAs. This
-keeps the build inputs traceable.
+Runtime dependencies are pinned in `requirements.txt`; local test dependencies
+in `requirements-dev.txt`; CI installs the pinned set from `requirements-ci.txt`
+(GitHub Actions and CodeBuild both install `requirements-ci.txt`, so the CI
+environment is reproducible). GitHub Actions are pinned to full commit SHAs.
+This keeps the build inputs traceable.

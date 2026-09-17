@@ -58,6 +58,17 @@ def test_release():
     check("cmd_reproducibility helper exists", hasattr(sdrmod, "cmd_reproducibility"))
     check("cmd_release forces tests on",
           "args.no_tests = False" in inspect.getsource(sdrmod.cmd_release))
+    # Release must HARD-GATE on package-preflight before attestation, matching
+    # the deployed pipeline's RELEASE_MODE gate, so it cannot prepare a release
+    # for a package preflight would reject.
+    src = inspect.getsource(sdrmod.cmd_release)
+    check("cmd_release hard-runs package-preflight", "cmd_preflight(args)" in src)
+    pf = src.find("cmd_preflight(args)")
+    att = src.find("build_release_attestation.py")
+    check("cmd_release preflight gate precedes attestation",
+          pf != -1 and att != -1 and pf < att)
+    check("cmd_release returns nonzero on preflight blockers",
+          "not releasable" in src)
 
 
 def test_diff_no_args():
