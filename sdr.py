@@ -445,12 +445,14 @@ def cmd_reproducibility():
 
 def cmd_release(args):
     """Produce and report a release: build, run the FULL validation gate and
-    test suite, verify reproducibility, then print the tag.
+    test suite, verify reproducibility, hard-run package-preflight, then print
+    the tag.
 
     Runs the same validation suite CI runs (via cmd_validate) AND a local
-    double-build reproducibility check, so `release` verifies what it claims.
-    Always runs the full test suite (no --no-tests escape). Does not tag git or
-    publish anything.
+    double-build reproducibility check AND package-preflight as a HARD gate, so
+    `release` verifies what it claims and refuses to prepare a release for a
+    package that package-preflight would reject. Always runs the full test suite
+    (no --no-tests escape). Does not tag git or publish anything.
     """
     # A release is not allowed to skip its own tests.
     args.no_tests = False
@@ -468,13 +470,25 @@ def cmd_release(args):
     if code != 0:
         out("Reproducibility check failed; not releasable.")
         return code
+    # A release deliverable must not just be well-formed and reproducible: it
+    # must be submission-ready. Hard-run package-preflight and FAIL CLOSED on any
+    # blocker, exactly as the deployed CodePipeline does under RELEASE_MODE=true.
+    # Without this, `release` could return success and tell an operator how to
+    # tag a package that package-preflight would reject. This is the local
+    # counterpart of the pipeline's RELEASE_MODE hard gate.
+    out()
+    code = cmd_preflight(args)
+    if code != 0:
+        out("Package preflight reported submission blockers; not releasable. "
+            "Resolve the blockers above before tagging.")
+        return code
     # Reproducibility passed on the deterministic manifest. Do NOT mutate that
     # manifest to add source provenance: it is what the human signoff binds to
     # (package-preflight checks package_manifest_sha256 against it), so changing
     # its bytes here would silently invalidate a prior signoff. Instead emit a
     # SEPARATE release-attestation that binds this manifest's hash to the exact
-    # git commit/tree. Ordering: build -> validate -> reproducibility -> (human
-    # signoff + package-preflight, done separately) -> attestation -> tag.
+    # git commit/tree. Ordering: build -> validate -> reproducibility ->
+    # package-preflight (hard) -> attestation -> (human signoff) -> tag.
     rc = run(os.path.join(SCRIPTS, "build_release_attestation.py"))
     if rc != 0:
         out("Could not write the release attestation (missing git provenance "
@@ -496,8 +510,9 @@ def cmd_release(args):
     out()
     out("The release attestation binds the deterministic manifest hash to the "
         "git source WITHOUT changing the manifest, so a human signoff bound to "
-        "that manifest stays valid. Confirm the package_signoff and "
-        "`package-preflight` are green against this same manifest before tagging.")
+        "that manifest stays valid. Build, validation, reproducibility, AND "
+        "package-preflight have all passed against this same manifest; a human "
+        "signoff on the manifest is the remaining step before tagging.")
     out()
     out("This is a build-provenance record, not a compliance determination. A "
         "passing release gate means well-formed, consistent, and verified "
