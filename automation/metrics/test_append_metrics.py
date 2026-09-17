@@ -137,6 +137,28 @@ def test_mot_window_class_b_is_should_not_gated():
     assert w["meets_window"] is True  # no minimum at B
 
 
+def test_mot_window_calendar_month_boundary():
+    # Regression for the day-approximation bug: a series whose earliest point is
+    # exactly 6 CALENDAR months before today must MEET the Class C window, even
+    # when that span is fewer than 183 days. 2026-03-16 -> 2026-09-16 is exactly
+    # 6 calendar months but only 184 days; pick a span that a days>=183 rule
+    # would still pass, and a case a day rule would WRONGLY fail.
+    today = date(2026, 9, 16)
+    # Exactly 6 calendar months back = 2026-03-16 (184 days) -> meets.
+    at_boundary = am.mot_window([{"date": "2026-03-16", "passing": 1, "total": 1}], "c", today)
+    assert at_boundary["meets_window"] is True
+    # The Feb-boundary case that exposes the bug: today 2026-05-31, 6 months
+    # back clamps to 2025-11-30. A point on 2025-11-30 is exactly 6 calendar
+    # months (182 days, SHORT of 183) but must still MEET the window.
+    today2 = date(2026, 5, 31)
+    short_days = am.mot_window([{"date": "2025-11-30", "passing": 1, "total": 1}], "c", today2)
+    assert short_days["covered_days"] < 183  # a day rule would call this short
+    assert short_days["meets_window"] is True  # calendar months: exactly 6 -> met
+    # And a point one day inside the window (later) must FAIL.
+    inside = am.mot_window([{"date": "2025-12-01", "passing": 1, "total": 1}], "c", today2)
+    assert inside["meets_window"] is False
+
+
 def test_append_run_records_mot_window():
     hist = {}
     am.append_run(hist, REGISTRY, config("COMPLIANT"), {}, date(2026, 9, 6), cls="c")
