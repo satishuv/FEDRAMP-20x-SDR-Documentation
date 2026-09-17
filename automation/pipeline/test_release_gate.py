@@ -146,6 +146,23 @@ def main():
                     if os.path.exists(MANIFEST) else None)
     check("attestation binds the current manifest hash",
           att and att.get("release_manifest_sha256") == manifest_sha)
+    check("attestation records real git provenance (commit non-null)",
+          bool(att and att.get("source_commit")))
+    check("attestation records real git provenance (tree non-null)",
+          bool(att and att.get("source_tree")))
+    check("attestation git_available is True",
+          bool(att and att.get("git_available")))
+    # Fail-closed contract: main() must refuse (non-zero) when provenance is
+    # unavailable, rather than writing a null-provenance attestation and
+    # exiting 0. Verify by forcing _git() to return None so git_available=False.
+    _orig_git = bra._git
+    try:
+        bra._git = lambda *a, **k: None
+        rc_no_prov = bra.main()
+    finally:
+        bra._git = _orig_git
+    check("attestation main() fails closed when git provenance is unavailable",
+          rc_no_prov != 0)
     check("manifest source_commit stays null (not mutated by release)",
           (manifest.get("source_provenance", {}) or {}).get("source_commit") is None)
 

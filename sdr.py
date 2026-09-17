@@ -476,7 +476,8 @@ def cmd_release(args):
     # signoff + package-preflight, done separately) -> attestation -> tag.
     rc = run(os.path.join(SCRIPTS, "build_release_attestation.py"))
     if rc != 0:
-        out("Could not write the release attestation.")
+        out("Could not write the release attestation (missing git provenance "
+            "or no manifest). Release preparation is NOT complete.")
         return rc
     manifest = load_json(os.path.join(BASE, "artifacts", "release-manifest.json"))
     attestation = load_json(os.path.join(BASE, "artifacts", "release-attestation.json"))
