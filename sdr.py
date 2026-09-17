@@ -601,6 +601,28 @@ def cmd_preflight(args):
             return None, "is in the future"
         return dt, None
 
+    def _months_before(ref, n):
+        """The date exactly n CALENDAR months before ref (a date).
+
+        FedRAMP freshness windows are stated in calendar months ("within the
+        previous 3 months", "more than 9 months old", "within the past 12
+        months", "at least the past 6/18 months"), NOT in fixed day counts. A
+        fixed-day approximation is wrong at the boundary: 2026-06-16 to
+        2026-09-16 is exactly 3 calendar months but 92 days, so a days=91 cutoff
+        would falsely flag a still-fresh assessment as stale. This subtracts
+        real calendar months, clamping the day to the target month's last day
+        (e.g. 3 months before May 31 is Feb 28/29). The 7-day FRC-APP-FCP rule
+        stays in days because the dataset states it in days.
+        """
+        y = ref.year + (ref.month - 1 - n) // 12
+        m = (ref.month - 1 - n) % 12 + 1
+        # Last valid day of the target month (handles 31->30/28/29).
+        if m == 12:
+            last = 31
+        else:
+            last = (_dt.date(y, m + 1, 1) - _dt.timedelta(days=1)).day
+        return _dt.date(y, m, min(ref.day, last))
+
     # Required offering-profile fields. Everything not on the optional allowlist
     # that is still a TBD is a submission blocker, not a warning.
     OPTIONAL_FIELDS = {
@@ -709,7 +731,7 @@ def cmd_preflight(args):
                 when = _dt.date.fromisoformat(str(adate))
                 if when > _dt.date.today():
                     blockers.append(f"Class A: assessment_date is in the future: {adate}")
-                elif (_dt.date.today() - when) > _dt.timedelta(days=365):
+                elif when < _months_before(_dt.date.today(), 12):
                     blockers.append(f"Class A: external assessment {adate} is "
                                     f"older than 12 months (FRC-CLA-ASF)")
             except ValueError:
@@ -756,12 +778,12 @@ def cmd_preflight(args):
                 if when > _dt.date.today():
                     blockers.append(f"Class {cls.upper()}: FIA completed_at is in the future: {completed}")
                 else:
-                    age = _dt.date.today() - when
-                    if age > _dt.timedelta(days=274):  # ~9 months: even freshening is barred
+                    today = _dt.date.today()
+                    if when < _months_before(today, 9):  # older than 9 calendar months
                         blockers.append(f"Class {cls.upper()}: FedRAMP independent assessment "
                                         f"{completed} is older than 9 months; FRC-APP-USA "
                                         "freshening no longer applies - a new assessment is required")
-                    elif age > _dt.timedelta(days=91):  # >3 months: needs a recorded freshening
+                    elif when < _months_before(today, 3):  # older than 3 calendar months
                         fr = fia.get("freshening") or {}
                         basis = str(fia.get("freshness_basis", ""))
                         # FRC-APP-USA: the freshening MUST be performed by a
@@ -821,10 +843,11 @@ def cmd_preflight(args):
     # FRC-CSX-MOT: historical KSI metrics from persistent validation. Class C
     # MUST have >= 6 months for all KSIs; Class D >= 18 months; A/B advisory.
     # Distinct from SDR-CSX-KMT formatting; this is a duration requirement.
-    mot_min_days = {"c": 183, "d": 548}.get(cls)
-    if mot_min_days:
+    mot_min_months = {"c": 6, "d": 18}.get(cls)
+    if mot_min_months:
         import datetime as _d2
         today = _d2.date.today()
+        mot_cutoff = _months_before(today, mot_min_months)
         # FRC-CSX-MOT applies to ALL KSIs. Class C/D resolve all 46.
         mot_ksis = {k.get("ksi_id") for k in ksi_profile.get("indicators", [])}
         # Initial-certification exception: if the service has not operated with
@@ -875,7 +898,7 @@ def cmd_preflight(args):
                             dates.append(_d2.date.fromisoformat(str(ds_)[:10]))
                         except ValueError:
                             pass
-                if not dates or (today - min(dates)) < _d2.timedelta(days=mot_min_days):
+                if not dates or min(dates) > mot_cutoff:
                     short.append(kid)
             if missing:
                 blockers.append(f"Class {cls.upper()}: {len(missing)} in-scope KSI(s) are "

@@ -131,8 +131,24 @@ def summarize(points):
 # against the pinned dataset: Class A MAY, Class B SHOULD, Class C MUST supply
 # status from persistent validation over at least the past 6 months, Class D
 # MUST over at least the past 18 months.
-MOT_MIN_DAYS = {"a": 0, "b": 0, "c": 183, "d": 548}
+MOT_MIN_MONTHS = {"a": 0, "b": 0, "c": 6, "d": 18}
+MOT_MIN_DAYS = {"a": 0, "b": 0, "c": 183, "d": 548}  # informative approximation only
 MOT_FORCE = {"a": "MAY", "b": "SHOULD", "c": "MUST", "d": "MUST"}
+
+
+def _months_before(ref, n):
+    """The date exactly n CALENDAR months before ref, clamping to month-end.
+
+    FedRAMP states the MOT window in calendar months ("at least the past 6/18
+    months"), not fixed days; a day approximation is wrong at month boundaries.
+    """
+    y = ref.year + (ref.month - 1 - n) // 12
+    m = (ref.month - 1 - n) % 12 + 1
+    if m == 12:
+        last = 31
+    else:
+        last = (datetime(y, m + 1, 1).date() - timedelta(days=1)).day
+    return datetime(y, m, min(ref.day, last)).date()
 
 
 def mot_window(series, cls, today):
@@ -142,25 +158,31 @@ def mot_window(series, cls, today):
     the class minimum. This is a coverage measurement, not a determination: a
     covered window says validation status exists over that period, not that the
     control passed. An empty series reports covered=0 and meets=False for C/D.
+    The window is measured in CALENDAR MONTHS (the dataset's unit); covered_days
+    is reported for information only.
     """
     cls = cls.lower()
+    required_months = MOT_MIN_MONTHS.get(cls, 0)
     required = MOT_MIN_DAYS.get(cls, 0)
     force = MOT_FORCE.get(cls, "SHOULD")
     if series:
         earliest = min(datetime.fromisoformat(p["date"]).date() for p in series)
         covered = (today - earliest).days
+        meets = True if not required_months else earliest <= _months_before(today, required_months)
     else:
+        earliest = None
         covered = 0
-    meets = covered >= required if required else True
+        meets = not required_months
     return {
         "class": cls.upper(),
         "force": force,
+        "required_months": required_months,
         "required_days": required,
         "covered_days": covered,
         "meets_window": meets,
         "note": ("Coverage of the persistent-validation window, not a pass/fail "
-                 "verdict. MUST at Class C (>=6 months) and Class D (>=18 months); "
-                 "SHOULD at B; MAY at A."),
+                 "verdict. Measured in calendar months. MUST at Class C "
+                 "(>=6 months) and Class D (>=18 months); SHOULD at B; MAY at A."),
     }
 
 
