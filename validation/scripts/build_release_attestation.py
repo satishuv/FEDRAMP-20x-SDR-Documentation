@@ -75,15 +75,26 @@ def main():
     att = build_attestation()
     if att is None:
         return 1
+    # Fail-closed: a release attestation whose whole purpose is to bind the
+    # manifest to the exact git source is meaningless without that source. If
+    # the commit/tree cannot be resolved, do NOT write a hollow attestation with
+    # null provenance and exit 0 - that would let sdr.py release and the
+    # RELEASE_MODE publish path treat a provenance-less package as releasable.
+    # Refuse instead, consistent with the repo's fail-closed philosophy.
+    if not att["git_available"]:
+        print("FAIL. git commit/tree unavailable (not a git checkout or git "
+              "not on PATH); cannot bind the manifest to a source commit. A "
+              "release attestation requires real provenance - refusing to "
+              "write a null-provenance attestation. Run from a full git "
+              "checkout (the CodePipeline source uses CODEBUILD_CLONE_REF so "
+              "the .git metadata is present).")
+        return 1
     with open(ATTESTATION, "w", encoding="utf-8", newline="\n") as f:
         json.dump(att, f, indent=1)
         f.write("\n")
-    if not att["git_available"]:
-        print("WARNING: git commit/tree unavailable (not a git checkout); "
-              "attestation written with null source provenance.")
     print(f"Release attestation written: {os.path.relpath(ATTESTATION, BASE)}")
     print(f"  manifest sha256 {att['release_manifest_sha256']}")
-    print(f"  source commit   {att['source_commit'] or '(unavailable)'}")
+    print(f"  source commit   {att['source_commit']}")
     return 0
 
 
