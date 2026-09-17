@@ -302,8 +302,16 @@ Resources:
                   - !GetAtt EvidenceBucket.Arn
               - Effect: Allow
                 Action:
+                  # UseConnection is required because the Source stage sets
+                  # OutputArtifactFormat: CODEBUILD_CLONE_REF (git full clone).
+                  # AWS requires the CodeBuild *service role* (not just the
+                  # pipeline role) to hold UseConnection or the initial full
+                  # clone build fails. GetConnection/GetConnectionToken alone
+                  # are insufficient for the full-clone artifact path.
+                  - codeconnections:UseConnection
                   - codeconnections:GetConnectionToken
                   - codeconnections:GetConnection
+                  - codestar-connections:UseConnection
                   - codestar-connections:GetConnectionToken
                   - codestar-connections:GetConnection
                 Resource: !Ref ConnectionArn

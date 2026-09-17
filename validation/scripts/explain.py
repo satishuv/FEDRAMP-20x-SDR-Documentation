@@ -129,7 +129,18 @@ def _explain_rule(rid, cls):
     L.append(f"Family: {fam} ({fam_frr.get(fam, fam)})")
     L.append(f"Force: {force or 'stated in rule text'}  "
              f"(MUST is mandatory, SHOULD is expected, MAY is optional)")
-    L.append(f"Applies at: Class {cls.upper()} (current offering profile)")
+    # Consult the applicability decision BEFORE claiming the rule applies. A rule
+    # can be excluded from the current class offering (e.g. varies_by_class /
+    # subset applicability), in which case "Applies at" would be misleading.
+    decision = _decision(rid)
+    if decision is not None and decision.get("applicable") is False:
+        L.append(f"Applies at: NOT applicable to the current Class {cls.upper()} "
+                 f"offering - {decision.get('reason') or 'excluded by applicability decision'}")
+    elif decision is not None and decision.get("applicable") is True:
+        L.append(f"Applies at: Class {cls.upper()} (current offering profile)")
+    else:
+        L.append(f"Applies at: Class {cls.upper()} (current offering profile; "
+                 f"no applicability decision found - treat as unresolved)")
     L.append("")
     L.append("What FedRAMP requires (verbatim from the dataset):")
     L.append(f"  {statement or 'No statement resolvable for this class.'}")
@@ -146,7 +157,7 @@ def _explain_rule(rid, cls):
     arts = ext.get("rule_artifacts", []) if ext else []
     L.append(f"  Rule-specific artifacts: "
              f"{'; '.join(str(a) for a in arts) if arts else 'None recorded'}")
-    _augment(L, _graph_node(rid), _decision(rid))
+    _augment(L, _graph_node(rid), decision)
     L.append("")
     L.append("This summary is generated from the dataset and your record store. "
              "It is not a compliance determination; a human owns that.")

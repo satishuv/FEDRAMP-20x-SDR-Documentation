@@ -25,6 +25,8 @@ import os
 import sys
 
 BASE = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, os.path.join(BASE, "validation", "scripts"))
+from fedramp_time import add_calendar_months  # noqa: E402
 PROFILE = os.path.join(BASE, "profiles", "common", "offering-profile.json")
 OUT_JSON = os.path.join(BASE, "package", "ocr", "ocr-example.json")
 OUT_MD = os.path.join(BASE, "package", "ocr", "ocr-example.md")
@@ -43,12 +45,13 @@ def dump_json(obj, path):
 
 def build_ocr(profile):
     # Deterministic example period derived from the pinned dataset date, never
-    # a run timestamp, so the example is byte-stable across builds. A 3-month
-    # period ending on the dataset date.
+    # a run timestamp, so the example is byte-stable across builds. CCM-OCR-AVL
+    # states the cadence in calendar months ("every 3 months"), so use real
+    # calendar-month arithmetic, not a 90-day approximation.
     dataset_date = "-".join(profile["dataset_version"].split(".")[:3])
     to_d = datetime.date.fromisoformat(dataset_date)
-    from_d = (to_d - datetime.timedelta(days=90))
-    horizon = (to_d + datetime.timedelta(days=90))
+    from_d = add_calendar_months(to_d, -3)
+    horizon = add_calendar_months(to_d, 3)
     cpo_uri = profile.get("certification_package_overview_uri") \
         or "https://example.provider.gov-placeholder/cpo.json"
     doc = {

@@ -144,9 +144,12 @@ def main():
                                         f"reviewed-not-current={extra[:3]}")
         # Referential: the assurance_id must resolve, if the graph is present.
         if graph_ids is not None and aid and aid not in graph_ids:
-            # Allow an ASR- prefixed id whose tail is a real rule/ksi id.
+            # Allow ONLY an ASR- prefixed id whose tail is EXACTLY a real graph
+            # id. A substring match ('any(g in aid ...)') is rejected: a fake id
+            # that merely contains a legitimate id as a substring must not
+            # resolve.
             tail = aid.split("ASR-")[-1] if aid.startswith("ASR-") else aid
-            if tail not in graph_ids and not any(g in aid for g in graph_ids):
+            if tail not in graph_ids:
                 problems.append(f"{where}: assurance_id '{aid}' does not resolve in the assurance graph")
 
     # Package-level signoff (distinct from per-node reviews). Only validated

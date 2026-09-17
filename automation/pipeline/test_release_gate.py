@@ -97,6 +97,33 @@ def main():
           re.search(r'RELEASE_MODE[\s\S]{0,120}?"true"', vp) is not None
           or re.search(r'RELEASE_MODE[\s\S]{0,120}?true', vp) is not None)
 
+    # Full-clone IAM: if the Source stage produces a CODEBUILD_CLONE_REF (git
+    # full clone) artifact, the CodeBuild *service role* consuming it MUST hold
+    # UseConnection scoped to the connection - AWS fails the initial full-clone
+    # build otherwise, and GetConnection/GetConnectionToken alone do not cover
+    # it. This guards against the permission silently regressing.
+    uses_full_clone = "CODEBUILD_CLONE_REF" in pipeline
+    check("Source stage requests a git full clone (CODEBUILD_CLONE_REF)",
+          uses_full_clone)
+    if uses_full_clone:
+        # ValidateProject consumes the full-clone artifact and runs under
+        # CodeBuildRole; that role's policy must grant UseConnection.
+        vp_role = re.search(r'ServiceRole:\s*!GetAtt\s+(\w+)\.Arn', vp)
+        role_name = vp_role.group(1) if vp_role else None
+        check("ValidateProject runs under a named CodeBuild service role",
+              role_name is not None)
+        # Isolate that role's definition block in the template.
+        role_block = ""
+        if role_name:
+            m = re.search(
+                r'^\s{2}' + re.escape(role_name) + r':\n[\s\S]*?(?=\n\s{2}\w+:\n)',
+                pipeline, re.MULTILINE)
+            role_block = m.group(0) if m else ""
+        check(f"{role_name or 'ValidateProject role'} grants codeconnections:UseConnection",
+              "codeconnections:UseConnection" in role_block)
+        check(f"{role_name or 'ValidateProject role'} grants codestar-connections:UseConnection",
+              "codestar-connections:UseConnection" in role_block)
+
     # Bundle-vs-manifest parity: every artifact the release manifest fingerprints
     # Active-class bundle: the publish path assembles the bundle from exactly
     # what the release manifest fingerprints (active class only), not from
