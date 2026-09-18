@@ -120,6 +120,7 @@ TEST_SUITE = [
     "validation/scripts/test_vvk_automated_methods.py",
     "validation/scripts/test_class_a_framework.py",
     "validation/scripts/test_class_a_applicable_scope.py",
+    "validation/scripts/test_evidence_freshness.py",
     "validation/scripts/test_evidence_integrity.py",
     "validation/scripts/test_applicability.py",
     "automation/exporters/test_oscal_export.py",
@@ -326,6 +327,56 @@ def submitted_rule_ids(profile_rules, cls, selected_optional=None):
             if r.get("class_a_obligation") != "optional" or r.get("rule_id") in selected
         }
     return ids
+
+
+# Evidence freshness for the submission gate. FedRAMP guidance is explicit that
+# "stale screenshots, expired exports, outdated descriptions, or old evidence
+# can cause rejection." This classifies an evidence observation's freshness so
+# preflight can gate on EXPIRED evidence backing a populated claim, while never
+# equating stale evidence with noncompliance and never touching a status
+# (collection failure != control failure; stale != noncompliant).
+DEFAULT_EVIDENCE_FRESHNESS_DAYS = 90
+
+
+def _evidence_observed_at(ev):
+    """Extract the observation timestamp from an evidence entry, tolerating the
+    three field names the collectors/adapters use. Returns a string or None."""
+    if not isinstance(ev, dict):
+        return None
+    return (ev.get("lastUpdated") or ev.get("collected_at")
+            or ev.get("observed_at") or None)
+
+
+def classify_evidence_freshness(observed_at, now, policy_days=DEFAULT_EVIDENCE_FRESHNESS_DAYS):
+    """Return 'current' | 'stale' | 'expired' | 'undated' for one evidence
+    observation. 'current' within policy_days; 'stale' up to 2x policy_days;
+    'expired' beyond; 'undated' when there is no parseable timestamp (undated
+    evidence is a reporting matter for the linkage check, never an expiry
+    blocker here). now and observed_at are datetimes/ISO strings."""
+    import datetime as _d
+    if not observed_at:
+        return "undated"
+    s = str(observed_at).replace("Z", "+00:00")
+    obs = None
+    for parse in (lambda: _d.datetime.fromisoformat(s),
+                  lambda: _d.datetime.fromisoformat(s[:10])):
+        try:
+            obs = parse()
+            break
+        except ValueError:
+            continue
+    if obs is None:
+        return "undated"
+    if obs.tzinfo is None:
+        obs = obs.replace(tzinfo=_d.timezone.utc)
+    now = now if now.tzinfo else now.replace(tzinfo=_d.timezone.utc)
+    fresh_until = obs + _d.timedelta(days=policy_days)
+    hard_expiry = obs + _d.timedelta(days=policy_days * 2)
+    if now <= fresh_until:
+        return "current"
+    if now <= hard_expiry:
+        return "stale"
+    return "expired"
 
 
 def cmd_build(args):
@@ -758,6 +809,7 @@ def cmd_preflight(args):
         "provider_verified_at", "dr_region", "iac_technology",
         "materials_item_schema", "note",
         "selected_optional_rules", "_selected_optional_rules_note",
+        "evidence_freshness_policy_days",
     }
     REQUIRED_FIELDS = [
         "organization_name", "offering_name", "offering_abbreviation",
@@ -1233,6 +1285,63 @@ def cmd_preflight(args):
                         f"implementation information (still placeholder/TBD, not an "
                         f"honest Not-Implemented with rationale): {sample}"
                         + (" ..." if len(unanswered) > 8 else ""))
+
+    # Evidence freshness at submission. FedRAMP guidance: "stale screenshots,
+    # expired exports, outdated descriptions, or old evidence can cause
+    # rejection." For each POPULATED applicable record carrying DATED evidence,
+    # classify freshness against the offering's policy (default 90 days; hard
+    # expiry at 2x). EXPIRED evidence backing an active claim is a readiness
+    # defect: a blocker at Class C/D (mirroring evidence-linkage force), a
+    # warning at A/B. STALE evidence is always a warning. This never changes a
+    # status and never treats UNDATED or MISSING evidence as expiry (missing
+    # evidence is the linkage check's job); it classifies only.
+    import datetime as _d3
+    now_ef = _d3.datetime.now(_d3.timezone.utc)
+    policy_days = offering.get("evidence_freshness_policy_days") or DEFAULT_EVIDENCE_FRESHNESS_DAYS
+    try:
+        policy_days = int(policy_days)
+    except (TypeError, ValueError):
+        policy_days = DEFAULT_EVIDENCE_FRESHNESS_DAYS
+    expired_ev, stale_ev = [], []
+
+    def _scan_freshness(rid, rec):
+        impl = rec.get("implementation")
+        populated = _answered(impl) and not any(
+            "TBD" in str(x) for x in (impl if isinstance(impl, list) else [impl]))
+        if not populated:
+            return
+        for ev in (rec.get("evidence") or []):
+            observed = _evidence_observed_at(ev)
+            state = classify_evidence_freshness(observed, now_ef, policy_days)
+            if state == "expired":
+                expired_ev.append(rid)
+                break
+            if state == "stale":
+                stale_ev.append(rid)
+                break
+
+    for rid, rec in (records.get("frr", {}) or {}).items():
+        if rid in applicable_frr:
+            _scan_freshness(rid, rec)
+    for kid, rec in (records.get("ksi", {}) or {}).items():
+        if kid in applicable_ksi:
+            _scan_freshness(kid, rec)
+    if expired_ev:
+        msg = (f"{len(expired_ev)} applicable populated record(s) are backed only by "
+               f"EXPIRED evidence (older than {policy_days * 2} days; FedRAMP: expired "
+               f"exports/old evidence can cause rejection). Refresh the evidence before "
+               f"submission: {', '.join(sorted(set(expired_ev))[:8])}"
+               + (" ..." if len(set(expired_ev)) > 8 else ""))
+        if cls in ("c", "d"):
+            blockers.append(msg)
+        else:
+            warnings.append(msg + " (advisory at Class " + cls.upper() + ")")
+    if stale_ev:
+        warnings.append(
+            f"{len(set(stale_ev))} applicable populated record(s) have STALE evidence "
+            f"(older than {policy_days} days but not yet expired): "
+            f"{', '.join(sorted(set(stale_ev))[:8])}"
+            + (" ..." if len(set(stale_ev)) > 8 else ""))
 
     # Scan the GENERATED submission artifacts, not merely the input profile. A
     # generated CPO carrying template markers, placeholder IDs/URLs, or recorded
