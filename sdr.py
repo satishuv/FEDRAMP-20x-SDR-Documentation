@@ -1242,17 +1242,47 @@ def cmd_preflight(args):
             gaps.insert(0, "implementation-or-resulting-customer-risk")
         return gaps
 
-    def _ksi_gaps(rec):
+    # SDR-CSX-KMT daily data (Class C/D MUST): the actual daily metric data up
+    # to the past year, DERIVED from the immutable metric-history.json snapshot
+    # (the same durable store the MOT gate reads), not a hand-authored field and
+    # NOT the optional dailyDataReference URI. CR26 requires the data, not a URL,
+    # so a package with real daily observations but no external pointer must pass,
+    # while one whose durable history has no daily observations for an applicable
+    # KSI must block. "(where available)" is honored: a KSI genuinely absent from
+    # history is caught by the FRC-CSX-MOT coverage gate above, not double-blocked
+    # here - this check only fires when the KSI IS in history but has zero
+    # in-window daily observations.
+    _kmt_hist = load_json(os.path.join(BASE, "automation", "metrics", "metric-history.json")) or {}
+    _kmt_ksis = (_kmt_hist.get("ksis", _kmt_hist) if isinstance(_kmt_hist, dict) else {}) or {}
+
+    def _daily_series_for(kid):
+        import datetime as _dk
+        entry = _kmt_ksis.get(kid)
+        series = entry.get("series") if isinstance(entry, dict) else entry
+        if not isinstance(series, list):
+            return []
+        cutoff = (_dk.date.today() - _dk.timedelta(days=365)).isoformat()
+        return [p for p in series
+                if isinstance(p, dict) and str(p.get("date", ""))[:10] >= cutoff]
+
+    def _ksi_gaps(kid, rec):
         """Missing required SDR-CSX-KSI items for one KSI record (5 items),
-        plus SDR-CSX-KMT historical-metric summaries where they are MUST.
+        plus SDR-CSX-KMT historical-metric content where it is MUST.
         SDR-CSX-KMT force by class: A MAY (not gated); B MUST (30-day + yearly
-        summaries); C/D MUST (those PLUS a daily-data reference). Presence of the
-        KMT keys is checked elsewhere; here we require the VALUES be resolved
-        (not TBD) so a Class B/C package cannot be 'ready' with empty metric
-        summaries - the gap this closes."""
+        summaries); C/D MUST (those PLUS the actual daily metric data up to the
+        past year). Values must be resolved (not TBD) so a Class B/C package
+        cannot be 'ready' with empty metric summaries.
+
+        The first SDR-CSX-KSI item is an OR, verbatim: "Explanation of measures
+        (and their objectives) ... OR an explanation of the reason and resulting
+        risk to customers for not having measures available." So it is satisfied
+        by EITHER answered measures/implementation OR the resulting-customer-risk
+        extension - not measures alone."""
         ext = rec.get("extension", {}) or {}
+        measures_or_risk = (_answered(rec.get("implementation")) or _answered(ext.get("measures"))
+                            or _answered(ext.get("resulting_customer_risk"))
+                            or _answered(ext.get("customer_risk")))
         checks = {
-            "measures": rec.get("implementation") or ext.get("measures"),
             "cycle": ext.get("operating_cycle") or ext.get("cycle"),
             "measures_verification": ext.get("measures_verification"),
             "automation_verification": ext.get("automation_verification"),
@@ -1262,9 +1292,18 @@ def cmd_preflight(args):
             hm = rec.get("historical_metrics", {}) or {}
             checks["kmt_last_30_days"] = hm.get("last_30_days")
             checks["kmt_up_to_one_year"] = hm.get("up_to_one_year")
-            if cls in ("c", "d"):
-                checks["kmt_daily_data_reference"] = hm.get("daily_data_reference")
-        return [k for k, v in checks.items() if not _answered(v)]
+        gaps = [k for k, v in checks.items() if not _answered(v)]
+        if not measures_or_risk:
+            gaps.insert(0, "measures-or-resulting-customer-risk")
+        if cls in ("c", "d"):
+            # Class C/D MUST supply the actual daily metric data (SDR-CSX-KMT),
+            # derived from the durable history. Require a non-empty in-window
+            # daily series for a KSI that IS present in history; a KSI wholly
+            # absent from history is left to the FRC-CSX-MOT coverage gate so it
+            # is not double-blocked here ("where available").
+            if kid in _kmt_ksis and not _daily_series_for(kid):
+                gaps.append("kmt_daily_data (no in-window daily observations in metric history)")
+        return gaps
 
     tbd = placeholders = scoped_records = 0
     unanswered = []
@@ -1277,7 +1316,7 @@ def cmd_preflight(args):
     for kid, rec in (records.get("ksi", {}) or {}).items():
         if kid in applicable_ksi:
             t, p = _count_markers(rec); tbd += t; placeholders += p; scoped_records += 1
-            gaps = _ksi_gaps(rec)
+            gaps = _ksi_gaps(kid, rec)
             if gaps:
                 unanswered.append(f"{kid} (missing: {','.join(gaps)})")
     if tbd:

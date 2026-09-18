@@ -105,6 +105,28 @@ def test_ksi_semantic_block_present_in_official_json():
     assert sem["resultingCustomerRisk"] == "kcr-" + SENTINEL
     assert sem["historicalMetrics"]["dailyData"] == [{"date": "2026-09-01", "value": "daily-" + SENTINEL}]
     assert sem["historicalMetrics"]["dailyDataReference"] == "daily-" + SENTINEL
+    # When a derived series (from the immutable metric history) is supplied, it
+    # is PREFERRED over the hand-authored store field, so the submitted daily
+    # data is the durable persistence data and cannot drift.
+    derived = [{"date": "2026-09-02", "status": "pass"}]
+    sem_d = build_sdr.ksi_semantic(_sample_records()["ksi"]["KSI-CNA-RNT"], derived)
+    assert sem_d["historicalMetrics"]["dailyData"] == derived, \
+        "derived metric-history series must take precedence over the store field"
+
+
+def test_derive_daily_data_windows_to_past_year():
+    import datetime as _d
+    today = _d.date.today()
+    recent = (today - _d.timedelta(days=10)).isoformat()
+    old = (today - _d.timedelta(days=400)).isoformat()
+    mh = {"ksis": {"KSI-X": {"series": [
+        {"date": old, "status": "pass"},
+        {"date": recent, "status": "pass"},
+    ]}}}
+    out = build_sdr._derive_daily_data("KSI-X", mh)
+    assert [p["date"] for p in out] == [recent], "past-year window must drop >365d points"
+    assert build_sdr._derive_daily_data("KSI-MISSING", mh) == [], \
+        "a KSI absent from history yields an empty series (where available)"
 
 
 def test_absent_value_becomes_tbd_not_dropped():

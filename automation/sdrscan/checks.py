@@ -39,6 +39,24 @@ NA_MIN_JUSTIFICATION = 40
 
 VALID_STATUS = ("Implemented", "Not Implemented", "Partially Implemented")
 
+
+def _count_automated(tests):
+    """Count DISTINCT AUTOMATED methods from a KSI's structured authoring
+    `tests` list (records-store), matching validate_sdr.count_automated_methods
+    so the scanner and the release gate agree on FRC-CSX-VVK. Only dict entries
+    with automated == True count; identity is method_id else normalized text;
+    plain strings (flattened, automated-ness unknown) do NOT count."""
+    if not isinstance(tests, list):
+        return 0
+    seen = set()
+    for t in tests:
+        if isinstance(t, dict) and t.get("automated") is True:
+            ident = t.get("method_id") or str(
+                t.get("method") or t.get("name") or t.get("description") or "").strip().lower()
+            if ident:
+                seen.add(ident)
+    return len(seen)
+
 EVIDENCE_TYPES = ("Log", "Report", "Screenshot", "Configuration", "Policy",
                   "Procedure", "Audit Record")
 
@@ -355,10 +373,17 @@ def ksi_checks(ctx):
         add("ksi_independent_assessment_recorded", stated(entry.get("ksiAssessment")),
             f"ksiAssessment: {_why(entry.get('ksiAssessment'))}")
 
-        tests = entry.get("ksiTests") or []
+        # FRC-CSX-VVK: count DISTINCT AUTOMATED methods from the structured
+        # AUTHORING record (records-store tests), not the flattened ksiTests
+        # strings in the official SDR - a flattened string array loses the
+        # automated/manual distinction, so len(ksiTests) over-counts. Reuse the
+        # validator's shared counter so scanner and release-gate agree.
+        authoring_tests = ctx.records["ksi"].get(kid, {}).get("tests") or []
+        automated_count = _count_automated(authoring_tests)
         need = minimums.get(kid, 0)
-        add("ksi_test_minimum_met", len(tests) >= need,
-            f"{len(tests)} automated method(s) defined, class {cls.upper()} minimum is {need}")
+        add("ksi_test_minimum_met", automated_count >= need,
+            f"{automated_count} distinct automated method(s) in authoring record, "
+            f"class {cls.upper()} minimum is {need}")
 
         ev = entry.get("ksiEvidence") or []
         add("ksi_evidence_present", bool(ev),
@@ -385,8 +410,17 @@ def ksi_checks(ctx):
                 f"up-to-one-year summary: {_why(hist.get('up_to_one_year'))}; "
                 "required where available")
         if cls == "c":
-            add("ksi_metrics_daily_data", stated(hist.get("daily_data_reference")),
-                f"daily metric data reference: {_why(hist.get('daily_data_reference'))}")
+            # SDR-CSX-KMT Class C MUST supply the actual daily metric data (the
+            # dailyData series now emitted in the SDR, derived from durable
+            # history), NOT merely a reference URL. Read the generated SDR's
+            # dailyData for this KSI; the reference URI is optional.
+            _ksi_sem = next((e.get("providerExtensions", {}).get("xFedRampSemantic", {})
+                             for e in ctx.sdr.get("keySecurityIndicators", [])
+                             if e.get("ksiId") == kid), {})
+            _daily = (_ksi_sem.get("historicalMetrics", {}) or {}).get("dailyData") or []
+            add("ksi_metrics_daily_data", bool(_daily),
+                f"{len(_daily)} in-SDR daily observation(s) (Class C MUST supply the "
+                "actual daily metric data; the reference URL is optional)")
         else:
             add("ksi_metrics_daily_data", True,
                 f"daily metric data is a Class C requirement; class is {cls.upper()}")

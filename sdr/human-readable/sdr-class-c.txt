@@ -30,6 +30,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: Example: Security Operations Manager
 
@@ -46,6 +47,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -62,6 +64,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -78,6 +81,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -94,6 +98,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -110,6 +115,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -126,6 +132,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -142,6 +149,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -158,6 +166,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -174,6 +183,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -190,6 +200,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -206,6 +217,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -222,6 +234,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -238,6 +251,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -254,6 +268,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -270,6 +285,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -286,6 +302,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -302,6 +319,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -318,6 +336,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -334,6 +353,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -350,6 +370,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -366,6 +387,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -382,6 +404,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -398,6 +421,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -414,6 +438,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -430,6 +455,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -446,6 +472,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -462,6 +489,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -478,6 +506,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -494,6 +523,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -510,6 +540,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -526,6 +557,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -542,6 +574,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -558,6 +591,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -574,6 +608,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -590,6 +625,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -606,6 +642,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -622,6 +659,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -638,6 +676,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -654,6 +693,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -670,6 +710,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -686,6 +727,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -702,6 +744,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -718,6 +761,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -734,6 +778,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -750,6 +795,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -766,6 +812,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -782,6 +829,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -798,6 +846,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -814,6 +863,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -830,6 +880,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -846,6 +897,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -862,6 +914,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -878,6 +931,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -894,6 +948,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: Example: Compliance Engineering Lead
 
@@ -910,6 +965,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -926,6 +982,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -942,6 +999,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -958,6 +1016,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -974,6 +1033,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -990,6 +1050,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1006,6 +1067,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1022,6 +1084,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1038,6 +1101,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1054,6 +1118,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1070,6 +1135,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1086,6 +1152,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1102,6 +1169,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1118,6 +1186,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1134,6 +1203,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1150,6 +1220,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1166,6 +1237,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1182,6 +1254,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1198,6 +1271,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1214,6 +1288,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1230,6 +1305,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1246,6 +1322,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1262,6 +1339,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1278,6 +1356,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1294,6 +1373,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1310,6 +1390,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1326,6 +1407,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1342,6 +1424,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1358,6 +1441,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1374,6 +1458,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1390,6 +1475,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1406,6 +1492,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1422,6 +1509,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1438,6 +1526,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1454,6 +1543,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1470,6 +1560,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1486,6 +1577,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1502,6 +1594,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1518,6 +1611,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1534,6 +1628,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1550,6 +1645,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1566,6 +1662,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1582,6 +1679,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1598,6 +1696,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1614,6 +1713,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1630,6 +1730,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1646,6 +1747,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1662,6 +1764,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1678,6 +1781,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1694,6 +1798,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1710,6 +1815,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1726,6 +1832,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1742,6 +1849,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1758,6 +1866,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1774,6 +1883,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1790,6 +1900,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1806,6 +1917,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1822,6 +1934,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1838,6 +1951,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1854,6 +1968,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1870,6 +1985,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1886,6 +2002,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1902,6 +2019,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1918,6 +2036,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1934,6 +2053,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1950,6 +2070,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1966,6 +2087,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -1982,6 +2104,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: Example: Vulnerability Management Lead
 
@@ -1998,6 +2121,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -2014,6 +2138,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -2030,6 +2155,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -2046,6 +2172,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -2062,6 +2189,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -2078,6 +2206,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -2094,6 +2223,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -2110,6 +2240,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -2126,6 +2257,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -2142,6 +2274,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -2158,6 +2291,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -2174,6 +2308,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -2190,6 +2325,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -2206,6 +2342,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -2222,6 +2359,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -2238,6 +2376,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -2254,6 +2393,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -2270,6 +2410,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -2286,6 +2427,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -2302,6 +2444,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -2318,6 +2461,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -2334,6 +2478,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -2350,6 +2495,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -2366,6 +2512,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -2382,6 +2529,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -2398,6 +2546,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -2414,6 +2563,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -2430,6 +2580,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -2446,6 +2597,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -2462,6 +2614,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -2478,6 +2631,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -2494,6 +2648,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -2510,6 +2665,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -2526,6 +2682,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -2542,6 +2699,7 @@ Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
 Responses to independent review comments: None recorded
+Senior official acceptance (if not implemented): Not required: rule is followed
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
@@ -2556,6 +2714,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
 Verification of supporting automation: TBD: Information has not been provided.
@@ -2563,7 +2722,8 @@ Minimum automated methods for this class: 2
 Historical metrics required for this class: Class B summaries plus all daily metric data up to the past year where available.
 Historical metrics, 30-day summary: TBD: Information has not been provided.
 Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
+Historical metrics, daily data (Class C): none available
+Historical metrics, daily data reference (optional): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -2576,6 +2736,7 @@ Implementation: Example (reference architecture, replace with your real implemen
 Validation: Example (reference architecture, replace with your real implementation): A scheduled validation confirms the organization trail is logging, multi-region, and log-file validated, and that AWS Config recorders are running in every in-scope account and region. An EventBridge rule alerts on any out-of-pipeline write event by a non-pipeline principal.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
 Verification of supporting automation: TBD: Information has not been provided.
@@ -2583,7 +2744,8 @@ Minimum automated methods for this class: 2
 Historical metrics required for this class: Class B summaries plus all daily metric data up to the past year where available.
 Historical metrics, 30-day summary: TBD: Information has not been provided.
 Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
+Historical metrics, daily data (Class C): none available
+Historical metrics, daily data reference (optional): TBD: Information has not been provided.
 Tests: Example test 1: describe-trails confirms multi-region and log file validation are enabled and the trail is logging (every 6 hours).; Example test 2: Config aggregator query confirms recorder status is recording in 100 percent of in-scope accounts (daily).
 Owner: Example: Platform Engineering Lead
 
@@ -2596,6 +2758,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
 Verification of supporting automation: TBD: Information has not been provided.
@@ -2603,7 +2766,8 @@ Minimum automated methods for this class: 2
 Historical metrics required for this class: Class B summaries plus all daily metric data up to the past year where available.
 Historical metrics, 30-day summary: TBD: Information has not been provided.
 Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
+Historical metrics, daily data (Class C): none available
+Historical metrics, daily data reference (optional): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -2616,6 +2780,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
 Verification of supporting automation: TBD: Information has not been provided.
@@ -2623,7 +2788,8 @@ Minimum automated methods for this class: 2
 Historical metrics required for this class: Class B summaries plus all daily metric data up to the past year where available.
 Historical metrics, 30-day summary: TBD: Information has not been provided.
 Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
+Historical metrics, daily data (Class C): none available
+Historical metrics, daily data reference (optional): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -2636,6 +2802,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
 Verification of supporting automation: TBD: Information has not been provided.
@@ -2643,7 +2810,8 @@ Minimum automated methods for this class: 2
 Historical metrics required for this class: Class B summaries plus all daily metric data up to the past year where available.
 Historical metrics, 30-day summary: TBD: Information has not been provided.
 Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
+Historical metrics, daily data (Class C): none available
+Historical metrics, daily data reference (optional): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -2656,6 +2824,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
 Verification of supporting automation: TBD: Information has not been provided.
@@ -2663,7 +2832,8 @@ Minimum automated methods for this class: 2
 Historical metrics required for this class: Class B summaries plus all daily metric data up to the past year where available.
 Historical metrics, 30-day summary: TBD: Information has not been provided.
 Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
+Historical metrics, daily data (Class C): none available
+Historical metrics, daily data reference (optional): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -2676,6 +2846,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
 Verification of supporting automation: TBD: Information has not been provided.
@@ -2683,7 +2854,8 @@ Minimum automated methods for this class: 2
 Historical metrics required for this class: Class B summaries plus all daily metric data up to the past year where available.
 Historical metrics, 30-day summary: TBD: Information has not been provided.
 Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
+Historical metrics, daily data (Class C): none available
+Historical metrics, daily data reference (optional): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -2696,6 +2868,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
 Verification of supporting automation: TBD: Information has not been provided.
@@ -2703,7 +2876,8 @@ Minimum automated methods for this class: 2
 Historical metrics required for this class: Class B summaries plus all daily metric data up to the past year where available.
 Historical metrics, 30-day summary: TBD: Information has not been provided.
 Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
+Historical metrics, daily data (Class C): none available
+Historical metrics, daily data reference (optional): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -2716,6 +2890,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
 Verification of supporting automation: TBD: Information has not been provided.
@@ -2723,7 +2898,8 @@ Minimum automated methods for this class: 2
 Historical metrics required for this class: Class B summaries plus all daily metric data up to the past year where available.
 Historical metrics, 30-day summary: TBD: Information has not been provided.
 Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
+Historical metrics, daily data (Class C): none available
+Historical metrics, daily data reference (optional): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -2736,6 +2912,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
 Verification of supporting automation: TBD: Information has not been provided.
@@ -2743,7 +2920,8 @@ Minimum automated methods for this class: 2
 Historical metrics required for this class: Class B summaries plus all daily metric data up to the past year where available.
 Historical metrics, 30-day summary: TBD: Information has not been provided.
 Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
+Historical metrics, daily data (Class C): none available
+Historical metrics, daily data reference (optional): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -2756,6 +2934,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
 Verification of supporting automation: TBD: Information has not been provided.
@@ -2763,7 +2942,8 @@ Minimum automated methods for this class: 2
 Historical metrics required for this class: Class B summaries plus all daily metric data up to the past year where available.
 Historical metrics, 30-day summary: TBD: Information has not been provided.
 Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
+Historical metrics, daily data (Class C): none available
+Historical metrics, daily data reference (optional): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -2776,6 +2956,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
 Verification of supporting automation: TBD: Information has not been provided.
@@ -2783,7 +2964,8 @@ Minimum automated methods for this class: 2
 Historical metrics required for this class: Class B summaries plus all daily metric data up to the past year where available.
 Historical metrics, 30-day summary: TBD: Information has not been provided.
 Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
+Historical metrics, daily data (Class C): none available
+Historical metrics, daily data reference (optional): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -2796,6 +2978,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
 Verification of supporting automation: TBD: Information has not been provided.
@@ -2803,7 +2986,8 @@ Minimum automated methods for this class: 2
 Historical metrics required for this class: Class B summaries plus all daily metric data up to the past year where available.
 Historical metrics, 30-day summary: TBD: Information has not been provided.
 Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
+Historical metrics, daily data (Class C): none available
+Historical metrics, daily data reference (optional): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -2816,6 +3000,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
 Verification of supporting automation: TBD: Information has not been provided.
@@ -2823,7 +3008,8 @@ Minimum automated methods for this class: 2
 Historical metrics required for this class: Class B summaries plus all daily metric data up to the past year where available.
 Historical metrics, 30-day summary: TBD: Information has not been provided.
 Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
+Historical metrics, daily data (Class C): none available
+Historical metrics, daily data reference (optional): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -2836,6 +3022,7 @@ Implementation: Example (reference architecture, replace with your real implemen
 Validation: Example (reference architecture, replace with your real implementation): A daily AWS Config custom rule checks that no IAM users have console passwords or active access keys. A daily Identity Center API check confirms MFA enforcement is active for every permission set. A CloudTrail Lake query detects any console login event without MFA; any hit creates a high-priority ticket within 15 minutes.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: Example: percent of authentications using FIDO2; count of MFA-less console logins (target 0).
+Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: Example: continuous enforcement, daily automated checks.
 Verification of measures: TBD: Information has not been provided.
 Verification of supporting automation: TBD: Information has not been provided.
@@ -2843,7 +3030,8 @@ Minimum automated methods for this class: 2
 Historical metrics required for this class: Class B summaries plus all daily metric data up to the past year where available.
 Historical metrics, 30-day summary: TBD: Information has not been provided.
 Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
+Historical metrics, daily data (Class C): none available
+Historical metrics, daily data reference (optional): TBD: Information has not been provided.
 Tests: Example test 1: config rule iam-user-no-passwords-or-keys returns COMPLIANT for all accounts (daily).; Example test 2: CloudTrail Lake query for console login events without MFA returns zero rows (daily).
 Owner: Example: Identity and Access Lead
 
@@ -2856,6 +3044,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
 Verification of supporting automation: TBD: Information has not been provided.
@@ -2863,7 +3052,8 @@ Minimum automated methods for this class: 2
 Historical metrics required for this class: Class B summaries plus all daily metric data up to the past year where available.
 Historical metrics, 30-day summary: TBD: Information has not been provided.
 Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
+Historical metrics, daily data (Class C): none available
+Historical metrics, daily data reference (optional): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -2876,6 +3066,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
 Verification of supporting automation: TBD: Information has not been provided.
@@ -2883,7 +3074,8 @@ Minimum automated methods for this class: 2
 Historical metrics required for this class: Class B summaries plus all daily metric data up to the past year where available.
 Historical metrics, 30-day summary: TBD: Information has not been provided.
 Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
+Historical metrics, daily data (Class C): none available
+Historical metrics, daily data reference (optional): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -2896,6 +3088,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
 Verification of supporting automation: TBD: Information has not been provided.
@@ -2903,7 +3096,8 @@ Minimum automated methods for this class: 2
 Historical metrics required for this class: Class B summaries plus all daily metric data up to the past year where available.
 Historical metrics, 30-day summary: TBD: Information has not been provided.
 Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
+Historical metrics, daily data (Class C): none available
+Historical metrics, daily data reference (optional): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -2916,6 +3110,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
 Verification of supporting automation: TBD: Information has not been provided.
@@ -2923,7 +3118,8 @@ Minimum automated methods for this class: 2
 Historical metrics required for this class: Class B summaries plus all daily metric data up to the past year where available.
 Historical metrics, 30-day summary: TBD: Information has not been provided.
 Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
+Historical metrics, daily data (Class C): none available
+Historical metrics, daily data reference (optional): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -2936,6 +3132,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
 Verification of supporting automation: TBD: Information has not been provided.
@@ -2943,7 +3140,8 @@ Minimum automated methods for this class: 2
 Historical metrics required for this class: Class B summaries plus all daily metric data up to the past year where available.
 Historical metrics, 30-day summary: TBD: Information has not been provided.
 Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
+Historical metrics, daily data (Class C): none available
+Historical metrics, daily data reference (optional): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -2956,6 +3154,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
 Verification of supporting automation: TBD: Information has not been provided.
@@ -2963,7 +3162,8 @@ Minimum automated methods for this class: 2
 Historical metrics required for this class: Class B summaries plus all daily metric data up to the past year where available.
 Historical metrics, 30-day summary: TBD: Information has not been provided.
 Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
+Historical metrics, daily data (Class C): none available
+Historical metrics, daily data reference (optional): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -2976,6 +3176,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
 Verification of supporting automation: TBD: Information has not been provided.
@@ -2983,7 +3184,8 @@ Minimum automated methods for this class: 2
 Historical metrics required for this class: Class B summaries plus all daily metric data up to the past year where available.
 Historical metrics, 30-day summary: TBD: Information has not been provided.
 Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
+Historical metrics, daily data (Class C): none available
+Historical metrics, daily data reference (optional): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -2996,6 +3198,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
 Verification of supporting automation: TBD: Information has not been provided.
@@ -3003,7 +3206,8 @@ Minimum automated methods for this class: 2
 Historical metrics required for this class: Class B summaries plus all daily metric data up to the past year where available.
 Historical metrics, 30-day summary: TBD: Information has not been provided.
 Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
+Historical metrics, daily data (Class C): none available
+Historical metrics, daily data reference (optional): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -3016,6 +3220,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
 Verification of supporting automation: TBD: Information has not been provided.
@@ -3023,7 +3228,8 @@ Minimum automated methods for this class: 2
 Historical metrics required for this class: Class B summaries plus all daily metric data up to the past year where available.
 Historical metrics, 30-day summary: TBD: Information has not been provided.
 Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
+Historical metrics, daily data (Class C): none available
+Historical metrics, daily data reference (optional): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -3036,6 +3242,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
 Verification of supporting automation: TBD: Information has not been provided.
@@ -3043,7 +3250,8 @@ Minimum automated methods for this class: 2
 Historical metrics required for this class: Class B summaries plus all daily metric data up to the past year where available.
 Historical metrics, 30-day summary: TBD: Information has not been provided.
 Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
+Historical metrics, daily data (Class C): none available
+Historical metrics, daily data reference (optional): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -3056,6 +3264,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
 Verification of supporting automation: TBD: Information has not been provided.
@@ -3063,7 +3272,8 @@ Minimum automated methods for this class: 2
 Historical metrics required for this class: Class B summaries plus all daily metric data up to the past year where available.
 Historical metrics, 30-day summary: TBD: Information has not been provided.
 Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
+Historical metrics, daily data (Class C): none available
+Historical metrics, daily data reference (optional): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -3076,6 +3286,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
 Verification of supporting automation: TBD: Information has not been provided.
@@ -3083,7 +3294,8 @@ Minimum automated methods for this class: 2
 Historical metrics required for this class: Class B summaries plus all daily metric data up to the past year where available.
 Historical metrics, 30-day summary: TBD: Information has not been provided.
 Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
+Historical metrics, daily data (Class C): none available
+Historical metrics, daily data reference (optional): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -3096,6 +3308,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
 Verification of supporting automation: TBD: Information has not been provided.
@@ -3103,7 +3316,8 @@ Minimum automated methods for this class: 2
 Historical metrics required for this class: Class B summaries plus all daily metric data up to the past year where available.
 Historical metrics, 30-day summary: TBD: Information has not been provided.
 Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
+Historical metrics, daily data (Class C): none available
+Historical metrics, daily data reference (optional): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -3116,6 +3330,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
 Verification of supporting automation: TBD: Information has not been provided.
@@ -3123,7 +3338,8 @@ Minimum automated methods for this class: 2
 Historical metrics required for this class: Class B summaries plus all daily metric data up to the past year where available.
 Historical metrics, 30-day summary: TBD: Information has not been provided.
 Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
+Historical metrics, daily data (Class C): none available
+Historical metrics, daily data reference (optional): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -3136,6 +3352,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
 Verification of supporting automation: TBD: Information has not been provided.
@@ -3143,7 +3360,8 @@ Minimum automated methods for this class: 2
 Historical metrics required for this class: Class B summaries plus all daily metric data up to the past year where available.
 Historical metrics, 30-day summary: TBD: Information has not been provided.
 Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
+Historical metrics, daily data (Class C): none available
+Historical metrics, daily data reference (optional): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -3156,6 +3374,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
 Verification of supporting automation: TBD: Information has not been provided.
@@ -3163,7 +3382,8 @@ Minimum automated methods for this class: 2
 Historical metrics required for this class: Class B summaries plus all daily metric data up to the past year where available.
 Historical metrics, 30-day summary: TBD: Information has not been provided.
 Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
+Historical metrics, daily data (Class C): none available
+Historical metrics, daily data reference (optional): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -3176,6 +3396,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
 Verification of supporting automation: TBD: Information has not been provided.
@@ -3183,7 +3404,8 @@ Minimum automated methods for this class: 2
 Historical metrics required for this class: Class B summaries plus all daily metric data up to the past year where available.
 Historical metrics, 30-day summary: TBD: Information has not been provided.
 Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
+Historical metrics, daily data (Class C): none available
+Historical metrics, daily data reference (optional): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -3196,6 +3418,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
 Verification of supporting automation: TBD: Information has not been provided.
@@ -3203,7 +3426,8 @@ Minimum automated methods for this class: 2
 Historical metrics required for this class: Class B summaries plus all daily metric data up to the past year where available.
 Historical metrics, 30-day summary: TBD: Information has not been provided.
 Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
+Historical metrics, daily data (Class C): none available
+Historical metrics, daily data reference (optional): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -3216,6 +3440,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
 Verification of supporting automation: TBD: Information has not been provided.
@@ -3223,7 +3448,8 @@ Minimum automated methods for this class: 2
 Historical metrics required for this class: Class B summaries plus all daily metric data up to the past year where available.
 Historical metrics, 30-day summary: TBD: Information has not been provided.
 Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
+Historical metrics, daily data (Class C): none available
+Historical metrics, daily data reference (optional): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -3236,6 +3462,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
 Verification of supporting automation: TBD: Information has not been provided.
@@ -3243,7 +3470,8 @@ Minimum automated methods for this class: 2
 Historical metrics required for this class: Class B summaries plus all daily metric data up to the past year where available.
 Historical metrics, 30-day summary: TBD: Information has not been provided.
 Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
+Historical metrics, daily data (Class C): none available
+Historical metrics, daily data reference (optional): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -3256,6 +3484,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
 Verification of supporting automation: TBD: Information has not been provided.
@@ -3263,7 +3492,8 @@ Minimum automated methods for this class: 2
 Historical metrics required for this class: Class B summaries plus all daily metric data up to the past year where available.
 Historical metrics, 30-day summary: TBD: Information has not been provided.
 Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
+Historical metrics, daily data (Class C): none available
+Historical metrics, daily data reference (optional): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -3276,6 +3506,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
 Verification of supporting automation: TBD: Information has not been provided.
@@ -3283,7 +3514,8 @@ Minimum automated methods for this class: 2
 Historical metrics required for this class: Class B summaries plus all daily metric data up to the past year where available.
 Historical metrics, 30-day summary: TBD: Information has not been provided.
 Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
+Historical metrics, daily data (Class C): none available
+Historical metrics, daily data reference (optional): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -3296,6 +3528,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
 Verification of supporting automation: TBD: Information has not been provided.
@@ -3303,7 +3536,8 @@ Minimum automated methods for this class: 2
 Historical metrics required for this class: Class B summaries plus all daily metric data up to the past year where available.
 Historical metrics, 30-day summary: TBD: Information has not been provided.
 Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
+Historical metrics, daily data (Class C): none available
+Historical metrics, daily data reference (optional): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -3316,6 +3550,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
 Verification of supporting automation: TBD: Information has not been provided.
@@ -3323,7 +3558,8 @@ Minimum automated methods for this class: 2
 Historical metrics required for this class: Class B summaries plus all daily metric data up to the past year where available.
 Historical metrics, 30-day summary: TBD: Information has not been provided.
 Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
+Historical metrics, daily data (Class C): none available
+Historical metrics, daily data reference (optional): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -3336,6 +3572,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
 Verification of supporting automation: TBD: Information has not been provided.
@@ -3343,7 +3580,8 @@ Minimum automated methods for this class: 2
 Historical metrics required for this class: Class B summaries plus all daily metric data up to the past year where available.
 Historical metrics, 30-day summary: TBD: Information has not been provided.
 Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
+Historical metrics, daily data (Class C): none available
+Historical metrics, daily data reference (optional): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -3356,6 +3594,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
 Verification of supporting automation: TBD: Information has not been provided.
@@ -3363,7 +3602,8 @@ Minimum automated methods for this class: 2
 Historical metrics required for this class: Class B summaries plus all daily metric data up to the past year where available.
 Historical metrics, 30-day summary: TBD: Information has not been provided.
 Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
+Historical metrics, daily data (Class C): none available
+Historical metrics, daily data reference (optional): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -3376,6 +3616,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
 Verification of supporting automation: TBD: Information has not been provided.
@@ -3383,7 +3624,8 @@ Minimum automated methods for this class: 2
 Historical metrics required for this class: Class B summaries plus all daily metric data up to the past year where available.
 Historical metrics, 30-day summary: TBD: Information has not been provided.
 Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
+Historical metrics, daily data (Class C): none available
+Historical metrics, daily data reference (optional): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -3396,6 +3638,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
 Verification of supporting automation: TBD: Information has not been provided.
@@ -3403,7 +3646,8 @@ Minimum automated methods for this class: 2
 Historical metrics required for this class: Class B summaries plus all daily metric data up to the past year where available.
 Historical metrics, 30-day summary: TBD: Information has not been provided.
 Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
+Historical metrics, daily data (Class C): none available
+Historical metrics, daily data reference (optional): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -3416,6 +3660,7 @@ Implementation: Example (reference architecture, replace with your real implemen
 Validation: Example (reference architecture, replace with your real implementation): AWS Config managed rules check encrypted-volumes, rds-storage-encrypted, and S3 default encryption continuously. A daily query confirms account-level EBS default encryption and S3 Block Public Access remain enabled in every account.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
 Verification of supporting automation: TBD: Information has not been provided.
@@ -3423,7 +3668,8 @@ Minimum automated methods for this class: 2
 Historical metrics required for this class: Class B summaries plus all daily metric data up to the past year where available.
 Historical metrics, 30-day summary: TBD: Information has not been provided.
 Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
+Historical metrics, daily data (Class C): none available
+Historical metrics, daily data reference (optional): TBD: Information has not been provided.
 Tests: Example test 1: Config rules encrypted-volumes and rds-storage-encrypted are COMPLIANT for all resources (continuous).; Example test 2: EBS default encryption and S3 Block Public Access report enabled for every in-scope account (daily).
 Owner: Example: Security Engineering Lead
 
@@ -3436,6 +3682,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
 Verification of supporting automation: TBD: Information has not been provided.
@@ -3443,7 +3690,8 @@ Minimum automated methods for this class: 2
 Historical metrics required for this class: Class B summaries plus all daily metric data up to the past year where available.
 Historical metrics, 30-day summary: TBD: Information has not been provided.
 Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
+Historical metrics, daily data (Class C): none available
+Historical metrics, daily data reference (optional): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
@@ -3456,6 +3704,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
 Verification of supporting automation: TBD: Information has not been provided.
@@ -3463,6 +3712,7 @@ Minimum automated methods for this class: 2
 Historical metrics required for this class: Class B summaries plus all daily metric data up to the past year where available.
 Historical metrics, 30-day summary: TBD: Information has not been provided.
 Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data reference (Class C): TBD: Information has not been provided.
+Historical metrics, daily data (Class C): none available
+Historical metrics, daily data reference (optional): TBD: Information has not been provided.
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
