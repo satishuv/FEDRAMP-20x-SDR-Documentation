@@ -134,6 +134,7 @@ def _fill(profile_path, now, cls="C"):
         "application_prerequisites": {
             "marketplace_listing_uri": "https://marketplace.fedramp.gov/offerings/CSP",
             "application_form_reference": "APP-FORM-2026-CSP-0001",
+            "provider_is_applicant": True,
             "provider_is_applicant_attestation": "Confirmed: Contoso Cloud (the CSP) is the applicant; no third party is submitting on our behalf (FRC-APP-NTP).",
         },
     })
@@ -712,6 +713,31 @@ def main():
               "fedramp_independent_assessment" not in rfia_ok.stdout
               and rfia_ok.returncode == 0)
 
+        # Unknown selected_optional_rules ID must be surfaced, not silently
+        # ignored: a provider who names a bogus/misspelled optional rule believes
+        # it entered the SDR when submitted_rule_ids never matches it. Add an
+        # unknown ID alongside the valid FIA selection - preflight must block and
+        # name the offending ID.
+        pa["selected_optional_rules"] = ["FRC-APP-FIA", "FRC-CLA-BOGUS"]
+        json.dump(pa, open(profile_a, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root_a)
+        mhash_a4 = "sha256:" + hashlib.sha256(open(manifest_a, "rb").read()).hexdigest()
+        tag_a4 = json.load(open(manifest_a, encoding="utf-8")).get("release_tag")
+        reg_a4 = json.load(open(register_a, encoding="utf-8"))
+        reg_a4["package_signoff"] = {
+            "decision": "approved", "reviewer": "Jane Provider, VP Security",
+            "timestamp": now.isoformat(), "release_tag": tag_a4,
+            "package_manifest_sha256": mhash_a4, "notes": "Reviewed Class A package (unknown-ID probe).",
+        }
+        json.dump(reg_a4, open(register_a, "w", encoding="utf-8", newline="\n"), indent=1)
+        r_badid = _preflight(root_a)
+        check("Class A blocks on an unknown selected_optional_rules ID (named, not ignored)",
+              "FRC-CLA-BOGUS" in r_badid.stdout and r_badid.returncode == 1)
+        # Restore the valid selection so the tree is left ready.
+        pa["selected_optional_rules"] = ["FRC-APP-FIA"]
+        json.dump(pa, open(profile_a, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root_a)
+
         # FRC-CSX-MOT initial-certification EXCEPTION: a new Class C offering with
         # no long metric history but a valid metric_history_exception (both flags
         # true + descriptions + a current datapoint per KSI) must reach ready.
@@ -769,26 +795,40 @@ def main():
         check("MOT exception with a missing description does not activate",
               "FRC-CSX-MOT" in rmot2.stdout and rmot2.returncode == 1)
 
-        # --- from PR #110: FRC-APP-NTP + FRR implementation-or-risk OR ---
-        # FRC-APP-NTP (MUST NOT third-party applicant): dropping the provider
-        # self-attestation must block application-preflight; restoring a real
-        # attestation clears it. Uses the ready Class C initial-cert tree.
+        # --- from PR #110, hardened to an affirmative boolean ---
+        # FRC-APP-NTP (MUST NOT third-party applicant): the gate is now an
+        # affirmative boolean provider_is_applicant. Absent blocks; an explicit
+        # false blocks (the exact "our assessor is submitting" case FRC-APP-NTP
+        # forbids, which a free-form string would have falsely passed); true
+        # clears. Uses the ready Class C initial-cert tree.
         pm2 = json.load(open(profile_m, encoding="utf-8"))
         pm2["metric_history_exception"]["mechanisms_description"] = (
             "Automated daily KSI collectors are deployed and producing telemetry.")
-        saved_att = pm2.get("application_prerequisites", {}).get("provider_is_applicant_attestation")
-        pm2.setdefault("application_prerequisites", {})["provider_is_applicant_attestation"] = "TBD"
+        ap2 = pm2.setdefault("application_prerequisites", {})
+        # (a) boolean absent -> blocks.
+        ap2.pop("provider_is_applicant", None)
         json.dump(pm2, open(profile_m, "w", encoding="utf-8", newline="\n"), indent=1)
         _build(root_m)
         rntp = _preflight(root_m)
-        check("missing FRC-APP-NTP provider-is-applicant attestation blocks",
+        check("missing FRC-APP-NTP affirmative provider-is-applicant boolean blocks",
               "FRC-APP-NTP" in rntp.stdout and rntp.returncode == 1)
-        pm2["application_prerequisites"]["provider_is_applicant_attestation"] = (
-            saved_att or "Confirmed: the CSP itself is the applicant (FRC-APP-NTP).")
+        # (b) explicit false -> blocks (third party is applying); a non-empty
+        # free-form attestation string must NOT rescue it.
+        ap2["provider_is_applicant"] = False
+        ap2["provider_is_applicant_attestation"] = "No - our assessor is submitting it."
+        json.dump(pm2, open(profile_m, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root_m)
+        rntp_false = _preflight(root_m)
+        check("provider_is_applicant=false blocks FRC-APP-NTP despite a filled string",
+              "FRC-APP-NTP" in rntp_false.stdout and rntp_false.returncode == 1)
+        # (c) affirmative true -> clears.
+        ap2["provider_is_applicant"] = True
+        ap2["provider_is_applicant_attestation"] = (
+            "Confirmed: the CSP itself is the applicant (FRC-APP-NTP).")
         json.dump(pm2, open(profile_m, "w", encoding="utf-8", newline="\n"), indent=1)
         _build(root_m)
         rntp_ok = _preflight(root_m)
-        check("a recorded provider-is-applicant attestation clears FRC-APP-NTP",
+        check("provider_is_applicant=true clears FRC-APP-NTP",
               "FRC-APP-NTP" not in rntp_ok.stdout)
 
         # SDR-CSO-FRR OR (implementation OR reason+resulting-customer-risk): a
