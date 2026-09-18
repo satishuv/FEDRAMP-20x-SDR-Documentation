@@ -119,6 +119,7 @@ TEST_SUITE = [
     "validation/scripts/test_mot_continuity.py",
     "validation/scripts/test_vvk_automated_methods.py",
     "validation/scripts/test_class_a_framework.py",
+    "validation/scripts/test_class_a_applicable_scope.py",
     "validation/scripts/test_evidence_integrity.py",
     "validation/scripts/test_applicability.py",
     "automation/exporters/test_oscal_export.py",
@@ -306,6 +307,25 @@ def class_a_framework_key(raw):
 def class_a_required_material_types(key):
     """Return the force-gated EAM material type keys for a canonical framework."""
     return [k for k, _label in CLA_REQUIRED_MATERIALS.get(key, [])]
+
+
+def submitted_rule_ids(profile_rules, cls, selected_optional=None):
+    """The rule IDs that enter the SUBMITTED SDR for a class.
+
+    For Class A this mirrors build_sdr.py exactly: FRC-CLA-OFR optional (MAY)
+    rules are opt-in, so an optional rule is submitted only when its rule_id is
+    in selected_optional (default empty). Every other class submits all profile
+    rules. Preflight uses this so its applicable-record scan matches what the
+    SDR actually contains, instead of gating optional rules the SDR excluded.
+    """
+    ids = {r.get("rule_id") for r in profile_rules}
+    if cls == "a":
+        selected = set(selected_optional or [])
+        ids = {
+            r.get("rule_id") for r in profile_rules
+            if r.get("class_a_obligation") != "optional" or r.get("rule_id") in selected
+        }
+    return ids
 
 
 def cmd_build(args):
@@ -1083,7 +1103,14 @@ def cmd_preflight(args):
     # would report TBDs in rules that do not apply (e.g. Class A resolves far
     # fewer rules than the file contains), which is misleading.
     records = load_json(os.path.join(BASE, "sdr", "records", "records-store.json")) or {}
-    applicable_frr = {r.get("rule_id") for r in class_profile.get("rules", [])}
+    # Mirror build_sdr.py's submitted scope: for Class A, unselected FRC-CLA-OFR
+    # optional (MAY) rules are not in the submitted SDR, so preflight must not
+    # gate their records either (otherwise the readiness gate evaluates a
+    # different rule set than the SDR it is gating). Single source of truth:
+    # submitted_rule_ids(), the same filter build_sdr.py applies.
+    applicable_frr = submitted_rule_ids(
+        class_profile.get("rules", []), cls,
+        offering.get("selected_optional_rules"))
     # Class A resolves only the 7 CLA-enumerated KSIs, not all 46. Use the
     # class-A profile's enumeration (the same source the SDR validator trusts)
     # so preflight does not falsely block on the ~39 KSIs that do not apply to A.
