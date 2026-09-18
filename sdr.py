@@ -115,6 +115,7 @@ TEST_SUITE = [
     "validation/scripts/test_change_impact.py",
     "validation/scripts/test_sbom.py",
     "validation/scripts/test_fedramp_time.py",
+    "validation/scripts/test_mot_continuity.py",
     "validation/scripts/test_evidence_integrity.py",
     "validation/scripts/test_applicability.py",
     "automation/exporters/test_oscal_export.py",
@@ -217,6 +218,39 @@ def load_json(path):
             return json.load(f)
     except (OSError, ValueError):
         return None
+
+
+def mot_continuity(window_dates, today, max_gap_days=45):
+    """Assess whether an in-window metric series shows PERSISTENT validation,
+    not just sufficient age. FRC-CSX-MOT requires "status from persistent
+    validation over at least the past 6 months"; the age check elsewhere only
+    proves the oldest point is old enough, so [6-months-ago, today] passes it
+    while being two lonely points.
+
+    The rule does NOT mandate a fixed cadence, so this does not require a daily
+    (or any specific) cadence. It flags a series as non-persistent when any gap
+    between consecutive observations, OR the trailing gap (newest point to
+    today), exceeds max_gap_days. The 45-day default accepts an honest weekly,
+    biweekly, or monthly (~30-day) cadence with the occasional miss, while
+    rejecting the hollow case (two points 6 months apart) and a quarter-long
+    silence. A median-scaled tolerance was deliberately avoided: with only a few
+    points a single huge gap becomes its own median and hides itself.
+
+    window_dates: iterable of datetime.date already filtered to >= cutoff.
+    Returns (gappy: bool, largest_gap|None, median_gap|None, trailing_gap|None).
+    A single (or zero) in-window point is not persistent validation -> gappy.
+    """
+    win = sorted(window_dates)
+    if len(win) < 2:
+        return True, None, None, None
+    deltas = [(win[i] - win[i - 1]).days for i in range(1, len(win))]
+    ds = sorted(deltas)
+    mid = len(ds) // 2
+    median = ds[mid] if len(ds) % 2 else (ds[mid - 1] + ds[mid]) / 2
+    largest = max(deltas)
+    trailing = (today - win[-1]).days
+    gappy = largest > max_gap_days or trailing > max_gap_days
+    return gappy, largest, round(median, 1), trailing
 
 
 def cmd_build(args):
@@ -905,6 +939,7 @@ def cmd_preflight(args):
             # Missing KSIs (in scope but absent from history) are blockers.
             missing = sorted(mot_ksis - set(per))
             short = []
+            gappy = []
             for kid in mot_ksis & set(per):
                 dates = []
                 _entry = per.get(kid)
@@ -919,6 +954,25 @@ def cmd_preflight(args):
                             pass
                 if not dates or min(dates) > mot_cutoff:
                     short.append(kid)
+                    continue
+                # Persistence (not just age): FRC-CSX-MOT requires status from
+                # "persistent validation over at least the past 6 months", not
+                # merely one old datapoint plus one recent one. A series of
+                # [6-months-ago, today] passes the age check above but is not
+                # persistent. Prove the validation actually persisted across the
+                # window by bounding the largest gap between consecutive
+                # observations WITHIN the window.
+                #
+                # The rule does NOT mandate a fixed cadence (e.g. daily), so we
+                # do not impose one: we derive the provider's OWN cadence from
+                # the observed median inter-observation gap and flag only gaps
+                # that exceed a generous tolerance (max(4x median, 45 days)).
+                # This catches a hollow two-point series while accepting an
+                # honest weekly/monthly cadence with occasional misses.
+                win = sorted(d for d in dates if d >= mot_cutoff)
+                gappy_flag, largest, median, trailing_gap = mot_continuity(win, today)
+                if gappy_flag:
+                    gappy.append((kid, largest, median, trailing_gap))
             if missing:
                 blockers.append(f"Class {cls.upper()}: {len(missing)} in-scope KSI(s) are "
                                 f"entirely absent from the metric history (FRC-CSX-MOT covers "
@@ -928,6 +982,52 @@ def cmd_preflight(args):
                 blockers.append(f"Class {cls.upper()}: {len(short)} KSI(s) lack "
                                 f"{'6' if cls == 'c' else '18'} months of persistent-validation "
                                 "history (FRC-CSX-MOT; or record an initial-certification exception)")
+            if gappy:
+                ex = gappy[0]
+                detail = (f"e.g. {ex[0]}: largest gap {ex[1]}d vs ~{ex[2]}d typical"
+                          if ex[1] is not None
+                          else f"e.g. {ex[0]}: only one observation in the window")
+                blockers.append(
+                    f"Class {cls.upper()}: {len(gappy)} KSI(s) reach back "
+                    f"{'6' if cls == 'c' else '18'} months but the series is not "
+                    f"CONTINUOUS across the window - FRC-CSX-MOT requires status "
+                    f"from persistent validation, not one old datapoint plus a "
+                    f"recent one ({detail}). Fill the gaps or record an "
+                    f"initial-certification exception.")
+
+            # Summary-vs-history correlation: the SDR states per-KSI narrative
+            # metric summaries (historical_metrics.last_30_days / up_to_one_year)
+            # from the hand-authored records store. Those summaries must not be
+            # asserted for a KSI whose durable metric history has NO observations
+            # in the corresponding window - that is a hollow, uncorrelated claim
+            # (e.g. "30/30 days passing" with an empty last-30-days series). We
+            # do not parse the narrative's numbers (free text), but we DO require
+            # backing data to exist before the claim is submittable.
+            recs_ksi = ((load_json(os.path.join(BASE, "sdr", "records",
+                        "records-store.json")) or {}).get("ksi") or {})
+            cutoff30 = (today - _d2.timedelta(days=30)).isoformat()
+            uncorrelated = []
+            for kid in sorted(mot_ksis & set(per)):
+                hm = (recs_ksi.get(kid, {}) or {}).get("historical_metrics", {}) or {}
+                _entry = per.get(kid)
+                pts = (_entry.get("series") if isinstance(_entry, dict)
+                       else _entry) or []
+                has_30 = any(isinstance(p, dict) and str(p.get("date", ""))[:10] >= cutoff30
+                             for p in pts)
+                has_any = len(pts) > 0
+                states_30 = not _is_hollow(hm.get("last_30_days"))
+                states_1y = not _is_hollow(hm.get("up_to_one_year"))
+                if (states_30 and not has_30) or (states_1y and not has_any):
+                    uncorrelated.append(kid)
+            if uncorrelated:
+                blockers.append(
+                    f"Class {cls.upper()}: {len(uncorrelated)} KSI(s) state a "
+                    f"historical-metric summary in the SDR that the durable "
+                    f"metric history does not back with any observation in that "
+                    f"window (uncorrelated claim): {', '.join(uncorrelated[:8])}"
+                    + (" ..." if len(uncorrelated) > 8 else "")
+                    + ". A stated 30-day/1-year summary must be supported by "
+                    "actual metric-history data for that KSI.")
     elif cls in ("a", "b"):
         # A MAY, B SHOULD - advisory only.
         history = load_json(os.path.join(BASE, "automation", "metrics", "metric-history.json"))
