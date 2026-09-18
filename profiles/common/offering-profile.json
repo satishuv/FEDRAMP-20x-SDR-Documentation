@@ -85,7 +85,8 @@
  "application_prerequisites": {
   "note": "Checked by `sdr.py application-preflight` (not package-preflight). FedRAMP's applying rules require the provider to be listed in the FedRAMP Marketplace and to complete the FedRAMP Certification Application Form. These are external prerequisites, referenced here, not properties of the generated package.",
   "marketplace_listing_uri": "TBD: URL of the provider's FedRAMP Marketplace listing",
-  "application_form_reference": "TBD: reference/confirmation of the completed FedRAMP Certification Application Form"
+  "application_form_reference": "TBD: reference/confirmation of the completed FedRAMP Certification Application Form",
+  "provider_is_applicant_attestation": "TBD: provider self-attestation that the CSP itself is submitting this FedRAMP Certification application (FRC-APP-NTP: a third party, including an independent assessment service, MUST NOT apply on the provider's behalf; a third party MAY only help prepare materials)"
  },
  "sdr_version": "0.1.0",
  "schema_version": "2026-06-24",

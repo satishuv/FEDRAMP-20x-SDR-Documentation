@@ -1206,17 +1206,29 @@ def cmd_preflight(args):
 
     def _frr_gaps(rec):
         """Missing required SDR-CSO-FRR items for one FRR record (7 items;
-        rule-specific artifacts are 'if applicable' so not gated)."""
+        rule-specific artifacts are 'if applicable' so not gated).
+
+        The first required item is an OR, verbatim from the dataset: "Explanation
+        of how the rule is followed, OR an explanation of the reason and resulting
+        risk to customers for not following the rule." So a record satisfies it by
+        answering EITHER the implementation narrative (rule followed) OR the
+        customer-risk extension (rule not followed). Gating implementation alone
+        let a not-followed rule ship without ever stating the resulting customer
+        risk, and conversely blocked an honestly not-followed rule that documented
+        the reason+risk but left implementation TBD."""
         ext = rec.get("extension", {}) or {}
+        impl_or_risk = _answered(rec.get("implementation")) or _answered(ext.get("customer_risk"))
         checks = {
-            "implementation/risk": rec.get("implementation"),
             "verification": ext.get("verification"),
             "validation": rec.get("validation"),
             "independent_verification": ext.get("independent_verification"),
             "independent_validation": ext.get("independent_validation"),
             "responses": ext.get("assessor_responses"),
         }
-        return [k for k, v in checks.items() if not _answered(v)]
+        gaps = [k for k, v in checks.items() if not _answered(v)]
+        if not impl_or_risk:
+            gaps.insert(0, "implementation-or-resulting-customer-risk")
+        return gaps
 
     def _ksi_gaps(rec):
         """Missing required SDR-CSX-KSI items for one KSI record (5 items),
@@ -1569,6 +1581,16 @@ def cmd_preflight(args):
         if _is_tbd(app.get("application_form_reference")):
             blockers.append("application: FedRAMP Certification Application Form not "
                             "referenced (set application_prerequisites.application_form_reference)")
+        # FRC-APP-NTP (MUST NOT): "Providers MUST NOT use a third party to apply
+        # for a FedRAMP Certification on their behalf; this includes independent
+        # assessment services." The provider itself must be the applicant. A
+        # third party may PREPARE materials, but not submit the application. Gate
+        # on a recorded provider self-attestation that the CSP is the applicant.
+        if not _answered(app.get("provider_is_applicant_attestation")):
+            blockers.append("application: no provider attestation that the CSP itself "
+                            "is the applicant (FRC-APP-NTP MUST NOT use a third party, "
+                            "incl. an assessor, to apply on the provider's behalf; set "
+                            "application_prerequisites.provider_is_applicant_attestation)")
 
     out()
     label = ("FedRAMP APPLICATION preflight" if scope == "application-preflight"
