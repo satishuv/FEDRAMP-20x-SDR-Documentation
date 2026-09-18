@@ -872,6 +872,97 @@ def main():
         r_fresh = _preflight(root_m)
         check("refreshing the evidence date clears the EXPIRED-evidence blocker",
               "EXPIRED evidence" not in r_fresh.stdout)
+
+        # --- PR #115: MOT exception hardening ---
+        # Restore a clean current-datapoint history + valid exception so the MOT
+        # path is the only variable. Clear the expired evidence added above.
+        recs_ef["ksi"][target_ksi]["evidence"] = []
+        json.dump(recs_ef, open(rp_ef, "w", encoding="utf-8", newline="\n"), indent=1)
+        cur2 = now.date().isoformat()
+        hist_r = {"ksis": {k["ksi_id"]: {"series": [{"date": cur2, "status": "pass"}]}
+                           for k in ksi_prof.get("indicators", [])}}
+        json.dump(hist_r, open(os.path.join(root_m, "automation", "metrics", "metric-history.json"),
+                               "w", encoding="utf-8", newline="\n"), indent=1)
+
+        def _resign_m():
+            _build(root_m)
+            _mh = "sha256:" + hashlib.sha256(open(manifest_m, "rb").read()).hexdigest()
+            _rg = json.load(open(register_m, encoding="utf-8"))
+            _rg["package_signoff"]["package_manifest_sha256"] = _mh
+            _rg["package_signoff"]["release_tag"] = json.load(open(manifest_m, encoding="utf-8")).get("release_tag")
+            json.dump(_rg, open(register_m, "w", encoding="utf-8", newline="\n"), indent=1)
+
+        pm_h = json.load(open(profile_m, encoding="utf-8"))
+        # Invalid operating_since must fail the exception with a clear message.
+        pm_h["metric_history_exception"]["operating_since"] = "not-a-date"
+        json.dump(pm_h, open(profile_m, "w", encoding="utf-8", newline="\n"), indent=1)
+        _resign_m()
+        r_badop = _preflight(root_m)
+        check("MOT exception with an invalid operating_since is rejected",
+              "invalid operating_since" in r_badop.stdout and r_badop.returncode == 1)
+        # An operating window LONGER than the required 6 months disqualifies the
+        # exception (the full history is expected instead).
+        pm_h["metric_history_exception"]["operating_since"] = (
+            now.date() - datetime.timedelta(days=400)).isoformat()
+        json.dump(pm_h, open(profile_m, "w", encoding="utf-8", newline="\n"), indent=1)
+        _resign_m()
+        r_longop = _preflight(root_m)
+        check("MOT exception does not apply when the service operated 6+ months",
+              "does not apply" in r_longop.stdout and r_longop.returncode == 1)
+        # Valid short window, but the ONLY datapoint is stale (>45 days): the
+        # exception path must still block on the missing CURRENT datapoint.
+        pm_h["metric_history_exception"]["operating_since"] = (
+            now.date() - datetime.timedelta(days=40)).isoformat()
+        json.dump(pm_h, open(profile_m, "w", encoding="utf-8", newline="\n"), indent=1)
+        stale_dp = (now.date() - datetime.timedelta(days=90)).isoformat()
+        hist_stale = {"ksis": {k["ksi_id"]: {"series": [{"date": stale_dp, "status": "pass"}]}
+                               for k in ksi_prof.get("indicators", [])}}
+        json.dump(hist_stale, open(os.path.join(root_m, "automation", "metrics", "metric-history.json"),
+                                   "w", encoding="utf-8", newline="\n"), indent=1)
+        _resign_m()
+        r_staledp = _preflight(root_m)
+        check("MOT exception blocks when the only datapoint is not current (>45 days)",
+              "no CURRENT validation datapoint" in r_staledp.stdout and r_staledp.returncode == 1)
+        # A current datapoint under the valid short-window exception clears it.
+        json.dump(hist_r, open(os.path.join(root_m, "automation", "metrics", "metric-history.json"),
+                               "w", encoding="utf-8", newline="\n"), indent=1)
+        _resign_m()
+        r_curdp = _preflight(root_m)
+        check("MOT exception clears with a valid short window and a current datapoint",
+              "FRC-CSX-MOT" not in r_curdp.stdout or r_curdp.returncode == 0)
+
+        # --- PR #115: evidence-freshness whole-set + FRR rule_artifacts ---
+        recs_ws = json.load(open(rp_ef, encoding="utf-8"))
+        # A populated KSI with ONE expired AND ONE current artifact has
+        # sufficient current support -> must NOT be reported as expired-only.
+        recs_ws["ksi"][target_ksi]["evidence"] = [
+            {"evidenceType": "Report", "evidenceLocation": "https://e.invalid/old.json",
+             "xEvidenceContentHash": "sha256:" + "a" * 64,
+             "lastUpdated": (now.date() - datetime.timedelta(days=400)).isoformat()},
+            {"evidenceType": "Report", "evidenceLocation": "https://e.invalid/new.json",
+             "xEvidenceContentHash": "sha256:" + "b" * 64,
+             "lastUpdated": now.date().isoformat()},
+        ]
+        json.dump(recs_ws, open(rp_ef, "w", encoding="utf-8", newline="\n"), indent=1)
+        _resign_m()
+        r_mix = _preflight(root_m)
+        check("mixed fresh+expired evidence is NOT reported as expired-only (no false block)",
+              "EXPIRED evidence" not in r_mix.stdout)
+        # An FRR whose rule_artifacts are ALL expired must be caught (freshness
+        # now scans extension.rule_artifacts, not only KSI evidence).
+        frr_ws = next(iter(recs_ws.get("frr", {})))
+        recs_ws["frr"][frr_ws].setdefault("extension", {})["rule_artifacts"] = [
+            {"artifactId": "EV-OLD", "evidenceLocation": "https://e.invalid/frr-old.json",
+             "lastUpdated": (now.date() - datetime.timedelta(days=400)).isoformat()}]
+        # ensure the FRR is populated so freshness scans it
+        if not recs_ws["frr"][frr_ws].get("implementation") or any(
+                "TBD" in str(x) for x in (recs_ws["frr"][frr_ws].get("implementation") or [])):
+            recs_ws["frr"][frr_ws]["implementation"] = ["Implemented for the boundary (fictional)."]
+        json.dump(recs_ws, open(rp_ef, "w", encoding="utf-8", newline="\n"), indent=1)
+        _resign_m()
+        r_frrart = _preflight(root_m)
+        check("expired FRR rule_artifacts on a populated rule are caught by the freshness gate",
+              "EXPIRED evidence" in r_frrart.stdout and r_frrart.returncode == 1)
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
 
