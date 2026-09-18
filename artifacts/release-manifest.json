@@ -48,7 +48,7 @@
  },
  "inputs": {
   "profiles/common/offering-profile.json": "sha256:e1f9c20a0b6e125f128749366aa571f59b10a19145cb27ddc57ac7ef72a440d0",
-  "sdr/records/records-store.json": "sha256:d24e0753f7afe5dd0be9af65c177c85fba170cc6e901b1dc5943af01c7ea2b88"
+  "sdr/records/records-store.json": "sha256:1b27d839198f642899c3548bb4e80c9928508b8a4dfd4fedab895c87d54cd09b"
  },
  "artifacts": {
   "artifacts/sbom.cdx.json": "sha256:13de56960f8028d4bff3b3df638e3fb6ee9dec49238e4788138c8a9e37431b96",
@@ -67,8 +67,8 @@
   "package/ocr/ocr-example.md": "sha256:13a8ed41e38a49875195732e81193ac5a15a8082226b8f1433ac3a9f26376431",
   "package/scg/secure-configuration-guide.md": "sha256:e33594964ad23ab3abef5798814c37c39fdadd3157258c5c23b76f70eab156d6",
   "sdr/human-readable/sdr-class-b.txt": "sha256:7ca2f4c84d920d5a7c17c69c16c4b9afef963d1ab7c685aa937831d9f5a05ae6",
-  "sdr/json/sdr-class-b-extensions.json": "sha256:aa818760edd394c2f83dd900e155e00d182cad196982e24a37e17adca395176c",
-  "sdr/json/sdr-class-b.json": "sha256:7ec2db51ef2f32bced36346e2ff99b238ba0cae4f58e236fe44607a84f7c6c1c",
+  "sdr/json/sdr-class-b-extensions.json": "sha256:906d91d90c38a0f1db91fac3bba3b2ea9844311f46fb5f97e74a03bc964911e1",
+  "sdr/json/sdr-class-b.json": "sha256:5b8410add5f2901880f9c3985fa7ee83f12a157bfec5121478e6470fd8a90531",
   "traceability/applicability-decisions.json": "sha256:13ca770aae658ea9ae6a3655c759965854ca2646bafb1b6ded715120c1d13ff5",
   "traceability/assurance-graph.json": "sha256:c2c023c999a4c6e2dcf426d6c94d2a81307da7ed2e1e0c09e85b03a0237438c6",
   "traceability/rev5-to-20x-crosswalk.csv": "sha256:54abb349fbf14d1d8ec15da7fe2de5615f132f14309dc3957a81563e5575db43"

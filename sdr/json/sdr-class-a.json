@@ -988,6 +988,7 @@
     "familyName": "Cybersecurity Education",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
      "automationVerification": "TBD: Information has not been provided.",
@@ -996,6 +997,7 @@
      "historicalMetrics": {
       "last30Days": "TBD: Information has not been provided.",
       "upToOneYear": "TBD: Information has not been provided.",
+      "dailyData": [],
       "dailyDataReference": "TBD: Information has not been provided."
      }
     },
@@ -1025,6 +1027,7 @@
     "familyName": "Change Management",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
      "automationVerification": "TBD: Information has not been provided.",
@@ -1033,6 +1036,7 @@
      "historicalMetrics": {
       "last30Days": "TBD: Information has not been provided.",
       "upToOneYear": "TBD: Information has not been provided.",
+      "dailyData": [],
       "dailyDataReference": "TBD: Information has not been provided."
      }
     },
@@ -1059,6 +1063,7 @@
     "familyName": "Cloud Native Architecture",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
      "automationVerification": "TBD: Information has not been provided.",
@@ -1067,6 +1072,7 @@
      "historicalMetrics": {
       "last30Days": "TBD: Information has not been provided.",
       "upToOneYear": "TBD: Information has not been provided.",
+      "dailyData": [],
       "dailyDataReference": "TBD: Information has not been provided."
      }
     },
@@ -1093,6 +1099,7 @@
     "familyName": "Identity and Access Management",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
      "automationVerification": "TBD: Information has not been provided.",
@@ -1101,6 +1108,7 @@
      "historicalMetrics": {
       "last30Days": "TBD: Information has not been provided.",
       "upToOneYear": "TBD: Information has not been provided.",
+      "dailyData": [],
       "dailyDataReference": "TBD: Information has not been provided."
      }
     },
@@ -1130,6 +1138,7 @@
     "familyName": "Identity and Access Management",
     "xFedRampSemantic": {
      "measures": "Example: percent of authentications using FIDO2; count of MFA-less console logins (target 0).",
+     "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "Example: continuous enforcement, daily automated checks.",
      "measuresVerification": "TBD: Information has not been provided.",
      "automationVerification": "TBD: Information has not been provided.",
@@ -1138,6 +1147,7 @@
      "historicalMetrics": {
       "last30Days": "TBD: Information has not been provided.",
       "upToOneYear": "TBD: Information has not been provided.",
+      "dailyData": [],
       "dailyDataReference": "TBD: Information has not been provided."
      }
     },
@@ -1164,6 +1174,7 @@
     "familyName": "Incident Response",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
      "automationVerification": "TBD: Information has not been provided.",
@@ -1172,6 +1183,7 @@
      "historicalMetrics": {
       "last30Days": "TBD: Information has not been provided.",
       "upToOneYear": "TBD: Information has not been provided.",
+      "dailyData": [],
       "dailyDataReference": "TBD: Information has not been provided."
      }
     },
@@ -1201,6 +1213,7 @@
     "familyName": "Service Configuration",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
      "automationVerification": "TBD: Information has not been provided.",
@@ -1209,6 +1222,7 @@
      "historicalMetrics": {
       "last30Days": "TBD: Information has not been provided.",
       "upToOneYear": "TBD: Information has not been provided.",
+      "dailyData": [],
       "dailyDataReference": "TBD: Information has not been provided."
      }
     },

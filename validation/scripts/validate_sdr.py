@@ -548,8 +548,8 @@ def main():
     # correct: that remains the human assessor's determination.
     frr_required = ["implementationRisk", "verification", "independentVerification",
                     "independentValidation", "assessorResponses", "ruleArtifacts"]
-    ksi_required = ["measures", "operatingCycle", "measuresVerification",
-                    "automationVerification", "historicalMetrics"]
+    ksi_required = ["measures", "resultingCustomerRisk", "operatingCycle",
+                    "measuresVerification", "automationVerification", "historicalMetrics"]
     sem_problems = []
     for entry in sdr["fedRampRequirements"]:
         sem = entry.get("providerExtensions", {}).get("xFedRampSemantic")
@@ -577,8 +577,17 @@ def main():
             for mf in ("last30Days", "upToOneYear"):
                 if mf not in hm:
                     sem_problems.append(f"{entry['ksiId']}: missing SDR-CSX-KMT {mf}")
-            if cls == "c" and "dailyDataReference" not in hm:
-                sem_problems.append(f"{entry['ksiId']}: missing SDR-CSX-KMT dailyDataReference (Class C)")
+            if cls == "c":
+                # SDR-CSX-KMT Class C MUST supply "All daily metric data up to
+                # the past year (where available)" IN the SDR - the actual data
+                # (dailyData), not merely a pointer. The reference URI stays as
+                # an optional external pointer alongside it. Presence, not truth:
+                # the key must exist ("where available" is the provider's factual
+                # determination, not this generator's).
+                if "dailyData" not in hm:
+                    sem_problems.append(f"{entry['ksiId']}: missing SDR-CSX-KMT dailyData (Class C: all daily metric data in the SDR)")
+                if "dailyDataReference" not in hm:
+                    sem_problems.append(f"{entry['ksiId']}: missing SDR-CSX-KMT dailyDataReference (Class C)")
     check("semantic_completeness_cr26", not sem_problems,
           f"{len(sem_problems)} required semantic elements absent from the "
           "submitted SDR"

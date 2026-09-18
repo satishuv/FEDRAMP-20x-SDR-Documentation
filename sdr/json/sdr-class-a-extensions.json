@@ -1325,7 +1325,8 @@
    "exception_reference": "None recorded",
    "measures_verification": "TBD: Information has not been provided.",
    "automation_verification": "TBD: Information has not been provided.",
-   "assessor_responses": "None recorded"
+   "assessor_responses": "None recorded",
+   "resulting_customer_risk": "TBD: Information has not been provided."
   },
   "KSI-CMT-LMC": {
    "name": "Logging Changes",
@@ -1369,7 +1370,8 @@
    "exception_reference": "None recorded",
    "measures_verification": "TBD: Information has not been provided.",
    "automation_verification": "TBD: Information has not been provided.",
-   "assessor_responses": "None recorded"
+   "assessor_responses": "None recorded",
+   "resulting_customer_risk": "TBD: Information has not been provided."
   },
   "KSI-CNA-RNT": {
    "name": "Restricting Network Traffic",
@@ -1411,7 +1413,8 @@
    "exception_reference": "None recorded",
    "measures_verification": "TBD: Information has not been provided.",
    "automation_verification": "TBD: Information has not been provided.",
-   "assessor_responses": "None recorded"
+   "assessor_responses": "None recorded",
+   "resulting_customer_risk": "TBD: Information has not been provided."
   },
   "KSI-IAM-AAM": {
    "name": "Automating Account Management",
@@ -1457,7 +1460,8 @@
    "exception_reference": "None recorded",
    "measures_verification": "TBD: Information has not been provided.",
    "automation_verification": "TBD: Information has not been provided.",
-   "assessor_responses": "None recorded"
+   "assessor_responses": "None recorded",
+   "resulting_customer_risk": "TBD: Information has not been provided."
   },
   "KSI-IAM-APM": {
    "name": "Adopting Passwordless Methods",
@@ -1507,7 +1511,8 @@
    "exception_reference": "None recorded",
    "measures_verification": "TBD: Information has not been provided.",
    "automation_verification": "TBD: Information has not been provided.",
-   "assessor_responses": "None recorded"
+   "assessor_responses": "None recorded",
+   "resulting_customer_risk": "TBD: Information has not been provided."
   },
   "KSI-INR-RIR": {
    "name": "Reviewing Incident Response Procedures",
@@ -1554,7 +1559,8 @@
    "exception_reference": "None recorded",
    "measures_verification": "TBD: Information has not been provided.",
    "automation_verification": "TBD: Information has not been provided.",
-   "assessor_responses": "None recorded"
+   "assessor_responses": "None recorded",
+   "resulting_customer_risk": "TBD: Information has not been provided."
   },
   "KSI-SVC-SIN": {
    "name": "Securing Information",
@@ -1603,7 +1609,8 @@
    "exception_reference": "None recorded",
    "measures_verification": "TBD: Information has not been provided.",
    "automation_verification": "TBD: Information has not been provided.",
-   "assessor_responses": "None recorded"
+   "assessor_responses": "None recorded",
+   "resulting_customer_risk": "TBD: Information has not been provided."
   }
  }
 }

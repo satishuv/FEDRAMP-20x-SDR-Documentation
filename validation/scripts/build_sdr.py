@@ -163,11 +163,20 @@ def scaffold_records(rules, ksis):
             "historical_metrics": {
                 "last_30_days": TBD,
                 "up_to_one_year": TBD,
+                # Class C MUST supply the actual daily metric data up to the past
+                # year (where available), SDR-CSX-KMT. daily_data holds the
+                # normalized in-SDR series (list of {date, value/status}), which
+                # the collector should write; daily_data_reference is an optional
+                # external pointer retained alongside it.
+                "daily_data": [],
                 "daily_data_reference": TBD,
             },
             "extension": {
                 "owner": TBD,
                 "measures": TBD,
+                # SDR-CSX-KSI alternative: the reason and resulting customer risk
+                # when measures are not available for this indicator.
+                "resulting_customer_risk": TBD,
                 "operating_cycle": TBD,
                 "metric_source": TBD,
                 "pass_condition": TBD,
@@ -301,11 +310,25 @@ def frr_semantic(rec):
 def ksi_semantic(rec):
     """Assemble the SDR-CSX-KSI and SDR-CSX-KMT semantic block from a
     record-store entry. Historical metrics (Class B/C MUST) are emitted here
-    instead of being dropped from the generated document."""
+    instead of being dropped from the generated document.
+
+    SDR-CSX-KSI, verbatim: "Explanation of measures (and their objectives) that
+    demonstrate the Key Security Indicator, OR an explanation of the reason and
+    resulting risk to customers for not having measures available." So the block
+    carries resultingCustomerRisk alongside measures - the not-having-measures
+    alternative was previously absent from the semantic model, so a validator
+    could not even see it, let alone confirm it was answered.
+
+    SDR-CSX-KMT Class C, verbatim, MUST supply "All daily metric data up to the
+    past year (where available)" - the actual data, not merely a reference. The
+    block emits dailyData (the normalized in-SDR series) in addition to the
+    optional dailyDataReference URI."""
     ext = rec.get("extension", {})
     hm = rec.get("historical_metrics", {})
     return {
         "measures": _val(ext.get("measures")),
+        "resultingCustomerRisk": _val(ext.get("resulting_customer_risk")
+                                      or ext.get("customer_risk")),
         "operatingCycle": _val(ext.get("operating_cycle")),
         "measuresVerification": _val(ext.get("measures_verification")),
         "automationVerification": _val(ext.get("automation_verification")),
@@ -314,6 +337,11 @@ def ksi_semantic(rec):
         "historicalMetrics": {
             "last30Days": _val(hm.get("last_30_days")),
             "upToOneYear": _val(hm.get("up_to_one_year")),
+            # Class C MUST supply the actual daily data up to the past year
+            # (where available), not only a pointer. dailyData carries the
+            # normalized in-SDR series (a list of {date, value/status}); the
+            # dailyDataReference URI is retained as an optional external pointer.
+            "dailyData": hm.get("daily_data") if isinstance(hm.get("daily_data"), list) else [],
             "dailyDataReference": _val(hm.get("daily_data_reference")),
         },
     }
