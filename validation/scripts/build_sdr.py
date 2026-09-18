@@ -252,7 +252,7 @@ def build_official(profile, rules, ksis, records):
                 "ksiImplementation": rec.get("implementation", [TBD]),
                 "ksiValidation": rec.get("validation", [TBD]),
                 "ksiAssessment": rec.get("assessment", [TBD]),
-                "ksiTests": rec.get("tests", []),
+                "ksiTests": [_test_to_str(t) for t in rec.get("tests", [])],
                 "ksiEvidence": rec.get("evidence", []),
                 "providerExtensions": {
                     "ksiName": k["name"],
