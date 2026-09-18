@@ -211,45 +211,6 @@
    "senior_official_acceptance": "Not required: rule is followed",
    "class_a_obligation": "mandatory"
   },
-  "CCM-QTR-MTG": {
-   "name": "Quarterly Review Meeting",
-   "force": "MAY",
-   "family": "CCM",
-   "family_name": "Collaborative Continuous Monitoring",
-   "guidance": {
-    "what_it_looks_for": "Providers with Class A Certifications MAY host a synchronous Quarterly Review every 3 months, open to all necessary parties, to review aspects of the most recent Ongoing Certification Reports that the provider determines are of the most relevance to agencies.",
-    "official_notes": [],
-    "how_to_comply": "Establish the quarterly Ongoing Certification Report and Quarterly Review cadence: a named owner, a calendar, a consistent format, a feedback mechanism, and public next-report and next-review dates in the certification data.",
-    "evidence_required": [
-     "Explanation of how the rule is followed, or an explanation of the reason and resulting risk to customers for not following the rule.",
-     "Verification that the implementation is appropriate for the rule, or that the reason for not implementing is accepted by a senior official.",
-     "Validation that the implementation is in place and working as intended, or that the reason for not implementing is accepted by a senior official.",
-     "Independent verification.",
-     "Independent validation."
-    ],
-    "evidence_source": "FedRAMP default artifact expectations for rules",
-    "note": "How to comply is SAS advisory guidance, not FedRAMP text. Fill the TBD fields below with the provider's real implementation, validation, and owner."
-   },
-   "owner": "TBD: Information has not been provided.",
-   "verification": "TBD: Information has not been provided.",
-   "validation_frequency": "TBD: Information has not been provided.",
-   "failure_condition": "TBD: Information has not been provided.",
-   "failure_response": "TBD: Information has not been provided.",
-   "evidence_freshness": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded",
-   "customer_risk": "TBD: Information has not been provided.",
-   "responsibility": {
-    "aws": "TBD: Information has not been provided.",
-    "provider": "TBD: Information has not been provided.",
-    "customer": "TBD: Information has not been provided."
-   },
-   "independent_verification": "TBD: Information has not been provided.",
-   "independent_validation": "TBD: Information has not been provided.",
-   "assessor_responses": "None recorded",
-   "rule_artifacts": [],
-   "senior_official_acceptance": "Not required: rule is followed",
-   "class_a_obligation": "optional"
-  },
   "CDS-CSO-AVR": {
    "name": "Availability Reporting",
    "force": "SHOULD",
@@ -288,48 +249,6 @@
    "rule_artifacts": [],
    "senior_official_acceptance": "Not required: rule is followed",
    "class_a_obligation": "recommended"
-  },
-  "CDS-CSO-PSM": {
-   "name": "Per-Service Certification Materials",
-   "force": "MAY",
-   "family": "CDS",
-   "family_name": "Certification Data Sharing",
-   "guidance": {
-    "what_it_looks_for": "Providers with Class A Certifications MAY supply per-service FedRAMP Certification materials.",
-    "official_notes": [
-     "Providers determine what they consider to be separate services, based on maximizing the customer experience for agencies who may only adopt some services and not others.",
-     "Providers are encouraged to provide a single comprehensive set of materials for all shared aspects of the service offering and only provide separate materials for unique aspects of each service to minimize the burden on providers and agencies."
-    ],
-    "how_to_comply": "Publish certification data through a trust center with both public and agency-authenticated access, in human-readable and machine-readable form. Automate generation from the same pipeline that produces the SDR so the two never drift.",
-    "evidence_required": [
-     "Explanation of how the rule is followed, or an explanation of the reason and resulting risk to customers for not following the rule.",
-     "Verification that the implementation is appropriate for the rule, or that the reason for not implementing is accepted by a senior official.",
-     "Validation that the implementation is in place and working as intended, or that the reason for not implementing is accepted by a senior official.",
-     "Independent verification.",
-     "Independent validation."
-    ],
-    "evidence_source": "FedRAMP default artifact expectations for rules",
-    "note": "How to comply is SAS advisory guidance, not FedRAMP text. Fill the TBD fields below with the provider's real implementation, validation, and owner."
-   },
-   "owner": "TBD: Information has not been provided.",
-   "verification": "TBD: Information has not been provided.",
-   "validation_frequency": "TBD: Information has not been provided.",
-   "failure_condition": "TBD: Information has not been provided.",
-   "failure_response": "TBD: Information has not been provided.",
-   "evidence_freshness": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded",
-   "customer_risk": "TBD: Information has not been provided.",
-   "responsibility": {
-    "aws": "TBD: Information has not been provided.",
-    "provider": "TBD: Information has not been provided.",
-    "customer": "TBD: Information has not been provided."
-   },
-   "independent_verification": "TBD: Information has not been provided.",
-   "independent_validation": "TBD: Information has not been provided.",
-   "assessor_responses": "None recorded",
-   "rule_artifacts": [],
-   "senior_official_acceptance": "Not required: rule is followed",
-   "class_a_obligation": "optional"
   },
   "CDS-CSO-PUB": {
    "name": "Public Information",
@@ -449,45 +368,6 @@
    "senior_official_acceptance": "Not required: rule is followed",
    "class_a_obligation": "mandatory"
   },
-  "CMU-CSO-UVM": {
-   "name": "Using Validated Cryptographic Modules",
-   "force": "MAY",
-   "family": "CMU",
-   "family_name": "Cryptographic Module Use",
-   "guidance": {
-    "what_it_looks_for": "Providers with Class A Certifications MAY use cryptographic modules or update streams of cryptographic modules with active validations under the NIST Cryptographic Module Validation Program when using cryptographic services to protect federal customer data.",
-    "official_notes": [],
-    "how_to_comply": "Use FIPS-validated cryptographic modules for federal data: AWS KMS (validated HSM-backed) for keys, FIPS endpoints for service APIs where required, and TLS 1.2 or higher. Record module certificates and validation numbers; document any exception formally.",
-    "evidence_required": [
-     "Explanation of how the rule is followed, or an explanation of the reason and resulting risk to customers for not following the rule.",
-     "Verification that the implementation is appropriate for the rule, or that the reason for not implementing is accepted by a senior official.",
-     "Validation that the implementation is in place and working as intended, or that the reason for not implementing is accepted by a senior official.",
-     "Independent verification.",
-     "Independent validation."
-    ],
-    "evidence_source": "FedRAMP default artifact expectations for rules",
-    "note": "How to comply is SAS advisory guidance, not FedRAMP text. Fill the TBD fields below with the provider's real implementation, validation, and owner."
-   },
-   "owner": "TBD: Information has not been provided.",
-   "verification": "TBD: Information has not been provided.",
-   "validation_frequency": "TBD: Information has not been provided.",
-   "failure_condition": "TBD: Information has not been provided.",
-   "failure_response": "TBD: Information has not been provided.",
-   "evidence_freshness": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded",
-   "customer_risk": "TBD: Information has not been provided.",
-   "responsibility": {
-    "aws": "TBD: Information has not been provided.",
-    "provider": "TBD: Information has not been provided.",
-    "customer": "TBD: Information has not been provided."
-   },
-   "independent_verification": "TBD: Information has not been provided.",
-   "independent_validation": "TBD: Information has not been provided.",
-   "assessor_responses": "None recorded",
-   "rule_artifacts": [],
-   "senior_official_acceptance": "Not required: rule is followed",
-   "class_a_obligation": "optional"
-  },
   "CPO-CSX-CPM": {
    "name": "Certification Package Maintenance for 20x",
    "force": "SHOULD",
@@ -529,45 +409,6 @@
    "rule_artifacts": [],
    "senior_official_acceptance": "Not required: rule is followed",
    "class_a_obligation": "recommended"
-  },
-  "FRC-APP-FIA": {
-   "name": "Fresh Independent Assessment",
-   "force": "MAY",
-   "family": "FRC",
-   "family_name": "FedRAMP Certification",
-   "guidance": {
-    "what_it_looks_for": "Providers seeking Class A Certification MAY supply a fresh initial FedRAMP independent assessment that was completed by a FedRAMP Recognized independent assessment service within the previous 3 months.",
-    "official_notes": [],
-    "how_to_comply": "Certification mechanics: pick one Program Certification type, supply schema-valid JSON wherever a rule defines a schema, meet the per-class automated verification and validation minimums (FRC-CSX-VVK), and accumulate the 6-month metrics history (FRC-CSX-MOT) before applying.",
-    "evidence_required": [
-     "Explanation of how the rule is followed, or an explanation of the reason and resulting risk to customers for not following the rule.",
-     "Verification that the implementation is appropriate for the rule, or that the reason for not implementing is accepted by a senior official.",
-     "Validation that the implementation is in place and working as intended, or that the reason for not implementing is accepted by a senior official.",
-     "Independent verification.",
-     "Independent validation."
-    ],
-    "evidence_source": "FedRAMP default artifact expectations for rules",
-    "note": "How to comply is SAS advisory guidance, not FedRAMP text. Fill the TBD fields below with the provider's real implementation, validation, and owner."
-   },
-   "owner": "TBD: Information has not been provided.",
-   "verification": "TBD: Information has not been provided.",
-   "validation_frequency": "TBD: Information has not been provided.",
-   "failure_condition": "TBD: Information has not been provided.",
-   "failure_response": "TBD: Information has not been provided.",
-   "evidence_freshness": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded",
-   "customer_risk": "TBD: Information has not been provided.",
-   "responsibility": {
-    "aws": "TBD: Information has not been provided.",
-    "provider": "TBD: Information has not been provided.",
-    "customer": "TBD: Information has not been provided."
-   },
-   "independent_verification": "TBD: Information has not been provided.",
-   "independent_validation": "TBD: Information has not been provided.",
-   "assessor_responses": "None recorded",
-   "rule_artifacts": [],
-   "senior_official_acceptance": "Not required: rule is followed",
-   "class_a_obligation": "optional"
   },
   "FRC-CLA-ASF": {
    "name": "Approved Alternative Security Frameworks",
@@ -1080,50 +921,6 @@
    "senior_official_acceptance": "Not required: rule is followed",
    "class_a_obligation": "recommended"
   },
-  "IVV-CSO-FIA": {
-   "name": "FedRAMP Independent Assessments",
-   "force": "MAY",
-   "family": "IVV",
-   "family_name": "Independent Verification and Validation",
-   "guidance": {
-    "what_it_looks_for": "Providers with Class A Certifications MAY persistently complete an independent verification and validation assessment of all applicable FedRAMP rules with a FedRAMP Recognized independent assessment service OR FedRAMP at least once per year; this is a FedRAMP independent assessment.",
-    "official_notes": [
-     "The first such completed assessment is typically called an \"initial assessment\" while following assessments are called \"annual assessments.\"",
-     "The specific requirements for independent verification and validation assessments are documented by the FedRAMP Certification Class and Type.",
-     "The option for assessment by FedRAMP directly is limited to cloud services that are explicitly prioritized by FedRAMP, in consultation with the FedRAMP Board and the federal Chief Information Officers Council; this is _extremely_ rare.",
-     "FedRAMP Recognized independent assessment services are listed on the FedRAMP Marketplace."
-    ],
-    "how_to_comply": "Engage a FedRAMP Recognized Assessor with documented independence (no advisory work on this offering in the past 2 years). Give the assessor access to the SDR and read access to live evidence; supply evidence of implementation (verification) and effectiveness (validation).",
-    "evidence_required": [
-     "Explanation of how the rule is followed, or an explanation of the reason and resulting risk to customers for not following the rule.",
-     "Verification that the implementation is appropriate for the rule, or that the reason for not implementing is accepted by a senior official.",
-     "Validation that the implementation is in place and working as intended, or that the reason for not implementing is accepted by a senior official.",
-     "Independent verification.",
-     "Independent validation."
-    ],
-    "evidence_source": "FedRAMP default artifact expectations for rules",
-    "note": "How to comply is SAS advisory guidance, not FedRAMP text. Fill the TBD fields below with the provider's real implementation, validation, and owner."
-   },
-   "owner": "TBD: Information has not been provided.",
-   "verification": "TBD: Information has not been provided.",
-   "validation_frequency": "TBD: Information has not been provided.",
-   "failure_condition": "TBD: Information has not been provided.",
-   "failure_response": "TBD: Information has not been provided.",
-   "evidence_freshness": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded",
-   "customer_risk": "TBD: Information has not been provided.",
-   "responsibility": {
-    "aws": "TBD: Information has not been provided.",
-    "provider": "TBD: Information has not been provided.",
-    "customer": "TBD: Information has not been provided."
-   },
-   "independent_verification": "TBD: Information has not been provided.",
-   "independent_validation": "TBD: Information has not been provided.",
-   "assessor_responses": "None recorded",
-   "rule_artifacts": [],
-   "senior_official_acceptance": "Not required: rule is followed",
-   "class_a_obligation": "optional"
-  },
   "IVV-CSX-AIA": {
    "name": "Annual Independent Assessments for 20x",
    "force": "MUST",
@@ -1203,45 +1000,6 @@
    "rule_artifacts": [],
    "senior_official_acceptance": "Not required: rule is followed",
    "class_a_obligation": "mandatory"
-  },
-  "SDR-CSX-KMT": {
-   "name": "Key Security Indicator Metrics",
-   "force": "MAY",
-   "family": "SDR",
-   "family_name": "Security Decision Record",
-   "guidance": {
-    "what_it_looks_for": "Providers with 20x Class A Certifications MAY also include historical metrics in their Security Decision Record.",
-    "official_notes": [],
-    "how_to_comply": "Maintain the Security Decision Record in both human-readable and JSON form, schema-valid, with an entry for every applicable rule and KSI, metadata (version, last updated, update source), and the per-class historical metrics.",
-    "evidence_required": [
-     "Explanation of how the rule is followed, or an explanation of the reason and resulting risk to customers for not following the rule.",
-     "Verification that the implementation is appropriate for the rule, or that the reason for not implementing is accepted by a senior official.",
-     "Validation that the implementation is in place and working as intended, or that the reason for not implementing is accepted by a senior official.",
-     "Independent verification.",
-     "Independent validation."
-    ],
-    "evidence_source": "FedRAMP default artifact expectations for rules",
-    "note": "How to comply is SAS advisory guidance, not FedRAMP text. Fill the TBD fields below with the provider's real implementation, validation, and owner."
-   },
-   "owner": "TBD: Information has not been provided.",
-   "verification": "TBD: Information has not been provided.",
-   "validation_frequency": "TBD: Information has not been provided.",
-   "failure_condition": "TBD: Information has not been provided.",
-   "failure_response": "TBD: Information has not been provided.",
-   "evidence_freshness": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded",
-   "customer_risk": "TBD: Information has not been provided.",
-   "responsibility": {
-    "aws": "TBD: Information has not been provided.",
-    "provider": "TBD: Information has not been provided.",
-    "customer": "TBD: Information has not been provided."
-   },
-   "independent_verification": "TBD: Information has not been provided.",
-   "independent_validation": "TBD: Information has not been provided.",
-   "assessor_responses": "None recorded",
-   "rule_artifacts": [],
-   "senior_official_acceptance": "Not required: rule is followed",
-   "class_a_obligation": "optional"
   },
   "VDR-CSO-DET": {
    "name": "Vulnerability Detection",
@@ -1518,123 +1276,6 @@
    "rule_artifacts": [],
    "senior_official_acceptance": "Not required: rule is followed",
    "class_a_obligation": "recommended"
-  },
-  "VER-TFR-IRI": {
-   "name": "Internet-Reachable Incidents",
-   "force": "MAY",
-   "family": "VER",
-   "family_name": "Vulnerability Evaluation and Reporting",
-   "guidance": {
-    "what_it_looks_for": "Providers with Class A Certifications MAY treat internet-reachable likely exploitable vulnerabilities where Potential Agency Impact N-rating > 3 as a FedRAMP Reportable Incident until they are partially mitigated vulnerabilities at N3 or below.",
-    "official_notes": [],
-    "how_to_comply": "Evaluate every detected vulnerability quickly, assign a Potential Agency Impact N-rating, treat qualifying exploitable vulnerabilities as FedRAMP Reportable Incidents per the class rules, and report through the required channels with machine-readable detail.",
-    "evidence_required": [
-     "Explanation of how the rule is followed, or an explanation of the reason and resulting risk to customers for not following the rule.",
-     "Verification that the implementation is appropriate for the rule, or that the reason for not implementing is accepted by a senior official.",
-     "Validation that the implementation is in place and working as intended, or that the reason for not implementing is accepted by a senior official.",
-     "Independent verification.",
-     "Independent validation."
-    ],
-    "evidence_source": "FedRAMP default artifact expectations for rules",
-    "note": "How to comply is SAS advisory guidance, not FedRAMP text. Fill the TBD fields below with the provider's real implementation, validation, and owner."
-   },
-   "owner": "TBD: Information has not been provided.",
-   "verification": "TBD: Information has not been provided.",
-   "validation_frequency": "TBD: Information has not been provided.",
-   "failure_condition": "TBD: Information has not been provided.",
-   "failure_response": "TBD: Information has not been provided.",
-   "evidence_freshness": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded",
-   "customer_risk": "TBD: Information has not been provided.",
-   "responsibility": {
-    "aws": "TBD: Information has not been provided.",
-    "provider": "TBD: Information has not been provided.",
-    "customer": "TBD: Information has not been provided."
-   },
-   "independent_verification": "TBD: Information has not been provided.",
-   "independent_validation": "TBD: Information has not been provided.",
-   "assessor_responses": "None recorded",
-   "rule_artifacts": [],
-   "senior_official_acceptance": "Not required: rule is followed",
-   "class_a_obligation": "optional"
-  },
-  "VER-TFR-MRH": {
-   "name": "Historical Activity",
-   "force": "MAY",
-   "family": "VER",
-   "family_name": "Vulnerability Evaluation and Reporting",
-   "guidance": {
-    "what_it_looks_for": "Providers with Class A Certifications MAY make all recent historical vulnerability detection and response activity available in JSON format for automated retrieval by all necessary parties (e.g. using an API service or similar); this information MAY be updated persistently, at least once every month.",
-    "official_notes": [],
-    "how_to_comply": "Evaluate every detected vulnerability quickly, assign a Potential Agency Impact N-rating, treat qualifying exploitable vulnerabilities as FedRAMP Reportable Incidents per the class rules, and report through the required channels with machine-readable detail.",
-    "evidence_required": [
-     "Explanation of how the rule is followed, or an explanation of the reason and resulting risk to customers for not following the rule.",
-     "Verification that the implementation is appropriate for the rule, or that the reason for not implementing is accepted by a senior official.",
-     "Validation that the implementation is in place and working as intended, or that the reason for not implementing is accepted by a senior official.",
-     "Independent verification.",
-     "Independent validation."
-    ],
-    "evidence_source": "FedRAMP default artifact expectations for rules",
-    "note": "How to comply is SAS advisory guidance, not FedRAMP text. Fill the TBD fields below with the provider's real implementation, validation, and owner."
-   },
-   "owner": "TBD: Information has not been provided.",
-   "verification": "TBD: Information has not been provided.",
-   "validation_frequency": "TBD: Information has not been provided.",
-   "failure_condition": "TBD: Information has not been provided.",
-   "failure_response": "TBD: Information has not been provided.",
-   "evidence_freshness": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded",
-   "customer_risk": "TBD: Information has not been provided.",
-   "responsibility": {
-    "aws": "TBD: Information has not been provided.",
-    "provider": "TBD: Information has not been provided.",
-    "customer": "TBD: Information has not been provided."
-   },
-   "independent_verification": "TBD: Information has not been provided.",
-   "independent_validation": "TBD: Information has not been provided.",
-   "assessor_responses": "None recorded",
-   "rule_artifacts": [],
-   "senior_official_acceptance": "Not required: rule is followed",
-   "class_a_obligation": "optional"
-  },
-  "VER-TFR-NRI": {
-   "name": "Non-Internet-Reachable Incidents",
-   "force": "MAY",
-   "family": "VER",
-   "family_name": "Vulnerability Evaluation and Reporting",
-   "guidance": {
-    "what_it_looks_for": "Providers with Class A Certifications MAY treat likely exploitable vulnerabilities that are NOT internet-reachable where Potential Agency Impact N-rating = 5 as a FedRAMP Reportable Incident until they are partially mitigated vulnerabilities at N4 or below.",
-    "official_notes": [],
-    "how_to_comply": "Evaluate every detected vulnerability quickly, assign a Potential Agency Impact N-rating, treat qualifying exploitable vulnerabilities as FedRAMP Reportable Incidents per the class rules, and report through the required channels with machine-readable detail.",
-    "evidence_required": [
-     "Explanation of how the rule is followed, or an explanation of the reason and resulting risk to customers for not following the rule.",
-     "Verification that the implementation is appropriate for the rule, or that the reason for not implementing is accepted by a senior official.",
-     "Validation that the implementation is in place and working as intended, or that the reason for not implementing is accepted by a senior official.",
-     "Independent verification.",
-     "Independent validation."
-    ],
-    "evidence_source": "FedRAMP default artifact expectations for rules",
-    "note": "How to comply is SAS advisory guidance, not FedRAMP text. Fill the TBD fields below with the provider's real implementation, validation, and owner."
-   },
-   "owner": "TBD: Information has not been provided.",
-   "verification": "TBD: Information has not been provided.",
-   "validation_frequency": "TBD: Information has not been provided.",
-   "failure_condition": "TBD: Information has not been provided.",
-   "failure_response": "TBD: Information has not been provided.",
-   "evidence_freshness": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded",
-   "customer_risk": "TBD: Information has not been provided.",
-   "responsibility": {
-    "aws": "TBD: Information has not been provided.",
-    "provider": "TBD: Information has not been provided.",
-    "customer": "TBD: Information has not been provided."
-   },
-   "independent_verification": "TBD: Information has not been provided.",
-   "independent_validation": "TBD: Information has not been provided.",
-   "assessor_responses": "None recorded",
-   "rule_artifacts": [],
-   "senior_official_acceptance": "Not required: rule is followed",
-   "class_a_obligation": "optional"
   }
  },
  "ksi": {

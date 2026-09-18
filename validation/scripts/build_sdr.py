@@ -514,6 +514,21 @@ def main():
     rules = class_profile["rules"]
     ksis = load(KSI_PROFILE)["indicators"]
     if cls == "a":
+        # FRC-CLA-OFR optional (MAY) rules are extra credit: FedRAMP's Class A
+        # guidance says all MUST and SHOULD rules belong in the SDR, and MAY
+        # rules are optional (fully reviewed if included). Default to opt-IN:
+        # an optional rule enters the SUBMITTED SDR only when the provider
+        # explicitly lists its rule_id in offering-profile selected_optional_rules
+        # (default empty). The class-A profile and traceability catalog still
+        # carry all 41 rules; this shapes only what is submitted.
+        selected = set(profile.get("selected_optional_rules") or [])
+        before = len(rules)
+        rules = [r for r in rules
+                 if r.get("class_a_obligation") != "optional" or r["rule_id"] in selected]
+        dropped = before - len(rules)
+        if dropped:
+            print(f"Class A: excluded {dropped} optional (MAY) rule(s) not in "
+                  f"selected_optional_rules; {len(selected)} explicitly selected")
         # Class A KSI applicability is enumerated by FRC-CLA-MFR; only the
         # listed KSIs go into the Class A SDR. The tier map is written into
         # the class-a profile meta by build_profiles.py.

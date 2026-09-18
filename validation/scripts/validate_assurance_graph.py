@@ -59,8 +59,12 @@ def main():
     rule_nodes = {n["rule_id"]: n for n in nodes if n.get("node_kind") == "rule"}
     ksi_nodes = {n["ksi_id"]: n for n in nodes if n.get("node_kind") == "ksi"}
 
-    # 2. Coverage: every profile rule and every KSI has a node, and vice versa.
-    profile_rules = {r["rule_id"] for r in class_profile["rules"]}
+    # 2. Coverage: the graph rule nodes must match the SDR's FRR set. The Class
+    # A SDR omits FRC-CLA-OFR optional (MAY) rules the provider did not opt into,
+    # so the graph legitimately omits them too; comparing against the full class
+    # profile (all 41 for A) would falsely flag those as missing. The SDR is the
+    # authoritative filtered set.
+    profile_rules = {e["frrID"] for e in sdr.get("fedRampRequirements", [])}
     if profile_rules != set(rule_nodes):
         missing = sorted(profile_rules - set(rule_nodes))[:5]
         extra = sorted(set(rule_nodes) - profile_rules)[:5]
