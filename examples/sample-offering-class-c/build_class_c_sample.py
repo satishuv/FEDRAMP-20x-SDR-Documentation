@@ -57,14 +57,25 @@ def fill_ksi(kid, rec):
     rec["validation"] = [_impl(kid, "validation")]
     rec["assessment"] = [f"{FICT} Independently assessed by the fictional Recognized "
                          "assessor as part of the BFC FedRAMP 20x assessment."]
-    # FRC-CSX-VVK Class C: >= 2 automated methods per KSI. The official SDR
-    # schema's ksiTests is an ARRAY OF STRINGS, so record each method as a
-    # descriptive string (not a structured object).
+    # FRC-CSX-VVK Class C: >= 2 AUTOMATED methods per KSI. Record structured
+    # authoring entries ({method_id, method, automated, cadence}) so the
+    # validator counts genuine distinct automated methods; the official SDR
+    # schema flattens these to strings on build.
     rec["tests"] = [
-        f"{FICT} Automated (continuous): AWS Config managed+custom rules "
-        f"evaluate {kid} state; non-compliant results alarm to Security Hub.",
-        f"{FICT} Automated (daily): a scheduled CodeBuild collector queries the "
-        f"relevant read-only AWS APIs for {kid} and records a datapoint.",
+        {
+            "method_id": f"{kid}-config-rule",
+            "method": f"{FICT} AWS Config managed+custom rules evaluate {kid} "
+                      "state; non-compliant results alarm to Security Hub.",
+            "automated": True,
+            "cadence": "continuous",
+        },
+        {
+            "method_id": f"{kid}-api-collector",
+            "method": f"{FICT} scheduled CodeBuild collector queries the relevant "
+                      f"read-only AWS APIs for {kid} and records a datapoint.",
+            "automated": True,
+            "cadence": "daily",
+        },
     ]
     # One resolvable evidence entry (has a real location + source fact + hash is
     # computed by the build; here we give a concrete non-placeholder location).

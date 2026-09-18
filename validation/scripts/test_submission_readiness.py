@@ -215,7 +215,15 @@ def _fill_records(root):
               "lastUpdated": "2026-09-01T00:00:00Z"}
         if is_ksi:
             rec["evidence"] = [ev]
-            rec["tests"] = ["automated-check-1", "automated-check-2"]
+            # FRC-CSX-VVK Class C: >= 2 DISTINCT AUTOMATED methods. Structured
+            # authoring records ({method_id, automated, cadence}); string tests
+            # no longer count toward the automated minimum.
+            rec["tests"] = [
+                {"method_id": f"{ident}-config", "method": f"Config rule for {ident}",
+                 "automated": True, "cadence": "continuous"},
+                {"method_id": f"{ident}-collector", "method": f"API collector for {ident}",
+                 "automated": True, "cadence": "daily"},
+            ]
             # SDR-CSX-KMT historical-metric summaries are a Class C MUST; fill
             # them so a complete Class C record is genuinely complete (the
             # preflight now gates unresolved KMT summaries at B/C/D).

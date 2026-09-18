@@ -116,6 +116,7 @@ TEST_SUITE = [
     "validation/scripts/test_sbom.py",
     "validation/scripts/test_fedramp_time.py",
     "validation/scripts/test_mot_continuity.py",
+    "validation/scripts/test_vvk_automated_methods.py",
     "validation/scripts/test_evidence_integrity.py",
     "validation/scripts/test_applicability.py",
     "automation/exporters/test_oscal_export.py",

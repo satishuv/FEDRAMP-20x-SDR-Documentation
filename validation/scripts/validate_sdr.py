@@ -66,6 +66,45 @@ def load(path):
         return json.load(f)
 
 
+def count_automated_methods(tests):
+    """Count DISTINCT AUTOMATED verification methods from a KSI's authoring
+    `tests` list (records-store), for FRC-CSX-VVK.
+
+    FedRAMP requires a per-class minimum of AUTOMATED methods (Class B >=1,
+    C >=2, D >=4). The official SDR flattens each test to a string, losing the
+    automated/manual distinction, so this must run on the authoring source.
+
+    Counting rules, deliberately strict so the gate proves the requirement and
+    is not satisfied by "there are two strings in an array":
+      - Only structured entries (dicts) with automated == True count.
+      - Methods must be DISTINCT: identity is method_id if present, else the
+        normalized method/name/description text. Duplicates count once.
+      - Plain-string entries do NOT count as automated (their automated-ness is
+        unknown once flattened); they are returned separately as `string_tests`
+        so a template-state record can still be reported informationally.
+
+    Returns (automated_count, string_test_count, total_entries).
+    """
+    if not isinstance(tests, list):
+        return 0, 0, 0
+    seen = set()
+    strings = 0
+    total = 0
+    for t in tests:
+        total += 1
+        if isinstance(t, str):
+            strings += 1
+            continue
+        if isinstance(t, dict) and t.get("automated") is True:
+            ident = t.get("method_id")
+            if not ident:
+                ident = str(t.get("method") or t.get("name")
+                            or t.get("description") or "").strip().lower()
+            if ident:
+                seen.add(ident)
+    return len(seen), strings, total
+
+
 def validate_schema(doc):
     import jsonschema
     from referencing import Registry, Resource
@@ -250,6 +289,12 @@ def main():
     sdr = load(os.path.join(BASE, "sdr", "json", f"sdr-class-{cls}.json"))
     class_profile = load(os.path.join(BASE, "profiles", f"class-{cls}", "profile.json"))
     ksi_profile = load(os.path.join(BASE, "profiles", "common", "ksi-profile.json"))
+    # The official SDR flattens ksiTests to strings, which destroys whether a
+    # test was automated. FRC-CSX-VVK counts AUTOMATED methods, so read the
+    # authoring source (records-store) where a test may be a structured
+    # {method/method_id, automated, cadence} record before it is flattened.
+    records = load(os.path.join(BASE, "sdr", "records", "records-store.json")) or {}
+    records_ksi = records.get("ksi", {}) or {}
 
     dataset_version = class_profile["meta"]["dataset_version"]
     # Deterministic: reports are stamped with the dataset version, not a run
@@ -378,17 +423,26 @@ def main():
                            "ksiAssessment", "ksiTests", "ksiEvidence"]
         fields_ok = all(f in k for f in required_fields)
         test_count = len(k.get("ksiTests", []))
+        # FRC-CSX-VVK counts AUTOMATED methods, which the flattened ksiTests
+        # strings cannot express. Count them from the authoring source instead.
+        authoring_tests = (records_ksi.get(kid, {}) or {}).get("tests", [])
+        automated_count, string_tests, _tot = count_automated_methods(authoring_tests)
         needed = min_methods.get(kid, 0)
+        is_populated = not any("TBD" in s for s in k.get("ksiImplementation", []))
+        # In a populated record, only counted automated methods satisfy the
+        # minimum. In template (TBD) state, the requirement is not yet asserted,
+        # so report the raw test_count informationally and do not hard-fail.
+        effective = automated_count if is_populated else max(automated_count, test_count)
         ksi_results.append({
             "ksi_id": kid,
             "schema_fields_present": fields_ok,
             "implementation_status": k.get("ksiImplementationStatus"),
             "tests_defined": test_count,
+            "automated_methods": automated_count,
+            "unclassified_string_tests": string_tests,
             "minimum_automated_methods_for_class": needed,
-            "meets_test_minimum": test_count >= needed,
-            "content_state": ("template_tbd"
-                              if any("TBD" in s for s in k.get("ksiImplementation", []))
-                              else "populated"),
+            "meets_test_minimum": effective >= needed,
+            "content_state": ("template_tbd" if not is_populated else "populated"),
             "checked": stamp,
         })
     all_fields = all(r["schema_fields_present"] for r in ksi_results)
@@ -412,8 +466,9 @@ def main():
                        if not r["meets_test_minimum"] and r["content_state"] == "populated"]
     vvk_hard = force == "MUST" and bool(populated_below)
     check("ksi_test_minimums", not below_min,
-          f"{len(below_min)} KSIs below the FRC-CSX-VVK minimum for class "
-          f"{cls.upper()} (FedRAMP force: {force}; "
+          f"{len(below_min)} KSIs below the FRC-CSX-VVK AUTOMATED-method minimum "
+          f"for class {cls.upper()} (counted from distinct automated authoring "
+          f"methods, not raw ksiTests strings; FedRAMP force: {force}; "
           + ("MUST shortfall on populated records is a hard failure"
              if force == "MUST" else
              "SHOULD at this class, so this is an expectation, not a FedRAMP "
