@@ -22,6 +22,35 @@ phases:
       - pip install --quiet -r requirements-ci.txt
   build:
     commands:
+      # RESTORE the durable per-KSI metric history BEFORE build/validate/preflight.
+      # For Class C/D, FRC-CSX-MOT readiness depends on >= 6/18 months of history
+      # that lives ONLY in the evidence bucket (metric-history.json is gitignored,
+      # so the CodeConnections full clone does not carry it). Without this restore
+      # a legitimate Class C release build sees no history and package-preflight
+      # blocks. Skipped harmlessly when EVIDENCE_BUCKET is unset (e.g. the public
+      # GitHub Actions run, which never releases Class C).
+      # FAIL-CLOSED, mirroring buildspec-collect.yml: a genuine "object does not
+      # exist" (no collector has run yet) is allowed and proceeds; ANY other
+      # restore error (AccessDenied, KMS, throttling, outage) ABORTS so the build
+      # never silently evaluates readiness against absent history and a Class C
+      # package can never reach Publish attesting to history it could not read.
+      - |
+        if [ -n "$EVIDENCE_BUCKET" ]; then
+          set -e
+          KEY="s3://$EVIDENCE_BUCKET/metrics/metric-history.json"
+          if aws s3 cp "$KEY" automation/metrics/metric-history.json 2>/tmp/restore.err; then
+            echo "Restored durable metric history for readiness evaluation."
+          elif grep -qiE "Not Found|does not exist|NoSuchKey|404" /tmp/restore.err; then
+            echo "No prior metric-history.json (confirmed missing); no collector run yet."
+          else
+            echo "FAIL. Could not restore metric history and the object is not confirmed missing:"
+            cat /tmp/restore.err
+            echo "Aborting so readiness is not evaluated against absent metric history."
+            exit 1
+          fi
+        else
+          echo "EVIDENCE_BUCKET unset; skipping metric-history restore (no Class C release path)."
+        fi
       - python sdr.py build
       - git diff --exit-code -- . ':(exclude)*.docx' || { echo "FAIL. Generated outputs differ from committed files. Never edit generated files by hand; edit sdr/records/records-store.json and regenerate."; exit 1; }
       # Validation parity. A DRAFT build runs the gate without the offline test
