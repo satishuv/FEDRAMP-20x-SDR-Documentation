@@ -147,6 +147,17 @@ def build(cls):
         "profiles/common/offering-profile.json",
         "sdr/records/records-store.json",
     ]
+    # For Class C/D, the durable per-KSI metric history is a readiness-CRITICAL
+    # input: FRC-CSX-MOT READY/NOT-READY turns on it, yet it is not a generated
+    # artifact. A signoff bound only to generated outputs + profile/records would
+    # miss a post-signoff change to the history, so fold it into the manifest
+    # hash the human signoff binds to. It is gitignored (derived from a real
+    # account), so it is hashed ONLY when present - in the AWS release path it is
+    # restored from the evidence bucket before this runs; in a clean clone with
+    # no history (A/B, or a not-yet-collected C/D) it is simply absent and not
+    # hashed, keeping the manifest byte-stable for the reproducibility gate.
+    if cls in ("c", "d"):
+        input_files.append("automation/metrics/metric-history.json")
     inputs = {}
     for rel in input_files:
         p = os.path.join(BASE, rel)

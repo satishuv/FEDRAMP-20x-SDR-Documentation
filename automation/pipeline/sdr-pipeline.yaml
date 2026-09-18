@@ -481,6 +481,13 @@ Resources:
           - Name: RELEASE_MODE
             Type: PLAINTEXT
             Value: "true"
+          # Name of the evidence bucket holding the durable per-KSI metric
+          # history (metrics/metric-history.json). The release build restores it
+          # before package-preflight so Class C/D FRC-CSX-MOT readiness is
+          # evaluated against real accumulated history, not an empty tree.
+          - Name: EVIDENCE_BUCKET
+            Type: PLAINTEXT
+            Value: !Ref EvidenceBucket
       Source:
         Type: CODEPIPELINE
         BuildSpec: automation/pipeline/buildspec-validate.yml

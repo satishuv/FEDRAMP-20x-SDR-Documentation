@@ -102,6 +102,23 @@ def main():
     check("RELEASE_MODE build runs the reproducibility gate",
           "cmd_reproducibility" in rel_branch)
 
+    # Class C/D FRC-CSX-MOT readiness turns on the durable metric history, which
+    # is gitignored and lives only in the evidence bucket. The release build MUST
+    # restore it BEFORE build/validate/preflight, fail-closed (a confirmed-missing
+    # object is allowed as a first run; any other restore error aborts), or a
+    # Class C release would evaluate readiness against an empty tree and block.
+    check("buildspec restores metric-history before preflight",
+          "metric-history.json" in buildspec
+          and "s3 cp" in buildspec
+          and re.search(r'EVIDENCE_BUCKET', buildspec) is not None)
+    # The restore must precede the readiness evaluation, not follow it.
+    check("metric-history restore runs before package-preflight",
+          buildspec.find("metric-history.json") < buildspec.find("package-preflight"))
+    # Fail-closed: only a confirmed-missing object proceeds; other errors abort.
+    restore_seg = buildspec.split("python sdr.py build", 1)[0]
+    check("metric-history restore is fail-closed (aborts on non-404 errors)",
+          "NoSuchKey" in restore_seg and "exit 1" in restore_seg)
+
     # The ValidateProject in the publish pipeline must set RELEASE_MODE=true.
     vp = pipeline.split("ValidateProject:", 1)[-1].split("DriftCheckProject:", 1)[0]
     check("publish pipeline ValidateProject sets RELEASE_MODE",
@@ -109,6 +126,23 @@ def main():
     check("ValidateProject RELEASE_MODE value is true",
           re.search(r'RELEASE_MODE[\s\S]{0,120}?"true"', vp) is not None
           or re.search(r'RELEASE_MODE[\s\S]{0,120}?true', vp) is not None)
+
+    # The ValidateProject must pass EVIDENCE_BUCKET so the release build can
+    # restore the durable metric history before the readiness evaluation.
+    check("ValidateProject passes EVIDENCE_BUCKET to the release build",
+          "EVIDENCE_BUCKET" in vp)
+
+    # Class C/D manifest binding: the release manifest must fold the durable
+    # metric history into its hashed inputs for Class C/D (it is readiness-
+    # critical for FRC-CSX-MOT yet not a generated artifact), so the human
+    # signoff bound to the manifest hash covers it. Verified against the builder
+    # source rather than a live manifest (the repo's active class is B, where the
+    # history is correctly NOT bound).
+    brm_src = open(os.path.join(BASE, "validation", "scripts",
+                                "build_release_manifest.py"), encoding="utf-8").read()
+    check("release manifest binds metric-history for Class C/D",
+          "automation/metrics/metric-history.json" in brm_src
+          and re.search(r'cls in \("c", "d"\)', brm_src) is not None)
 
     # Full-clone IAM: if the Source stage produces a CODEBUILD_CLONE_REF (git
     # full clone) artifact, the CodeBuild *service role* consuming it MUST hold
