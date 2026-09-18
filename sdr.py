@@ -117,6 +117,7 @@ TEST_SUITE = [
     "validation/scripts/test_fedramp_time.py",
     "validation/scripts/test_mot_continuity.py",
     "validation/scripts/test_vvk_automated_methods.py",
+    "validation/scripts/test_class_a_framework.py",
     "validation/scripts/test_evidence_integrity.py",
     "validation/scripts/test_applicability.py",
     "automation/exporters/test_oscal_export.py",
@@ -252,6 +253,58 @@ def mot_continuity(window_dates, today, max_gap_days=45):
     trailing = (today - win[-1]).days
     gappy = largest > max_gap_days or trailing > max_gap_days
     return gappy, largest, round(median, 1), trailing
+
+
+# --- FRC-CLA-ASF / FRC-CLA-EAM: Class A approved frameworks + materials ---
+# Verbatim from the pinned dataset. ASF approves: FedRAMP Rev5 (including
+# FedRAMP Ready) at any historical Impact Level, SOC 2 Type II, GovRAMP at any
+# Impact Level. EAM enumerates required materials for exactly three keys: SOC 2
+# Type II, FedRAMP Ready, GovRAMP. FedRAMP Rev5 (full authorization) has no
+# fixed EAM material-type list ("any other materials required by FedRAMP").
+
+# SOC 2 eligibility is Type II specifically; a bare "SOC 2" (could be Type I) is
+# NOT aliased. Rev5 (full authorization) and Ready are DISTINCT keys.
+CLA_FRAMEWORK_ALIASES = {
+    "soc2_type_ii": "soc2_type_ii", "soc 2 type ii": "soc2_type_ii",
+    "soc2 type ii": "soc2_type_ii", "soc 2 type 2": "soc2_type_ii",
+    "soc2 type 2": "soc2_type_ii",
+    "fedramp_rev5": "fedramp_rev5", "fedramp rev5": "fedramp_rev5",
+    "fedramp rev 5": "fedramp_rev5", "rev5": "fedramp_rev5",
+    "fedramp ready": "fedramp_ready", "fedramp_ready": "fedramp_ready",
+    "govramp": "govramp",
+}
+# Force-gated material TYPES per framework (if-applicable items excluded). Rev5
+# has an empty list: no fixed type set, but at least one material is required.
+CLA_REQUIRED_MATERIALS = {
+    "soc2_type_ii": [
+        ("complete_report", "Complete SOC 2 Type II report"),
+        ("verified_audit_engagement", "Verified audit engagement documentation"),
+        ("upcoming_report_schedule", "Estimated schedule for upcoming report"),
+    ],
+    "fedramp_rev5": [],
+    "fedramp_ready": [
+        ("readiness_assessment_report", "Readiness Assessment Report"),
+        ("security_assessment_plan", "Security Assessment Plan"),
+    ],
+    "govramp": [
+        ("readiness_assessment_report", "Readiness Assessment Report"),
+        ("security_assessment_plan", "Security Assessment Plan"),
+    ],
+}
+
+
+def class_a_framework_key(raw):
+    """Normalize a declared Class A external-assessment framework to a canonical
+    key, or None if it is not FedRAMP-approved. A bare 'SOC 2' is None (must be
+    Type II); Rev5 and Ready are distinct."""
+    if raw is None:
+        return None
+    return CLA_FRAMEWORK_ALIASES.get(str(raw).strip().lower())
+
+
+def class_a_required_material_types(key):
+    """Return the force-gated EAM material type keys for a canonical framework."""
+    return [k for k, _label in CLA_REQUIRED_MATERIALS.get(key, [])]
 
 
 def cmd_build(args):
@@ -735,39 +788,14 @@ def cmd_preflight(args):
     # Class A: external assessment materials (FRC-CLA-ASF / EAM).
     if cls == "a":
         ext = offering.get("external_assessment") or {}
-        # FRC-CLA-ASF permits ONLY these three alternative frameworks (verbatim
-        # from the dataset), and FRC-CLA-EAM requires framework-specific
-        # materials. Normalize the declared framework to a canonical key and
-        # reject anything outside the allowlist, then gate the required set.
-        FRAMEWORK_ALIASES = {
-            "soc2_type_ii": "soc2_type_ii", "soc 2 type ii": "soc2_type_ii",
-            "soc2": "soc2_type_ii", "soc 2": "soc2_type_ii",
-            "fedramp_rev5": "fedramp_rev5", "fedramp rev5": "fedramp_rev5",
-            "rev5": "fedramp_rev5", "fedramp ready": "fedramp_ready",
-            "fedramp_ready": "fedramp_ready",
-            "govramp": "govramp",
-        }
-        # Required material TYPES per framework (derived from FRC-CLA-EAM). Items
-        # marked "if applicable" in the rule are NOT force-gated here.
-        REQUIRED_MATERIALS = {
-            "soc2_type_ii": [
-                ("complete_report", "Complete SOC 2 Type II report"),
-                ("verified_audit_engagement", "Verified audit engagement documentation"),
-                ("upcoming_report_schedule", "Estimated schedule for upcoming report"),
-            ],
-            "fedramp_rev5": [
-                ("readiness_assessment_report", "Readiness Assessment Report"),
-                ("security_assessment_plan", "Security Assessment Plan"),
-            ],
-            "fedramp_ready": [
-                ("readiness_assessment_report", "Readiness Assessment Report"),
-                ("security_assessment_plan", "Security Assessment Plan"),
-            ],
-            "govramp": [
-                ("readiness_assessment_report", "Readiness Assessment Report"),
-                ("security_assessment_plan", "Security Assessment Plan"),
-            ],
-        }
+        # FRC-CLA-ASF permits ONLY these alternative frameworks; FRC-CLA-EAM
+        # enumerates required materials. Both are defined once at module level
+        # (CLA_FRAMEWORK_ALIASES / CLA_REQUIRED_MATERIALS) so preflight and the
+        # tests share a single source of truth. See those definitions for the
+        # verbatim-from-dataset rationale (SOC 2 Type II specificity; Rev5 vs
+        # Ready split).
+        FRAMEWORK_ALIASES = CLA_FRAMEWORK_ALIASES
+        REQUIRED_MATERIALS = CLA_REQUIRED_MATERIALS
         raw_fw = ext.get("framework")
         if not ext or _is_tbd(raw_fw) or _is_tbd(ext.get("assessment_date")):
             blockers.append("Class A: external_assessment not populated "
@@ -778,8 +806,10 @@ def cmd_preflight(args):
             if canon is None:
                 blockers.append(f"Class A: external_assessment.framework '{raw_fw}' is "
                                 "not a FedRAMP-approved alternative framework "
-                                "(FRC-CLA-ASF permits only FedRAMP Rev5 / FedRAMP "
-                                "Ready, SOC 2 Type II, or GovRAMP)")
+                                "(FRC-CLA-ASF permits only FedRAMP Rev5 including "
+                                "FedRAMP Ready, SOC 2 Type II, or GovRAMP; note SOC 2 "
+                                "must be Type II specifically - a bare 'SOC 2' or "
+                                "SOC 2 Type I is not eligible)")
             adate = ext.get("assessment_date")
             try:
                 when = _dt.date.fromisoformat(str(adate))
@@ -806,6 +836,15 @@ def cmd_preflight(args):
                         blockers.append(f"Class A: external_assessment is missing the "
                                         f"required '{label}' material for {canon} "
                                         f"(material type '{key}'; FRC-CLA-EAM)")
+                # FedRAMP Rev5 (full authorization) has no fixed EAM type list,
+                # but EAM still requires supplying assessment materials ("any
+                # other materials required by FedRAMP"). Require at least one
+                # complete material so a Rev5 declaration cannot pass empty.
+                if canon == "fedramp_rev5" and not have_types:
+                    blockers.append("Class A: FedRAMP Rev5 external_assessment "
+                                    "supplies no materials; FRC-CLA-EAM requires "
+                                    "supplying the assessment materials (at least "
+                                    "one complete material with type/uri/sha256)")
 
     # FRC-APP-FIA: a fresh FedRAMP independent assessment within 3 months.
     # Class B and C MUST; Class A MAY (so not a blocker for A). FRC-APP-USA
