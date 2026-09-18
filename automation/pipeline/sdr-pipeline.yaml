@@ -7,7 +7,10 @@ Description: >
   upstream drift daily and run the read-only facts collector.
   Supports FRC-CSX-VVR (persistently verify and validate SDR accuracy),
   SDR-CSX-KMT (historical KSI metrics), and honest human-gated publication.
-  Works in standard and GovCloud partitions (no hardcoded ARN partitions).
+  Partition-aware (no hardcoded ARN partitions). The GitHub source uses AWS
+  CodeConnections, which is not available in AWS GovCloud (US-West); in
+  GovCloud, deploy in a Region where the selected CodeConnections source
+  provider is supported, or swap the Source stage for a supported provider.
 
 Parameters:
   ConnectionArn:

@@ -91,7 +91,7 @@ aws cloudformation deploy \
     NotificationEmail=approver@example.com
 ```
 
-The template avoids hardcoded partitions, so it works in standard and AWS GovCloud regions. AWS CodeCommit is not used because it is closed to new customers; the source is any git host CodeConnections supports.
+The template avoids hardcoded partitions, so its ARNs are partition-aware. Deployment still requires every selected service and source integration to be available in the target Region: the GitHub source uses AWS CodeConnections, which is **not** available in AWS GovCloud (US-West) as of September 2026 (it does have an endpoint in AWS GovCloud US-East). In a Region without CodeConnections GitHub support, swap the Source stage for a supported provider. AWS CodeCommit is not used because it is closed to new customers; the source is any git host CodeConnections supports.
 
 Buildspecs live alongside the template: `buildspec-validate.yml`, `buildspec-drift-check.yml`, `buildspec-collect.yml`.
 
@@ -102,3 +102,17 @@ Fork or clone, then point your pipeline at your private repository. Do not open 
 One thing to get right before your first push: confirm the secret scan is running. `no_sensitive_patterns` checks every deliverable for account identifiers, access keys, and private keys. It is part of the validator, so it runs in gate 3, but verify it fires in your environment rather than assuming it.
 
 See [validation](validation.md) for what each gate checks, and [automation](automation.md) for the collector the scheduled stage runs.
+
+## Certification-JSON download headers (deployment hardening)
+
+FedRAMP Help Center guidance (September 15, 2026) RECOMMENDS that when you serve certification data JSON for download, the response carry `Content-Type: application/json`, `X-Content-Type-Options: nosniff`, and `Content-Disposition: attachment`, so the JSON is not interpreted as active content by a browser or a downstream automated FedRAMP/agency system. This is guidance, not a Consolidated Rules MUST: it is not in the pinned dataset, so it is never a package-preflight blocker. It applies to your provider-hosted download endpoint (for example a Trust Center), not to this repository's S3 publish step.
+
+Check your endpoint with the advisory helper:
+
+```bash
+python automation/pipeline/check_json_download_headers.py --url https://<your-trust-center>/certification.json
+# or evaluate a saved headers file, advisory by default:
+python automation/pipeline/check_json_download_headers.py --headers-file headers.json
+```
+
+It exits 0 by default (RECOMMENDED, not MUST); pass `--strict` to make an absent header a non-zero exit in your own deployment gate.
