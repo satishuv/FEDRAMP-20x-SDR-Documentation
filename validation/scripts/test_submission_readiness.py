@@ -667,6 +667,7 @@ def main():
         check("MOT exception with a missing description does not activate",
               "FRC-CSX-MOT" in rmot2.stdout and rmot2.returncode == 1)
 
+        # --- from PR #110: FRC-APP-NTP + FRR implementation-or-risk OR ---
         # FRC-APP-NTP (MUST NOT third-party applicant): dropping the provider
         # self-attestation must block application-preflight; restoring a real
         # attestation clears it. Uses the ready Class C initial-cert tree.
@@ -716,6 +717,59 @@ def main():
         recs_m["frr"][frr_m] = saved_frr
         json.dump(recs_m, open(rp_m, "w", encoding="utf-8", newline="\n"), indent=1)
         _build(root_m)
+
+        # --- from PR #111: evidence-freshness submission gate ---
+        # Evidence freshness gate (Class C): a populated applicable record backed
+        # ONLY by EXPIRED evidence (older than 2x the 90-day policy) must BLOCK;
+        # refreshing the observation date to today clears it. Restore the MOT
+        # exception first so freshness is the only variable. Never changes status.
+        pm["metric_history_exception"]["mechanisms_description"] = (
+            "Automated daily KSI collectors are deployed and producing telemetry.")
+        json.dump(pm, open(profile_m, "w", encoding="utf-8", newline="\n"), indent=1)
+        rp_ef = os.path.join(root_m, "sdr", "records", "records-store.json")
+        recs_ef = json.load(open(rp_ef, encoding="utf-8"))
+        # Pick a populated applicable KSI and give it a single expired evidence entry.
+        ksi_prof_ef = json.load(open(os.path.join(root_m, "profiles", "common", "ksi-profile.json"),
+                                     encoding="utf-8"))
+        appl_ksi = {k["ksi_id"] for k in ksi_prof_ef.get("indicators", [])}
+        target_ksi = None
+        for kid, rec in recs_ef.get("ksi", {}).items():
+            impl = rec.get("implementation")
+            if kid in appl_ksi and impl and not any("TBD" in str(x) for x in
+                                                    (impl if isinstance(impl, list) else [impl])):
+                target_ksi = kid
+                break
+        expired_date = (now.date() - datetime.timedelta(days=400)).isoformat()
+        fresh_date = now.date().isoformat()
+        recs_ef["ksi"][target_ksi]["evidence"] = [{
+            "evidenceType": "Report",
+            "evidenceLocation": "https://evidence.bfc-demo.invalid/expired.json",
+            "xEvidenceContentHash": "sha256:" + "a" * 64,
+            "lastUpdated": expired_date,
+        }]
+        json.dump(recs_ef, open(rp_ef, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root_m)
+        # Re-sign so only the freshness gate (not a stale signoff) can block.
+        mh_ef = "sha256:" + hashlib.sha256(open(manifest_m, "rb").read()).hexdigest()
+        reg_ef = json.load(open(register_m, encoding="utf-8"))
+        reg_ef["package_signoff"]["package_manifest_sha256"] = mh_ef
+        reg_ef["package_signoff"]["release_tag"] = json.load(open(manifest_m, encoding="utf-8")).get("release_tag")
+        json.dump(reg_ef, open(register_m, "w", encoding="utf-8", newline="\n"), indent=1)
+        r_exp = _preflight(root_m)
+        check("Class C populated record backed only by EXPIRED evidence blocks",
+              "EXPIRED evidence" in r_exp.stdout and r_exp.returncode == 1)
+        # Refresh the evidence date to today -> the expiry blocker clears.
+        recs_ef["ksi"][target_ksi]["evidence"][0]["lastUpdated"] = fresh_date
+        json.dump(recs_ef, open(rp_ef, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root_m)
+        mh_ef2 = "sha256:" + hashlib.sha256(open(manifest_m, "rb").read()).hexdigest()
+        reg_ef2 = json.load(open(register_m, encoding="utf-8"))
+        reg_ef2["package_signoff"]["package_manifest_sha256"] = mh_ef2
+        reg_ef2["package_signoff"]["release_tag"] = json.load(open(manifest_m, encoding="utf-8")).get("release_tag")
+        json.dump(reg_ef2, open(register_m, "w", encoding="utf-8", newline="\n"), indent=1)
+        r_fresh = _preflight(root_m)
+        check("refreshing the evidence date clears the EXPIRED-evidence blocker",
+              "EXPIRED evidence" not in r_fresh.stdout)
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
 
