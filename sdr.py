@@ -1219,6 +1219,35 @@ def cmd_preflight(args):
     applicable_frr = submitted_rule_ids(
         class_profile.get("rules", []), cls,
         offering.get("selected_optional_rules"))
+    # A selected optional rule the provider names must actually BE a Class A
+    # optional (FRC-CLA-OFR) rule in this class profile. An unknown or
+    # misspelled ID is silently no-op'd by submitted_rule_ids (it just never
+    # matches), so the provider believes they opted a rule into the SDR that is
+    # in fact absent. Surface that gap instead of ignoring it. Selected optional
+    # rules are a Class A concept only; for B/C the field is inert, and a
+    # populated selection there signals a profile authored for the wrong class.
+    selected_optional = list(offering.get("selected_optional_rules") or [])
+    if selected_optional:
+        if cls == "a":
+            known_optional = {
+                r.get("rule_id") for r in class_profile.get("rules", [])
+                if r.get("class_a_obligation") == "optional"
+            }
+            unknown_selected = [rid for rid in selected_optional
+                                if rid not in known_optional]
+            if unknown_selected:
+                blockers.append(
+                    "offering: selected_optional_rules names "
+                    f"{len(unknown_selected)} ID(s) that are not Class A optional "
+                    f"(FRC-CLA-OFR) rules in the profile - they are silently "
+                    f"omitted from the submitted SDR: {', '.join(unknown_selected)}. "
+                    "Remove them or correct the rule_id (must be one of: "
+                    f"{', '.join(sorted(known_optional))}).")
+        else:
+            warnings.append(
+                f"offering: selected_optional_rules is set ({len(selected_optional)} "
+                f"ID(s)) but only applies to Class A (FRC-CLA-OFR opt-in); it is "
+                f"ignored at Class {cls.upper()}")
     # Class A resolves only the 7 CLA-enumerated KSIs, not all 46. Use the
     # class-A profile's enumeration (the same source the SDR validator trusts)
     # so preflight does not falsely block on the ~39 KSIs that do not apply to A.
@@ -1732,13 +1761,28 @@ def cmd_preflight(args):
         # FRC-APP-NTP (MUST NOT): "Providers MUST NOT use a third party to apply
         # for a FedRAMP Certification on their behalf; this includes independent
         # assessment services." The provider itself must be the applicant. A
-        # third party may PREPARE materials, but not submit the application. Gate
-        # on a recorded provider self-attestation that the CSP is the applicant.
-        if not _answered(app.get("provider_is_applicant_attestation")):
-            blockers.append("application: no provider attestation that the CSP itself "
-                            "is the applicant (FRC-APP-NTP MUST NOT use a third party, "
-                            "incl. an assessor, to apply on the provider's behalf; set "
-                            "application_prerequisites.provider_is_applicant_attestation)")
+        # third party may PREPARE materials, but not submit the application.
+        # This is a MUST NOT, so the gate is an AFFIRMATIVE boolean: the provider
+        # must positively assert it is the applicant (provider_is_applicant ==
+        # true). A free-form string cannot gate a MUST NOT - a truthful "No, our
+        # assessor is submitting" is a non-empty string and would falsely pass an
+        # existence-only check, admitting the exact case FRC-APP-NTP forbids. The
+        # optional provider_is_applicant_attestation string stays as a human
+        # evidence note but is no longer the gating condition.
+        applicant_flag = app.get("provider_is_applicant")
+        if applicant_flag is not True:
+            if applicant_flag is False:
+                blockers.append("application: provider_is_applicant is false - a third "
+                                "party (incl. an assessor) MUST NOT apply on the "
+                                "provider's behalf (FRC-APP-NTP). The CSP itself must "
+                                "be the applicant; set application_prerequisites."
+                                "provider_is_applicant: true")
+            else:
+                blockers.append("application: no affirmative provider-is-applicant "
+                                "attestation (FRC-APP-NTP MUST NOT use a third party, "
+                                "incl. an assessor, to apply on the provider's behalf; "
+                                "set application_prerequisites.provider_is_applicant: "
+                                "true - a boolean, not a description)")
 
     out()
     label = ("FedRAMP APPLICATION preflight" if scope == "application-preflight"
