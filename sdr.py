@@ -1033,29 +1033,73 @@ def cmd_preflight(args):
         # metrics long enough, the provider needs mechanisms in place and a
         # recorded commitment to meet the requirement going forward.
         exc = offering.get("metric_history_exception") or {}
+        # operating_since must be a REAL ISO date, and the initial-certification
+        # exception only applies when the service has NOT been operating with
+        # metrics for the required window: a service operating >= the MOT window
+        # (6 months C / 18 months D) is expected to have the full history and
+        # cannot use the shortcut. Parse the date and bound the window.
+        import datetime as _dm
+        _op_raw = exc.get("operating_since")
+        _op_date = None
+        if not _is_tbd(_op_raw):
+            try:
+                _op_date = _dm.date.fromisoformat(str(_op_raw)[:10])
+            except (ValueError, TypeError):
+                _op_date = None
+        mot_window_start = _months_before(today, mot_min_months)
+        # Eligible only when operating_since parses AND is AFTER the window start
+        # (i.e. the service has operated for LESS than the required window).
+        exc_window_eligible = _op_date is not None and _op_date > mot_window_start
         exc_valid = (exc.get("mechanisms_in_place") is True
                      and not _is_hollow(exc.get("mechanisms_description"))
                      and exc.get("commitment_to_meet_mot") is True
                      and not _is_hollow(exc.get("commitment_reference"))
-                     and not _is_tbd(exc.get("operating_since"))
+                     and exc_window_eligible
                      and not _is_hollow(exc.get("responsible_official")))
+        # Distinguish "exception fields present but invalid" from "no exception":
+        # an invalid operating_since or an over-long operating window should tell
+        # the provider WHY the exception did not apply, not silently fall through.
+        exc_attempted = (exc.get("mechanisms_in_place") is True
+                         or exc.get("commitment_to_meet_mot") is True
+                         or not _is_tbd(_op_raw))
         history = load_json(os.path.join(BASE, "automation", "metrics", "metric-history.json"))
         per = (history.get("ksis", history) if isinstance(history, dict) else {}) or {}
+        if exc_attempted and not exc_valid:
+            if not _is_tbd(_op_raw) and _op_date is None:
+                blockers.append(f"Class {cls.upper()}: initial-certification MOT exception has "
+                                f"an invalid operating_since ({_op_raw!r}); it must be a real "
+                                "ISO date (YYYY-MM-DD) for the exception to apply (FRC-CSX-MOT)")
+            elif _op_date is not None and not exc_window_eligible:
+                blockers.append(f"Class {cls.upper()}: initial-certification MOT exception does "
+                                f"not apply - the service has operated since {_op_date} "
+                                f"({'6' if cls == 'c' else '18'}+ months), so the full "
+                                "persistent-validation history is required, not the exception "
+                                "(FRC-CSX-MOT)")
         if exc_valid:
-            # Exception path: require mechanisms + current validation data
-            # (at least one recent datapoint per KSI), not 6 months.
-            # append_metrics stores each KSI as {"series": [...], ...}. Read the
-            # series list, not the object, when checking for a current datapoint.
+            # Exception path: require mechanisms + CURRENT validation data (a
+            # RECENT datapoint per KSI, not merely any old observation), not the
+            # full 6/18 months. append_metrics stores each KSI as {"series":[...]}.
             def _series(entry):
                 if isinstance(entry, dict):
                     return entry.get("series") or []
                 return entry if isinstance(entry, list) else []
-            missing_now = [k for k in mot_ksis if not _series(per.get(k))]
+            # "Current" = at least one observation within the last 45 days (a
+            # generous bound over a daily/weekly/monthly cadence). A six-month-
+            # old lone datapoint is NOT current and must not satisfy the gate.
+            recent_cutoff = (today - _dm.timedelta(days=45)).isoformat()
+
+            def _has_recent(entry):
+                for e in _series(entry):
+                    ds_ = (e or {}).get("date") if isinstance(e, dict) else None
+                    if ds_ and str(ds_)[:10] >= recent_cutoff:
+                        return True
+                return False
+            missing_now = [k for k in mot_ksis if not _has_recent(per.get(k))]
             if missing_now:
                 blockers.append(f"Class {cls.upper()}: initial-certification MOT exception is "
-                                f"recorded, but {len(missing_now)} KSI(s) have no current "
-                                "validation datapoint yet (FRC-CSX-MOT: mechanisms must be "
-                                "operational and producing data)")
+                                f"recorded, but {len(missing_now)} KSI(s) have no CURRENT "
+                                "validation datapoint (within the last 45 days); the mechanisms "
+                                "must be operational and producing data now (FRC-CSX-MOT)")
         elif not history:
             blockers.append(f"Class {cls.upper()}: no KSI metric history found (FRC-CSX-MOT "
                             f"MUST: {'6' if cls == 'c' else '18'} months for ALL KSIs, OR a "
@@ -1217,29 +1261,65 @@ def cmd_preflight(args):
         return True
 
     def _frr_gaps(rec):
-        """Missing required SDR-CSO-FRR items for one FRR record (7 items;
-        rule-specific artifacts are 'if applicable' so not gated).
+        """Missing required SDR-CSO-FRR items for one FRR record, evaluated
+        STATUS-AWARE so the release gate agrees with the readiness scanner
+        (automation/sdrscan/checks.py rule_checks). Rule-specific artifacts are
+        'if applicable', so not gated.
 
-        The first required item is an OR, verbatim from the dataset: "Explanation
-        of how the rule is followed, OR an explanation of the reason and resulting
-        risk to customers for not following the rule." So a record satisfies it by
-        answering EITHER the implementation narrative (rule followed) OR the
-        customer-risk extension (rule not followed). Gating implementation alone
-        let a not-followed rule ship without ever stating the resulting customer
-        risk, and conversely blocked an honestly not-followed rule that documented
-        the reason+risk but left implementation TBD."""
+        SDR-CSO-FRR, verbatim item 1 is an OR: "Explanation of how the rule is
+        followed, OR an explanation of the reason and resulting risk to customers
+        for not following the rule." Items 2-3 (verification, validation) may be
+        satisfied, for a rule that is NOT followed, by a senior official's
+        acceptance of the reason for not implementing. So the required set
+        depends on frrImplementationStatus:
+
+          Implemented           -> implementation + verification + validation
+                                   (+ independent verification/validation, responses)
+          Not / Partially       -> reason + resulting customer_risk, AND EITHER
+            Implemented            verification+validation OR a real
+                                   senior_official_acceptance standing in for them
+
+        Gating implementation-only (status-unaware) let a Not-Implemented rule
+        with a filled implementation narrative satisfy item 1 while customer_risk
+        stayed TBD, and always demanded verification/validation even where the
+        senior-official-acceptance alternative applies - diverging from the
+        scanner."""
         ext = rec.get("extension", {}) or {}
+        status = str(rec.get("implementation_status") or "Not Implemented")
+        not_following = status in ("Not Implemented", "Partially Implemented")
+        gaps = []
+
+        # Item 1 (OR): how-followed (implementation) OR reason+resulting risk.
         impl_or_risk = _answered(rec.get("implementation")) or _answered(ext.get("customer_risk"))
-        checks = {
-            "verification": ext.get("verification"),
-            "validation": rec.get("validation"),
-            "independent_verification": ext.get("independent_verification"),
-            "independent_validation": ext.get("independent_validation"),
-            "responses": ext.get("assessor_responses"),
-        }
-        gaps = [k for k, v in checks.items() if not _answered(v)]
         if not impl_or_risk:
-            gaps.insert(0, "implementation-or-resulting-customer-risk")
+            gaps.append("implementation-or-resulting-customer-risk")
+        # For a not-followed rule, the resulting customer risk is REQUIRED
+        # (the "or not following the rule" branch is the only one available).
+        if not_following and not _answered(ext.get("customer_risk")):
+            gaps.append("resulting-customer-risk (rule not followed)")
+
+        # Items 2-3: verification + validation, OR senior-official acceptance
+        # for a not-followed rule. A bare "Not required: rule is followed"
+        # placeholder does NOT count as acceptance.
+        acc = ext.get("senior_official_acceptance")
+        acceptance_ok = _answered(acc) and not str(acc).startswith("Not required")
+        vv_ok = _answered(ext.get("verification")) and _answered(rec.get("validation"))
+        if not_following:
+            if not (vv_ok or acceptance_ok):
+                gaps.append("verification+validation OR senior-official-acceptance "
+                            "(rule not followed)")
+        else:
+            if not _answered(ext.get("verification")):
+                gaps.append("verification")
+            if not _answered(rec.get("validation")):
+                gaps.append("validation")
+
+        # Items 4-6 apply regardless of status.
+        for k, v in (("independent_verification", ext.get("independent_verification")),
+                     ("independent_validation", ext.get("independent_validation")),
+                     ("responses", ext.get("assessor_responses"))):
+            if not _answered(v):
+                gaps.append(k)
         return gaps
 
     def _ksi_gaps(rec):
@@ -1322,15 +1402,32 @@ def cmd_preflight(args):
             "TBD" in str(x) for x in (impl if isinstance(impl, list) else [impl]))
         if not populated:
             return
-        for ev in (rec.get("evidence") or []):
+        # Evidence lives in two places by record kind: KSI evidence under
+        # rec["evidence"]; FRR rule-specific artifacts under
+        # rec["extension"]["rule_artifacts"]. Scan BOTH so an expired FRR
+        # artifact is not silently missed.
+        ext = rec.get("extension", {}) or {}
+        items = list(rec.get("evidence") or []) + list(ext.get("rule_artifacts") or [])
+        # Evaluate the WHOLE evidence set rather than breaking on the first
+        # expired item: a record with one expired historical artifact AND one
+        # current valid artifact still has sufficient current support and must
+        # NOT be reported as "backed only by EXPIRED evidence". Only when EVERY
+        # dated item is expired (and none is current) is it a blocker; a mix is
+        # a stale-artifact warning.
+        states = []
+        for ev in items:
             observed = _evidence_observed_at(ev)
-            state = classify_evidence_freshness(observed, now_ef, policy_days)
-            if state == "expired":
-                expired_ev.append(rid)
-                break
-            if state == "stale":
-                stale_ev.append(rid)
-                break
+            if observed is None:
+                continue  # undated evidence is the linkage check's job, not freshness
+            states.append(classify_evidence_freshness(observed, now_ef, policy_days))
+        if not states:
+            return
+        has_current = any(s == "current" for s in states)
+        all_expired = all(s == "expired" for s in states)
+        if all_expired and not has_current:
+            expired_ev.append(rid)
+        elif any(s in ("stale", "expired") for s in states):
+            stale_ev.append(rid)
 
     for rid, rec in (records.get("frr", {}) or {}).items():
         if rid in applicable_frr:
