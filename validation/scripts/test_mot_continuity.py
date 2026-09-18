@@ -1,0 +1,91 @@
+# Offline tests for the FRC-CSX-MOT continuity (persistent-validation) helper.
+#
+# The MOT age check proves the oldest datapoint reaches back far enough. That is
+# necessary but not sufficient: a series of [6-months-ago, today] passes the age
+# check yet is not "status from persistent validation over at least the past 6
+# months". mot_continuity() bounds the largest gap (and the trailing gap) using
+# a cadence DERIVED from the series itself, so it does not impose a FedRAMP
+# cadence the rule does not state.
+#
+# Run: python validation/scripts/test_mot_continuity.py
+
+import os
+import sys
+import datetime as dt
+
+BASE = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, BASE)
+import sdr  # noqa: E402
+
+_fail = 0
+
+
+def check(name, cond):
+    global _fail
+    if cond:
+        print(f"  PASS {name}")
+    else:
+        _fail += 1
+        print(f"  FAIL {name}")
+
+
+def _daily(today, n):
+    """n consecutive daily dates ending today."""
+    return [today - dt.timedelta(days=i) for i in range(n)]
+
+
+def main():
+    today = dt.date(2026, 9, 17)
+
+    # Continuous daily series across ~6 months: NOT gappy.
+    daily = _daily(today, 190)
+    gappy, largest, median, trailing = sdr.mot_continuity(daily, today)
+    check("continuous daily 6-month series is not gappy", gappy is False)
+    check("continuous daily series median gap is 1 day", median == 1)
+    check("continuous daily series trailing gap is 0", trailing == 0)
+
+    # The classic hollow case: exactly two points, 6 months apart. GAPPY.
+    two = [dt.date(2026, 3, 17), today]
+    gappy2, largest2, _m2, _t2 = sdr.mot_continuity(two, today)
+    check("two-points-6-months-apart is gappy", gappy2 is True)
+    check("two-point largest gap is the whole window", largest2 and largest2 > 45)
+
+    # A single in-window point is not persistent validation.
+    one = [dt.date(2026, 6, 1)]
+    g1, l1, m1, t1 = sdr.mot_continuity(one, today)
+    check("single in-window point is gappy", g1 is True)
+    check("single point returns None gap metrics", l1 is None and m1 is None)
+
+    # Honest WEEKLY cadence with one occasional miss (14-day gap once): the
+    # median is ~7, tolerance is max(4*7, 45)=45, so a single 14-day gap is fine.
+    weekly = []
+    d = today
+    for i in range(28):  # ~6.5 months of weekly points
+        weekly.append(d)
+        d = d - dt.timedelta(days=7)
+    # introduce one 14-day gap by dropping a point
+    weekly = [x for x in weekly if x != weekly[10]]
+    gw, lw, mw, tw = sdr.mot_continuity(sorted(weekly), today)
+    check("honest weekly cadence with one miss is NOT gappy", gw is False)
+    check("weekly median gap is ~7 days", 6 <= mw <= 8)
+
+    # A monthly-then-silent series: monthly for 3 months then a 90-day silence
+    # at the end -> trailing gap trips the tolerance.
+    monthly = [today - dt.timedelta(days=k) for k in (185, 155, 125, 95)]
+    gm, lm, mm, tm = sdr.mot_continuity(sorted(monthly), today)
+    check("stale trailing gap (95 days since last point) is gappy", gm is True)
+    check("stale series reports the trailing gap", tm == 95)
+
+    # A big mid-window gap (100 days) between otherwise-daily runs trips it.
+    a = _daily(today, 30)
+    b = [today - dt.timedelta(days=k) for k in range(150, 180)]
+    mixed = sorted(a + b)
+    gmix, lmix, _mmix, _tmix = sdr.mot_continuity(mixed, today)
+    check("100+ day mid-window gap is gappy", gmix is True and lmix > 45)
+
+    print(f"\n{'PASS' if _fail == 0 else 'FAIL'}: mot_continuity ({_fail} failures)")
+    return 1 if _fail else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
