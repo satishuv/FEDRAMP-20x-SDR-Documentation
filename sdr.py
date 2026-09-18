@@ -109,6 +109,7 @@ TEST_SUITE = [
     "automation/collectors/test_service_registry.py",
     "automation/collectors/test_thirdparty_upsert.py",
     "automation/pipeline/test_release_gate.py",
+    "automation/pipeline/test_json_download_headers.py",
     "automation/storage/test_provision_store.py",
     "automation/ai/test_bedrock_boundary.py",
     "validation/scripts/test_dataset_diff.py",
