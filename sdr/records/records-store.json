@@ -7391,7 +7391,8 @@
     "exception_reference": "None recorded",
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided.",
-    "assessor_responses": "None recorded"
+    "assessor_responses": "None recorded",
+    "resulting_customer_risk": "TBD: Information has not been provided."
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -7443,7 +7444,8 @@
     "exception_reference": "None recorded",
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided.",
-    "assessor_responses": "None recorded"
+    "assessor_responses": "None recorded",
+    "resulting_customer_risk": "TBD: Information has not been provided."
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -7492,7 +7494,8 @@
     "exception_reference": "None recorded",
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided.",
-    "assessor_responses": "None recorded"
+    "assessor_responses": "None recorded",
+    "resulting_customer_risk": "TBD: Information has not been provided."
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -7541,7 +7544,8 @@
     "exception_reference": "None recorded",
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided.",
-    "assessor_responses": "None recorded"
+    "assessor_responses": "None recorded",
+    "resulting_customer_risk": "TBD: Information has not been provided."
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -7590,7 +7594,8 @@
     "exception_reference": "None recorded",
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided.",
-    "assessor_responses": "None recorded"
+    "assessor_responses": "None recorded",
+    "resulting_customer_risk": "TBD: Information has not been provided."
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -7639,7 +7644,8 @@
     "exception_reference": "None recorded",
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided.",
-    "assessor_responses": "None recorded"
+    "assessor_responses": "None recorded",
+    "resulting_customer_risk": "TBD: Information has not been provided."
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -7688,7 +7694,8 @@
     "exception_reference": "None recorded",
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided.",
-    "assessor_responses": "None recorded"
+    "assessor_responses": "None recorded",
+    "resulting_customer_risk": "TBD: Information has not been provided."
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -7737,7 +7744,8 @@
     "exception_reference": "None recorded",
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided.",
-    "assessor_responses": "None recorded"
+    "assessor_responses": "None recorded",
+    "resulting_customer_risk": "TBD: Information has not been provided."
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -7786,7 +7794,8 @@
     "exception_reference": "None recorded",
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided.",
-    "assessor_responses": "None recorded"
+    "assessor_responses": "None recorded",
+    "resulting_customer_risk": "TBD: Information has not been provided."
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -7835,7 +7844,8 @@
     "exception_reference": "None recorded",
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided.",
-    "assessor_responses": "None recorded"
+    "assessor_responses": "None recorded",
+    "resulting_customer_risk": "TBD: Information has not been provided."
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -7884,7 +7894,8 @@
     "exception_reference": "None recorded",
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided.",
-    "assessor_responses": "None recorded"
+    "assessor_responses": "None recorded",
+    "resulting_customer_risk": "TBD: Information has not been provided."
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -7933,7 +7944,8 @@
     "exception_reference": "None recorded",
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided.",
-    "assessor_responses": "None recorded"
+    "assessor_responses": "None recorded",
+    "resulting_customer_risk": "TBD: Information has not been provided."
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -7982,7 +7994,8 @@
     "exception_reference": "None recorded",
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided.",
-    "assessor_responses": "None recorded"
+    "assessor_responses": "None recorded",
+    "resulting_customer_risk": "TBD: Information has not been provided."
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -8031,7 +8044,8 @@
     "exception_reference": "None recorded",
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided.",
-    "assessor_responses": "None recorded"
+    "assessor_responses": "None recorded",
+    "resulting_customer_risk": "TBD: Information has not been provided."
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -8083,7 +8097,8 @@
     "exception_reference": "None recorded",
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided.",
-    "assessor_responses": "None recorded"
+    "assessor_responses": "None recorded",
+    "resulting_customer_risk": "TBD: Information has not been provided."
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -8132,7 +8147,8 @@
     "exception_reference": "None recorded",
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided.",
-    "assessor_responses": "None recorded"
+    "assessor_responses": "None recorded",
+    "resulting_customer_risk": "TBD: Information has not been provided."
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -8181,7 +8197,8 @@
     "exception_reference": "None recorded",
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided.",
-    "assessor_responses": "None recorded"
+    "assessor_responses": "None recorded",
+    "resulting_customer_risk": "TBD: Information has not been provided."
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -8230,7 +8247,8 @@
     "exception_reference": "None recorded",
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided.",
-    "assessor_responses": "None recorded"
+    "assessor_responses": "None recorded",
+    "resulting_customer_risk": "TBD: Information has not been provided."
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -8279,7 +8297,8 @@
     "exception_reference": "None recorded",
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided.",
-    "assessor_responses": "None recorded"
+    "assessor_responses": "None recorded",
+    "resulting_customer_risk": "TBD: Information has not been provided."
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -8328,7 +8347,8 @@
     "exception_reference": "None recorded",
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided.",
-    "assessor_responses": "None recorded"
+    "assessor_responses": "None recorded",
+    "resulting_customer_risk": "TBD: Information has not been provided."
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -8377,7 +8397,8 @@
     "exception_reference": "None recorded",
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided.",
-    "assessor_responses": "None recorded"
+    "assessor_responses": "None recorded",
+    "resulting_customer_risk": "TBD: Information has not been provided."
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -8426,7 +8447,8 @@
     "exception_reference": "None recorded",
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided.",
-    "assessor_responses": "None recorded"
+    "assessor_responses": "None recorded",
+    "resulting_customer_risk": "TBD: Information has not been provided."
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -8475,7 +8497,8 @@
     "exception_reference": "None recorded",
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided.",
-    "assessor_responses": "None recorded"
+    "assessor_responses": "None recorded",
+    "resulting_customer_risk": "TBD: Information has not been provided."
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -8524,7 +8547,8 @@
     "exception_reference": "None recorded",
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided.",
-    "assessor_responses": "None recorded"
+    "assessor_responses": "None recorded",
+    "resulting_customer_risk": "TBD: Information has not been provided."
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -8573,7 +8597,8 @@
     "exception_reference": "None recorded",
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided.",
-    "assessor_responses": "None recorded"
+    "assessor_responses": "None recorded",
+    "resulting_customer_risk": "TBD: Information has not been provided."
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -8622,7 +8647,8 @@
     "exception_reference": "None recorded",
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided.",
-    "assessor_responses": "None recorded"
+    "assessor_responses": "None recorded",
+    "resulting_customer_risk": "TBD: Information has not been provided."
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -8671,7 +8697,8 @@
     "exception_reference": "None recorded",
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided.",
-    "assessor_responses": "None recorded"
+    "assessor_responses": "None recorded",
+    "resulting_customer_risk": "TBD: Information has not been provided."
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -8720,7 +8747,8 @@
     "exception_reference": "None recorded",
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided.",
-    "assessor_responses": "None recorded"
+    "assessor_responses": "None recorded",
+    "resulting_customer_risk": "TBD: Information has not been provided."
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -8769,7 +8797,8 @@
     "exception_reference": "None recorded",
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided.",
-    "assessor_responses": "None recorded"
+    "assessor_responses": "None recorded",
+    "resulting_customer_risk": "TBD: Information has not been provided."
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -8818,7 +8847,8 @@
     "exception_reference": "None recorded",
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided.",
-    "assessor_responses": "None recorded"
+    "assessor_responses": "None recorded",
+    "resulting_customer_risk": "TBD: Information has not been provided."
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -8867,7 +8897,8 @@
     "exception_reference": "None recorded",
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided.",
-    "assessor_responses": "None recorded"
+    "assessor_responses": "None recorded",
+    "resulting_customer_risk": "TBD: Information has not been provided."
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -8916,7 +8947,8 @@
     "exception_reference": "None recorded",
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided.",
-    "assessor_responses": "None recorded"
+    "assessor_responses": "None recorded",
+    "resulting_customer_risk": "TBD: Information has not been provided."
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -8965,7 +8997,8 @@
     "exception_reference": "None recorded",
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided.",
-    "assessor_responses": "None recorded"
+    "assessor_responses": "None recorded",
+    "resulting_customer_risk": "TBD: Information has not been provided."
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -9014,7 +9047,8 @@
     "exception_reference": "None recorded",
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided.",
-    "assessor_responses": "None recorded"
+    "assessor_responses": "None recorded",
+    "resulting_customer_risk": "TBD: Information has not been provided."
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -9063,7 +9097,8 @@
     "exception_reference": "None recorded",
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided.",
-    "assessor_responses": "None recorded"
+    "assessor_responses": "None recorded",
+    "resulting_customer_risk": "TBD: Information has not been provided."
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -9112,7 +9147,8 @@
     "exception_reference": "None recorded",
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided.",
-    "assessor_responses": "None recorded"
+    "assessor_responses": "None recorded",
+    "resulting_customer_risk": "TBD: Information has not been provided."
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -9161,7 +9197,8 @@
     "exception_reference": "None recorded",
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided.",
-    "assessor_responses": "None recorded"
+    "assessor_responses": "None recorded",
+    "resulting_customer_risk": "TBD: Information has not been provided."
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -9210,7 +9247,8 @@
     "exception_reference": "None recorded",
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided.",
-    "assessor_responses": "None recorded"
+    "assessor_responses": "None recorded",
+    "resulting_customer_risk": "TBD: Information has not been provided."
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -9259,7 +9297,8 @@
     "exception_reference": "None recorded",
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided.",
-    "assessor_responses": "None recorded"
+    "assessor_responses": "None recorded",
+    "resulting_customer_risk": "TBD: Information has not been provided."
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -9308,7 +9347,8 @@
     "exception_reference": "None recorded",
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided.",
-    "assessor_responses": "None recorded"
+    "assessor_responses": "None recorded",
+    "resulting_customer_risk": "TBD: Information has not been provided."
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -9357,7 +9397,8 @@
     "exception_reference": "None recorded",
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided.",
-    "assessor_responses": "None recorded"
+    "assessor_responses": "None recorded",
+    "resulting_customer_risk": "TBD: Information has not been provided."
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -9406,7 +9447,8 @@
     "exception_reference": "None recorded",
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided.",
-    "assessor_responses": "None recorded"
+    "assessor_responses": "None recorded",
+    "resulting_customer_risk": "TBD: Information has not been provided."
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -9455,7 +9497,8 @@
     "exception_reference": "None recorded",
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided.",
-    "assessor_responses": "None recorded"
+    "assessor_responses": "None recorded",
+    "resulting_customer_risk": "TBD: Information has not been provided."
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -9507,7 +9550,8 @@
     "exception_reference": "None recorded",
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided.",
-    "assessor_responses": "None recorded"
+    "assessor_responses": "None recorded",
+    "resulting_customer_risk": "TBD: Information has not been provided."
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -9556,7 +9600,8 @@
     "exception_reference": "None recorded",
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided.",
-    "assessor_responses": "None recorded"
+    "assessor_responses": "None recorded",
+    "resulting_customer_risk": "TBD: Information has not been provided."
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",
@@ -9605,7 +9650,8 @@
     "exception_reference": "None recorded",
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided.",
-    "assessor_responses": "None recorded"
+    "assessor_responses": "None recorded",
+    "resulting_customer_risk": "TBD: Information has not been provided."
    },
    "fill_guidance": {
     "read_me": "Fill implementation, validation, tests, and the extension fields below with the provider's real facts, then run build_sdr.py to regenerate all outputs.",

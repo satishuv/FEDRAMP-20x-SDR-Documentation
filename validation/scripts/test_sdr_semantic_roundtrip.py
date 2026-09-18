@@ -30,10 +30,10 @@ FRR_SEMANTIC_KEYS = [
     "independentValidation", "assessorResponses", "ruleArtifacts",
 ]
 KSI_SEMANTIC_KEYS = [
-    "measures", "operatingCycle", "measuresVerification",
+    "measures", "resultingCustomerRisk", "operatingCycle", "measuresVerification",
     "automationVerification", "historicalMetrics",
 ]
-KMT_KEYS = ["last30Days", "upToOneYear", "dailyDataReference"]
+KMT_KEYS = ["last30Days", "upToOneYear", "dailyData", "dailyDataReference"]
 
 SENTINEL = "ROUNDTRIP-SENTINEL-VALUE-XYZ"
 
@@ -70,11 +70,13 @@ def _sample_records():
                 "historical_metrics": {
                     "last_30_days": "m30-" + SENTINEL,
                     "up_to_one_year": "m1y-" + SENTINEL,
+                    "daily_data": [{"date": "2026-09-01", "value": "daily-" + SENTINEL}],
                     "daily_data_reference": "daily-" + SENTINEL,
                 },
                 "extension": {
                     "owner": "kowner-" + SENTINEL,
                     "measures": "measures-" + SENTINEL,
+                    "resulting_customer_risk": "kcr-" + SENTINEL,
                     "operating_cycle": "cycle-" + SENTINEL,
                     "measures_verification": "mv-" + SENTINEL,
                     "automation_verification": "av-" + SENTINEL,
@@ -100,6 +102,8 @@ def test_ksi_semantic_block_present_in_official_json():
     for key in KMT_KEYS:
         assert key in sem["historicalMetrics"], f"historicalMetrics missing {key}"
     assert sem["automationVerification"] == "av-" + SENTINEL
+    assert sem["resultingCustomerRisk"] == "kcr-" + SENTINEL
+    assert sem["historicalMetrics"]["dailyData"] == [{"date": "2026-09-01", "value": "daily-" + SENTINEL}]
     assert sem["historicalMetrics"]["dailyDataReference"] == "daily-" + SENTINEL
 
 
