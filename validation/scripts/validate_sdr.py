@@ -586,8 +586,9 @@ def main():
                 # determination, not this generator's).
                 if "dailyData" not in hm:
                     sem_problems.append(f"{entry['ksiId']}: missing SDR-CSX-KMT dailyData (Class C: all daily metric data in the SDR)")
-                if "dailyDataReference" not in hm:
-                    sem_problems.append(f"{entry['ksiId']}: missing SDR-CSX-KMT dailyDataReference (Class C)")
+                # dailyDataReference is an OPTIONAL external pointer (CR26
+                # requires the daily DATA, not a URL), so its absence is not a
+                # completeness defect and is intentionally not required here.
     check("semantic_completeness_cr26", not sem_problems,
           f"{len(sem_problems)} required semantic elements absent from the "
           "submitted SDR"

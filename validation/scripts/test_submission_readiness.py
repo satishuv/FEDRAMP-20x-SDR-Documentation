@@ -307,6 +307,38 @@ def main():
         check("TBD warning is scoped to applicable records",
               "applicable to Class" in r.stdout or r.returncode == 0)
 
+        # SDR-CSX-KMT dailyData is DERIVED from the immutable metric history and
+        # must reach the submitted SDR (Class C MUST supply the actual daily
+        # data, not a URL). The ready-path history above has ~8 monthly points
+        # per applicable KSI, so every applicable KSI's dailyData must be
+        # non-empty in the generated SDR.
+        _sdr_c = json.load(open(os.path.join(root, "sdr", "json", "sdr-class-c.json"), encoding="utf-8"))
+        _empty_daily = [e["ksiId"] for e in _sdr_c["keySecurityIndicators"]
+                        if not (e.get("providerExtensions", {}).get("xFedRampSemantic", {})
+                                .get("historicalMetrics", {}).get("dailyData"))]
+        check("Class C SDR carries derived dailyData for every applicable KSI (SDR-CSX-KMT)",
+              not _empty_daily)
+
+        # Adversarial: a Class C package whose durable metric history has NO
+        # in-window daily observations must BLOCK on the daily-data gate, not
+        # reach ready with an empty dailyData. Wipe the history to empty series
+        # and re-check (the KSIs are still present in history, so this is the
+        # "in history but no observations" path the KMT gate must catch).
+        hp = os.path.join(root, "automation", "metrics", "metric-history.json")
+        _h = json.load(open(hp, encoding="utf-8"))
+        for _e in _h.get("ksis", {}).values():
+            _e["series"] = []
+        json.dump(_h, open(hp, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root)
+        r_daily = _preflight(root)
+        check("empty daily metric history blocks a Class C package (SDR-CSX-KMT dailyData)",
+              r_daily.returncode == 1 and "kmt_daily_data" in r_daily.stdout)
+        # Restore the ~8-month history (and profile) for the subsequent stages;
+        # _fill rewrites metric-history.json for every applicable KSI.
+        _fill(profile, now)
+        _fill_records(root)
+        _build(root)
+
         # Adversarial (regression for a real ready-but-hollow gap found by the
         # Class C end-to-end exercise): a Class C package whose KSI historical-
         # metric summaries (SDR-CSX-KMT, a Class C MUST) are all TBD must BLOCK,

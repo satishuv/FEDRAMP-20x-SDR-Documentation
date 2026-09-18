@@ -199,7 +199,7 @@ def scaffold_records(rules, ksis):
     return store
 
 
-def build_official(profile, rules, ksis, records):
+def build_official(profile, rules, ksis, records, metric_history=None):
     # metadata block is official as of schema 1.1.1 (2026-07-14 in-place
     # update to the 2026-06-24 schema file), per SDR-CSO-MTD.
     # Each entry also carries a providerExtensions object with the rule name
@@ -274,7 +274,8 @@ def build_official(profile, rules, ksis, records):
                     # class. Only ksiValidation/ksiAssessment map to official
                     # fields, so the rest is carried here inside the submitted
                     # document.
-                    "xFedRampSemantic": ksi_semantic(rec),
+                    "xFedRampSemantic": ksi_semantic(
+                        rec, _derive_daily_data(k["ksi_id"], metric_history or {})),
                     "xAuthoringStatus": rec.get("implementation_status", "Not Implemented"),
                 },
             }
@@ -307,10 +308,53 @@ def frr_semantic(rec):
     }
 
 
-def ksi_semantic(rec):
+def _derive_daily_data(kid, metric_history):
+    """Derive the in-SDR dailyData series for one KSI DIRECTLY from the
+    immutable metric-history.json snapshot (append_metrics's durable store),
+    not from a hand-authored records-store field. This is the SDR-CSX-KMT
+    Class C MUST ("All daily metric data up to the past year, where available")
+    generated from the same durable data the MOT gate reads, so the submitted
+    daily series cannot diverge from the persistence history and no human has to
+    duplicate it into the store.
+
+    metric_history is {"ksis": {kid: {"series": [{"date","status"/"value",...}]}}}
+    (or a bare {kid: {...}} map). Returns the KSI's observations within the past
+    365 days, date-sorted, as a list of {date, ...} dicts (the raw datapoint
+    shape append_metrics wrote). Returns [] when no history exists for the KSI
+    (the "where available" qualifier: absent history is not a fabricated series).
+    """
+    if not isinstance(metric_history, dict):
+        return []
+    ksis = metric_history.get("ksis", metric_history)
+    if not isinstance(ksis, dict):
+        return []
+    entry = ksis.get(kid)
+    series = entry.get("series") if isinstance(entry, dict) else entry
+    if not isinstance(series, list):
+        return []
+    import datetime as _dd
+    cutoff = (_dd.date.today() - _dd.timedelta(days=365)).isoformat()
+    out = []
+    for pt in series:
+        if not isinstance(pt, dict):
+            continue
+        d = str(pt.get("date", ""))[:10]
+        if d and d >= cutoff:
+            out.append(pt)
+    out.sort(key=lambda p: str(p.get("date", "")))
+    return out
+
+
+def ksi_semantic(rec, daily_series=None):
     """Assemble the SDR-CSX-KSI and SDR-CSX-KMT semantic block from a
     record-store entry. Historical metrics (Class B/C MUST) are emitted here
     instead of being dropped from the generated document.
+
+    daily_series, when provided, is the KSI's dailyData DERIVED from the
+    immutable metric-history.json snapshot (see _derive_daily_data). It is
+    preferred over any hand-authored historical_metrics.daily_data so the
+    submitted daily series is the durable persistence data, not a duplicate a
+    human could let drift.
 
     SDR-CSX-KSI, verbatim: "Explanation of measures (and their objectives) that
     demonstrate the Key Security Indicator, OR an explanation of the reason and
@@ -338,10 +382,14 @@ def ksi_semantic(rec):
             "last30Days": _val(hm.get("last_30_days")),
             "upToOneYear": _val(hm.get("up_to_one_year")),
             # Class C MUST supply the actual daily data up to the past year
-            # (where available), not only a pointer. dailyData carries the
-            # normalized in-SDR series (a list of {date, value/status}); the
-            # dailyDataReference URI is retained as an optional external pointer.
-            "dailyData": hm.get("daily_data") if isinstance(hm.get("daily_data"), list) else [],
+            # (where available), not only a pointer. dailyData is DERIVED from
+            # the immutable metric-history.json snapshot (daily_series) so it
+            # cannot diverge from the durable persistence data; it falls back to
+            # a hand-authored historical_metrics.daily_data only when no history
+            # was threaded in. The dailyDataReference URI is retained as an
+            # OPTIONAL external pointer (CR26 does not require a URL).
+            "dailyData": (daily_series if isinstance(daily_series, list) and daily_series
+                          else (hm.get("daily_data") if isinstance(hm.get("daily_data"), list) else [])),
             "dailyDataReference": _val(hm.get("daily_data_reference")),
         },
     }
@@ -442,7 +490,7 @@ def build_extensions(profile, rules, ksis, records, cls):
     return ext
 
 
-def render_human(profile, rules, ksis, records, cls):
+def render_human(profile, rules, ksis, records, cls, metric_history=None):
     fam_names = load_family_names()
     L = []
     a = L.append
@@ -486,6 +534,8 @@ def render_human(profile, rules, ksis, records, cls):
         a(f"Independent verification: {_val(ext.get('independent_verification'))}")
         a(f"Independent validation: {_val(ext.get('independent_validation'))}")
         a(f"Responses to independent review comments: {ext.get('assessor_responses', 'None recorded')}")
+        a("Senior official acceptance (if not implemented): "
+          f"{ext.get('senior_official_acceptance', 'Not required: rule is followed')}")
         arts = ext.get("rule_artifacts", [])
         a(f"Rule-specific artifacts: {'; '.join(str(x) for x in arts) if arts else 'None recorded'}")
         a(f"Owner: {ext.get('owner', TBD)}")
@@ -516,6 +566,8 @@ def render_human(profile, rules, ksis, records, cls):
         for s in rec.get("assessment", []):
             a(f"Independent assessment: {s}")
         a(f"Measures and objectives: {_val(ext.get('measures'))}")
+        a("Resulting customer risk if measures unavailable: "
+          f"{_val(ext.get('resulting_customer_risk') or ext.get('customer_risk'))}")
         a(f"Measurement cycle: {_val(ext.get('operating_cycle'))}")
         a(f"Verification of measures: {_val(ext.get('measures_verification'))}")
         a(f"Verification of supporting automation: {_val(ext.get('automation_verification'))}")
@@ -523,7 +575,19 @@ def render_human(profile, rules, ksis, records, cls):
         a(f"Historical metrics required for this class: {k['historical_metrics'][f'class_{cls}']}")
         a(f"Historical metrics, 30-day summary: {_val(hm.get('last_30_days'))}")
         a(f"Historical metrics, up to one year: {_val(hm.get('up_to_one_year'))}")
-        a(f"Historical metrics, daily data reference (Class C): {_val(hm.get('daily_data_reference'))}")
+        # Class C MUST supply the actual daily data (SDR-CSX-KMT). The
+        # machine-readable SDR carries the full derived series; the human-
+        # readable rendering states the count and window (CDS-CSO-CBF: the two
+        # views must be consistent) plus the optional external reference.
+        _daily = _derive_daily_data(k["ksi_id"], metric_history or {})
+        if _daily:
+            _first = str(_daily[0].get("date", ""))[:10]
+            _last = str(_daily[-1].get("date", ""))[:10]
+            a(f"Historical metrics, daily data (Class C): {len(_daily)} daily "
+              f"observation(s) up to the past year ({_first} to {_last})")
+        else:
+            a("Historical metrics, daily data (Class C): none available")
+        a(f"Historical metrics, daily data reference (optional): {_val(hm.get('daily_data_reference'))}")
         tests = rec.get("tests", [])
         a(f"Tests: {'; '.join(_test_to_str(t) for t in tests) if tests else 'None defined yet'}")
         a(f"Owner: {ext.get('owner', TBD)}")
@@ -641,9 +705,17 @@ def main():
         }
     dump(records, RECORDS)
 
-    official = build_official(profile, rules, ksis, records)
+    # Load the immutable durable metric history (append_metrics's store) so
+    # the Class C in-SDR dailyData is DERIVED from it, not hand-duplicated.
+    # Git-excluded telemetry: absent in a clean tree (the "where available"
+    # qualifier then yields empty dailyData), restored from S3 on the release
+    # path before build.
+    _mh_path = os.path.join(BASE, "automation", "metrics", "metric-history.json")
+    metric_history = load(_mh_path) if os.path.exists(_mh_path) else {}
+
+    official = build_official(profile, rules, ksis, records, metric_history)
     ext = build_extensions(profile, rules, ksis, records, cls)
-    text = render_human(profile, rules, ksis, records, cls)
+    text = render_human(profile, rules, ksis, records, cls, metric_history)
 
     dump(official, os.path.join(BASE, "sdr", "json", f"sdr-class-{cls}.json"))
     dump(ext, os.path.join(BASE, "sdr", "json", f"sdr-class-{cls}-extensions.json"))
