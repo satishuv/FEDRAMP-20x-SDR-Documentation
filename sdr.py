@@ -921,14 +921,23 @@ def cmd_preflight(args):
                                     "one complete material with type/uri/sha256)")
 
     # FRC-APP-FIA: a fresh FedRAMP independent assessment within 3 months.
-    # Class B and C MUST; Class A MAY (so not a blocker for A). FRC-APP-USA
-    # allows freshening a stale assessment unless it is more than 9 months old.
-    if cls in ("b", "c"):
+    # Class B and C MUST. Class A MAY (optional) - so it is NOT gated for A
+    # UNLESS the provider opts in via selected_optional_rules, in which case
+    # FedRAMP reviews it fully (a selected Class A MAY rule gets the same
+    # substantive review as a mandatory one). FRC-APP-USA allows freshening a
+    # stale assessment unless it is more than 9 months old.
+    _fia_selected_a = (cls == "a"
+                       and "FRC-APP-FIA" in set(offering.get("selected_optional_rules") or []))
+    fia_applies = cls in ("b", "c") or _fia_selected_a
+    if fia_applies:
+        # Force wording: MUST for B/C; for a selected Class A optional it is a
+        # provider-opted-in MAY that is fully reviewed once included.
+        _fia_force = "MUST" if cls in ("b", "c") else "MAY (opted in via selected_optional_rules; fully reviewed once included)"
         fia = offering.get("fedramp_independent_assessment") or {}
         completed = fia.get("completed_at")
         if _is_missing_required_identity(fia.get("assessor_name")) or _is_tbd(completed):
             blockers.append(f"Class {cls.upper()}: fedramp_independent_assessment "
-                            "not populated (FRC-APP-FIA MUST: a fresh FedRAMP "
+                            f"not populated (FRC-APP-FIA {_fia_force}: a fresh FedRAMP "
                             "independent assessment by a FedRAMP Recognized service "
                             "within the previous 3 months)")
         elif _is_missing_required_identity(fia.get("assessor_fedramp_id")):
@@ -982,7 +991,10 @@ def cmd_preflight(args):
             except ValueError:
                 blockers.append(f"Class {cls.upper()}: FIA completed_at not a valid date: {completed}")
         # CPO-CSO-OSA: B/C MUST include the assessor overall summary in the CPO.
-        if _is_hollow(offering.get("overall_assessment_summary")):
+        # This is a distinct rule from FRC-APP-FIA and is NOT in the Class A
+        # optional set, so it stays strictly B/C even when a Class A offering
+        # opted into FRC-APP-FIA above.
+        if cls in ("b", "c") and _is_hollow(offering.get("overall_assessment_summary")):
             blockers.append(f"Class {cls.upper()}: overall_assessment_summary not set "
                             "(CPO-CSO-OSA MUST: include the assessor's overall assessment "
                             "summary from IVV-IAS-OSA in the CPO)")

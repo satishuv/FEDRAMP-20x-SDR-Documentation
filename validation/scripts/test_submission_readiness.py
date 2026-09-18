@@ -609,6 +609,76 @@ def main():
         rmat = _preflight(root_a)
         check("Class A blocks when a required SOC 2 material is missing (FRC-CLA-EAM)",
               "Verified audit engagement documentation" in rmat.stdout and rmat.returncode == 1)
+        # Restore the dropped material so the tree is otherwise-ready for the
+        # FRC-APP-FIA opt-in probes below.
+        pa["external_assessment"]["materials"].append(
+            {"type": "verified_audit_engagement",
+             "uri": "https://contoso.gov/soc2-engagement.pdf",
+             "sha256": "sha256:" + "b" * 64})
+
+        # FRC-APP-FIA is MAY (optional) at Class A: it must NOT be gated unless
+        # the provider opts in via selected_optional_rules. Clear the FIA block
+        # to TBD and confirm an UNSELECTED Class A still reaches ready - proving
+        # the optional rule is not silently demanded.
+        pa["selected_optional_rules"] = []
+        pa["fedramp_independent_assessment"] = {
+            "assessor_name": "TBD",
+            "assessor_fedramp_id": "TBD",
+            "completed_at": "TBD",
+        }
+        json.dump(pa, open(profile_a, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root_a)
+        # Re-sign the freshly built package so signoff matches (build changes
+        # nothing about FIA gating, but the manifest hash must match the signoff).
+        mhash_a2 = "sha256:" + hashlib.sha256(open(manifest_a, "rb").read()).hexdigest()
+        tag_a2 = json.load(open(manifest_a, encoding="utf-8")).get("release_tag")
+        reg_a2 = json.load(open(register_a, encoding="utf-8"))
+        reg_a2["package_signoff"] = {
+            "decision": "approved", "reviewer": "Jane Provider, VP Security",
+            "timestamp": now.isoformat(), "release_tag": tag_a2,
+            "package_manifest_sha256": mhash_a2, "notes": "Reviewed Class A package.",
+        }
+        json.dump(reg_a2, open(register_a, "w", encoding="utf-8", newline="\n"), indent=1)
+        rfia_unsel = _preflight(root_a)
+        check("Class A with FRC-APP-FIA NOT selected is not gated on FIA (MAY, unselected)",
+              "fedramp_independent_assessment" not in rfia_unsel.stdout
+              and rfia_unsel.returncode == 0)
+
+        # Now OPT IN to FRC-APP-FIA while it is still TBD. FedRAMP fully reviews a
+        # selected Class A MAY rule, so preflight MUST now block on the empty FIA.
+        pa["selected_optional_rules"] = ["FRC-APP-FIA"]
+        json.dump(pa, open(profile_a, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root_a)
+        rfia_sel = _preflight(root_a)
+        check("Class A blocks on empty FIA once FRC-APP-FIA is selected (fully reviewed when included)",
+              "fedramp_independent_assessment" in rfia_sel.stdout
+              and "not populated" in rfia_sel.stdout and rfia_sel.returncode == 1)
+
+        # Populate the selected FIA with a fresh Recognized-service assessment;
+        # the block must clear.
+        pa["fedramp_independent_assessment"] = {
+            "assessor_name": "Acme FedRAMP Assessors LLC",
+            "assessor_fedramp_id": "FR-ASSESSOR-0007",
+            "completed_at": (now.date() - datetime.timedelta(days=30)).isoformat(),
+            "assessment_summary_uri": "https://contoso.gov/assessment-summary.pdf",
+            "assessment_report_uri": "https://contoso.gov/assessment-report.pdf",
+            "assessment_report_sha256": "sha256:" + "b" * 64,
+        }
+        json.dump(pa, open(profile_a, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root_a)
+        mhash_a3 = "sha256:" + hashlib.sha256(open(manifest_a, "rb").read()).hexdigest()
+        tag_a3 = json.load(open(manifest_a, encoding="utf-8")).get("release_tag")
+        reg_a3 = json.load(open(register_a, encoding="utf-8"))
+        reg_a3["package_signoff"] = {
+            "decision": "approved", "reviewer": "Jane Provider, VP Security",
+            "timestamp": now.isoformat(), "release_tag": tag_a3,
+            "package_manifest_sha256": mhash_a3, "notes": "Reviewed Class A package with selected FIA.",
+        }
+        json.dump(reg_a3, open(register_a, "w", encoding="utf-8", newline="\n"), indent=1)
+        rfia_ok = _preflight(root_a)
+        check("Class A with a populated, selected FRC-APP-FIA reaches ready",
+              "fedramp_independent_assessment" not in rfia_ok.stdout
+              and rfia_ok.returncode == 0)
 
         # FRC-CSX-MOT initial-certification EXCEPTION: a new Class C offering with
         # no long metric history but a valid metric_history_exception (both flags
