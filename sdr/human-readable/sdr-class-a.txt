@@ -102,24 +102,7 @@ Responses to independent review comments: None recorded
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
-1.6 CCM-QTR-MTG Quarterly Review Meeting
-FedRAMP rule: CCM-QTR-MTG
-Rule family: CCM (Collaborative Continuous Monitoring)
-Force: MAY
-Class A obligation: optional (per FRC-CLA-MFR, RFR, or OFR)
-Status: Not Implemented
-Implementation: TBD: Information has not been provided.
-Validation: TBD: Information has not been provided.
-Independent assessment: TBD: Independent assessment has not been performed.
-Implementation or nonimplementation risk: TBD: Information has not been provided.
-Verification: TBD: Information has not been provided.
-Independent verification: TBD: Information has not been provided.
-Independent validation: TBD: Information has not been provided.
-Responses to independent review comments: None recorded
-Rule-specific artifacts: None recorded
-Owner: TBD: Information has not been provided.
-
-1.7 CDS-CSO-AVR Availability Reporting
+1.6 CDS-CSO-AVR Availability Reporting
 FedRAMP rule: CDS-CSO-AVR
 Rule family: CDS (Certification Data Sharing)
 Force: SHOULD
@@ -136,24 +119,7 @@ Responses to independent review comments: None recorded
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
-1.8 CDS-CSO-PSM Per-Service Certification Materials
-FedRAMP rule: CDS-CSO-PSM
-Rule family: CDS (Certification Data Sharing)
-Force: MAY
-Class A obligation: optional (per FRC-CLA-MFR, RFR, or OFR)
-Status: Not Implemented
-Implementation: TBD: Information has not been provided.
-Validation: TBD: Information has not been provided.
-Independent assessment: TBD: Independent assessment has not been performed.
-Implementation or nonimplementation risk: TBD: Information has not been provided.
-Verification: TBD: Information has not been provided.
-Independent verification: TBD: Information has not been provided.
-Independent validation: TBD: Information has not been provided.
-Responses to independent review comments: None recorded
-Rule-specific artifacts: None recorded
-Owner: TBD: Information has not been provided.
-
-1.9 CDS-CSO-PUB Public Information
+1.7 CDS-CSO-PUB Public Information
 FedRAMP rule: CDS-CSO-PUB
 Rule family: CDS (Certification Data Sharing)
 Force: MUST
@@ -170,7 +136,7 @@ Responses to independent review comments: None recorded
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
-1.10 CDS-CSO-UTC Use Trust Centers
+1.8 CDS-CSO-UTC Use Trust Centers
 FedRAMP rule: CDS-CSO-UTC
 Rule family: CDS (Certification Data Sharing)
 Force: MUST
@@ -187,7 +153,7 @@ Responses to independent review comments: None recorded
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
-1.11 CDS-UTC-AAD Agency Access Denial
+1.9 CDS-UTC-AAD Agency Access Denial
 FedRAMP rule: CDS-UTC-AAD
 Rule family: CDS (Certification Data Sharing)
 Force: MUST
@@ -204,24 +170,7 @@ Responses to independent review comments: None recorded
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
-1.12 CMU-CSO-UVM Using Validated Cryptographic Modules
-FedRAMP rule: CMU-CSO-UVM
-Rule family: CMU (Cryptographic Module Use)
-Force: MAY
-Class A obligation: optional (per FRC-CLA-MFR, RFR, or OFR)
-Status: Not Implemented
-Implementation: TBD: Information has not been provided.
-Validation: TBD: Information has not been provided.
-Independent assessment: TBD: Independent assessment has not been performed.
-Implementation or nonimplementation risk: TBD: Information has not been provided.
-Verification: TBD: Information has not been provided.
-Independent verification: TBD: Information has not been provided.
-Independent validation: TBD: Information has not been provided.
-Responses to independent review comments: None recorded
-Rule-specific artifacts: None recorded
-Owner: TBD: Information has not been provided.
-
-1.13 CPO-CSX-CPM Certification Package Maintenance for 20x
+1.10 CPO-CSX-CPM Certification Package Maintenance for 20x
 FedRAMP rule: CPO-CSX-CPM
 Rule family: CPO (Certification Package Overview)
 Force: SHOULD
@@ -238,24 +187,7 @@ Responses to independent review comments: None recorded
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
-1.14 FRC-APP-FIA Fresh Independent Assessment
-FedRAMP rule: FRC-APP-FIA
-Rule family: FRC (FedRAMP Certification)
-Force: MAY
-Class A obligation: optional (per FRC-CLA-MFR, RFR, or OFR)
-Status: Not Implemented
-Implementation: TBD: Information has not been provided.
-Validation: TBD: Information has not been provided.
-Independent assessment: TBD: Independent assessment has not been performed.
-Implementation or nonimplementation risk: TBD: Information has not been provided.
-Verification: TBD: Information has not been provided.
-Independent verification: TBD: Information has not been provided.
-Independent validation: TBD: Information has not been provided.
-Responses to independent review comments: None recorded
-Rule-specific artifacts: None recorded
-Owner: TBD: Information has not been provided.
-
-1.15 FRC-CLA-ASF Approved Alternative Security Frameworks
+1.11 FRC-CLA-ASF Approved Alternative Security Frameworks
 FedRAMP rule: FRC-CLA-ASF
 Rule family: FRC (FedRAMP Certification)
 Force: MUST
@@ -272,7 +204,7 @@ Responses to independent review comments: None recorded
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
-1.16 FRC-CLA-EAM External Assessment Materials
+1.12 FRC-CLA-EAM External Assessment Materials
 FedRAMP rule: FRC-CLA-EAM
 Rule family: FRC (FedRAMP Certification)
 Force: MUST
@@ -289,7 +221,7 @@ Responses to independent review comments: None recorded
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
-1.17 FRC-CLA-IVV Optional Independent Verification and Validation
+1.13 FRC-CLA-IVV Optional Independent Verification and Validation
 FedRAMP rule: FRC-CLA-IVV
 Rule family: FRC (FedRAMP Certification)
 Force: MAY
@@ -306,7 +238,7 @@ Responses to independent review comments: None recorded
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
-1.18 FRC-CLA-MFR Mandatory FedRAMP Rules for Class A
+1.14 FRC-CLA-MFR Mandatory FedRAMP Rules for Class A
 FedRAMP rule: FRC-CLA-MFR
 Rule family: FRC (FedRAMP Certification)
 Force: MUST
@@ -323,7 +255,7 @@ Responses to independent review comments: None recorded
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
-1.19 FRC-CLA-OFR Address Optional FedRAMP Rules for Class A
+1.15 FRC-CLA-OFR Address Optional FedRAMP Rules for Class A
 FedRAMP rule: FRC-CLA-OFR
 Rule family: FRC (FedRAMP Certification)
 Force: MAY
@@ -340,7 +272,7 @@ Responses to independent review comments: None recorded
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
-1.20 FRC-CLA-RFR Recommended FedRAMP Rules for Class A
+1.16 FRC-CLA-RFR Recommended FedRAMP Rules for Class A
 FedRAMP rule: FRC-CLA-RFR
 Rule family: FRC (FedRAMP Certification)
 Force: SHOULD
@@ -357,7 +289,7 @@ Responses to independent review comments: None recorded
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
-1.21 FRC-CSO-JSN FedRAMP JSON Schemas
+1.17 FRC-CSO-JSN FedRAMP JSON Schemas
 FedRAMP rule: FRC-CSO-JSN
 Rule family: FRC (FedRAMP Certification)
 Force: MUST
@@ -374,7 +306,7 @@ Responses to independent review comments: None recorded
 Rule-specific artifacts: None recorded
 Owner: Example: Compliance Engineering Lead
 
-1.22 FRC-CSO-PKG FedRAMP Certification Package
+1.18 FRC-CSO-PKG FedRAMP Certification Package
 FedRAMP rule: FRC-CSO-PKG
 Rule family: FRC (FedRAMP Certification)
 Force: MUST
@@ -391,7 +323,7 @@ Responses to independent review comments: None recorded
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
-1.23 FRC-CSO-POP Pick One Program Certification Type
+1.19 FRC-CSO-POP Pick One Program Certification Type
 FedRAMP rule: FRC-CSO-POP
 Rule family: FRC (FedRAMP Certification)
 Force: MUST NOT
@@ -408,7 +340,7 @@ Responses to independent review comments: None recorded
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
-1.24 IEC-CSO-EFR Evaluate FedRAMP Reportability
+1.20 IEC-CSO-EFR Evaluate FedRAMP Reportability
 FedRAMP rule: IEC-CSO-EFR
 Rule family: IEC (Incident Evaluation and Communication)
 Force: MUST
@@ -425,7 +357,7 @@ Responses to independent review comments: None recorded
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
-1.25 IEC-CSO-FIR Final Incident Report
+1.21 IEC-CSO-FIR Final Incident Report
 FedRAMP rule: IEC-CSO-FIR
 Rule family: IEC (Incident Evaluation and Communication)
 Force: MUST
@@ -442,7 +374,7 @@ Responses to independent review comments: None recorded
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
-1.26 IEC-CSO-IIR Initial Incident Report
+1.22 IEC-CSO-IIR Initial Incident Report
 FedRAMP rule: IEC-CSO-IIR
 Rule family: IEC (Incident Evaluation and Communication)
 Force: SHOULD
@@ -459,7 +391,7 @@ Responses to independent review comments: None recorded
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
-1.27 IEC-CSO-OIR Ongoing Incident Reports
+1.23 IEC-CSO-OIR Ongoing Incident Reports
 FedRAMP rule: IEC-CSO-OIR
 Rule family: IEC (Incident Evaluation and Communication)
 Force: SHOULD
@@ -476,24 +408,7 @@ Responses to independent review comments: None recorded
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
-1.28 IVV-CSO-FIA FedRAMP Independent Assessments
-FedRAMP rule: IVV-CSO-FIA
-Rule family: IVV (Independent Verification and Validation)
-Force: MAY
-Class A obligation: optional (per FRC-CLA-MFR, RFR, or OFR)
-Status: Not Implemented
-Implementation: TBD: Information has not been provided.
-Validation: TBD: Information has not been provided.
-Independent assessment: TBD: Independent assessment has not been performed.
-Implementation or nonimplementation risk: TBD: Information has not been provided.
-Verification: TBD: Information has not been provided.
-Independent verification: TBD: Information has not been provided.
-Independent validation: TBD: Information has not been provided.
-Responses to independent review comments: None recorded
-Rule-specific artifacts: None recorded
-Owner: TBD: Information has not been provided.
-
-1.29 IVV-CSX-AIA Annual Independent Assessments for 20x
+1.24 IVV-CSX-AIA Annual Independent Assessments for 20x
 FedRAMP rule: IVV-CSX-AIA
 Rule family: IVV (Independent Verification and Validation)
 Force: MUST
@@ -510,7 +425,7 @@ Responses to independent review comments: None recorded
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
-1.30 MAS-CSO-IIR Identify Information Resources
+1.25 MAS-CSO-IIR Identify Information Resources
 FedRAMP rule: MAS-CSO-IIR
 Rule family: MAS (Minimum Assessment Scope)
 Force: MUST
@@ -527,24 +442,7 @@ Responses to independent review comments: None recorded
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
-1.31 SDR-CSX-KMT Key Security Indicator Metrics
-FedRAMP rule: SDR-CSX-KMT
-Rule family: SDR (Security Decision Record)
-Force: MAY
-Class A obligation: optional (per FRC-CLA-MFR, RFR, or OFR)
-Status: Not Implemented
-Implementation: TBD: Information has not been provided.
-Validation: TBD: Information has not been provided.
-Independent assessment: TBD: Independent assessment has not been performed.
-Implementation or nonimplementation risk: TBD: Information has not been provided.
-Verification: TBD: Information has not been provided.
-Independent verification: TBD: Information has not been provided.
-Independent validation: TBD: Information has not been provided.
-Responses to independent review comments: None recorded
-Rule-specific artifacts: None recorded
-Owner: TBD: Information has not been provided.
-
-1.32 VDR-CSO-DET Vulnerability Detection
+1.26 VDR-CSO-DET Vulnerability Detection
 FedRAMP rule: VDR-CSO-DET
 Rule family: VDR (Vulnerability Detection and Response)
 Force: MUST
@@ -561,7 +459,7 @@ Responses to independent review comments: None recorded
 Rule-specific artifacts: None recorded
 Owner: Example: Vulnerability Management Lead
 
-1.33 VDR-TFR-MVX Persistent Machine Verification and Validation for 20x
+1.27 VDR-TFR-MVX Persistent Machine Verification and Validation for 20x
 FedRAMP rule: VDR-TFR-MVX
 Rule family: VDR (Vulnerability Detection and Response)
 Force: SHOULD
@@ -578,7 +476,7 @@ Responses to independent review comments: None recorded
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
-1.34 VDR-TFR-PCD Persistently Complete Detection
+1.28 VDR-TFR-PCD Persistently Complete Detection
 FedRAMP rule: VDR-TFR-PCD
 Rule family: VDR (Vulnerability Detection and Response)
 Force: SHOULD
@@ -595,7 +493,7 @@ Responses to independent review comments: None recorded
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
-1.35 VDR-TFR-PDD Persistent Drift Detection
+1.29 VDR-TFR-PDD Persistent Drift Detection
 FedRAMP rule: VDR-TFR-PDD
 Rule family: VDR (Vulnerability Detection and Response)
 Force: SHOULD
@@ -612,7 +510,7 @@ Responses to independent review comments: None recorded
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
-1.36 VDR-TFR-PSD Persistent Sample Detection
+1.30 VDR-TFR-PSD Persistent Sample Detection
 FedRAMP rule: VDR-TFR-PSD
 Rule family: VDR (Vulnerability Detection and Response)
 Force: SHOULD
@@ -629,7 +527,7 @@ Responses to independent review comments: None recorded
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
-1.37 VDR-TFR-PVR Mitigation and Remediation Expectations
+1.31 VDR-TFR-PVR Mitigation and Remediation Expectations
 FedRAMP rule: VDR-TFR-PVR
 Rule family: VDR (Vulnerability Detection and Response)
 Force: SHOULD
@@ -646,62 +544,11 @@ Responses to independent review comments: None recorded
 Rule-specific artifacts: None recorded
 Owner: TBD: Information has not been provided.
 
-1.38 VER-TFR-EVU Evaluate Vulnerabilities Quickly
+1.32 VER-TFR-EVU Evaluate Vulnerabilities Quickly
 FedRAMP rule: VER-TFR-EVU
 Rule family: VER (Vulnerability Evaluation and Reporting)
 Force: SHOULD
 Class A obligation: recommended (per FRC-CLA-MFR, RFR, or OFR)
-Status: Not Implemented
-Implementation: TBD: Information has not been provided.
-Validation: TBD: Information has not been provided.
-Independent assessment: TBD: Independent assessment has not been performed.
-Implementation or nonimplementation risk: TBD: Information has not been provided.
-Verification: TBD: Information has not been provided.
-Independent verification: TBD: Information has not been provided.
-Independent validation: TBD: Information has not been provided.
-Responses to independent review comments: None recorded
-Rule-specific artifacts: None recorded
-Owner: TBD: Information has not been provided.
-
-1.39 VER-TFR-IRI Internet-Reachable Incidents
-FedRAMP rule: VER-TFR-IRI
-Rule family: VER (Vulnerability Evaluation and Reporting)
-Force: MAY
-Class A obligation: optional (per FRC-CLA-MFR, RFR, or OFR)
-Status: Not Implemented
-Implementation: TBD: Information has not been provided.
-Validation: TBD: Information has not been provided.
-Independent assessment: TBD: Independent assessment has not been performed.
-Implementation or nonimplementation risk: TBD: Information has not been provided.
-Verification: TBD: Information has not been provided.
-Independent verification: TBD: Information has not been provided.
-Independent validation: TBD: Information has not been provided.
-Responses to independent review comments: None recorded
-Rule-specific artifacts: None recorded
-Owner: TBD: Information has not been provided.
-
-1.40 VER-TFR-MRH Historical Activity
-FedRAMP rule: VER-TFR-MRH
-Rule family: VER (Vulnerability Evaluation and Reporting)
-Force: MAY
-Class A obligation: optional (per FRC-CLA-MFR, RFR, or OFR)
-Status: Not Implemented
-Implementation: TBD: Information has not been provided.
-Validation: TBD: Information has not been provided.
-Independent assessment: TBD: Independent assessment has not been performed.
-Implementation or nonimplementation risk: TBD: Information has not been provided.
-Verification: TBD: Information has not been provided.
-Independent verification: TBD: Information has not been provided.
-Independent validation: TBD: Information has not been provided.
-Responses to independent review comments: None recorded
-Rule-specific artifacts: None recorded
-Owner: TBD: Information has not been provided.
-
-1.41 VER-TFR-NRI Non-Internet-Reachable Incidents
-FedRAMP rule: VER-TFR-NRI
-Rule family: VER (Vulnerability Evaluation and Reporting)
-Force: MAY
-Class A obligation: optional (per FRC-CLA-MFR, RFR, or OFR)
 Status: Not Implemented
 Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.

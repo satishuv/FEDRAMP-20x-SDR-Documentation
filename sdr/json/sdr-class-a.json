@@ -157,36 +157,6 @@
    }
   },
   {
-   "frrID": "CCM-QTR-MTG",
-   "frrImplementationStatus": "Not Implemented",
-   "frrImplementation": [
-    "TBD: Information has not been provided."
-   ],
-   "frrValidation": [
-    "TBD: Information has not been provided."
-   ],
-   "frrAssessment": [
-    "TBD: Independent assessment has not been performed."
-   ],
-   "providerExtensions": {
-    "ruleName": "Quarterly Review Meeting",
-    "family": "CCM",
-    "familyName": "Collaborative Continuous Monitoring",
-    "xFedRampSemantic": {
-     "implementationRisk": "TBD: Information has not been provided.",
-     "verification": "TBD: Information has not been provided.",
-     "validationFrequency": "TBD: Information has not been provided.",
-     "independentVerification": "TBD: Information has not been provided.",
-     "independentValidation": "TBD: Information has not been provided.",
-     "assessorResponses": "None recorded",
-     "ruleArtifacts": [],
-     "seniorOfficialAcceptance": "Not required: rule is followed",
-     "owner": "TBD: Information has not been provided."
-    },
-    "xAuthoringStatus": "Not Implemented"
-   }
-  },
-  {
    "frrID": "CDS-CSO-AVR",
    "frrImplementationStatus": "Not Implemented",
    "frrImplementation": [
@@ -200,36 +170,6 @@
    ],
    "providerExtensions": {
     "ruleName": "Availability Reporting",
-    "family": "CDS",
-    "familyName": "Certification Data Sharing",
-    "xFedRampSemantic": {
-     "implementationRisk": "TBD: Information has not been provided.",
-     "verification": "TBD: Information has not been provided.",
-     "validationFrequency": "TBD: Information has not been provided.",
-     "independentVerification": "TBD: Information has not been provided.",
-     "independentValidation": "TBD: Information has not been provided.",
-     "assessorResponses": "None recorded",
-     "ruleArtifacts": [],
-     "seniorOfficialAcceptance": "Not required: rule is followed",
-     "owner": "TBD: Information has not been provided."
-    },
-    "xAuthoringStatus": "Not Implemented"
-   }
-  },
-  {
-   "frrID": "CDS-CSO-PSM",
-   "frrImplementationStatus": "Not Implemented",
-   "frrImplementation": [
-    "TBD: Information has not been provided."
-   ],
-   "frrValidation": [
-    "TBD: Information has not been provided."
-   ],
-   "frrAssessment": [
-    "TBD: Independent assessment has not been performed."
-   ],
-   "providerExtensions": {
-    "ruleName": "Per-Service Certification Materials",
     "family": "CDS",
     "familyName": "Certification Data Sharing",
     "xFedRampSemantic": {
@@ -337,36 +277,6 @@
    }
   },
   {
-   "frrID": "CMU-CSO-UVM",
-   "frrImplementationStatus": "Not Implemented",
-   "frrImplementation": [
-    "TBD: Information has not been provided."
-   ],
-   "frrValidation": [
-    "TBD: Information has not been provided."
-   ],
-   "frrAssessment": [
-    "TBD: Independent assessment has not been performed."
-   ],
-   "providerExtensions": {
-    "ruleName": "Using Validated Cryptographic Modules",
-    "family": "CMU",
-    "familyName": "Cryptographic Module Use",
-    "xFedRampSemantic": {
-     "implementationRisk": "TBD: Information has not been provided.",
-     "verification": "TBD: Information has not been provided.",
-     "validationFrequency": "TBD: Information has not been provided.",
-     "independentVerification": "TBD: Information has not been provided.",
-     "independentValidation": "TBD: Information has not been provided.",
-     "assessorResponses": "None recorded",
-     "ruleArtifacts": [],
-     "seniorOfficialAcceptance": "Not required: rule is followed",
-     "owner": "TBD: Information has not been provided."
-    },
-    "xAuthoringStatus": "Not Implemented"
-   }
-  },
-  {
    "frrID": "CPO-CSX-CPM",
    "frrImplementationStatus": "Not Implemented",
    "frrImplementation": [
@@ -382,36 +292,6 @@
     "ruleName": "Certification Package Maintenance for 20x",
     "family": "CPO",
     "familyName": "Certification Package Overview",
-    "xFedRampSemantic": {
-     "implementationRisk": "TBD: Information has not been provided.",
-     "verification": "TBD: Information has not been provided.",
-     "validationFrequency": "TBD: Information has not been provided.",
-     "independentVerification": "TBD: Information has not been provided.",
-     "independentValidation": "TBD: Information has not been provided.",
-     "assessorResponses": "None recorded",
-     "ruleArtifacts": [],
-     "seniorOfficialAcceptance": "Not required: rule is followed",
-     "owner": "TBD: Information has not been provided."
-    },
-    "xAuthoringStatus": "Not Implemented"
-   }
-  },
-  {
-   "frrID": "FRC-APP-FIA",
-   "frrImplementationStatus": "Not Implemented",
-   "frrImplementation": [
-    "TBD: Information has not been provided."
-   ],
-   "frrValidation": [
-    "TBD: Information has not been provided."
-   ],
-   "frrAssessment": [
-    "TBD: Independent assessment has not been performed."
-   ],
-   "providerExtensions": {
-    "ruleName": "Fresh Independent Assessment",
-    "family": "FRC",
-    "familyName": "FedRAMP Certification",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
      "verification": "TBD: Information has not been provided.",
@@ -817,36 +697,6 @@
    }
   },
   {
-   "frrID": "IVV-CSO-FIA",
-   "frrImplementationStatus": "Not Implemented",
-   "frrImplementation": [
-    "TBD: Information has not been provided."
-   ],
-   "frrValidation": [
-    "TBD: Information has not been provided."
-   ],
-   "frrAssessment": [
-    "TBD: Independent assessment has not been performed."
-   ],
-   "providerExtensions": {
-    "ruleName": "FedRAMP Independent Assessments",
-    "family": "IVV",
-    "familyName": "Independent Verification and Validation",
-    "xFedRampSemantic": {
-     "implementationRisk": "TBD: Information has not been provided.",
-     "verification": "TBD: Information has not been provided.",
-     "validationFrequency": "TBD: Information has not been provided.",
-     "independentVerification": "TBD: Information has not been provided.",
-     "independentValidation": "TBD: Information has not been provided.",
-     "assessorResponses": "None recorded",
-     "ruleArtifacts": [],
-     "seniorOfficialAcceptance": "Not required: rule is followed",
-     "owner": "TBD: Information has not been provided."
-    },
-    "xAuthoringStatus": "Not Implemented"
-   }
-  },
-  {
    "frrID": "IVV-CSX-AIA",
    "frrImplementationStatus": "Not Implemented",
    "frrImplementation": [
@@ -892,36 +742,6 @@
     "ruleName": "Identify Information Resources",
     "family": "MAS",
     "familyName": "Minimum Assessment Scope",
-    "xFedRampSemantic": {
-     "implementationRisk": "TBD: Information has not been provided.",
-     "verification": "TBD: Information has not been provided.",
-     "validationFrequency": "TBD: Information has not been provided.",
-     "independentVerification": "TBD: Information has not been provided.",
-     "independentValidation": "TBD: Information has not been provided.",
-     "assessorResponses": "None recorded",
-     "ruleArtifacts": [],
-     "seniorOfficialAcceptance": "Not required: rule is followed",
-     "owner": "TBD: Information has not been provided."
-    },
-    "xAuthoringStatus": "Not Implemented"
-   }
-  },
-  {
-   "frrID": "SDR-CSX-KMT",
-   "frrImplementationStatus": "Not Implemented",
-   "frrImplementation": [
-    "TBD: Information has not been provided."
-   ],
-   "frrValidation": [
-    "TBD: Information has not been provided."
-   ],
-   "frrAssessment": [
-    "TBD: Independent assessment has not been performed."
-   ],
-   "providerExtensions": {
-    "ruleName": "Key Security Indicator Metrics",
-    "family": "SDR",
-    "familyName": "Security Decision Record",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
      "verification": "TBD: Information has not been provided.",
@@ -1130,96 +950,6 @@
    ],
    "providerExtensions": {
     "ruleName": "Evaluate Vulnerabilities Quickly",
-    "family": "VER",
-    "familyName": "Vulnerability Evaluation and Reporting",
-    "xFedRampSemantic": {
-     "implementationRisk": "TBD: Information has not been provided.",
-     "verification": "TBD: Information has not been provided.",
-     "validationFrequency": "TBD: Information has not been provided.",
-     "independentVerification": "TBD: Information has not been provided.",
-     "independentValidation": "TBD: Information has not been provided.",
-     "assessorResponses": "None recorded",
-     "ruleArtifacts": [],
-     "seniorOfficialAcceptance": "Not required: rule is followed",
-     "owner": "TBD: Information has not been provided."
-    },
-    "xAuthoringStatus": "Not Implemented"
-   }
-  },
-  {
-   "frrID": "VER-TFR-IRI",
-   "frrImplementationStatus": "Not Implemented",
-   "frrImplementation": [
-    "TBD: Information has not been provided."
-   ],
-   "frrValidation": [
-    "TBD: Information has not been provided."
-   ],
-   "frrAssessment": [
-    "TBD: Independent assessment has not been performed."
-   ],
-   "providerExtensions": {
-    "ruleName": "Internet-Reachable Incidents",
-    "family": "VER",
-    "familyName": "Vulnerability Evaluation and Reporting",
-    "xFedRampSemantic": {
-     "implementationRisk": "TBD: Information has not been provided.",
-     "verification": "TBD: Information has not been provided.",
-     "validationFrequency": "TBD: Information has not been provided.",
-     "independentVerification": "TBD: Information has not been provided.",
-     "independentValidation": "TBD: Information has not been provided.",
-     "assessorResponses": "None recorded",
-     "ruleArtifacts": [],
-     "seniorOfficialAcceptance": "Not required: rule is followed",
-     "owner": "TBD: Information has not been provided."
-    },
-    "xAuthoringStatus": "Not Implemented"
-   }
-  },
-  {
-   "frrID": "VER-TFR-MRH",
-   "frrImplementationStatus": "Not Implemented",
-   "frrImplementation": [
-    "TBD: Information has not been provided."
-   ],
-   "frrValidation": [
-    "TBD: Information has not been provided."
-   ],
-   "frrAssessment": [
-    "TBD: Independent assessment has not been performed."
-   ],
-   "providerExtensions": {
-    "ruleName": "Historical Activity",
-    "family": "VER",
-    "familyName": "Vulnerability Evaluation and Reporting",
-    "xFedRampSemantic": {
-     "implementationRisk": "TBD: Information has not been provided.",
-     "verification": "TBD: Information has not been provided.",
-     "validationFrequency": "TBD: Information has not been provided.",
-     "independentVerification": "TBD: Information has not been provided.",
-     "independentValidation": "TBD: Information has not been provided.",
-     "assessorResponses": "None recorded",
-     "ruleArtifacts": [],
-     "seniorOfficialAcceptance": "Not required: rule is followed",
-     "owner": "TBD: Information has not been provided."
-    },
-    "xAuthoringStatus": "Not Implemented"
-   }
-  },
-  {
-   "frrID": "VER-TFR-NRI",
-   "frrImplementationStatus": "Not Implemented",
-   "frrImplementation": [
-    "TBD: Information has not been provided."
-   ],
-   "frrValidation": [
-    "TBD: Information has not been provided."
-   ],
-   "frrAssessment": [
-    "TBD: Independent assessment has not been performed."
-   ],
-   "providerExtensions": {
-    "ruleName": "Non-Internet-Reachable Incidents",
     "family": "VER",
     "familyName": "Vulnerability Evaluation and Reporting",
     "xFedRampSemantic": {

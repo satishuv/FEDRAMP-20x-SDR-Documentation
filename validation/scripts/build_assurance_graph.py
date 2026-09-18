@@ -140,9 +140,15 @@ def build_graph(cls):
 
     nodes = []
 
-    # Rule nodes.
+    # Rule nodes. Build a node only for a rule that is actually in the SDR. The
+    # Class A SDR omits FRC-CLA-OFR optional (MAY) rules the provider did not
+    # opt into (offering selected_optional_rules), so building nodes for absent
+    # rules would leave each without an SDR output pointer (a false "problem").
+    # The SDR is the authoritative filtered set for every class.
     for r in class_profile["rules"]:
         rid = r["rule_id"]
+        if rid not in sdr_frr_index:
+            continue
         rec = records.get("frr", {}).get(rid, {})
         ext = rec.get("extension", {})
         i = sdr_frr_index.get(rid)

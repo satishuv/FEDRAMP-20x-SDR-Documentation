@@ -171,35 +171,6 @@
       }
      },
      {
-      "uuid": "b9da8be5-28e1-5719-8a04-d491353a0cff",
-      "title": "CCM-QTR-MTG: Quarterly Review Meeting",
-      "description": "TBD: Information has not been provided.",
-      "props": [
-       {
-        "name": "sdr-implementation-status",
-        "ns": "https://fedramp.gov/ns/sdr",
-        "value": "Not Implemented"
-       },
-       {
-        "name": "sdr-id",
-        "ns": "https://fedramp.gov/ns/sdr",
-        "value": "CCM-QTR-MTG"
-       },
-       {
-        "name": "sdr-kind",
-        "ns": "https://fedramp.gov/ns/sdr",
-        "value": "requirement"
-       }
-      ],
-      "target": {
-       "type": "objective-id",
-       "target-id": "CCM-QTR-MTG",
-       "status": {
-        "state": "not-satisfied"
-       }
-      }
-     },
-     {
       "uuid": "e593f9aa-c39f-5921-ba83-062316abfdef",
       "title": "CDS-CSO-AVR: Availability Reporting",
       "description": "TBD: Information has not been provided.",
@@ -223,35 +194,6 @@
       "target": {
        "type": "objective-id",
        "target-id": "CDS-CSO-AVR",
-       "status": {
-        "state": "not-satisfied"
-       }
-      }
-     },
-     {
-      "uuid": "91271b03-5aeb-59b8-9ee4-c6d783ee6d42",
-      "title": "CDS-CSO-PSM: Per-Service Certification Materials",
-      "description": "TBD: Information has not been provided.",
-      "props": [
-       {
-        "name": "sdr-implementation-status",
-        "ns": "https://fedramp.gov/ns/sdr",
-        "value": "Not Implemented"
-       },
-       {
-        "name": "sdr-id",
-        "ns": "https://fedramp.gov/ns/sdr",
-        "value": "CDS-CSO-PSM"
-       },
-       {
-        "name": "sdr-kind",
-        "ns": "https://fedramp.gov/ns/sdr",
-        "value": "requirement"
-       }
-      ],
-      "target": {
-       "type": "objective-id",
-       "target-id": "CDS-CSO-PSM",
        "status": {
         "state": "not-satisfied"
        }
@@ -345,35 +287,6 @@
       }
      },
      {
-      "uuid": "4c35a445-0e7e-5134-ab82-e53b1e44915b",
-      "title": "CMU-CSO-UVM: Using Validated Cryptographic Modules",
-      "description": "TBD: Information has not been provided.",
-      "props": [
-       {
-        "name": "sdr-implementation-status",
-        "ns": "https://fedramp.gov/ns/sdr",
-        "value": "Not Implemented"
-       },
-       {
-        "name": "sdr-id",
-        "ns": "https://fedramp.gov/ns/sdr",
-        "value": "CMU-CSO-UVM"
-       },
-       {
-        "name": "sdr-kind",
-        "ns": "https://fedramp.gov/ns/sdr",
-        "value": "requirement"
-       }
-      ],
-      "target": {
-       "type": "objective-id",
-       "target-id": "CMU-CSO-UVM",
-       "status": {
-        "state": "not-satisfied"
-       }
-      }
-     },
-     {
       "uuid": "b0298422-42e9-5db8-a31d-0a0a1e8a1504",
       "title": "CPO-CSX-CPM: Certification Package Maintenance for 20x",
       "description": "TBD: Information has not been provided.",
@@ -397,35 +310,6 @@
       "target": {
        "type": "objective-id",
        "target-id": "CPO-CSX-CPM",
-       "status": {
-        "state": "not-satisfied"
-       }
-      }
-     },
-     {
-      "uuid": "a0e532e2-0e93-5e96-a73c-3f78011af64a",
-      "title": "FRC-APP-FIA: Fresh Independent Assessment",
-      "description": "TBD: Information has not been provided.",
-      "props": [
-       {
-        "name": "sdr-implementation-status",
-        "ns": "https://fedramp.gov/ns/sdr",
-        "value": "Not Implemented"
-       },
-       {
-        "name": "sdr-id",
-        "ns": "https://fedramp.gov/ns/sdr",
-        "value": "FRC-APP-FIA"
-       },
-       {
-        "name": "sdr-kind",
-        "ns": "https://fedramp.gov/ns/sdr",
-        "value": "requirement"
-       }
-      ],
-      "target": {
-       "type": "objective-id",
-       "target-id": "FRC-APP-FIA",
        "status": {
         "state": "not-satisfied"
        }
@@ -809,35 +693,6 @@
       }
      },
      {
-      "uuid": "de1e15b9-678c-52da-bd17-46dafaa3440e",
-      "title": "IVV-CSO-FIA: FedRAMP Independent Assessments",
-      "description": "TBD: Information has not been provided.",
-      "props": [
-       {
-        "name": "sdr-implementation-status",
-        "ns": "https://fedramp.gov/ns/sdr",
-        "value": "Not Implemented"
-       },
-       {
-        "name": "sdr-id",
-        "ns": "https://fedramp.gov/ns/sdr",
-        "value": "IVV-CSO-FIA"
-       },
-       {
-        "name": "sdr-kind",
-        "ns": "https://fedramp.gov/ns/sdr",
-        "value": "requirement"
-       }
-      ],
-      "target": {
-       "type": "objective-id",
-       "target-id": "IVV-CSO-FIA",
-       "status": {
-        "state": "not-satisfied"
-       }
-      }
-     },
-     {
       "uuid": "dc1ad9ee-4a29-5047-939f-afef6a3f683e",
       "title": "IVV-CSX-AIA: Annual Independent Assessments for 20x",
       "description": "TBD: Information has not been provided.",
@@ -890,35 +745,6 @@
       "target": {
        "type": "objective-id",
        "target-id": "MAS-CSO-IIR",
-       "status": {
-        "state": "not-satisfied"
-       }
-      }
-     },
-     {
-      "uuid": "293d10ac-0412-5ab6-aa62-118b07959e41",
-      "title": "SDR-CSX-KMT: Key Security Indicator Metrics",
-      "description": "TBD: Information has not been provided.",
-      "props": [
-       {
-        "name": "sdr-implementation-status",
-        "ns": "https://fedramp.gov/ns/sdr",
-        "value": "Not Implemented"
-       },
-       {
-        "name": "sdr-id",
-        "ns": "https://fedramp.gov/ns/sdr",
-        "value": "SDR-CSX-KMT"
-       },
-       {
-        "name": "sdr-kind",
-        "ns": "https://fedramp.gov/ns/sdr",
-        "value": "requirement"
-       }
-      ],
-      "target": {
-       "type": "objective-id",
-       "target-id": "SDR-CSX-KMT",
        "status": {
         "state": "not-satisfied"
        }
@@ -1122,93 +948,6 @@
       "target": {
        "type": "objective-id",
        "target-id": "VER-TFR-EVU",
-       "status": {
-        "state": "not-satisfied"
-       }
-      }
-     },
-     {
-      "uuid": "2a647779-a9e2-5b77-8881-09e682a446da",
-      "title": "VER-TFR-IRI: Internet-Reachable Incidents",
-      "description": "TBD: Information has not been provided.",
-      "props": [
-       {
-        "name": "sdr-implementation-status",
-        "ns": "https://fedramp.gov/ns/sdr",
-        "value": "Not Implemented"
-       },
-       {
-        "name": "sdr-id",
-        "ns": "https://fedramp.gov/ns/sdr",
-        "value": "VER-TFR-IRI"
-       },
-       {
-        "name": "sdr-kind",
-        "ns": "https://fedramp.gov/ns/sdr",
-        "value": "requirement"
-       }
-      ],
-      "target": {
-       "type": "objective-id",
-       "target-id": "VER-TFR-IRI",
-       "status": {
-        "state": "not-satisfied"
-       }
-      }
-     },
-     {
-      "uuid": "050650da-7a47-5728-a1cc-aa94497dffbe",
-      "title": "VER-TFR-MRH: Historical Activity",
-      "description": "TBD: Information has not been provided.",
-      "props": [
-       {
-        "name": "sdr-implementation-status",
-        "ns": "https://fedramp.gov/ns/sdr",
-        "value": "Not Implemented"
-       },
-       {
-        "name": "sdr-id",
-        "ns": "https://fedramp.gov/ns/sdr",
-        "value": "VER-TFR-MRH"
-       },
-       {
-        "name": "sdr-kind",
-        "ns": "https://fedramp.gov/ns/sdr",
-        "value": "requirement"
-       }
-      ],
-      "target": {
-       "type": "objective-id",
-       "target-id": "VER-TFR-MRH",
-       "status": {
-        "state": "not-satisfied"
-       }
-      }
-     },
-     {
-      "uuid": "2e211b23-60bc-5358-a09b-3345c532e9ca",
-      "title": "VER-TFR-NRI: Non-Internet-Reachable Incidents",
-      "description": "TBD: Information has not been provided.",
-      "props": [
-       {
-        "name": "sdr-implementation-status",
-        "ns": "https://fedramp.gov/ns/sdr",
-        "value": "Not Implemented"
-       },
-       {
-        "name": "sdr-id",
-        "ns": "https://fedramp.gov/ns/sdr",
-        "value": "VER-TFR-NRI"
-       },
-       {
-        "name": "sdr-kind",
-        "ns": "https://fedramp.gov/ns/sdr",
-        "value": "requirement"
-       }
-      ],
-      "target": {
-       "type": "objective-id",
-       "target-id": "VER-TFR-NRI",
        "status": {
         "state": "not-satisfied"
        }

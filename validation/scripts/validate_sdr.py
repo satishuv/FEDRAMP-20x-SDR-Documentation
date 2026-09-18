@@ -396,6 +396,16 @@ def main():
 
     # 2. Coverage
     profile_ids = {r["rule_id"] for r in class_profile["rules"]}
+    if cls == "a":
+        # The submitted Class A SDR excludes FRC-CLA-OFR optional (MAY) rules
+        # unless the provider explicitly opted them in via
+        # offering-profile selected_optional_rules (default empty). Mirror that
+        # here so expected == submitted: an unselected optional rule is
+        # legitimately absent, not a coverage miss.
+        selected = set(profile.get("selected_optional_rules") or [])
+        profile_ids = {r["rule_id"] for r in class_profile["rules"]
+                       if r.get("class_a_obligation") != "optional"
+                       or r["rule_id"] in selected}
     sdr_ids = {r["frrID"] for r in sdr["fedRampRequirements"]}
     missing_rules = sorted(profile_ids - sdr_ids)
     extra_rules = sorted(sdr_ids - profile_ids)

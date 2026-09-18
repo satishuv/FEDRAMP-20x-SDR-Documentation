@@ -1,96 +1,104 @@
 {
-  "profile_note": "Central customization profile. Every organization-specific value used by the generators lives here. In a customer engagement, copy this repository into a private repository and edit only this file plus the record content; never commit customer values to the public template.",
-  "organization_name": "TBD: Information has not been provided",
-  "offering_name": "Example PaaS Foundation",
-  "offering_abbreviation": "EPF",
-  "business_purpose": "Reference architecture assumption: a generic AWS-native Platform as a Service foundation that customers use to deploy and operate applications and SaaS workloads on AWS.",
-  "service_model": "PaaS",
-  "deployment_model": "TBD: Information has not been provided",
-  "certification_type": "FedRAMP 20x",
-  "certification_class": "B",
-  "certification_path": "Program",
-  "aws_partition": "aws (AWS Commercial)",
-  "primary_region": "us-east-1",
-  "dr_region": "us-west-2",
-  "iac_technology": "Terraform (Needs validation: default assumption, not confirmed)",
-  "management_plane": "TBD: Information has not been provided. Whether a provider-hosted management plane exists, and whether it can reach customer workloads or federal information, is unconfirmed. Records depending on this answer carry Needs validation.",
-  "federal_information_types": "TBD: Information has not been provided",
-  "certification_package_overview_uri": "https://example.provider.gov-placeholder/cpo.json",
-  "security_contact": "TBD: Information has not been provided",
-  "incident_contact": "TBD: Information has not been provided",
-  "assessor": "TBD: Information has not been provided",
-  "evidence_retention": "TBD: Information has not been provided",
-  "trust_center_uri": "TBD: URL of the FedRAMP-compatible trust center for Certification Data (CDS-CSO-UTC). Until set, the CPO carries a placeholder and preflight blocks submission.",
-  "secure_config_guide_uri": "TBD: URL of the published Secure Configuration Guide (SCG-CSO-RSC). Until set, the CPO carries a placeholder and preflight blocks submission.",
-  "provider_verified_at": "TBD: ISO-8601 datetime the provider verified and validated the current offering. FRC-APP-FCP requires the initial package to be verified/validated within the previous 7 days of submission. Left as TBD in the template so `sdr.py preflight` reports it as a blocker until a provider fills it.",
-  "external_assessment": {
-    "note": "Required for Class A (FRC-CLA-ASF, FRC-CLA-EAM). Model the alternative-framework assessment as references; do NOT store confidential reports in this repository. All values TBD in the template.",
-    "framework": "TBD: SOC 2 Type II | FedRAMP Ready | GovRAMP | other alternative security framework",
-    "assessment_date": "TBD: YYYY-MM-DD (must be within the previous 12 months per FRC-CLA-ASF)",
-    "assessor": "TBD: name of the assessing organization",
-    "materials": [],
-    "materials_item_schema": {
-      "type": "e.g. SOC2-TypeII-report | FedRAMP-Ready-package | bridge-letter",
-      "uri": "location reference (the report itself is NOT stored in this repository)",
-      "sha256": "hash of the referenced material",
-      "bridge_or_gap_letter_uri": "if applicable",
-      "next_assessment_date": "YYYY-MM-DD",
-      "supplemental_evidence_uri": "if applicable"
-    }
-  },
-  "fedramp_independent_assessment": {
-    "note": "FRC-APP-FIA: a FRESH initial FedRAMP independent assessment completed by a FedRAMP Recognized independent assessment service within the previous 3 months. Class B and C MUST supply this; Class A MAY. Distinct from external_assessment (the Class A alternative-framework path). FRC-APP-USA allows a Recognized assessor to freshen a stale assessment unless it is more than 9 months old. All values TBD in the template.",
-    "assessor_name": "TBD: name of the FedRAMP Recognized independent assessment service",
-    "assessor_fedramp_id": "TBD: the assessor's FedRAMP Recognition id",
-    "completed_at": "TBD: YYYY-MM-DD the assessment was completed (must be within the previous 3 months for B/C)",
-    "assessment_summary_uri": "TBD: location of the overall assessment summary (IVV-IAS-OSA)",
-    "assessment_report_uri": "TBD: location reference (the report is NOT stored in this repository)",
-    "assessment_report_sha256": "TBD: hash of the referenced report",
-    "freshness_basis": "TBD: 'current' if completed within 3 months; 'freshened' if a Recognized service reviewed changes under FRC-APP-USA (required once the assessment is over 3 months old, and only valid up to 9 months)",
-    "freshening": {
-      "note": "FRC-APP-USA: only used when the initial assessment is 3-9 months old. The freshening MUST be performed by a FedRAMP Recognized independent assessment service.",
-      "reviewed_at": "TBD: YYYY-MM-DD the Recognized service reviewed the changes (must not be a future date)",
-      "reviewed_by": "TBD: name of the FedRAMP Recognized independent assessment service that performed the freshening review",
-      "reviewer_fedramp_id": "TBD: the freshening reviewer's FedRAMP Recognition id",
-      "changes_reviewed_reference": "TBD: reference to the record of changes reviewed between the original assessment and current status"
-    }
-  },
-  "metric_history_exception": {
-    "note": "FRC-CSX-MOT initial-certification exception: only for a NEW offering that cannot yet show the normal metric-of-time history. Set both booleans to true AND provide the descriptions/references; when valid, MOT preflight requires a CURRENT datapoint per in-scope KSI instead of the full history window. Omit or leave the booleans false once real history exists.",
-    "mechanisms_in_place": false,
-    "mechanisms_description": "TBD: description of the mechanisms in place to produce the required KSI metrics going forward (required when mechanisms_in_place is true)",
-    "commitment_to_meet_mot": false,
-    "commitment_reference": "TBD: reference to the provider's recorded commitment to meet the metric-of-time requirement (required when commitment_to_meet_mot is true)",
-    "operating_since": "TBD: YYYY-MM-DD the offering began operating",
-    "responsible_official": "TBD: name, title, and contact of the official accountable for the commitment"
-  },
-  "overall_assessment_summary": "TBD: CPO-CSO-OSA (Class B/C MUST): the overall summary of the FedRAMP independent assessment, supplied by the assessor per IVV-IAS-OSA, included in the CPO without inappropriate modification. Provide the assessor's text or a URI reference.",
-  "cpo_responsible_official": "TBD: CPO-CSO-MTD: name, title, and contact of the official responsible and accountable for the Certification Package.",
-  "cpo_version": "TBD: CPO-CSO-MTD: CPO version.",
-  "cpo_last_updated": "TBD: CPO-CSO-MTD: date and time of last update (ISO-8601).",
-  "cpo_source_of_update": "TBD: CPO-CSO-MTD: source of the update.",
-  "cpo_required_information": {
-    "note": "CPO-CSO-OVR: for each APPLICABLE referenced rule, a pointer to (or the actual) information required by that rule. Anything left unset is a preflight blocker. Keys are rule ids: CPO-CSO-MTD, CDS-CSO-PUB, CDS-CSO-SVC, CDS-CSO-IRP, MAS-CSO-IIR, MAS-CSO-FLO, MAS-CSO-TPR, CMU-CSO-CMD, IVV-CSO-ICP. Only the rules that resolve for your class/type are required (Class A resolves only CDS-CSO-PUB and MAS-CSO-IIR of this set); the builder omits non-applicable rules automatically. STRUCTURED rules: CDS-CSO-PUB must be an OBJECT whose keys are the CR26 CDS-CSO-PUB following_information items (each supplied); CDS-CSO-IRP and MAS-CSO-TPR must each be a non-empty ARRAY of records covering the CR26 per-record fields. A single sentence does NOT satisfy those three."
-  },
-  "availability_reporting": {
-    "note": "CDS-CSO-AVR: a web service showing current and >=30 days historical core-service availability (including incidents) in both human-readable and machine-readable formats, available even when the primary offering is down. Class B and C MUST; Class A SHOULD. This repository references the provider's service; it does not host it.",
-    "human_readable_uri": "TBD: URL of the human-readable availability page",
-    "machine_readable_uri": "TBD: URL of the machine-readable availability feed",
-    "history_days": "TBD: integer, must be >= 30",
-    "available_when_primary_unavailable": "TBD: true/false (independently hosted); human-verified, not machine-asserted",
-    "verified_at": "TBD: YYYY-MM-DD the provider verified the service"
-  },
-  "application_prerequisites": {
-    "note": "Checked by `sdr.py application-preflight` (not package-preflight). FedRAMP's applying rules require the provider to be listed in the FedRAMP Marketplace and to complete the FedRAMP Certification Application Form. These are external prerequisites, referenced here, not properties of the generated package.",
-    "marketplace_listing_uri": "TBD: URL of the provider's FedRAMP Marketplace listing",
-    "application_form_reference": "TBD: reference/confirmation of the completed FedRAMP Certification Application Form"
-  },
-  "sdr_version": "0.1.0",
-  "schema_version": "2026-06-24",
-  "dataset_version": "2026.09.13.02",
-  "evidence_sources": {
-    "note": "Optional third-party evidence sources, opt-in per customer. Off by default. Set enabled=true and point export_path at a customer-produced export (produced in the customer's own environment; this repository holds no API client or credentials). See automation/collectors/thirdparty_adapters.py.",
-    "crowdstrike-falcon": {"enabled": false, "export_path": "automation/facts/falcon-export.json"},
-    "wiz": {"enabled": false, "export_path": "automation/facts/wiz-export.json"}
+ "profile_note": "Central customization profile. Every organization-specific value used by the generators lives here. In a customer engagement, copy this repository into a private repository and edit only this file plus the record content; never commit customer values to the public template.",
+ "organization_name": "TBD: Information has not been provided",
+ "offering_name": "Example PaaS Foundation",
+ "offering_abbreviation": "EPF",
+ "business_purpose": "Reference architecture assumption: a generic AWS-native Platform as a Service foundation that customers use to deploy and operate applications and SaaS workloads on AWS.",
+ "service_model": "PaaS",
+ "deployment_model": "TBD: Information has not been provided",
+ "certification_type": "FedRAMP 20x",
+ "certification_class": "B",
+ "certification_path": "Program",
+ "selected_optional_rules": [],
+ "_selected_optional_rules_note": "Class A only. FRC-CLA-OFR optional (MAY) rules are extra credit; by default NONE are submitted. To include a specific optional rule in the Class A SDR, add its rule_id here (e.g. \"CCM-QTR-MTG\"). All MUST and SHOULD rules are always submitted. Ignored for Class B/C. FedRAMP fully reviews any optional rule that is included.",
+ "aws_partition": "aws (AWS Commercial)",
+ "primary_region": "us-east-1",
+ "dr_region": "us-west-2",
+ "iac_technology": "Terraform (Needs validation: default assumption, not confirmed)",
+ "management_plane": "TBD: Information has not been provided. Whether a provider-hosted management plane exists, and whether it can reach customer workloads or federal information, is unconfirmed. Records depending on this answer carry Needs validation.",
+ "federal_information_types": "TBD: Information has not been provided",
+ "certification_package_overview_uri": "https://example.provider.gov-placeholder/cpo.json",
+ "security_contact": "TBD: Information has not been provided",
+ "incident_contact": "TBD: Information has not been provided",
+ "assessor": "TBD: Information has not been provided",
+ "evidence_retention": "TBD: Information has not been provided",
+ "trust_center_uri": "TBD: URL of the FedRAMP-compatible trust center for Certification Data (CDS-CSO-UTC). Until set, the CPO carries a placeholder and preflight blocks submission.",
+ "secure_config_guide_uri": "TBD: URL of the published Secure Configuration Guide (SCG-CSO-RSC). Until set, the CPO carries a placeholder and preflight blocks submission.",
+ "provider_verified_at": "TBD: ISO-8601 datetime the provider verified and validated the current offering. FRC-APP-FCP requires the initial package to be verified/validated within the previous 7 days of submission. Left as TBD in the template so `sdr.py preflight` reports it as a blocker until a provider fills it.",
+ "external_assessment": {
+  "note": "Required for Class A (FRC-CLA-ASF, FRC-CLA-EAM). Model the alternative-framework assessment as references; do NOT store confidential reports in this repository. All values TBD in the template.",
+  "framework": "TBD: SOC 2 Type II | FedRAMP Ready | GovRAMP | other alternative security framework",
+  "assessment_date": "TBD: YYYY-MM-DD (must be within the previous 12 months per FRC-CLA-ASF)",
+  "assessor": "TBD: name of the assessing organization",
+  "materials": [],
+  "materials_item_schema": {
+   "type": "e.g. SOC2-TypeII-report | FedRAMP-Ready-package | bridge-letter",
+   "uri": "location reference (the report itself is NOT stored in this repository)",
+   "sha256": "hash of the referenced material",
+   "bridge_or_gap_letter_uri": "if applicable",
+   "next_assessment_date": "YYYY-MM-DD",
+   "supplemental_evidence_uri": "if applicable"
   }
+ },
+ "fedramp_independent_assessment": {
+  "note": "FRC-APP-FIA: a FRESH initial FedRAMP independent assessment completed by a FedRAMP Recognized independent assessment service within the previous 3 months. Class B and C MUST supply this; Class A MAY. Distinct from external_assessment (the Class A alternative-framework path). FRC-APP-USA allows a Recognized assessor to freshen a stale assessment unless it is more than 9 months old. All values TBD in the template.",
+  "assessor_name": "TBD: name of the FedRAMP Recognized independent assessment service",
+  "assessor_fedramp_id": "TBD: the assessor's FedRAMP Recognition id",
+  "completed_at": "TBD: YYYY-MM-DD the assessment was completed (must be within the previous 3 months for B/C)",
+  "assessment_summary_uri": "TBD: location of the overall assessment summary (IVV-IAS-OSA)",
+  "assessment_report_uri": "TBD: location reference (the report is NOT stored in this repository)",
+  "assessment_report_sha256": "TBD: hash of the referenced report",
+  "freshness_basis": "TBD: 'current' if completed within 3 months; 'freshened' if a Recognized service reviewed changes under FRC-APP-USA (required once the assessment is over 3 months old, and only valid up to 9 months)",
+  "freshening": {
+   "note": "FRC-APP-USA: only used when the initial assessment is 3-9 months old. The freshening MUST be performed by a FedRAMP Recognized independent assessment service.",
+   "reviewed_at": "TBD: YYYY-MM-DD the Recognized service reviewed the changes (must not be a future date)",
+   "reviewed_by": "TBD: name of the FedRAMP Recognized independent assessment service that performed the freshening review",
+   "reviewer_fedramp_id": "TBD: the freshening reviewer's FedRAMP Recognition id",
+   "changes_reviewed_reference": "TBD: reference to the record of changes reviewed between the original assessment and current status"
+  }
+ },
+ "metric_history_exception": {
+  "note": "FRC-CSX-MOT initial-certification exception: only for a NEW offering that cannot yet show the normal metric-of-time history. Set both booleans to true AND provide the descriptions/references; when valid, MOT preflight requires a CURRENT datapoint per in-scope KSI instead of the full history window. Omit or leave the booleans false once real history exists.",
+  "mechanisms_in_place": false,
+  "mechanisms_description": "TBD: description of the mechanisms in place to produce the required KSI metrics going forward (required when mechanisms_in_place is true)",
+  "commitment_to_meet_mot": false,
+  "commitment_reference": "TBD: reference to the provider's recorded commitment to meet the metric-of-time requirement (required when commitment_to_meet_mot is true)",
+  "operating_since": "TBD: YYYY-MM-DD the offering began operating",
+  "responsible_official": "TBD: name, title, and contact of the official accountable for the commitment"
+ },
+ "overall_assessment_summary": "TBD: CPO-CSO-OSA (Class B/C MUST): the overall summary of the FedRAMP independent assessment, supplied by the assessor per IVV-IAS-OSA, included in the CPO without inappropriate modification. Provide the assessor's text or a URI reference.",
+ "cpo_responsible_official": "TBD: CPO-CSO-MTD: name, title, and contact of the official responsible and accountable for the Certification Package.",
+ "cpo_version": "TBD: CPO-CSO-MTD: CPO version.",
+ "cpo_last_updated": "TBD: CPO-CSO-MTD: date and time of last update (ISO-8601).",
+ "cpo_source_of_update": "TBD: CPO-CSO-MTD: source of the update.",
+ "cpo_required_information": {
+  "note": "CPO-CSO-OVR: for each APPLICABLE referenced rule, a pointer to (or the actual) information required by that rule. Anything left unset is a preflight blocker. Keys are rule ids: CPO-CSO-MTD, CDS-CSO-PUB, CDS-CSO-SVC, CDS-CSO-IRP, MAS-CSO-IIR, MAS-CSO-FLO, MAS-CSO-TPR, CMU-CSO-CMD, IVV-CSO-ICP. Only the rules that resolve for your class/type are required (Class A resolves only CDS-CSO-PUB and MAS-CSO-IIR of this set); the builder omits non-applicable rules automatically. STRUCTURED rules: CDS-CSO-PUB must be an OBJECT whose keys are the CR26 CDS-CSO-PUB following_information items (each supplied); CDS-CSO-IRP and MAS-CSO-TPR must each be a non-empty ARRAY of records covering the CR26 per-record fields. A single sentence does NOT satisfy those three."
+ },
+ "availability_reporting": {
+  "note": "CDS-CSO-AVR: a web service showing current and >=30 days historical core-service availability (including incidents) in both human-readable and machine-readable formats, available even when the primary offering is down. Class B and C MUST; Class A SHOULD. This repository references the provider's service; it does not host it.",
+  "human_readable_uri": "TBD: URL of the human-readable availability page",
+  "machine_readable_uri": "TBD: URL of the machine-readable availability feed",
+  "history_days": "TBD: integer, must be >= 30",
+  "available_when_primary_unavailable": "TBD: true/false (independently hosted); human-verified, not machine-asserted",
+  "verified_at": "TBD: YYYY-MM-DD the provider verified the service"
+ },
+ "application_prerequisites": {
+  "note": "Checked by `sdr.py application-preflight` (not package-preflight). FedRAMP's applying rules require the provider to be listed in the FedRAMP Marketplace and to complete the FedRAMP Certification Application Form. These are external prerequisites, referenced here, not properties of the generated package.",
+  "marketplace_listing_uri": "TBD: URL of the provider's FedRAMP Marketplace listing",
+  "application_form_reference": "TBD: reference/confirmation of the completed FedRAMP Certification Application Form"
+ },
+ "sdr_version": "0.1.0",
+ "schema_version": "2026-06-24",
+ "dataset_version": "2026.09.13.02",
+ "evidence_sources": {
+  "note": "Optional third-party evidence sources, opt-in per customer. Off by default. Set enabled=true and point export_path at a customer-produced export (produced in the customer's own environment; this repository holds no API client or credentials). See automation/collectors/thirdparty_adapters.py.",
+  "crowdstrike-falcon": {
+   "enabled": false,
+   "export_path": "automation/facts/falcon-export.json"
+  },
+  "wiz": {
+   "enabled": false,
+   "export_path": "automation/facts/wiz-export.json"
+  }
+ }
 }
