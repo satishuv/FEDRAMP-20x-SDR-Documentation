@@ -134,6 +134,7 @@ def _fill(profile_path, now, cls="C"):
         "application_prerequisites": {
             "marketplace_listing_uri": "https://marketplace.fedramp.gov/offerings/CSP",
             "application_form_reference": "APP-FORM-2026-CSP-0001",
+            "provider_is_applicant_attestation": "Confirmed: Contoso Cloud (the CSP) is the applicant; no third party is submitting on our behalf (FRC-APP-NTP).",
         },
     })
     if cls == "A":
@@ -665,6 +666,56 @@ def main():
         rmot2 = _preflight(root_m)
         check("MOT exception with a missing description does not activate",
               "FRC-CSX-MOT" in rmot2.stdout and rmot2.returncode == 1)
+
+        # FRC-APP-NTP (MUST NOT third-party applicant): dropping the provider
+        # self-attestation must block application-preflight; restoring a real
+        # attestation clears it. Uses the ready Class C initial-cert tree.
+        pm2 = json.load(open(profile_m, encoding="utf-8"))
+        pm2["metric_history_exception"]["mechanisms_description"] = (
+            "Automated daily KSI collectors are deployed and producing telemetry.")
+        saved_att = pm2.get("application_prerequisites", {}).get("provider_is_applicant_attestation")
+        pm2.setdefault("application_prerequisites", {})["provider_is_applicant_attestation"] = "TBD"
+        json.dump(pm2, open(profile_m, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root_m)
+        rntp = _preflight(root_m)
+        check("missing FRC-APP-NTP provider-is-applicant attestation blocks",
+              "FRC-APP-NTP" in rntp.stdout and rntp.returncode == 1)
+        pm2["application_prerequisites"]["provider_is_applicant_attestation"] = (
+            saved_att or "Confirmed: the CSP itself is the applicant (FRC-APP-NTP).")
+        json.dump(pm2, open(profile_m, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root_m)
+        rntp_ok = _preflight(root_m)
+        check("a recorded provider-is-applicant attestation clears FRC-APP-NTP",
+              "FRC-APP-NTP" not in rntp_ok.stdout)
+
+        # SDR-CSO-FRR OR (implementation OR reason+resulting-customer-risk): a
+        # not-followed rule with TBD implementation but a stated customer_risk
+        # must NOT be flagged on the first FRR item, while emptying BOTH must.
+        rp_m = os.path.join(root_m, "sdr", "records", "records-store.json")
+        recs_m = json.load(open(rp_m, encoding="utf-8"))
+        # Find an applicable, filled FRR record to mutate.
+        frr_m = next(iter(recs_m.get("frr", {})))
+        saved_frr = json.loads(json.dumps(recs_m["frr"][frr_m]))
+        # Case A: implementation TBD but customer_risk stated -> item satisfied.
+        recs_m["frr"][frr_m]["implementation"] = "TBD: Information has not been provided."
+        recs_m["frr"][frr_m].setdefault("extension", {})["customer_risk"] = (
+            "This rule is not followed for the boundary; the resulting customer risk "
+            "is limited exposure of X, mitigated by compensating control Y.")
+        json.dump(recs_m, open(rp_m, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root_m)
+        rfrisk = _preflight(root_m)
+        check("FRR with TBD implementation but a stated customer_risk is NOT flagged on the risk item",
+              f"{frr_m} (missing: implementation-or-resulting-customer-risk" not in rfrisk.stdout)
+        # Case B: BOTH implementation and customer_risk empty -> item flagged.
+        recs_m["frr"][frr_m]["extension"]["customer_risk"] = "TBD"
+        json.dump(recs_m, open(rp_m, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root_m)
+        rfrisk2 = _preflight(root_m)
+        check("FRR with BOTH implementation and customer_risk empty is flagged",
+              "implementation-or-resulting-customer-risk" in rfrisk2.stdout and rfrisk2.returncode == 1)
+        recs_m["frr"][frr_m] = saved_frr
+        json.dump(recs_m, open(rp_m, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root_m)
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
 
