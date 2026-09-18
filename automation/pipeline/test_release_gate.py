@@ -203,6 +203,68 @@ def main():
         bra._git = _orig_git
     check("attestation main() fails closed when git provenance is unavailable",
           rc_no_prov != 0)
+
+    # Fail-closed contract 2: `sdr.py release` builds from the WORKING TREE, so
+    # main() must refuse (non-zero) when the tracked tree differs from HEAD -
+    # attesting HEAD would bind the release to a commit that lacks the built
+    # bytes. Simulate a dirty tree via the status helper; assert no attestation
+    # is written and the exit is non-zero.
+    _orig_ws = bra._worktree_status
+    _orig_unt0 = bra._untracked_files
+    _att_path = os.path.join(BASE, "artifacts", "release-attestation.json")
+    _att_before = os.path.exists(_att_path)
+    _att_mtime = os.path.getmtime(_att_path) if _att_before else None
+    try:
+        bra._worktree_status = lambda: ("dirty", ["profiles/common/offering-profile.json"])
+        bra._untracked_files = lambda: []
+        rc_dirty = bra.main()
+    finally:
+        bra._worktree_status = _orig_ws
+        bra._untracked_files = _orig_unt0
+    _att_untouched = (os.path.exists(_att_path) == _att_before and
+                      (_att_mtime is None or os.path.getmtime(_att_path) == _att_mtime))
+    check("attestation main() fails closed on a dirty tracked working tree",
+          rc_dirty != 0)
+    check("attestation not written/updated when the working tree is dirty",
+          _att_untouched)
+
+    # Fail-closed contract 3: untracked non-ignored files (e.g. an untracked
+    # module imported at build time) mean the named commit does not describe the
+    # build; main() must refuse. Force a clean tracked tree so this exercises
+    # the untracked path specifically (not the dirty-tree path above).
+    _orig_unt = bra._untracked_files
+    _orig_ws2 = bra._worktree_status
+    _att_before2 = os.path.exists(_att_path)
+    _att_mtime2 = os.path.getmtime(_att_path) if _att_before2 else None
+    try:
+        bra._worktree_status = lambda: ("clean", [])
+        bra._untracked_files = lambda: ["validation/scripts/rogue_helper.py"]
+        rc_unt = bra.main()
+    finally:
+        bra._untracked_files = _orig_unt
+        bra._worktree_status = _orig_ws2
+    _att_untouched2 = (os.path.exists(_att_path) == _att_before2 and
+                       (_att_mtime2 is None or os.path.getmtime(_att_path) == _att_mtime2))
+    check("attestation main() fails closed on untracked non-ignored files",
+          rc_unt != 0)
+    check("attestation not written/updated when untracked files are present",
+          _att_untouched2)
+
+    # Positive control: with a clean tracked tree and no untracked files,
+    # build_attestation reports worktree_clean=True. Forced clean so the check
+    # holds during local editing too (in CI the merge commit is genuinely clean).
+    _orig_ws3 = bra._worktree_status
+    _orig_unt3 = bra._untracked_files
+    try:
+        bra._worktree_status = lambda: ("clean", [])
+        bra._untracked_files = lambda: []
+        att_clean = bra.build_attestation()
+    finally:
+        bra._worktree_status = _orig_ws3
+        bra._untracked_files = _orig_unt3
+    check("attestation records worktree_clean=True on a clean checkout",
+          bool(att_clean and att_clean.get("worktree_clean") is True))
+
     check("manifest source_commit stays null (not mutated by release)",
           (manifest.get("source_provenance", {}) or {}).get("source_commit") is None)
 

@@ -487,8 +487,10 @@ def cmd_release(args):
     # (package-preflight checks package_manifest_sha256 against it), so changing
     # its bytes here would silently invalidate a prior signoff. Instead emit a
     # SEPARATE release-attestation that binds this manifest's hash to the exact
-    # git commit/tree. Ordering: build -> validate -> reproducibility ->
-    # package-preflight (hard) -> attestation -> (human signoff) -> tag.
+    # git commit/tree. Ordering: build -> validate -> reproducibility -> human
+    # signoff (binds the manifest) -> package-preflight (hard; verifies that
+    # signoff) -> attestation -> tag. The signoff therefore already exists by
+    # the time this attestation runs; preflight would have blocked otherwise.
     rc = run(os.path.join(SCRIPTS, "build_release_attestation.py"))
     if rc != 0:
         out("Could not write the release attestation (missing git provenance "
@@ -509,10 +511,11 @@ def cmd_release(args):
         out(f"Manifest hash (attested)     {attestation.get('release_manifest_sha256', '?')}")
     out()
     out("The release attestation binds the deterministic manifest hash to the "
-        "git source WITHOUT changing the manifest, so a human signoff bound to "
-        "that manifest stays valid. Build, validation, reproducibility, AND "
-        "package-preflight have all passed against this same manifest; a human "
-        "signoff on the manifest is the remaining step before tagging.")
+        "git source WITHOUT changing the manifest, so the human signoff bound "
+        "to that manifest stays valid. Package-preflight has already verified "
+        "an approved package signoff against this exact manifest, and build, "
+        "validation, and reproducibility all passed against it. The remaining "
+        "step is to tag the release.")
     out()
     out("This is a build-provenance record, not a compliance determination. A "
         "passing release gate means well-formed, consistent, and verified "
