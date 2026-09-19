@@ -54,11 +54,19 @@ PROFILE = os.path.join(BASE, "profiles", "common", "offering-profile.json")
 def load_trusted_signer():
     """Load the INDEPENDENTLY PINNED evidence signer from the offering profile
     (findings 7/8). Returns {"public_key": <PEM str>, "key_arn": <arn or None>,
-    "public_key_fingerprint": <'sha256:..' or None>} or None when no signer is
-    pinned. The public key is pinned by the VERIFIER (obtained once via
-    kms:GetPublicKey), NOT taken from the evidence. A public_key_pem_path is
-    resolved relative to the repo so the key can live in a file. A TBD/empty
-    value is treated as 'not pinned'."""
+    "public_key_fingerprint": <'sha256:..' or None>, "required": <bool>} or None
+    when no signer is pinned. The public key is pinned by the VERIFIER (obtained
+    once via kms:GetPublicKey), NOT taken from the evidence. A public_key_pem_path
+    is resolved relative to the repo so the key can live in a file. A TBD/empty
+    value is treated as 'not pinned'.
+
+    `required` (finding 8 downgrade): when the signer sets signing_required=true,
+    every hashed evidence entry MUST carry a valid signature - a MISSING
+    signature is then a HARD failure, closing the downgrade path where an actor
+    who can edit a record simply deletes xEvidenceSignature and falls back to
+    hash-only verification. Default: required is true whenever a signer is
+    pinned (pinning a signer is the intent to require signing) unless explicitly
+    set false."""
     prof = load(PROFILE, {}) or {}
     signer = prof.get("expected_evidence_signer") or {}
     if not isinstance(signer, dict):
@@ -77,10 +85,15 @@ def load_trusted_signer():
         return None
     arn = signer.get("key_arn")
     fp = signer.get("public_key_fingerprint")
+    # Pinning a signer means signing is intended; a signature-less entry is a
+    # downgrade unless the provider explicitly opts out (signing_required=false).
+    req = signer.get("signing_required")
+    required = True if req is None else bool(req)
     return {
         "public_key": pem,
         "key_arn": None if (not arn or str(arn).startswith("TBD")) else arn,
         "public_key_fingerprint": None if (not fp or str(fp).startswith("TBD")) else fp,
+        "required": required,
     }
 
 
@@ -169,6 +182,24 @@ def classify_entry(e, hash_fn=None, trusted_signer=None):
     # verifies offline under the pinned public key. Any failure is HARD
     # (fail-closed): a present-but-unverifiable signature is worse than none.
     sig = e.get("xEvidenceSignature")
+    if sig is None:
+        # Finding 8 (downgrade path): if a trusted signer is pinned in
+        # signing-required mode, an entry with NO signature is a DOWNGRADE - an
+        # actor who can edit the record could simply delete xEvidenceSignature
+        # and fall back to hash-only verification. A hash alone does not protect
+        # against someone who can rewrite both content and hash. So a hashed
+        # entry with no signature, under a required signer, is HARD.
+        if (trusted_signer and trusted_signer.get("public_key")
+                and trusted_signer.get("required")):
+            return ("hard", "SIGNATURE REQUIRED BUT ABSENT - a trusted evidence "
+                            "signer is pinned in signing-required mode "
+                            "(offering-profile.expected_evidence_signer), so every "
+                            "evidence entry MUST carry a valid xEvidenceSignature; "
+                            "an unsigned entry is a downgrade to hash-only "
+                            "verification (finding 8). Sign this evidence or set "
+                            "expected_evidence_signer.signing_required=false to "
+                            "accept hash-only.")
+        return ("verified", "")
     if sig is not None:
         if not isinstance(sig, dict):
             return ("hard", "xEvidenceSignature present but not an object")
