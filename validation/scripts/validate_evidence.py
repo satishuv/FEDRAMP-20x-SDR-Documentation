@@ -119,6 +119,25 @@ def classify_entry(e, hash_fn=None):
         return ("hard", f"INTEGRITY FAILED - stored {str(h)[:20]} != recomputed "
                         f"{hash_fn(source)[:20]} (content changed after the digest "
                         "was recorded)")
+    # Non-repudiation binding check (AU-09(02/03/04), AU-10). Signing is opt-in
+    # per deployment, so an ABSENT signature leaves the entry verified-by-hash.
+    # But a PRESENT signature must bind to THIS content: its signedHash must
+    # equal the recomputed hash. A stale binding means the fact changed after it
+    # was signed (the signature is over old content) - a HARD failure, the same
+    # fail-closed posture as a hash mismatch. The cryptographic kms:Verify is a
+    # desk-gated live step; this offline binding check is what CI can enforce.
+    sig = e.get("xEvidenceSignature")
+    if sig is not None:
+        if not isinstance(sig, dict):
+            return ("hard", "xEvidenceSignature present but not an object")
+        signed_hash = sig.get("signedHash")
+        if not sig.get("signature") or not sig.get("keyId") or not signed_hash:
+            return ("hard", "xEvidenceSignature present but missing "
+                            "signature/keyId/signedHash")
+        if signed_hash != h:
+            return ("hard", f"SIGNATURE BINDING STALE - signed {str(signed_hash)[:20]} "
+                            f"!= current {str(h)[:20]} (evidence changed after it "
+                            "was signed; the signature is over old content)")
     return ("verified", "")
 
 

@@ -1,0 +1,198 @@
+# Evidence-store control-plane isolation - REFERENCE stack
+#
+# This is a REFERENCE, not a turnkey deployment. It demonstrates the account
+# topology that makes the chain of custody real: the evidence store and its
+# signing key live OUTSIDE the assessed accounts' blast radius, so a privileged
+# actor in an assessed account can neither rewrite a signed evidence record nor
+# forge a new signature. The specific account ids, OU structure, and trust
+# relationships are the provider's decision - fill in the parameters for your
+# own AWS Organization.
+#
+# What this template provisions (in the DEDICATED AUDIT/EVIDENCE account):
+#   - The evidence-store S3 bucket with versioning + Object Lock (WORM).
+#   - A bucket policy that DENIES the assessed accounts' collector roles any
+#     Put/Delete/ACL mutation, and allows only a narrow cross-account writer
+#     role to PutObject (append evidence), never delete or overwrite-lock.
+#   - A KMS ASYMMETRIC signing key (ECC_NIST_P256) whose key policy grants
+#     kms:Sign ONLY to the separate signer principal - the collector role is
+#     explicitly denied kms:Sign. This is the property automation/collectors/
+#     sign_evidence.py relies on: the collector cannot reach the signing key.
+#   - Server access logging to a SEPARATE log bucket, so access to the evidence
+#     store is logged independently of the accounts being assessed
+#     (AU-09 (04) / KSI-MLA-ALA).
+#
+# Mapped controls: see traceability/evidence-store-controls.json.
+#
+# BOUNDARY (stated plainly): non-repudiation holds only if the AuditAccount is
+# genuinely administered separately from the AssessedAccounts. If one human is
+# admin of both, this topology documents the intent but does not enforce it -
+# separation of duties on the audit account is an organizational control the
+# template cannot create for you.
+
+AWSTemplateFormatVersion: "2010-09-09"
+Description: >
+  REFERENCE: isolated evidence store + separate signer key for the FedRAMP 20x
+  living-SDR loop. Deploy in a dedicated audit/evidence account. Provider fills
+  in account ids and principals. Demonstrates AU-09/AU-09(02-04)/AU-10/AU-11 and
+  KSI-MLA-ALA control-plane isolation.
+
+Parameters:
+  EvidenceBucketName:
+    Type: String
+    Description: Globally unique name for the evidence-store bucket (this account).
+  AssessedCollectorRoleArns:
+    Type: CommaDelimitedList
+    Description: >
+      ARNs of the read-only collector roles in the ASSESSED accounts. These are
+      DENIED any mutation of the evidence store and DENIED kms:Sign on the
+      signer key. (They never need either: collectors read, a separate writer
+      appends, a separate signer signs.)
+  CrossAccountWriterRoleArn:
+    Type: String
+    Description: >
+      ARN of the single narrow role permitted to append (PutObject) evidence to
+      the store. Held by the ingestion path, not by the collectors.
+  SignerPrincipalArn:
+    Type: String
+    Description: >
+      ARN of the SEPARATE signer principal that holds kms:Sign on the evidence
+      signing key. Must NOT be a collector role.
+  ObjectLockRetentionDays:
+    Type: Number
+    Default: 365
+    Description: Object Lock (WORM) default retention in days.
+
+Resources:
+
+  EvidenceLogBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      BucketName: !Sub "${EvidenceBucketName}-access-logs"
+      OwnershipControls:
+        Rules:
+          - ObjectOwnership: BucketOwnerEnforced
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: aws:kms
+
+  EvidenceBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      BucketName: !Ref EvidenceBucketName
+      VersioningConfiguration:
+        Status: Enabled
+      ObjectLockEnabled: true
+      ObjectLockConfiguration:
+        ObjectLockEnabled: Enabled
+        Rule:
+          DefaultRetention:
+            Mode: COMPLIANCE
+            Days: !Ref ObjectLockRetentionDays
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: aws:kms
+      LoggingConfiguration:
+        DestinationBucketName: !Ref EvidenceLogBucket
+        LogFilePrefix: evidence-access/
+
+  # Deny the assessed collector roles ANY mutation; allow only the narrow writer
+  # to append. The store's control plane is thus outside the assessed accounts.
+  EvidenceBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref EvidenceBucket
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: DenyAssessedCollectorMutations
+            Effect: Deny
+            Principal:
+              AWS: !Ref AssessedCollectorRoleArns
+            Action:
+              - "s3:PutObject"
+              - "s3:DeleteObject"
+              - "s3:DeleteObjectVersion"
+              - "s3:PutObjectAcl"
+              - "s3:BypassGovernanceRetention"
+            Resource: !Sub "${EvidenceBucket.Arn}/*"
+          - Sid: DenyObjectLockTampering
+            Effect: Deny
+            Principal: "*"
+            Action:
+              - "s3:PutBucketObjectLockConfiguration"
+              - "s3:PutObjectLegalHold"
+              - "s3:PutObjectRetention"
+            Resource: !GetAtt EvidenceBucket.Arn
+            Condition:
+              StringNotEquals:
+                "aws:PrincipalArn": !Ref CrossAccountWriterRoleArn
+          - Sid: AllowNarrowWriterAppendOnly
+            Effect: Allow
+            Principal:
+              AWS: !Ref CrossAccountWriterRoleArn
+            Action: "s3:PutObject"
+            Resource: !Sub "${EvidenceBucket.Arn}/*"
+
+  # Asymmetric signing key for evidence digests. kms:Sign is granted ONLY to the
+  # separate signer principal; the assessed collector roles are DENIED it.
+  EvidenceSigningKey:
+    Type: AWS::KMS::Key
+    Properties:
+      Description: Asymmetric signing key for SDR evidence digests (AU-10 non-repudiation)
+      KeySpec: ECC_NIST_P256
+      KeyUsage: SIGN_VERIFY
+      KeyPolicy:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: KeyAdmin
+            Effect: Allow
+            Principal:
+              AWS: !Sub "arn:aws:iam::${AWS::AccountId}:root"
+            Action: "kms:*"
+            Resource: "*"
+          - Sid: AllowSignerToSign
+            Effect: Allow
+            Principal:
+              AWS: !Ref SignerPrincipalArn
+            Action:
+              - "kms:Sign"
+              - "kms:GetPublicKey"
+              - "kms:DescribeKey"
+            Resource: "*"
+          - Sid: DenyAssessedCollectorsSign
+            Effect: Deny
+            Principal:
+              AWS: !Ref AssessedCollectorRoleArns
+            Action: "kms:Sign"
+            Resource: "*"
+
+  EvidenceSigningKeyAlias:
+    Type: AWS::KMS::Alias
+    Properties:
+      AliasName: alias/sdr-evidence-signer
+      TargetKeyId: !Ref EvidenceSigningKey
+
+Outputs:
+  EvidenceBucketArn:
+    Value: !GetAtt EvidenceBucket.Arn
+  SigningKeyArn:
+    Value: !GetAtt EvidenceSigningKey.Arn
+    Description: Pass this to automation/collectors/sign_evidence.py as key_id.
+  SigningKeyAlias:
+    Value: !Ref EvidenceSigningKeyAlias

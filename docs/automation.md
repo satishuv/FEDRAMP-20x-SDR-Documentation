@@ -58,6 +58,15 @@ A sound way to meet the tamper-resistant and in-boundary requirements is an Amaz
 
 `automation/storage/provision_store.py` provisions exactly that store at deploy time: it creates the bucket if absent and **enables bucket versioning** (optionally Object Lock and a lifecycle retention). It is the one deploy-time write step, opt-in, idempotent, and safety-additive — it never suspends versioning, deletes anything, or moves a status. See `automation/storage/DEPLOY.md`.
 
+### Tamper-evidence vs non-repudiation
+
+Versioning and the evidence content hash give tamper-**evidence**: a reviewer or CI recomputes the digest and detects a silently edited evidence object. They do not by themselves stop a privileged actor who can rewrite the record store **and** recompute the hash, because the same pipeline holds both. Two additions close that gap for providers who want the highest standard:
+
+- **Non-repudiation signing** (`automation/collectors/sign_evidence.py`): a **separate** signer principal signs the evidence content hash with a KMS asymmetric key the read-only collector cannot reach (`kms:Sign` denied to the collector role). Verification recomputes the hash from the sanitized fact first, then verifies the signature over it, so a change to either the fact or the signature fails. The build-gate binding check (`validate_evidence.py`) hard-fails a signature whose signed hash no longer matches the current content.
+- **Control-plane isolation** (`automation/evidence-store-isolation/`): a reference CloudFormation stack that puts the evidence bucket and the signing key in a dedicated audit account, denies the assessed accounts' collector roles any mutation of the store or `kms:Sign`, allows only a narrow append-only writer, and logs access separately. It is a reference — the account topology is a provider decision — and the non-repudiation property holds only when the audit account is administered separately from the assessed accounts.
+
+`traceability/evidence-store-controls.json` maps each of these mechanisms to the CR26 / NIST Rev5 control identifiers it supports (AU-09 and its enhancements, AU-10 at the class where the profile requires it, AU-11, KSI-MLA-ALA), and `validate_evidence_store_controls.py` gates that every cited identifier appears verbatim in the pinned dataset so the mapping can never drift into an invented control.
+
 ## Layer 2: AI assist (opt-in, built)
 
 Five optional AI-assist modules live in `automation/ai/`, each a separate pluggable component with hard constraints fixed in code:

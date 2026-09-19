@@ -79,6 +79,8 @@ VALIDATION_GATE = [
     ("validation/scripts/validate_assurance_graph.py", "assurance graph (full-chain traceability)"),
     ("validation/scripts/validate_reviews.py", "human review register (no machine-authored approvals)"),
     ("validation/scripts/validate_evidence.py", "live evidence-integrity gate (malformed/mismatched digests)"),
+    ("validation/scripts/validate_evidence_store_controls.py", "evidence-store control mapping cites only real CR26 identifiers"),
+    ("validation/scripts/validate_isolation_stack.py", "evidence-store isolation reference stack keeps its load-bearing invariants"),
     ("validation/scripts/validate_package_consistency.py", "cross-artifact package consistency"),
 ]
 
@@ -122,7 +124,7 @@ TEST_SUITE = [
     "validation/scripts/test_class_a_applicable_scope.py",
     "validation/scripts/test_evidence_freshness.py",
     "validation/scripts/test_evidence_integrity.py",
-    "validation/scripts/test_applicability.py",
+    "automation/collectors/test_sign_evidence.py",    "validation/scripts/test_applicability.py",
     "automation/exporters/test_oscal_export.py",
     "automation/collectors/test_evidence_wiring.py",
     "automation/collectors/test_thirdparty_adapters.py",
