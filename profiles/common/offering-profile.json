@@ -57,6 +57,13 @@
    "changes_reviewed_reference": "TBD: reference to the record of changes reviewed between the original assessment and current status"
   }
  },
+ "expected_evidence_signer": {
+  "note": "Findings 7/8 - the INDEPENDENTLY PINNED trusted evidence signer. When any evidence carries an xEvidenceSignature, validate_evidence.py cryptographically verifies it (offline ECDSA) against public_key_pem here and requires the evidence keyId to equal key_arn. The public key is obtained ONCE via kms:GetPublicKey on the audit-account signing key and pinned here by the VERIFIER; it is never taken from the evidence. Leave TBD when evidence signing is not in use (unsigned evidence stays verified-by-hash). A present-but-unpinned or non-verifying signature is a HARD failure.",
+  "key_arn": "TBD: arn:aws:kms:<region>:<audit-account>:key/<id> of the audit-account signing key (must equal the evidence xEvidenceSignature.keyId)",
+  "public_key_pem": "TBD: the PEM SubjectPublicKeyInfo public key from kms:GetPublicKey on the signing key (or set public_key_pem_path to a file)",
+  "public_key_pem_path": "TBD: optional path (repo-relative) to a .pem file holding the pinned public key, as an alternative to inlining public_key_pem",
+  "public_key_fingerprint": "TBD: optional sha256:<hex> of the DER SubjectPublicKeyInfo, a second independent pin checked before verification"
+ },
  "metric_history_exception": {
   "note": "FRC-CSX-MOT initial-certification exception: only for a NEW offering that cannot yet show the normal metric-of-time history. Set both booleans to true AND provide the descriptions/references; when valid, MOT preflight requires a CURRENT datapoint per in-scope KSI instead of the full history window. Omit or leave the booleans false once real history exists. Eligibility is measured from metrics_available_since (the date persistent KSI metrics first became available), NOT the offering launch date - the exception applies when metrics have been available for less than the required window (6 months at C, 18 at D). The date must not be in the future.",
   "mechanisms_in_place": false,

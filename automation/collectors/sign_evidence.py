@@ -172,3 +172,124 @@ def attach_signature(evidence_entry, kms_client, key_id, *, when=None):
     block = sign_hash(kms_client, key_id, content_hash, when=when)
     evidence_entry["xEvidenceSignature"] = block
     return block
+
+
+# ---------------------------------------------------------------------------
+# Offline, CI-runnable cryptographic verification against a PINNED trusted
+# signer (findings 7 and 8). The gate must NOT trust the keyId carried inside
+# the evidence object (circular), and must NOT merely check that a signature
+# blob exists. It must cryptographically verify the signature over the signed
+# hash using a public key the VERIFIER pins independently - obtained once via
+# kms:GetPublicKey and stored in the release trust config - so that forging a
+# record requires the audit-account signing key, which the collector and the
+# assessed accounts do not hold.
+# ---------------------------------------------------------------------------
+
+import hashlib
+
+
+def public_key_fingerprint(pubkey_der_or_pem):
+    """SHA-256 fingerprint of a signer public key, for pinning by digest.
+
+    Accepts DER bytes or a PEM string. Returns 'sha256:<hex>' over the DER
+    SubjectPublicKeyInfo bytes (the stable, encoding-independent identity of
+    the key), so a profile can pin a short fingerprint instead of the whole key.
+    """
+    from cryptography.hazmat.primitives import serialization
+    if isinstance(pubkey_der_or_pem, str):
+        pub = serialization.load_pem_public_key(pubkey_der_or_pem.encode("ascii"))
+    elif isinstance(pubkey_der_or_pem, (bytes, bytearray)):
+        data = bytes(pubkey_der_or_pem)
+        try:
+            pub = serialization.load_der_public_key(data)
+        except Exception:  # noqa: BLE001
+            pub = serialization.load_pem_public_key(data)
+    else:
+        raise SigningError("public key must be PEM str or DER bytes")
+    der = pub.public_bytes(
+        serialization.Encoding.DER,
+        serialization.PublicFormat.SubjectPublicKeyInfo)
+    return "sha256:" + hashlib.sha256(der).hexdigest()
+
+
+def verify_signature_offline(signature_block, trusted_public_key, *,
+                             recomputed_hash=None, expected_fingerprint=None):
+    """Cryptographically verify an xEvidenceSignature block OFFLINE against a
+    PINNED trusted public key - no KMS call, no network, CI-runnable.
+
+    signature_block     : the xEvidenceSignature dict produced by sign_hash.
+    trusted_public_key  : the signer's public key the VERIFIER pins (PEM str or
+                          DER bytes), obtained once via kms:GetPublicKey and
+                          stored in the release trust config. NOT taken from the
+                          evidence.
+    recomputed_hash     : if provided, the hash freshly recomputed from the
+                          source fact; MUST equal the block's signedHash or the
+                          fact changed after signing (fail BEFORE the crypto).
+    expected_fingerprint: if provided ('sha256:<hex>'), the pinned key's own
+                          fingerprint MUST match it - a second, independent
+                          pinning check so a swapped trusted_public_key is caught.
+
+    Returns True ONLY when the signed hash still matches the fact AND the
+    signature verifies under the pinned key. Fail-closed: any malformed input,
+    missing library, or verification failure returns False (or raises
+    SigningError for a structural problem), never a silent pass.
+    """
+    if not isinstance(signature_block, dict):
+        raise SigningError("signature block is not a dict")
+    signed_hash = signature_block.get("signedHash")
+    sig_b64 = signature_block.get("signature")
+    if not (signed_hash and sig_b64):
+        raise SigningError("signature block missing signedHash/signature")
+    if recomputed_hash is not None and recomputed_hash != signed_hash:
+        return False  # fact changed after signing; signature is over old content
+    if not trusted_public_key:
+        # No pinned trusted signer configured: we CANNOT assert a verified
+        # signature. Fail closed - never treat "cannot verify" as verified.
+        raise SigningError(
+            "no trusted signer public key pinned; refusing to assert a verified "
+            "signature (findings 7/8: verification must use an independently "
+            "pinned key, not the keyId carried in the evidence)")
+    try:
+        from cryptography.hazmat.primitives import hashes, serialization
+        from cryptography.hazmat.primitives.asymmetric import ec, utils as _ecutils
+    except Exception as e:  # noqa: BLE001
+        raise SigningError(
+            "the cryptography library is required for offline signature "
+            "verification but could not be imported; refusing to pass evidence "
+            f"signing without it: {e}") from e
+    # Load the pinned public key.
+    try:
+        if isinstance(trusted_public_key, str):
+            pub = serialization.load_pem_public_key(trusted_public_key.encode("ascii"))
+        else:
+            data = bytes(trusted_public_key)
+            try:
+                pub = serialization.load_der_public_key(data)
+            except Exception:  # noqa: BLE001
+                pub = serialization.load_pem_public_key(data)
+    except Exception as e:  # noqa: BLE001
+        raise SigningError(f"pinned trusted public key is unreadable: {e}") from e
+    # Optional second pin: the key's own fingerprint must match.
+    if expected_fingerprint:
+        der = pub.public_bytes(
+            serialization.Encoding.DER,
+            serialization.PublicFormat.SubjectPublicKeyInfo)
+        actual = "sha256:" + hashlib.sha256(der).hexdigest()
+        if actual != expected_fingerprint:
+            raise SigningError(
+                f"pinned key fingerprint {actual} does not match the expected "
+                f"{expected_fingerprint}; refusing to verify against an "
+                "unexpected key")
+    try:
+        signature = base64.b64decode(sig_b64)
+    except Exception as e:  # noqa: BLE001
+        raise SigningError(f"signature is not valid base64: {e}") from e
+    # KMS ECDSA_SHA_256 signs the message with MessageType RAW: KMS hashes the
+    # message with SHA-256 itself and returns a DER-encoded ECDSA signature. We
+    # verify the DER signature over the same message bytes (the signed_hash
+    # ASCII string) with SHA-256.
+    try:
+        pub.verify(signature, signed_hash.encode("ascii"), ec.ECDSA(hashes.SHA256()))
+    except Exception:  # noqa: BLE001 - InvalidSignature or any verify failure
+        return False
+    return True
