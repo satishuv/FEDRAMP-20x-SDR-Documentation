@@ -39,6 +39,85 @@ SDRSCAN = os.path.join(BASE, "automation", "sdrscan", "sdrscan.py")
 VALIDATION_REPORT = os.path.join(BASE, "validation", "reports", "validation-report.json")
 SCAN_REPORT_GLOB = os.path.join(BASE, "validation", "reports", "sdrscan", "sdrscan-class-*.json")
 OFFERING_PROFILE = os.path.join(BASE, "profiles", "common", "offering-profile.json")
+RULES_DATASET = os.path.join(BASE, "references", "fedramp-consolidated-rules.json")
+
+# Artifact strings whose wording makes the artifact conditional / OR-satisfiable
+# ("provide X, OR a sample", "if the report is not available", "as applicable"):
+# these cannot be machine-evaluated from free text, so they are advisory, never
+# hard-gated. Only rules whose artifact wording is an UNCONDITIONAL "provide X"
+# are gated. This set is derived from the pinned dataset at runtime, so a dataset
+# refresh re-derives it rather than drifting against a hardcoded list.
+_ARTIFACT_CONDITIONAL_MARKERS = (
+    "if ", "if the", "if any", "if available", "if not", "otherwise", " or ",
+    "sample", "as applicable", "unless", "when available", "where available",
+)
+
+_ARTIFACT_REQUIRED_RULES_CACHE = None
+
+
+def artifact_required_rule_ids():
+    """Rule IDs that carry an UNCONDITIONAL MUST artifact requirement in the
+    pinned CR26 dataset.
+
+    SDR-CSO-FRR item on rule-specific artifacts was previously treated as
+    always 'if applicable, not gated', so a provider could fill every narrative
+    field and still omit a canonical required artifact and reach READY (external
+    re-audit finding 2). The dataset itself states, per rule, when an artifact
+    is required: each rule dict carries an `artifacts` map keyed by applicability
+    (`all`/`20x`/`rev5`). We gate ONLY the rules whose artifact wording is an
+    unconditional "provide X" MUST; rules whose artifact text is conditional or
+    OR-satisfiable (see _ARTIFACT_CONDITIONAL_MARKERS) stay advisory to avoid
+    over-blocking on wording no machine can judge. Cached; safe if the dataset
+    is missing (returns an empty set -> nothing newly gated)."""
+    global _ARTIFACT_REQUIRED_RULES_CACHE
+    if _ARTIFACT_REQUIRED_RULES_CACHE is not None:
+        return _ARTIFACT_REQUIRED_RULES_CACHE
+    result = set()
+    try:
+        with open(RULES_DATASET, encoding="utf-8") as _f:
+            ds = json.load(_f)
+    except (OSError, ValueError):
+        _ARTIFACT_REQUIRED_RULES_CACHE = result
+        return result
+
+    def _flat_artifacts(rule):
+        arts = rule.get("artifacts")
+        strs = []
+        if isinstance(arts, dict):
+            for av in arts.values():
+                if isinstance(av, list):
+                    strs.extend(str(x) for x in av)
+        elif isinstance(arts, list):
+            strs.extend(str(x) for x in arts)
+        return strs
+
+    def _walk(node):
+        if isinstance(node, dict):
+            for k, v in node.items():
+                # varies_by_class children (keyed 'a'/'b'/'c'/'d') are
+                # class-specific overrides of a PARENT rule, not standalone rule
+                # IDs; their artifacts belong to the parent. Do not treat those
+                # keys as rule IDs (they would never match a real record ID
+                # anyway, but keep the derived set clean).
+                if k == "varies_by_class" and isinstance(v, dict):
+                    continue
+                # A rule is a dict keyed by its ID with force + statement.
+                if isinstance(v, dict) and "force" in v and "statement" in v:
+                    strs = _flat_artifacts(v)
+                    if strs and v.get("force") == "MUST":
+                        joined = " ".join(strs).lower()
+                        conditional = any(m in joined
+                                          for m in _ARTIFACT_CONDITIONAL_MARKERS)
+                        if not conditional:
+                            result.add(k)
+                _walk(v)
+        elif isinstance(node, list):
+            for v in node:
+                _walk(v)
+
+    _walk(ds)
+    _ARTIFACT_REQUIRED_RULES_CACHE = result
+    return result
 
 # Build order matters. Each step reads what the step above it wrote:
 # catalogs feed notes, notes feed profiles and the collector registry,
@@ -1571,10 +1650,34 @@ def cmd_preflight(args):
 
     tbd = placeholders = scoped_records = 0
     unanswered = []
+    # Finding 2: rule-specific canonical artifacts are first-class. For rules the
+    # pinned dataset marks with an UNCONDITIONAL MUST artifact, an applicable,
+    # followed record must actually carry a rule_artifact - narrative fields
+    # alone are not enough. A not-followed rule is exempt (there is no artifact
+    # to produce for a control that is honestly not implemented; its reason +
+    # customer risk carry the requirement instead).
+    artifact_rules = artifact_required_rule_ids()
+
+    def _has_real_artifact(rec):
+        ext = rec.get("extension", {}) or {}
+        for a in (ext.get("rule_artifacts") or []):
+            if isinstance(a, dict):
+                loc = a.get("evidenceLocation") or a.get("evidence_location")
+                if _answered(loc):
+                    return True
+            elif _answered(a):
+                return True
+        return False
+
     for rid, rec in (records.get("frr", {}) or {}).items():
         if rid in applicable_frr:
             t, p = _count_markers(rec); tbd += t; placeholders += p; scoped_records += 1
             gaps = _frr_gaps(rec)
+            status = str(rec.get("implementation_status") or "Not Implemented")
+            followed = status not in ("Not Implemented", "Partially Implemented")
+            if rid in artifact_rules and followed and not _has_real_artifact(rec):
+                gaps.append("rule-artifact (canonical MUST artifact required "
+                            "for this rule; supply extension.rule_artifacts)")
             if gaps:
                 unanswered.append(f"{rid} (missing: {','.join(gaps)})")
     for kid, rec in (records.get("ksi", {}) or {}).items():
@@ -1854,14 +1957,26 @@ def cmd_preflight(args):
             # offering.secure_config_guide_uri; a scaffold with no real external
             # artifact is a false-ready condition and must block.
             ext_ref = None
+            machine_ref = None
             if name == "secure_configuration_guide":
                 ext_ref = offering.get("secure_config_guide_uri")
+                machine_ref = offering.get("secure_config_guide_machine_uri")
             if _is_tbd(ext_ref):
                 blockers.append(f"required package component '{name}' is only a "
                                 "generated scaffold and no completed external artifact "
                                 "is referenced (supply the real completed artifact - "
                                 "for the SCG, set offering.secure_config_guide_uri to "
                                 "the published guide - before submission)")
+            elif name == "secure_configuration_guide" and _is_tbd(machine_ref):
+                # Finding 13: SCG-CSO-RSC canonically requires BOTH a
+                # human-readable data URL AND a machine-readable data URL. A
+                # single human URI is a partial artifact.
+                blockers.append(
+                    "required package component 'secure_configuration_guide' has "
+                    "only a human-readable URI; SCG-CSO-RSC requires both "
+                    "human-readable and machine-readable data URLs (set "
+                    "offering.secure_config_guide_machine_uri to the "
+                    "machine-readable guide location before submission)")
 
     # Package-level signoff MUST reference the current release-manifest hash.
     # One approved node in the assurance review register is NOT package approval.

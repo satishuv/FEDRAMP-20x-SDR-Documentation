@@ -61,6 +61,7 @@ def _fill(profile_path, now, cls="C"):
         "next_ocr_date": (now.date() + datetime.timedelta(days=90)).isoformat(),
         "trust_center_uri": "https://contoso.gov/trust",
         "secure_config_guide_uri": "https://contoso.gov/scg",
+        "secure_config_guide_machine_uri": "https://contoso.gov/scg/machine-readable.json",
         # FRC-APP-FIA (B/C MUST): fresh FedRAMP independent assessment < 3 months.
         "fedramp_independent_assessment": {
             "assessor_name": "Acme FedRAMP Assessors LLC",
@@ -596,6 +597,58 @@ def main():
         reg["package_signoff"]["package_manifest_sha256"] = mhash
         reg["package_signoff"]["release_tag"] = tag
         json.dump(reg, open(register, "w", encoding="utf-8", newline="\n"), indent=1)
+
+        # Finding 13: SCG-CSO-RSC requires BOTH a human-readable AND a
+        # machine-readable data URL. Blanking only the machine URI (human URI
+        # still present) must block, and restoring it must clear.
+        psc2 = json.load(open(profile, encoding="utf-8"))
+        saved_mach = psc2.get("secure_config_guide_machine_uri")
+        psc2["secure_config_guide_machine_uri"] = "TBD: not yet published"
+        json.dump(psc2, open(profile, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root)
+        rmach = _preflight(root)
+        check("Class C blocks when the SCG has a human URI but no machine-readable URI",
+              rmach.returncode == 1 and "machine-readable" in rmach.stdout)
+        psc2["secure_config_guide_machine_uri"] = saved_mach
+        json.dump(psc2, open(profile, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root)
+        mhash = "sha256:" + hashlib.sha256(open(manifest, "rb").read()).hexdigest()
+        tag = json.load(open(manifest, encoding="utf-8")).get("release_tag")
+        reg = json.load(open(register, encoding="utf-8"))
+        reg["package_signoff"]["package_manifest_sha256"] = mhash
+        reg["package_signoff"]["release_tag"] = tag
+        json.dump(reg, open(register, "w", encoding="utf-8", newline="\n"), indent=1)
+
+        # Finding 2: a rule the pinned dataset marks with an UNCONDITIONAL MUST
+        # artifact must actually carry a rule_artifact when followed. Stripping
+        # rule_artifacts from one such applicable, Implemented rule must block on
+        # the rule-artifact gap; restoring it must clear.
+        rp2 = os.path.join(root, "sdr", "records", "records-store.json")
+        recs2 = json.load(open(rp2, encoding="utf-8"))
+        # AFC-CSO-INB is an unconditional-MUST artifact rule in every class
+        # profile ("Email address to receive messages from FedRAMP").
+        art_rid = "AFC-CSO-INB"
+        saved_arts = None
+        if art_rid in recs2.get("frr", {}):
+            ext_a = recs2["frr"][art_rid].setdefault("extension", {})
+            saved_arts = ext_a.get("rule_artifacts")
+            ext_a["rule_artifacts"] = []
+            json.dump(recs2, open(rp2, "w", encoding="utf-8", newline="\n"), indent=1)
+            _build(root)
+            rart = _preflight(root)
+            check("Class C blocks a followed unconditional-MUST-artifact rule with no rule_artifact",
+                  rart.returncode == 1 and "rule-artifact" in rart.stdout
+                  and art_rid in rart.stdout)
+            recs3 = json.load(open(rp2, encoding="utf-8"))
+            recs3["frr"][art_rid].setdefault("extension", {})["rule_artifacts"] = saved_arts or []
+            json.dump(recs3, open(rp2, "w", encoding="utf-8", newline="\n"), indent=1)
+            _build(root)
+            mhash = "sha256:" + hashlib.sha256(open(manifest, "rb").read()).hexdigest()
+            tag = json.load(open(manifest, encoding="utf-8")).get("release_tag")
+            reg = json.load(open(register, encoding="utf-8"))
+            reg["package_signoff"]["package_manifest_sha256"] = mhash
+            reg["package_signoff"]["release_tag"] = tag
+            json.dump(reg, open(register, "w", encoding="utf-8", newline="\n"), indent=1)
 
         # Change a provider input after signoff; the bound signoff must fail.
         p = json.load(open(profile, encoding="utf-8"))
