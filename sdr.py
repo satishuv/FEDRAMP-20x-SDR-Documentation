@@ -104,6 +104,7 @@ TEST_SUITE = [
     "automation/ai/test_suggest_ksi_mapping.py",
     "automation/metrics/test_append_metrics.py",
     "automation/metrics/test_metric_history_longitudinal.py",
+    "automation/metrics/test_per_metric_series.py",
     "validation/scripts/test_kmt_summary_derivation.py",
     "automation/config-rules/test_evidence_existence_rule.py",
     "automation/config-rules/deploy/test_generate_templates.py",

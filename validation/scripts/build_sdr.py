@@ -275,7 +275,8 @@ def build_official(profile, rules, ksis, records, metric_history=None):
                     # fields, so the rest is carried here inside the submitted
                     # document.
                     "xFedRampSemantic": ksi_semantic(
-                        rec, _derive_daily_data(k["ksi_id"], metric_history or {})),
+                        rec, _derive_daily_data(k["ksi_id"], metric_history or {}),
+                        _derive_per_metric(k["ksi_id"], metric_history or {})),
                     "xAuthoringStatus": rec.get("implementation_status", "Not Implemented"),
                 },
             }
@@ -387,7 +388,44 @@ def _window_summaries(daily_series):
     return _summarize_series(last30), _summarize_series(last_year)
 
 
-def ksi_semantic(rec, daily_series=None):
+def _derive_per_metric(kid, metric_history):
+    """Build the in-SDR perMetric block for one KSI from metric-history.json
+    (finding 3): FedRAMP SDR-CSX-KMT asks for a summary of EACH metric, so emit
+    one entry per metric_id with its objective, source, 30-day and 1-year
+    summaries, and daily series (past-year window). Returns [] when the KSI has
+    no per-metric history (older histories without a "metrics" map, or a KSI
+    absent from history) - the KSI-level aggregate summaries still carry the
+    rollup, so this is additive detail, never a regression."""
+    if not isinstance(metric_history, dict):
+        return []
+    ksis = metric_history.get("ksis", metric_history)
+    entry = ksis.get(kid) if isinstance(ksis, dict) else None
+    metrics = entry.get("metrics") if isinstance(entry, dict) else None
+    if not isinstance(metrics, dict) or not metrics:
+        return []
+    import datetime as _dm
+    cutoff = (_dm.date.today() - _dm.timedelta(days=365)).isoformat()
+    out = []
+    for mid in sorted(metrics):
+        m = metrics[mid]
+        if not isinstance(m, dict):
+            continue
+        series = m.get("series") if isinstance(m.get("series"), list) else []
+        daily = sorted((p for p in series
+                        if isinstance(p, dict) and str(p.get("date", ""))[:10] >= cutoff),
+                       key=lambda p: str(p.get("date", "")))
+        out.append({
+            "metricId": mid,
+            "objective": m.get("objective", ""),
+            "source": m.get("source", ""),
+            "last30Days": m.get("last_30_days"),
+            "upToOneYear": m.get("up_to_one_year"),
+            "dailyData": daily,
+        })
+    return out
+
+
+def ksi_semantic(rec, daily_series=None, per_metric=None):
     """Assemble the SDR-CSX-KSI and SDR-CSX-KMT semantic block from a
     record-store entry. Historical metrics (Class B/C MUST) are emitted here
     instead of being dropped from the generated document.
@@ -443,6 +481,10 @@ def ksi_semantic(rec, daily_series=None):
             "dailyData": (daily_series if isinstance(daily_series, list) and daily_series
                           else (hm.get("daily_data") if isinstance(hm.get("daily_data"), list) else [])),
             "dailyDataReference": _val(hm.get("daily_data_reference")),
+            # Per-metric identity (finding 3): a summary of EACH metric, derived
+            # from the durable per-metric history. Empty when no per-metric
+            # history exists (the KSI aggregate summaries above still apply).
+            "perMetric": per_metric if isinstance(per_metric, list) else [],
         },
     }
 
