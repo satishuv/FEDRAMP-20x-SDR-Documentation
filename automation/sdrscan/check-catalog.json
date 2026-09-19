@@ -466,9 +466,9 @@
    "fedramp_basis": [
     "SDR-CSX-KSI"
    ],
-   "requirement": "Five indicators have empty statements in the CR26 dataset.",
-   "risk": "Inventing text for an indicator FedRAMP has not published would be fabrication, and would not match the eventual official wording.",
-   "remediation": "Leave these marked FedRAMP pending until FedRAMP publishes the statement.",
+   "requirement": "A KSI is FedRAMP pending only when the pinned CR26 dataset gives it no statement anywhere - neither a top-level statement nor any per-class statement under varies_by_class. This is derived from the dataset, not a hardcoded list, so it cannot drift.",
+   "risk": "Inventing text for an indicator FedRAMP has not published would be fabrication; conversely, marking an indicator that DOES have a per-class statement as pending is a factually wrong scanner output.",
+   "remediation": "Leave a genuinely statement-less indicator marked FedRAMP pending until FedRAMP publishes the statement; answer any indicator that has a per-class statement.",
    "location": "references/fedramp-consolidated-rules.json",
    "applies_to_classes": [
     "a",
