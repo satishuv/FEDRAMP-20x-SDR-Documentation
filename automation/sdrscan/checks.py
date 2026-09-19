@@ -260,12 +260,22 @@ def rule_checks(ctx):
         add("frr_implementation_explained", stated(entry.get("frrImplementation")),
             f"frrImplementation: {_why(entry.get('frrImplementation'))}")
 
-        # SDR-CSO-FRR item 1, second half: not following the rule requires both
-        # the reason and the resulting risk to customers.
+        # SDR-CSO-FRR item 1, second half: not following the rule requires TWO
+        # distinct elements - the reason it is NOT followed AND the resulting
+        # risk to customers. Risk is not the reason. This mirrors the release
+        # gate (_frr_gaps) so scanner and gate agree.
         if not_following:
+            reason_ok = stated(ext.get("nonimplementation_reason")) or stated(
+                entry.get("frrImplementation"))
+            add("frr_nonconformance_reason_stated", reason_ok,
+                f"status is {status} and reason-not-followed: "
+                + ("stated" if reason_ok else "absent (state nonimplementation_reason "
+                   "or explain the reason in frrImplementation)"))
             add("frr_nonconformance_risk_stated", stated(ext.get("customer_risk")),
                 f"status is {status} and customer_risk: {_why(ext.get('customer_risk'))}")
         else:
+            add("frr_nonconformance_reason_stated", True,
+                "rule is Implemented, so no reason-not-followed is required")
             add("frr_nonconformance_risk_stated", True,
                 "rule is Implemented, so no customer risk statement is required")
 
@@ -566,6 +576,18 @@ METADATA = {m["check_id"]: m for m in [
        "rule; a placeholder here means the rule is undocumented.",
        "Replace the placeholder with the provider's real implementation.",
        "sdr/records/records-store.json -> frr.<rule>.implementation"),
+    _m("frr_nonconformance_reason_stated",
+       "Rules not fully followed state the reason they are not followed",
+       "high", "FedRAMP Rule", ["SDR-CSO-FRR"],
+       "SDR-CSO-FRR item 1 requires, for a rule that is not followed, the "
+       "reason it is not followed AND the resulting risk to customers - two "
+       "distinct elements. The risk is not the reason.",
+       "Without the reason, an assessor cannot tell WHY the rule is not "
+       "followed, only what the residual risk is; the two are different facts.",
+       "State the reason for not following the rule in nonimplementation_reason "
+       "(or explain it in the implementation narrative) on every rule that is "
+       "not Implemented.",
+       "sdr/records/records-store.json -> frr.<rule>.extension.nonimplementation_reason"),
     _m("frr_nonconformance_risk_stated",
        "Rules not fully followed state the resulting customer risk",
        "high", "FedRAMP Rule", ["SDR-CSO-FRR"],

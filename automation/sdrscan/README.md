@@ -8,7 +8,7 @@ Prowler scans a cloud account and reports one finding per resource per check, ea
 |---|---|---|
 | Target | A cloud account | A Security Decision Record |
 | Resources | EC2 instances, buckets, roles | The record itself, each FedRAMP Rule (FRR), each Key Security Indicator (KSI) |
-| Checks | Hundreds of provider checks | 37 checks over three resource types |
+| Checks | Hundreds of provider checks | 38 checks over three resource types |
 | Framework mapping | `--compliance cis_2.0_aws` and friends | The FedRAMP Consolidated Rules for 2026 (CR26) dataset, pinned in `references/` |
 | Statuses | PASS, FAIL, MANUAL, MUTED | The same four |
 | Outputs | OCSF JSON, CSV, HTML | FedRAMP-vocabulary JSON, CSV, HTML, plain text, rule-coverage CSV |
@@ -139,7 +139,7 @@ A full Class B scan writes about 6 MB across those five files, so they are gitig
 
 ## What it checks
 
-37 checks over three resource types. Every check names the CR26 rules that make it a requirement; a check with no basis does not belong in the registry. The full registry with severities, risks and remediations is in [check-catalog.json](check-catalog.json), regenerated with `--write-catalog` and gated in continuous integration so it cannot drift from the code.
+38 checks over three resource types. Every check names the CR26 rules that make it a requirement; a check with no basis does not belong in the registry. The full registry with severities, risks and remediations is in [check-catalog.json](check-catalog.json), regenerated with `--write-catalog` and gated in continuous integration so it cannot drift from the code.
 
 The record as a whole, 9 checks: schema validity against the official FedRAMP SDR schema, the three metadata items SDR-CSO-MTD requires (version, date and time of last update, source of update), the Certification Package Overview link, both formats present, consistency between the two formats, the dataset version being the pinned one, no markup in the human-readable rendering, no account identifiers or key material anywhere, and record freshness.
 

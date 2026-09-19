@@ -16,7 +16,7 @@ flowchart LR
     PIPE["Deterministic pipeline<br/>20 build steps, no network calls"]
     OUT["Deliverables<br/>SDR (JSON, extensions, text, Word, OSCAL),<br/>CPO, OCR, SCG, event artifacts,<br/>Rev 5 crosswalk, release manifest"]
     GATE["validate_sdr.py + validation gate<br/>schema, coverage, fidelity, CPO semantics,<br/>evidence integrity; gates the build"]
-    SCAN["sdrscan.py<br/>37 checks, one finding per rule<br/>and per indicator, reports only"]
+    SCAN["sdrscan.py<br/>38 checks, one finding per rule<br/>and per indicator, reports only"]
     SHIP["A package a reviewer can<br/>regenerate byte for byte"]
 
     DSU --> PIN
