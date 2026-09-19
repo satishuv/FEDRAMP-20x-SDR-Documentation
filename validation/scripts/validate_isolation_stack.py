@@ -74,6 +74,11 @@ def main():
         ("narrow writer is scoped to the content-addressed evidence/ prefix",
          "AllowNarrowWriterContentAddressedAppend" in text
          and "/evidence/*" in text),
+        # Finding 14: both the evidence bucket and its access-log bucket deny
+        # non-TLS access (aws:SecureTransport=false), matching the main pipeline.
+        ("evidence and log buckets deny insecure (non-TLS) transport",
+         text.count("DenyInsecureTransport") >= 2
+         and text.count('"aws:SecureTransport": "false"') >= 2),
     ]
 
     print("Evidence-store isolation reference-stack gate")
