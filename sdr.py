@@ -253,6 +253,7 @@ TEST_SUITE = [
     "automation/sdrscan/test_mute_expiry.py",
     "validation/scripts/test_visualization_xss.py",
     "validation/scripts/test_submission_readiness.py",
+    "validation/scripts/test_assessor_attack.py",
     "validation/scripts/test_cpo_semantics_adversarial.py",
 ]
 
