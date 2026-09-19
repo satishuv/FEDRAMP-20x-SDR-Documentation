@@ -143,6 +143,7 @@ REQUIRED_MODULES = [
     ("jsonschema", "jsonschema"),
     ("referencing", "referencing"),
     ("docx", "python-docx"),
+    ("cryptography", "cryptography"),
 ]
 
 RULE = "-" * 68
@@ -813,7 +814,7 @@ def cmd_preflight(args):
         "provider_verified_at", "dr_region", "iac_technology",
         "materials_item_schema", "note",
         "selected_optional_rules", "_selected_optional_rules_note",
-        "evidence_freshness_policy_days",
+        "evidence_freshness_policy_days", "expected_evidence_signer",
     }
     REQUIRED_FIELDS = [
         "organization_name", "offering_name", "offering_abbreviation",

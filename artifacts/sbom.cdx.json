@@ -1,7 +1,7 @@
 {
  "bomFormat": "CycloneDX",
  "specVersion": "1.5",
- "serialNumber": "urn:uuid:8e53f1b6-ef5e-8ed7-7e31-92952e6b6a47",
+ "serialNumber": "urn:uuid:081fb978-8c7b-872a-187c-1e8808970c99",
  "version": 1,
  "metadata": {
   "component": {
@@ -46,6 +46,13 @@
    "version": "10.5.1",
    "scope": "optional",
    "purl": "pkg:pypi/constructs@10.5.1"
+  },
+  {
+   "type": "library",
+   "name": "cryptography",
+   "version": "46.0.3",
+   "scope": "required",
+   "purl": "pkg:pypi/cryptography@46.0.3"
   },
   {
    "type": "library",

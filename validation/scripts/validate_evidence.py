@@ -41,7 +41,47 @@ try:
 except Exception:
     _evidence_hash = None
 
+try:
+    from sign_evidence import verify_signature_offline as _sig_verify
+except Exception:
+    _sig_verify = None
+
 HASH_RE = re.compile(r"^sha256:[0-9a-f]{64}$")
+
+PROFILE = os.path.join(BASE, "profiles", "common", "offering-profile.json")
+
+
+def load_trusted_signer():
+    """Load the INDEPENDENTLY PINNED evidence signer from the offering profile
+    (findings 7/8). Returns {"public_key": <PEM str>, "key_arn": <arn or None>,
+    "public_key_fingerprint": <'sha256:..' or None>} or None when no signer is
+    pinned. The public key is pinned by the VERIFIER (obtained once via
+    kms:GetPublicKey), NOT taken from the evidence. A public_key_pem_path is
+    resolved relative to the repo so the key can live in a file. A TBD/empty
+    value is treated as 'not pinned'."""
+    prof = load(PROFILE, {}) or {}
+    signer = prof.get("expected_evidence_signer") or {}
+    if not isinstance(signer, dict):
+        return None
+    pem = signer.get("public_key_pem")
+    pem_path = signer.get("public_key_pem_path")
+    if (not pem or str(pem).startswith("TBD")) and pem_path and not str(pem_path).startswith("TBD"):
+        cand = pem_path if os.path.isabs(pem_path) else os.path.join(BASE, pem_path)
+        if os.path.isfile(cand):
+            try:
+                with open(cand, encoding="utf-8") as f:
+                    pem = f.read()
+            except OSError:
+                pem = None
+    if not pem or str(pem).startswith("TBD"):
+        return None
+    arn = signer.get("key_arn")
+    fp = signer.get("public_key_fingerprint")
+    return {
+        "public_key": pem,
+        "key_arn": None if (not arn or str(arn).startswith("TBD")) else arn,
+        "public_key_fingerprint": None if (not fp or str(fp).startswith("TBD")) else fp,
+    }
 
 
 def load(path, default=None):
@@ -88,7 +128,7 @@ def _resolve_source(e):
     return None, "no resolvable source"
 
 
-def classify_entry(e, hash_fn=None):
+def classify_entry(e, hash_fn=None, trusted_signer=None):
     """Pure integrity decision for one evidence entry. Returns
     (outcome, message) where outcome is 'verified' | 'finding' | 'hard'.
     hash_fn is the canonical evidence hash implementation (or None if it could
@@ -119,13 +159,15 @@ def classify_entry(e, hash_fn=None):
         return ("hard", f"INTEGRITY FAILED - stored {str(h)[:20]} != recomputed "
                         f"{hash_fn(source)[:20]} (content changed after the digest "
                         "was recorded)")
-    # Non-repudiation binding check (AU-09(02/03/04), AU-10). Signing is opt-in
+    # Non-repudiation verification (AU-09(02/03/04), AU-10). Signing is opt-in
     # per deployment, so an ABSENT signature leaves the entry verified-by-hash.
-    # But a PRESENT signature must bind to THIS content: its signedHash must
-    # equal the recomputed hash. A stale binding means the fact changed after it
-    # was signed (the signature is over old content) - a HARD failure, the same
-    # fail-closed posture as a hash mismatch. The cryptographic kms:Verify is a
-    # desk-gated live step; this offline binding check is what CI can enforce.
+    # A PRESENT signature is CRYPTOGRAPHICALLY VERIFIED against an INDEPENDENTLY
+    # PINNED trusted signer (findings 7 and 8): the gate never trusts the keyId
+    # carried inside the evidence, and never treats a mere well-formed blob as
+    # verified. It checks (a) the evidence's keyId matches the pinned trusted
+    # key ARN, (b) the signedHash binds to THIS content, and (c) the signature
+    # verifies offline under the pinned public key. Any failure is HARD
+    # (fail-closed): a present-but-unverifiable signature is worse than none.
     sig = e.get("xEvidenceSignature")
     if sig is not None:
         if not isinstance(sig, dict):
@@ -138,17 +180,46 @@ def classify_entry(e, hash_fn=None):
             return ("hard", f"SIGNATURE BINDING STALE - signed {str(signed_hash)[:20]} "
                             f"!= current {str(h)[:20]} (evidence changed after it "
                             "was signed; the signature is over old content)")
+        # A signature is present, so a trusted signer MUST be pinned and it MUST
+        # verify. Without a pinned signer we cannot assert non-repudiation, and
+        # trusting the evidence's own keyId would be circular - fail closed.
+        if not trusted_signer or not trusted_signer.get("public_key"):
+            return ("hard", "xEvidenceSignature present but no trusted signer is "
+                            "pinned (offering-profile.expected_evidence_signer with "
+                            "a public_key_pem); refusing to trust a signature whose "
+                            "signer is not independently pinned (findings 7/8)")
+        pinned_arn = trusted_signer.get("key_arn")
+        if pinned_arn and sig.get("keyId") != pinned_arn:
+            return ("hard", f"SIGNER NOT TRUSTED - evidence keyId {str(sig.get('keyId'))[:40]} "
+                            f"is not the pinned trusted signer {str(pinned_arn)[:40]} "
+                            "(a signature by an unpinned key is not trusted)")
+        if _sig_verify is None:
+            return ("hard", "cannot verify evidence signature - the offline "
+                            "verifier (sign_evidence.verify_signature_offline) "
+                            "could not be imported; refusing to pass a signed "
+                            "entry without verifying it")
+        try:
+            ok = _sig_verify(sig, trusted_signer["public_key"],
+                             recomputed_hash=h,
+                             expected_fingerprint=trusted_signer.get("public_key_fingerprint"))
+        except Exception as ex:  # noqa: BLE001 - structural verify error
+            return ("hard", f"SIGNATURE VERIFICATION ERROR - {ex}")
+        if not ok:
+            return ("hard", "SIGNATURE INVALID - the signature does not verify "
+                            "under the pinned trusted signer public key "
+                            "(cryptographic verification failed, fail-closed)")
     return ("verified", "")
 
 
 def main():
     records = load(RECORDS, {"frr": {}, "ksi": {}})
+    trusted_signer = load_trusted_signer()
     hard, findings = [], []
     checked = verified = 0
 
     for oid, section, e in iter_evidence(records):
         checked += 1
-        outcome, msg = classify_entry(e, _evidence_hash)
+        outcome, msg = classify_entry(e, _evidence_hash, trusted_signer)
         if outcome == "hard":
             hard.append(f"{section}:{oid}: {msg}")
         elif outcome == "finding":

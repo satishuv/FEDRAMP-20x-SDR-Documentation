@@ -4,3 +4,7 @@
 jsonschema==4.26.0
 referencing==0.37.0
 python-docx==1.2.0
+# Offline ECDSA verification of evidence signatures against a pinned trusted
+# signer (validation/scripts/validate_evidence.py). Well-known, actively
+# maintained; used only to verify, never to sign.
+cryptography==46.0.3
