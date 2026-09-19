@@ -53,6 +53,27 @@ def main():
          "LoggingConfiguration:" in text and "EvidenceLogBucket" in text),
         ("assessed collectors cannot bypass governance retention",
          "s3:BypassGovernanceRetention" in text),
+        # Finding 9: server access logging is not merely CONFIGURED, it is
+        # actually DELIVERABLE. With Bucket Owner Enforced the log bucket needs a
+        # bucket policy granting the logging service principal PutObject, and the
+        # log DESTINATION must be SSE-S3 (AES256), never SSE-KMS. The substring
+        # LoggingConfiguration check above passed even while delivery was broken;
+        # these check the real prerequisites AWS documents.
+        ("log bucket grants logging.s3.amazonaws.com PutObject (policy exists)",
+         "EvidenceLogBucketPolicy" in text
+         and "logging.s3.amazonaws.com" in text),
+        ("log-delivery grant is scoped by SourceArn and SourceAccount",
+         "aws:SourceArn" in text and "aws:SourceAccount" in text),
+        ("log bucket uses SSE-S3 (AES256), not SSE-KMS (required for a log destination)",
+         "SSEAlgorithm: AES256" in text),
+        ("log bucket has NO Object Lock (S3 refuses a locked log destination)",
+         text.count("ObjectLockEnabled: true") == 1),
+        # Finding 10: the writer is scoped to the content-addressed evidence/
+        # prefix so a key's GET is stable (content-addressed keys), not a blanket
+        # /* grant that lets a new version overwrite an existing key's GET target.
+        ("narrow writer is scoped to the content-addressed evidence/ prefix",
+         "AllowNarrowWriterContentAddressedAppend" in text
+         and "/evidence/*" in text),
     ]
 
     print("Evidence-store isolation reference-stack gate")
