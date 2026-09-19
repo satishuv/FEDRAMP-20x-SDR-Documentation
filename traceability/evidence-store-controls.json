@@ -1,0 +1,46 @@
+{
+  "_comment": "Maps the evidence-store's own protection mechanisms to the FedRAMP 20x / NIST SP 800-53 Rev.5 control identifiers they support. This is what turns 'we have WORM + signatures' into 'we can show an assessor which control each mechanism supports'. Every control id here was verified verbatim against references/fedramp-consolidated-rules.json. This is a traceability aid and an advisory mapping; it is NOT a compliance determination - the assessor decides whether a control is met. AU-10 (Non-repudiation) appears in the CR26 Rev5 controls list at the higher class only; it is scoped accordingly below.",
+  "generated_from_dataset": "references/fedramp-consolidated-rules.json",
+  "scope": "The durable evidence/metric-history store provisioned by automation/storage/provision_store.py and the evidence signatures produced by automation/collectors/sign_evidence.py.",
+  "mechanisms": [
+    {
+      "mechanism": "S3 bucket versioning",
+      "provided_by": "automation/storage/provision_store.py (ensure_store, versioning Enabled)",
+      "supports_controls": ["AU-09", "AU-11"],
+      "rationale": "Every write retains prior versions, so an audit record cannot be silently replaced and history is recoverable. AU-09 protects audit information from unauthorized modification; AU-11 requires audit-record retention.",
+      "class_applicability": "all"
+    },
+    {
+      "mechanism": "S3 Object Lock (WORM), GOVERNANCE or COMPLIANCE mode with default retention",
+      "provided_by": "automation/storage/provision_store.py (--object-lock, PutObjectLockConfiguration)",
+      "supports_controls": ["AU-09", "AU-09 (02)", "AU-09 (03)", "AU-11"],
+      "rationale": "Write-once storage makes an audit record immutable for the retention period. COMPLIANCE mode cannot be shortened even by root, giving genuine write-once protection of audit information (AU-09 and its stored-integrity enhancements) and enforced retention (AU-11).",
+      "class_applicability": "all",
+      "caveat": "COMPLIANCE mode is an operational commitment: records cannot be deleted before the retention period expires, by anyone including the account root. Choose the mode deliberately."
+    },
+    {
+      "mechanism": "KMS asymmetric signature over the evidence content hash",
+      "provided_by": "automation/collectors/sign_evidence.py (sign_hash / verify_signature)",
+      "supports_controls": ["AU-09", "AU-09 (02)", "AU-09 (03)", "AU-09 (04)", "AU-10"],
+      "rationale": "The signature is produced by a SEPARATE signer principal whose key the read-only collector cannot reach (kms:Sign denied to the collector role). It provides non-repudiation of the evidence digest: a privileged actor who rewrites the record store still cannot forge the signature without kms:Sign. AU-09 (02)/(03)/(04) cover cryptographic and separate-storage protection of audit information; AU-10 covers non-repudiation.",
+      "class_applicability": "AU-10 is in the CR26 Rev5 controls list at the higher assurance class; AU-09 and its enhancements apply across classes. Signing supports both, but only claim AU-10 where the class profile requires it.",
+      "boundary": "The non-repudiation property holds ONLY when the signer principal is genuinely outside the collector's and the assessed account's blast radius (see evidence-store-isolation reference). If the same admin holds both, the trust is moved, not removed."
+    },
+    {
+      "mechanism": "Least-privilege, separately-logged access to the evidence store",
+      "provided_by": "automation/storage/DEPLOY.md (least-privilege deploy profile) + evidence-store-isolation reference stack",
+      "supports_controls": ["AU-09", "AU-09 (04)", "KSI-MLA-ALA"],
+      "rationale": "Access to log/evidence data is least-privileged and access to the store is managed separately from the accounts being assessed. KSI-MLA-ALA (Authorizing Log Access) requires a least-privileged, role/attribute-based, just-in-time access model for log data; AU-09 (04) covers access by a subset of privileged users.",
+      "class_applicability": "KSI-MLA-ALA is Optional at Class B and required at Class C per the dataset varies_by_class; scope the claim to the class."
+    },
+    {
+      "mechanism": "Content hash (SHA-256) over the sanitized source fact",
+      "provided_by": "automation/collectors/evidence_wiring.py (evidence_hash) + validation/scripts/validate_evidence.py",
+      "supports_controls": ["AU-09"],
+      "rationale": "Tamper-EVIDENCE: a reviewer or CI recomputes the digest to detect a silently-edited evidence object. This alone is not tamper-PROOF against a privileged rewrite (that is what the KMS signature adds), but it supports AU-09 detection of unauthorized modification.",
+      "class_applicability": "all"
+    }
+  ],
+  "record_retention_note": "The CR26 governing window for the KSI metric history (SDR-CSX-KMT) is up to one year; SCN-CSO-MAR requires providers to maintain auditable records of significant-change evaluation activities and make them available to FedRAMP on request. --retention-days is a provider policy choice, not a fixed 7-year default.",
+  "controls_verified_in_dataset": ["AU-09", "AU-09 (02)", "AU-09 (03)", "AU-09 (04)", "AU-10", "AU-11", "KSI-MLA-ALA"]
+}

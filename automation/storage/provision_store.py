@@ -283,6 +283,14 @@ def main(argv=None):
     print(f"Target bucket: {args.bucket}"
           + (f" ({region})" if region else "") + "\n")
 
+    if not args.object_lock:
+        print("NOTE: provisioning WITHOUT Object Lock. Versioning gives tamper-"
+              "EVIDENCE (prior versions are retained), but not write-once tamper-"
+              "PROOF storage. For the highest standard - immutable audit records "
+              "per AU-09/AU-11 (see traceability/evidence-store-controls.json) - "
+              "re-run with --object-lock (COMPLIANCE mode for records that must "
+              "not be deletable before retention expires).\n")
+
     try:
         result = ensure_store(
             session, args.bucket, region=region,

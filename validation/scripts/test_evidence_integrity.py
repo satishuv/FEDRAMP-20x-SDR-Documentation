@@ -93,10 +93,61 @@ def test_frr_evidence_is_read():
     check("FRR wrong hash is caught", any(h[2] == "mismatch" for h in _count_hard(records)))
 
 
+def test_absent_signature_stays_verified():
+    # Signing is opt-in per deployment; an entry with a correct hash and NO
+    # signature is still verified-by-hash, not a failure.
+    fact = {"service": "iam", "check": "mfa", "status": "pass"}
+    e = {"source_fact": fact, "xEvidenceContentHash": evidence_hash(fact),
+         "evidenceLocation": "s3://bucket/key"}
+    outcome, _ = ve.classify_entry(e, hash_fn=evidence_hash)
+    check("correct hash, no signature -> verified", outcome == "verified")
+
+
+def test_valid_signature_binding_verifies():
+    fact = {"service": "iam", "check": "mfa", "status": "pass"}
+    h = evidence_hash(fact)
+    e = {"source_fact": fact, "xEvidenceContentHash": h,
+         "evidenceLocation": "s3://bucket/key",
+         "xEvidenceSignature": {"algorithm": "ECDSA_SHA_256",
+                                "keyId": "arn:...:key/audit-signer",
+                                "signedHash": h, "signature": "QUJD"}}
+    outcome, _ = ve.classify_entry(e, hash_fn=evidence_hash)
+    check("valid signature binding -> verified", outcome == "verified")
+
+
+def test_stale_signature_binding_is_hard():
+    # The fact changed after signing: the signature's signedHash no longer
+    # matches the current content hash. This is a HARD failure.
+    fact = {"service": "iam", "check": "mfa", "status": "pass"}
+    h = evidence_hash(fact)
+    old_hash = "sha256:" + "b" * 64
+    e = {"source_fact": fact, "xEvidenceContentHash": h,
+         "evidenceLocation": "s3://bucket/key",
+         "xEvidenceSignature": {"algorithm": "ECDSA_SHA_256",
+                                "keyId": "arn:...:key/audit-signer",
+                                "signedHash": old_hash, "signature": "QUJD"}}
+    outcome, msg = ve.classify_entry(e, hash_fn=evidence_hash)
+    check("stale signature binding -> hard", outcome == "hard" and "STALE" in msg)
+
+
+def test_malformed_signature_block_is_hard():
+    fact = {"service": "iam", "check": "mfa", "status": "pass"}
+    h = evidence_hash(fact)
+    e = {"source_fact": fact, "xEvidenceContentHash": h,
+         "evidenceLocation": "s3://bucket/key",
+         "xEvidenceSignature": {"algorithm": "ECDSA_SHA_256"}}  # no sig/keyId/signedHash
+    outcome, _ = ve.classify_entry(e, hash_fn=evidence_hash)
+    check("signature block missing fields -> hard", outcome == "hard")
+
+
 def main():
     for t in (test_wrong_hash_over_resolvable_source_is_hard_fail,
               test_matching_hash_passes, test_missing_hash_helper_is_hard_fail_not_finding,
-              test_frr_evidence_is_read):
+              test_frr_evidence_is_read,
+              test_absent_signature_stays_verified,
+              test_valid_signature_binding_verifies,
+              test_stale_signature_binding_is_hard,
+              test_malformed_signature_block_is_hard):
         print(t.__name__); t()
     print(f"\n{PASS}/{PASS + FAIL} passed")
     return 0 if FAIL == 0 else 1
