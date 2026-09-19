@@ -827,6 +827,65 @@ def main():
         json.dump(pa, open(profile_a, "w", encoding="utf-8", newline="\n"), indent=1)
         _build(root_a)
 
+        # --- Finding 6: selected Class A optional rules are fully reviewed ---
+        def _resign_a(note):
+            mh = "sha256:" + hashlib.sha256(open(manifest_a, "rb").read()).hexdigest()
+            tg = json.load(open(manifest_a, encoding="utf-8")).get("release_tag")
+            rr = json.load(open(register_a, encoding="utf-8"))
+            rr["package_signoff"] = {
+                "decision": "approved", "reviewer": "Jane Provider, VP Security",
+                "timestamp": now.isoformat(), "release_tag": tg,
+                "package_manifest_sha256": mh, "notes": note}
+            json.dump(rr, open(register_a, "w", encoding="utf-8", newline="\n"), indent=1)
+
+        # (a) Selecting optional IV&V (IVV-CSO-FIA) requires the CPO overall
+        # assessment summary (CPO-CSO-OSA / IVV-IAS-OSA). With it hollow, the
+        # selected optional rule must block; restoring it must clear. This proves
+        # the OSA obligation is not skipped just because it is Class A.
+        saved_osa = pa.get("overall_assessment_summary")
+        pa["selected_optional_rules"] = ["FRC-APP-FIA", "IVV-CSO-FIA"]
+        pa["overall_assessment_summary"] = "N/A"
+        json.dump(pa, open(profile_a, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root_a); _resign_a("IVV-OSA probe")
+        r_ivv = _preflight(root_a)
+        check("Class A selecting IVV-CSO-FIA blocks when the CPO overall assessment summary is hollow",
+              "overall_assessment_summary" in r_ivv.stdout and r_ivv.returncode == 1)
+        pa["overall_assessment_summary"] = saved_osa or (
+            "Assessor confirmed all in-scope measures verified and validated; no critical findings.")
+        json.dump(pa, open(profile_a, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root_a); _resign_a("IVV-OSA cleared")
+        r_ivv_ok = _preflight(root_a)
+        check("Class A selecting IVV-CSO-FIA clears once the overall assessment summary is present",
+              "overall_assessment_summary" not in r_ivv_ok.stdout and r_ivv_ok.returncode == 0)
+
+        # (b) Selecting an optional artifact-bearing rule (CMU-CSO-UVM, the
+        # cryptographic-module list) with no rule_artifact must block on the
+        # rule-artifact gap - a selected MAY rule's canonical artifact is required
+        # once included. Uses the records store: strip artifacts from the rule.
+        rp_a = os.path.join(root_a, "sdr", "records", "records-store.json")
+        recs_a = json.load(open(rp_a, encoding="utf-8"))
+        cmu = "CMU-CSO-UVM"
+        if cmu in recs_a.get("frr", {}):
+            saved_cmu = recs_a["frr"][cmu].get("extension", {}).get("rule_artifacts")
+            recs_a["frr"][cmu].setdefault("extension", {})["rule_artifacts"] = []
+            json.dump(recs_a, open(rp_a, "w", encoding="utf-8", newline="\n"), indent=1)
+            pa["selected_optional_rules"] = ["FRC-APP-FIA", cmu]
+            json.dump(pa, open(profile_a, "w", encoding="utf-8", newline="\n"), indent=1)
+            _build(root_a); _resign_a("CMU artifact probe")
+            r_cmu = _preflight(root_a)
+            check("Class A selecting CMU-CSO-UVM blocks when its canonical artifact is missing",
+                  "rule-artifact" in r_cmu.stdout and cmu in r_cmu.stdout and r_cmu.returncode == 1)
+            recs_a2 = json.load(open(rp_a, encoding="utf-8"))
+            recs_a2["frr"][cmu].setdefault("extension", {})["rule_artifacts"] = saved_cmu or [{
+                "evidenceType": "Report", "evidenceLocation": "https://contoso.gov/ev/CMU-CSO-UVM",
+                "lastUpdated": "2026-09-01T00:00:00Z"}]
+            json.dump(recs_a2, open(rp_a, "w", encoding="utf-8", newline="\n"), indent=1)
+
+        # Restore the baseline Class A selection so the tree is left ready.
+        pa["selected_optional_rules"] = ["FRC-APP-FIA"]
+        json.dump(pa, open(profile_a, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root_a); _resign_a("finding-6 probes done")
+
         # FRC-CSX-MOT initial-certification EXCEPTION: a new Class C offering with
         # no long metric history but a valid metric_history_exception (both flags
         # true + descriptions + a current datapoint per KSI) must reach ready.
