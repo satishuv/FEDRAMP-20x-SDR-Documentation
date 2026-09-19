@@ -993,6 +993,50 @@ def main():
         check("MOT exception clears with a valid short window and a current datapoint",
               "FRC-CSX-MOT" not in r_curdp.stdout or r_curdp.returncode == 0)
 
+        # --- finding 6: future dates and metrics_available_since ---
+        # (a) metrics_available_since is the PREFERRED eligibility field and a
+        # valid short window on it clears the exception (parity with the
+        # operating_since fallback).
+        pm_h["metric_history_exception"]["operating_since"] = "TBD"
+        pm_h["metric_history_exception"]["metrics_available_since"] = (
+            now.date() - datetime.timedelta(days=40)).isoformat()
+        json.dump(pm_h, open(profile_m, "w", encoding="utf-8", newline="\n"), indent=1)
+        _resign_m()
+        r_mas = _preflight(root_m)
+        check("MOT exception clears on a valid short metrics_available_since window",
+              "FRC-CSX-MOT" not in r_mas.stdout or r_mas.returncode == 0)
+        # (b) a FUTURE metrics_available_since must block (cannot be in future).
+        pm_h["metric_history_exception"]["metrics_available_since"] = (
+            now.date() + datetime.timedelta(days=30)).isoformat()
+        json.dump(pm_h, open(profile_m, "w", encoding="utf-8", newline="\n"), indent=1)
+        _resign_m()
+        r_futmas = _preflight(root_m)
+        check("MOT exception with a FUTURE metrics_available_since is blocked",
+              "FUTURE metrics_available_since" in r_futmas.stdout and r_futmas.returncode == 1)
+        # (c) a valid short window but the only datapoint is FUTURE-dated: it must
+        # NOT count as a current datapoint (future is not a real observation).
+        pm_h["metric_history_exception"]["metrics_available_since"] = (
+            now.date() - datetime.timedelta(days=40)).isoformat()
+        json.dump(pm_h, open(profile_m, "w", encoding="utf-8", newline="\n"), indent=1)
+        fut_dp = (now.date() + datetime.timedelta(days=10)).isoformat()
+        hist_fut = {"ksis": {k["ksi_id"]: {"series": [{"date": fut_dp, "status": "pass"}]}
+                             for k in ksi_prof.get("indicators", [])}}
+        json.dump(hist_fut, open(os.path.join(root_m, "automation", "metrics", "metric-history.json"),
+                                 "w", encoding="utf-8", newline="\n"), indent=1)
+        _resign_m()
+        r_futdp = _preflight(root_m)
+        check("MOT exception blocks when the only datapoint is FUTURE-dated (not current)",
+              "no CURRENT validation datapoint" in r_futdp.stdout and r_futdp.returncode == 1)
+        # Restore a clean current history + valid short-window exception for the
+        # later freshness probes (via operating_since, matching prior state).
+        json.dump(hist_r, open(os.path.join(root_m, "automation", "metrics", "metric-history.json"),
+                               "w", encoding="utf-8", newline="\n"), indent=1)
+        pm_h["metric_history_exception"]["metrics_available_since"] = "TBD"
+        pm_h["metric_history_exception"]["operating_since"] = (
+            now.date() - datetime.timedelta(days=40)).isoformat()
+        json.dump(pm_h, open(profile_m, "w", encoding="utf-8", newline="\n"), indent=1)
+        _resign_m()
+
         # --- PR #115: evidence-freshness whole-set + FRR rule_artifacts ---
         recs_ws = json.load(open(rp_ef, encoding="utf-8"))
         # A populated KSI with ONE expired AND ONE current artifact has
