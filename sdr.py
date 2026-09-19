@@ -1413,6 +1413,52 @@ def cmd_preflight(args):
         return [p for p in series
                 if isinstance(p, dict) and str(p.get("date", ""))[:10] >= cutoff]
 
+    def _per_metric_gap_for(kid):
+        """Finding 5: SDR-CSX-KMT asks for a "Summary of EACH metric." A KSI
+        whose durable history proves MULTIPLE distinct metrics were observed
+        must carry a populated per-metric breakdown (the metrics map), not a
+        single collapsed aggregate. Returns a gap message when the history shows
+        a genuinely multi-metric KSI with no in-window per-metric series, else
+        "" (no gap). Honors "where available": a KSI observed as a single metric
+        (every datapoint total <= 1) or absent from history is NOT gated - the
+        aggregate carries it and forcing per-metric would over-block.
+
+        Multi-metric is detected from the durable history itself, not the
+        registry's theoretical maximum: either the entry declares a metrics map
+        with >1 metric, OR an aggregate datapoint observed total > 1 (more than
+        one check/service contributed that day). The per-metric requirement is
+        satisfied when the metrics map carries at least one in-window datapoint
+        for each of its metrics.
+        """
+        import datetime as _pm
+        entry = _kmt_ksis.get(kid)
+        if not isinstance(entry, dict):
+            return ""  # no history -> where-available, not gated
+        series = entry.get("series") if isinstance(entry.get("series"), list) else []
+        metrics = entry.get("metrics") if isinstance(entry.get("metrics"), dict) else {}
+        # Is this a genuinely multi-metric KSI per its own history?
+        multi = len(metrics) > 1 or any(
+            isinstance(p, dict) and isinstance(p.get("total"), int) and p["total"] > 1
+            for p in series)
+        if not multi:
+            return ""  # single-metric or aggregate-of-one: aggregate suffices
+        if not metrics:
+            return ("kmt_per_metric (history shows multiple metrics but carries "
+                    "no per-metric breakdown; SDR-CSX-KMT requires a summary of "
+                    "each metric)")
+        cutoff = (_pm.date.today() - _pm.timedelta(days=365)).isoformat()
+        empty = []
+        for mid, m in metrics.items():
+            ms = m.get("series") if isinstance(m, dict) else None
+            in_window = [p for p in (ms or [])
+                         if isinstance(p, dict) and str(p.get("date", ""))[:10] >= cutoff]
+            if not in_window:
+                empty.append(mid)
+        if empty:
+            return ("kmt_per_metric (metric(s) with no in-window observations: "
+                    + ", ".join(sorted(empty)[:5]) + ")")
+        return ""
+
     def _kmt_claim_contradicts_history(kid, rec):
         """Finding 1 (correlation): the SDR now DERIVES the 30-day/1-year
         summaries from durable history at build, so the submitted document is
@@ -1517,6 +1563,10 @@ def cmd_preflight(args):
             # is not double-blocked here ("where available").
             if kid in _kmt_ksis and not _daily_series_for(kid):
                 gaps.append("kmt_daily_data (no in-window daily observations in metric history)")
+            # Finding 5: a multi-metric KSI must carry the per-metric breakdown.
+            pm_gap = _per_metric_gap_for(kid)
+            if pm_gap:
+                gaps.append(pm_gap)
         return gaps
 
     tbd = placeholders = scoped_records = 0
