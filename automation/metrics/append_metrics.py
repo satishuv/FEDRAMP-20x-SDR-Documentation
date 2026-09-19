@@ -116,6 +116,59 @@ def datapoint_for_ksi(ksi_entry, config_by_rule, posture_by_service):
     return {"passing": passing, "total": total}
 
 
+def per_metric_datapoints_for_ksi(ksi_entry, config_by_rule, posture_by_service):
+    """One day's metric PER METRIC for a KSI, preserving each metric's identity
+    (finding 3). FedRAMP SDR-CSX-KMT says "Summary of EACH metric", but the
+    aggregate datapoint_for_ksi collapses every check/service into a single
+    passing/total for the whole KSI, losing which metric contributed what.
+
+    Returns {metric_id: {"passing": p, "total": t, "objective": str, "source": str}}
+    for every metric that was actually observed that day, or {} if none. A
+    metric is one config-managed rule (keyed by its check_id) or one observed
+    posture service (keyed by "posture:<service>"). The KSI-level aggregate
+    remains the sum of these, so existing consumers are unchanged; this is the
+    per-metric breakdown emitted ALONGSIDE the aggregate, never replacing it.
+    """
+    out = {}
+    for check in ksi_entry.get("checks", []):
+        if check.get("type") != "config_managed_rule":
+            continue
+        target = check.get("target")
+        fact = config_by_rule.get(target)
+        if not fact:
+            continue
+        ct = fact.get("compliance_type", "")
+        if ct.startswith("ERROR") or ct in ("RULE_NOT_DEPLOYED", "UNKNOWN", ""):
+            continue
+        mid = check.get("check_id") or f"config:{target}"
+        out[mid] = {
+            "passing": 1 if ct in GOOD_CONFIG else 0,
+            "total": 1,
+            "objective": check.get("description") or check.get("objective") or "",
+            "source": f"AWS Config rule {target}",
+        }
+    named = set(ksi_entry.get("services", []))
+    for svc_key, svc_label in POSTURE_SERVICE_KEYS.items():
+        if not any(svc_label in n for n in named):
+            continue
+        obs = posture_by_service.get(svc_key, [])
+        p = t = 0
+        for pf in obs:
+            status = pf.get("status", "")
+            if status.startswith("ERROR"):
+                continue
+            t += 1
+            if status in GOOD_POSTURE:
+                p += 1
+        if t:
+            out[f"posture:{svc_key}"] = {
+                "passing": p, "total": t,
+                "objective": f"Posture of {svc_label}",
+                "source": f"Security posture telemetry for {svc_label}",
+            }
+    return out
+
+
 def summarize(points):
     """A summary is the average passing-fraction across the points and the
     count of days observed. Deterministic and simple on purpose: the assessor
@@ -225,6 +278,27 @@ def append_run(history, registry, config_by_rule, posture_by_service, today, cls
         entry["up_to_one_year"] = summarize(last_year)
         # FRC-CSX-MOT persistent-validation window coverage for this class.
         entry["persistent_validation_window"] = mot_window(entry["series"], cls, today)
+        # Per-metric identity (finding 3): FedRAMP asks for a summary of EACH
+        # metric, so accumulate a per-metric daily series ALONGSIDE the KSI
+        # aggregate above (never replacing it). Each metric keeps its own
+        # series, 30-day and 1-year summaries, objective, and source, sliced to
+        # the same exact windows. The KSI aggregate remains the sum, so every
+        # existing consumer is unchanged.
+        pm = per_metric_datapoints_for_ksi(ksi_entry, config_by_rule, posture_by_service)
+        metrics = entry.setdefault("metrics", {})
+        for mid, mdp in pm.items():
+            m = metrics.setdefault(mid, {"series": []})
+            m_series = [p for p in m["series"] if p["date"] != date_str]
+            m_series.append({"date": date_str,
+                             "passing": mdp["passing"], "total": mdp["total"]})
+            m_series.sort(key=lambda p: p["date"])
+            m["series"] = prune(m_series, today)
+            m["objective"] = mdp.get("objective", "")
+            m["source"] = mdp.get("source", "")
+            m["last_30_days"] = summarize(
+                [p for p in m["series"] if p["date"] >= cutoff30])
+            m["up_to_one_year"] = summarize(
+                [p for p in m["series"] if p["date"] >= year_start])
     history["meta"] = {
         "last_run": date_str,
         "retain_days": RETAIN_DAYS,
