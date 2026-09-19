@@ -24,6 +24,7 @@
     "familyName": "Addressing FedRAMP Communication",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "Example: monthly synthetic test.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -54,6 +55,7 @@
     "familyName": "Addressing FedRAMP Communication",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -84,6 +86,7 @@
     "familyName": "Addressing FedRAMP Communication",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -114,6 +117,7 @@
     "familyName": "Addressing FedRAMP Communication",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -144,6 +148,7 @@
     "familyName": "Addressing FedRAMP Communication",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -174,6 +179,7 @@
     "familyName": "Addressing FedRAMP Communication",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -204,6 +210,7 @@
     "familyName": "Addressing FedRAMP Communication",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -234,6 +241,7 @@
     "familyName": "Addressing FedRAMP Communication",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -264,6 +272,7 @@
     "familyName": "Collaborative Continuous Monitoring",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -294,6 +303,7 @@
     "familyName": "Collaborative Continuous Monitoring",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -324,6 +334,7 @@
     "familyName": "Collaborative Continuous Monitoring",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -354,6 +365,7 @@
     "familyName": "Collaborative Continuous Monitoring",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -384,6 +396,7 @@
     "familyName": "Collaborative Continuous Monitoring",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -414,6 +427,7 @@
     "familyName": "Collaborative Continuous Monitoring",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -444,6 +458,7 @@
     "familyName": "Collaborative Continuous Monitoring",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -474,6 +489,7 @@
     "familyName": "Collaborative Continuous Monitoring",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -504,6 +520,7 @@
     "familyName": "Collaborative Continuous Monitoring",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -534,6 +551,7 @@
     "familyName": "Collaborative Continuous Monitoring",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -564,6 +582,7 @@
     "familyName": "Collaborative Continuous Monitoring",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -594,6 +613,7 @@
     "familyName": "Collaborative Continuous Monitoring",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -624,6 +644,7 @@
     "familyName": "Collaborative Continuous Monitoring",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -654,6 +675,7 @@
     "familyName": "Collaborative Continuous Monitoring",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -684,6 +706,7 @@
     "familyName": "Collaborative Continuous Monitoring",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -714,6 +737,7 @@
     "familyName": "Collaborative Continuous Monitoring",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -744,6 +768,7 @@
     "familyName": "Collaborative Continuous Monitoring",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -774,6 +799,7 @@
     "familyName": "Certification Data Sharing",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -804,6 +830,7 @@
     "familyName": "Certification Data Sharing",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -834,6 +861,7 @@
     "familyName": "Certification Data Sharing",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -864,6 +892,7 @@
     "familyName": "Certification Data Sharing",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -894,6 +923,7 @@
     "familyName": "Certification Data Sharing",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -924,6 +954,7 @@
     "familyName": "Certification Data Sharing",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -954,6 +985,7 @@
     "familyName": "Certification Data Sharing",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -984,6 +1016,7 @@
     "familyName": "Certification Data Sharing",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -1014,6 +1047,7 @@
     "familyName": "Certification Data Sharing",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -1044,6 +1078,7 @@
     "familyName": "Certification Data Sharing",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -1074,6 +1109,7 @@
     "familyName": "Certification Data Sharing",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -1104,6 +1140,7 @@
     "familyName": "Certification Data Sharing",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -1134,6 +1171,7 @@
     "familyName": "Certification Data Sharing",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -1164,6 +1202,7 @@
     "familyName": "Certification Data Sharing",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -1194,6 +1233,7 @@
     "familyName": "Certification Data Sharing",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -1224,6 +1264,7 @@
     "familyName": "Certification Data Sharing",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -1254,6 +1295,7 @@
     "familyName": "Certification Data Sharing",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -1284,6 +1326,7 @@
     "familyName": "Certification Data Sharing",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -1314,6 +1357,7 @@
     "familyName": "Certification Data Sharing",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -1344,6 +1388,7 @@
     "familyName": "Certification Data Sharing",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -1374,6 +1419,7 @@
     "familyName": "Cryptographic Module Use",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -1404,6 +1450,7 @@
     "familyName": "Cryptographic Module Use",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -1434,6 +1481,7 @@
     "familyName": "Cryptographic Module Use",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -1464,6 +1512,7 @@
     "familyName": "Certification Package Overview",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -1494,6 +1543,7 @@
     "familyName": "Certification Package Overview",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -1524,6 +1574,7 @@
     "familyName": "Certification Package Overview",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -1554,6 +1605,7 @@
     "familyName": "Certification Package Overview",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -1584,6 +1636,7 @@
     "familyName": "FedRAMP Certification",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -1614,6 +1667,7 @@
     "familyName": "FedRAMP Certification",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -1644,6 +1698,7 @@
     "familyName": "FedRAMP Certification",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "Example: every change plus weekly re-validation.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -1674,6 +1729,7 @@
     "familyName": "FedRAMP Certification",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -1704,6 +1760,7 @@
     "familyName": "FedRAMP Certification",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -1734,6 +1791,7 @@
     "familyName": "FedRAMP Certification",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -1764,6 +1822,7 @@
     "familyName": "FedRAMP Certification",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -1794,6 +1853,7 @@
     "familyName": "FedRAMP Certification",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -1824,6 +1884,7 @@
     "familyName": "FedRAMP Certification",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -1854,6 +1915,7 @@
     "familyName": "FedRAMP Certification",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -1884,6 +1946,7 @@
     "familyName": "FedRAMP Certification",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -1914,6 +1977,7 @@
     "familyName": "FedRAMP Certification",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -1944,6 +2008,7 @@
     "familyName": "FedRAMP Certification",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -1974,6 +2039,7 @@
     "familyName": "FedRAMP Certification",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -2004,6 +2070,7 @@
     "familyName": "FedRAMP Certification",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -2034,6 +2101,7 @@
     "familyName": "Incident Evaluation and Communication",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -2064,6 +2132,7 @@
     "familyName": "Incident Evaluation and Communication",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -2094,6 +2163,7 @@
     "familyName": "Incident Evaluation and Communication",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -2124,6 +2194,7 @@
     "familyName": "Incident Evaluation and Communication",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -2154,6 +2225,7 @@
     "familyName": "Incident Evaluation and Communication",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -2184,6 +2256,7 @@
     "familyName": "Incident Evaluation and Communication",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -2214,6 +2287,7 @@
     "familyName": "Incident Evaluation and Communication",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -2244,6 +2318,7 @@
     "familyName": "Independent Verification and Validation",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -2274,6 +2349,7 @@
     "familyName": "Independent Verification and Validation",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -2304,6 +2380,7 @@
     "familyName": "Independent Verification and Validation",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -2334,6 +2411,7 @@
     "familyName": "Independent Verification and Validation",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -2364,6 +2442,7 @@
     "familyName": "Independent Verification and Validation",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -2394,6 +2473,7 @@
     "familyName": "Independent Verification and Validation",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -2424,6 +2504,7 @@
     "familyName": "Independent Verification and Validation",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -2454,6 +2535,7 @@
     "familyName": "Independent Verification and Validation",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -2484,6 +2566,7 @@
     "familyName": "Independent Verification and Validation",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -2514,6 +2597,7 @@
     "familyName": "Minimum Assessment Scope",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -2544,6 +2628,7 @@
     "familyName": "Minimum Assessment Scope",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -2574,6 +2659,7 @@
     "familyName": "Minimum Assessment Scope",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -2604,6 +2690,7 @@
     "familyName": "Minimum Assessment Scope",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -2634,6 +2721,7 @@
     "familyName": "Minimum Assessment Scope",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -2664,6 +2752,7 @@
     "familyName": "Marketplace Listing",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -2694,6 +2783,7 @@
     "familyName": "Marketplace Listing",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -2724,6 +2814,7 @@
     "familyName": "Marketplace Listing",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -2754,6 +2845,7 @@
     "familyName": "Marketplace Listing",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -2784,6 +2876,7 @@
     "familyName": "Marketplace Listing",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -2814,6 +2907,7 @@
     "familyName": "Secure Configuration Guide",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -2844,6 +2938,7 @@
     "familyName": "Secure Configuration Guide",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -2874,6 +2969,7 @@
     "familyName": "Secure Configuration Guide",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -2904,6 +3000,7 @@
     "familyName": "Secure Configuration Guide",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -2934,6 +3031,7 @@
     "familyName": "Secure Configuration Guide",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -2964,6 +3062,7 @@
     "familyName": "Secure Configuration Guide",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -2994,6 +3093,7 @@
     "familyName": "Secure Configuration Guide",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -3024,6 +3124,7 @@
     "familyName": "Secure Configuration Guide",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -3054,6 +3155,7 @@
     "familyName": "Secure Configuration Guide",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -3084,6 +3186,7 @@
     "familyName": "Significant Change Notification",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -3114,6 +3217,7 @@
     "familyName": "Significant Change Notification",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -3144,6 +3248,7 @@
     "familyName": "Significant Change Notification",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -3174,6 +3279,7 @@
     "familyName": "Significant Change Notification",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -3204,6 +3310,7 @@
     "familyName": "Significant Change Notification",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -3234,6 +3341,7 @@
     "familyName": "Significant Change Notification",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -3264,6 +3372,7 @@
     "familyName": "Significant Change Notification",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -3294,6 +3403,7 @@
     "familyName": "Significant Change Notification",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -3324,6 +3434,7 @@
     "familyName": "Significant Change Notification",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -3354,6 +3465,7 @@
     "familyName": "Significant Change Notification",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -3384,6 +3496,7 @@
     "familyName": "Significant Change Notification",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -3414,6 +3527,7 @@
     "familyName": "Significant Change Notification",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -3444,6 +3558,7 @@
     "familyName": "Significant Change Notification",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -3474,6 +3589,7 @@
     "familyName": "Significant Change Notification",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -3504,6 +3620,7 @@
     "familyName": "Significant Change Notification",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -3534,6 +3651,7 @@
     "familyName": "Significant Change Notification",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -3564,6 +3682,7 @@
     "familyName": "Security Decision Record",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -3594,6 +3713,7 @@
     "familyName": "Security Decision Record",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -3624,6 +3744,7 @@
     "familyName": "Security Decision Record",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -3654,6 +3775,7 @@
     "familyName": "Security Decision Record",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -3684,6 +3806,7 @@
     "familyName": "Vulnerability Detection and Response",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "Example: daily coverage and freshness checks.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -3714,6 +3837,7 @@
     "familyName": "Vulnerability Detection and Response",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -3744,6 +3868,7 @@
     "familyName": "Vulnerability Detection and Response",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -3774,6 +3899,7 @@
     "familyName": "Vulnerability Detection and Response",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -3804,6 +3930,7 @@
     "familyName": "Vulnerability Detection and Response",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -3834,6 +3961,7 @@
     "familyName": "Vulnerability Detection and Response",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -3864,6 +3992,7 @@
     "familyName": "Vulnerability Detection and Response",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -3894,6 +4023,7 @@
     "familyName": "Vulnerability Detection and Response",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -3924,6 +4054,7 @@
     "familyName": "Vulnerability Detection and Response",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -3954,6 +4085,7 @@
     "familyName": "Vulnerability Detection and Response",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -3984,6 +4116,7 @@
     "familyName": "Vulnerability Detection and Response",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -4014,6 +4147,7 @@
     "familyName": "Vulnerability Detection and Response",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -4044,6 +4178,7 @@
     "familyName": "Vulnerability Detection and Response",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -4074,6 +4209,7 @@
     "familyName": "Vulnerability Detection and Response",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -4104,6 +4240,7 @@
     "familyName": "Vulnerability Detection and Response",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -4134,6 +4271,7 @@
     "familyName": "Vulnerability Detection and Response",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -4164,6 +4302,7 @@
     "familyName": "Vulnerability Detection and Response",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -4194,6 +4333,7 @@
     "familyName": "Vulnerability Evaluation and Reporting",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -4224,6 +4364,7 @@
     "familyName": "Vulnerability Evaluation and Reporting",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -4254,6 +4395,7 @@
     "familyName": "Vulnerability Evaluation and Reporting",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -4284,6 +4426,7 @@
     "familyName": "Vulnerability Evaluation and Reporting",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -4314,6 +4457,7 @@
     "familyName": "Vulnerability Evaluation and Reporting",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -4344,6 +4488,7 @@
     "familyName": "Vulnerability Evaluation and Reporting",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -4374,6 +4519,7 @@
     "familyName": "Vulnerability Evaluation and Reporting",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -4404,6 +4550,7 @@
     "familyName": "Vulnerability Evaluation and Reporting",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -4434,6 +4581,7 @@
     "familyName": "Vulnerability Evaluation and Reporting",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -4464,6 +4612,7 @@
     "familyName": "Vulnerability Evaluation and Reporting",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -4494,6 +4643,7 @@
     "familyName": "Vulnerability Evaluation and Reporting",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -4524,6 +4674,7 @@
     "familyName": "Vulnerability Evaluation and Reporting",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -4554,6 +4705,7 @@
     "familyName": "Vulnerability Evaluation and Reporting",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -4584,6 +4736,7 @@
     "familyName": "Vulnerability Evaluation and Reporting",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -4614,6 +4767,7 @@
     "familyName": "Vulnerability Evaluation and Reporting",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -4644,6 +4798,7 @@
     "familyName": "Vulnerability Evaluation and Reporting",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -4674,6 +4829,7 @@
     "familyName": "Vulnerability Evaluation and Reporting",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -4704,6 +4860,7 @@
     "familyName": "Vulnerability Evaluation and Reporting",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -4734,6 +4891,7 @@
     "familyName": "Vulnerability Evaluation and Reporting",
     "xFedRampSemantic": {
      "implementationRisk": "TBD: Information has not been provided.",
+     "nonimplementationReason": "Not applicable: rule is followed",
      "verification": "TBD: Information has not been provided.",
      "validationFrequency": "TBD: Information has not been provided.",
      "independentVerification": "TBD: Information has not been provided.",
@@ -4768,6 +4926,7 @@
     "familyName": "Cybersecurity Education",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "measuresUnavailableReason": "Not applicable: measures are available",
      "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
@@ -4808,6 +4967,7 @@
     "familyName": "Change Management",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "measuresUnavailableReason": "Not applicable: measures are available",
      "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
@@ -4845,6 +5005,7 @@
     "familyName": "Change Management",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "measuresUnavailableReason": "Not applicable: measures are available",
      "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
@@ -4882,6 +5043,7 @@
     "familyName": "Change Management",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "measuresUnavailableReason": "Not applicable: measures are available",
      "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
@@ -4919,6 +5081,7 @@
     "familyName": "Change Management",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "measuresUnavailableReason": "Not applicable: measures are available",
      "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
@@ -4956,6 +5119,7 @@
     "familyName": "Cloud Native Architecture",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "measuresUnavailableReason": "Not applicable: measures are available",
      "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
@@ -4993,6 +5157,7 @@
     "familyName": "Cloud Native Architecture",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "measuresUnavailableReason": "Not applicable: measures are available",
      "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
@@ -5030,6 +5195,7 @@
     "familyName": "Cloud Native Architecture",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "measuresUnavailableReason": "Not applicable: measures are available",
      "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
@@ -5067,6 +5233,7 @@
     "familyName": "Cloud Native Architecture",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "measuresUnavailableReason": "Not applicable: measures are available",
      "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
@@ -5104,6 +5271,7 @@
     "familyName": "Cloud Native Architecture",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "measuresUnavailableReason": "Not applicable: measures are available",
      "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
@@ -5141,6 +5309,7 @@
     "familyName": "Cloud Native Architecture",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "measuresUnavailableReason": "Not applicable: measures are available",
      "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
@@ -5178,6 +5347,7 @@
     "familyName": "Cloud Native Architecture",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "measuresUnavailableReason": "Not applicable: measures are available",
      "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
@@ -5215,6 +5385,7 @@
     "familyName": "Cloud Native Architecture",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "measuresUnavailableReason": "Not applicable: measures are available",
      "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
@@ -5252,6 +5423,7 @@
     "familyName": "Identity and Access Management",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "measuresUnavailableReason": "Not applicable: measures are available",
      "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
@@ -5292,6 +5464,7 @@
     "familyName": "Identity and Access Management",
     "xFedRampSemantic": {
      "measures": "Example: percent of authentications using FIDO2; count of MFA-less console logins (target 0).",
+     "measuresUnavailableReason": "Not applicable: measures are available",
      "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "Example: continuous enforcement, daily automated checks.",
      "measuresVerification": "TBD: Information has not been provided.",
@@ -5329,6 +5502,7 @@
     "familyName": "Identity and Access Management",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "measuresUnavailableReason": "Not applicable: measures are available",
      "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
@@ -5366,6 +5540,7 @@
     "familyName": "Identity and Access Management",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "measuresUnavailableReason": "Not applicable: measures are available",
      "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
@@ -5403,6 +5578,7 @@
     "familyName": "Identity and Access Management",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "measuresUnavailableReason": "Not applicable: measures are available",
      "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
@@ -5440,6 +5616,7 @@
     "familyName": "Identity and Access Management",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "measuresUnavailableReason": "Not applicable: measures are available",
      "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
@@ -5477,6 +5654,7 @@
     "familyName": "Incident Response",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "measuresUnavailableReason": "Not applicable: measures are available",
      "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
@@ -5514,6 +5692,7 @@
     "familyName": "Incident Response",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "measuresUnavailableReason": "Not applicable: measures are available",
      "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
@@ -5551,6 +5730,7 @@
     "familyName": "Incident Response",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "measuresUnavailableReason": "Not applicable: measures are available",
      "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
@@ -5588,6 +5768,7 @@
     "familyName": "Monitoring, Logging, and Auditing",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "measuresUnavailableReason": "Not applicable: measures are available",
      "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
@@ -5625,6 +5806,7 @@
     "familyName": "Monitoring, Logging, and Auditing",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "measuresUnavailableReason": "Not applicable: measures are available",
      "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
@@ -5662,6 +5844,7 @@
     "familyName": "Monitoring, Logging, and Auditing",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "measuresUnavailableReason": "Not applicable: measures are available",
      "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
@@ -5699,6 +5882,7 @@
     "familyName": "Monitoring, Logging, and Auditing",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "measuresUnavailableReason": "Not applicable: measures are available",
      "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
@@ -5736,6 +5920,7 @@
     "familyName": "Monitoring, Logging, and Auditing",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "measuresUnavailableReason": "Not applicable: measures are available",
      "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
@@ -5773,6 +5958,7 @@
     "familyName": "Policy and Inventory",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "measuresUnavailableReason": "Not applicable: measures are available",
      "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
@@ -5810,6 +5996,7 @@
     "familyName": "Policy and Inventory",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "measuresUnavailableReason": "Not applicable: measures are available",
      "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
@@ -5847,6 +6034,7 @@
     "familyName": "Policy and Inventory",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "measuresUnavailableReason": "Not applicable: measures are available",
      "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
@@ -5884,6 +6072,7 @@
     "familyName": "Policy and Inventory",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "measuresUnavailableReason": "Not applicable: measures are available",
      "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
@@ -5921,6 +6110,7 @@
     "familyName": "Policy and Inventory",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "measuresUnavailableReason": "Not applicable: measures are available",
      "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
@@ -5958,6 +6148,7 @@
     "familyName": "Recovery Planning",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "measuresUnavailableReason": "Not applicable: measures are available",
      "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
@@ -5995,6 +6186,7 @@
     "familyName": "Recovery Planning",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "measuresUnavailableReason": "Not applicable: measures are available",
      "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
@@ -6032,6 +6224,7 @@
     "familyName": "Recovery Planning",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "measuresUnavailableReason": "Not applicable: measures are available",
      "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
@@ -6069,6 +6262,7 @@
     "familyName": "Recovery Planning",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "measuresUnavailableReason": "Not applicable: measures are available",
      "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
@@ -6106,6 +6300,7 @@
     "familyName": "Supply Chain Risk",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "measuresUnavailableReason": "Not applicable: measures are available",
      "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
@@ -6143,6 +6338,7 @@
     "familyName": "Supply Chain Risk",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "measuresUnavailableReason": "Not applicable: measures are available",
      "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
@@ -6180,6 +6376,7 @@
     "familyName": "Service Configuration",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "measuresUnavailableReason": "Not applicable: measures are available",
      "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
@@ -6217,6 +6414,7 @@
     "familyName": "Service Configuration",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "measuresUnavailableReason": "Not applicable: measures are available",
      "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
@@ -6254,6 +6452,7 @@
     "familyName": "Service Configuration",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "measuresUnavailableReason": "Not applicable: measures are available",
      "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
@@ -6291,6 +6490,7 @@
     "familyName": "Service Configuration",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "measuresUnavailableReason": "Not applicable: measures are available",
      "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
@@ -6328,6 +6528,7 @@
     "familyName": "Service Configuration",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "measuresUnavailableReason": "Not applicable: measures are available",
      "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
@@ -6368,6 +6569,7 @@
     "familyName": "Service Configuration",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "measuresUnavailableReason": "Not applicable: measures are available",
      "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
@@ -6405,6 +6607,7 @@
     "familyName": "Service Configuration",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "measuresUnavailableReason": "Not applicable: measures are available",
      "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",
@@ -6442,6 +6645,7 @@
     "familyName": "Service Configuration",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
+     "measuresUnavailableReason": "Not applicable: measures are available",
      "resultingCustomerRisk": "TBD: Information has not been provided.",
      "operatingCycle": "TBD: Information has not been provided.",
      "measuresVerification": "TBD: Information has not been provided.",

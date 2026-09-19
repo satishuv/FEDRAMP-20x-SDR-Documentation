@@ -26,12 +26,14 @@ import build_sdr  # noqa: E402
 
 
 FRR_SEMANTIC_KEYS = [
-    "implementationRisk", "verification", "independentVerification",
-    "independentValidation", "assessorResponses", "ruleArtifacts",
+    "implementationRisk", "nonimplementationReason", "verification",
+    "independentVerification", "independentValidation", "assessorResponses",
+    "ruleArtifacts",
 ]
 KSI_SEMANTIC_KEYS = [
-    "measures", "resultingCustomerRisk", "operatingCycle", "measuresVerification",
-    "automationVerification", "historicalMetrics",
+    "measures", "measuresUnavailableReason", "resultingCustomerRisk",
+    "operatingCycle", "measuresVerification", "automationVerification",
+    "historicalMetrics",
 ]
 KMT_KEYS = ["last30Days", "upToOneYear", "dailyData", "dailyDataReference"]
 
@@ -51,6 +53,7 @@ def _sample_records():
                 "extension": {
                     "owner": "owner-" + SENTINEL,
                     "customer_risk": "risk-" + SENTINEL,
+                    "nonimplementation_reason": "nir-" + SENTINEL,
                     "verification": "verify-" + SENTINEL,
                     "independent_verification": "iv-" + SENTINEL,
                     "independent_validation": "ival-" + SENTINEL,
@@ -76,6 +79,7 @@ def _sample_records():
                 "extension": {
                     "owner": "kowner-" + SENTINEL,
                     "measures": "measures-" + SENTINEL,
+                    "measures_unavailable_reason": "mur-" + SENTINEL,
                     "resulting_customer_risk": "kcr-" + SENTINEL,
                     "operating_cycle": "cycle-" + SENTINEL,
                     "measures_verification": "mv-" + SENTINEL,
@@ -92,6 +96,7 @@ def test_frr_semantic_block_present_in_official_json():
     for key in FRR_SEMANTIC_KEYS:
         assert key in sem, f"frr_semantic missing required item {key}"
     assert sem["independentVerification"] == "iv-" + SENTINEL
+    assert sem["nonimplementationReason"] == "nir-" + SENTINEL
     assert sem["ruleArtifacts"] == [{"artifactId": "EV-" + SENTINEL}]
 
 
@@ -102,6 +107,7 @@ def test_ksi_semantic_block_present_in_official_json():
     for key in KMT_KEYS:
         assert key in sem["historicalMetrics"], f"historicalMetrics missing {key}"
     assert sem["automationVerification"] == "av-" + SENTINEL
+    assert sem["measuresUnavailableReason"] == "mur-" + SENTINEL
     assert sem["resultingCustomerRisk"] == "kcr-" + SENTINEL
     assert sem["historicalMetrics"]["dailyData"] == [{"date": "2026-09-01", "value": "daily-" + SENTINEL}]
     assert sem["historicalMetrics"]["dailyDataReference"] == "daily-" + SENTINEL
