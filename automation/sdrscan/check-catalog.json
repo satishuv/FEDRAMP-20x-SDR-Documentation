@@ -1,6 +1,6 @@
 {
  "catalog_note": "sdrscan check registry. Every check names the FedRAMP rules that make it a requirement. Severity reflects the consequence of the gap for a certification decision, not the difficulty of fixing it.",
- "count": 37,
+ "count": 38,
  "checks": [
   {
    "check_id": "frr_artifacts_referenced",
@@ -88,6 +88,24 @@
    "risk": "Provider self-attestation is not independent verification. Its absence is a gap an assessor will raise directly.",
    "remediation": "Record the independent assessor's verification statement once performed. This has no official schema field, so it lives in the extensions companion.",
    "location": "sdr/records/records-store.json -> frr.<rule>.extension.independent_verification",
+   "applies_to_classes": [
+    "a",
+    "b",
+    "c"
+   ]
+  },
+  {
+   "check_id": "frr_nonconformance_reason_stated",
+   "title": "Rules not fully followed state the reason they are not followed",
+   "severity": "high",
+   "resource_type": "FedRAMP Rule",
+   "fedramp_basis": [
+    "SDR-CSO-FRR"
+   ],
+   "requirement": "SDR-CSO-FRR item 1 requires, for a rule that is not followed, the reason it is not followed AND the resulting risk to customers - two distinct elements. The risk is not the reason.",
+   "risk": "Without the reason, an assessor cannot tell WHY the rule is not followed, only what the residual risk is; the two are different facts.",
+   "remediation": "State the reason for not following the rule in nonimplementation_reason (or explain it in the implementation narrative) on every rule that is not Implemented.",
+   "location": "sdr/records/records-store.json -> frr.<rule>.extension.nonimplementation_reason",
    "applies_to_classes": [
     "a",
     "b",

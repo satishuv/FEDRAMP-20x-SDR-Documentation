@@ -87,7 +87,7 @@ It is also how the repository enforces "never hand-edit generated files." If you
 python automation/sdrscan/sdrscan.py --only-fails
 ```
 
-37 checks producing one finding per rule and per indicator. Each finding carries the check that fired, the resource, the severity, the FedRAMP rule that makes it a requirement, and the exact JSON path to fix. The model is deliberately close to Prowler's: findings, not a score.
+38 checks producing one finding per rule and per indicator. Each finding carries the check that fired, the resource, the severity, the FedRAMP rule that makes it a requirement, and the exact JSON path to fix. The model is deliberately close to Prowler's: findings, not a score.
 
 Useful invocations:
 

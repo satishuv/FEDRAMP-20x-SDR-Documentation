@@ -831,31 +831,53 @@ def main():
         check("provider_is_applicant=true clears FRC-APP-NTP",
               "FRC-APP-NTP" not in rntp_ok.stdout)
 
-        # SDR-CSO-FRR OR (implementation OR reason+resulting-customer-risk): a
-        # not-followed rule with TBD implementation but a stated customer_risk
-        # must NOT be flagged on the first FRR item, while emptying BOTH must.
+        # SDR-CSO-FRR item 1 for a NOT-followed rule requires TWO distinct
+        # elements, verbatim: "the reason AND resulting risk to customers for
+        # not following the rule." Risk alone is NOT the reason.
         rp_m = os.path.join(root_m, "sdr", "records", "records-store.json")
         recs_m = json.load(open(rp_m, encoding="utf-8"))
-        # Find an applicable, filled FRR record to mutate.
         frr_m = next(iter(recs_m.get("frr", {})))
         saved_frr = json.loads(json.dumps(recs_m["frr"][frr_m]))
-        # Case A: implementation TBD but customer_risk stated -> item satisfied.
+        # Make it a not-followed rule with the vv/independent items satisfied so
+        # only item 1 is under test.
+        recs_m["frr"][frr_m]["implementation_status"] = "Not Implemented"
         recs_m["frr"][frr_m]["implementation"] = "TBD: Information has not been provided."
-        recs_m["frr"][frr_m].setdefault("extension", {})["customer_risk"] = (
-            "This rule is not followed for the boundary; the resulting customer risk "
-            "is limited exposure of X, mitigated by compensating control Y.")
+        ext_m = recs_m["frr"][frr_m].setdefault("extension", {})
+        ext_m["senior_official_acceptance"] = (
+            "Accepted by the CISO on 2026-01-01: the reason for not implementing is "
+            "documented and the residual risk is accepted.")
+        ext_m["independent_verification"] = "Assessor confirmed the non-implementation."
+        ext_m["independent_validation"] = "Assessor validated the residual risk."
+        ext_m["assessor_responses"] = "No outstanding assessor comments."
+        # Case A: BOTH reason and risk stated -> item 1 satisfied.
+        ext_m["nonimplementation_reason"] = (
+            "This rule is not followed because the boundary uses an equivalent "
+            "compensating control X instead of the named mechanism.")
+        ext_m["customer_risk"] = (
+            "The resulting customer risk is limited exposure of Y, mitigated by "
+            "compensating control X.")
         json.dump(recs_m, open(rp_m, "w", encoding="utf-8", newline="\n"), indent=1)
         _build(root_m)
         rfrisk = _preflight(root_m)
-        check("FRR with TBD implementation but a stated customer_risk is NOT flagged on the risk item",
-              f"{frr_m} (missing: implementation-or-resulting-customer-risk" not in rfrisk.stdout)
-        # Case B: BOTH implementation and customer_risk empty -> item flagged.
-        recs_m["frr"][frr_m]["extension"]["customer_risk"] = "TBD"
+        check("not-followed FRR with BOTH reason and risk is NOT flagged on item 1",
+              f"{frr_m} (missing: reason-not-followed" not in rfrisk.stdout
+              and f"{frr_m} (missing: resulting-customer-risk" not in rfrisk.stdout)
+        # Case B: risk stated but reason MISSING -> flagged on reason (risk is
+        # not the reason).
+        ext_m["nonimplementation_reason"] = "TBD"
         json.dump(recs_m, open(rp_m, "w", encoding="utf-8", newline="\n"), indent=1)
         _build(root_m)
-        rfrisk2 = _preflight(root_m)
-        check("FRR with BOTH implementation and customer_risk empty is flagged",
-              "implementation-or-resulting-customer-risk" in rfrisk2.stdout and rfrisk2.returncode == 1)
+        rfB = _preflight(root_m)
+        check("not-followed FRR with risk but NO reason is flagged on reason-not-followed",
+              "reason-not-followed (rule not followed)" in rfB.stdout and rfB.returncode == 1)
+        # Case C: BOTH reason and risk empty -> both flagged.
+        ext_m["customer_risk"] = "TBD"
+        json.dump(recs_m, open(rp_m, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root_m)
+        rfC = _preflight(root_m)
+        check("not-followed FRR with neither reason nor risk is flagged on both",
+              "reason-not-followed (rule not followed)" in rfC.stdout
+              and "resulting-customer-risk (rule not followed)" in rfC.stdout)
         recs_m["frr"][frr_m] = saved_frr
         json.dump(recs_m, open(rp_m, "w", encoding="utf-8", newline="\n"), indent=1)
         _build(root_m)

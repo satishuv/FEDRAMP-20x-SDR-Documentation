@@ -1322,14 +1322,28 @@ def cmd_preflight(args):
         not_following = status in ("Not Implemented", "Partially Implemented")
         gaps = []
 
-        # Item 1 (OR): how-followed (implementation) OR reason+resulting risk.
-        impl_or_risk = _answered(rec.get("implementation")) or _answered(ext.get("customer_risk"))
-        if not impl_or_risk:
-            gaps.append("implementation-or-resulting-customer-risk")
-        # For a not-followed rule, the resulting customer risk is REQUIRED
-        # (the "or not following the rule" branch is the only one available).
-        if not_following and not _answered(ext.get("customer_risk")):
-            gaps.append("resulting-customer-risk (rule not followed)")
+        # Item 1 is an OR whose "not followed" branch has TWO distinct elements,
+        # verbatim: "the reason AND resulting risk to customers for not following
+        # the rule." Risk is not the reason: a filled resulting_customer_risk
+        # alone does not explain WHY the rule is not followed. So:
+        #   followed      -> implementation (how) satisfies item 1
+        #   not followed  -> BOTH nonimplementation_reason AND customer_risk
+        # The reason may be carried in a dedicated nonimplementation_reason
+        # field, or in the implementation narrative when the rule is not
+        # followed (a provider often writes the "why not" there); either counts
+        # as the reason, but the resulting customer risk is always its own
+        # distinct element.
+        reason_answered = _answered(ext.get("nonimplementation_reason")) or (
+            not_following and _answered(rec.get("implementation")))
+        if not_following:
+            if not reason_answered:
+                gaps.append("reason-not-followed (rule not followed)")
+            if not _answered(ext.get("customer_risk")):
+                gaps.append("resulting-customer-risk (rule not followed)")
+        else:
+            # Followed: item 1 is the how-followed implementation narrative.
+            if not _answered(rec.get("implementation")):
+                gaps.append("implementation")
 
         # Items 2-3: verification + validation, OR senior-official acceptance
         # for a not-followed rule. A bare "Not required: rule is followed"
@@ -1431,17 +1445,23 @@ def cmd_preflight(args):
         past year). Values must be resolved (not TBD) so a Class B/C package
         cannot be 'ready' with empty metric summaries.
 
-        The first SDR-CSX-KSI item is an OR, verbatim: "Explanation of measures
-        (and their objectives) ... OR an explanation of the reason and resulting
-        risk to customers for not having measures available." So it is satisfied
-        by EITHER answered measures/implementation OR the resulting-customer-risk
-        extension - not measures alone."""
+        The first SDR-CSX-KSI item is an OR whose "no measures" branch has TWO
+        distinct elements, verbatim: "Explanation of measures (and their
+        objectives) ... OR an explanation of the reason AND resulting risk to
+        customers for not having measures available." So:
+          has measures  -> measures/implementation satisfies item 1
+          no measures   -> BOTH measures_unavailable_reason AND
+                           resulting_customer_risk (risk alone is not the reason)
+
+        Item 2 (operating cycle) is "if applicable" - required ONLY for measures
+        implemented persistently. A no-measures / nonpersistent-measures KSI is
+        NOT gated on operating_cycle (it would over-block a legitimate case);
+        it is gated only when measures are present AND declared persistent."""
         ext = rec.get("extension", {}) or {}
-        measures_or_risk = (_answered(rec.get("implementation")) or _answered(ext.get("measures"))
-                            or _answered(ext.get("resulting_customer_risk"))
-                            or _answered(ext.get("customer_risk")))
+        has_measures = _answered(rec.get("implementation")) or _answered(ext.get("measures"))
+        reason_no_measures = _answered(ext.get("measures_unavailable_reason"))
+        risk = _answered(ext.get("resulting_customer_risk")) or _answered(ext.get("customer_risk"))
         checks = {
-            "cycle": ext.get("operating_cycle") or ext.get("cycle"),
             "measures_verification": ext.get("measures_verification"),
             "automation_verification": ext.get("automation_verification"),
             "validation": rec.get("validation"),
@@ -1451,8 +1471,23 @@ def cmd_preflight(args):
             checks["kmt_last_30_days"] = hm.get("last_30_days")
             checks["kmt_up_to_one_year"] = hm.get("up_to_one_year")
         gaps = [k for k, v in checks.items() if not _answered(v)]
-        if not measures_or_risk:
-            gaps.insert(0, "measures-or-resulting-customer-risk")
+        # Item 1 (OR).
+        if has_measures:
+            pass  # measures narrative satisfies item 1
+        else:
+            if not reason_no_measures:
+                gaps.insert(0, "reason-no-measures-available")
+            if not risk:
+                gaps.insert(0, "resulting-customer-risk (no measures available)")
+        # Item 2 "if applicable": operating cycle is required only when measures
+        # are present AND run persistently. Detect a persistence declaration
+        # from the record; absent one, a KSI with measures is not blocked on
+        # cycle here (the scanner reports it MANUAL for human confirmation).
+        cycle = ext.get("operating_cycle") or ext.get("cycle")
+        persistent = bool(ext.get("measures_persistent")) or (
+            "persistent" in str(ext.get("measures") or "").lower())
+        if has_measures and persistent and not _answered(cycle):
+            gaps.append("operating_cycle (persistent measures)")
         if cls in ("c", "d"):
             # Class C/D MUST supply the actual daily metric data (SDR-CSX-KMT),
             # derived from the durable history. Require a non-empty in-window
