@@ -252,13 +252,31 @@ def _fill_records(root):
     hist = {"ksis": {}}
     for kid in applicable_ksi:
         pts = []
+        # Two config-managed metrics per KSI so the aggregate observes total=2
+        # (a genuinely multi-metric KSI). This exercises finding 5: a Class C
+        # package with multiple metrics must carry the per-metric breakdown to
+        # be READY, not just a collapsed aggregate.
+        m1 = f"{kid}:verify:config:rule-a"
+        m2 = f"{kid}:verify:config:rule-b"
+        s1, s2 = [], []
         for m in range(0, 8):  # ~8 months of monthly datapoints
-            d = today - _d.timedelta(days=30 * m)
-            pts.append({"date": d.isoformat(), "status": "pass"})
+            d = (today - _d.timedelta(days=30 * m)).isoformat()
+            pts.append({"date": d, "status": "pass", "passing": 2, "total": 2})
+            s1.append({"date": d, "status": "pass", "passing": 1, "total": 1})
+            s2.append({"date": d, "status": "pass", "passing": 1, "total": 1})
         # Use the REAL production shape append_metrics.py writes: each KSI is an
-        # object with a "series" list, not a bare list. A test-only bare-list
-        # shape previously masked a preflight bug that read per[kid] as a list.
-        hist["ksis"][kid] = {"series": pts}
+        # object with a "series" list (the aggregate) AND a per-metric "metrics"
+        # map, not a bare list. A test-only bare-list shape previously masked a
+        # preflight bug that read per[kid] as a list.
+        hist["ksis"][kid] = {
+            "series": pts,
+            "metrics": {
+                m1: {"series": s1, "objective": f"Rule A for {kid}",
+                     "source": f"AWS Config rule {kid}-rule-a"},
+                m2: {"series": s2, "objective": f"Rule B for {kid}",
+                     "source": f"AWS Config rule {kid}-rule-b"},
+            },
+        }
     hp = os.path.join(root, "automation", "metrics", "metric-history.json")
     json.dump(hist, open(hp, "w", encoding="utf-8", newline="\n"), indent=1)
 
@@ -334,8 +352,26 @@ def main():
         r_daily = _preflight(root)
         check("empty daily metric history blocks a Class C package (SDR-CSX-KMT dailyData)",
               r_daily.returncode == 1 and "kmt_daily_data" in r_daily.stdout)
-        # Restore the ~8-month history (and profile) for the subsequent stages;
-        # _fill rewrites metric-history.json for every applicable KSI.
+        # Finding 5: a Class C KSI whose durable history shows MULTIPLE metrics
+        # (aggregate total>1) but carries NO per-metric breakdown must BLOCK on
+        # kmt_per_metric. Restore the ~8-month multi-metric history, then strip
+        # the per-metric "metrics" map while keeping the multi-metric aggregate,
+        # rebuild, and confirm the gate bites. A genuinely multi-metric KSI
+        # cannot reach READY as a collapsed aggregate.
+        _fill(profile, now)
+        _fill_records(root)
+        _build(root)
+        _hpm = json.load(open(hp, encoding="utf-8"))
+        for _e in _hpm.get("ksis", {}).values():
+            _e.pop("metrics", None)  # keep the total=2 aggregate series, drop per-metric
+        json.dump(_hpm, open(hp, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root)
+        r_pm = _preflight(root)
+        check("multi-metric Class C KSI with no per-metric breakdown blocks (SDR-CSX-KMT each metric)",
+              r_pm.returncode == 1 and "kmt_per_metric" in r_pm.stdout)
+        # Restore the ~8-month per-metric history (and profile) for the
+        # subsequent stages; _fill rewrites metric-history.json for every
+        # applicable KSI (now with the per-metric map that satisfies the gate).
         _fill(profile, now)
         _fill_records(root)
         _build(root)
