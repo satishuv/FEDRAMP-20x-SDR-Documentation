@@ -27,6 +27,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Implementation or nonimplementation risk: TBD: Information has not been provided.
+Reason for not following the rule (if not followed): Not applicable: rule is followed
 Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
@@ -45,6 +46,7 @@ Implementation: Example (reference architecture, replace with your real implemen
 Validation: Example (reference architecture, replace with your real implementation): A monthly synthetic test email is sent to the inbox; the on-call rotation must acknowledge within the documented response window. Delivery, spam-filter, and distribution-list membership checks run monthly and after any mail-system change.
 Independent assessment: TBD: Independent assessment has not been performed.
 Implementation or nonimplementation risk: TBD: Information has not been provided.
+Reason for not following the rule (if not followed): Not applicable: rule is followed
 Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
@@ -63,6 +65,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Implementation or nonimplementation risk: TBD: Information has not been provided.
+Reason for not following the rule (if not followed): Not applicable: rule is followed
 Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
@@ -81,6 +84,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Implementation or nonimplementation risk: TBD: Information has not been provided.
+Reason for not following the rule (if not followed): Not applicable: rule is followed
 Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
@@ -99,6 +103,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Implementation or nonimplementation risk: TBD: Information has not been provided.
+Reason for not following the rule (if not followed): Not applicable: rule is followed
 Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
@@ -117,6 +122,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Implementation or nonimplementation risk: TBD: Information has not been provided.
+Reason for not following the rule (if not followed): Not applicable: rule is followed
 Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
@@ -135,6 +141,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Implementation or nonimplementation risk: TBD: Information has not been provided.
+Reason for not following the rule (if not followed): Not applicable: rule is followed
 Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
@@ -153,6 +160,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Implementation or nonimplementation risk: TBD: Information has not been provided.
+Reason for not following the rule (if not followed): Not applicable: rule is followed
 Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
@@ -171,6 +179,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Implementation or nonimplementation risk: TBD: Information has not been provided.
+Reason for not following the rule (if not followed): Not applicable: rule is followed
 Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
@@ -189,6 +198,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Implementation or nonimplementation risk: TBD: Information has not been provided.
+Reason for not following the rule (if not followed): Not applicable: rule is followed
 Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
@@ -207,6 +217,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Implementation or nonimplementation risk: TBD: Information has not been provided.
+Reason for not following the rule (if not followed): Not applicable: rule is followed
 Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
@@ -225,6 +236,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Implementation or nonimplementation risk: TBD: Information has not been provided.
+Reason for not following the rule (if not followed): Not applicable: rule is followed
 Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
@@ -243,6 +255,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Implementation or nonimplementation risk: TBD: Information has not been provided.
+Reason for not following the rule (if not followed): Not applicable: rule is followed
 Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
@@ -261,6 +274,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Implementation or nonimplementation risk: TBD: Information has not been provided.
+Reason for not following the rule (if not followed): Not applicable: rule is followed
 Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
@@ -279,6 +293,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Implementation or nonimplementation risk: TBD: Information has not been provided.
+Reason for not following the rule (if not followed): Not applicable: rule is followed
 Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
@@ -297,6 +312,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Implementation or nonimplementation risk: TBD: Information has not been provided.
+Reason for not following the rule (if not followed): Not applicable: rule is followed
 Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
@@ -315,6 +331,7 @@ Implementation: Example (reference architecture, replace with your real implemen
 Validation: Example (reference architecture, replace with your real implementation): Schema validation runs in CI on every change to certification data; results are retained with the build record. A scheduled job re-validates published artifacts weekly against the live schema to catch in-place schema updates.
 Independent assessment: TBD: Independent assessment has not been performed.
 Implementation or nonimplementation risk: TBD: Information has not been provided.
+Reason for not following the rule (if not followed): Not applicable: rule is followed
 Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
@@ -333,6 +350,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Implementation or nonimplementation risk: TBD: Information has not been provided.
+Reason for not following the rule (if not followed): Not applicable: rule is followed
 Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
@@ -351,6 +369,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Implementation or nonimplementation risk: TBD: Information has not been provided.
+Reason for not following the rule (if not followed): Not applicable: rule is followed
 Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
@@ -369,6 +388,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Implementation or nonimplementation risk: TBD: Information has not been provided.
+Reason for not following the rule (if not followed): Not applicable: rule is followed
 Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
@@ -387,6 +407,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Implementation or nonimplementation risk: TBD: Information has not been provided.
+Reason for not following the rule (if not followed): Not applicable: rule is followed
 Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
@@ -405,6 +426,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Implementation or nonimplementation risk: TBD: Information has not been provided.
+Reason for not following the rule (if not followed): Not applicable: rule is followed
 Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
@@ -423,6 +445,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Implementation or nonimplementation risk: TBD: Information has not been provided.
+Reason for not following the rule (if not followed): Not applicable: rule is followed
 Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
@@ -441,6 +464,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Implementation or nonimplementation risk: TBD: Information has not been provided.
+Reason for not following the rule (if not followed): Not applicable: rule is followed
 Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
@@ -459,6 +483,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Implementation or nonimplementation risk: TBD: Information has not been provided.
+Reason for not following the rule (if not followed): Not applicable: rule is followed
 Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
@@ -477,6 +502,7 @@ Implementation: Example (reference architecture, replace with your real implemen
 Validation: Example (reference architecture, replace with your real implementation): A daily job compares Inspector coverage status against the resource inventory from AWS Config; any in-scope resource without coverage opens a ticket. Finding ingestion freshness is checked daily so no source is silent for more than 24 hours.
 Independent assessment: TBD: Independent assessment has not been performed.
 Implementation or nonimplementation risk: TBD: Information has not been provided.
+Reason for not following the rule (if not followed): Not applicable: rule is followed
 Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
@@ -495,6 +521,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Implementation or nonimplementation risk: TBD: Information has not been provided.
+Reason for not following the rule (if not followed): Not applicable: rule is followed
 Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
@@ -513,6 +540,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Implementation or nonimplementation risk: TBD: Information has not been provided.
+Reason for not following the rule (if not followed): Not applicable: rule is followed
 Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
@@ -531,6 +559,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Implementation or nonimplementation risk: TBD: Information has not been provided.
+Reason for not following the rule (if not followed): Not applicable: rule is followed
 Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
@@ -549,6 +578,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Implementation or nonimplementation risk: TBD: Information has not been provided.
+Reason for not following the rule (if not followed): Not applicable: rule is followed
 Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
@@ -567,6 +597,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Implementation or nonimplementation risk: TBD: Information has not been provided.
+Reason for not following the rule (if not followed): Not applicable: rule is followed
 Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
@@ -585,6 +616,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Implementation or nonimplementation risk: TBD: Information has not been provided.
+Reason for not following the rule (if not followed): Not applicable: rule is followed
 Verification: TBD: Information has not been provided.
 Independent verification: TBD: Information has not been provided.
 Independent validation: TBD: Information has not been provided.
@@ -604,6 +636,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Reason measures are unavailable (if none): Not applicable: measures are available
 Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
@@ -626,6 +659,7 @@ Implementation: Example (reference architecture, replace with your real implemen
 Validation: Example (reference architecture, replace with your real implementation): A scheduled validation confirms the organization trail is logging, multi-region, and log-file validated, and that AWS Config recorders are running in every in-scope account and region. An EventBridge rule alerts on any out-of-pipeline write event by a non-pipeline principal.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Reason measures are unavailable (if none): Not applicable: measures are available
 Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
@@ -648,6 +682,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Reason measures are unavailable (if none): Not applicable: measures are available
 Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
@@ -670,6 +705,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Reason measures are unavailable (if none): Not applicable: measures are available
 Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
@@ -692,6 +728,7 @@ Implementation: Example (reference architecture, replace with your real implemen
 Validation: Example (reference architecture, replace with your real implementation): A daily AWS Config custom rule checks that no IAM users have console passwords or active access keys. A daily Identity Center API check confirms MFA enforcement is active for every permission set. A CloudTrail Lake query detects any console login event without MFA; any hit creates a high-priority ticket within 15 minutes.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: Example: percent of authentications using FIDO2; count of MFA-less console logins (target 0).
+Reason measures are unavailable (if none): Not applicable: measures are available
 Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: Example: continuous enforcement, daily automated checks.
 Verification of measures: TBD: Information has not been provided.
@@ -714,6 +751,7 @@ Implementation: TBD: Information has not been provided.
 Validation: TBD: Information has not been provided.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Reason measures are unavailable (if none): Not applicable: measures are available
 Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.
@@ -736,6 +774,7 @@ Implementation: Example (reference architecture, replace with your real implemen
 Validation: Example (reference architecture, replace with your real implementation): AWS Config managed rules check encrypted-volumes, rds-storage-encrypted, and S3 default encryption continuously. A daily query confirms account-level EBS default encryption and S3 Block Public Access remain enabled in every account.
 Independent assessment: TBD: Independent assessment has not been performed.
 Measures and objectives: TBD: Information has not been provided.
+Reason measures are unavailable (if none): Not applicable: measures are available
 Resulting customer risk if measures unavailable: TBD: Information has not been provided.
 Measurement cycle: TBD: Information has not been provided.
 Verification of measures: TBD: Information has not been provided.

@@ -297,6 +297,15 @@ def frr_semantic(rec):
     ext = rec.get("extension", {})
     return {
         "implementationRisk": _val(ext.get("customer_risk")),
+        # SDR-CSO-FRR item 1, not-followed branch: the reason for NOT following
+        # the rule is a distinct required element from the resulting customer
+        # risk. Preflight requires nonimplementation_reason; without emitting it
+        # here the reason could pass the gate yet vanish from the submitted SDR
+        # (a false-ready path). Emit it so the reason reaches the deliverable.
+        # "Not applicable: rule is followed" for a followed rule keeps the slot
+        # honest without implying an unstated reason.
+        "nonimplementationReason": ext.get(
+            "nonimplementation_reason", "Not applicable: rule is followed"),
         "verification": _val(ext.get("verification")),
         "validationFrequency": _val(ext.get("validation_frequency")),
         "independentVerification": _val(ext.get("independent_verification")),
@@ -461,6 +470,12 @@ def ksi_semantic(rec, daily_series=None, per_metric=None):
     up_to_year = derived_year if derived_year is not None else _val(hm.get("up_to_one_year"))
     return {
         "measures": _val(ext.get("measures")),
+        # SDR-CSX-KSI item 1, no-measures branch: the reason for not having
+        # measures is a distinct required element from the resulting risk.
+        # Preflight requires measures_unavailable_reason; emit it so it reaches
+        # the SDR rather than passing the gate and disappearing (finding 1).
+        "measuresUnavailableReason": ext.get(
+            "measures_unavailable_reason", "Not applicable: measures are available"),
         "resultingCustomerRisk": _val(ext.get("resulting_customer_risk")
                                       or ext.get("customer_risk")),
         "operatingCycle": _val(ext.get("operating_cycle")),
@@ -624,6 +639,8 @@ def render_human(profile, rules, ksis, records, cls, metric_history=None):
             a(f"Independent assessment: {s}")
         ext = rec.get("extension", {})
         a(f"Implementation or nonimplementation risk: {_val(ext.get('customer_risk'))}")
+        a("Reason for not following the rule (if not followed): "
+          f"{ext.get('nonimplementation_reason', 'Not applicable: rule is followed')}")
         a(f"Verification: {_val(ext.get('verification'))}")
         a(f"Independent verification: {_val(ext.get('independent_verification'))}")
         a(f"Independent validation: {_val(ext.get('independent_validation'))}")
@@ -660,6 +677,8 @@ def render_human(profile, rules, ksis, records, cls, metric_history=None):
         for s in rec.get("assessment", []):
             a(f"Independent assessment: {s}")
         a(f"Measures and objectives: {_val(ext.get('measures'))}")
+        a("Reason measures are unavailable (if none): "
+          f"{ext.get('measures_unavailable_reason', 'Not applicable: measures are available')}")
         a("Resulting customer risk if measures unavailable: "
           f"{_val(ext.get('resulting_customer_risk') or ext.get('customer_risk'))}")
         a(f"Measurement cycle: {_val(ext.get('operating_cycle'))}")
@@ -667,13 +686,23 @@ def render_human(profile, rules, ksis, records, cls, metric_history=None):
         a(f"Verification of supporting automation: {_val(ext.get('automation_verification'))}")
         a(f"Minimum automated methods for this class: {k['minimum_automated_methods'][f'class_{cls}']}")
         a(f"Historical metrics required for this class: {k['historical_metrics'][f'class_{cls}']}")
-        a(f"Historical metrics, 30-day summary: {_val(hm.get('last_30_days'))}")
-        a(f"Historical metrics, up to one year: {_val(hm.get('up_to_one_year'))}")
+        # Findings 3/12 (human<->machine parity): derive the 30-day and 1-year
+        # summaries from the SAME immutable metric-history series the JSON SDR
+        # uses, NOT the hand-authored records-store field. Otherwise the human
+        # SDR could print "100% passing" while the JSON derives 82% from real
+        # history - a CDS-CSO-CBF consistency violation. Fall back to the hand
+        # value only when the KSI has no history (identical rule to ksi_semantic).
+        _ds = _derive_daily_data(k["ksi_id"], metric_history or {})
+        _d30, _dyr = _window_summaries(_ds)
+        _s30 = _d30 if _d30 is not None else _val(hm.get("last_30_days"))
+        _syr = _dyr if _dyr is not None else _val(hm.get("up_to_one_year"))
+        a(f"Historical metrics, 30-day summary: {_s30}")
+        a(f"Historical metrics, up to one year: {_syr}")
         # Class C MUST supply the actual daily data (SDR-CSX-KMT). The
         # machine-readable SDR carries the full derived series; the human-
         # readable rendering states the count and window (CDS-CSO-CBF: the two
         # views must be consistent) plus the optional external reference.
-        _daily = _derive_daily_data(k["ksi_id"], metric_history or {})
+        _daily = _ds  # same derived past-year series used for the summaries above
         if _daily:
             _first = str(_daily[0].get("date", ""))[:10]
             _last = str(_daily[-1].get("date", ""))[:10]
@@ -682,6 +711,20 @@ def render_human(profile, rules, ksis, records, cls, metric_history=None):
         else:
             a("Historical metrics, daily data (Class C): none available")
         a(f"Historical metrics, daily data reference (optional): {_val(hm.get('daily_data_reference'))}")
+        # Finding 3 (human parity): the JSON SDR carries a perMetric block
+        # (summary of EACH metric). Render its human counterpart so a per-metric
+        # detail that exists in the machine-readable output is not invisible in
+        # the human-readable one. Empty when the KSI has no per-metric history.
+        _pm = _derive_per_metric(k["ksi_id"], metric_history or {})
+        if _pm:
+            a(f"Per-metric summary ({len(_pm)} metric(s)):")
+            for _m in _pm:
+                _o = _m.get("objective") or "no objective recorded"
+                _s = _m.get("source") or "no source recorded"
+                a(f"  Metric {_m['metricId']}: 30-day {_m.get('last30Days')}; "
+                  f"up-to-one-year {_m.get('upToOneYear')}; "
+                  f"{len(_m.get('dailyData') or [])} daily observation(s); "
+                  f"objective: {_o}; source: {_s}")
         tests = rec.get("tests", [])
         a(f"Tests: {'; '.join(_test_to_str(t) for t in tests) if tests else 'None defined yet'}")
         a(f"Owner: {ext.get('owner', TBD)}")
