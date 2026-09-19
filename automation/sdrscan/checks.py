@@ -60,10 +60,29 @@ def _count_automated(tests):
 EVIDENCE_TYPES = ("Log", "Report", "Screenshot", "Configuration", "Policy",
                   "Procedure", "Audit Record")
 
-# KSIs with empty statements in the CR26 dataset. Carrying them as FedRAMP
-# pending is correct behaviour, not a defect.
-PENDING_KSIS = {"KSI-CNA-EIS", "KSI-MLA-ALA", "KSI-SVC-PRR",
-                "KSI-SVC-RUD", "KSI-SVC-VCM"}
+# Whether a KSI is truly "FedRAMP pending" is derived from the dataset (below),
+# not a hardcoded list, so the scanner can never drift from the pinned rules.
+def _ksi_is_pending(ksi_node):
+    """A KSI is 'FedRAMP pending' ONLY when the pinned CR26 dataset gives it no
+    statement anywhere - neither a top-level `statement` NOR any per-class
+    statement under `varies_by_class`. The earlier code hardcoded a stale set
+    (KSI-CNA-EIS/MLA-ALA/SVC-PRR/SVC-RUD/SVC-VCM) as pending, but all five
+    actually carry Class B (Optional) and Class C statements under
+    varies_by_class in the dataset - only their TOP-LEVEL `statement` key is
+    absent. Reading only the top-level key made the scanner's output factually
+    wrong (finding 11). Deriving pending from the dataset means the scanner can
+    never drift from the pinned rules again. A KSI missing from the dataset
+    entirely is treated as pending (there is genuinely no statement to answer)."""
+    if not isinstance(ksi_node, dict):
+        return True
+    if str(ksi_node.get("statement") or "").strip():
+        return False
+    vbc = ksi_node.get("varies_by_class")
+    if isinstance(vbc, dict):
+        for branch in vbc.values():
+            if isinstance(branch, dict) and str(branch.get("statement") or "").strip():
+                return False
+    return True
 
 
 def state(value):
@@ -350,7 +369,7 @@ def ksi_checks(ctx):
         kid = entry["ksiId"]
         ext = ctx.ext["ksi"].get(kid, {})
         name = ext.get("name") or kid
-        pending = kid in PENDING_KSIS
+        pending = _ksi_is_pending(ctx.canonical_ksis.get(kid))
 
         def add(check_id, ok, detail):
             out.append((check_id, kid, name, ok, detail))
@@ -809,11 +828,16 @@ METADATA = {m["check_id"]: m for m in [
     _m("ksi_pending_marked_honestly",
        "Indicators with no published statement are marked FedRAMP pending",
        "informational", "Key Security Indicator", ["SDR-CSX-KSI"],
-       "Five indicators have empty statements in the CR26 dataset.",
+       "A KSI is FedRAMP pending only when the pinned CR26 dataset gives it no "
+       "statement anywhere - neither a top-level statement nor any per-class "
+       "statement under varies_by_class. This is derived from the dataset, not a "
+       "hardcoded list, so it cannot drift.",
        "Inventing text for an indicator FedRAMP has not published would be "
-       "fabrication, and would not match the eventual official wording.",
-       "Leave these marked FedRAMP pending until FedRAMP publishes the "
-       "statement.",
+       "fabrication; conversely, marking an indicator that DOES have a per-class "
+       "statement as pending is a factually wrong scanner output.",
+       "Leave a genuinely statement-less indicator marked FedRAMP pending until "
+       "FedRAMP publishes the statement; answer any indicator that has a "
+       "per-class statement.",
        "references/fedramp-consolidated-rules.json"),
     _m("ksi_statement_fidelity", "Indicator text matches the canonical dataset",
        "critical", "Key Security Indicator", ["FRC-CSO-JSN"],

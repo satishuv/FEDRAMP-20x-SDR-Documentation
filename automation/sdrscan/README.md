@@ -147,7 +147,7 @@ Each applicable FedRAMP rule, 12 checks: all seven items SDR-CSO-FRR enumerates 
 
 > A gap worth knowing about. SDR-CSO-FRR requires seven items per rule, but the official SDR schema carries only three statement fields (`frrImplementation`, `frrValidation`, `frrAssessment`). Items 4 through 7 have no official field to live in. This framework puts them in the extensions companion (`sdr/json/sdr-class-<x>-extensions.json`) and scans them there, so a record can satisfy the rule rather than only the schema.
 
-Each applicable Key Security Indicator, 16 checks at Class C: all five items SDR-CSX-KSI enumerates, the automated-method minimum from FRC-CSX-VVK, evidence presence and evidence typing, the three historical metrics from SDR-CSX-KMT, a named owner, statement fidelity, status validity, annual independent assessment, and an honesty check that the five indicators with no published statement in CR26 are carried as FedRAMP pending rather than quietly marked done.
+Each applicable Key Security Indicator, 16 checks at Class C: all five items SDR-CSX-KSI enumerates, the automated-method minimum from FRC-CSX-VVK, evidence presence and evidence typing, the three historical metrics from SDR-CSX-KMT, a named owner, statement fidelity, status validity, annual independent assessment, and an honesty check that an indicator with no published statement anywhere in CR26 (no top-level statement and no per-class statement under varies_by_class, derived from the dataset rather than a hardcoded list) is carried as FedRAMP pending rather than quietly marked done.
 
 Class applicability is enforced per check rather than bolted on afterwards, so the totals differ by class: 34 checks at Class A, 36 at Class B, 37 at Class C.
 
