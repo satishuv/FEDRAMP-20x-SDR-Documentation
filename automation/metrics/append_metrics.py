@@ -208,11 +208,21 @@ def append_run(history, registry, config_by_rule, posture_by_service, today, cls
         series.sort(key=lambda p: p["date"])
         entry["series"] = prune(series, today)
         appended += 1
-        # Recompute the SDR-CSX-KMT summaries.
-        cutoff30 = (today - timedelta(days=30)).isoformat()
+        # Recompute the SDR-CSX-KMT summaries. Storage keeps RETAIN_DAYS (~400)
+        # of history, but each summary MUST slice the retained series to the
+        # EXACT window FedRAMP names, not the whole retained span:
+        #   - "past 30 days"  = the 30 calendar dates today-29 .. today
+        #     (an inclusive `date >= today-30` window spans 31 dates, so it is
+        #      wrong by one; use today-29 for exactly 30).
+        #   - "up to the past year" = the >= 12-calendar-months window
+        #     (today back to _months_before(today, 12)); summarizing the whole
+        #      ~400-day retained series over-counts beyond a year.
+        cutoff30 = (today - timedelta(days=29)).isoformat()
         last30 = [p for p in entry["series"] if p["date"] >= cutoff30]
         entry["last_30_days"] = summarize(last30)
-        entry["up_to_one_year"] = summarize(entry["series"])
+        year_start = _months_before(today, 12).isoformat()
+        last_year = [p for p in entry["series"] if p["date"] >= year_start]
+        entry["up_to_one_year"] = summarize(last_year)
         # FRC-CSX-MOT persistent-validation window coverage for this class.
         entry["persistent_validation_window"] = mot_window(entry["series"], cls, today)
     history["meta"] = {

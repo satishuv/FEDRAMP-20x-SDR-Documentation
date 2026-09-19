@@ -48,11 +48,23 @@ def test_series_capped_at_retain_days():
         f"expected series capped at {am.RETAIN_DAYS + 1}, got {len(series)}"
 
 
-def test_up_to_one_year_matches_retained_count():
+def test_up_to_one_year_summarizes_exactly_the_year_window():
+    # up_to_one_year MUST summarize the >= 12-calendar-month window, NOT the
+    # whole ~400-day retained series (finding 2). Storage keeps RETAIN_DAYS+1,
+    # but the summary slices to today back to _months_before(today, 12). Derive
+    # the expected count from that exact window over the retained series.
     n = am.RETAIN_DAYS + 20
-    hist, _ = _run_days(n, lambda i: "COMPLIANT")
+    hist, days = _run_days(n, lambda i: "COMPLIANT")
     entry = hist["ksis"]["KSI-A"]
-    assert entry["up_to_one_year"]["days_observed"] == am.RETAIN_DAYS + 1
+    today = days[-1]
+    year_start = am._months_before(today, 12).isoformat()
+    in_window = [p for p in entry["series"] if p["date"] >= year_start]
+    assert entry["up_to_one_year"]["days_observed"] == len(in_window), \
+        (f'expected {len(in_window)} in the 12-month window, got '
+         f'{entry["up_to_one_year"]["days_observed"]}')
+    # And it must be strictly fewer than the full retained series (proving the
+    # old whole-series bug is gone): a year window is ~366 dates, storage ~401.
+    assert entry["up_to_one_year"]["days_observed"] < len(entry["series"])
 
 
 def test_all_compliant_average_is_one():
@@ -70,10 +82,14 @@ def test_alternating_pattern_average_matches_retained_window():
     def pat(i):
         return "COMPLIANT" if i % 2 == 0 else "NON_COMPLIANT"
     n = am.RETAIN_DAYS + 20
-    hist, _ = _run_days(n, pat)
+    hist, days = _run_days(n, pat)
     entry = hist["ksis"]["KSI-A"]
-    series = entry["series"]
-    expected = round(sum(p["passing"] / p["total"] for p in series) / len(series), 4)
+    # up_to_one_year now averages the 12-calendar-month window, not the whole
+    # retained series - derive the expected average from that exact window.
+    today = days[-1]
+    year_start = am._months_before(today, 12).isoformat()
+    window = [p for p in entry["series"] if p["date"] >= year_start]
+    expected = round(sum(p["passing"] / p["total"] for p in window) / len(window), 4)
     assert entry["up_to_one_year"]["avg_passing_fraction"] == expected
     # And it is close to one-half for an alternating pattern.
     assert abs(entry["up_to_one_year"]["avg_passing_fraction"] - 0.5) <= 0.01
@@ -82,13 +98,14 @@ def test_alternating_pattern_average_matches_retained_window():
 def test_last_30_days_window_is_only_recent():
     # First 100 days fail, then everything passes. The recent window should be
     # all-passing (1.0), while the one-year average is dragged down by the
-    # earlier failures. The code's window is date >= today-30 days, i.e. an
-    # inclusive 31-day span (today plus the 30 prior days).
+    # earlier failures. The window is now EXACTLY 30 dates (today-29..today),
+    # not the old inclusive 31-day span (finding 2).
     def pattern(i):
         return "NON_COMPLIANT" if i < 100 else "COMPLIANT"
     hist, _ = _run_days(200, pattern)
     entry = hist["ksis"]["KSI-A"]
-    assert entry["last_30_days"]["days_observed"] == 31
+    assert entry["last_30_days"]["days_observed"] == 30, \
+        f'expected exactly 30 dates, got {entry["last_30_days"]["days_observed"]}'
     assert entry["last_30_days"]["avg_passing_fraction"] == 1.0
     assert entry["up_to_one_year"]["avg_passing_fraction"] < 1.0
 

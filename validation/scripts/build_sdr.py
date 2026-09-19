@@ -345,6 +345,48 @@ def _derive_daily_data(kid, metric_history):
     return out
 
 
+def _summarize_series(series):
+    """Summarize a daily datapoint series the SAME way append_metrics.summarize
+    does, so a summary DERIVED at build time from metric-history.json is
+    identical to what the appender computes: {days_observed, avg_passing_fraction}.
+    A datapoint is {passing, total}. Empty series -> zero observed / None avg.
+
+    This is finding-1/2's fix: the 30-day and 1-year summaries emitted into the
+    SDR are computed from the immutable durable history (the same store dailyData
+    comes from), NOT read from a hand-authored records-store field that could
+    claim '100% passing' while the history contains failures. Deriving both from
+    one source makes the claimed summary and the daily data provably consistent.
+    """
+    if not isinstance(series, list) or not series:
+        return {"days_observed": 0, "avg_passing_fraction": None}
+    fracs = []
+    for p in series:
+        if isinstance(p, dict) and p.get("total"):
+            fracs.append(p["passing"] / p["total"])
+    avg = round(sum(fracs) / len(fracs), 4) if fracs else None
+    return {"days_observed": len(series), "avg_passing_fraction": avg}
+
+
+def _window_summaries(daily_series):
+    """Slice a derived daily series (already the past-365-day window from
+    _derive_daily_data) into the EXACT FedRAMP windows and summarize each:
+      last30 = the 30 dates today-29..today; lastYear = >= 12 calendar months.
+    Returns (last30_summary, year_summary) or (None, None) when no series."""
+    if not isinstance(daily_series, list) or not daily_series:
+        return None, None
+    import datetime as _ws
+    today = _ws.date.today()
+    cut30 = (today - _ws.timedelta(days=29)).isoformat()
+    # 12 calendar months before today (month-clamped), matching append_metrics.
+    y = today.year + (today.month - 1 - 12) // 12
+    m = (today.month - 1 - 12) % 12 + 1
+    last_day = 31 if m == 12 else (_ws.date(y, m + 1, 1) - _ws.timedelta(days=1)).day
+    year_start = _ws.date(y, m, min(today.day, last_day)).isoformat()
+    last30 = [p for p in daily_series if str(p.get("date", ""))[:10] >= cut30]
+    last_year = [p for p in daily_series if str(p.get("date", ""))[:10] >= year_start]
+    return _summarize_series(last30), _summarize_series(last_year)
+
+
 def ksi_semantic(rec, daily_series=None):
     """Assemble the SDR-CSX-KSI and SDR-CSX-KMT semantic block from a
     record-store entry. Historical metrics (Class B/C MUST) are emitted here
@@ -369,6 +411,16 @@ def ksi_semantic(rec, daily_series=None):
     optional dailyDataReference URI."""
     ext = rec.get("extension", {})
     hm = rec.get("historical_metrics", {})
+    # Derive the 30-day and 1-year summaries from the durable daily series (the
+    # same metric-history.json snapshot dailyData comes from) so the submitted
+    # summary cannot contradict the daily data. Fall back to a hand-authored
+    # historical_metrics summary ONLY when no history was threaded in (a KSI
+    # genuinely absent from history), never preferring the hand value over real
+    # data. This closes finding 1 (summary source of truth) and finding 2 (the
+    # windows are sliced exactly, see _window_summaries).
+    derived_30, derived_year = _window_summaries(daily_series)
+    last30 = derived_30 if derived_30 is not None else _val(hm.get("last_30_days"))
+    up_to_year = derived_year if derived_year is not None else _val(hm.get("up_to_one_year"))
     return {
         "measures": _val(ext.get("measures")),
         "resultingCustomerRisk": _val(ext.get("resulting_customer_risk")
@@ -379,8 +431,8 @@ def ksi_semantic(rec, daily_series=None):
         "assessorResponses": ext.get("assessor_responses", "None recorded"),
         "owner": _val(ext.get("owner")),
         "historicalMetrics": {
-            "last30Days": _val(hm.get("last_30_days")),
-            "upToOneYear": _val(hm.get("up_to_one_year")),
+            "last30Days": last30,
+            "upToOneYear": up_to_year,
             # Class C MUST supply the actual daily data up to the past year
             # (where available), not only a pointer. dailyData is DERIVED from
             # the immutable metric-history.json snapshot (daily_series) so it
