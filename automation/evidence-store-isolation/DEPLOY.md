@@ -56,6 +56,17 @@ different key - a content key's `GET` is stable. The ingestion path records the
 returned `VersionId` and the content hash into release provenance, binding a
 specific immutable version rather than "whatever is latest under this key".
 
+That ingestion path is implemented in
+[`automation/storage/ingest_evidence.py`](../storage/ingest_evidence.py):
+`ingest_evidence()` derives the `evidence/<sha256>.json` key from the content
+(callers do not choose the key, so the key can never disagree with the bytes),
+PUTs to the versioned bucket, and captures the returned `VersionId` into a
+`{bucket, key, versionId, sha256}` provenance record. `verify_ingested()`
+re-reads that EXACT pinned `VersionId` (not the mutable current version) and
+recomputes the digest, so a later same-key shadow PUT cannot replace what a
+provenance record pinned. The bucket policy scopes the write; the ingestion
+code enforces the content-address and pins the version.
+
 ## Deploy
 
 ```bash

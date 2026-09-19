@@ -95,12 +95,42 @@ def test_frr_evidence_is_read():
 
 def test_absent_signature_stays_verified():
     # Signing is opt-in per deployment; an entry with a correct hash and NO
-    # signature is still verified-by-hash, not a failure.
+    # signature is still verified-by-hash, not a failure - WHEN no signer is
+    # pinned (or the pinned signer is not in required mode).
     fact = {"service": "iam", "check": "mfa", "status": "pass"}
     e = {"source_fact": fact, "xEvidenceContentHash": evidence_hash(fact),
          "evidenceLocation": "s3://bucket/key"}
     outcome, _ = ve.classify_entry(e, hash_fn=evidence_hash)
-    check("correct hash, no signature -> verified", outcome == "verified")
+    check("correct hash, no signature, no pinned signer -> verified", outcome == "verified")
+
+
+def test_absent_signature_under_required_signer_is_hard():
+    # Finding 8 (downgrade): with a trusted signer pinned in signing-required
+    # mode, an entry with NO signature is a downgrade to hash-only and must be
+    # HARD - an actor who can edit the record cannot strip the signature to
+    # weaken verification.
+    fact = {"service": "iam", "check": "mfa", "status": "pass"}
+    e = {"source_fact": fact, "xEvidenceContentHash": evidence_hash(fact),
+         "evidenceLocation": "s3://bucket/key"}
+    _, pem = _make_keypair()
+    required_signer = {"public_key": pem, "key_arn": _TEST_ARN,
+                       "public_key_fingerprint": None, "required": True}
+    outcome, msg = ve.classify_entry(e, hash_fn=evidence_hash, trusted_signer=required_signer)
+    check("no signature under a REQUIRED pinned signer -> hard (downgrade blocked)",
+          outcome == "hard" and "REQUIRED BUT ABSENT" in msg)
+
+
+def test_absent_signature_under_optional_signer_is_verified():
+    # A pinned signer with signing_required=false explicitly accepts hash-only,
+    # so an unsigned entry is still verified.
+    fact = {"service": "iam", "check": "mfa", "status": "pass"}
+    e = {"source_fact": fact, "xEvidenceContentHash": evidence_hash(fact),
+         "evidenceLocation": "s3://bucket/key"}
+    _, pem = _make_keypair()
+    optional_signer = {"public_key": pem, "key_arn": _TEST_ARN,
+                       "public_key_fingerprint": None, "required": False}
+    outcome, _ = ve.classify_entry(e, hash_fn=evidence_hash, trusted_signer=optional_signer)
+    check("no signature under an OPTIONAL pinned signer -> verified", outcome == "verified")
 
 
 # --- Real ECDSA signing/verification (findings 7/8) ---
@@ -241,6 +271,8 @@ def main():
               test_matching_hash_passes, test_missing_hash_helper_is_hard_fail_not_finding,
               test_frr_evidence_is_read,
               test_absent_signature_stays_verified,
+              test_absent_signature_under_required_signer_is_hard,
+              test_absent_signature_under_optional_signer_is_verified,
               test_real_signature_verifies_against_pinned_key,
               test_signature_present_but_no_pinned_signer_is_hard,
               test_signature_by_untrusted_keyid_is_hard,
