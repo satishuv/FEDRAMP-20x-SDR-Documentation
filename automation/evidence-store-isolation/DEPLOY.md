@@ -27,6 +27,35 @@ demonstrates the intended topology.
 Control identifiers are the ones verified in
 `traceability/evidence-store-controls.json` against the pinned CR26 dataset.
 
+## Access logging is configured to actually deliver (not just declared)
+
+S3 server access logging fails silently if the destination bucket is not set up
+exactly as AWS requires. This stack sets up all three prerequisites, and
+`validate_isolation_stack.py` asserts them (an earlier version only checked that
+`LoggingConfiguration` existed, which passed while delivery was broken):
+
+- The log bucket carries a **bucket policy** granting the logging service
+  principal (`logging.s3.amazonaws.com`) `s3:PutObject`, scoped by
+  `aws:SourceArn` / `aws:SourceAccount` to the evidence bucket. With Bucket
+  Owner Enforced (ACLs disabled), a bucket policy is the only way to authorize
+  log delivery.
+- The log bucket uses **SSE-S3 (AES256)**, never SSE-KMS. AWS does not deliver
+  server access logs to a bucket with SSE-KMS default encryption.
+- The log bucket has **no Object Lock and no default retention** - S3 refuses an
+  Object-Lock bucket as a log destination. Only the evidence bucket is locked.
+
+## Append-only means content-addressed keys, not a blanket PutObject
+
+Object Lock protects the **existing** version of a key, but `s3:PutObject` to an
+existing key still creates a **new version**, and a later `GET` of that key
+resolves to the newer version. So a blanket `.../*` PutObject grant is not
+genuinely append-only. The writer is therefore scoped to the content-addressed
+prefix `evidence/<sha256>.json`: the key IS the content hash, so re-putting
+identical content is the same key and different content necessarily lands at a
+different key - a content key's `GET` is stable. The ingestion path records the
+returned `VersionId` and the content hash into release provenance, binding a
+specific immutable version rather than "whatever is latest under this key".
+
 ## Deploy
 
 ```bash

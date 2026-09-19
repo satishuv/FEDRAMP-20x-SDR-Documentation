@@ -78,10 +78,41 @@ Resources:
         BlockPublicPolicy: true
         IgnorePublicAcls: true
         RestrictPublicBuckets: true
+      # A server-access-log DESTINATION bucket MUST use SSE-S3 (AES256), not
+      # SSE-KMS: AWS does not support delivering server access logs to a bucket
+      # with SSE-KMS default encryption (the log objects would be encrypted with
+      # a key the log delivery cannot use). It also must NOT have Object Lock or
+      # a default retention period - S3 refuses Object-Lock buckets as log
+      # destinations. So this bucket is deliberately SSE-S3 and lock-free, unlike
+      # the evidence bucket.
       BucketEncryption:
         ServerSideEncryptionConfiguration:
           - ServerSideEncryptionByDefault:
-              SSEAlgorithm: aws:kms
+              SSEAlgorithm: AES256
+
+  # With Bucket Owner Enforced (ACLs disabled), the ONLY way to authorize the S3
+  # log delivery service to write access logs is a bucket policy granting the
+  # logging service principal s3:PutObject, scoped to the evidence bucket as the
+  # source (aws:SourceArn / aws:SourceAccount). Without this policy, server
+  # access logging on the evidence bucket silently fails to deliver (finding 9).
+  EvidenceLogBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref EvidenceLogBucket
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: S3ServerAccessLogsPolicy
+            Effect: Allow
+            Principal:
+              Service: logging.s3.amazonaws.com
+            Action: "s3:PutObject"
+            Resource: !Sub "${EvidenceLogBucket.Arn}/evidence-access/*"
+            Condition:
+              ArnLike:
+                "aws:SourceArn": !Sub "arn:${AWS::Partition}:s3:::${EvidenceBucketName}"
+              StringEquals:
+                "aws:SourceAccount": !Ref "AWS::AccountId"
 
   EvidenceBucket:
     Type: AWS::S3::Bucket
@@ -142,12 +173,23 @@ Resources:
             Condition:
               StringNotEquals:
                 "aws:PrincipalArn": !Ref CrossAccountWriterRoleArn
-          - Sid: AllowNarrowWriterAppendOnly
+          - Sid: AllowNarrowWriterContentAddressedAppend
             Effect: Allow
             Principal:
               AWS: !Ref CrossAccountWriterRoleArn
             Action: "s3:PutObject"
-            Resource: !Sub "${EvidenceBucket.Arn}/*"
+            # Finding 10: Object Lock protects the EXISTING version of a key, but
+            # s3:PutObject to an existing key still creates a NEW version, and a
+            # GET of that key then resolves to the newer version - so a plain
+            # PutObject grant is not genuinely append-only. The writer is scoped
+            # to the content-addressed prefix evidence/ where the key IS the
+            # content hash (evidence/<sha256>.json): re-putting identical content
+            # is the same key, and different content necessarily lands at a
+            # different key, so a content key's GET is stable and immutable in
+            # practice. The ingestion path records the returned VersionId and the
+            # content hash into release provenance so a specific immutable
+            # version is bound, not merely "the latest under this key".
+            Resource: !Sub "${EvidenceBucket.Arn}/evidence/*"
 
   # Asymmetric signing key for evidence digests. kms:Sign is granted ONLY to the
   # separate signer principal; the assessed collector roles are DENIED it.
