@@ -1037,13 +1037,25 @@ def cmd_preflight(args):
         # metrics long enough, the provider needs mechanisms in place and a
         # recorded commitment to meet the requirement going forward.
         exc = offering.get("metric_history_exception") or {}
-        # operating_since must be a REAL ISO date, and the initial-certification
-        # exception only applies when the service has NOT been operating with
-        # metrics for the required window: a service operating >= the MOT window
-        # (6 months C / 18 months D) is expected to have the full history and
-        # cannot use the shortcut. Parse the date and bound the window.
+        # FRC-CSX-MOT's initial-certification exception (verbatim note) applies
+        # "in the event the cloud service has not been operating WITH RELATED
+        # METRICS AVAILABLE for the required period." The eligibility date is
+        # therefore the metrics-available period, NOT the offering launch date:
+        # an offering can be years old yet only have persistent KSI metrics for
+        # a couple of months. The faithful field is metrics_available_since;
+        # operating_since is accepted as a backward-compatible fallback (older
+        # profiles) but metrics_available_since wins when both are present.
+        # The date must be a REAL ISO date, must NOT be in the future, and the
+        # exception only applies when metrics have been available for LESS than
+        # the required window (a service with >= the window is expected to have
+        # the full history and cannot use the shortcut).
         import datetime as _dm
-        _op_raw = exc.get("operating_since")
+        _op_field = ("metrics_available_since"
+                     if not _is_tbd(exc.get("metrics_available_since"))
+                     else "operating_since")
+        _op_raw = exc.get("metrics_available_since")
+        if _is_tbd(_op_raw):
+            _op_raw = exc.get("operating_since")
         _op_date = None
         if not _is_tbd(_op_raw):
             try:
@@ -1051,9 +1063,10 @@ def cmd_preflight(args):
             except (ValueError, TypeError):
                 _op_date = None
         mot_window_start = _months_before(today, mot_min_months)
-        # Eligible only when operating_since parses AND is AFTER the window start
-        # (i.e. the service has operated for LESS than the required window).
-        exc_window_eligible = _op_date is not None and _op_date > mot_window_start
+        # Eligible only when the date parses, is NOT in the future, AND is after
+        # the window start (metrics available for LESS than the required window).
+        _op_not_future = _op_date is not None and _op_date <= today
+        exc_window_eligible = _op_not_future and _op_date > mot_window_start
         exc_valid = (exc.get("mechanisms_in_place") is True
                      and not _is_hollow(exc.get("mechanisms_description"))
                      and exc.get("commitment_to_meet_mot") is True
@@ -1061,8 +1074,8 @@ def cmd_preflight(args):
                      and exc_window_eligible
                      and not _is_hollow(exc.get("responsible_official")))
         # Distinguish "exception fields present but invalid" from "no exception":
-        # an invalid operating_since or an over-long operating window should tell
-        # the provider WHY the exception did not apply, not silently fall through.
+        # an invalid/future date or an over-long window should tell the provider
+        # WHY the exception did not apply, not silently fall through.
         exc_attempted = (exc.get("mechanisms_in_place") is True
                          or exc.get("commitment_to_meet_mot") is True
                          or not _is_tbd(_op_raw))
@@ -1071,11 +1084,15 @@ def cmd_preflight(args):
         if exc_attempted and not exc_valid:
             if not _is_tbd(_op_raw) and _op_date is None:
                 blockers.append(f"Class {cls.upper()}: initial-certification MOT exception has "
-                                f"an invalid operating_since ({_op_raw!r}); it must be a real "
+                                f"an invalid {_op_field} ({_op_raw!r}); it must be a real "
                                 "ISO date (YYYY-MM-DD) for the exception to apply (FRC-CSX-MOT)")
+            elif _op_date is not None and not _op_not_future:
+                blockers.append(f"Class {cls.upper()}: initial-certification MOT exception has a "
+                                f"FUTURE {_op_field} ({_op_date}); metrics-available date cannot "
+                                "be in the future (FRC-CSX-MOT)")
             elif _op_date is not None and not exc_window_eligible:
                 blockers.append(f"Class {cls.upper()}: initial-certification MOT exception does "
-                                f"not apply - the service has operated since {_op_date} "
+                                f"not apply - metrics have been available since {_op_date} "
                                 f"({'6' if cls == 'c' else '18'}+ months), so the full "
                                 "persistent-validation history is required, not the exception "
                                 "(FRC-CSX-MOT)")
@@ -1087,15 +1104,18 @@ def cmd_preflight(args):
                 if isinstance(entry, dict):
                     return entry.get("series") or []
                 return entry if isinstance(entry, list) else []
-            # "Current" = at least one observation within the last 45 days (a
-            # generous bound over a daily/weekly/monthly cadence). A six-month-
-            # old lone datapoint is NOT current and must not satisfy the gate.
+            # "Current" = at least one observation within the last 45 days AND
+            # not in the future (a generous bound over a daily/weekly/monthly
+            # cadence). A six-month-old lone datapoint is NOT current; a
+            # future-dated datapoint is not a real observation and must not
+            # satisfy the gate either.
             recent_cutoff = (today - _dm.timedelta(days=45)).isoformat()
+            today_iso = today.isoformat()
 
             def _has_recent(entry):
                 for e in _series(entry):
                     ds_ = (e or {}).get("date") if isinstance(e, dict) else None
-                    if ds_ and str(ds_)[:10] >= recent_cutoff:
+                    if ds_ and recent_cutoff <= str(ds_)[:10] <= today_iso:
                         return True
                 return False
             missing_now = [k for k in mot_ksis if not _has_recent(per.get(k))]
