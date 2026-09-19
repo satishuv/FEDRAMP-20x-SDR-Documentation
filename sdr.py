@@ -47,41 +47,64 @@ RULES_DATASET = os.path.join(BASE, "references", "fedramp-consolidated-rules.jso
 # hard-gated. Only rules whose artifact wording is an UNCONDITIONAL "provide X"
 # are gated. This set is derived from the pinned dataset at runtime, so a dataset
 # refresh re-derives it rather than drifting against a hardcoded list.
+#
+# The OR markers are the specific ALTERNATIVE-DELIVERABLE phrasings the dataset
+# actually uses ("... or a sample ...", "... OR explanation ..."), NOT a bare
+# " or ", because a bare " or " matches descriptive noun-phrase text too ("...
+# validated ... or are update streams ...", "one or more incidents", "manual or
+# automated") and would wrongly demote a genuinely unconditional artifact to
+# advisory.
 _ARTIFACT_CONDITIONAL_MARKERS = (
-    "if ", "if the", "if any", "if available", "if not", "otherwise", " or ",
+    "if ", "if the", "if any", "if available", "if not", "otherwise",
     "sample", "as applicable", "unless", "when available", "where available",
+    "or a sample", "or sample", "or an explanation", "or explanation",
+    "or provide", "or a recent",
 )
 
-_ARTIFACT_REQUIRED_RULES_CACHE = None
+_ARTIFACT_REQUIRED_RULES_CACHE = {}
 
 
-def artifact_required_rule_ids():
-    """Rule IDs that carry an UNCONDITIONAL MUST artifact requirement in the
-    pinned CR26 dataset.
+def artifact_required_rule_ids(cls=None, forces=("MUST",)):
+    """Rule IDs that carry an UNCONDITIONAL artifact requirement at one of the
+    given force levels, for a given certification class.
 
     SDR-CSO-FRR item on rule-specific artifacts was previously treated as
     always 'if applicable, not gated', so a provider could fill every narrative
     field and still omit a canonical required artifact and reach READY (external
-    re-audit finding 2). The dataset itself states, per rule, when an artifact
-    is required: each rule dict carries an `artifacts` map keyed by applicability
-    (`all`/`20x`/`rev5`). We gate ONLY the rules whose artifact wording is an
-    unconditional "provide X" MUST; rules whose artifact text is conditional or
-    OR-satisfiable (see _ARTIFACT_CONDITIONAL_MARKERS) stay advisory to avoid
-    over-blocking on wording no machine can judge. Cached; safe if the dataset
+    re-audit finding 2). The dataset states, per rule, when an artifact is
+    required: each rule dict carries an `artifacts` map keyed by applicability
+    (`all`/`20x`/`rev5`). Many rules ALSO vary by class: their force + artifacts
+    live under `varies_by_class.<a|b|c|d>`, not at the rule top level (finding
+    6). This resolves the force + artifacts for the ACTUAL class, reading the
+    varies_by_class branch when present.
+
+    `forces` selects which force levels count. Default ("MUST",) is the base
+    gate: a mandatory rule that omits its canonical artifact is blocked.
+    Passing ("MUST", "MAY") additionally captures OPTIONAL artifact-bearing
+    rules, used to gate a Class A MAY rule the provider SELECTED - a selected
+    MAY rule is fully reviewed, so its artifact requirement then applies
+    (finding 6).
+
+    Only rules whose class-resolved artifact wording is UNCONDITIONAL are
+    returned; conditional / OR-satisfiable wording (see
+    _ARTIFACT_CONDITIONAL_MARKERS) stays advisory to avoid over-blocking on
+    text no machine can judge. Cached per (class, forces); safe if the dataset
     is missing (returns an empty set -> nothing newly gated)."""
-    global _ARTIFACT_REQUIRED_RULES_CACHE
-    if _ARTIFACT_REQUIRED_RULES_CACHE is not None:
-        return _ARTIFACT_REQUIRED_RULES_CACHE
+    key = ((cls or "").lower(), tuple(sorted(forces)))
+    if key in _ARTIFACT_REQUIRED_RULES_CACHE:
+        return _ARTIFACT_REQUIRED_RULES_CACHE[key]
     result = set()
     try:
         with open(RULES_DATASET, encoding="utf-8") as _f:
             ds = json.load(_f)
     except (OSError, ValueError):
-        _ARTIFACT_REQUIRED_RULES_CACHE = result
+        _ARTIFACT_REQUIRED_RULES_CACHE[key] = result
         return result
+    clsk = key[0]
+    allowed_forces = set(forces)
 
-    def _flat_artifacts(rule):
-        arts = rule.get("artifacts")
+    def _flat_artifacts(node):
+        arts = node.get("artifacts")
         strs = []
         if isinstance(arts, dict):
             for av in arts.values():
@@ -91,32 +114,46 @@ def artifact_required_rule_ids():
             strs.extend(str(x) for x in arts)
         return strs
 
+    def _requires_artifact(node):
+        """(force, artifact-strings) resolved from a rule node, honoring a
+        class-specific varies_by_class branch when the caller named a class."""
+        vbc = node.get("varies_by_class")
+        if clsk and isinstance(vbc, dict) and clsk in vbc and isinstance(vbc[clsk], dict):
+            branch = vbc[clsk]
+            return branch.get("force"), _flat_artifacts(branch)
+        return node.get("force"), _flat_artifacts(node)
+
+    def _gate_if_unconditional(rid, force, strs):
+        if strs and force in allowed_forces:
+            joined = " ".join(strs).lower()
+            conditional = any(m in joined for m in _ARTIFACT_CONDITIONAL_MARKERS)
+            if not conditional:
+                result.add(rid)
+
     def _walk(node):
         if isinstance(node, dict):
             for k, v in node.items():
-                # varies_by_class children (keyed 'a'/'b'/'c'/'d') are
-                # class-specific overrides of a PARENT rule, not standalone rule
-                # IDs; their artifacts belong to the parent. Do not treat those
-                # keys as rule IDs (they would never match a real record ID
-                # anyway, but keep the derived set clean).
+                # varies_by_class children are class-override branches of a
+                # parent rule, not standalone rule IDs; handled via the parent.
                 if k == "varies_by_class" and isinstance(v, dict):
                     continue
-                # A rule is a dict keyed by its ID with force + statement.
-                if isinstance(v, dict) and "force" in v and "statement" in v:
-                    strs = _flat_artifacts(v)
-                    if strs and v.get("force") == "MUST":
-                        joined = " ".join(strs).lower()
-                        conditional = any(m in joined
-                                          for m in _ARTIFACT_CONDITIONAL_MARKERS)
-                        if not conditional:
-                            result.add(k)
+                if isinstance(v, dict):
+                    # A rule is keyed by its ID and carries force+statement
+                    # either at the top level or inside varies_by_class.
+                    is_rule = ("force" in v and "statement" in v) or (
+                        isinstance(v.get("varies_by_class"), dict)
+                        and any(isinstance(b, dict) and "force" in b
+                                for b in v["varies_by_class"].values()))
+                    if is_rule:
+                        force, strs = _requires_artifact(v)
+                        _gate_if_unconditional(k, force, strs)
                 _walk(v)
         elif isinstance(node, list):
             for v in node:
                 _walk(v)
 
     _walk(ds)
-    _ARTIFACT_REQUIRED_RULES_CACHE = result
+    _ARTIFACT_REQUIRED_RULES_CACHE[key] = result
     return result
 
 # Build order matters. Each step reads what the step above it wrote:
@@ -1074,14 +1111,26 @@ def cmd_preflight(args):
                                             "changes_reviewed_reference)")
             except ValueError:
                 blockers.append(f"Class {cls.upper()}: FIA completed_at not a valid date: {completed}")
-        # CPO-CSO-OSA: B/C MUST include the assessor overall summary in the CPO.
-        # This is a distinct rule from FRC-APP-FIA and is NOT in the Class A
-        # optional set, so it stays strictly B/C even when a Class A offering
-        # opted into FRC-APP-FIA above.
-        if cls in ("b", "c") and _is_hollow(offering.get("overall_assessment_summary")):
-            blockers.append(f"Class {cls.upper()}: overall_assessment_summary not set "
-                            "(CPO-CSO-OSA MUST: include the assessor's overall assessment "
-                            "summary from IVV-IAS-OSA in the CPO)")
+
+    # CPO-CSO-OSA: B/C MUST include the assessor overall summary in the CPO.
+    # A distinct rule from FRC-APP-FIA. It is MUST at B/C, and it is also
+    # required when a Class A offering SELECTS optional IV&V (IVV-CSO-FIA):
+    # FedRAMP's Class A package guidance is that when optional IV&V is used,
+    # the package includes the Assessment Summary in the SDR and the Overall
+    # Summary of Assessment in the CPO (finding 6). A selected Class A MAY rule
+    # is fully reviewed, so its CPO summary obligation is not skipped. Evaluated
+    # OUTSIDE the FIA block so it fires for a Class A offering that selects
+    # IVV-CSO-FIA without also opting into FRC-APP-FIA.
+    _ivv_selected_a = (cls == "a"
+                       and "IVV-CSO-FIA" in set(offering.get("selected_optional_rules") or []))
+    osa_required = cls in ("b", "c") or _ivv_selected_a
+    if osa_required and _is_hollow(offering.get("overall_assessment_summary")):
+        _osa_ctx = ("CPO-CSO-OSA MUST" if cls in ("b", "c")
+                    else "optional IVV-CSO-FIA is selected, so the CPO overall "
+                         "assessment summary is required and fully reviewed")
+        blockers.append(f"Class {cls.upper()}: overall_assessment_summary not set "
+                        f"({_osa_ctx}: include the assessor's overall assessment "
+                        "summary from IVV-IAS-OSA in the CPO)")
 
     # CDS-CSO-AVR: availability reporting web service. Class B/C MUST, A SHOULD.
     avr = offering.get("availability_reporting") or {}
@@ -1656,7 +1705,16 @@ def cmd_preflight(args):
     # alone are not enough. A not-followed rule is exempt (there is no artifact
     # to produce for a control that is honestly not implemented; its reason +
     # customer risk carry the requirement instead).
-    artifact_rules = artifact_required_rule_ids()
+    artifact_rules = set(artifact_required_rule_ids(cls))
+    # Finding 6: a SELECTED Class A optional (MAY) rule is fully reviewed, so an
+    # unconditional artifact it carries at this class becomes required too. Add
+    # the MAY-force artifact rules, but ONLY for the rules the provider actually
+    # selected - an unselected MAY rule stays optional and ungated.
+    if selected_optional:
+        may_artifact_rules = artifact_required_rule_ids(cls, forces=("MUST", "MAY"))
+        for rid in selected_optional:
+            if rid in may_artifact_rules:
+                artifact_rules.add(rid)
 
     def _has_real_artifact(rec):
         ext = rec.get("extension", {}) or {}
