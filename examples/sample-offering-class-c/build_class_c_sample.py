@@ -257,6 +257,7 @@ def generate_profile():
         },
         "trust_center_uri": "https://trust.bfc-demo.invalid/",
         "secure_config_guide_uri": "https://trust.bfc-demo.invalid/scg",
+        "secure_config_guide_machine_uri": "https://trust.bfc-demo.invalid/scg/machine-readable.json",
         "next_ocr_date": (TODAY + dt.timedelta(days=80)).isoformat(),
         # CPO metadata (CPO-CSO-MTD).
         "cpo_responsible_official": "D. Okafor, BFC Authorizing Official (fictional)",
