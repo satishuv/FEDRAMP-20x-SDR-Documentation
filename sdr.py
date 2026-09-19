@@ -104,6 +104,7 @@ TEST_SUITE = [
     "automation/ai/test_suggest_ksi_mapping.py",
     "automation/metrics/test_append_metrics.py",
     "automation/metrics/test_metric_history_longitudinal.py",
+    "validation/scripts/test_kmt_summary_derivation.py",
     "automation/config-rules/test_evidence_existence_rule.py",
     "automation/config-rules/deploy/test_generate_templates.py",
     "automation/config-rules/deploy/test_cdk_synth.py",
@@ -1376,6 +1377,51 @@ def cmd_preflight(args):
         return [p for p in series
                 if isinstance(p, dict) and str(p.get("date", ""))[:10] >= cutoff]
 
+    def _kmt_claim_contradicts_history(kid, rec):
+        """Finding 1 (correlation): the SDR now DERIVES the 30-day/1-year
+        summaries from durable history at build, so the submitted document is
+        consistent by construction. But a provider may still hand-author a
+        historical_metrics summary in records-store that DISAGREES with the
+        real history (e.g. claims '100% passing' while the history has
+        failures). build_sdr overrides it, yet the input contradiction is worth
+        surfacing so the provider fixes the source rather than shipping a claim
+        the build silently rewrote. Returns a message when the hand-authored
+        avg_passing_fraction disagrees with the value computed from history for
+        the same window, else None. Compares only when BOTH a numeric claim and
+        in-window history exist; a tolerance absorbs rounding.
+        """
+        entry = _kmt_ksis.get(kid)
+        series = entry.get("series") if isinstance(entry, dict) else entry
+        if not isinstance(series, list) or not series:
+            return None  # no history to contradict ("where available")
+        import datetime as _dc
+        today = _dc.date.today()
+        cut30 = (today - _dc.timedelta(days=29)).isoformat()
+        y = today.year + (today.month - 1 - 12) // 12
+        m = (today.month - 1 - 12) % 12 + 1
+        last_day = 31 if m == 12 else (_dc.date(y, m + 1, 1) - _dc.timedelta(days=1)).day
+        year_start = _dc.date(y, m, min(today.day, last_day)).isoformat()
+
+        def _avg(points):
+            fr = [p["passing"] / p["total"] for p in points
+                  if isinstance(p, dict) and p.get("total")]
+            return round(sum(fr) / len(fr), 4) if fr else None
+
+        computed = {
+            "last_30_days": _avg([p for p in series if str(p.get("date", ""))[:10] >= cut30]),
+            "up_to_one_year": _avg([p for p in series if str(p.get("date", ""))[:10] >= year_start]),
+        }
+        hm = rec.get("historical_metrics", {}) or {}
+        msgs = []
+        for key, comp in computed.items():
+            claim = hm.get(key)
+            if not isinstance(claim, dict) or comp is None:
+                continue
+            claimed = claim.get("avg_passing_fraction")
+            if isinstance(claimed, (int, float)) and abs(claimed - comp) > 0.001:
+                msgs.append(f"{key}: claims {claimed} but history computes {comp}")
+        return "; ".join(msgs) if msgs else None
+
     def _ksi_gaps(kid, rec):
         """Missing required SDR-CSX-KSI items for one KSI record (5 items),
         plus SDR-CSX-KMT historical-metric content where it is MUST.
@@ -1428,6 +1474,10 @@ def cmd_preflight(args):
         if kid in applicable_ksi:
             t, p = _count_markers(rec); tbd += t; placeholders += p; scoped_records += 1
             gaps = _ksi_gaps(kid, rec)
+            if cls in ("b", "c", "d"):
+                contradiction = _kmt_claim_contradicts_history(kid, rec)
+                if contradiction:
+                    gaps.append(f"kmt_summary_contradicts_history ({contradiction})")
             if gaps:
                 unanswered.append(f"{kid} (missing: {','.join(gaps)})")
     if tbd:
