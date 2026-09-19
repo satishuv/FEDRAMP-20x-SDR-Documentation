@@ -72,9 +72,17 @@ def _report(results, strict):
 
 
 def _fetch_headers(url):
+    import urllib.parse
     import urllib.request
+    # Bandit B310: restrict to http/https so a file:/ or custom scheme cannot be
+    # opened (this tool fetches a provider's public certification-JSON URL only).
+    scheme = urllib.parse.urlparse(url).scheme.lower()
+    if scheme not in ("http", "https"):
+        raise ValueError(
+            f"refusing to fetch a non-http(s) URL (scheme {scheme!r}); this check "
+            "evaluates a public certification-JSON download URL only")
     req = urllib.request.Request(url, method="GET")
-    with urllib.request.urlopen(req, timeout=15) as resp:  # noqa: S310
+    with urllib.request.urlopen(req, timeout=15) as resp:  # noqa: S310  # nosec B310 - scheme checked above
         return dict(resp.headers.items())
 
 

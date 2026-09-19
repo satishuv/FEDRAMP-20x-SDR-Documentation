@@ -113,6 +113,17 @@ Resources:
                 "aws:SourceArn": !Sub "arn:${AWS::Partition}:s3:::${EvidenceBucketName}"
               StringEquals:
                 "aws:SourceAccount": !Ref "AWS::AccountId"
+          - Sid: DenyInsecureTransport
+            # Finding 14: require TLS for the access-log bucket too.
+            Effect: Deny
+            Principal: "*"
+            Action: "s3:*"
+            Resource:
+              - !GetAtt EvidenceLogBucket.Arn
+              - !Sub "${EvidenceLogBucket.Arn}/*"
+            Condition:
+              Bool:
+                "aws:SecureTransport": "false"
 
   EvidenceBucket:
     Type: AWS::S3::Bucket
@@ -190,6 +201,20 @@ Resources:
             # content hash into release provenance so a specific immutable
             # version is bound, not merely "the latest under this key".
             Resource: !Sub "${EvidenceBucket.Arn}/evidence/*"
+          - Sid: DenyInsecureTransport
+            # Finding 14: require TLS for all access to the evidence bucket, to
+            # match the main pipeline's buckets. Deny any request not over
+            # HTTPS (aws:SecureTransport=false), for every principal and both
+            # the bucket and its objects.
+            Effect: Deny
+            Principal: "*"
+            Action: "s3:*"
+            Resource:
+              - !GetAtt EvidenceBucket.Arn
+              - !Sub "${EvidenceBucket.Arn}/*"
+            Condition:
+              Bool:
+                "aws:SecureTransport": "false"
 
   # Asymmetric signing key for evidence digests. kms:Sign is granted ONLY to the
   # separate signer principal; the assessed collector roles are DENIED it.
