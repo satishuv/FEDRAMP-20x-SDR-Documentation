@@ -1188,6 +1188,48 @@ def cmd_preflight(args):
                         f"({_osa_ctx}: include the assessor's overall assessment "
                         "summary from IVV-IAS-OSA in the CPO)")
 
+    # Finding 6: a SELECTED Class A IVV-CSO-FIA is fully reviewed, so the rule's
+    # OWN substance must be proven, not just the CPO overall summary. IVV-CSO-FIA:
+    # the optional Class A assessment is performed by a FedRAMP Recognized
+    # independent assessment service (or FedRAMP) at least once per year. Require
+    # a Recognized assessor identity (name + recognition id), a real
+    # completion date, and completion within the past year (the annual cadence,
+    # not FRC-APP-FIA's 3-month window). Evaluated only when IVV-CSO-FIA is
+    # selected at Class A (the FIA block above covers B/C and selected FRC-APP-FIA).
+    if _ivv_selected_a:
+        ivv = offering.get("fedramp_independent_assessment") or {}
+        ivv_completed = ivv.get("completed_at")
+        if _is_missing_required_identity(ivv.get("assessor_name")) or _is_tbd(ivv_completed):
+            blockers.append("Class A: selected IVV-CSO-FIA requires a FedRAMP "
+                            "Recognized independent assessment (fedramp_independent_"
+                            "assessment.assessor_name + completed_at) performed at "
+                            "least once per year")
+        elif _is_missing_required_identity(ivv.get("assessor_fedramp_id")):
+            blockers.append("Class A: selected IVV-CSO-FIA assessment has no "
+                            "assessor_fedramp_id (IVV-CSO-FIA MUST be performed by a "
+                            "FedRAMP Recognized independent assessment service or "
+                            "FedRAMP; record its FedRAMP Recognition id)")
+        else:
+            try:
+                _iv_when = _dt.date.fromisoformat(str(ivv_completed))
+                if _iv_when > _dt.date.today():
+                    blockers.append(f"Class A: selected IVV-CSO-FIA completed_at is "
+                                    f"in the future: {ivv_completed}")
+                elif _iv_when < _months_before(_dt.date.today(), 12):
+                    blockers.append(f"Class A: selected IVV-CSO-FIA assessment "
+                                    f"{ivv_completed} is older than 12 months; "
+                                    "IVV-CSO-FIA requires an assessment at least once "
+                                    "per year")
+            except ValueError:
+                blockers.append("Class A: selected IVV-CSO-FIA completed_at is not a "
+                                f"valid date: {ivv_completed}")
+        # Finding 7: when optional IV&V is used, the Class A package includes the
+        # Assessment Summary IN THE SDR (IVV-IAS-OSA). Require the summary URI.
+        if _is_hollow(ivv.get("assessment_summary_uri")):
+            blockers.append("Class A: selected IVV-CSO-FIA requires the IV&V "
+                            "Assessment Summary in the SDR (fedramp_independent_"
+                            "assessment.assessment_summary_uri; IVV-IAS-OSA)")
+
     # CDS-CSO-AVR: availability reporting web service. Class B/C MUST, A SHOULD.
     avr = offering.get("availability_reporting") or {}
     avr_missing = (_is_tbd(avr.get("human_readable_uri")) or _is_tbd(avr.get("machine_readable_uri")))
@@ -1414,6 +1456,36 @@ def cmd_preflight(args):
         if not history:
             warnings.append(f"Class {cls.upper()}: no KSI metric history yet "
                             f"(FRC-CSX-MOT is {'MAY' if cls == 'a' else 'SHOULD'} at this class)")
+        # Finding 5: a SELECTED Class A SDR-CSX-KMT is fully reviewed - once the
+        # provider opts historical KSI metrics into the Class A SDR, real
+        # in-window metric content must actually back it, not an empty inclusion.
+        # FedRAMP: if Class A historical KSI metrics are included, they should be
+        # scoped, dated, and attributable to the service/KSI. Require at least
+        # one applicable Class A KSI to carry an in-window daily observation.
+        if cls == "a" and "SDR-CSX-KMT" in set(offering.get("selected_optional_rules") or []):
+            import datetime as _dk5
+            _hk = (history or {}).get("ksis", history) if isinstance(history, dict) else {}
+            _hk = _hk if isinstance(_hk, dict) else {}
+            _cut5 = (_dk5.date.today() - _dk5.timedelta(days=365)).isoformat()
+            _today5 = _dk5.date.today().isoformat()
+            _a_ksis = set(((class_profile.get("meta", {}) or {})
+                           .get("class_a_ksis", {}) or {}).keys())
+
+            def _has_window_obs(kid):
+                e = _hk.get(kid)
+                s = e.get("series") if isinstance(e, dict) else e
+                if not isinstance(s, list):
+                    return False
+                return any(isinstance(p, dict)
+                           and _cut5 <= str(p.get("date", ""))[:10] <= _today5
+                           for p in s)
+
+            if not any(_has_window_obs(k) for k in _a_ksis):
+                blockers.append(
+                    "Class A: selected SDR-CSX-KMT includes historical KSI metrics "
+                    "in the SDR, but no applicable Class A KSI carries an in-window "
+                    "(past-year) metric observation. Provide real, dated metric "
+                    "history for the included KSIs or do not select SDR-CSX-KMT.")
 
     # Record store: bulk unresolved content stays a readiness warning (FedRAMP
     # explicitly allows an honestly incomplete implementation). Count TBDs only

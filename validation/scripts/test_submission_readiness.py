@@ -888,6 +888,68 @@ def main():
         check("Class A selecting IVV-CSO-FIA clears once the overall assessment summary is present",
               "overall_assessment_summary" not in r_ivv_ok.stdout and r_ivv_ok.returncode == 0)
 
+        # Findings 6/7: a SELECTED Class A IVV-CSO-FIA is fully reviewed, so the
+        # rule's OWN substance must be proven: a FedRAMP Recognized assessor
+        # (name + recognition id), a completion date within the past year, AND
+        # the IV&V Assessment Summary in the SDR (assessment_summary_uri).
+        # pa currently selects IVV-CSO-FIA with a populated fedramp_independent_
+        # assessment (the Class A fill sets it). Blank the summary URI -> block on
+        # the assessment-summary requirement; restore -> clear.
+        saved_fia_a = json.loads(json.dumps(pa.get("fedramp_independent_assessment") or {}))
+        pa["selected_optional_rules"] = ["FRC-APP-FIA", "IVV-CSO-FIA"]
+        fia_a = pa.setdefault("fedramp_independent_assessment", {})
+        fia_a["assessment_summary_uri"] = "TBD"
+        json.dump(pa, open(profile_a, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root_a); _resign_a("IVV summary-uri probe")
+        r_sum = _preflight(root_a)
+        check("Class A selecting IVV-CSO-FIA blocks when the IV&V assessment summary URI is missing",
+              "assessment_summary_uri" in r_sum.stdout and r_sum.returncode == 1)
+        # A stale (older than 12 months) IVV assessment must block on the annual cadence.
+        fia_a["assessment_summary_uri"] = saved_fia_a.get(
+            "assessment_summary_uri", "https://contoso.gov/ev/ivv-summary")
+        fia_a["completed_at"] = "2023-01-01"
+        json.dump(pa, open(profile_a, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root_a); _resign_a("IVV annual probe")
+        r_ann = _preflight(root_a)
+        check("Class A selecting IVV-CSO-FIA blocks when the assessment is older than 12 months",
+              "at least once per year" in r_ann.stdout and r_ann.returncode == 1)
+        # Restore a valid recent assessment -> clears.
+        pa["fedramp_independent_assessment"] = saved_fia_a
+        json.dump(pa, open(profile_a, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root_a); _resign_a("IVV substance cleared")
+        r_ivv_sub = _preflight(root_a)
+        check("Class A selecting IVV-CSO-FIA clears with a recent Recognized assessment and summary",
+              r_ivv_sub.returncode == 0)
+
+        # Finding 5: selecting Class A SDR-CSX-KMT includes historical KSI metrics
+        # in the SDR, so real in-window metric content must back it. The Class A
+        # fill populates metric history, so with SDR-CSX-KMT selected AND real
+        # history the package clears; wiping the history to empty must then block
+        # on the missing-history requirement.
+        mh_a = os.path.join(root_a, "automation", "metrics", "metric-history.json")
+        saved_mh = None
+        if os.path.exists(mh_a):
+            saved_mh = open(mh_a, encoding="utf-8").read()
+        pa["selected_optional_rules"] = ["FRC-APP-FIA", "SDR-CSX-KMT"]
+        json.dump(pa, open(profile_a, "w", encoding="utf-8", newline="\n"), indent=1)
+        # Empty the metric history so no applicable KSI has an in-window observation.
+        os.makedirs(os.path.dirname(mh_a), exist_ok=True)
+        json.dump({"ksis": {}}, open(mh_a, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root_a); _resign_a("KMT-selected empty-history probe")
+        r_kmt = _preflight(root_a)
+        check("Class A selecting SDR-CSX-KMT blocks when no applicable KSI has in-window metrics",
+              "SDR-CSX-KMT" in r_kmt.stdout and r_kmt.returncode == 1)
+        # Restore history + drop the selection -> clears.
+        if saved_mh is not None:
+            open(mh_a, "w", encoding="utf-8", newline="\n").write(saved_mh)
+        pa["selected_optional_rules"] = ["FRC-APP-FIA"]
+        json.dump(pa, open(profile_a, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root_a); _resign_a("KMT selection removed")
+        r_kmt_ok = _preflight(root_a)
+        check("Class A clears once SDR-CSX-KMT is not selected",
+              "selected SDR-CSX-KMT includes historical" not in r_kmt_ok.stdout
+              and r_kmt_ok.returncode == 0)
+
         # (b) Selecting an optional artifact-bearing rule (CMU-CSO-UVM, the
         # cryptographic-module list) with no rule_artifact must block on the
         # rule-artifact gap - a selected MAY rule's canonical artifact is required

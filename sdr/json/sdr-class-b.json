@@ -3,7 +3,14 @@
  "metadata": {
   "version": "0.1.0",
   "lastUpdated": "2026-09-13T00:00:00+00:00",
-  "updateSource": "build_sdr.py generator"
+  "updateSource": "build_sdr.py generator",
+  "xIndependentAssessmentSummary": {
+   "assessorName": "TBD: name of the FedRAMP Recognized independent assessment service",
+   "assessorFedrampId": "TBD: the assessor's FedRAMP Recognition id",
+   "completedAt": "TBD: YYYY-MM-DD the assessment was completed (must be within the previous 3 months for B/C)",
+   "assessmentSummaryUri": "TBD: location of the overall assessment summary (IVV-IAS-OSA)",
+   "basis": "FRC-APP-FIA / IVV-IAS-OSA"
+  }
  },
  "fedRampRequirements": [
   {
