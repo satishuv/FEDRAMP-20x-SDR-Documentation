@@ -1030,6 +1030,29 @@ def main():
         json.dump(recs_m, open(rp_m, "w", encoding="utf-8", newline="\n"), indent=1)
         _build(root_m)
 
+        # Finding 1: an authoring status the builder normalizes to
+        # "Not Implemented" (e.g. "Planned") must be evaluated by preflight as
+        # not-followed too, or the readiness gate treats it as followed while the
+        # submitted JSON says Not Implemented (a false-ready path). Set status
+        # "Planned" with a filled implementation but TBD reason/risk: preflight
+        # must now flag the not-followed reason/risk gaps rather than passing it.
+        saved_frr2 = json.loads(json.dumps(recs_m["frr"][frr_m]))
+        recs_m["frr"][frr_m]["implementation_status"] = "Planned"
+        recs_m["frr"][frr_m]["implementation"] = "TBD"
+        ext_p = recs_m["frr"][frr_m].setdefault("extension", {})
+        ext_p["nonimplementation_reason"] = "TBD"
+        ext_p["customer_risk"] = "TBD"
+        json.dump(recs_m, open(rp_m, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root_m)
+        rfP = _preflight(root_m)
+        check("Planned FRR (builder-normalized to Not Implemented) is gated as not-followed",
+              "reason-not-followed (rule not followed)" in rfP.stdout
+              and "resulting-customer-risk (rule not followed)" in rfP.stdout
+              and rfP.returncode == 1)
+        recs_m["frr"][frr_m] = saved_frr2
+        json.dump(recs_m, open(rp_m, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root_m)
+
         # --- from PR #111: evidence-freshness submission gate ---
         # Evidence freshness gate (Class C): a populated applicable record backed
         # ONLY by EXPIRED evidence (older than 2x the 90-day policy) must BLOCK;
