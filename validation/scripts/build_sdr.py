@@ -645,6 +645,24 @@ def render_human(profile, rules, ksis, records, cls, metric_history=None):
     a("implementation facts before this record can support an assessment.")
     a("Reference architecture content is an assumption, not a confirmed system.")
     a("")
+    # Mirror the JSON metadata.xIndependentAssessmentSummary block in the
+    # human-readable SDR so the two formats stay consistent (FedRAMP requires the
+    # Assessment Summary in the SDR when optional IV&V is used at Class A, and it
+    # applies at B/C). IV&V is used when Class A explicitly selects IVV-CSO-FIA,
+    # or at Class B/C where FRC-APP-FIA / IVV-IAS-OSA apply.
+    _selected_h = set(profile.get("selected_optional_rules") or [])
+    _ivv_used_h = ("IVV-CSO-FIA" in _selected_h) if cls == "a" else cls in ("b", "c")
+    if _ivv_used_h:
+        _fia_h = profile.get("fedramp_independent_assessment") or {}
+        _basis_h = ("IVV-CSO-FIA (selected optional Class A IV&V; IVV-IAS-OSA)"
+                    if cls == "a" else "FRC-APP-FIA / IVV-IAS-OSA")
+        a("Independent Assessment Summary")
+        a(f"Assessor name: {_fia_h.get('assessor_name', TBD)}")
+        a(f"Assessor FedRAMP Recognized ID: {_fia_h.get('assessor_fedramp_id', TBD)}")
+        a(f"Assessment completed at: {_fia_h.get('completed_at', TBD)}")
+        a(f"Assessment summary reference: {_fia_h.get('assessment_summary_uri', TBD)}")
+        a(f"Basis: {_basis_h}")
+        a("")
     a("1. FedRAMP Requirements")
     a("")
     for i, r in enumerate(rules, 1):

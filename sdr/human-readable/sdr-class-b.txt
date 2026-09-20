@@ -15,6 +15,13 @@ This is a generic template record. Statements marked TBD require real
 implementation facts before this record can support an assessment.
 Reference architecture content is an assumption, not a confirmed system.
 
+Independent Assessment Summary
+Assessor name: TBD: name of the FedRAMP Recognized independent assessment service
+Assessor FedRAMP Recognized ID: TBD: the assessor's FedRAMP Recognition id
+Assessment completed at: TBD: YYYY-MM-DD the assessment was completed (must be within the previous 3 months for B/C)
+Assessment summary reference: TBD: location of the overall assessment summary (IVV-IAS-OSA)
+Basis: FRC-APP-FIA / IVV-IAS-OSA
+
 1. FedRAMP Requirements
 
 1.1 AFC-CSO-INB Maintain a FedRAMP Security Inbox
