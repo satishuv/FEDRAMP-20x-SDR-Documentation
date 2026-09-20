@@ -6,30 +6,95 @@ One project-specific convention: the pinned FedRAMP dataset version is recorded 
 
 ## Unreleased
 
+No unreleased changes.
+
+## 1.3.0, 2026-09-20
+
+Pinned dataset: `2026.09.13.02`
+
+Assurance-hardening release. Closes an external re-audit and a fresh acceptance
+audit against the CR26 `2026.09.13.02` dataset, tightening the submission-readiness
+gates so a structurally complete but content-free or wrong-scope package can no
+longer reach ready. No dataset change; the v1 architecture remains frozen. Every
+change was verified against the pinned dataset and shipped CI-green.
+
+Readiness and semantic correctness:
+
+- Normalized the `package-preflight` status path so an authoring status of
+  `Planned`, `Gap`, `Exception`, or `Needs validation` is evaluated as the official
+  `Not Implemented` it maps to, closing a false-ready path where a raw authoring
+  status read as answered. Pinned the human-readable and JSON status normalizers
+  with a parity test.
+- Required the per-metric "summary of each metric" breakdown for multi-metric KSIs
+  at Class B, C, and D (`SDR-CSX-KMT`), so a genuinely multi-metric indicator can no
+  longer collapse into a single aggregate. Unified the KMT summaries to a single
+  source derived from the durable metric history rather than hand-authored duplicates.
+- Made `SDR-CSX-KMT` historical-metric summaries a `package-preflight` blocker at the
+  classes where they are a MUST (Class B: 30-day and up-to-one-year; Class C and D:
+  those plus the actual daily metric data derived from history; the external
+  `dailyDataReference` URL is optional). Bounded all metric series against future-dated
+  observations.
+- Modeled non-implementation as reason AND resulting customer risk for a not-followed
+  `SDR-CSO-FRR` rule and a no-measures `SDR-CSX-KSI`, carried end to end through the
+  record store, preflight, JSON SDR, and human-readable SDR.
+- Hardened `package-preflight` against content-free submissions: an `_is_hollow`
+  predicate rejects bare non-answer tokens (`N/A`, `none`, `.`, `unknown`, and the
+  like) in addition to `TBD`/empty/placeholder, while a justified `N/A: <reason>`
+  still passes. Applied to the CPO structured required-information members,
+  `CPO-CSO-OSA` summary, required offering-profile fields, `FRC-APP-FIA` assessor name
+  and Recognition id, Sales/Security contact names, `CPO-CSO-MTD` metadata, and the two
+  gate-unblocking conditions (`FRC-CSX-MOT` initial-certification exception narratives
+  and the `FRC-APP-USA` freshening reviewer/id/reference). Date, URI, and hash fields
+  keep the narrower placeholder test.
+
+Artifacts and optional-rule scope:
+
+- Replaced the substring artifact heuristic with a REQUIRED / REQUIRED_ONE_OF /
+  CONDITIONAL classifier, so a mandatory one-of artifact (`report OR sample report`)
+  is gated rather than demoted to advisory. This newly gates the mandatory one-of
+  artifact rules per class that were previously treated as optional.
+- Generalized optional Class A review so any selected MAY rule inherits its
+  rule-specific artifact obligation, and required a selected Class A `SDR-CSX-KMT` to
+  carry actual in-window historical metrics rather than an empty placeholder.
+- Enforced the selected Class A `IVV-CSO-FIA` annual FedRAMP Recognized independent
+  assessment (identity plus date within the past year) and emitted an
+  `xIndependentAssessmentSummary` IV&V block into the B/C SDR metadata, threading the
+  active build class so the block is not wrongly emitted for Class A.
+- Rendered the Independent Assessment Summary in the human-readable SDR to mirror the
+  JSON metadata, with a parity test pinning both renderers.
+
+Evidence, isolation, and security:
+
+- Cryptographically verify evidence signatures offline (ECDSA) against an
+  independently-pinned trusted signer instead of trusting the key id carried in the
+  evidence object; a signing-required mode blocks a silent downgrade to hash-only.
+- Content-addressed evidence ingestion with S3 VersionId provenance and verify-by-exact-
+  VersionId.
+- Made the evidence-store isolation reference stack access logging real and its keys
+  content-addressed and append-only; enforced TLS-only bucket access; split the
+  Object Lock deny statement so object-level actions target the object ARN and the
+  bucket-level action targets the bucket ARN.
+- Hard-gated Bandit in CI at medium severity / medium confidence (no `|| true`).
+- Added a standing assessor self-attack harness that probes the three assessor
+  archetypes (gate != deliverable, narration != enforcement, optional != absent) on
+  every build.
+- Derived the scanner's `FedRAMP pending` KSI status from the dataset (honoring
+  `varies_by_class`) instead of a hardcoded list.
+
+Samples, docs, and robustness:
+
 - Added a fully-worked fictional Class C sample and an assessor-attack harness under
-  `examples/sample-offering-class-c/`. The sample fills a complete Class C package
-  (two automated methods per KSI, a six-month metric history, evidence, a Recognized
-  independent assessment, availability, a structured CPO, a manifest-bound signoff)
-  and drives it to `package-preflight`. The `--attack` mode tampers the ready package
-  one hollowing edit at a time and asserts each is blocked, including multi-field
-  combinations, while a justified `N/A: <reason>` across the same fields stays ready.
+  `examples/sample-offering-class-c/`. The sample fills a complete Class C package and
+  drives it to `package-preflight`; `--attack` tampers the ready package one hollowing
+  edit at a time and asserts each is blocked while a justified `N/A: <reason>` stays
+  ready.
 - Fixed a human-readable render crash on structured `tests` entries: `build_sdr.py`,
   `build_docx.py`, and `explain.py` coerce a structured test entry to readable text,
   so a malformed test surfaces as a clear schema message rather than a `TypeError`.
-- Made `SDR-CSX-KMT` historical-metric summaries a `package-preflight` blocker at the
-  classes where they are a MUST (Class B: 30-day and up-to-one-year; Class C and D:
-  those plus a daily-data reference). Previously a package could reach ready with the
-  KMT summaries left unresolved because only the `FRC-CSX-MOT` duration was gated.
-- Hardened `package-preflight` against structurally complete but content-free
-  submissions: a new `_is_hollow` predicate rejects bare non-answer tokens (`N/A`,
-  `none`, `.`, `unknown`, and the like) in addition to `TBD`/empty/placeholder, while
-  a justified `N/A: <reason>` still passes. Applied to the CPO structured
-  required-information members, `CPO-CSO-OSA` summary, required offering-profile
-  fields, `FRC-APP-FIA` assessor name and Recognition id, Sales/Security contact
-  names, `CPO-CSO-MTD` metadata, and the two gate-unblocking conditions (the
-  `FRC-CSX-MOT` initial-certification exception narratives and the `FRC-APP-USA`
-  freshening reviewer/id/reference). Date, URI, and hash fields keep the narrower
-  placeholder test.
+- Corrected the README CI wording (Bandit is a hard CI gate; ASH and Fortify remain a
+  local pre-commit gate), documented that Class A historical KSI metrics are suppressed
+  unless `SDR-CSX-KMT` is selected, and corrected stale Class C daily-data and
+  `CPO-CSO-OSA` scope wording.
 
 ## 1.2.0, 2026-09-14
 

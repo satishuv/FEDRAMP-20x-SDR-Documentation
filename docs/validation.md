@@ -64,13 +64,13 @@ Fourteen checks, in order:
 
 The line that gates the build is `hard failures: 0`. Two of these (`ksi_test_minimums` and `evidence_linkage_for_populated_musts`) are `SHOULD`-force advisories at Class B, so they report as soft failures during authoring and become hard only where the FedRAMP force is `MUST`.
 
-### The one expected failure
+### The two expected advisories
 
 On a fresh Class B clone you will see two advisory (soft) failures:
 
 ```
-FAIL: ksi_test_minimums | 43 KSIs below the FRC-CSX-VVK minimum for class B
-FAIL: evidence_linkage_for_populated_musts | populated KSIs with no evidence entry
+ADVISORY: ksi_test_minimums | 46 KSIs below the FRC-CSX-VVK AUTOMATED-method minimum for class B
+ADVISORY: evidence_linkage_for_populated_musts | populated KSIs with no evidence entry
 ```
 
 Both are correct and expected. `FRC-CSX-VVK` requires automated validation methods per indicator, and evidence linkage expects a populated KSI to carry evidence; a template has neither yet. At Class B the FedRAMP force for both is `SHOULD`, so they are classified as soft failures during authoring - they do not block the build - and `evidence_linkage_for_populated_musts` becomes a hard failure at Class C/D where the force is `MUST`. If they were hard from the start, nobody could run the pipeline on a fresh clone, and the usual response would be to disable the check, which is worse. `hard failures: 0` is the line that gates the build.
