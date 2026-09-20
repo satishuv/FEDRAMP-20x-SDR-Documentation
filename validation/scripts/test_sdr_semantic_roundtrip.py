@@ -304,6 +304,49 @@ def test_all_class_authoring_docx_embed_pinned_dataset():
             "dataset refresh")
 
 
+def test_ivv_assessment_summary_parity_human_and_json():
+    # Finding 7 / audit item 3: when optional IV&V applies, the Independent
+    # Assessment Summary must appear in BOTH the JSON SDR (metadata
+    # xIndependentAssessmentSummary) and the human-readable SDR, and must be
+    # ABSENT from both when IV&V does not apply. Pins the two renderers in
+    # lockstep so the human doc cannot silently drop the block.
+    fia = {
+        "assessor_name": "assessor-" + SENTINEL,
+        "assessor_fedramp_id": "frid-" + SENTINEL,
+        "completed_at": "2026-09-01",
+        "assessment_summary_uri": "uri-" + SENTINEL,
+    }
+    # Load the real offering profile so build_official has every required key,
+    # then override only the fields that drive the IV&V block.
+    base_profile = json.load(open(build_sdr.PROFILE, encoding="utf-8"))
+    base_profile["fedramp_independent_assessment"] = fia
+    empty = {"frr": {}, "ksi": {}}
+    HEADER = "Independent Assessment Summary"
+
+    # Class B: IV&V applies (FRC-APP-FIA / IVV-IAS-OSA) with no selection needed.
+    pb = dict(base_profile, certification_class="B", selected_optional_rules=[])
+    jb = build_sdr.build_official(pb, [], [], empty, None, "b")
+    hb = build_sdr.render_human(pb, [], [], empty, "b")
+    assert "xIndependentAssessmentSummary" in jb["metadata"], "Class B JSON missing IV&V summary"
+    assert HEADER in hb, "Class B human SDR missing IV&V summary section"
+    assert "assessor-" + SENTINEL in hb, "Class B human SDR missing assessor name value"
+    assert jb["metadata"]["xIndependentAssessmentSummary"]["assessorName"] == "assessor-" + SENTINEL
+
+    # Class A WITHOUT selecting IVV-CSO-FIA: IV&V is suppressed in both formats.
+    pa = dict(base_profile, certification_class="A", selected_optional_rules=[])
+    ja = build_sdr.build_official(pa, [], [], empty, None, "a")
+    ha = build_sdr.render_human(pa, [], [], empty, "a")
+    assert "xIndependentAssessmentSummary" not in ja["metadata"], "Class A JSON must omit IV&V summary when unselected"
+    assert HEADER not in ha, "Class A human SDR must omit IV&V summary when unselected"
+
+    # Class A WITH IVV-CSO-FIA selected: IV&V appears in both formats.
+    pas = dict(base_profile, certification_class="A", selected_optional_rules=["IVV-CSO-FIA"])
+    jas = build_sdr.build_official(pas, [], [], empty, None, "a")
+    has = build_sdr.render_human(pas, [], [], empty, "a")
+    assert "xIndependentAssessmentSummary" in jas["metadata"], "selected Class A JSON missing IV&V summary"
+    assert HEADER in has, "selected Class A human SDR missing IV&V summary section"
+
+
 def main():
     tests = [v for k, v in sorted(globals().items()) if k.startswith("test_")]
     passed = 0
