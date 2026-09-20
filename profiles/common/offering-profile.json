@@ -75,7 +75,7 @@
   "operating_since": "TBD: YYYY-MM-DD (deprecated fallback for metrics_available_since; the offering launch date is NOT the metrics-available date - prefer metrics_available_since)",
   "responsible_official": "TBD: name, title, and contact of the official accountable for the commitment"
  },
- "overall_assessment_summary": "TBD: CPO-CSO-OSA (Class B/C MUST): the overall summary of the FedRAMP independent assessment, supplied by the assessor per IVV-IAS-OSA, included in the CPO without inappropriate modification. Provide the assessor's text or a URI reference.",
+ "overall_assessment_summary": "TBD: CPO-CSO-OSA (Class B/C MUST, and required when Class A selects optional IVV-CSO-FIA): the overall summary of the FedRAMP independent assessment, supplied by the assessor per IVV-IAS-OSA, included in the CPO without inappropriate modification. Provide the assessor's text or a URI reference.",
  "cpo_responsible_official": "TBD: CPO-CSO-MTD: name, title, and contact of the official responsible and accountable for the Certification Package.",
  "cpo_version": "TBD: CPO-CSO-MTD: CPO version.",
  "cpo_last_updated": "TBD: CPO-CSO-MTD: date and time of last update (ISO-8601).",

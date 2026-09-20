@@ -24,7 +24,7 @@ Last updated: TBD: CPO-CSO-MTD: date and time of last update (ISO-8601).
 Source of update: TBD: CPO-CSO-MTD: source of the update.
 
 Overall assessment summary (CPO-CSO-OSA)
-TBD: CPO-CSO-OSA (Class B/C MUST): the overall summary of the FedRAMP independent assessment, supplied by the assessor per IVV-IAS-OSA, included in the CPO without inappropriate modification. Provide the assessor's text or a URI reference.
+TBD: CPO-CSO-OSA (Class B/C MUST, and required when Class A selects optional IVV-CSO-FIA): the overall summary of the FedRAMP independent assessment, supplied by the assessor per IVV-IAS-OSA, included in the CPO without inappropriate modification. Provide the assessor's text or a URI reference.
 
 Required information included in this Certification Package Overview (CPO-CSO-OVR)
 - CPO-CSO-MTD (Certification Package Overview: CPO-CSO-MTD (Certification Package Overview Metadata)): TBD: Information has not been provided.
