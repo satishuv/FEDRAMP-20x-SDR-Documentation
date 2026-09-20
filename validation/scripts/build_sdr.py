@@ -199,7 +199,7 @@ def scaffold_records(rules, ksis):
     return store
 
 
-def build_official(profile, rules, ksis, records, metric_history=None):
+def build_official(profile, rules, ksis, records, metric_history=None, cls=None):
     # metadata block is official as of schema 1.1.1 (2026-07-14 in-place
     # update to the 2026-06-24 schema file), per SDR-CSO-MTD.
     # Each entry also carries a providerExtensions object with the rule name
@@ -222,6 +222,26 @@ def build_official(profile, rules, ksis, records, metric_history=None):
         "fedRampRequirements": [],
         "keySecurityIndicators": [],
     }
+    # Finding 7: when optional IV&V is used, the Class A package includes the
+    # IV&V Assessment Summary in the SDR (IVV-IAS-OSA), alongside the CPO's
+    # overall summary. Emit it into the submitted document (not a sidecar) when
+    # the offering selects IVV-CSO-FIA at Class A, or at B/C where the FedRAMP
+    # independent assessment is mandatory and its summary applies. Carried in a
+    # clearly-isolated provider-extension object on the metadata block; the
+    # official schema permits extra properties.
+    _cls = str(cls or profile.get("certification_class", "")).strip().lower()
+    _selected = set(profile.get("selected_optional_rules") or [])
+    _ivv_used = ("IVV-CSO-FIA" in _selected) if _cls == "a" else _cls in ("b", "c")
+    if _ivv_used:
+        _fia = profile.get("fedramp_independent_assessment") or {}
+        doc["metadata"]["xIndependentAssessmentSummary"] = {
+            "assessorName": _fia.get("assessor_name", TBD),
+            "assessorFedrampId": _fia.get("assessor_fedramp_id", TBD),
+            "completedAt": _fia.get("completed_at", TBD),
+            "assessmentSummaryUri": _fia.get("assessment_summary_uri", TBD),
+            "basis": ("IVV-CSO-FIA (selected optional Class A IV&V; IVV-IAS-OSA)"
+                      if _cls == "a" else "FRC-APP-FIA / IVV-IAS-OSA"),
+        }
     for r in rules:
         rec = records["frr"].get(r["rule_id"], {})
         fam = r["family"]
@@ -861,7 +881,7 @@ def main():
     _mh_path = os.path.join(BASE, "automation", "metrics", "metric-history.json")
     metric_history = load(_mh_path) if os.path.exists(_mh_path) else {}
 
-    official = build_official(profile, rules, ksis, records, metric_history)
+    official = build_official(profile, rules, ksis, records, metric_history, cls)
     ext = build_extensions(profile, rules, ksis, records, cls)
     text = render_human(profile, rules, ksis, records, cls, metric_history)
 

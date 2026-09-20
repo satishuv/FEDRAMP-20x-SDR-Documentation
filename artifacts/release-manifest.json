@@ -68,7 +68,7 @@
   "package/scg/secure-configuration-guide.md": "sha256:e33594964ad23ab3abef5798814c37c39fdadd3157258c5c23b76f70eab156d6",
   "sdr/human-readable/sdr-class-b.txt": "sha256:0df315104cdeb6020aad9bf6e047e4c041cf79348437d93fbbb02700e2cc45cc",
   "sdr/json/sdr-class-b-extensions.json": "sha256:906d91d90c38a0f1db91fac3bba3b2ea9844311f46fb5f97e74a03bc964911e1",
-  "sdr/json/sdr-class-b.json": "sha256:5e6247436e08b4121105c9b4f81ee8be3f66d8ffc4dafd32ef99f8973fc1815f",
+  "sdr/json/sdr-class-b.json": "sha256:7fdf9d80e43d55f1d115950926ecae32c57630ca03e6cedd05e341a3b8735e85",
   "traceability/applicability-decisions.json": "sha256:13ca770aae658ea9ae6a3655c759965854ca2646bafb1b6ded715120c1d13ff5",
   "traceability/assurance-graph.json": "sha256:c2c023c999a4c6e2dcf426d6c94d2a81307da7ed2e1e0c09e85b03a0237438c6",
   "traceability/rev5-to-20x-crosswalk.csv": "sha256:54abb349fbf14d1d8ec15da7fe2de5615f132f14309dc3957a81563e5575db43"
