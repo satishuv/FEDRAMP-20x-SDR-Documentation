@@ -188,6 +188,23 @@ def test_authoring_status_maps_to_official_enum():
         assert got == expected, f"{authoring!r} -> {got!r}, expected {expected!r}"
 
 
+def test_preflight_status_normalizer_matches_builder():
+    # Finding 1: the submission preflight (sdr.official_status) MUST normalize
+    # authoring statuses identically to the SDR builder (build_sdr.official_status).
+    # If they drift, a record authored e.g. "Planned" could be treated as
+    # followed by the readiness gate while the submitted JSON renders it
+    # "Not Implemented" - a false-ready path. Pin them in lockstep.
+    sys.path.insert(0, BASE)
+    import sdr  # noqa: E402
+    for authoring in ("Implemented", "Partially Implemented", "Not Implemented",
+                      "Planned", "Gap", "Not Applicable", "Exception",
+                      "Needs validation", "FedRAMP pending", "TBD", "", None,
+                      "partial", "PARTIALLY IMPLEMENTED"):
+        assert sdr.official_status(authoring) == build_sdr.official_status(authoring), (
+            f"normalizer drift for {authoring!r}: sdr={sdr.official_status(authoring)!r} "
+            f"build_sdr={build_sdr.official_status(authoring)!r}")
+
+
 def test_ksi_class_varying_statement_resolves_not_null():
     # The 5 KSIs with a null top-level statement carry class-specific text under
     # varies_by_class. The resolver must return the class statement, never None,

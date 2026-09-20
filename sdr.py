@@ -41,6 +41,25 @@ SCAN_REPORT_GLOB = os.path.join(BASE, "validation", "reports", "sdrscan", "sdrsc
 OFFERING_PROFILE = os.path.join(BASE, "profiles", "common", "offering-profile.json")
 RULES_DATASET = os.path.join(BASE, "references", "fedramp-consolidated-rules.json")
 
+# Finding 1: the submitted SDR JSON normalizes every non-official authoring
+# status (Planned, Gap, Exception, Not Applicable, Needs validation, TBD, ...)
+# to "Not Implemented" via build_sdr.official_status(). Preflight and the
+# scanner MUST evaluate the SAME normalized status, or a record authored
+# "Planned" is treated as followed by the gate while the JSON says
+# "Not Implemented" - a false-ready path. This mirrors build_sdr.official_status
+# byte-for-byte; the semantic-roundtrip test pins that mapping and a parity
+# assertion in test_submission_readiness keeps the two in lockstep.
+_OFFICIAL_STATUSES = {"Implemented", "Not Implemented", "Partially Implemented"}
+
+
+def official_status(authoring_status):
+    s = str(authoring_status or "").strip()
+    if s in _OFFICIAL_STATUSES:
+        return s
+    if s.lower() in ("partially implemented", "partial"):
+        return "Partially Implemented"
+    return "Not Implemented"
+
 # Artifact strings whose wording makes the artifact conditional / OR-satisfiable
 # ("provide X, OR a sample", "if the report is not available", "as applicable"):
 # these cannot be machine-evaluated from free text, so they are advisory, never
@@ -1337,7 +1356,8 @@ def cmd_preflight(args):
                 _entry = per.get(kid)
                 pts = (_entry.get("series") if isinstance(_entry, dict)
                        else _entry) or []
-                has_30 = any(isinstance(p, dict) and str(p.get("date", ""))[:10] >= cutoff30
+                has_30 = any(isinstance(p, dict)
+                             and cutoff30 <= str(p.get("date", ""))[:10] <= today.isoformat()
                              for p in pts)
                 has_any = len(pts) > 0
                 states_30 = not _is_hollow(hm.get("last_30_days"))
@@ -1469,7 +1489,7 @@ def cmd_preflight(args):
         senior-official-acceptance alternative applies - diverging from the
         scanner."""
         ext = rec.get("extension", {}) or {}
-        status = str(rec.get("implementation_status") or "Not Implemented")
+        status = official_status(rec.get("implementation_status"))
         not_following = status in ("Not Implemented", "Partially Implemented")
         gaps = []
 
@@ -1539,9 +1559,14 @@ def cmd_preflight(args):
         series = entry.get("series") if isinstance(entry, dict) else entry
         if not isinstance(series, list):
             return []
+        _today = _dk.date.today().isoformat()
         cutoff = (_dk.date.today() - _dk.timedelta(days=365)).isoformat()
+        # Finding 12: bound the window at both ends. A future-dated observation
+        # (date > today) is not a real historical measurement and must not count
+        # toward the daily-data requirement.
         return [p for p in series
-                if isinstance(p, dict) and str(p.get("date", ""))[:10] >= cutoff]
+                if isinstance(p, dict)
+                and cutoff <= str(p.get("date", ""))[:10] <= _today]
 
     def _per_metric_gap_for(kid):
         """Finding 5: SDR-CSX-KMT asks for a "Summary of EACH metric." A KSI
@@ -1577,11 +1602,13 @@ def cmd_preflight(args):
                     "no per-metric breakdown; SDR-CSX-KMT requires a summary of "
                     "each metric)")
         cutoff = (_pm.date.today() - _pm.timedelta(days=365)).isoformat()
+        _today_pm = _pm.date.today().isoformat()
         empty = []
         for mid, m in metrics.items():
             ms = m.get("series") if isinstance(m, dict) else None
             in_window = [p for p in (ms or [])
-                         if isinstance(p, dict) and str(p.get("date", ""))[:10] >= cutoff]
+                         if isinstance(p, dict)
+                         and cutoff <= str(p.get("date", ""))[:10] <= _today_pm]
             if not in_window:
                 empty.append(mid)
         if empty:
@@ -1620,8 +1647,10 @@ def cmd_preflight(args):
             return round(sum(fr) / len(fr), 4) if fr else None
 
         computed = {
-            "last_30_days": _avg([p for p in series if str(p.get("date", ""))[:10] >= cut30]),
-            "up_to_one_year": _avg([p for p in series if str(p.get("date", ""))[:10] >= year_start]),
+            "last_30_days": _avg([p for p in series
+                                  if cut30 <= str(p.get("date", ""))[:10] <= today.isoformat()]),
+            "up_to_one_year": _avg([p for p in series
+                                    if year_start <= str(p.get("date", ""))[:10] <= today.isoformat()]),
         }
         hm = rec.get("historical_metrics", {}) or {}
         msgs = []
@@ -1685,6 +1714,16 @@ def cmd_preflight(args):
             "persistent" in str(ext.get("measures") or "").lower())
         if has_measures and persistent and not _answered(cycle):
             gaps.append("operating_cycle (persistent measures)")
+        # Finding 3: SDR-CSX-KMT requires a "Summary of each metric" for the
+        # 30-day and 1-year windows at Class B (SHOULD/MUST per class), not only
+        # C/D. A genuinely multi-metric KSI must carry the per-metric breakdown
+        # at B as well, so a Class B package cannot ship one blended aggregate in
+        # place of the required summary of each metric. The ACTUAL daily metric
+        # data (dailyData) stays C/D-only below.
+        if cls in ("b", "c", "d"):
+            pm_gap = _per_metric_gap_for(kid)
+            if pm_gap:
+                gaps.append(pm_gap)
         if cls in ("c", "d"):
             # Class C/D MUST supply the actual daily metric data (SDR-CSX-KMT),
             # derived from the durable history. Require a non-empty in-window
@@ -1693,10 +1732,6 @@ def cmd_preflight(args):
             # is not double-blocked here ("where available").
             if kid in _kmt_ksis and not _daily_series_for(kid):
                 gaps.append("kmt_daily_data (no in-window daily observations in metric history)")
-            # Finding 5: a multi-metric KSI must carry the per-metric breakdown.
-            pm_gap = _per_metric_gap_for(kid)
-            if pm_gap:
-                gaps.append(pm_gap)
         return gaps
 
     tbd = placeholders = scoped_records = 0
@@ -1733,7 +1768,7 @@ def cmd_preflight(args):
         if rid in applicable_frr:
             t, p = _count_markers(rec); tbd += t; placeholders += p; scoped_records += 1
             gaps = _frr_gaps(rec)
-            status = str(rec.get("implementation_status") or "Not Implemented")
+            status = official_status(rec.get("implementation_status"))
             followed = status not in ("Not Implemented", "Partially Implemented")
             if rid in artifact_rules and followed and not _has_real_artifact(rec):
                 gaps.append("rule-artifact (canonical MUST artifact required "

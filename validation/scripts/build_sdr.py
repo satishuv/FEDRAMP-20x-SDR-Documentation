@@ -344,12 +344,15 @@ def _derive_daily_data(kid, metric_history):
         return []
     import datetime as _dd
     cutoff = (_dd.date.today() - _dd.timedelta(days=365)).isoformat()
+    _today = _dd.date.today().isoformat()
     out = []
     for pt in series:
         if not isinstance(pt, dict):
             continue
         d = str(pt.get("date", ""))[:10]
-        if d and d >= cutoff:
+        # Finding 12: reject future-dated observations from the submitted series;
+        # a datapoint dated after today is not a real historical measurement.
+        if d and cutoff <= d <= _today:
             out.append(pt)
     out.sort(key=lambda p: str(p.get("date", "")))
     return out
@@ -414,6 +417,7 @@ def _derive_per_metric(kid, metric_history):
         return []
     import datetime as _dm
     cutoff = (_dm.date.today() - _dm.timedelta(days=365)).isoformat()
+    _today_dm = _dm.date.today().isoformat()
     out = []
     for mid in sorted(metrics):
         m = metrics[mid]
@@ -421,7 +425,8 @@ def _derive_per_metric(kid, metric_history):
             continue
         series = m.get("series") if isinstance(m.get("series"), list) else []
         daily = sorted((p for p in series
-                        if isinstance(p, dict) and str(p.get("date", ""))[:10] >= cutoff),
+                        if isinstance(p, dict)
+                        and cutoff <= str(p.get("date", ""))[:10] <= _today_dm),
                        key=lambda p: str(p.get("date", "")))
         out.append({
             "metricId": mid,
@@ -630,7 +635,10 @@ def render_human(profile, rules, ksis, records, cls, metric_history=None):
         a(f"Force: {r['force'] or 'stated in rule text'}")
         if r.get("class_a_obligation"):
             a(f"Class A obligation: {r['class_a_obligation']} (per FRC-CLA-MFR, RFR, or OFR)")
-        a(f"Status: {rec.get('implementation_status', 'Not Implemented')}")
+        a(f"Status: {official_status(rec.get('implementation_status'))}")
+        _auth = str(rec.get('implementation_status') or '').strip()
+        if _auth and official_status(_auth) != _auth:
+            a(f"Authoring status: {_auth}")
         for s in rec.get("implementation", []):
             a(f"Implementation: {s}")
         for s in rec.get("validation", []):
@@ -669,7 +677,10 @@ def render_human(profile, rules, ksis, records, cls, metric_history=None):
             a(f"Security outcome: {_stmt_plain}")
         else:
             a("Security outcome: FedRAMP pending, no statement in the official dataset yet.")
-        a(f"Status: {rec.get('implementation_status', 'Not Implemented')}")
+        a(f"Status: {official_status(rec.get('implementation_status'))}")
+        _kauth = str(rec.get('implementation_status') or '').strip()
+        if _kauth and official_status(_kauth) != _kauth:
+            a(f"Authoring status: {_kauth}")
         for s in rec.get("implementation", []):
             a(f"Implementation: {s}")
         for s in rec.get("validation", []):
