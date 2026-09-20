@@ -650,6 +650,36 @@ def main():
             reg["package_signoff"]["release_tag"] = tag
             json.dump(reg, open(register, "w", encoding="utf-8", newline="\n"), indent=1)
 
+        # Finding 4: a mandatory ONE-OF artifact ("a recent vulnerability report
+        # OR a sample vulnerability report") is STILL required - a non-empty
+        # rule_artifacts must be present, even though the alternative cannot be
+        # machine-judged. The prior binary heuristic demoted any "or a sample"
+        # wording to advisory, so an applicable one-of rule with NO artifact
+        # reached READY. VER-TFR-MHR is a one-of artifact rule in every class
+        # profile; stripping its artifact must now block, restoring must clear.
+        oneof_rid = "VER-TFR-MHR"
+        recs_oo = json.load(open(rp2, encoding="utf-8"))
+        if oneof_rid in recs_oo.get("frr", {}):
+            ext_oo = recs_oo["frr"][oneof_rid].setdefault("extension", {})
+            saved_oo = ext_oo.get("rule_artifacts")
+            ext_oo["rule_artifacts"] = []
+            json.dump(recs_oo, open(rp2, "w", encoding="utf-8", newline="\n"), indent=1)
+            _build(root)
+            roo = _preflight(root)
+            check("Class C blocks a followed one-of-artifact rule with no rule_artifact",
+                  roo.returncode == 1 and "rule-artifact" in roo.stdout
+                  and oneof_rid in roo.stdout)
+            recs_oo2 = json.load(open(rp2, encoding="utf-8"))
+            recs_oo2["frr"][oneof_rid].setdefault("extension", {})["rule_artifacts"] = saved_oo or []
+            json.dump(recs_oo2, open(rp2, "w", encoding="utf-8", newline="\n"), indent=1)
+            _build(root)
+            mhash = "sha256:" + hashlib.sha256(open(manifest, "rb").read()).hexdigest()
+            tag = json.load(open(manifest, encoding="utf-8")).get("release_tag")
+            reg = json.load(open(register, encoding="utf-8"))
+            reg["package_signoff"]["package_manifest_sha256"] = mhash
+            reg["package_signoff"]["release_tag"] = tag
+            json.dump(reg, open(register, "w", encoding="utf-8", newline="\n"), indent=1)
+
         # Change a provider input after signoff; the bound signoff must fail.
         p = json.load(open(profile, encoding="utf-8"))
         p["business_purpose"] = str(p.get("business_purpose", "")) + " (edited after signoff)"

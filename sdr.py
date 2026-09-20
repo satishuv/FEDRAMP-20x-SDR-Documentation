@@ -60,27 +60,61 @@ def official_status(authoring_status):
         return "Partially Implemented"
     return "Not Implemented"
 
-# Artifact strings whose wording makes the artifact conditional / OR-satisfiable
-# ("provide X, OR a sample", "if the report is not available", "as applicable"):
-# these cannot be machine-evaluated from free text, so they are advisory, never
-# hard-gated. Only rules whose artifact wording is an UNCONDITIONAL "provide X"
-# are gated. This set is derived from the pinned dataset at runtime, so a dataset
-# refresh re-derives it rather than drifting against a hardcoded list.
+# Artifact-requirement classification (external re-audit finding 4). The prior
+# model was binary: any artifact whose wording contained a conditional marker
+# was demoted to advisory and NEVER gated. That wrongly dropped mandatory
+# ONE-OF artifacts - "a recent vulnerability report OR a sample vulnerability
+# report", "URL or explanation of how to request" - where the artifact is still
+# REQUIRED, just satisfiable by either alternative. A provider could omit the
+# artifact entirely and reach READY.
 #
-# The OR markers are the specific ALTERNATIVE-DELIVERABLE phrasings the dataset
-# actually uses ("... or a sample ...", "... OR explanation ..."), NOT a bare
-# " or ", because a bare " or " matches descriptive noun-phrase text too ("...
-# validated ... or are update streams ...", "one or more incidents", "manual or
-# automated") and would wrongly demote a genuinely unconditional artifact to
-# advisory.
+# Three classes, resolved from the dataset artifact wording:
+#   REQUIRED         unconditional "provide X"          -> gate: non-empty artifact
+#   REQUIRED_ONE_OF  "X or a sample", "URL or explanation",
+#                    "if not available ... MUST provide a sample" (both
+#                    branches yield an artifact)         -> gate: non-empty artifact
+#                    (we cannot judge WHICH alternative from free text, but a
+#                    non-empty rule_artifacts is still mandatory)
+#   CONDITIONAL      "if applicable", "(if applicable)",
+#                    "if no SCN notifications", "if no documentation updates"
+#                    (a legitimate no-artifact branch exists)  -> advisory
+#
+# A bare " or " is NOT a one-of signal: descriptive noun-phrase text uses it
+# ("validated ... or are update streams", "one or more incidents", "manual or
+# automated", "collected or maintained") and such artifacts are UNCONDITIONAL.
+# Only the specific alternative-DELIVERABLE phrasings below mark a one-of.
+
+# Genuinely conditional: a legitimate "no artifact" branch exists, so advisory.
 _ARTIFACT_CONDITIONAL_MARKERS = (
-    "if ", "if the", "if any", "if available", "if not", "otherwise",
-    "sample", "as applicable", "unless", "when available", "where available",
+    "if applicable", "(if applicable)", "as applicable",
+    "if no ", "if the report is not available and no",
+    "if and how", "when available", "where available", "unless no",
+)
+# One-of alternative deliverables: the artifact is still mandatory (a non-empty
+# rule_artifacts is required) but satisfiable by either alternative.
+_ARTIFACT_ONE_OF_MARKERS = (
     "or a sample", "or sample", "or an explanation", "or explanation",
-    "or provide", "or a recent",
+    "url or explanation", "report or a sample", "if the report is not available",
+    "or a recent",
 )
 
 _ARTIFACT_REQUIRED_RULES_CACHE = {}
+
+
+def _classify_artifact(strs):
+    """Classify a rule's artifact wording as REQUIRED, REQUIRED_ONE_OF, or
+    CONDITIONAL. CONDITIONAL wins when a genuine no-artifact branch exists;
+    otherwise ONE_OF when an alternative-deliverable phrasing is present;
+    otherwise REQUIRED. Both REQUIRED and REQUIRED_ONE_OF are hard-gated for a
+    non-empty artifact; CONDITIONAL is advisory."""
+    if not strs:
+        return None
+    joined = " ".join(strs).lower()
+    if any(m in joined for m in _ARTIFACT_CONDITIONAL_MARKERS):
+        return "CONDITIONAL"
+    if any(m in joined for m in _ARTIFACT_ONE_OF_MARKERS):
+        return "REQUIRED_ONE_OF"
+    return "REQUIRED"
 
 
 def artifact_required_rule_ids(cls=None, forces=("MUST",)):
@@ -144,9 +178,10 @@ def artifact_required_rule_ids(cls=None, forces=("MUST",)):
 
     def _gate_if_unconditional(rid, force, strs):
         if strs and force in allowed_forces:
-            joined = " ".join(strs).lower()
-            conditional = any(m in joined for m in _ARTIFACT_CONDITIONAL_MARKERS)
-            if not conditional:
+            # Finding 4: REQUIRED and REQUIRED_ONE_OF both demand a non-empty
+            # artifact (a mandatory one-of is still mandatory); only CONDITIONAL
+            # wording with a legitimate no-artifact branch stays advisory.
+            if _classify_artifact(strs) in ("REQUIRED", "REQUIRED_ONE_OF"):
                 result.add(rid)
 
     def _walk(node):
