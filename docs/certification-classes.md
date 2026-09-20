@@ -21,6 +21,10 @@ Six months of persistent validation history at Class C is a calendar dependency.
 
 All daily metric data up to the past year at Class C is a storage sizing decision, and it belongs in your pipeline design from the start rather than in a migration later.
 
+### Class A historical KSI metrics are opt-in, and opting in is a commitment
+
+At Class A, `SDR-CSX-KMT` is `MAY` include, so historical KSI metrics are suppressed from the submitted SDR by default: leave `selected_optional_rules` without `SDR-CSX-KMT` and no metric summaries are emitted or gated. Include them only by explicitly selecting `SDR-CSX-KMT`. Once selected, FedRAMP treats included optional Class A material as part of the fully reviewed surface, so the framework then requires the applicable Class A indicators to carry actual in-window historical metric content rather than an empty placeholder. In short: do not select `SDR-CSX-KMT` at Class A unless you have real metric history to stand behind, because selecting it turns the metrics from optional into a readiness obligation.
+
 ## Class A is enumerated, not scaled down
 
 Class A is the one that behaves unlike the others. It is not "Class B with fewer rules by severity." Applicability is enumerated explicitly by `FRC-CLA-MFR`, so the 41 rules are the ones FedRAMP named, not the ones a filter selected. Same for the indicators: 7 are mandatory at Class A and the other 39 carry `not required for Class A` in the profile.

@@ -173,14 +173,28 @@ Resources:
               - "s3:PutObjectAcl"
               - "s3:BypassGovernanceRetention"
             Resource: !Sub "${EvidenceBucket.Arn}/*"
-          - Sid: DenyObjectLockTampering
+          # Object Lock tampering is denied for everyone except the writer.
+          # Split by resource scope: PutBucketObjectLockConfiguration is a
+          # BUCKET-level action and must target the bucket ARN, while
+          # PutObjectLegalHold / PutObjectRetention are OBJECT-level actions and
+          # must target the object ARN (bucket/*). A single statement pointing
+          # all three at the bucket ARN silently no-ops the two object actions,
+          # since an object action only matches an object-ARN resource.
+          - Sid: DenyBucketObjectLockConfigTampering
+            Effect: Deny
+            Principal: "*"
+            Action: "s3:PutBucketObjectLockConfiguration"
+            Resource: !GetAtt EvidenceBucket.Arn
+            Condition:
+              StringNotEquals:
+                "aws:PrincipalArn": !Ref CrossAccountWriterRoleArn
+          - Sid: DenyObjectRetentionTampering
             Effect: Deny
             Principal: "*"
             Action:
-              - "s3:PutBucketObjectLockConfiguration"
               - "s3:PutObjectLegalHold"
               - "s3:PutObjectRetention"
-            Resource: !GetAtt EvidenceBucket.Arn
+            Resource: !Sub "${EvidenceBucket.Arn}/*"
             Condition:
               StringNotEquals:
                 "aws:PrincipalArn": !Ref CrossAccountWriterRoleArn
