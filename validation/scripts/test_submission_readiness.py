@@ -400,6 +400,27 @@ def main():
         r_bind = _preflight(root)
         check("declared automated VVK methods not bound to telemetry block a Class C package",
               r_bind.returncode == 1 and "vvk_method_binding" in r_bind.stdout)
+
+        # Adversarial (regression for finding F-03, existential-not-set binding):
+        # a Class C KSI declares TWO automated methods ({ident}-config /
+        # {ident}-collector) and the class minimum is 2. Bind only ONE of them
+        # (drop the -collector metric key). The OLD existential gate ("if not
+        # bound") passed this - one bound method was enough - so a half-
+        # implemented KSI reached ready while claiming two automated methods.
+        # The set-based gate must BLOCK: 1 of 2 required bound.
+        _hb1 = json.load(open(hp, encoding="utf-8"))
+        for _e in _hb1.get("ksis", {}).values():
+            _m = _e.get("metrics")
+            if isinstance(_m, dict):
+                _e["metrics"] = {k: v for k, v in _m.items()
+                                 if not k.endswith("-collector")}
+        json.dump(_hb1, open(hp, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root)
+        r_partial = _preflight(root)
+        check("Class C KSI with 2 declared automated methods but only 1 bound "
+              "to telemetry blocks (set-based binding, not existential)",
+              r_partial.returncode == 1 and "vvk_method_binding" in r_partial.stdout)
+
         _fill(profile, now)
         _fill_records(root)
         _build(root)
