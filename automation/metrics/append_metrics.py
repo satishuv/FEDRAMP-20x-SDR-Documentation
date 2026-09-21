@@ -86,21 +86,42 @@ GOOD_CONFIG = {"COMPLIANT"}
 # measured/total contributes NOTHING to the passing/total tally (it is an
 # observation, not a pass). See finding: OBSERVED-counts-as-passing.
 GOOD_POSTURE = {"ENABLED", "PRESENT", "ACTIVE"}
+# A posture status that is an explicit EVALUATED NEGATIVE: the control was
+# checked and found absent/off. These are definite failures and MUST enter the
+# tally as (0, 1) - dropping them (as the old code did, returning None for every
+# non-good status) created survivor bias where known failures vanished from the
+# denominator while passing observations stayed in it, so an aggregate could
+# read fully passing even though a routed collector reported a definite negative.
+# NOTE: this is distinct from "no resource to evaluate" (NO_KEYS / NO_REPOS /
+# NO_STACKS) and from "unmeasured" (ERROR* / UNKNOWN): those carry no evaluated
+# outcome and stay skipped (None). See finding F-04.
+BAD_POSTURE = {"NOT_ENABLED", "NOT_CONFIGURED", "NONE", "DISABLED", "INACTIVE",
+               "ABSENT"}
+# No-resource states: the check ran but there was nothing to evaluate (e.g. no
+# KMS keys exist, so key-rotation is vacuously not a failure). No evaluated
+# outcome -> skip, do NOT score as a failure.
+NO_RESOURCE = {"NO_KEYS", "NO_REPOS", "NO_STACKS"}
 
 
 def _posture_score(pf):
     """Score one posture fact as (passing, total) contribution, or None to skip.
 
-    - ERROR statuses: skip (unmeasured).
+    - ERROR / UNKNOWN statuses: skip (unmeasured, not an evaluated outcome).
+    - No-resource statuses (NO_KEYS/NO_REPOS/NO_STACKS): skip (nothing to
+      evaluate; not a failure).
     - A structured ratio (measured/total): use it directly - this is the real
       fraction in good posture (e.g. 0 of 50 keys rotating = 0/50, NOT a pass).
     - A binary good status in GOOD_POSTURE: 1 of 1.
-    - A bare OBSERVED (or any other non-good status) with no ratio: skip. An
-      observation that something was measured is not evidence it passed, so it
-      must not inflate either the passing count OR the total.
+    - An explicit evaluated negative in BAD_POSTURE: 0 of 1 - a definite failure
+      that MUST count against the passing fraction (finding F-04).
+    - A bare OBSERVED (or any other non-good, non-negative status) with no ratio:
+      skip. An observation that something was measured is not evidence it passed
+      or failed, so it must not inflate the passing count OR the total.
     """
     status = pf.get("status", "")
-    if status.startswith("ERROR"):
+    if status.startswith("ERROR") or status == "UNKNOWN":
+        return None
+    if status in NO_RESOURCE:
         return None
     if "measured" in pf and "total" in pf:
         total = pf.get("total") or 0
@@ -109,8 +130,12 @@ def _posture_score(pf):
         return (pf.get("measured") or 0, total)
     if status in GOOD_POSTURE:
         return (1, 1)
-    # Bare OBSERVED / NONE / NOT_ENABLED / count-only observation: not a pass,
-    # and not a denominator either - it carries no evaluated outcome.
+    if status in BAD_POSTURE:
+        # Explicit evaluated negative: definite fail, counts as 0 of 1.
+        return (0, 1)
+    # Bare OBSERVED / other count-only observation with no ratio: not an
+    # evaluated pass or fail - carries no outcome, so it is neither passing
+    # nor a denominator.
     return None
 
 

@@ -105,6 +105,49 @@ def test_posture_score_helper():
     assert am._posture_score({"status": "OBSERVED", "measured": 3, "total": 0}) is None
 
 
+# --- F-04: explicit evaluated negatives are recorded, not dropped ------------
+# Finding: every non-good status returned None, so explicit evaluated negatives
+# (NONE, NOT_ENABLED, NOT_CONFIGURED) - definite failures the collectors emit -
+# vanished from the tally, inflating the passing fraction (survivor bias). They
+# must score (0, 1). Errors/unknown and no-resource states still skip.
+
+def test_evaluated_negatives_score_zero_of_one():
+    for bad in ("NOT_ENABLED", "NOT_CONFIGURED", "NONE", "DISABLED",
+                "INACTIVE", "ABSENT"):
+        assert am._posture_score({"status": bad}) == (0, 1), bad
+
+
+def test_error_and_unknown_still_skip():
+    assert am._posture_score({"status": "ERROR:AccessDenied"}) is None
+    assert am._posture_score({"status": "UNKNOWN"}) is None
+
+
+def test_no_resource_states_skip_not_fail():
+    # Nothing to evaluate (no keys/repos/stacks) is NOT a failure.
+    for nr in ("NO_KEYS", "NO_REPOS", "NO_STACKS"):
+        assert am._posture_score({"status": nr}) is None, nr
+
+
+def test_negative_posture_enters_datapoint_as_failing():
+    # A routed collector reporting NOT_ENABLED must count as 0/1, not disappear.
+    ksi = {"metric_service_keys": ["securityhub"], "checks": []}
+    dp = am.datapoint_for_ksi(ksi, {}, _posture("securityhub", "NOT_ENABLED"))
+    assert dp == {"passing": 0, "total": 1}, dp
+
+
+def test_negative_does_not_get_masked_by_a_positive_sibling():
+    # F-04 core: one source ENABLED (1/1) and another NOT_ENABLED (0/1) on the
+    # same KSI must aggregate to 1/2, NOT 1/1 (the old drop-the-negative bug
+    # made a known failure invisible so the KSI read fully passing).
+    ksi = {"metric_service_keys": ["guardduty", "securityhub"], "checks": []}
+    posture = {
+        "guardduty": [{"service": "guardduty", "check": "detector", "status": "ENABLED"}],
+        "securityhub": [{"service": "securityhub", "check": "enabled", "status": "NOT_ENABLED"}],
+    }
+    dp = am.datapoint_for_ksi(ksi, {}, posture)
+    assert dp == {"passing": 1, "total": 2}, dp
+
+
 # --- Explicit metric-source allowlist (no service-name fan-out) --------------
 # Finding: routing posture to every KSI whose prose named a service let generic
 # posture manufacture metric history for unrelated KSIs. Posture now routes ONLY
