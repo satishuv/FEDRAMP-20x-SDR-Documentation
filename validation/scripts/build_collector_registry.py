@@ -27,6 +27,18 @@ OUT = os.path.join(OUT_DIR, "registry.json")
 # registry reads this so the collectable-now count regenerates deterministically
 # instead of being hand-edited.
 CLASSIFICATION = os.path.join(OUT_DIR, "pending-ksi-classification.json")
+# Pinned allowlist of real AWS Config managed-rule IDs. The generator extracts
+# backtick-quoted tokens from guidance prose; prose is not a safe source of
+# executable rule identities (a shorthand like "aurora" is not a managed rule).
+# Any extracted token NOT on this allowlist aborts the build (fail-closed) so a
+# bogus identifier can never become a config_managed_rule check target.
+KNOWN_RULES_FILE = os.path.join(
+    BASE, "automation", "config-rules", "known-config-managed-rules.json")
+
+
+def load_known_config_rules():
+    with open(KNOWN_RULES_FILE, encoding="utf-8") as f:
+        return set(json.load(f).get("config_managed_rule_ids", []))
 
 # Service names recognized in guidance prose, longest match first.
 SERVICES = [
@@ -112,12 +124,21 @@ def main():
         bucket_b = set(cls.get("bucket_b", {}).get("ksis", {}).keys())
     registry = {}
     total_rules = 0
+    known_rules = load_known_config_rules()
+    unknown_rule_tokens = {}
     for kid, e in sorted(smap["ksis"].items()):
         checks = []
         for source in ("verify", "validate"):
             text = e[f"{source}_method"]
             rules = RULE_PAT.findall(text)
             for rule in rules:
+                # Fail-closed vocabulary gate: a backtick token that is not a
+                # known AWS Config managed rule is NOT emitted as a rule check.
+                # Unknown tokens are collected and abort the build below, so a
+                # prose shorthand (e.g. "aurora") can never become a check.
+                if rule not in known_rules:
+                    unknown_rule_tokens.setdefault(rule, []).append(f"{kid}:{source}")
+                    continue
                 checks.append({
                     "check_id": f"{kid}:{source}:config:{rule}",
                     "type": "config_managed_rule",
@@ -126,7 +147,7 @@ def main():
                     "source": source,
                     "collectable_now": True,
                 })
-            total_rules += len(rules)
+            total_rules += sum(1 for r in rules if r in known_rules)
             # A described method becomes collectable now when a read-only
             # collector was built for this KSI (bucket_a). Bucket_b keeps it
             # false and records that it is provider-deployed infrastructure.
@@ -154,6 +175,21 @@ def main():
             "metric_service_keys": metric_service_keys_for(kid),
             "checks": checks,
         }
+    # Fail-closed vocabulary gate: any backtick token pulled from the guidance
+    # prose that is not a known AWS Config managed rule aborts the build. This
+    # is what stops a prose shorthand (e.g. "aurora") from silently becoming a
+    # config_managed_rule check target. To add a genuinely new rule, add its id
+    # to automation/config-rules/known-config-managed-rules.json (after
+    # confirming it against the AWS Config managed-rules catalog).
+    if unknown_rule_tokens:
+        lines = "; ".join(f"`{tok}` (in {', '.join(sorted(where))})"
+                          for tok, where in sorted(unknown_rule_tokens.items()))
+        print("ERROR: guidance prose contains backtick token(s) that are not "
+              "known AWS Config managed rules and were rejected: " + lines)
+        print("If a token IS a real AWS Config managed rule, add it to "
+              "automation/config-rules/known-config-managed-rules.json. "
+              "Otherwise fix the prose in traceability/aws-service-ksi-map.json.")
+        return 3
     doc = {
         "meta": {
             "title": "KSI collector registry (Layer 1: deterministic read-only checks)",
