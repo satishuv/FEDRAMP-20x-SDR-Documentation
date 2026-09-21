@@ -297,6 +297,7 @@ TEST_SUITE = [
     "validation/scripts/test_class_a_applicable_scope.py",
     "validation/scripts/test_class_b_optional_ksi_scope.py",
     "validation/scripts/test_config_rule_vocabulary.py",
+    "validation/scripts/test_dataset_version_consistency.py",
     "validation/scripts/test_evidence_freshness.py",
     "validation/scripts/test_evidence_integrity.py",
     "automation/collectors/test_sign_evidence.py",    "validation/scripts/test_applicability.py",
