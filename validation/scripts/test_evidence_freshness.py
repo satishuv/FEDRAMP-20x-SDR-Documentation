@@ -1,7 +1,7 @@
 # Adversarial tests for the evidence-freshness classifier used by the SDR
 # submission gate (sdr.py cmd_preflight).
 #
-# Finding closed here (external audit of c6d1322): evidence_lifecycle.py could
+# Finding closed here (at c6d1322): evidence_lifecycle.py could
 # classify current/stale/expired, but package-preflight never enforced it, so a
 # populated Class C record backed only by expired evidence could still reach
 # READY. FedRAMP guidance is explicit that expired exports / old evidence can

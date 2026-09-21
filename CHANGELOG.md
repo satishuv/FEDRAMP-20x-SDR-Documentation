@@ -131,7 +131,7 @@ remains frozen.
 
 Pinned dataset: `2026.07.14.01`
 
-This release freezes the v1 architecture after five rounds of external review. The
+This release freezes the v1 architecture. The
 theme is a strict, class-correct submission-readiness engine and an explicit trust
 boundary from authoritative FedRAMP sources through to human signoff and preflight.
 No new subsystem, agent, evidence model, or package format was introduced; these are
