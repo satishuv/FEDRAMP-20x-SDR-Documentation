@@ -1,7 +1,7 @@
 # Adversarial tests for the Class A submitted-scope filter shared by the SDR
 # builder (build_sdr.py) and package-preflight (sdr.py cmd_preflight).
 #
-# Defect locked here (found by external audit of e24308a): build_sdr.py excluded
+# Defect locked here (found at e24308a): build_sdr.py excluded
 # unselected FRC-CLA-OFR optional (MAY) rules from the submitted Class A SDR, but
 # preflight computed its applicable-record set from the FULL 41-rule Class A
 # profile. The readiness gate therefore evaluated a different rule set than the
