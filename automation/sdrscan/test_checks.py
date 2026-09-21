@@ -122,12 +122,59 @@ def test_the_old_hardcoded_five_are_not_pending_in_dataset():
               checks._ksi_is_pending(canon.get(kid)) is False)
 
 
+class _FmtCtx:
+    """Minimal ctx for format_consistency_drift: a parsed SDR dict plus the
+    human-readable rendering string."""
+    def __init__(self, sdr, human_readable):
+        self.sdr = sdr
+        self.human_readable = human_readable
+
+
+def _base_sdr():
+    return {
+        "fedRampRequirements": [
+            {"frrID": "FRR-CSO-ABC", "frrImplementationStatus": "Implemented"},
+        ],
+        "keySecurityIndicators": [
+            {"ksiId": "KSI-CNA-EIS", "ksiImplementationStatus": "Implemented"},
+        ],
+    }
+
+
+def test_legit_metadata_citation_not_flagged_as_drift():
+    # F-07: IVV-IAS-OSA is a legitimate cross-reference citation in JSON
+    # metadata (xIndependentAssessmentSummary.basis), mirrored into the human-
+    # readable rendering. It is NOT a top-level record ID, but because it is
+    # present in BOTH documents it must not be reported as a format drift.
+    sdr = _base_sdr()
+    sdr["metadata"] = {"xIndependentAssessmentSummary": {
+        "basis": "FRC-APP-FIA / IVV-IAS-OSA"}}
+    human = ("FRR-CSO-ABC\nStatus: Implemented\nKSI-CNA-EIS\nStatus: Implemented\n"
+             "Independent assessment basis: FRC-APP-FIA / IVV-IAS-OSA\n")
+    drift = checks.format_consistency_drift(_FmtCtx(sdr, human))
+    check("legitimate IVV-IAS-OSA metadata citation is NOT a false format drift",
+          not any("IVV-IAS-OSA" in d for d in drift))
+
+
+def test_genuine_extra_identifier_still_flagged():
+    # A three-segment identifier that appears in the rendering but NOWHERE in the
+    # JSON (not a record, not a citation) is a genuine drift and must still flag.
+    sdr = _base_sdr()
+    human = ("FRR-CSO-ABC\nStatus: Implemented\nKSI-CNA-EIS\nStatus: Implemented\n"
+             "Bogus reference: XYZ-BOG-USX\n")
+    drift = checks.format_consistency_drift(_FmtCtx(sdr, human))
+    check("a truly-absent identifier in the rendering IS flagged as drift",
+          any("XYZ-BOG-USX" in d for d in drift))
+
+
 def main():
     for t in (test_uuid_tail_not_flagged, test_real_account_id_still_flagged,
               test_scanner_and_validator_patterns_match,
               test_ksi_pending_honors_varies_by_class,
               test_ksi_pending_when_truly_statement_less,
-              test_the_old_hardcoded_five_are_not_pending_in_dataset):
+              test_the_old_hardcoded_five_are_not_pending_in_dataset,
+              test_legit_metadata_citation_not_flagged_as_drift,
+              test_genuine_extra_identifier_still_flagged):
         print(t.__name__); t()
     print(f"\n{PASS}/{PASS + FAIL} passed")
     return 0 if FAIL == 0 else 1
