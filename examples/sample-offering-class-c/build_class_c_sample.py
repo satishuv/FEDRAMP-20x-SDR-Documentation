@@ -141,17 +141,28 @@ def generate_store():
 
 def generate_history(store):
     """A >=6-month daily-ish metric history per KSI, in the REAL production
-    shape append_metrics writes: {"ksis": {kid: {"series": [{date,status}...]}}}."""
+    shape append_metrics writes: {"ksis": {kid: {"series": [...], "metrics": {...}}}}.
+
+    The per-method "metrics" map is keyed by the SAME method_ids the KSI declares
+    in its records-store tests ({kid}-config-rule, {kid}-api-collector), so each
+    declared automated VVK method is BOUND to observed telemetry. This satisfies
+    the Class C/D method-to-telemetry binding gate: a declared automated method
+    that produced no keyed telemetry is a false-ready path and must block."""
     ksis = list(store.get("ksi", {}).keys())
     hist = {"ksis": {}}
     for kid in ksis:
         series = []
+        per_method = {f"{kid}-config-rule": [], f"{kid}-api-collector": []}
         # 200 days back to today, weekly datapoints (well over the 183-day min).
         d = TODAY - dt.timedelta(days=200)
         while d <= TODAY:
-            series.append({"date": d.isoformat(), "status": "pass"})
+            iso = d.isoformat()
+            series.append({"date": iso, "status": "pass"})
+            for mkey in per_method:
+                per_method[mkey].append({"date": iso, "passing": 1, "total": 1})
             d += dt.timedelta(days=7)
-        hist["ksis"][kid] = {"series": series}
+        metrics = {mkey: {"series": s} for mkey, s in per_method.items()}
+        hist["ksis"][kid] = {"series": series, "metrics": metrics}
     return hist
 
 

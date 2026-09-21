@@ -1879,6 +1879,33 @@ def cmd_preflight(args):
             # is not double-blocked here ("where available").
             if kid in _kmt_ksis and not _daily_series_for(kid):
                 gaps.append("kmt_daily_data (no in-window daily observations in metric history)")
+        # FRC-CSX-VVK method-to-telemetry binding (Class C/D): a KSI that DECLARES
+        # automated verification methods must have those methods bound to observed
+        # telemetry - the declared method_id must key an in-history per-method
+        # metrics series (the method actually produced datapoints). Two methods
+        # declared automated:true that never emitted keyed telemetry are a
+        # false-ready path: the count gate passes on the declaration alone. This
+        # binds the declaration to reality.
+        #
+        # Honors "where available" two ways: (1) skip when the initial-
+        # certification MOT exception is valid - a brand-new offering legitimately
+        # has no accumulated per-method history yet; (2) skip a KSI wholly absent
+        # from history (left to the MOT coverage gate, not double-blocked here).
+        if cls in ("c", "d") and not exc_valid:
+            entry = _kmt_ksis.get(kid)
+            if isinstance(entry, dict):
+                declared = [t for t in (rec.get("tests") or [])
+                            if isinstance(t, dict) and t.get("automated") is True
+                            and _answered(t.get("method_id"))]
+                if declared:
+                    metrics = entry.get("metrics") if isinstance(entry.get("metrics"), dict) else {}
+                    bound = [t for t in declared if t["method_id"] in metrics]
+                    if not bound:
+                        gaps.append(
+                            "vvk_method_binding (declared automated method(s) "
+                            + ", ".join(sorted(t["method_id"] for t in declared)[:5])
+                            + " are not bound to any observed telemetry in metric "
+                            "history)")
         return gaps
 
     tbd = placeholders = scoped_records = 0
