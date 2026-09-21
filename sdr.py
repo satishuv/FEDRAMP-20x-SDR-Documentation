@@ -1701,6 +1701,21 @@ def cmd_preflight(args):
     _kmt_hist = load_json(os.path.join(BASE, "automation", "metrics", "metric-history.json")) or {}
     _kmt_ksis = (_kmt_hist.get("ksis", _kmt_hist) if isinstance(_kmt_hist, dict) else {}) or {}
 
+    # Per-KSI class minimum number of automated verification methods (FRC-CSX-VVK),
+    # read from the pinned KSI profile: class_c = 2, class_d = 4. Used by the VVK
+    # method-to-telemetry binding gate so it requires the class minimum of declared
+    # methods bound to telemetry, not merely one (existential binding was a
+    # false-ready path: 2 declared / 1 bound satisfied the count gate and the
+    # binding gate simultaneously).
+    _vvk_min_key = {"c": "class_c", "d": "class_d_future"}.get(cls)
+    _vvk_min_by_ksi = {}
+    if _vvk_min_key:
+        for _ind in ksi_profile.get("indicators", []):
+            _kid = _ind.get("ksi_id")
+            _m = (_ind.get("minimum_automated_methods") or {}).get(_vvk_min_key)
+            if _kid and isinstance(_m, int):
+                _vvk_min_by_ksi[_kid] = _m
+
     def _daily_series_for(kid):
         import datetime as _dk
         entry = _kmt_ksis.get(kid)
@@ -1881,32 +1896,51 @@ def cmd_preflight(args):
             if kid in _kmt_ksis and not _daily_series_for(kid):
                 gaps.append("kmt_daily_data (no in-window daily observations in metric history)")
         # FRC-CSX-VVK method-to-telemetry binding (Class C/D): a KSI that DECLARES
-        # automated verification methods must have those methods bound to observed
-        # telemetry - the declared method_id must key an in-history per-method
-        # metrics series (the method actually produced datapoints). Two methods
-        # declared automated:true that never emitted keyed telemetry are a
-        # false-ready path: the count gate passes on the declaration alone. This
-        # binds the declaration to reality.
+        # automated verification methods must have the CLASS MINIMUM number of them
+        # (C=2, D=4) bound to observed telemetry - each counted method_id must key
+        # an in-history per-method metrics series (the method actually produced
+        # datapoints). This is SET-based, not existential: two methods declared
+        # automated:true where only one emitted keyed telemetry is a false-ready
+        # path - the count gate passes on two declarations and old code passed the
+        # binding gate on the single bound one, so a half-implemented KSI reached
+        # ready. Requiring the class minimum bound closes that.
         #
-        # Honors "where available" two ways: (1) skip when the initial-
-        # certification MOT exception is valid - a brand-new offering legitimately
-        # has no accumulated per-method history yet; (2) skip a KSI wholly absent
-        # from history (left to the MOT coverage gate, not double-blocked here).
-        if cls in ("c", "d") and not exc_valid:
+        # The MOT exception does NOT switch this off. FRC-CSX-MOT's initial-
+        # certification exception relaxes the persistent-validation HISTORY
+        # DURATION (6/18 months); it does not remove the separate FRC-CSX-VVK
+        # obligation to actually implement the class-minimum automated methods. So
+        # this gate stays active under exc_valid. "Where available" is still
+        # honored the one honest way: a KSI WHOLLY ABSENT from history (no metrics
+        # map at all) is left to the MOT coverage gate and not double-blocked here
+        # - a brand-new offering may legitimately have no accumulated per-method
+        # history yet. But once a KSI IS in history with a metrics map, the class
+        # minimum of its declared methods must be bound.
+        if cls in ("c", "d"):
             entry = _kmt_ksis.get(kid)
-            if isinstance(entry, dict):
+            if isinstance(entry, dict) and isinstance(entry.get("metrics"), dict):
                 declared = [t for t in (rec.get("tests") or [])
                             if isinstance(t, dict) and t.get("automated") is True
                             and _answered(t.get("method_id"))]
                 if declared:
-                    metrics = entry.get("metrics") if isinstance(entry.get("metrics"), dict) else {}
+                    metrics = entry.get("metrics")
                     bound = [t for t in declared if t["method_id"] in metrics]
-                    if not bound:
+                    need = _vvk_min_by_ksi.get(kid, 2 if cls == "c" else 4)
+                    # Cannot require more bound than the KSI actually declares:
+                    # the count-minimum gate (validate_sdr) separately enforces
+                    # that enough methods are DECLARED. Here we bind whatever the
+                    # class minimum is, capped at the declared count so a KSI that
+                    # declares exactly the minimum is not impossible to satisfy.
+                    need = min(need, len(declared))
+                    if len(bound) < need:
                         gaps.append(
-                            "vvk_method_binding (declared automated method(s) "
+                            f"vvk_method_binding ({len(bound)} of {need} required "
+                            "automated method(s) bound to observed telemetry; "
+                            "declared: "
                             + ", ".join(sorted(t["method_id"] for t in declared)[:5])
-                            + " are not bound to any observed telemetry in metric "
-                            "history)")
+                            + "; bound: "
+                            + (", ".join(sorted(t["method_id"] for t in bound)[:5])
+                               or "none")
+                            + ")")
         return gaps
 
     tbd = placeholders = scoped_records = 0
