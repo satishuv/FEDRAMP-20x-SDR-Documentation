@@ -46,6 +46,47 @@ SERVICES = [
 
 RULE_PAT = re.compile(r"`([a-z0-9][a-z0-9-]*)`")
 
+# Explicit posture-metric source allowlist: collector service-key -> the KSIs
+# that service's posture LEGITIMATELY measures. This is the authoritative
+# routing for KMT metric history, derived from the collector-to-KSI mapping the
+# collectors' own docstrings declare ("Maps: ...") and the bucket_a signals in
+# pending-ksi-classification.json - NOT from prose service-name matching.
+#
+# Why this exists (finding: generic service -> KSI metric fan-out): routing a
+# posture service to every KSI whose prose happens to name it let unrelated
+# posture (e.g. generic S3/Config/IAM) manufacture daily metric history for a
+# KSI it says nothing about (e.g. KSI-CED-RAT employee training). A service now
+# contributes a metric to a KSI ONLY if that KSI id appears here. A KSI whose
+# assurance is document/process evidence (bucket_b) has NO posture source and
+# therefore accrues no automated metric history from generic posture.
+#
+# Service keys MUST match automation/collectors/service_registry.py exactly.
+METRIC_SOURCE_MAP = {
+    "cloudformation": ["KSI-CNA-EIS", "KSI-SVC-ACM", "KSI-CMT-RMV"],
+    "codepipeline": ["KSI-CMT-VTD", "KSI-PIY-RSD"],
+    "config": ["KSI-CNA-IBP", "KSI-MLA-EVC", "KSI-SVC-EIS"],
+    "wafv2": ["KSI-CNA-RVP"],
+    "ec2": ["KSI-CNA-ULN"],
+    "iam": ["KSI-IAM-JIT"],
+    "guardduty": ["KSI-IAM-SUS"],
+    "events": ["KSI-IAM-SUS", "KSI-SCR-MON"],
+    "cloudtrail": ["KSI-MLA-OSM", "KSI-SVC-VRI"],
+    "securityhub": ["KSI-MLA-OSM"],
+    "s3": ["KSI-MLA-OSM", "KSI-SVC-PRR", "KSI-SVC-RUD"],
+    "backup": ["KSI-RPL-TRC", "KSI-SVC-RUD"],
+    "inspector2": ["KSI-SCR-MIT", "KSI-SCR-MON"],
+    "kms": ["KSI-SVC-PRR"],
+    "dynamodb": ["KSI-SVC-RUD"],
+    "ecr": ["KSI-SVC-VRI"],
+    "accessanalyzer": ["KSI-IAM-ELP"],
+}
+
+
+def metric_service_keys_for(kid):
+    """The collector service-keys whose posture legitimately measures this KSI,
+    inverted from METRIC_SOURCE_MAP. Empty for a KSI with no posture source."""
+    return sorted(k for k, kids in METRIC_SOURCE_MAP.items() if kid in kids)
+
 
 def find_services(text):
     found = []
@@ -110,6 +151,7 @@ def main():
             "services": find_services(
                 e["aws_implementation"] + " " + e["verify_method"] + " "
                 + e["validate_method"]),
+            "metric_service_keys": metric_service_keys_for(kid),
             "checks": checks,
         }
     doc = {

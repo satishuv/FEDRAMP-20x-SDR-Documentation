@@ -132,10 +132,13 @@ def datapoint_for_ksi(ksi_entry, config_by_rule, posture_by_service):
         total += 1
         if ct in GOOD_CONFIG:
             passing += 1
-    named = set(ksi_entry.get("services", []))
-    for svc_key, svc_label in POSTURE_SERVICE_KEYS.items():
-        if not any(svc_label in n for n in named):
-            continue
+    # Posture routing is by the EXPLICIT per-KSI allowlist (metric_service_keys),
+    # NOT prose service-name matching. A posture service contributes to this KSI
+    # only if its collector key is on the KSI's allowlist. A KSI with no allowlist
+    # (e.g. a document/process KSI) accrues no posture metric - closing the
+    # generic-service fan-out where unrelated posture manufactured KSI history.
+    allowed = set(ksi_entry.get("metric_service_keys", []))
+    for svc_key in allowed:
         for pf in posture_by_service.get(svc_key, []):
             score = _posture_score(pf)
             if score is None:
@@ -179,10 +182,9 @@ def per_metric_datapoints_for_ksi(ksi_entry, config_by_rule, posture_by_service)
             "objective": check.get("description") or check.get("objective") or "",
             "source": f"AWS Config rule {target}",
         }
-    named = set(ksi_entry.get("services", []))
-    for svc_key, svc_label in POSTURE_SERVICE_KEYS.items():
-        if not any(svc_label in n for n in named):
-            continue
+    allowed = set(ksi_entry.get("metric_service_keys", []))
+    for svc_key in allowed:
+        svc_label = POSTURE_SERVICE_KEYS.get(svc_key, svc_key)
         obs = posture_by_service.get(svc_key, [])
         p = t = 0
         for pf in obs:

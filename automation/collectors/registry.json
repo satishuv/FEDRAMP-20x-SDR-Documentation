@@ -25,6 +25,7 @@
     "AWS KMS",
     "Amazon S3"
    ],
+   "metric_service_keys": [],
    "checks": [
     {
      "check_id": "KSI-CED-RAT:verify:method",
@@ -72,6 +73,7 @@
     "AWS KMS",
     "Amazon S3"
    ],
+   "metric_service_keys": [],
    "checks": [
     {
      "check_id": "KSI-CMT-LMC:verify:config:cloudtrail-enabled",
@@ -137,6 +139,9 @@
     "AWS CloudFormation",
     "IAM"
    ],
+   "metric_service_keys": [
+    "cloudformation"
+   ],
    "checks": [
     {
      "check_id": "KSI-CMT-RMV:verify:method",
@@ -177,6 +182,7 @@
     "AWS Lambda",
     "Amazon S3"
    ],
+   "metric_service_keys": [],
    "checks": [
     {
      "check_id": "KSI-CMT-RVP:verify:method",
@@ -222,6 +228,9 @@
     "AWS CloudFormation",
     "Amazon ECR"
    ],
+   "metric_service_keys": [
+    "codepipeline"
+   ],
    "checks": [
     {
      "check_id": "KSI-CMT-VTD:verify:method",
@@ -266,6 +275,7 @@
     "AWS Organizations",
     "AWS CloudFormation"
    ],
+   "metric_service_keys": [],
    "checks": [
     {
      "check_id": "KSI-CNA-DFP:verify:config:iam-policy-no-statements-with-admin-access",
@@ -318,6 +328,9 @@
     "AWS Systems Manager",
     "AWS CloudFormation"
    ],
+   "metric_service_keys": [
+    "cloudformation"
+   ],
    "checks": [
     {
      "check_id": "KSI-CNA-EIS:verify:method",
@@ -353,6 +366,9 @@
    "services": [
     "AWS Security Hub",
     "AWS Config"
+   ],
+   "metric_service_keys": [
+    "config"
    ],
    "checks": [
     {
@@ -391,6 +407,7 @@
     "AWS WAF",
     "Amazon VPC"
    ],
+   "metric_service_keys": [],
    "checks": [
     {
      "check_id": "KSI-CNA-MAT:verify:config:restricted-ssh",
@@ -458,6 +475,7 @@
     "Amazon S3",
     "Amazon Route 53"
    ],
+   "metric_service_keys": [],
    "checks": [
     {
      "check_id": "KSI-CNA-OFA:verify:config:elb-cross-zone-load-balancing-enabled",
@@ -520,6 +538,7 @@
     "Amazon VPC",
     "AWS Network Firewall"
    ],
+   "metric_service_keys": [],
    "checks": [
     {
      "check_id": "KSI-CNA-RNT:verify:config:vpc-default-security-group-closed",
@@ -581,6 +600,9 @@
     "AWS WAF",
     "AWS Shield"
    ],
+   "metric_service_keys": [
+    "wafv2"
+   ],
    "checks": [
     {
      "check_id": "KSI-CNA-RVP:verify:method",
@@ -619,6 +641,9 @@
     "AWS Config",
     "Amazon GuardDuty",
     "Amazon VPC"
+   ],
+   "metric_service_keys": [
+    "ec2"
    ],
    "checks": [
     {
@@ -661,6 +686,7 @@
     "AWS CodePipeline",
     "AWS CloudFormation"
    ],
+   "metric_service_keys": [],
    "checks": [
     {
      "check_id": "KSI-IAM-AAM:verify:config:iam-user-no-policies-check",
@@ -723,6 +749,7 @@
     "Amazon EventBridge",
     "AWS Config"
    ],
+   "metric_service_keys": [],
    "checks": [
     {
      "check_id": "KSI-IAM-APM:verify:config:iam-password-policy",
@@ -784,6 +811,9 @@
     "AWS Config",
     "AWS Organizations"
    ],
+   "metric_service_keys": [
+    "accessanalyzer"
+   ],
    "checks": [
     {
      "check_id": "KSI-IAM-ELP:verify:config:iam-policy-no-statements-with-admin-access",
@@ -837,6 +867,9 @@
     "AWS Systems Manager",
     "AWS Step Functions"
    ],
+   "metric_service_keys": [
+    "iam"
+   ],
    "checks": [
     {
      "check_id": "KSI-IAM-JIT:verify:method",
@@ -879,6 +912,7 @@
     "AWS Secrets Manager",
     "IAM"
    ],
+   "metric_service_keys": [],
    "checks": [
     {
      "check_id": "KSI-IAM-SNU:verify:config:access-keys-rotated",
@@ -942,6 +976,10 @@
     "Amazon GuardDuty",
     "Amazon SNS"
    ],
+   "metric_service_keys": [
+    "events",
+    "guardduty"
+   ],
    "checks": [
     {
      "check_id": "KSI-IAM-SUS:verify:method",
@@ -988,6 +1026,7 @@
     "AWS KMS",
     "Amazon S3"
    ],
+   "metric_service_keys": [],
    "checks": [
     {
      "check_id": "KSI-INR-AAR:verify:method",
@@ -1032,6 +1071,7 @@
     "AWS Lambda",
     "Amazon S3"
    ],
+   "metric_service_keys": [],
    "checks": [
     {
      "check_id": "KSI-INR-RIR:verify:method",
@@ -1075,6 +1115,7 @@
     "AWS Lambda",
     "Amazon S3"
    ],
+   "metric_service_keys": [],
    "checks": [
     {
      "check_id": "KSI-INR-RPI:verify:method",
@@ -1122,6 +1163,7 @@
     "Amazon S3",
     "IAM"
    ],
+   "metric_service_keys": [],
    "checks": [
     {
      "check_id": "KSI-MLA-ALA:verify:config:s3-bucket-public-read-prohibited",
@@ -1180,6 +1222,9 @@
     "AWS Config",
     "AWS CodeBuild"
    ],
+   "metric_service_keys": [
+    "config"
+   ],
    "checks": [
     {
      "check_id": "KSI-MLA-EVC:verify:method",
@@ -1218,6 +1263,7 @@
     "AWS Config",
     "Amazon VPC"
    ],
+   "metric_service_keys": [],
    "checks": [
     {
      "check_id": "KSI-MLA-LET:verify:config:cloudtrail-enabled",
@@ -1280,6 +1326,11 @@
     "Amazon GuardDuty",
     "Amazon S3"
    ],
+   "metric_service_keys": [
+    "cloudtrail",
+    "s3",
+    "securityhub"
+   ],
    "checks": [
     {
      "check_id": "KSI-MLA-OSM:verify:method",
@@ -1322,6 +1373,7 @@
     "AWS Config",
     "AWS Lambda"
    ],
+   "metric_service_keys": [],
    "checks": [
     {
      "check_id": "KSI-MLA-RVL:verify:method",
@@ -1365,6 +1417,7 @@
     "AWS Systems Manager",
     "Amazon S3"
    ],
+   "metric_service_keys": [],
    "checks": [
     {
      "check_id": "KSI-PIY-GIV:verify:config:required-tags",
@@ -1414,6 +1467,7 @@
     "AWS KMS",
     "Amazon S3"
    ],
+   "metric_service_keys": [],
    "checks": [
     {
      "check_id": "KSI-PIY-RES:verify:method",
@@ -1456,6 +1510,7 @@
     "AWS Lambda",
     "Amazon S3"
    ],
+   "metric_service_keys": [],
    "checks": [
     {
      "check_id": "KSI-PIY-RIS:verify:method",
@@ -1498,6 +1553,9 @@
     "AWS CodePipeline",
     "AWS CodeBuild"
    ],
+   "metric_service_keys": [
+    "codepipeline"
+   ],
    "checks": [
     {
      "check_id": "KSI-PIY-RSD:verify:method",
@@ -1539,6 +1597,7 @@
     "AWS Lambda",
     "Amazon S3"
    ],
+   "metric_service_keys": [],
    "checks": [
     {
      "check_id": "KSI-PIY-RVD:verify:method",
@@ -1583,6 +1642,7 @@
     "AWS Backup",
     "Amazon S3"
    ],
+   "metric_service_keys": [],
    "checks": [
     {
      "check_id": "KSI-RPL-ABO:verify:config:backup-plan-min-frequency-and-min-retention-check",
@@ -1646,6 +1706,7 @@
     "Amazon S3",
     "Amazon Route 53"
    ],
+   "metric_service_keys": [],
    "checks": [
     {
      "check_id": "KSI-RPL-ARP:verify:method",
@@ -1689,6 +1750,7 @@
     "AWS Backup",
     "Amazon S3"
    ],
+   "metric_service_keys": [],
    "checks": [
     {
      "check_id": "KSI-RPL-RRO:verify:method",
@@ -1732,6 +1794,9 @@
     "Amazon S3",
     "Amazon VPC"
    ],
+   "metric_service_keys": [
+    "backup"
+   ],
    "checks": [
     {
      "check_id": "KSI-RPL-TRC:verify:method",
@@ -1774,6 +1839,9 @@
     "AWS CodePipeline",
     "Amazon ECR"
    ],
+   "metric_service_keys": [
+    "inspector2"
+   ],
    "checks": [
     {
      "check_id": "KSI-SCR-MIT:verify:method",
@@ -1815,6 +1883,10 @@
     "Amazon Inspector",
     "Amazon SNS"
    ],
+   "metric_service_keys": [
+    "events",
+    "inspector2"
+   ],
    "checks": [
     {
      "check_id": "KSI-SCR-MON:verify:method",
@@ -1855,6 +1927,9 @@
     "AWS Systems Manager",
     "AWS CodePipeline",
     "AWS CloudFormation"
+   ],
+   "metric_service_keys": [
+    "cloudformation"
    ],
    "checks": [
     {
@@ -1898,6 +1973,7 @@
     "AWS Secrets Manager",
     "AWS Certificate Manager"
    ],
+   "metric_service_keys": [],
    "checks": [
     {
      "check_id": "KSI-SVC-ASM:verify:config:secretsmanager-rotation-enabled-check",
@@ -1958,6 +2034,9 @@
     "AWS Lambda",
     "Amazon Inspector"
    ],
+   "metric_service_keys": [
+    "config"
+   ],
    "checks": [
     {
      "check_id": "KSI-SVC-EIS:verify:method",
@@ -1999,6 +2078,10 @@
     "Amazon S3",
     "Amazon Macie",
     "Amazon VPC"
+   ],
+   "metric_service_keys": [
+    "kms",
+    "s3"
    ],
    "checks": [
     {
@@ -2042,6 +2125,11 @@
     "AWS Backup",
     "Amazon S3"
    ],
+   "metric_service_keys": [
+    "backup",
+    "dynamodb",
+    "s3"
+   ],
    "checks": [
     {
      "check_id": "KSI-SVC-RUD:verify:method",
@@ -2083,6 +2171,7 @@
     "AWS KMS",
     "Amazon S3"
    ],
+   "metric_service_keys": [],
    "checks": [
     {
      "check_id": "KSI-SVC-SIN:verify:config:s3-bucket-server-side-encryption-enabled",
@@ -2152,6 +2241,7 @@
     "AWS Certificate Manager",
     "IAM"
    ],
+   "metric_service_keys": [],
    "checks": [
     {
      "check_id": "KSI-SVC-VCM:verify:config:alb-http-to-https-redirection-check",
@@ -2204,6 +2294,10 @@
     "Amazon S3",
     "AWS CodePipeline",
     "Amazon ECR"
+   ],
+   "metric_service_keys": [
+    "cloudtrail",
+    "ecr"
    ],
    "checks": [
     {

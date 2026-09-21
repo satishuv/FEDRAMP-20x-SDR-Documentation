@@ -10,9 +10,10 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import append_metrics as am  # noqa: E402
 
 REGISTRY = {"meta": {"dataset_version": "test"}, "ksis": {
-    "KSI-A": {"services": ["AWS Config"],
+    "KSI-A": {"services": ["AWS Config"], "metric_service_keys": [],
               "checks": [{"type": "config_managed_rule", "target": "r1"}]},
-    "KSI-B": {"services": ["Amazon GuardDuty"], "checks": []},
+    "KSI-B": {"services": ["Amazon GuardDuty"], "metric_service_keys": ["guardduty"],
+              "checks": []},
 }}
 
 
@@ -77,17 +78,13 @@ def _posture(service, status, measured=None, total=None):
 
 def test_observed_zero_ratio_scores_zero_not_pass():
     # 0 of 50 keys rotating, collected as OBSERVED, must be 0/50, never a pass.
-    kms_ksi = {"services": ["AWS Key Management Service"], "checks": []}
-    reg = {"meta": {"dataset_version": "test"},
-           "ksis": {"KSI-KMS": kms_ksi}}
-    # POSTURE_SERVICE_KEYS maps "kms" -> "AWS Key Management Service"
+    kms_ksi = {"metric_service_keys": ["kms"], "checks": []}
     dp = am.datapoint_for_ksi(kms_ksi, {}, _posture("kms", "OBSERVED", 0, 50))
     assert dp == {"passing": 0, "total": 50}, dp
-    _ = reg  # registry shape documented
 
 
 def test_observed_full_ratio_scores_full():
-    kms_ksi = {"services": ["AWS Key Management Service"], "checks": []}
+    kms_ksi = {"metric_service_keys": ["kms"], "checks": []}
     dp = am.datapoint_for_ksi(kms_ksi, {}, _posture("kms", "OBSERVED", 50, 50))
     assert dp == {"passing": 50, "total": 50}, dp
 
@@ -95,7 +92,7 @@ def test_observed_full_ratio_scores_full():
 def test_bare_observed_without_ratio_is_not_a_datapoint():
     # A count-only OBSERVED (e.g. "25 failed findings") carries no evaluated
     # outcome: it must not become 1/1 passing and must not inflate the total.
-    kms_ksi = {"services": ["AWS Key Management Service"], "checks": []}
+    kms_ksi = {"metric_service_keys": ["kms"], "checks": []}
     dp = am.datapoint_for_ksi(kms_ksi, {}, _posture("kms", "OBSERVED"))
     assert dp is None, dp
 
@@ -106,6 +103,38 @@ def test_posture_score_helper():
     assert am._posture_score({"status": "ENABLED"}) == (1, 1)
     assert am._posture_score({"status": "ERROR:X"}) is None
     assert am._posture_score({"status": "OBSERVED", "measured": 3, "total": 0}) is None
+
+
+# --- Explicit metric-source allowlist (no service-name fan-out) --------------
+# Finding: routing posture to every KSI whose prose named a service let generic
+# posture manufacture metric history for unrelated KSIs. Posture now routes ONLY
+# via the KSI's explicit metric_service_keys allowlist.
+
+def test_no_allowlist_means_no_posture_metric():
+    # A KSI with an empty allowlist (e.g. a document/process KSI like CED-RAT)
+    # accrues NO posture metric even when posture for that service was collected.
+    doc_ksi = {"metric_service_keys": [], "checks": []}
+    # s3/config/kms posture present, all with good ratios:
+    posture = {
+        "s3": [{"service": "s3", "status": "OBSERVED", "measured": 10, "total": 10}],
+        "config": [{"service": "config", "status": "ENABLED"}],
+        "kms": [{"service": "kms", "status": "OBSERVED", "measured": 5, "total": 5}],
+    }
+    assert am.datapoint_for_ksi(doc_ksi, {}, posture) is None
+
+
+def test_posture_routes_only_to_allowlisted_service():
+    # A KSI allowlisted for cloudformation must NOT pick up unrelated s3 posture.
+    eis_ksi = {"metric_service_keys": ["cloudformation"], "checks": []}
+    posture = {
+        "cloudformation": [{"service": "cloudformation", "status": "OBSERVED",
+                            "measured": 8, "total": 10}],
+        "s3": [{"service": "s3", "status": "OBSERVED", "measured": 0, "total": 100}],
+    }
+    dp = am.datapoint_for_ksi(eis_ksi, {}, posture)
+    # only the cloudformation 8/10 counts; the 0/100 s3 leak is excluded
+    assert dp == {"passing": 8, "total": 10}, dp
+
 
 
 def test_history_persists_across_ephemeral_runs():
