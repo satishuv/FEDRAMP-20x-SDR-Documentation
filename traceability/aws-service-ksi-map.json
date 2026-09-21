@@ -234,7 +234,7 @@
    "family": "CNA",
    "family_name": "Cloud Native Architecture",
    "aws_implementation": "Run AWS Fargate services across multiple Availability Zones behind an Application Load Balancer with health checks. Use Amazon Aurora Serverless with Multi-AZ, and Amazon S3 for durable object storage. Front the offering with Amazon Route 53 health checks and AWS Auto Scaling.",
-   "verify_method": "AWS Config managed rules `elb-cross-zone-load-balancing-enabled` and `rds-multi-az-support` (or `aurora` equivalents) confirm multi-Availability-Zone configuration.",
+   "verify_method": "AWS Config managed rules `elb-cross-zone-load-balancing-enabled` and `rds-multi-az-support` confirm multi-Availability-Zone configuration.",
    "validate_method": "Amazon CloudWatch alarms on Application Load Balancer health and Amazon Route 53 health checks demonstrate failover and availability behavior at runtime, surfaced in AWS Security Hub.",
    "rev5_controls_workbook": [
     "cp-6",

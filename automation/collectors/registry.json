@@ -4,7 +4,7 @@
   "derived_from": "traceability/aws-service-ksi-map.json",
   "dataset_version": "2026.09.13.02",
   "ksis": 46,
-  "config_managed_rule_checks": 45,
+  "config_managed_rule_checks": 44,
   "boundary": "Collectors are read-only by design and produce facts, never statuses. A status changes only through deterministic checks plus human sign-off; generative output is never deterministic telemetry (FedRAMP definitions).",
   "ksis_collectable_now": 35,
   "ksis_provider_deployed_only": 11
@@ -494,20 +494,12 @@
      "collectable_now": true
     },
     {
-     "check_id": "KSI-CNA-OFA:verify:config:aurora",
-     "type": "config_managed_rule",
-     "service": "AWS Config",
-     "target": "aurora",
-     "source": "verify",
-     "collectable_now": true
-    },
-    {
      "check_id": "KSI-CNA-OFA:verify:method",
      "type": "described_method",
      "services": [
       "AWS Config"
      ],
-     "description": "AWS Config managed rules `elb-cross-zone-load-balancing-enabled` and `rds-multi-az-support` (or `aurora` equivalents) confirm multi-Availability-Zone configuration.",
+     "description": "AWS Config managed rules `elb-cross-zone-load-balancing-enabled` and `rds-multi-az-support` confirm multi-Availability-Zone configuration.",
      "source": "verify",
      "collectable_now": false
     },
