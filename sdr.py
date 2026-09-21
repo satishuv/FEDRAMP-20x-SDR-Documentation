@@ -295,6 +295,7 @@ TEST_SUITE = [
     "validation/scripts/test_vvk_automated_methods.py",
     "validation/scripts/test_class_a_framework.py",
     "validation/scripts/test_class_a_applicable_scope.py",
+    "validation/scripts/test_class_b_optional_ksi_scope.py",
     "validation/scripts/test_evidence_freshness.py",
     "validation/scripts/test_evidence_integrity.py",
     "automation/collectors/test_sign_evidence.py",    "validation/scripts/test_applicability.py",
@@ -485,6 +486,23 @@ def class_a_framework_key(raw):
 def class_a_required_material_types(key):
     """Return the force-gated EAM material type keys for a canonical framework."""
     return [k for k, _label in CLA_REQUIRED_MATERIALS.get(key, [])]
+
+
+def optional_at_class_b_ksis(ksi_indicators):
+    """The KSI ids that are OPTIONAL at Class B, detected from the dataset's
+    varies_by_class 'b' statement carrying the "**Optional:**" prefix (verified
+    against the pinned CR26 dataset: KSI-CNA-EIS, KSI-MLA-ALA, KSI-SVC-PRR,
+    KSI-SVC-RUD, KSI-SVC-VCM lose that prefix at Class C where they are
+    mandatory). Single source of truth shared by preflight and its test."""
+    out = set()
+    for ind in ksi_indicators or []:
+        vbc = ind.get("varies_by_class") or {}
+        if not isinstance(vbc, dict):
+            continue
+        b_stmt = (vbc.get("b") or {}).get("statement", "")
+        if str(b_stmt).lstrip().startswith("**Optional:**"):
+            out.add(ind.get("ksi_id"))
+    return out
 
 
 def submitted_rule_ids(profile_rules, cls, selected_optional=None):
@@ -1537,7 +1555,27 @@ def cmd_preflight(args):
         class_a_ksis = (class_profile.get("meta", {}) or {}).get("class_a_ksis", {})
         applicable_ksi = set(class_a_ksis.keys()) if class_a_ksis else set()
     else:
-        applicable_ksi = {k.get("ksi_id") for k in ksi_profile.get("indicators", [])}
+        _all_inds = ksi_profile.get("indicators", [])
+        applicable_ksi = {k.get("ksi_id") for k in _all_inds}
+        # Class B optional-KSI scoping (verified against the pinned dataset):
+        # five KSIs carry a varies_by_class 'b' statement prefixed "**Optional:**"
+        # (CNA-EIS, MLA-ALA, SVC-PRR, SVC-RUD, SVC-VCM) and lose that prefix at
+        # Class C. At Class B they are OPTIONAL: gate one only when the provider
+        # explicitly selects it via profile.selected_optional_ksis. At Class C/D
+        # they are mandatory and stay in scope. Without this, Class B over-gates
+        # all 46 KSIs including the five the dataset marks optional at B.
+        if cls == "b":
+            optional_b_ksis = optional_at_class_b_ksis(_all_inds)
+            selected_optional_ksis = set(offering.get("selected_optional_ksis") or [])
+            unknown_opt = selected_optional_ksis - optional_b_ksis
+            if unknown_opt:
+                warnings.append(
+                    "offering: selected_optional_ksis names ID(s) that are not "
+                    "optional at Class B and are ignored: "
+                    + ", ".join(sorted(unknown_opt))
+                    + " (valid optional-at-B KSIs: "
+                    + ", ".join(sorted(optional_b_ksis)) + ")")
+            applicable_ksi -= (optional_b_ksis - selected_optional_ksis)
 
     def _count_markers(rec):
         blob = json.dumps(rec)
