@@ -39,7 +39,15 @@
      "source": "verify",
      "collectable_now": false,
      "provider_deployed": true,
-     "deploy": "automation/config-rules/ (Config custom rule)"
+     "deploy": "automation/config-rules/ (Config custom rule)",
+     "outcome_metric": {
+      "metric_id": "KSI-CED-RAT-config-rule",
+      "signal": "config_rule_compliance",
+      "unit": "compliant_fraction",
+      "pass_when": "COMPLIANT",
+      "emitted_by": "AWS Config custom rule (Lambda-backed)",
+      "description": "Fraction of evaluations reporting COMPLIANT: the reviewed artifact exists AND is current within the defined review interval. A stale or missing artifact evaluates NON_COMPLIANT and scores 0, not passing."
+     }
     },
     {
      "check_id": "KSI-CED-RAT:validate:method",
@@ -55,7 +63,15 @@
      "source": "validate",
      "collectable_now": false,
      "provider_deployed": true,
-     "deploy": "automation/config-rules/ (Config custom rule)"
+     "deploy": "automation/config-rules/ (Config custom rule)",
+     "outcome_metric": {
+      "metric_id": "KSI-CED-RAT-coverage-collector",
+      "signal": "cloudwatch_coverage",
+      "unit": "coverage_fraction",
+      "pass_when": ">= threshold",
+      "emitted_by": "EventBridge-scheduled Lambda -> CloudWatch metric",
+      "description": "Coverage/freshness percentage the scheduled check emits (e.g. workforce coverage, days-since-review). Scores the measured fraction; a below-threshold or stale value is not passing."
+     }
     }
    ]
   },
@@ -195,7 +211,15 @@
      "source": "verify",
      "collectable_now": false,
      "provider_deployed": true,
-     "deploy": "automation/config-rules/ (Config custom rule)"
+     "deploy": "automation/config-rules/ (Config custom rule)",
+     "outcome_metric": {
+      "metric_id": "KSI-CMT-RVP-config-rule",
+      "signal": "config_rule_compliance",
+      "unit": "compliant_fraction",
+      "pass_when": "COMPLIANT",
+      "emitted_by": "AWS Config custom rule (Lambda-backed)",
+      "description": "Fraction of evaluations reporting COMPLIANT: the reviewed artifact exists AND is current within the defined review interval. A stale or missing artifact evaluates NON_COMPLIANT and scores 0, not passing."
+     }
     },
     {
      "check_id": "KSI-CMT-RVP:validate:method",
@@ -210,7 +234,15 @@
      "source": "validate",
      "collectable_now": false,
      "provider_deployed": true,
-     "deploy": "automation/config-rules/ (Config custom rule)"
+     "deploy": "automation/config-rules/ (Config custom rule)",
+     "outcome_metric": {
+      "metric_id": "KSI-CMT-RVP-coverage-collector",
+      "signal": "cloudwatch_coverage",
+      "unit": "coverage_fraction",
+      "pass_when": ">= threshold",
+      "emitted_by": "EventBridge-scheduled Lambda -> CloudWatch metric",
+      "description": "Coverage/freshness percentage the scheduled check emits (e.g. workforce coverage, days-since-review). Scores the measured fraction; a below-threshold or stale value is not passing."
+     }
     }
    ]
   },
@@ -1032,7 +1064,15 @@
      "source": "verify",
      "collectable_now": false,
      "provider_deployed": true,
-     "deploy": "automation/config-rules/ (Config custom rule)"
+     "deploy": "automation/config-rules/ (Config custom rule)",
+     "outcome_metric": {
+      "metric_id": "KSI-INR-AAR-config-rule",
+      "signal": "config_rule_compliance",
+      "unit": "compliant_fraction",
+      "pass_when": "COMPLIANT",
+      "emitted_by": "AWS Config custom rule (Lambda-backed)",
+      "description": "Fraction of evaluations reporting COMPLIANT: the reviewed artifact exists AND is current within the defined review interval. A stale or missing artifact evaluates NON_COMPLIANT and scores 0, not passing."
+     }
     },
     {
      "check_id": "KSI-INR-AAR:validate:method",
@@ -1047,7 +1087,15 @@
      "source": "validate",
      "collectable_now": false,
      "provider_deployed": true,
-     "deploy": "automation/config-rules/ (Config custom rule)"
+     "deploy": "automation/config-rules/ (Config custom rule)",
+     "outcome_metric": {
+      "metric_id": "KSI-INR-AAR-coverage-collector",
+      "signal": "cloudwatch_coverage",
+      "unit": "coverage_fraction",
+      "pass_when": ">= threshold",
+      "emitted_by": "EventBridge-scheduled Lambda -> CloudWatch metric",
+      "description": "Coverage/freshness percentage the scheduled check emits (e.g. workforce coverage, days-since-review). Scores the measured fraction; a below-threshold or stale value is not passing."
+     }
     }
    ]
   },
@@ -1075,7 +1123,15 @@
      "source": "verify",
      "collectable_now": false,
      "provider_deployed": true,
-     "deploy": "automation/config-rules/ (Config custom rule)"
+     "deploy": "automation/config-rules/ (Config custom rule)",
+     "outcome_metric": {
+      "metric_id": "KSI-INR-RIR-config-rule",
+      "signal": "config_rule_compliance",
+      "unit": "compliant_fraction",
+      "pass_when": "COMPLIANT",
+      "emitted_by": "AWS Config custom rule (Lambda-backed)",
+      "description": "Fraction of evaluations reporting COMPLIANT: the reviewed artifact exists AND is current within the defined review interval. A stale or missing artifact evaluates NON_COMPLIANT and scores 0, not passing."
+     }
     },
     {
      "check_id": "KSI-INR-RIR:validate:method",
@@ -1090,7 +1146,15 @@
      "source": "validate",
      "collectable_now": false,
      "provider_deployed": true,
-     "deploy": "automation/config-rules/ (Config custom rule)"
+     "deploy": "automation/config-rules/ (Config custom rule)",
+     "outcome_metric": {
+      "metric_id": "KSI-INR-RIR-coverage-collector",
+      "signal": "cloudwatch_coverage",
+      "unit": "coverage_fraction",
+      "pass_when": ">= threshold",
+      "emitted_by": "EventBridge-scheduled Lambda -> CloudWatch metric",
+      "description": "Coverage/freshness percentage the scheduled check emits (e.g. workforce coverage, days-since-review). Scores the measured fraction; a below-threshold or stale value is not passing."
+     }
     }
    ]
   },
@@ -1121,7 +1185,15 @@
      "source": "verify",
      "collectable_now": false,
      "provider_deployed": true,
-     "deploy": "automation/config-rules/ (Config custom rule)"
+     "deploy": "automation/config-rules/ (Config custom rule)",
+     "outcome_metric": {
+      "metric_id": "KSI-INR-RPI-config-rule",
+      "signal": "config_rule_compliance",
+      "unit": "compliant_fraction",
+      "pass_when": "COMPLIANT",
+      "emitted_by": "AWS Config custom rule (Lambda-backed)",
+      "description": "Fraction of evaluations reporting COMPLIANT: the reviewed artifact exists AND is current within the defined review interval. A stale or missing artifact evaluates NON_COMPLIANT and scores 0, not passing."
+     }
     },
     {
      "check_id": "KSI-INR-RPI:validate:method",
@@ -1136,7 +1208,15 @@
      "source": "validate",
      "collectable_now": false,
      "provider_deployed": true,
-     "deploy": "automation/config-rules/ (Config custom rule)"
+     "deploy": "automation/config-rules/ (Config custom rule)",
+     "outcome_metric": {
+      "metric_id": "KSI-INR-RPI-coverage-collector",
+      "signal": "cloudwatch_coverage",
+      "unit": "coverage_fraction",
+      "pass_when": ">= threshold",
+      "emitted_by": "EventBridge-scheduled Lambda -> CloudWatch metric",
+      "description": "Coverage/freshness percentage the scheduled check emits (e.g. workforce coverage, days-since-review). Scores the measured fraction; a below-threshold or stale value is not passing."
+     }
     }
    ]
   },
@@ -1377,7 +1457,15 @@
      "source": "verify",
      "collectable_now": false,
      "provider_deployed": true,
-     "deploy": "automation/config-rules/ (Config custom rule)"
+     "deploy": "automation/config-rules/ (Config custom rule)",
+     "outcome_metric": {
+      "metric_id": "KSI-MLA-RVL-config-rule",
+      "signal": "config_rule_compliance",
+      "unit": "compliant_fraction",
+      "pass_when": "COMPLIANT",
+      "emitted_by": "AWS Config custom rule (Lambda-backed)",
+      "description": "Fraction of evaluations reporting COMPLIANT: the reviewed artifact exists AND is current within the defined review interval. A stale or missing artifact evaluates NON_COMPLIANT and scores 0, not passing."
+     }
     },
     {
      "check_id": "KSI-MLA-RVL:validate:method",
@@ -1392,7 +1480,15 @@
      "source": "validate",
      "collectable_now": false,
      "provider_deployed": true,
-     "deploy": "automation/config-rules/ (Config custom rule)"
+     "deploy": "automation/config-rules/ (Config custom rule)",
+     "outcome_metric": {
+      "metric_id": "KSI-MLA-RVL-coverage-collector",
+      "signal": "cloudwatch_coverage",
+      "unit": "coverage_fraction",
+      "pass_when": ">= threshold",
+      "emitted_by": "EventBridge-scheduled Lambda -> CloudWatch metric",
+      "description": "Coverage/freshness percentage the scheduled check emits (e.g. workforce coverage, days-since-review). Scores the measured fraction; a below-threshold or stale value is not passing."
+     }
     }
    ]
   },
@@ -1472,7 +1568,15 @@
      "source": "verify",
      "collectable_now": false,
      "provider_deployed": true,
-     "deploy": "automation/config-rules/ (Config custom rule)"
+     "deploy": "automation/config-rules/ (Config custom rule)",
+     "outcome_metric": {
+      "metric_id": "KSI-PIY-RES-config-rule",
+      "signal": "config_rule_compliance",
+      "unit": "compliant_fraction",
+      "pass_when": "COMPLIANT",
+      "emitted_by": "AWS Config custom rule (Lambda-backed)",
+      "description": "Fraction of evaluations reporting COMPLIANT: the reviewed artifact exists AND is current within the defined review interval. A stale or missing artifact evaluates NON_COMPLIANT and scores 0, not passing."
+     }
     },
     {
      "check_id": "KSI-PIY-RES:validate:method",
@@ -1487,7 +1591,15 @@
      "source": "validate",
      "collectable_now": false,
      "provider_deployed": true,
-     "deploy": "automation/config-rules/ (Config custom rule)"
+     "deploy": "automation/config-rules/ (Config custom rule)",
+     "outcome_metric": {
+      "metric_id": "KSI-PIY-RES-coverage-collector",
+      "signal": "cloudwatch_coverage",
+      "unit": "coverage_fraction",
+      "pass_when": ">= threshold",
+      "emitted_by": "EventBridge-scheduled Lambda -> CloudWatch metric",
+      "description": "Coverage/freshness percentage the scheduled check emits (e.g. workforce coverage, days-since-review). Scores the measured fraction; a below-threshold or stale value is not passing."
+     }
     }
    ]
   },
@@ -1514,7 +1626,15 @@
      "source": "verify",
      "collectable_now": false,
      "provider_deployed": true,
-     "deploy": "automation/config-rules/ (Config custom rule)"
+     "deploy": "automation/config-rules/ (Config custom rule)",
+     "outcome_metric": {
+      "metric_id": "KSI-PIY-RIS-config-rule",
+      "signal": "config_rule_compliance",
+      "unit": "compliant_fraction",
+      "pass_when": "COMPLIANT",
+      "emitted_by": "AWS Config custom rule (Lambda-backed)",
+      "description": "Fraction of evaluations reporting COMPLIANT: the reviewed artifact exists AND is current within the defined review interval. A stale or missing artifact evaluates NON_COMPLIANT and scores 0, not passing."
+     }
     },
     {
      "check_id": "KSI-PIY-RIS:validate:method",
@@ -1528,7 +1648,15 @@
      "source": "validate",
      "collectable_now": false,
      "provider_deployed": true,
-     "deploy": "automation/config-rules/ (Config custom rule)"
+     "deploy": "automation/config-rules/ (Config custom rule)",
+     "outcome_metric": {
+      "metric_id": "KSI-PIY-RIS-coverage-collector",
+      "signal": "cloudwatch_coverage",
+      "unit": "coverage_fraction",
+      "pass_when": ">= threshold",
+      "emitted_by": "EventBridge-scheduled Lambda -> CloudWatch metric",
+      "description": "Coverage/freshness percentage the scheduled check emits (e.g. workforce coverage, days-since-review). Scores the measured fraction; a below-threshold or stale value is not passing."
+     }
     }
    ]
   },
@@ -1601,7 +1729,15 @@
      "source": "verify",
      "collectable_now": false,
      "provider_deployed": true,
-     "deploy": "automation/config-rules/ (Config custom rule)"
+     "deploy": "automation/config-rules/ (Config custom rule)",
+     "outcome_metric": {
+      "metric_id": "KSI-PIY-RVD-config-rule",
+      "signal": "config_rule_compliance",
+      "unit": "compliant_fraction",
+      "pass_when": "COMPLIANT",
+      "emitted_by": "AWS Config custom rule (Lambda-backed)",
+      "description": "Fraction of evaluations reporting COMPLIANT: the reviewed artifact exists AND is current within the defined review interval. A stale or missing artifact evaluates NON_COMPLIANT and scores 0, not passing."
+     }
     },
     {
      "check_id": "KSI-PIY-RVD:validate:method",
@@ -1616,7 +1752,15 @@
      "source": "validate",
      "collectable_now": false,
      "provider_deployed": true,
-     "deploy": "automation/config-rules/ (Config custom rule)"
+     "deploy": "automation/config-rules/ (Config custom rule)",
+     "outcome_metric": {
+      "metric_id": "KSI-PIY-RVD-coverage-collector",
+      "signal": "cloudwatch_coverage",
+      "unit": "coverage_fraction",
+      "pass_when": ">= threshold",
+      "emitted_by": "EventBridge-scheduled Lambda -> CloudWatch metric",
+      "description": "Coverage/freshness percentage the scheduled check emits (e.g. workforce coverage, days-since-review). Scores the measured fraction; a below-threshold or stale value is not passing."
+     }
     }
    ]
   },
@@ -1711,7 +1855,15 @@
      "source": "verify",
      "collectable_now": false,
      "provider_deployed": true,
-     "deploy": "automation/config-rules/ (Config custom rule)"
+     "deploy": "automation/config-rules/ (Config custom rule)",
+     "outcome_metric": {
+      "metric_id": "KSI-RPL-ARP-config-rule",
+      "signal": "config_rule_compliance",
+      "unit": "compliant_fraction",
+      "pass_when": "COMPLIANT",
+      "emitted_by": "AWS Config custom rule (Lambda-backed)",
+      "description": "Fraction of evaluations reporting COMPLIANT: the reviewed artifact exists AND is current within the defined review interval. A stale or missing artifact evaluates NON_COMPLIANT and scores 0, not passing."
+     }
     },
     {
      "check_id": "KSI-RPL-ARP:validate:method",
@@ -1725,7 +1877,15 @@
      "source": "validate",
      "collectable_now": false,
      "provider_deployed": true,
-     "deploy": "automation/config-rules/ (Config custom rule)"
+     "deploy": "automation/config-rules/ (Config custom rule)",
+     "outcome_metric": {
+      "metric_id": "KSI-RPL-ARP-coverage-collector",
+      "signal": "cloudwatch_coverage",
+      "unit": "coverage_fraction",
+      "pass_when": ">= threshold",
+      "emitted_by": "EventBridge-scheduled Lambda -> CloudWatch metric",
+      "description": "Coverage/freshness percentage the scheduled check emits (e.g. workforce coverage, days-since-review). Scores the measured fraction; a below-threshold or stale value is not passing."
+     }
     }
    ]
   },
@@ -1754,7 +1914,15 @@
      "source": "verify",
      "collectable_now": false,
      "provider_deployed": true,
-     "deploy": "automation/config-rules/ (Config custom rule)"
+     "deploy": "automation/config-rules/ (Config custom rule)",
+     "outcome_metric": {
+      "metric_id": "KSI-RPL-RRO-config-rule",
+      "signal": "config_rule_compliance",
+      "unit": "compliant_fraction",
+      "pass_when": "COMPLIANT",
+      "emitted_by": "AWS Config custom rule (Lambda-backed)",
+      "description": "Fraction of evaluations reporting COMPLIANT: the reviewed artifact exists AND is current within the defined review interval. A stale or missing artifact evaluates NON_COMPLIANT and scores 0, not passing."
+     }
     },
     {
      "check_id": "KSI-RPL-RRO:validate:method",
@@ -1769,7 +1937,15 @@
      "source": "validate",
      "collectable_now": false,
      "provider_deployed": true,
-     "deploy": "automation/config-rules/ (Config custom rule)"
+     "deploy": "automation/config-rules/ (Config custom rule)",
+     "outcome_metric": {
+      "metric_id": "KSI-RPL-RRO-coverage-collector",
+      "signal": "cloudwatch_coverage",
+      "unit": "coverage_fraction",
+      "pass_when": ">= threshold",
+      "emitted_by": "EventBridge-scheduled Lambda -> CloudWatch metric",
+      "description": "Coverage/freshness percentage the scheduled check emits (e.g. workforce coverage, days-since-review). Scores the measured fraction; a below-threshold or stale value is not passing."
+     }
     }
    ]
   },
