@@ -79,7 +79,39 @@ def load_facts():
 
 
 GOOD_CONFIG = {"COMPLIANT"}
-GOOD_POSTURE = {"ENABLED", "PRESENT", "ACTIVE", "OBSERVED"}
+# A posture status that is itself a binary good/bad signal (no ratio needed).
+# NOTE: "OBSERVED" is deliberately NOT here. OBSERVED means "we successfully
+# measured something", not "the measured thing passed". An OBSERVED fact scores
+# ONLY through its structured measured/total ratio; an OBSERVED fact with no
+# measured/total contributes NOTHING to the passing/total tally (it is an
+# observation, not a pass). See finding: OBSERVED-counts-as-passing.
+GOOD_POSTURE = {"ENABLED", "PRESENT", "ACTIVE"}
+
+
+def _posture_score(pf):
+    """Score one posture fact as (passing, total) contribution, or None to skip.
+
+    - ERROR statuses: skip (unmeasured).
+    - A structured ratio (measured/total): use it directly - this is the real
+      fraction in good posture (e.g. 0 of 50 keys rotating = 0/50, NOT a pass).
+    - A binary good status in GOOD_POSTURE: 1 of 1.
+    - A bare OBSERVED (or any other non-good status) with no ratio: skip. An
+      observation that something was measured is not evidence it passed, so it
+      must not inflate either the passing count OR the total.
+    """
+    status = pf.get("status", "")
+    if status.startswith("ERROR"):
+        return None
+    if "measured" in pf and "total" in pf:
+        total = pf.get("total") or 0
+        if total <= 0:
+            return None
+        return (pf.get("measured") or 0, total)
+    if status in GOOD_POSTURE:
+        return (1, 1)
+    # Bare OBSERVED / NONE / NOT_ENABLED / count-only observation: not a pass,
+    # and not a denominator either - it carries no evaluated outcome.
+    return None
 
 
 def datapoint_for_ksi(ksi_entry, config_by_rule, posture_by_service):
@@ -105,12 +137,12 @@ def datapoint_for_ksi(ksi_entry, config_by_rule, posture_by_service):
         if not any(svc_label in n for n in named):
             continue
         for pf in posture_by_service.get(svc_key, []):
-            status = pf.get("status", "")
-            if status.startswith("ERROR"):
+            score = _posture_score(pf)
+            if score is None:
                 continue
-            total += 1
-            if status in GOOD_POSTURE:
-                passing += 1
+            p, t = score
+            total += t
+            passing += p
     if total == 0:
         return None
     return {"passing": passing, "total": total}
@@ -154,12 +186,12 @@ def per_metric_datapoints_for_ksi(ksi_entry, config_by_rule, posture_by_service)
         obs = posture_by_service.get(svc_key, [])
         p = t = 0
         for pf in obs:
-            status = pf.get("status", "")
-            if status.startswith("ERROR"):
+            score = _posture_score(pf)
+            if score is None:
                 continue
-            t += 1
-            if status in GOOD_POSTURE:
-                p += 1
+            sp, st = score
+            t += st
+            p += sp
         if t:
             out[f"posture:{svc_key}"] = {
                 "passing": p, "total": t,

@@ -60,6 +60,54 @@ def test_posture_datapoint_for_guardduty_ksi():
     assert dp == {"passing": 1, "total": 1}
 
 
+# --- OBSERVED-is-not-passing regression tests -------------------------------
+# Finding: append_metrics previously put "OBSERVED" in GOOD_POSTURE, so a fact
+# emitted as OBSERVED counted as a passing metric regardless of the underlying
+# count. OBSERVED must score ONLY through a structured measured/total ratio; a
+# bare OBSERVED with no ratio must contribute nothing to passing OR total.
+
+def _posture(service, status, measured=None, total=None):
+    pf = {"service": service, "check": "c", "status": status}
+    if measured is not None:
+        pf["measured"] = measured
+    if total is not None:
+        pf["total"] = total
+    return {service: [pf]}
+
+
+def test_observed_zero_ratio_scores_zero_not_pass():
+    # 0 of 50 keys rotating, collected as OBSERVED, must be 0/50, never a pass.
+    kms_ksi = {"services": ["AWS Key Management Service"], "checks": []}
+    reg = {"meta": {"dataset_version": "test"},
+           "ksis": {"KSI-KMS": kms_ksi}}
+    # POSTURE_SERVICE_KEYS maps "kms" -> "AWS Key Management Service"
+    dp = am.datapoint_for_ksi(kms_ksi, {}, _posture("kms", "OBSERVED", 0, 50))
+    assert dp == {"passing": 0, "total": 50}, dp
+    _ = reg  # registry shape documented
+
+
+def test_observed_full_ratio_scores_full():
+    kms_ksi = {"services": ["AWS Key Management Service"], "checks": []}
+    dp = am.datapoint_for_ksi(kms_ksi, {}, _posture("kms", "OBSERVED", 50, 50))
+    assert dp == {"passing": 50, "total": 50}, dp
+
+
+def test_bare_observed_without_ratio_is_not_a_datapoint():
+    # A count-only OBSERVED (e.g. "25 failed findings") carries no evaluated
+    # outcome: it must not become 1/1 passing and must not inflate the total.
+    kms_ksi = {"services": ["AWS Key Management Service"], "checks": []}
+    dp = am.datapoint_for_ksi(kms_ksi, {}, _posture("kms", "OBSERVED"))
+    assert dp is None, dp
+
+
+def test_posture_score_helper():
+    assert am._posture_score({"status": "OBSERVED", "measured": 0, "total": 50}) == (0, 50)
+    assert am._posture_score({"status": "OBSERVED"}) is None
+    assert am._posture_score({"status": "ENABLED"}) == (1, 1)
+    assert am._posture_score({"status": "ERROR:X"}) is None
+    assert am._posture_score({"status": "OBSERVED", "measured": 3, "total": 0}) is None
+
+
 def test_history_persists_across_ephemeral_runs():
     # Simulate the collector buildspec: each daily run is EPHEMERAL, so it must
     # restore the prior history (from S3), append one datapoint, and persist it.

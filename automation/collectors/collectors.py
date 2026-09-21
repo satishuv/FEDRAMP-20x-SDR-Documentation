@@ -84,11 +84,20 @@ def _now():
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
 
 
-def _fact(service, check, status, detail, region):
+def _fact(service, check, status, detail, region, measured=None, total=None):
     """Uniform posture-fact shape. status is a short machine token; detail is
     a human-readable, non-sensitive summary. Never include ARNs of principals,
-    account IDs, or finding bodies that could carry sensitive specifics."""
-    return {
+    account IDs, or finding bodies that could carry sensitive specifics.
+
+    measured/total (optional) carry the STRUCTURED ratio behind an OBSERVED
+    fact: `measured` resources met the desirable condition out of `total`
+    evaluated. The metric engine uses these to compute a real passing fraction;
+    a bare OBSERVED with no measured/total is an observation, NOT a pass (an
+    observation that something was measured is not the same as the measured
+    thing being in good posture). For a count where MORE is worse (e.g. failed
+    findings, drifted stacks), set measured to the GOOD count (total - bad) so
+    the fraction still reads as "fraction in good posture"."""
+    f = {
         "service": service,
         "check": check,
         "status": status,
@@ -96,6 +105,10 @@ def _fact(service, check, status, detail, region):
         "region": region,
         "collected_at": _now(),
     }
+    if measured is not None and total is not None:
+        f["measured"] = measured
+        f["total"] = total
+    return f
 
 
 def _client_error_name(exc):
@@ -272,7 +285,7 @@ def collect_kms(session, region):
             continue
     return [_fact("kms", "key_rotation", "OBSERVED",
                   f"{rotating} of {checked} customer keys have automatic "
-                  "rotation enabled", region)]
+                  "rotation enabled", region, measured=rotating, total=checked)]
 
 
 def collect_config(session, region):
@@ -390,7 +403,7 @@ def collect_s3(session, region):
             continue
     return [_fact("s3", "public_access_block", "OBSERVED",
                   f"{blocked} of {checked} buckets fully block public access "
-                  f"({len(buckets)} total)", region)]
+                  f"({len(buckets)} total)", region, measured=blocked, total=checked)]
 
 
 def collect_iam(session, region):
@@ -456,7 +469,7 @@ def collect_cfn_drift(session, region):
                   if s.get("DriftInformation", {}).get("StackDriftStatus") == "IN_SYNC")
     return [_fact("cloudformation", "drift", "OBSERVED",
                   f"{drifted} drifted, {in_sync} in sync of {len(active)} "
-                  "active stack(s)", region)]
+                  "active stack(s)", region, measured=in_sync, total=len(active))]
 
 
 def collect_config_conformance(session, region):
@@ -490,7 +503,7 @@ def collect_config_conformance(session, region):
             continue
     facts.append(_fact("config", "conformance_compliance", "OBSERVED",
                        f"{compliant} of {checked} pack(s) reporting COMPLIANT",
-                       region))
+                       region, measured=compliant, total=checked))
     return facts
 
 
@@ -520,7 +533,7 @@ def collect_waf(session, region):
             continue
     return [_fact("wafv2", "web_acls", "OBSERVED",
                   f"{associated} of {len(acls)} web ACL(s) associated with a "
-                  "resource", region)]
+                  "resource", region, measured=associated, total=len(acls))]
 
 
 def collect_network_segmentation(session, region):
@@ -542,7 +555,8 @@ def collect_network_segmentation(session, region):
                     break
         facts.append(_fact("ec2", "security_groups", "OBSERVED",
                            f"{len(sgs)} security group(s), {open_ingress} with "
-                           "an open (0.0.0.0/0) inbound rule", region))
+                           "an open (0.0.0.0/0) inbound rule", region,
+                           measured=len(sgs) - open_ingress, total=len(sgs)))
     except Exception as e:  # noqa: BLE001
         facts.append(_fact("ec2", "security_groups", f"ERROR:{_client_error_name(e)}",
                            "Could not describe security groups", region))
@@ -576,7 +590,7 @@ def collect_cloudtrail_integrity(session, region):
     validated = sum(1 for t in trails if t.get("LogFileValidationEnabled"))
     return [_fact("cloudtrail", "log_validation", "OBSERVED",
                   f"{validated} of {len(trails)} trail(s) have log-file "
-                  "validation enabled", region)]
+                  "validation enabled", region, measured=validated, total=len(trails))]
 
 
 def collect_ecr_integrity(session, region):
@@ -599,7 +613,7 @@ def collect_ecr_integrity(session, region):
                     if r.get("imageTagMutability") == "IMMUTABLE")
     return [_fact("ecr", "image_immutability", "OBSERVED",
                   f"{immutable} of {len(repos)} repositor(y/ies) enforce "
-                  "immutable image tags", region)]
+                  "immutable image tags", region, measured=immutable, total=len(repos))]
 
 
 def collect_s3_data_protection(session, region):
@@ -631,7 +645,8 @@ def collect_s3_data_protection(session, region):
             continue
     return [_fact("s3", "encryption", "OBSERVED",
                   f"{encrypted} of {checked} bucket(s) have default encryption "
-                  f"configured ({len(buckets)} total)", region)]
+                  f"configured ({len(buckets)} total)", region,
+                  measured=encrypted, total=checked)]
 
 
 def collect_data_retention(session, region):
