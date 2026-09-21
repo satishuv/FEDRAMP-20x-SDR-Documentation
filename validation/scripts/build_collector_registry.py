@@ -164,6 +164,41 @@ def main():
             if kid in bucket_b:
                 method_check["provider_deployed"] = True
                 method_check["deploy"] = "automation/config-rules/ (Config custom rule)"
+                # PR-6: a bucket_b (document/process-evidence) KSI has NO API
+                # posture source, so its automated method must declare the
+                # OUTCOME it measures, not merely assert the artifact exists. The
+                # provider-deployed rule/Lambda emits a measurable signal; bind
+                # it as an explicit outcome-metric contract so the metric layer
+                # scores the outcome (compliant / within-interval / coverage),
+                # never bare existence. metric_id keys the per-method telemetry
+                # series (same convention the VVK binding gate checks), so a
+                # declared method with no emitted outcome cannot read as ready.
+                if source == "verify":
+                    method_check["outcome_metric"] = {
+                        "metric_id": f"{kid}-config-rule",
+                        "signal": "config_rule_compliance",
+                        "unit": "compliant_fraction",
+                        "pass_when": "COMPLIANT",
+                        "emitted_by": "AWS Config custom rule (Lambda-backed)",
+                        "description": (
+                            "Fraction of evaluations reporting COMPLIANT: the "
+                            "reviewed artifact exists AND is current within the "
+                            "defined review interval. A stale or missing artifact "
+                            "evaluates NON_COMPLIANT and scores 0, not passing."),
+                    }
+                else:
+                    method_check["outcome_metric"] = {
+                        "metric_id": f"{kid}-coverage-collector",
+                        "signal": "cloudwatch_coverage",
+                        "unit": "coverage_fraction",
+                        "pass_when": ">= threshold",
+                        "emitted_by": "EventBridge-scheduled Lambda -> CloudWatch metric",
+                        "description": (
+                            "Coverage/freshness percentage the scheduled check "
+                            "emits (e.g. workforce coverage, days-since-review). "
+                            "Scores the measured fraction; a below-threshold or "
+                            "stale value is not passing."),
+                    }
             checks.append(method_check)
         registry[kid] = {
             "name": e["name"],
