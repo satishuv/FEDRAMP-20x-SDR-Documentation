@@ -14,26 +14,37 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import collectors as c  # noqa: E402
 
-TESTDATA = os.path.join(os.path.dirname(os.path.abspath(__file__)), "testdata")
+_TESTDATA_TRACKED = os.path.join(os.path.dirname(os.path.abspath(__file__)), "testdata")
 
 # The fixture payloads are not committed (see .gitignore) because a large scale
 # produces big files. Generate them on demand so this suite is self-sufficient
 # in CI and locally: a modest default scale keeps the run fast.
-def _ensure_fixtures(scale=1000):
-    manifest = os.path.join(TESTDATA, "securityhub_GetFindings.json")
-    if os.path.exists(manifest):
-        return
+#
+# F-02: generation MUST NOT write into the tracked testdata/ directory. The
+# runtime MANIFEST.json there is tracked, and rewriting it (with a fresh
+# generated_at timestamp) dirties the worktree - which then fails the release
+# attestation's clean-worktree gate after the mandatory validate suite runs. So
+# when the committed payloads are absent (a clean checkout), generate into a
+# throwaway temp directory and load from there; the tracked directory is never
+# touched by the test run.
+def _resolve_testdata(scale=1000):
+    committed = os.path.join(_TESTDATA_TRACKED, "securityhub_GetFindings.json")
+    if os.path.exists(committed):
+        return _TESTDATA_TRACKED
+    import tempfile
     import generate_fixtures as gen  # noqa: E402
     import sys as _sys
+    outdir = tempfile.mkdtemp(prefix="collector-fixtures-")
     argv = _sys.argv
-    _sys.argv = ["generate_fixtures.py", "--scale", str(scale)]
+    _sys.argv = ["generate_fixtures.py", "--scale", str(scale), "--outdir", outdir]
     try:
         gen.main()
     finally:
         _sys.argv = argv
+    return outdir
 
 
-_ensure_fixtures()
+TESTDATA = _resolve_testdata()
 
 
 def _load(fixture):
@@ -154,6 +165,28 @@ def test_fixtures_are_aws_shaped():
     f0 = sh["Findings"][0]
     for field in ("SchemaVersion", "Id", "ProductArn", "AwsAccountId", "Types"):
         assert field in f0, f"missing genuine AWS field {field}"
+
+
+def test_generation_never_dirties_tracked_testdata():
+    """F-02 regression: on a clean checkout (committed payloads gitignored and
+    absent) the suite MUST generate fixtures into a throwaway temp dir, never
+    into the tracked testdata/ directory. Rewriting the tracked, committed
+    MANIFEST.json there (with a fresh generated_at) would dirty the worktree and
+    fail the release attestation's clean-worktree gate after the mandatory
+    validate suite. When committed payloads are absent, resolution must point
+    somewhere OTHER than the tracked dir; when they are present, using the
+    tracked dir read-only is fine."""
+    committed = os.path.join(_TESTDATA_TRACKED, "securityhub_GetFindings.json")
+    if os.path.exists(committed):
+        # Payloads committed: read-only use of the tracked dir is acceptable.
+        assert TESTDATA == _TESTDATA_TRACKED
+    else:
+        # Clean checkout: generation must be redirected off the tracked dir.
+        assert TESTDATA != _TESTDATA_TRACKED, (
+            "fixtures were generated into the tracked testdata dir; this dirties "
+            "the committed MANIFEST.json and breaks release attestation")
+        assert not os.path.exists(committed), (
+            "generation wrote a payload into the tracked testdata dir")
 
 
 def _run_all():
