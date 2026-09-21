@@ -257,8 +257,14 @@ def _fill_records(root):
         # (a genuinely multi-metric KSI). This exercises finding 5: a Class C
         # package with multiple metrics must carry the per-metric breakdown to
         # be READY, not just a collapsed aggregate.
-        m1 = f"{kid}:verify:config:rule-a"
-        m2 = f"{kid}:verify:config:rule-b"
+        #
+        # Key the per-metric map by the SAME method_ids the record declares in
+        # its tests ({ident}-config, {ident}-collector) so each declared
+        # automated VVK method is BOUND to observed telemetry (the method-to-
+        # telemetry binding gate). Unbound declared methods are a false-ready
+        # path and must block.
+        m1 = f"{kid}-config"
+        m2 = f"{kid}-collector"
         s1, s2 = [], []
         for m in range(0, 8):  # ~8 months of monthly datapoints
             d = (today - _d.timedelta(days=30 * m)).isoformat()
@@ -373,6 +379,27 @@ def main():
         # Restore the ~8-month per-metric history (and profile) for the
         # subsequent stages; _fill rewrites metric-history.json for every
         # applicable KSI (now with the per-metric map that satisfies the gate).
+        _fill(profile, now)
+        _fill_records(root)
+        _build(root)
+
+        # FRC-CSX-VVK method-to-telemetry binding: a Class C KSI that DECLARES
+        # automated verification methods must have those method_ids bound to
+        # observed telemetry (keying an in-history per-method metrics series). A
+        # declaration with no keyed telemetry is a false-ready path. Rename the
+        # per-method metric keys so they no longer match the declared method_ids
+        # ({ident}-config / {ident}-collector), rebuild, and confirm the gate
+        # blocks on vvk_method_binding. Then restore for subsequent stages.
+        _hb = json.load(open(hp, encoding="utf-8"))
+        for _e in _hb.get("ksis", {}).values():
+            _m = _e.get("metrics")
+            if isinstance(_m, dict):
+                _e["metrics"] = {("UNBOUND-" + k): v for k, v in _m.items()}
+        json.dump(_hb, open(hp, "w", encoding="utf-8", newline="\n"), indent=1)
+        _build(root)
+        r_bind = _preflight(root)
+        check("declared automated VVK methods not bound to telemetry block a Class C package",
+              r_bind.returncode == 1 and "vvk_method_binding" in r_bind.stdout)
         _fill(profile, now)
         _fill_records(root)
         _build(root)
