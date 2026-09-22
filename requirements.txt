@@ -1,4 +1,4 @@
-# Runtime dependencies for the FedRAMP 20x Certification Package Framework.
+# Runtime dependencies for the FedRAMP 20x Continuous Certification Package Framework.
 # Pinned for reproducible builds. The framework itself is pure Python over the
 # pinned dataset; these are only for schema validation and the Word export.
 jsonschema==4.26.0

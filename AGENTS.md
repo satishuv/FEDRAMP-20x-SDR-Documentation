@@ -5,7 +5,7 @@ provider-neutral and applies regardless of which assistant is used.
 
 ## What this repository is
 
-A provider-side FedRAMP 20x Certification Package framework. It deterministically
+A provider-side FedRAMP 20x Continuous Certification Package framework. It deterministically
 derives certification-package artifacts (SDR, CPO, OCR, SCG, event artifacts)
 from official FedRAMP sources and provider-authored facts, with class-aware
 applicability, hashed evidence, continuous validation, human review, and
