@@ -4782,35 +4782,6 @@
       }
      },
      {
-      "uuid": "05dbd985-b03e-523c-9f12-ae8d56b077ae",
-      "title": "KSI-CNA-EIS: Enforcing Intended State",
-      "description": "TBD: Information has not been provided.",
-      "props": [
-       {
-        "name": "sdr-implementation-status",
-        "ns": "https://fedramp.gov/ns/sdr",
-        "value": "Not Implemented"
-       },
-       {
-        "name": "sdr-id",
-        "ns": "https://fedramp.gov/ns/sdr",
-        "value": "KSI-CNA-EIS"
-       },
-       {
-        "name": "sdr-kind",
-        "ns": "https://fedramp.gov/ns/sdr",
-        "value": "ksi"
-       }
-      ],
-      "target": {
-       "type": "objective-id",
-       "target-id": "KSI-CNA-EIS",
-       "status": {
-        "state": "not-satisfied"
-       }
-      }
-     },
-     {
       "uuid": "69cd1483-c21a-5502-9654-c234ccb5c028",
       "title": "KSI-CNA-IBP: Implementing Best Practices",
       "description": "TBD: Information has not been provided.",
@@ -5240,35 +5211,6 @@
       "target": {
        "type": "objective-id",
        "target-id": "KSI-INR-RPI",
-       "status": {
-        "state": "not-satisfied"
-       }
-      }
-     },
-     {
-      "uuid": "e5d1e9fc-0461-5a27-adc6-0ef915e6388d",
-      "title": "KSI-MLA-ALA: Authorizing Log Access",
-      "description": "TBD: Information has not been provided.",
-      "props": [
-       {
-        "name": "sdr-implementation-status",
-        "ns": "https://fedramp.gov/ns/sdr",
-        "value": "Not Implemented"
-       },
-       {
-        "name": "sdr-id",
-        "ns": "https://fedramp.gov/ns/sdr",
-        "value": "KSI-MLA-ALA"
-       },
-       {
-        "name": "sdr-kind",
-        "ns": "https://fedramp.gov/ns/sdr",
-        "value": "ksi"
-       }
-      ],
-      "target": {
-       "type": "objective-id",
-       "target-id": "KSI-MLA-ALA",
        "status": {
         "state": "not-satisfied"
        }
@@ -5797,64 +5739,6 @@
       }
      },
      {
-      "uuid": "4910c42e-2e30-5c02-86f7-17a3c01ea30f",
-      "title": "KSI-SVC-PRR: Preventing Residual Risk",
-      "description": "TBD: Information has not been provided.",
-      "props": [
-       {
-        "name": "sdr-implementation-status",
-        "ns": "https://fedramp.gov/ns/sdr",
-        "value": "Not Implemented"
-       },
-       {
-        "name": "sdr-id",
-        "ns": "https://fedramp.gov/ns/sdr",
-        "value": "KSI-SVC-PRR"
-       },
-       {
-        "name": "sdr-kind",
-        "ns": "https://fedramp.gov/ns/sdr",
-        "value": "ksi"
-       }
-      ],
-      "target": {
-       "type": "objective-id",
-       "target-id": "KSI-SVC-PRR",
-       "status": {
-        "state": "not-satisfied"
-       }
-      }
-     },
-     {
-      "uuid": "ecc0d400-f714-534a-a8c9-a1396fbb5829",
-      "title": "KSI-SVC-RUD: Removing Unwanted Data",
-      "description": "TBD: Information has not been provided.",
-      "props": [
-       {
-        "name": "sdr-implementation-status",
-        "ns": "https://fedramp.gov/ns/sdr",
-        "value": "Not Implemented"
-       },
-       {
-        "name": "sdr-id",
-        "ns": "https://fedramp.gov/ns/sdr",
-        "value": "KSI-SVC-RUD"
-       },
-       {
-        "name": "sdr-kind",
-        "ns": "https://fedramp.gov/ns/sdr",
-        "value": "ksi"
-       }
-      ],
-      "target": {
-       "type": "objective-id",
-       "target-id": "KSI-SVC-RUD",
-       "status": {
-        "state": "not-satisfied"
-       }
-      }
-     },
-     {
       "uuid": "82a9ae45-fdbc-583d-865a-6044bfd4b3e2",
       "title": "KSI-SVC-SIN: Securing Information",
       "description": "Example (reference architecture, replace with your real implementation): All federal information is encrypted in transit with TLS 1.2 or higher using FIPS-validated endpoints where required, and at rest with AWS KMS customer managed keys. S3 buckets enforce bucket-level encryption and deny unencrypted uploads by bucket policy. EBS volumes and RDS storage use KMS CMKs by default via account-level settings. Public access is blocked account-wide for S3.",
@@ -5878,35 +5762,6 @@
       "target": {
        "type": "objective-id",
        "target-id": "KSI-SVC-SIN",
-       "status": {
-        "state": "not-satisfied"
-       }
-      }
-     },
-     {
-      "uuid": "fb8c72ea-3a87-594f-b830-177879d8c03a",
-      "title": "KSI-SVC-VCM: Validating Communications",
-      "description": "TBD: Information has not been provided.",
-      "props": [
-       {
-        "name": "sdr-implementation-status",
-        "ns": "https://fedramp.gov/ns/sdr",
-        "value": "Not Implemented"
-       },
-       {
-        "name": "sdr-id",
-        "ns": "https://fedramp.gov/ns/sdr",
-        "value": "KSI-SVC-VCM"
-       },
-       {
-        "name": "sdr-kind",
-        "ns": "https://fedramp.gov/ns/sdr",
-        "value": "ksi"
-       }
-      ],
-      "target": {
-       "type": "objective-id",
-       "target-id": "KSI-SVC-VCM",
        "status": {
         "state": "not-satisfied"
        }

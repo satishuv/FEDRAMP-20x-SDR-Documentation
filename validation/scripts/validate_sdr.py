@@ -30,6 +30,11 @@ import zipfile
 from fedramp_constants import VVK_FORCE
 
 BASE = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# Shared Class B KSI-scope resolver (single source of truth). sdr.py guards
+# execution under __main__, so importing it has no side effects.
+if BASE not in sys.path:
+    sys.path.insert(0, BASE)
+from sdr import submitted_ksi_ids  # noqa: E402
 SCHEMA_DIR = os.path.join(BASE, "artifacts", "schemas", "official")
 SDR_SCHEMA = os.path.join(SCHEMA_DIR, "fedramp-security-decision-record-schema-2026-06-24.json")
 COMMON_SCHEMA = os.path.join(SCHEMA_DIR, "fedramp-common-definitions-schema-2026-06-24.json")
@@ -417,6 +422,12 @@ def main():
         # Class A KSI applicability is enumerated by FRC-CLA-MFR; expected set
         # comes from the tier map in the class-a profile meta.
         ksi_ids = set(class_profile["meta"]["class_a_ksis"].keys())
+    elif cls == "b":
+        # Class B: optional-at-B KSIs are opt-in, so the expected set is the
+        # shared submitted set (baseline + selected optional) - matching what
+        # the builder emits. Uses the same resolver the builder/preflight use.
+        selected_ksi = list(profile.get("selected_optional_ksis") or [])
+        ksi_ids = submitted_ksi_ids(ksi_profile["indicators"], cls, selected_ksi)
     else:
         ksi_ids = {k["ksi_id"] for k in ksi_profile["indicators"]}
     sdr_ksi = {k["ksiId"] for k in sdr["keySecurityIndicators"]}
