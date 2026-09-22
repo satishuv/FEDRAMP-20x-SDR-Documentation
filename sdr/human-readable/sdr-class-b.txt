@@ -3008,30 +3008,7 @@ Historical metrics, daily data reference (optional): TBD: Information has not be
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
-2.7 KSI-CNA-EIS Enforcing Intended State
-KSI: KSI-CNA-EIS
-Family: CNA (Cloud Native Architecture)
-Security outcome: Optional: Automated services are used to persistently assess the security of all machine-based information resources and automatically enforce their intended operational state.
-Status: Not Implemented
-Implementation: TBD: Information has not been provided.
-Validation: TBD: Information has not been provided.
-Independent assessment: TBD: Independent assessment has not been performed.
-Measures and objectives: TBD: Information has not been provided.
-Reason measures are unavailable (if none): Not applicable: measures are available
-Resulting customer risk if measures unavailable: TBD: Information has not been provided.
-Measurement cycle: TBD: Information has not been provided.
-Verification of measures: TBD: Information has not been provided.
-Verification of supporting automation: TBD: Information has not been provided.
-Minimum automated methods for this class: 1
-Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
-Historical metrics, 30-day summary: TBD: Information has not been provided.
-Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data (Class C): none available
-Historical metrics, daily data reference (optional): TBD: Information has not been provided.
-Tests: None defined yet
-Owner: TBD: Information has not been provided.
-
-2.8 KSI-CNA-IBP Implementing Best Practices
+2.7 KSI-CNA-IBP Implementing Best Practices
 KSI: KSI-CNA-IBP
 Family: CNA (Cloud Native Architecture)
 Security outcome: The use and configuration of third-party machine-based information resources is persistently compared against the original provider's best practices and guidance.
@@ -3054,7 +3031,7 @@ Historical metrics, daily data reference (optional): TBD: Information has not be
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
-2.9 KSI-CNA-MAT Minimizing Attack Surface
+2.8 KSI-CNA-MAT Minimizing Attack Surface
 KSI: KSI-CNA-MAT
 Family: CNA (Cloud Native Architecture)
 Security outcome: Machine-based information resources are persistently reviewed to ensure they have a minimal attack surface and that lateral movement is minimized if compromised.
@@ -3077,7 +3054,7 @@ Historical metrics, daily data reference (optional): TBD: Information has not be
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
-2.10 KSI-CNA-OFA Optimizing for Availability
+2.9 KSI-CNA-OFA Optimizing for Availability
 KSI: KSI-CNA-OFA
 Family: CNA (Cloud Native Architecture)
 Security outcome: Machine-based information resources are persistently reviewed to ensure they are appropriately optimized for high availability and rapid recovery.
@@ -3100,7 +3077,7 @@ Historical metrics, daily data reference (optional): TBD: Information has not be
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
-2.11 KSI-CNA-RNT Restricting Network Traffic
+2.10 KSI-CNA-RNT Restricting Network Traffic
 KSI: KSI-CNA-RNT
 Family: CNA (Cloud Native Architecture)
 Security outcome: Machine-based information resources are persistently reviewed to ensure they are appropriately configured to limit inbound and outbound network traffic.
@@ -3123,7 +3100,7 @@ Historical metrics, daily data reference (optional): TBD: Information has not be
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
-2.12 KSI-CNA-RVP Reviewing Protections
+2.11 KSI-CNA-RVP Reviewing Protections
 KSI: KSI-CNA-RVP
 Family: CNA (Cloud Native Architecture)
 Security outcome: The effectiveness of protection against denial of service attacks and other unwanted activity for machine-based information resources is persistently reviewed.
@@ -3146,7 +3123,7 @@ Historical metrics, daily data reference (optional): TBD: Information has not be
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
-2.13 KSI-CNA-ULN Using Logical Networking
+2.12 KSI-CNA-ULN Using Logical Networking
 KSI: KSI-CNA-ULN
 Family: CNA (Cloud Native Architecture)
 Security outcome: Logical networking and related capabilities are used and persistently reviewed to enforce traffic flow controls.
@@ -3169,7 +3146,7 @@ Historical metrics, daily data reference (optional): TBD: Information has not be
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
-2.14 KSI-IAM-AAM Automating Account Management
+2.13 KSI-IAM-AAM Automating Account Management
 KSI: KSI-IAM-AAM
 Family: IAM (Identity and Access Management)
 Security outcome: The lifecycle and privileges of all accounts, roles, and groups are securely managed using automation.
@@ -3192,7 +3169,7 @@ Historical metrics, daily data reference (optional): TBD: Information has not be
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
-2.15 KSI-IAM-APM Adopting Passwordless Methods
+2.14 KSI-IAM-APM Adopting Passwordless Methods
 KSI: KSI-IAM-APM
 Family: IAM (Identity and Access Management)
 Security outcome: Secure passwordless methods are used for user authentication and authorization when feasible, otherwise strong passwords with phishing-resistant MFA is used.
@@ -3215,7 +3192,7 @@ Historical metrics, daily data reference (optional): TBD: Information has not be
 Tests: Example test 1: config rule iam-user-no-passwords-or-keys returns COMPLIANT for all accounts (daily).; Example test 2: CloudTrail Lake query for console login events without MFA returns zero rows (daily).
 Owner: Example: Identity and Access Lead
 
-2.16 KSI-IAM-ELP Ensuring Least Privilege
+2.15 KSI-IAM-ELP Ensuring Least Privilege
 KSI: KSI-IAM-ELP
 Family: IAM (Identity and Access Management)
 Security outcome: Identity and access management measures are used and persistently reviewed to ensure each user or device can only access the resources they need.
@@ -3238,7 +3215,7 @@ Historical metrics, daily data reference (optional): TBD: Information has not be
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
-2.17 KSI-IAM-JIT Authorizing Just-in-Time
+2.16 KSI-IAM-JIT Authorizing Just-in-Time
 KSI: KSI-IAM-JIT
 Family: IAM (Identity and Access Management)
 Security outcome: A least-privileged, role and attribute-based, and just-in-time security authorization model is used and persistently reviewed for all user and non-user accounts and services.
@@ -3261,7 +3238,7 @@ Historical metrics, daily data reference (optional): TBD: Information has not be
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
-2.18 KSI-IAM-SNU Securing Non-User Authentication
+2.17 KSI-IAM-SNU Securing Non-User Authentication
 KSI: KSI-IAM-SNU
 Family: IAM (Identity and Access Management)
 Security outcome: Appropriately secure authentication methods are used and persistently reviewed for non-user accounts and services.
@@ -3284,7 +3261,7 @@ Historical metrics, daily data reference (optional): TBD: Information has not be
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
-2.19 KSI-IAM-SUS Responding to Suspicious Activity
+2.18 KSI-IAM-SUS Responding to Suspicious Activity
 KSI: KSI-IAM-SUS
 Family: IAM (Identity and Access Management)
 Security outcome: Accounts with privileged access are disabled or otherwise secured in response to suspicious activity.
@@ -3307,7 +3284,7 @@ Historical metrics, daily data reference (optional): TBD: Information has not be
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
-2.20 KSI-INR-AAR Generating After Action Reports
+2.19 KSI-INR-AAR Generating After Action Reports
 KSI: KSI-INR-AAR
 Family: INR (Incident Response)
 Security outcome: Incident after action reports are generated and lessons learned are persistently incorporated.
@@ -3330,7 +3307,7 @@ Historical metrics, daily data reference (optional): TBD: Information has not be
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
-2.21 KSI-INR-RIR Reviewing Incident Response Procedures
+2.20 KSI-INR-RIR Reviewing Incident Response Procedures
 KSI: KSI-INR-RIR
 Family: INR (Incident Response)
 Security outcome: The effectiveness of documented incident response procedures is persistently reviewed.
@@ -3353,7 +3330,7 @@ Historical metrics, daily data reference (optional): TBD: Information has not be
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
-2.22 KSI-INR-RPI Reviewing Past Incidents
+2.21 KSI-INR-RPI Reviewing Past Incidents
 KSI: KSI-INR-RPI
 Family: INR (Incident Response)
 Security outcome: Past incidents are persistently reviewed for patterns or vulnerabilities that were not previously apparent or identified.
@@ -3376,30 +3353,7 @@ Historical metrics, daily data reference (optional): TBD: Information has not be
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
-2.23 KSI-MLA-ALA Authorizing Log Access
-KSI: KSI-MLA-ALA
-Family: MLA (Monitoring, Logging, and Auditing)
-Security outcome: Optional: A least-privileged, role and attribute-based, and just-in-time access authorization model is used and persistently reviewed for access to log data based on organizationally defined data sensitivity.
-Status: Not Implemented
-Implementation: TBD: Information has not been provided.
-Validation: TBD: Information has not been provided.
-Independent assessment: TBD: Independent assessment has not been performed.
-Measures and objectives: TBD: Information has not been provided.
-Reason measures are unavailable (if none): Not applicable: measures are available
-Resulting customer risk if measures unavailable: TBD: Information has not been provided.
-Measurement cycle: TBD: Information has not been provided.
-Verification of measures: TBD: Information has not been provided.
-Verification of supporting automation: TBD: Information has not been provided.
-Minimum automated methods for this class: 1
-Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
-Historical metrics, 30-day summary: TBD: Information has not been provided.
-Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data (Class C): none available
-Historical metrics, daily data reference (optional): TBD: Information has not been provided.
-Tests: None defined yet
-Owner: TBD: Information has not been provided.
-
-2.24 KSI-MLA-EVC Evaluating Configurations
+2.22 KSI-MLA-EVC Evaluating Configurations
 KSI: KSI-MLA-EVC
 Family: MLA (Monitoring, Logging, and Auditing)
 Security outcome: The configuration of machine-based information resources, especially infrastructure as code, is persistently evaluated and tested.
@@ -3422,7 +3376,7 @@ Historical metrics, daily data reference (optional): TBD: Information has not be
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
-2.25 KSI-MLA-LET Logging Event Types
+2.23 KSI-MLA-LET Logging Event Types
 KSI: KSI-MLA-LET
 Family: MLA (Monitoring, Logging, and Auditing)
 Security outcome: A list of information resources and event types that will be logged, monitored, and audited is maintained and persistently reviewed to ensure these activities occur.
@@ -3445,7 +3399,7 @@ Historical metrics, daily data reference (optional): TBD: Information has not be
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
-2.26 KSI-MLA-OSM Operating SIEM Capability
+2.24 KSI-MLA-OSM Operating SIEM Capability
 KSI: KSI-MLA-OSM
 Family: MLA (Monitoring, Logging, and Auditing)
 Security outcome: A Security Information and Event Management (SIEM) or similar system(s) is used and persistently reviewed for centralized, tamper-resistant logging of events, activities, and changes.
@@ -3468,7 +3422,7 @@ Historical metrics, daily data reference (optional): TBD: Information has not be
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
-2.27 KSI-MLA-RVL Reviewing Logs
+2.25 KSI-MLA-RVL Reviewing Logs
 KSI: KSI-MLA-RVL
 Family: MLA (Monitoring, Logging, and Auditing)
 Security outcome: Logs are persistently reviewed and audited.
@@ -3491,7 +3445,7 @@ Historical metrics, daily data reference (optional): TBD: Information has not be
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
-2.28 KSI-PIY-GIV Generating Inventories
+2.26 KSI-PIY-GIV Generating Inventories
 KSI: KSI-PIY-GIV
 Family: PIY (Policy and Inventory)
 Security outcome: Authoritative sources are used to automatically generate real-time inventories of all information resources when needed.
@@ -3514,7 +3468,7 @@ Historical metrics, daily data reference (optional): TBD: Information has not be
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
-2.29 KSI-PIY-RES Reviewing Executive Support
+2.27 KSI-PIY-RES Reviewing Executive Support
 KSI: KSI-PIY-RES
 Family: PIY (Policy and Inventory)
 Security outcome: Executive support for achieving the provider's security goals is persistently reviewed and demonstrated.
@@ -3537,7 +3491,7 @@ Historical metrics, daily data reference (optional): TBD: Information has not be
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
-2.30 KSI-PIY-RIS Reviewing Investments in Security
+2.28 KSI-PIY-RIS Reviewing Investments in Security
 KSI: KSI-PIY-RIS
 Family: PIY (Policy and Inventory)
 Security outcome: The effectiveness of the provider's investments in achieving security goals is persistently reviewed.
@@ -3560,7 +3514,7 @@ Historical metrics, daily data reference (optional): TBD: Information has not be
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
-2.31 KSI-PIY-RSD Reviewing Security in the SDLC
+2.29 KSI-PIY-RSD Reviewing Security in the SDLC
 KSI: KSI-PIY-RSD
 Family: PIY (Policy and Inventory)
 Security outcome: The effectiveness of building security and privacy considerations into the Software Development Lifecycle and aligning with CISA Secure By Design principles is persistently reviewed.
@@ -3583,7 +3537,7 @@ Historical metrics, daily data reference (optional): TBD: Information has not be
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
-2.32 KSI-PIY-RVD Reviewing Vulnerability Disclosures
+2.30 KSI-PIY-RVD Reviewing Vulnerability Disclosures
 KSI: KSI-PIY-RVD
 Family: PIY (Policy and Inventory)
 Security outcome: The effectiveness of the provider's vulnerability disclosure program is persistently reviewed.
@@ -3606,7 +3560,7 @@ Historical metrics, daily data reference (optional): TBD: Information has not be
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
-2.33 KSI-RPL-ABO Aligning Backups with Objectives
+2.31 KSI-RPL-ABO Aligning Backups with Objectives
 KSI: KSI-RPL-ABO
 Family: RPL (Recovery Planning)
 Security outcome: The alignment of machine-based information resource backups with defined recovery objectives is persistently reviewed.
@@ -3629,7 +3583,7 @@ Historical metrics, daily data reference (optional): TBD: Information has not be
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
-2.34 KSI-RPL-ARP Aligning Recovery Plan
+2.32 KSI-RPL-ARP Aligning Recovery Plan
 KSI: KSI-RPL-ARP
 Family: RPL (Recovery Planning)
 Security outcome: The alignment of recovery plans with defined recovery objectives is persistently reviewed.
@@ -3652,7 +3606,7 @@ Historical metrics, daily data reference (optional): TBD: Information has not be
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
-2.35 KSI-RPL-RRO Reviewing Recovery Objectives
+2.33 KSI-RPL-RRO Reviewing Recovery Objectives
 KSI: KSI-RPL-RRO
 Family: RPL (Recovery Planning)
 Security outcome: The desired Recovery Time Objectives (RTO) and Recovery Point Objectives (RPO) are defined and persistently reviewed for alignment with the provider's business needs and capabilities.
@@ -3675,7 +3629,7 @@ Historical metrics, daily data reference (optional): TBD: Information has not be
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
-2.36 KSI-RPL-TRC Testing Recovery Capabilities
+2.34 KSI-RPL-TRC Testing Recovery Capabilities
 KSI: KSI-RPL-TRC
 Family: RPL (Recovery Planning)
 Security outcome: The capability to recover from incidents and contingencies aligned with defined recovery objectives is persistently tested.
@@ -3698,7 +3652,7 @@ Historical metrics, daily data reference (optional): TBD: Information has not be
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
-2.37 KSI-SCR-MIT Mitigating Supply Chain Risk
+2.35 KSI-SCR-MIT Mitigating Supply Chain Risk
 KSI: KSI-SCR-MIT
 Family: SCR (Supply Chain Risk)
 Security outcome: Persistently identify, review, and mitigate potential supply chain risks.
@@ -3721,7 +3675,7 @@ Historical metrics, daily data reference (optional): TBD: Information has not be
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
-2.38 KSI-SCR-MON Monitoring Supply Chain Risk
+2.36 KSI-SCR-MON Monitoring Supply Chain Risk
 KSI: KSI-SCR-MON
 Family: SCR (Supply Chain Risk)
 Security outcome: Third party software information resources are automatically monitored for upstream vulnerabilities using mechanisms that may include contractual notification requirements or active monitoring services.
@@ -3744,7 +3698,7 @@ Historical metrics, daily data reference (optional): TBD: Information has not be
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
-2.39 KSI-SVC-ACM Automating Configuration Management
+2.37 KSI-SVC-ACM Automating Configuration Management
 KSI: KSI-SVC-ACM
 Family: SVC (Service Configuration)
 Security outcome: The configuration of machine-based information resources is managed using automation and persistently reviewed for drift.
@@ -3767,7 +3721,7 @@ Historical metrics, daily data reference (optional): TBD: Information has not be
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
-2.40 KSI-SVC-ASM Automating Secret Management
+2.38 KSI-SVC-ASM Automating Secret Management
 KSI: KSI-SVC-ASM
 Family: SVC (Service Configuration)
 Security outcome: Management, protection, and regular rotation of digital keys, certificates, and other secrets is automated and persistently reviewed.
@@ -3790,7 +3744,7 @@ Historical metrics, daily data reference (optional): TBD: Information has not be
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
-2.41 KSI-SVC-EIS Evaluating and Improving Security
+2.39 KSI-SVC-EIS Evaluating and Improving Security
 KSI: KSI-SVC-EIS
 Family: SVC (Service Configuration)
 Security outcome: Information resources are persistently evaluated for opportunities to improve security and those improvements are persistently made.
@@ -3813,53 +3767,7 @@ Historical metrics, daily data reference (optional): TBD: Information has not be
 Tests: None defined yet
 Owner: TBD: Information has not been provided.
 
-2.42 KSI-SVC-PRR Preventing Residual Risk
-KSI: KSI-SVC-PRR
-Family: SVC (Service Configuration)
-Security outcome: Optional: Plans, procedures, and the state of information resources are persistently reviewed after making changes to limit and remove unwanted residual elements that would likely negatively affect the confidentiality, integrity, or availability of federal customer data.
-Status: Not Implemented
-Implementation: TBD: Information has not been provided.
-Validation: TBD: Information has not been provided.
-Independent assessment: TBD: Independent assessment has not been performed.
-Measures and objectives: TBD: Information has not been provided.
-Reason measures are unavailable (if none): Not applicable: measures are available
-Resulting customer risk if measures unavailable: TBD: Information has not been provided.
-Measurement cycle: TBD: Information has not been provided.
-Verification of measures: TBD: Information has not been provided.
-Verification of supporting automation: TBD: Information has not been provided.
-Minimum automated methods for this class: 1
-Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
-Historical metrics, 30-day summary: TBD: Information has not been provided.
-Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data (Class C): none available
-Historical metrics, daily data reference (optional): TBD: Information has not been provided.
-Tests: None defined yet
-Owner: TBD: Information has not been provided.
-
-2.43 KSI-SVC-RUD Removing Unwanted Data
-KSI: KSI-SVC-RUD
-Family: SVC (Service Configuration)
-Security outcome: Optional: Unwanted federal customer data is removed promptly when requested by an agency in alignment with customer agreements, including from backups if appropriate; this typically applies when a customer spills information or when a customer seeks to remove information from a service due to a change in usage.
-Status: Not Implemented
-Implementation: TBD: Information has not been provided.
-Validation: TBD: Information has not been provided.
-Independent assessment: TBD: Independent assessment has not been performed.
-Measures and objectives: TBD: Information has not been provided.
-Reason measures are unavailable (if none): Not applicable: measures are available
-Resulting customer risk if measures unavailable: TBD: Information has not been provided.
-Measurement cycle: TBD: Information has not been provided.
-Verification of measures: TBD: Information has not been provided.
-Verification of supporting automation: TBD: Information has not been provided.
-Minimum automated methods for this class: 1
-Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
-Historical metrics, 30-day summary: TBD: Information has not been provided.
-Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data (Class C): none available
-Historical metrics, daily data reference (optional): TBD: Information has not been provided.
-Tests: None defined yet
-Owner: TBD: Information has not been provided.
-
-2.44 KSI-SVC-SIN Securing Information
+2.40 KSI-SVC-SIN Securing Information
 KSI: KSI-SVC-SIN
 Family: SVC (Service Configuration)
 Security outcome: Information is encrypted or otherwise secured from unwanted access or modification.
@@ -3882,30 +3790,7 @@ Historical metrics, daily data reference (optional): TBD: Information has not be
 Tests: Example test 1: Config rules encrypted-volumes and rds-storage-encrypted are COMPLIANT for all resources (continuous).; Example test 2: EBS default encryption and S3 Block Public Access report enabled for every in-scope account (daily).
 Owner: Example: Security Engineering Lead
 
-2.45 KSI-SVC-VCM Validating Communications
-KSI: KSI-SVC-VCM
-Family: SVC (Service Configuration)
-Security outcome: Optional: The authenticity and integrity of communications between machine-based information resources is persistently validated using automation.
-Status: Not Implemented
-Implementation: TBD: Information has not been provided.
-Validation: TBD: Information has not been provided.
-Independent assessment: TBD: Independent assessment has not been performed.
-Measures and objectives: TBD: Information has not been provided.
-Reason measures are unavailable (if none): Not applicable: measures are available
-Resulting customer risk if measures unavailable: TBD: Information has not been provided.
-Measurement cycle: TBD: Information has not been provided.
-Verification of measures: TBD: Information has not been provided.
-Verification of supporting automation: TBD: Information has not been provided.
-Minimum automated methods for this class: 1
-Historical metrics required for this class: Summary of each metric over the past 30 days, and up to the past year where available.
-Historical metrics, 30-day summary: TBD: Information has not been provided.
-Historical metrics, up to one year: TBD: Information has not been provided.
-Historical metrics, daily data (Class C): none available
-Historical metrics, daily data reference (optional): TBD: Information has not been provided.
-Tests: None defined yet
-Owner: TBD: Information has not been provided.
-
-2.46 KSI-SVC-VRI Validating Resource Integrity
+2.41 KSI-SVC-VRI Validating Resource Integrity
 KSI: KSI-SVC-VRI
 Family: SVC (Service Configuration)
 Security outcome: Use cryptographic methods to validate the integrity of machine-based information resources.

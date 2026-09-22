@@ -124,16 +124,16 @@ def build_graph(cls):
     if class_profile is None:
         return None
     ksi_profile = load(KSI_PROFILE, {"indicators": []})
-    # Class A resolves only the 7 CLA-enumerated KSIs; build only those nodes so
-    # the graph matches the Class A SDR (the SDR omits the other 39, so building
-    # them would leave every one without an SDR output pointer).
-    if cls == "a":
-        class_a_ksis = (class_profile.get("meta", {}) or {}).get("class_a_ksis", {})
-        _applicable_ksi_ids = set(class_a_ksis.keys())
-    else:
-        _applicable_ksi_ids = {k["ksi_id"] for k in ksi_profile["indicators"]}
     records = load(RECORDS, {"frr": {}, "ksi": {}})
     sdr = load(os.path.join(BASE, "sdr", "json", f"sdr-class-{cls}.json"), {})
+    # The SUBMITTED SDR is the authoritative applicable set for every class: the
+    # Class A SDR omits the 39 non-CLA KSIs and the Class B SDR omits unselected
+    # optional-at-B KSIs. Deriving from the SDR keeps the graph in lockstep with
+    # what was actually submitted, so no node is built without an SDR pointer.
+    _applicable_ksi_ids = {e["ksiId"] for e in sdr.get("keySecurityIndicators", [])}
+    if not _applicable_ksi_ids:
+        # Fallback only when no SDR exists yet (first build): every KSI.
+        _applicable_ksi_ids = {k["ksi_id"] for k in ksi_profile["indicators"]}
     sdr_frr_index = {e["frrID"]: i for i, e in enumerate(sdr.get("fedRampRequirements", []))}
     sdr_ksi_index = {e["ksiId"]: i for i, e in enumerate(sdr.get("keySecurityIndicators", []))}
     review_idx = _review_index()
