@@ -11,6 +11,8 @@
  "certification_path": "Program",
  "selected_optional_rules": [],
  "_selected_optional_rules_note": "Class A only. FRC-CLA-OFR optional (MAY) rules are extra credit; by default NONE are submitted. To include a specific optional rule in the Class A SDR, add its rule_id here (e.g. \"CCM-QTR-MTG\"). All MUST and SHOULD rules are always submitted. Ignored for Class B/C. FedRAMP fully reviews any optional rule that is included.",
+ "selected_optional_ksis": [],
+ "_selected_optional_ksis_note": "Class B only. Five KSIs are OPTIONAL at Class B (varies_by_class 'b' marked **Optional:**): KSI-CNA-EIS, KSI-MLA-ALA, KSI-SVC-PRR, KSI-SVC-RUD, KSI-SVC-VCM. By default NONE are submitted in the Class B SDR. To include one, add its ksi_id here. A ksi_id that is not one of those five is a hard error at preflight (a bad selection silently opts in nothing). All other KSIs are always submitted. Ignored for Class A/C (they are mandatory at Class C).",
  "aws_partition": "aws (AWS Commercial)",
  "primary_region": "us-east-1",
  "dr_region": "us-west-2",

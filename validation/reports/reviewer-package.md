@@ -11,15 +11,15 @@ Assessor-facing summary generated from the assurance graph. It is not a complian
 - Applicable rules: 158
 - Excluded rules (with recorded reasons): 76
 - Total rules in dataset: 234
-- KSIs in scope: 46
+- KSIs in scope: 41
 
 ## Coverage (not compliance)
 - Rules with evidence: 0 of 158
-- KSIs with evidence: 0 of 46
-- KSIs meeting verification-method minimum: 3 of 46
+- KSIs with evidence: 0 of 41
+- KSIs meeting verification-method minimum: 3 of 41
 - Rules still in template TBD state: 155
-- KSIs still in template TBD state: 43
-- Nodes pending human review: 204
+- KSIs still in template TBD state: 38
+- Nodes pending human review: 199
 
 ## Where to look
 - Full traceability: `traceability/assurance-graph.json`
