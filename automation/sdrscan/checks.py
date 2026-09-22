@@ -237,9 +237,19 @@ def format_consistency_drift(ctx):
         json_ids.add(kid)
         if kid not in text:
             drift.append(f"KSI {kid} is in the JSON but not the human-readable rendering")
+    # F-07: an identifier can legitimately appear in the JSON as a CROSS-REFERENCE
+    # (a citation), not only as a top-level record ID - for example IVV-IAS-OSA in
+    # metadata.xIndependentAssessmentSummary.basis, which the builder mirrors into
+    # the human-readable rendering. The reverse-direction check must not treat
+    # such a citation as an "extra" identifier the JSON lacks. Collect every
+    # three-segment identifier that appears ANYWHERE in the JSON serialization so
+    # a legitimate citation present in both documents is not a false drift.
+    _json_text = json.dumps(ctx.sdr, ensure_ascii=False)
+    json_all_ids = set(re.findall(r"\b[A-Z]{3}-[A-Z]{3}-[A-Z]{3}\b", _json_text)) | set(
+        re.findall(r"\bKSI-[A-Z]{3}-[A-Z]{3}\b", _json_text))
     for found in set(re.findall(r"\b[A-Z]{3}-[A-Z]{3}-[A-Z]{3}\b", text)) | set(
             re.findall(r"\bKSI-[A-Z]{3}-[A-Z]{3}\b", text)):
-        if found not in json_ids and not found.startswith("FRC-CLA"):
+        if found not in json_ids and found not in json_all_ids and not found.startswith("FRC-CLA"):
             drift.append(f"{found} appears in the human-readable rendering but not the JSON")
     # Status wording must agree. The rendering prints "Status: <value>" in
     # rule order, so compare positionally against the JSON.
