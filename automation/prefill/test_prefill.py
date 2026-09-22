@@ -51,7 +51,9 @@ def test_config_fact_prefills_tests_and_evidence():
 
 
 def test_posture_fact_prefills():
-    ksi_entry = {"services": ["Amazon GuardDuty"], "checks": []}
+    # Routing is by the EXPLICIT metric_service_keys allowlist, not prose services.
+    ksi_entry = {"services": ["Amazon GuardDuty"], "metric_service_keys": ["guardduty"],
+                 "checks": []}
     posture = {"guardduty": [{"service": "guardduty", "check": "detector",
                               "status": "ENABLED", "detail": "Detector status ENABLED",
                               "collected_at": "2026-09-06T00:00:00+00:00",
@@ -66,7 +68,8 @@ def test_securityhub_posture_prefills_with_collector_service_name():
     # The collector emits service="securityhub" (not "security_hub"). This
     # proves the downstream mapping uses the collector's real name, so the
     # telemetry is not silently dropped (regression for the service-name drift).
-    ksi_entry = {"services": ["AWS Security Hub"], "checks": []}
+    ksi_entry = {"services": ["AWS Security Hub"], "metric_service_keys": ["securityhub"],
+                 "checks": []}
     posture = {"securityhub": [{"service": "securityhub", "check": "enabled",
                                 "status": "ENABLED", "detail": "Security Hub ENABLED",
                                 "collected_at": "2026-09-06T00:00:00+00:00",
@@ -75,6 +78,38 @@ def test_securityhub_posture_prefills_with_collector_service_name():
     changed, _ = pf.prefill_ksi("KSI-MLA-XXX", rec, ksi_entry, {}, posture)
     assert changed, "a securityhub posture fact must prefill an AWS Security Hub KSI"
     assert any("securityhub.enabled = ENABLED" in t for t in rec["tests"])
+
+
+def test_prose_services_alone_does_not_route_posture():
+    # F-06 regression: a KSI that only NAMES a service in its prose `services`
+    # list, with an EMPTY metric_service_keys allowlist, must NOT receive that
+    # service's posture. Prefill honors the same explicit allowlist the metric
+    # engine uses, so generic posture cannot fan out by service-name mention.
+    ksi_entry = {"services": ["Amazon GuardDuty"], "metric_service_keys": [],
+                 "checks": []}
+    posture = {"guardduty": [{"service": "guardduty", "check": "detector",
+                              "status": "ENABLED", "detail": "ENABLED",
+                              "collected_at": "2026-09-06T00:00:00+00:00",
+                              "region": "us-east-1"}]}
+    rec = blank_ksi_record()
+    changed, _ = pf.prefill_ksi("KSI-CNA-XXX", rec, ksi_entry, {}, posture)
+    assert not changed, "prose services mention must not route posture without the allowlist"
+    assert rec["tests"] == []
+
+
+def test_unknown_metric_service_key_fails_loud():
+    # A typo'd allowlist key would silently route nothing; it must raise instead.
+    ksi_entry = {"services": [], "metric_service_keys": ["guarddutyy"], "checks": []}
+    posture = {"guardduty": [{"service": "guardduty", "check": "detector",
+                              "status": "ENABLED", "detail": "ENABLED",
+                              "collected_at": "t", "region": "x"}]}
+    rec = blank_ksi_record()
+    raised = False
+    try:
+        pf.prefill_ksi("KSI-CNA-YYY", rec, ksi_entry, {}, posture)
+    except RuntimeError:
+        raised = True
+    assert raised, "an unknown metric_service_keys entry must fail loud"
 
 
 def test_never_touches_status_or_assessment():
