@@ -15,8 +15,8 @@ No AWS account is needed. Nothing in the build path makes a network call: the Fe
 ## One command
 
 ```bash
-git clone https://github.com/satishuv/FEDRAMP-20x-SDR-Documentation.git
-cd FEDRAMP-20x-SDR-Documentation
+git clone https://github.com/satishuv/fedramp-20x-continuous-certification-package.git
+cd fedramp-20x-continuous-certification-package
 python sdr.py all
 ```
 

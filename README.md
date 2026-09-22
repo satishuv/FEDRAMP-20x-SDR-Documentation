@@ -6,8 +6,8 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/satishuv/FEDRAMP-20x-SDR-Documentation/actions/workflows/validate.yml"><img alt="Validate" src="https://github.com/satishuv/FEDRAMP-20x-SDR-Documentation/actions/workflows/validate.yml/badge.svg"></a>
-  <a href="https://github.com/satishuv/FEDRAMP-20x-SDR-Documentation/actions/workflows/drift-check.yml"><img alt="Upstream drift" src="https://github.com/satishuv/FEDRAMP-20x-SDR-Documentation/actions/workflows/drift-check.yml/badge.svg"></a>
+  <a href="https://github.com/satishuv/fedramp-20x-continuous-certification-package/actions/workflows/validate.yml"><img alt="Validate" src="https://github.com/satishuv/fedramp-20x-continuous-certification-package/actions/workflows/validate.yml/badge.svg"></a>
+  <a href="https://github.com/satishuv/fedramp-20x-continuous-certification-package/actions/workflows/drift-check.yml"><img alt="Upstream drift" src="https://github.com/satishuv/fedramp-20x-continuous-certification-package/actions/workflows/drift-check.yml/badge.svg"></a>
   <img alt="CR26 dataset" src="https://img.shields.io/badge/CR26%20dataset-2026.09.13.02-0b7285">
   <img alt="Classes" src="https://img.shields.io/badge/classes-A%20%7C%20B%20%7C%20C-1864ab">
   <img alt="Python" src="https://img.shields.io/badge/python-3.10%2B-3776ab">
@@ -23,7 +23,7 @@
 </p>
 
 <p align="center">
-  <sub>Pinned to CR26 dataset <code>2026.09.13.02</code>. A scheduled <a href="https://github.com/satishuv/FEDRAMP-20x-SDR-Documentation/actions/workflows/drift-check.yml">drift check</a> hash-compares the pinned dataset and schemas against <a href="https://github.com/FedRAMP/rules">github.com/FedRAMP/rules</a> daily and opens an issue on any change. Green drift badge above means the pin still matches upstream.</sub>
+  <sub>Pinned to CR26 dataset <code>2026.09.13.02</code>. A scheduled <a href="https://github.com/satishuv/fedramp-20x-continuous-certification-package/actions/workflows/drift-check.yml">drift check</a> hash-compares the pinned dataset and schemas against <a href="https://github.com/FedRAMP/rules">github.com/FedRAMP/rules</a> daily and opens an issue on any change. Green drift badge above means the pin still matches upstream.</sub>
 </p>
 
 ---
@@ -104,8 +104,8 @@ The consistent boundary across every row: the framework collects evidence and au
 ## Quickstart
 
 ```bash
-git clone https://github.com/satishuv/FEDRAMP-20x-SDR-Documentation.git
-cd FEDRAMP-20x-SDR-Documentation
+git clone https://github.com/satishuv/fedramp-20x-continuous-certification-package.git
+cd fedramp-20x-continuous-certification-package
 pip install -r requirements.txt
 
 python sdr.py all
