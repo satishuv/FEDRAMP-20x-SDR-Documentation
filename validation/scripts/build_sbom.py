@@ -131,7 +131,7 @@ def build():
     serial = f"urn:uuid:{digest[0:8]}-{digest[8:12]}-{digest[12:16]}-{digest[16:20]}-{digest[20:32]}"
 
     _locked = sbom_scope == "resolved-closure-with-hashes"
-    _desc = ("Provider-side FedRAMP 20x Certification Package framework. This "
+    _desc = ("Provider-side FedRAMP 20x Continuous Certification Package framework. This "
              "SBOM covers the framework's own "
              + ("FULLY-RESOLVED Python dependency closure (direct plus "
                 "transitive) with per-package SHA-256 hashes, from the committed "
