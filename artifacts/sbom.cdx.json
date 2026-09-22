@@ -7,7 +7,7 @@
   "component": {
    "type": "application",
    "name": "fedramp-20x-sdr-framework",
-   "description": "Provider-side FedRAMP 20x Certification Package framework. This SBOM covers the framework's own DIRECTLY-PINNED top-level Python dependencies (no committed requirements.lock present, so the transitive closure is not enumerated). It does not cover the provider's offering."
+   "description": "Provider-side FedRAMP 20x Continuous Certification Package framework. This SBOM covers the framework's own DIRECTLY-PINNED top-level Python dependencies (no committed requirements.lock present, so the transitive closure is not enumerated). It does not cover the provider's offering."
   },
   "properties": [
    {

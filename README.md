@@ -1,4 +1,4 @@
-<h1 align="center">FedRAMP 20x Certification Package Framework</h1>
+<h1 align="center">FedRAMP 20x Continuous Certification Package Framework</h1>
 
 <p align="center">
   <strong>Build and maintain your FedRAMP 20x Certification Package from traceable, machine-readable facts, not hand-maintained documents.</strong><br>
