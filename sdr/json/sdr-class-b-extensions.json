@@ -6238,46 +6238,6 @@
    "assessor_responses": "None recorded",
    "resulting_customer_risk": "TBD: Information has not been provided."
   },
-  "KSI-CNA-EIS": {
-   "name": "Enforcing Intended State",
-   "family": "CNA",
-   "family_name": "Cloud Native Architecture",
-   "content_status": "stable",
-   "minimum_automated_methods": 1,
-   "historical_metrics_required": "Summary of each metric over the past 30 days, and up to the past year where available.",
-   "guidance": {
-    "what_it_looks_for": "FedRAMP pending: no statement published yet for this indicator.",
-    "how_to_comply": "Class-varying (optional/MAY at Class B, required at Class C): automated services persistently assess the security of all machine-based information resources and automatically enforce their intended operational state. Evidence: Config rules with auto-remediation, Systems Manager State Manager/associations, drift-detection and enforcement records over time.",
-    "evidence_required": [
-     "Explanation of measures (and their objectives) that demonstrate the Key Security Indicator, or an explanation of the reason and resulting risk to customers for not having measures available for that Key Security Indicator.",
-     "Explanation of the cycle for any measures that are implemented persistently (if applicable).",
-     "Verification that the measures demonstrate the Key Security Indicator, or that the reason for not having them is accepted.",
-     "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
-     "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
-    ],
-    "nist_controls": [
-     "ca-2.1",
-     "ca-7.1"
-    ],
-    "note": "How to comply is SAS advisory guidance, not FedRAMP text. Fill the TBD fields below with the provider's real implementation, validation, tests, and owner."
-   },
-   "owner": "TBD: Information has not been provided.",
-   "measures": "TBD: Information has not been provided.",
-   "operating_cycle": "TBD: Information has not been provided.",
-   "metric_source": "TBD: Information has not been provided.",
-   "pass_condition": "TBD: Information has not been provided.",
-   "failure_condition": "TBD: Information has not been provided.",
-   "failure_response": "TBD: Information has not been provided.",
-   "known_limitation": "TBD: Information has not been provided.",
-   "customer_responsibility": "TBD: Information has not been provided.",
-   "aws_responsibility": "TBD: Information has not been provided.",
-   "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded",
-   "measures_verification": "TBD: Information has not been provided.",
-   "automation_verification": "TBD: Information has not been provided.",
-   "assessor_responses": "None recorded",
-   "resulting_customer_risk": "TBD: Information has not been provided."
-  },
   "KSI-CNA-IBP": {
    "name": "Implementing Best Practices",
    "family": "CNA",
@@ -6987,45 +6947,6 @@
      "ir-4.1",
      "ir-5",
      "ir-8"
-    ],
-    "note": "How to comply is SAS advisory guidance, not FedRAMP text. Fill the TBD fields below with the provider's real implementation, validation, tests, and owner."
-   },
-   "owner": "TBD: Information has not been provided.",
-   "measures": "TBD: Information has not been provided.",
-   "operating_cycle": "TBD: Information has not been provided.",
-   "metric_source": "TBD: Information has not been provided.",
-   "pass_condition": "TBD: Information has not been provided.",
-   "failure_condition": "TBD: Information has not been provided.",
-   "failure_response": "TBD: Information has not been provided.",
-   "known_limitation": "TBD: Information has not been provided.",
-   "customer_responsibility": "TBD: Information has not been provided.",
-   "aws_responsibility": "TBD: Information has not been provided.",
-   "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded",
-   "measures_verification": "TBD: Information has not been provided.",
-   "automation_verification": "TBD: Information has not been provided.",
-   "assessor_responses": "None recorded",
-   "resulting_customer_risk": "TBD: Information has not been provided."
-  },
-  "KSI-MLA-ALA": {
-   "name": "Authorizing Log Access",
-   "family": "MLA",
-   "family_name": "Monitoring, Logging, and Auditing",
-   "content_status": "stable",
-   "minimum_automated_methods": 1,
-   "historical_metrics_required": "Summary of each metric over the past 30 days, and up to the past year where available.",
-   "guidance": {
-    "what_it_looks_for": "FedRAMP pending: no statement published yet for this indicator.",
-    "how_to_comply": "Class-varying (optional/MAY at Class B, required at Class C): a least-privileged, role/attribute-based, just-in-time authorization model governs access to log data by data sensitivity, and is persistently reviewed. Evidence: IAM/Access Analyzer for log-store access, JIT-access records, periodic access reviews of the log data store.",
-    "evidence_required": [
-     "Explanation of measures (and their objectives) that demonstrate the Key Security Indicator, or an explanation of the reason and resulting risk to customers for not having measures available for that Key Security Indicator.",
-     "Explanation of the cycle for any measures that are implemented persistently (if applicable).",
-     "Verification that the measures demonstrate the Key Security Indicator, or that the reason for not having them is accepted.",
-     "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
-     "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
-    ],
-    "nist_controls": [
-     "si-11"
     ],
     "note": "How to comply is SAS advisory guidance, not FedRAMP text. Fill the TBD fields below with the provider's real implementation, validation, tests, and owner."
    },
@@ -7878,85 +7799,6 @@
    "assessor_responses": "None recorded",
    "resulting_customer_risk": "TBD: Information has not been provided."
   },
-  "KSI-SVC-PRR": {
-   "name": "Preventing Residual Risk",
-   "family": "SVC",
-   "family_name": "Service Configuration",
-   "content_status": "stable",
-   "minimum_automated_methods": 1,
-   "historical_metrics_required": "Summary of each metric over the past 30 days, and up to the past year where available.",
-   "guidance": {
-    "what_it_looks_for": "FedRAMP pending: no statement published yet for this indicator.",
-    "how_to_comply": "Class-varying (optional/MAY at Class B, required at Class C): plans, procedures, and resource state are persistently reviewed after changes to limit and remove unwanted residual elements that could affect confidentiality, integrity, or availability of federal customer data. Evidence: post-change review records, drift/residual-resource cleanup logs.",
-    "evidence_required": [
-     "Explanation of measures (and their objectives) that demonstrate the Key Security Indicator, or an explanation of the reason and resulting risk to customers for not having measures available for that Key Security Indicator.",
-     "Explanation of the cycle for any measures that are implemented persistently (if applicable).",
-     "Verification that the measures demonstrate the Key Security Indicator, or that the reason for not having them is accepted.",
-     "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
-     "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
-    ],
-    "nist_controls": [
-     "sc-4"
-    ],
-    "note": "How to comply is SAS advisory guidance, not FedRAMP text. Fill the TBD fields below with the provider's real implementation, validation, tests, and owner."
-   },
-   "owner": "TBD: Information has not been provided.",
-   "measures": "TBD: Information has not been provided.",
-   "operating_cycle": "TBD: Information has not been provided.",
-   "metric_source": "TBD: Information has not been provided.",
-   "pass_condition": "TBD: Information has not been provided.",
-   "failure_condition": "TBD: Information has not been provided.",
-   "failure_response": "TBD: Information has not been provided.",
-   "known_limitation": "TBD: Information has not been provided.",
-   "customer_responsibility": "TBD: Information has not been provided.",
-   "aws_responsibility": "TBD: Information has not been provided.",
-   "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded",
-   "measures_verification": "TBD: Information has not been provided.",
-   "automation_verification": "TBD: Information has not been provided.",
-   "assessor_responses": "None recorded",
-   "resulting_customer_risk": "TBD: Information has not been provided."
-  },
-  "KSI-SVC-RUD": {
-   "name": "Removing Unwanted Data",
-   "family": "SVC",
-   "family_name": "Service Configuration",
-   "content_status": "stable",
-   "minimum_automated_methods": 1,
-   "historical_metrics_required": "Summary of each metric over the past 30 days, and up to the past year where available.",
-   "guidance": {
-    "what_it_looks_for": "FedRAMP pending: no statement published yet for this indicator.",
-    "how_to_comply": "Class-varying (optional/MAY at Class B, required at Class C): unwanted federal customer data is removed promptly when an agency requests it per customer agreements, including from backups where appropriate (e.g. data spill or usage change). Evidence: data-removal request handling records, backup-scoped deletion procedures and logs.",
-    "evidence_required": [
-     "Explanation of measures (and their objectives) that demonstrate the Key Security Indicator, or an explanation of the reason and resulting risk to customers for not having measures available for that Key Security Indicator.",
-     "Explanation of the cycle for any measures that are implemented persistently (if applicable).",
-     "Verification that the measures demonstrate the Key Security Indicator, or that the reason for not having them is accepted.",
-     "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
-     "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
-    ],
-    "nist_controls": [
-     "si-12.3",
-     "si-18.4"
-    ],
-    "note": "How to comply is SAS advisory guidance, not FedRAMP text. Fill the TBD fields below with the provider's real implementation, validation, tests, and owner."
-   },
-   "owner": "TBD: Information has not been provided.",
-   "measures": "TBD: Information has not been provided.",
-   "operating_cycle": "TBD: Information has not been provided.",
-   "metric_source": "TBD: Information has not been provided.",
-   "pass_condition": "TBD: Information has not been provided.",
-   "failure_condition": "TBD: Information has not been provided.",
-   "failure_response": "TBD: Information has not been provided.",
-   "known_limitation": "TBD: Information has not been provided.",
-   "customer_responsibility": "TBD: Information has not been provided.",
-   "aws_responsibility": "TBD: Information has not been provided.",
-   "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded",
-   "measures_verification": "TBD: Information has not been provided.",
-   "automation_verification": "TBD: Information has not been provided.",
-   "assessor_responses": "None recorded",
-   "resulting_customer_risk": "TBD: Information has not been provided."
-  },
   "KSI-SVC-SIN": {
    "name": "Securing Information",
    "family": "SVC",
@@ -7997,46 +7839,6 @@
    "pass_condition": "Example: 100 percent of storage resources encrypted with CMKs; zero public buckets.",
    "failure_condition": "Example: any unencrypted resource or public-access finding.",
    "failure_response": "Example: auto-remediate where safe, otherwise ticket with 24-hour fix target.",
-   "known_limitation": "TBD: Information has not been provided.",
-   "customer_responsibility": "TBD: Information has not been provided.",
-   "aws_responsibility": "TBD: Information has not been provided.",
-   "provider_responsibility": "TBD: Information has not been provided.",
-   "exception_reference": "None recorded",
-   "measures_verification": "TBD: Information has not been provided.",
-   "automation_verification": "TBD: Information has not been provided.",
-   "assessor_responses": "None recorded",
-   "resulting_customer_risk": "TBD: Information has not been provided."
-  },
-  "KSI-SVC-VCM": {
-   "name": "Validating Communications",
-   "family": "SVC",
-   "family_name": "Service Configuration",
-   "content_status": "stable",
-   "minimum_automated_methods": 1,
-   "historical_metrics_required": "Summary of each metric over the past 30 days, and up to the past year where available.",
-   "guidance": {
-    "what_it_looks_for": "FedRAMP pending: no statement published yet for this indicator.",
-    "how_to_comply": "Class-varying (optional/MAY at Class B, required at Class C): the authenticity and integrity of communications between machine-based information resources is persistently validated using automation. Evidence: mutual-TLS/service-mesh identity validation, signed inter-service requests, automated integrity-verification records.",
-    "evidence_required": [
-     "Explanation of measures (and their objectives) that demonstrate the Key Security Indicator, or an explanation of the reason and resulting risk to customers for not having measures available for that Key Security Indicator.",
-     "Explanation of the cycle for any measures that are implemented persistently (if applicable).",
-     "Verification that the measures demonstrate the Key Security Indicator, or that the reason for not having them is accepted.",
-     "Verification that the automation in place is accurate and sufficient to demonstrate appropriate measures for the Key Security Indicator, or that automation is not necessary for each measure.",
-     "Validation that the measures are accurately produced and are in place and working as intended, or that the reason for not having them is valid."
-    ],
-    "nist_controls": [
-     "sc-23",
-     "si-7.1"
-    ],
-    "note": "How to comply is SAS advisory guidance, not FedRAMP text. Fill the TBD fields below with the provider's real implementation, validation, tests, and owner."
-   },
-   "owner": "TBD: Information has not been provided.",
-   "measures": "TBD: Information has not been provided.",
-   "operating_cycle": "TBD: Information has not been provided.",
-   "metric_source": "TBD: Information has not been provided.",
-   "pass_condition": "TBD: Information has not been provided.",
-   "failure_condition": "TBD: Information has not been provided.",
-   "failure_response": "TBD: Information has not been provided.",
    "known_limitation": "TBD: Information has not been provided.",
    "customer_responsibility": "TBD: Information has not been provided.",
    "aws_responsibility": "TBD: Information has not been provided.",

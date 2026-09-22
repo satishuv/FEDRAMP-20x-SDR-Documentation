@@ -27,6 +27,14 @@ PROFILE = os.path.join(BASE, "profiles", "common", "offering-profile.json")
 KSI_PROFILE = os.path.join(BASE, "profiles", "common", "ksi-profile.json")
 RECORDS = os.path.join(BASE, "sdr", "records", "records-store.json")
 
+# Shared Class B KSI-scope resolver, single source of truth used by the builder,
+# validator, scanner, assurance-graph, and preflight so every layer scopes the
+# submitted SDR identically. sdr.py guards execution under __main__, so importing
+# it has no side effects.
+if BASE not in sys.path:
+    sys.path.insert(0, BASE)
+from sdr import submitted_ksi_ids  # noqa: E402
+
 TBD = "TBD: Information has not been provided."
 
 
@@ -812,6 +820,22 @@ def main():
         # the class-a profile meta by build_profiles.py.
         ksi_tier = class_profile["meta"]["class_a_ksis"]
         ksis = [k for k in ksis if k["ksi_id"] in ksi_tier]
+    elif cls == "b":
+        # Class B optional-KSI scoping (opt-in, parallel to Class A MAY rules):
+        # five KSIs carry a varies_by_class 'b' "**Optional:**" statement
+        # (CNA-EIS, MLA-ALA, SVC-PRR, SVC-RUD, SVC-VCM) and are mandatory only
+        # at Class C/D. An optional-at-B KSI enters the SUBMITTED Class B SDR
+        # only when the provider lists its ksi_id in offering-profile
+        # selected_optional_ksis (default empty). Uses the same shared resolver
+        # preflight/validator/scanner use, so every layer submits the same set.
+        selected_ksi = list(profile.get("selected_optional_ksis") or [])
+        keep = submitted_ksi_ids(ksis, cls, selected_ksi)
+        before = len(ksis)
+        ksis = [k for k in ksis if k["ksi_id"] in keep]
+        dropped = before - len(ksis)
+        if dropped:
+            print(f"Class B: excluded {dropped} optional KSI(s) not in "
+                  f"selected_optional_ksis; {len(selected_ksi)} explicitly selected")
 
     if os.path.exists(RECORDS):
         records = load(RECORDS)
