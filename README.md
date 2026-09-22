@@ -1,4 +1,4 @@
-<h1 align="center">FedRAMP 20x Certification Package Framework</h1>
+<h1 align="center">FedRAMP 20x Continuous Certification Package Framework</h1>
 
 <p align="center">
   <strong>Build and maintain your FedRAMP 20x Certification Package from traceable, machine-readable facts, not hand-maintained documents.</strong><br>
@@ -6,8 +6,8 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/satishuv/FEDRAMP-20x-SDR-Documentation/actions/workflows/validate.yml"><img alt="Validate" src="https://github.com/satishuv/FEDRAMP-20x-SDR-Documentation/actions/workflows/validate.yml/badge.svg"></a>
-  <a href="https://github.com/satishuv/FEDRAMP-20x-SDR-Documentation/actions/workflows/drift-check.yml"><img alt="Upstream drift" src="https://github.com/satishuv/FEDRAMP-20x-SDR-Documentation/actions/workflows/drift-check.yml/badge.svg"></a>
+  <a href="https://github.com/satishuv/fedramp-20x-continuous-certification-package/actions/workflows/validate.yml"><img alt="Validate" src="https://github.com/satishuv/fedramp-20x-continuous-certification-package/actions/workflows/validate.yml/badge.svg"></a>
+  <a href="https://github.com/satishuv/fedramp-20x-continuous-certification-package/actions/workflows/drift-check.yml"><img alt="Upstream drift" src="https://github.com/satishuv/fedramp-20x-continuous-certification-package/actions/workflows/drift-check.yml/badge.svg"></a>
   <img alt="CR26 dataset" src="https://img.shields.io/badge/CR26%20dataset-2026.09.13.02-0b7285">
   <img alt="Classes" src="https://img.shields.io/badge/classes-A%20%7C%20B%20%7C%20C-1864ab">
   <img alt="Python" src="https://img.shields.io/badge/python-3.10%2B-3776ab">
@@ -23,7 +23,7 @@
 </p>
 
 <p align="center">
-  <sub>Pinned to CR26 dataset <code>2026.09.13.02</code>. A scheduled <a href="https://github.com/satishuv/FEDRAMP-20x-SDR-Documentation/actions/workflows/drift-check.yml">drift check</a> hash-compares the pinned dataset and schemas against <a href="https://github.com/FedRAMP/rules">github.com/FedRAMP/rules</a> daily and opens an issue on any change. Green drift badge above means the pin still matches upstream.</sub>
+  <sub>Pinned to CR26 dataset <code>2026.09.13.02</code>. A scheduled <a href="https://github.com/satishuv/fedramp-20x-continuous-certification-package/actions/workflows/drift-check.yml">drift check</a> hash-compares the pinned dataset and schemas against <a href="https://github.com/FedRAMP/rules">github.com/FedRAMP/rules</a> daily and opens an issue on any change. Green drift badge above means the pin still matches upstream.</sub>
 </p>
 
 ---
@@ -69,11 +69,43 @@ Two inputs, one pipeline, several official-schema artifacts, two checkers with d
 
 Requirement text is never typed by hand. It is resolved from the canonical FedRAMP Consolidated Rules for 2026 (CR26) dataset, and an independent validator re-derives every statement from that dataset and fails the build on any mismatch. Every generated JSON artifact is validated against its official FedRAMP schema. You write facts about your system. The framework writes everything else.
 
+## What 20x requires, and what this framework does
+
+Every requirement below is drawn from the pinned CR26 dataset. For each one, this table states the FedRAMP obligation, what the framework does about it, and whether that is fully built, a scaffold you complete, or provider-supplied. A green build proves the package is well-formed against these requirements; it never proves the claims in it are true. Compliance is determined by an accredited independent assessor, never by this tool.
+
+| FedRAMP 20x requires | What this framework does | State |
+|---|---|---|
+| A machine-readable, schema-valid Certification Package, not a document stack (`FRC-CSO-PKG`) | Generates the whole package (SDR, CPO, OCR, SCG, event artifacts) from two provider-owned fact files; every JSON artifact is validated against its official FedRAMP schema on each build | Built |
+| A Security Decision Record that replaces the SSP and is persistently maintained, verified, and validated (`FRD-SDR`) | Derives the SDR in JSON, plain text, and Word from the record store; an independent validator re-derives every statement from the CR26 dataset and fails the build on any mismatch | Built |
+| Automated methods to persistently verify and validate each KSI, rising by class: MAY at A, SHOULD at B, MUST at C/D (`FRC-CSX-VVK`) | Maps each KSI to automated methods and preflight-gates the per-class minimum (0 at A, 1 at B, 2 at C, 4 at D); read-only collectors attach hashed posture evidence | Built (methods gated); provider deploys the account-side checks |
+| Persistent KSI metric history: a 30-day and a one-year summary at B, plus daily data over at least the past 6 months at C (`SDR-CSX-KMT`, `FRC-CSX-MOT`) | Appends one dated datapoint per KSI per run to a retained history store and derives the exact-window summaries from it, not from hand-authored fields; the 6-month (C) and 18-month (D) windows are measured in calendar months and gated | Built (accumulates once deployed on a schedule) |
+| A Certification Package Overview, the concise offering overview replacing the base SSP (`CPO-CSO-OVR`) | Generates the CPO in JSON and Markdown, validated against the official CPO schema, with honest TBD placeholders until you fill values | Built |
+| An Ongoing Certification Report on a recurring cadence (`CCM-OCR-AVL`) | Generates a schema-valid OCR example; you swap in real summaries on the required 3-month cadence | Example built; you supply real content |
+| A Secure Configuration Guide telling customers how to configure the service securely (`SCG-CSO-RSC`, `SCG-CSO-AUP`) | Generates the SCG Markdown with all required sections as a scaffold (FedRAMP publishes no JSON schema for the SCG) | Scaffold; you write the guidance |
+| Event-driven reporting: incidents, significant-change notifications, vulnerability reports (`FedRAMP Incident Evaluation and Communication`, `SCN`, `VDR`) | Generates schema-valid example artifacts for each event type, each validated against its official schema | Examples built; you supply real events |
+| A current package published to a trust center, plus a fresh independent assessment for B/C at least annually | Models and preflight-gates the trust center reference, the availability service, and the independent-assessment summary | Provider-supplied; framework gates their presence |
+| The package stays pinned to the current FedRAMP rules | A daily drift check hash-compares the pinned CR26 dataset and schemas against upstream and opens an issue on any change | Built |
+
+The consistent boundary across every row: the framework collects evidence and authors the package, but it never sets an implementation status and never writes the assessment field. Those are human decisions with human sign-off, and an independent assessor still does the assessing.
+
+## Feature highlights
+
+- One command builds everything. `python sdr.py all` regenerates the full package for the active class, runs the validation gate, and prints a readiness summary, offline, with no cloud account.
+- Single source of truth. You edit two files (`offering-profile.json`, `records-store.json`); 158 rule statements and 46 KSI entries re-derive from the pinned dataset, so a fact is never hand-copied across JSON, text, docx, CPO, and crosswalk.
+- Deterministic and reproducible. CI regenerates every deliverable and fails if a committed file differs, plus a double-build byte-identical check, so the machine-readable and human-readable outputs cannot silently drift.
+- Full-chain traceability. A 204-node assurance graph joins every rule and KSI to its evidence, so "which evidence backs this KSI" is a lookup, not a reconstruction; a Rev5-to-20x crosswalk relates each indicator to NIST SP 800-53 Rev. 5 controls.
+- Fail-closed validation. A 14-check validator gates the build on one exit code; a readiness scanner (`sdrscan`) emits one severity-ranked finding per rule and per indicator to tell you what to fix next.
+- Class-aware. Classes A, B, and C are supported end to end; Class D ships as a readiness register pending its FedRAMP pilot.
+- Cryptographic evidence integrity. Content-addressed evidence keys, versioned append-only storage, offline signature verification against an independently pinned signer, TLS-only isolation buckets.
+- Living loop, provider-deployable. A scheduled read-only collect-append-regenerate workflow keeps the package and its metric history current and opens a PR only when a committed deliverable changes; disabled by default until you wire a read-only role.
+- Opt-in evidence and AI. Read-only AWS collectors and file-based CrowdStrike Falcon / Wiz evidence attach where relevant; opt-in AI modules draft and explain text for a human to verify. All off by default; the pipeline runs fully with zero AI.
+
+
 ## Quickstart
 
 ```bash
-git clone https://github.com/satishuv/FEDRAMP-20x-SDR-Documentation.git
-cd FEDRAMP-20x-SDR-Documentation
+git clone https://github.com/satishuv/fedramp-20x-continuous-certification-package.git
+cd fedramp-20x-continuous-certification-package
 pip install -r requirements.txt
 
 python sdr.py all
