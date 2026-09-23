@@ -75,18 +75,6 @@
    "checked": "deterministic check against dataset 2026.09.13.02"
   },
   {
-   "ksi_id": "KSI-CNA-EIS",
-   "schema_fields_present": true,
-   "implementation_status": "Not Implemented",
-   "tests_defined": 0,
-   "automated_methods": 0,
-   "unclassified_string_tests": 0,
-   "minimum_automated_methods_for_class": 1,
-   "meets_test_minimum": false,
-   "content_state": "template_tbd",
-   "checked": "deterministic check against dataset 2026.09.13.02"
-  },
-  {
    "ksi_id": "KSI-CNA-IBP",
    "schema_fields_present": true,
    "implementation_status": "Not Implemented",
@@ -256,18 +244,6 @@
   },
   {
    "ksi_id": "KSI-INR-RPI",
-   "schema_fields_present": true,
-   "implementation_status": "Not Implemented",
-   "tests_defined": 0,
-   "automated_methods": 0,
-   "unclassified_string_tests": 0,
-   "minimum_automated_methods_for_class": 1,
-   "meets_test_minimum": false,
-   "content_state": "template_tbd",
-   "checked": "deterministic check against dataset 2026.09.13.02"
-  },
-  {
-   "ksi_id": "KSI-MLA-ALA",
    "schema_fields_present": true,
    "implementation_status": "Not Implemented",
    "tests_defined": 0,
@@ -495,30 +471,6 @@
    "checked": "deterministic check against dataset 2026.09.13.02"
   },
   {
-   "ksi_id": "KSI-SVC-PRR",
-   "schema_fields_present": true,
-   "implementation_status": "Not Implemented",
-   "tests_defined": 0,
-   "automated_methods": 0,
-   "unclassified_string_tests": 0,
-   "minimum_automated_methods_for_class": 1,
-   "meets_test_minimum": false,
-   "content_state": "template_tbd",
-   "checked": "deterministic check against dataset 2026.09.13.02"
-  },
-  {
-   "ksi_id": "KSI-SVC-RUD",
-   "schema_fields_present": true,
-   "implementation_status": "Not Implemented",
-   "tests_defined": 0,
-   "automated_methods": 0,
-   "unclassified_string_tests": 0,
-   "minimum_automated_methods_for_class": 1,
-   "meets_test_minimum": false,
-   "content_state": "template_tbd",
-   "checked": "deterministic check against dataset 2026.09.13.02"
-  },
-  {
    "ksi_id": "KSI-SVC-SIN",
    "schema_fields_present": true,
    "implementation_status": "Not Implemented",
@@ -528,18 +480,6 @@
    "minimum_automated_methods_for_class": 1,
    "meets_test_minimum": false,
    "content_state": "populated",
-   "checked": "deterministic check against dataset 2026.09.13.02"
-  },
-  {
-   "ksi_id": "KSI-SVC-VCM",
-   "schema_fields_present": true,
-   "implementation_status": "Not Implemented",
-   "tests_defined": 0,
-   "automated_methods": 0,
-   "unclassified_string_tests": 0,
-   "minimum_automated_methods_for_class": 1,
-   "meets_test_minimum": false,
-   "content_state": "template_tbd",
    "checked": "deterministic check against dataset 2026.09.13.02"
   },
   {

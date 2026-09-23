@@ -47,9 +47,13 @@ TBD_MARKERS = ("TBD:", "TBD ", "Information has not been provided")
 # (automation/collectors/service_registry.py) so it never drifts behind the
 # collector's emitted services; test_service_registry.py asserts every
 # collector-emitted service is registered or explicitly telemetry-only.
+# The canonical service registry lists every posture service key a collector
+# can emit. metric_service_keys allowlist entries are validated against it so a
+# typo'd key (which would silently route nothing) is caught, not ignored.
+# Sourced from automation/collectors/service_registry.py so it never drifts.
 sys.path.insert(0, os.path.join(BASE, "automation", "collectors"))
 try:
-    from service_registry import SERVICE_DISPLAY_NAMES as POSTURE_SERVICE_KEYS
+    from service_registry import SERVICE_DISPLAY_NAMES as KNOWN_SERVICE_KEYS
 except Exception as exc:  # fail loud: silent unrouted telemetry is the failure
     raise RuntimeError(
         "prefill_from_facts could not import the canonical service registry "
@@ -112,13 +116,23 @@ def config_facts_for_ksi(ksi_entry, config_by_rule):
 
 
 def posture_facts_for_ksi(ksi_entry, posture_by_service):
-    """Posture facts whose service is named in this KSI's registry service
-    list. Skips ERROR/None-status facts so only real observations pre-fill."""
-    named = set(ksi_entry.get("services", []))
+    """Posture facts whose service key is in this KSI's EXPLICIT
+    `metric_service_keys` allowlist. This is the same per-KSI binding the metric
+    engine uses (introduced to stop generic AWS posture fanning out to a KSI by
+    prose service-name mention); prefill must honor it too, or it would author
+    telemetry the metric layer refuses to score. Skips ERROR/None-status facts
+    so only real observations pre-fill. An empty allowlist means no posture
+    routes to this KSI (its evidence comes from its config-rule methods)."""
+    allow = set(ksi_entry.get("metric_service_keys") or [])
+    unknown = allow - set(KNOWN_SERVICE_KEYS)
+    if unknown:
+        raise RuntimeError(
+            f"{ksi_entry.get('ksi_id') or 'KSI'} metric_service_keys names "
+            f"unknown service key(s) {sorted(unknown)} not in the canonical "
+            "service registry; a typo here would silently route no posture. "
+            "Fix the key or register the service.")
     out = []
-    for svc_key, svc_label in POSTURE_SERVICE_KEYS.items():
-        if not any(svc_label in n for n in named):
-            continue
+    for svc_key in allow:
         for pf in posture_by_service.get(svc_key, []):
             status = pf.get("status", "")
             if status.startswith("ERROR") or status in ("NONE", "NO_COVERAGE",

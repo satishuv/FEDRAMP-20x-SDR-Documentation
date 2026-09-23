@@ -12,8 +12,8 @@ help: ## Show this help
 	@grep -hE '^[a-z-]+:.*?## ' $(MAKEFILE_LIST) \
 		| awk 'BEGIN {FS = ":.*?## "}; {printf "  %-14s %s\n", $$1, $$2}'
 
-install: ## Install the three runtime dependencies
-	$(PYTHON) -m pip install jsonschema referencing python-docx
+install: ## Install runtime dependencies from requirements.txt
+	$(PYTHON) -m pip install -r requirements.txt
 
 lock: ## Resolve a fully-hashed requirements.lock, then rebuild the SBOM from it
 	@echo "Resolving the full dependency closure with hashes into requirements.lock."

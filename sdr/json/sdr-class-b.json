@@ -5145,44 +5145,6 @@
    }
   },
   {
-   "ksiId": "KSI-CNA-EIS",
-   "ksiImplementationStatus": "Not Implemented",
-   "ksiImplementation": [
-    "TBD: Information has not been provided."
-   ],
-   "ksiValidation": [
-    "TBD: Information has not been provided."
-   ],
-   "ksiAssessment": [
-    "TBD: Independent assessment has not been performed."
-   ],
-   "ksiTests": [],
-   "ksiEvidence": [],
-   "providerExtensions": {
-    "ksiName": "Enforcing Intended State",
-    "family": "CNA",
-    "familyName": "Cloud Native Architecture",
-    "xFedRampSemantic": {
-     "measures": "TBD: Information has not been provided.",
-     "measuresUnavailableReason": "Not applicable: measures are available",
-     "resultingCustomerRisk": "TBD: Information has not been provided.",
-     "operatingCycle": "TBD: Information has not been provided.",
-     "measuresVerification": "TBD: Information has not been provided.",
-     "automationVerification": "TBD: Information has not been provided.",
-     "assessorResponses": "None recorded",
-     "owner": "TBD: Information has not been provided.",
-     "historicalMetrics": {
-      "last30Days": "TBD: Information has not been provided.",
-      "upToOneYear": "TBD: Information has not been provided.",
-      "dailyData": [],
-      "dailyDataReference": "TBD: Information has not been provided.",
-      "perMetric": []
-     }
-    },
-    "xAuthoringStatus": "Not Implemented"
-   }
-  },
-  {
    "ksiId": "KSI-CNA-IBP",
    "ksiImplementationStatus": "Not Implemented",
    "ksiImplementation": [
@@ -5735,44 +5697,6 @@
     "ksiName": "Reviewing Past Incidents",
     "family": "INR",
     "familyName": "Incident Response",
-    "xFedRampSemantic": {
-     "measures": "TBD: Information has not been provided.",
-     "measuresUnavailableReason": "Not applicable: measures are available",
-     "resultingCustomerRisk": "TBD: Information has not been provided.",
-     "operatingCycle": "TBD: Information has not been provided.",
-     "measuresVerification": "TBD: Information has not been provided.",
-     "automationVerification": "TBD: Information has not been provided.",
-     "assessorResponses": "None recorded",
-     "owner": "TBD: Information has not been provided.",
-     "historicalMetrics": {
-      "last30Days": "TBD: Information has not been provided.",
-      "upToOneYear": "TBD: Information has not been provided.",
-      "dailyData": [],
-      "dailyDataReference": "TBD: Information has not been provided.",
-      "perMetric": []
-     }
-    },
-    "xAuthoringStatus": "Not Implemented"
-   }
-  },
-  {
-   "ksiId": "KSI-MLA-ALA",
-   "ksiImplementationStatus": "Not Implemented",
-   "ksiImplementation": [
-    "TBD: Information has not been provided."
-   ],
-   "ksiValidation": [
-    "TBD: Information has not been provided."
-   ],
-   "ksiAssessment": [
-    "TBD: Independent assessment has not been performed."
-   ],
-   "ksiTests": [],
-   "ksiEvidence": [],
-   "providerExtensions": {
-    "ksiName": "Authorizing Log Access",
-    "family": "MLA",
-    "familyName": "Monitoring, Logging, and Auditing",
     "xFedRampSemantic": {
      "measures": "TBD: Information has not been provided.",
      "measuresUnavailableReason": "Not applicable: measures are available",
@@ -6478,82 +6402,6 @@
    }
   },
   {
-   "ksiId": "KSI-SVC-PRR",
-   "ksiImplementationStatus": "Not Implemented",
-   "ksiImplementation": [
-    "TBD: Information has not been provided."
-   ],
-   "ksiValidation": [
-    "TBD: Information has not been provided."
-   ],
-   "ksiAssessment": [
-    "TBD: Independent assessment has not been performed."
-   ],
-   "ksiTests": [],
-   "ksiEvidence": [],
-   "providerExtensions": {
-    "ksiName": "Preventing Residual Risk",
-    "family": "SVC",
-    "familyName": "Service Configuration",
-    "xFedRampSemantic": {
-     "measures": "TBD: Information has not been provided.",
-     "measuresUnavailableReason": "Not applicable: measures are available",
-     "resultingCustomerRisk": "TBD: Information has not been provided.",
-     "operatingCycle": "TBD: Information has not been provided.",
-     "measuresVerification": "TBD: Information has not been provided.",
-     "automationVerification": "TBD: Information has not been provided.",
-     "assessorResponses": "None recorded",
-     "owner": "TBD: Information has not been provided.",
-     "historicalMetrics": {
-      "last30Days": "TBD: Information has not been provided.",
-      "upToOneYear": "TBD: Information has not been provided.",
-      "dailyData": [],
-      "dailyDataReference": "TBD: Information has not been provided.",
-      "perMetric": []
-     }
-    },
-    "xAuthoringStatus": "Not Implemented"
-   }
-  },
-  {
-   "ksiId": "KSI-SVC-RUD",
-   "ksiImplementationStatus": "Not Implemented",
-   "ksiImplementation": [
-    "TBD: Information has not been provided."
-   ],
-   "ksiValidation": [
-    "TBD: Information has not been provided."
-   ],
-   "ksiAssessment": [
-    "TBD: Independent assessment has not been performed."
-   ],
-   "ksiTests": [],
-   "ksiEvidence": [],
-   "providerExtensions": {
-    "ksiName": "Removing Unwanted Data",
-    "family": "SVC",
-    "familyName": "Service Configuration",
-    "xFedRampSemantic": {
-     "measures": "TBD: Information has not been provided.",
-     "measuresUnavailableReason": "Not applicable: measures are available",
-     "resultingCustomerRisk": "TBD: Information has not been provided.",
-     "operatingCycle": "TBD: Information has not been provided.",
-     "measuresVerification": "TBD: Information has not been provided.",
-     "automationVerification": "TBD: Information has not been provided.",
-     "assessorResponses": "None recorded",
-     "owner": "TBD: Information has not been provided.",
-     "historicalMetrics": {
-      "last30Days": "TBD: Information has not been provided.",
-      "upToOneYear": "TBD: Information has not been provided.",
-      "dailyData": [],
-      "dailyDataReference": "TBD: Information has not been provided.",
-      "perMetric": []
-     }
-    },
-    "xAuthoringStatus": "Not Implemented"
-   }
-  },
-  {
    "ksiId": "KSI-SVC-SIN",
    "ksiImplementationStatus": "Not Implemented",
    "ksiImplementation": [
@@ -6583,44 +6431,6 @@
      "automationVerification": "TBD: Information has not been provided.",
      "assessorResponses": "None recorded",
      "owner": "Example: Security Engineering Lead",
-     "historicalMetrics": {
-      "last30Days": "TBD: Information has not been provided.",
-      "upToOneYear": "TBD: Information has not been provided.",
-      "dailyData": [],
-      "dailyDataReference": "TBD: Information has not been provided.",
-      "perMetric": []
-     }
-    },
-    "xAuthoringStatus": "Not Implemented"
-   }
-  },
-  {
-   "ksiId": "KSI-SVC-VCM",
-   "ksiImplementationStatus": "Not Implemented",
-   "ksiImplementation": [
-    "TBD: Information has not been provided."
-   ],
-   "ksiValidation": [
-    "TBD: Information has not been provided."
-   ],
-   "ksiAssessment": [
-    "TBD: Independent assessment has not been performed."
-   ],
-   "ksiTests": [],
-   "ksiEvidence": [],
-   "providerExtensions": {
-    "ksiName": "Validating Communications",
-    "family": "SVC",
-    "familyName": "Service Configuration",
-    "xFedRampSemantic": {
-     "measures": "TBD: Information has not been provided.",
-     "measuresUnavailableReason": "Not applicable: measures are available",
-     "resultingCustomerRisk": "TBD: Information has not been provided.",
-     "operatingCycle": "TBD: Information has not been provided.",
-     "measuresVerification": "TBD: Information has not been provided.",
-     "automationVerification": "TBD: Information has not been provided.",
-     "assessorResponses": "None recorded",
-     "owner": "TBD: Information has not been provided.",
      "historicalMetrics": {
       "last30Days": "TBD: Information has not been provided.",
       "upToOneYear": "TBD: Information has not been provided.",

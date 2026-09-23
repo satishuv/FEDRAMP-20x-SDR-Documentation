@@ -298,6 +298,7 @@ TEST_SUITE = [
     "validation/scripts/test_class_b_optional_ksi_scope.py",
     "validation/scripts/test_config_rule_vocabulary.py",
     "validation/scripts/test_bucket_b_outcome_metrics.py",
+    "validation/scripts/test_install_dependencies.py",
     "validation/scripts/test_dataset_version_consistency.py",
     "validation/scripts/test_evidence_freshness.py",
     "validation/scripts/test_evidence_integrity.py",
@@ -525,6 +526,39 @@ def submitted_rule_ids(profile_rules, cls, selected_optional=None):
             if r.get("class_a_obligation") != "optional" or r.get("rule_id") in selected
         }
     return ids
+
+
+def submitted_ksi_ids(ksi_indicators, cls, selected_optional_ksis=None):
+    """The KSI ids that enter the SUBMITTED SDR for a class.
+
+    Single source of truth shared by the builder (build_sdr.py), the validator
+    (validate_sdr.py), the scanner, the assurance-graph, and preflight so every
+    layer scopes Class B identically. At Class B the optional-at-B KSIs
+    (varies_by_class 'b' carrying "**Optional:**") are opt-in: an optional KSI is
+    submitted only when its ksi_id is in selected_optional_ksis (default empty),
+    mirroring how Class A treats FRC-CLA-OFR MAY rules. Every other class
+    submits all KSIs (optional-at-B KSIs are mandatory at Class C/D).
+
+    Returns the set of submitted ksi_ids. Use unknown_optional_ksi_selections()
+    to detect misspelled/unknown selections and block on them.
+    """
+    all_ids = {ind.get("ksi_id") for ind in (ksi_indicators or [])}
+    if cls != "b":
+        return all_ids
+    optional = optional_at_class_b_ksis(ksi_indicators)
+    selected = set(selected_optional_ksis or [])
+    # Baseline (non-optional) KSIs are always submitted; optional-at-B KSIs only
+    # when explicitly selected.
+    return {kid for kid in all_ids if kid not in optional or kid in selected}
+
+
+def unknown_optional_ksi_selections(ksi_indicators, selected_optional_ksis):
+    """Selections in selected_optional_ksis that are not real optional-at-B KSI
+    ids. A misspelled or non-optional selection is a hard error (a provider
+    thinks it opted a KSI in but it silently does nothing), so callers block on
+    a non-empty return rather than warning."""
+    optional = optional_at_class_b_ksis(ksi_indicators)
+    return {k for k in (selected_optional_ksis or []) if k not in optional}
 
 
 # Evidence freshness for the submission gate. FedRAMP guidance is explicit that
@@ -1568,17 +1602,20 @@ def cmd_preflight(args):
         # they are mandatory and stay in scope. Without this, Class B over-gates
         # all 46 KSIs including the five the dataset marks optional at B.
         if cls == "b":
-            optional_b_ksis = optional_at_class_b_ksis(_all_inds)
-            selected_optional_ksis = set(offering.get("selected_optional_ksis") or [])
-            unknown_opt = selected_optional_ksis - optional_b_ksis
+            selected_optional_ksis = list(offering.get("selected_optional_ksis") or [])
+            unknown_opt = unknown_optional_ksi_selections(_all_inds, selected_optional_ksis)
             if unknown_opt:
-                warnings.append(
+                optional_b_ksis = optional_at_class_b_ksis(_all_inds)
+                blockers.append(
                     "offering: selected_optional_ksis names ID(s) that are not "
-                    "optional at Class B and are ignored: "
+                    "optional at Class B: "
                     + ", ".join(sorted(unknown_opt))
                     + " (valid optional-at-B KSIs: "
-                    + ", ".join(sorted(optional_b_ksis)) + ")")
-            applicable_ksi -= (optional_b_ksis - selected_optional_ksis)
+                    + ", ".join(sorted(optional_b_ksis))
+                    + "). Fix or remove the selection - a bad selection silently "
+                    "opts in nothing.")
+            # Scope preflight to the SAME set the builder submits.
+            applicable_ksi = submitted_ksi_ids(_all_inds, cls, selected_optional_ksis)
 
     def _count_markers(rec):
         blob = json.dumps(rec)

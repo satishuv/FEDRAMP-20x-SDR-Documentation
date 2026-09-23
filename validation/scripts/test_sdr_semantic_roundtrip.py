@@ -226,15 +226,18 @@ def test_ksi_class_varying_statement_resolves_not_null():
 
 def test_class_b_sdr_has_no_pending_statement_for_varies_by_class_ksis():
     # Regression: the built Class B human-readable must NOT print the wrong
-    # "FedRAMP pending, no statement" line for the 5 class-varying KSIs.
+    # "FedRAMP pending, no statement" line for any KSI it carries.
     path = os.path.join(BASE, "sdr", "human-readable", "sdr-class-b.txt")
     if not os.path.exists(path):
         return  # build not present in this checkout; skip
     text = open(path, encoding="utf-8").read()
-    # The security-outcome for KSI-CNA-EIS must be a real statement.
-    assert "Enforcing Intended State" in text
-    # No KSI security outcome should be the pending sentinel (all 46 have text
-    # or a class-specific statement in 2026.09.13.02).
+    # A baseline (always-submitted) KSI's real security outcome must be present.
+    assert "Implementing Best Practices" in text  # KSI-CNA-IBP, mandatory at B
+    # The optional-at-B KSIs are opt-in: with none selected they must NOT appear
+    # in the default Class B SDR (F-01: builder = validator = scanner = graph).
+    assert "KSI-CNA-EIS" not in text  # optional at B, unselected -> excluded
+    # No KSI security outcome should be the pending sentinel (every submitted KSI
+    # has a real statement in 2026.09.13.02).
     assert "Security outcome: FedRAMP pending" not in text
 
 
