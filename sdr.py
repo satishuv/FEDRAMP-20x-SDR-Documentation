@@ -2310,15 +2310,21 @@ def cmd_preflight(args):
                                 "for the SCG, set offering.secure_config_guide_uri to "
                                 "the published guide - before submission)")
             elif name == "secure_configuration_guide" and _is_tbd(machine_ref):
-                # Finding 13: SCG-CSO-RSC canonically requires BOTH a
-                # human-readable data URL AND a machine-readable data URL. A
-                # single human URI is a partial artifact.
-                blockers.append(
-                    "required package component 'secure_configuration_guide' has "
-                    "only a human-readable URI; SCG-CSO-RSC requires both "
-                    "human-readable and machine-readable data URLs (set "
-                    "offering.secure_config_guide_machine_uri to the "
-                    "machine-readable guide location before submission)")
+                # SCG-CSO-RSC (MUST) is satisfied by a published human-readable
+                # Secure Configuration Guide; its substantive normative content is
+                # the guide itself, referenced by offering.secure_config_guide_uri.
+                # Providing that same guide in a MACHINE-READABLE format is a
+                # SEPARATE rule, SCG-ENH-MRG, whose force is SHOULD ("Providers
+                # SHOULD also provide the Secure Configuration Guide in a
+                # machine-readable format ..."). A missing machine-readable URI
+                # must therefore be a SHOULD-level advisory, NOT a package
+                # blocker - blocking it would turn a FedRAMP SHOULD into a MUST.
+                warnings.append(
+                    "SCG-ENH-MRG (SHOULD): the Secure Configuration Guide has a "
+                    "human-readable URI but no machine-readable URI; FedRAMP "
+                    "recommends also providing the guide in machine-readable "
+                    "format (set offering.secure_config_guide_machine_uri). This "
+                    "is a recommendation, not a submission blocker.")
 
     # Package-level signoff MUST reference the current release-manifest hash.
     # One approved node in the assurance review register is NOT package approval.

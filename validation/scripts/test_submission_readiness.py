@@ -646,17 +646,30 @@ def main():
         reg["package_signoff"]["release_tag"] = tag
         json.dump(reg, open(register, "w", encoding="utf-8", newline="\n"), indent=1)
 
-        # Finding 13: SCG-CSO-RSC requires BOTH a human-readable AND a
-        # machine-readable data URL. Blanking only the machine URI (human URI
-        # still present) must block, and restoring it must clear.
+        # SCG-ENH-MRG is a SHOULD: providing the Secure Configuration Guide in a
+        # machine-readable format is RECOMMENDED, not required. The MUST rule
+        # SCG-CSO-RSC is satisfied by the published human-readable guide. So a
+        # package that has a human SCG URI but no machine-readable URI must NOT
+        # block; it must remain package-ready while emitting an SCG-ENH-MRG
+        # advisory. Blocking it would turn a FedRAMP SHOULD into a MUST.
         psc2 = json.load(open(profile, encoding="utf-8"))
         saved_mach = psc2.get("secure_config_guide_machine_uri")
         psc2["secure_config_guide_machine_uri"] = "TBD: not yet published"
         json.dump(psc2, open(profile, "w", encoding="utf-8", newline="\n"), indent=1)
         _build(root)
+        # Re-sign against the rebuilt manifest so signoff is not the blocker.
+        mhash = "sha256:" + hashlib.sha256(open(manifest, "rb").read()).hexdigest()
+        tag = json.load(open(manifest, encoding="utf-8")).get("release_tag")
+        reg = json.load(open(register, encoding="utf-8"))
+        reg["package_signoff"]["package_manifest_sha256"] = mhash
+        reg["package_signoff"]["release_tag"] = tag
+        json.dump(reg, open(register, "w", encoding="utf-8", newline="\n"), indent=1)
         rmach = _preflight(root)
-        check("Class C blocks when the SCG has a human URI but no machine-readable URI",
-              rmach.returncode == 1 and "machine-readable" in rmach.stdout)
+        check("Class C remains package-ready without a machine-readable SCG URI "
+              "(SCG-ENH-MRG is a SHOULD, not a package blocker)",
+              rmach.returncode == 0
+              and "SCG-ENH-MRG" in rmach.stdout
+              and "human-readable and machine-readable data URLs" not in rmach.stdout)
         psc2["secure_config_guide_machine_uri"] = saved_mach
         json.dump(psc2, open(profile, "w", encoding="utf-8", newline="\n"), indent=1)
         _build(root)
