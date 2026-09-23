@@ -55,7 +55,7 @@
 
 FedRAMP 20x asks providers for a machine-readable, schema-valid Certification Package, not a stack of Word documents. The deliverable is the whole package (`FRC-CSO-PKG`): a Security Decision Record (SDR), a Certification Package Overview, a real or example Ongoing Certification Report, and, for Class B/C, a Secure Configuration Guide, plus the event-driven incident, change, and vulnerability artifacts. The SDR is the anchor record inside that package, not the only deliverable. The whole package is backed by automated verification: `FRC-CSX-VVK` calls for automated methods to persistently verify and validate each Key Security Indicator, with the obligation rising by class (`MAY` at A, `SHOULD` at B, `MUST` at C and D), and `FRC-CSX-VVR` asks for the same across the SDR itself.
 
-A hand-maintained document set cannot satisfy that. It drifts from the requirement text the moment FedRAMP updates the dataset, it cannot be diffed, and it gives an assessor no way to trace a sentence back to the rule that demanded it.
+A purely hand-maintained document set makes it difficult to sustain the traceability, freshness, metric history, and automated-verification expectations of FedRAMP 20x, and creates substantial drift risk. It drifts from the requirement text the moment FedRAMP updates the dataset, it cannot be diffed, and it gives an assessor no way to trace a sentence back to the rule that demanded it.
 
 ## The approach
 
@@ -75,7 +75,7 @@ Every requirement below is drawn from the pinned CR26 dataset. For each one, thi
 
 | FedRAMP 20x requires | What this framework does | State |
 |---|---|---|
-| A machine-readable, schema-valid Certification Package, not a document stack (`FRC-CSO-PKG`) | Generates the whole package (SDR, CPO, OCR, SCG, event artifacts) from two provider-owned fact files; every JSON artifact is validated against its official FedRAMP schema on each build | Built |
+| A complete Certification Package, not a document stack (`FRC-CSO-PKG`), with applicable machine-readable JSON validated against FedRAMP schemas (`FRC-CSO-JSN`) | Generates the whole package (SDR, CPO, OCR, SCG, event artifacts) from two provider-owned fact files; every JSON artifact is validated against its official FedRAMP schema on each build | Built |
 | A Security Decision Record that replaces the SSP and is persistently maintained, verified, and validated (`FRD-SDR`) | Derives the SDR in JSON, plain text, and Word from the record store; an independent validator re-derives every statement from the CR26 dataset and fails the build on any mismatch | Built |
 | Automated methods to persistently verify and validate each KSI, rising by class: MAY at A, SHOULD at B, MUST at C/D (`FRC-CSX-VVK`) | Maps each KSI to automated methods and preflight-gates the per-class minimum (0 at A, 1 at B, 2 at C, 4 at D); read-only collectors attach hashed posture evidence | Built (methods gated); provider deploys the account-side checks |
 | Persistent KSI metric history: a 30-day and a one-year summary at B, plus daily data over at least the past 6 months at C (`SDR-CSX-KMT`, `FRC-CSX-MOT`) | Appends one dated datapoint per KSI per run to a retained history store and derives the exact-window summaries from it, not from hand-authored fields; the 6-month (C) and 18-month (D) windows are measured in calendar months and gated | Built (accumulates once deployed on a schedule) |
@@ -83,7 +83,7 @@ Every requirement below is drawn from the pinned CR26 dataset. For each one, thi
 | An Ongoing Certification Report on a recurring cadence (`CCM-OCR-AVL`) | Generates a schema-valid OCR example; you swap in real summaries on the required 3-month cadence | Example built; you supply real content |
 | A Secure Configuration Guide telling customers how to configure the service securely (`SCG-CSO-RSC`, `SCG-CSO-AUP`) | Generates the SCG Markdown with all required sections as a scaffold (FedRAMP publishes no JSON schema for the SCG) | Scaffold; you write the guidance |
 | Event-driven reporting: incidents, significant-change notifications, vulnerability reports (`FedRAMP Incident Evaluation and Communication`, `SCN`, `VDR`) | Generates schema-valid example artifacts for each event type, each validated against its official schema | Examples built; you supply real events |
-| A current package published to a trust center, plus a fresh independent assessment for B/C at least annually | Models and preflight-gates the trust center reference, the availability service, and the independent-assessment summary | Provider-supplied; framework gates their presence |
+| FedRAMP Certification Data made available through a FedRAMP-compatible trust center, plus a fresh independent assessment for B/C at least annually | Models and preflight-gates the trust center reference, the availability service, and the independent-assessment summary | Provider-supplied; framework gates their presence |
 | The package stays pinned to the current FedRAMP rules | A daily drift check hash-compares the pinned CR26 dataset and schemas against upstream and opens an issue on any change | Built |
 
 The consistent boundary across every row: the framework collects evidence and authors the package, but it never sets an implementation status and never writes the assessment field. Those are human decisions with human sign-off, and an independent assessor still does the assessing.
