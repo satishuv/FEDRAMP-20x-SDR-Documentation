@@ -28,6 +28,12 @@ import sys
 
 BASE = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+# Single source of truth for FRC-CSX-VVK automated-method counting, shared with
+# validate_sdr.py so this reviewer-facing report agrees with the authoritative
+# validator by construction (no independent len(tests) counter).
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from verification_methods import count_automated_methods  # noqa: E402
+
 # Reuse the evidence lifecycle model rather than duplicating it, so the graph's
 # evidence nodes carry real freshness/expiry/collection state.
 sys.path.insert(0, os.path.join(BASE, "automation", "collectors"))
@@ -201,6 +207,17 @@ def build_graph(cls):
         i = sdr_ksi_index.get(kid)
         min_methods = k.get("minimum_automated_methods", {}).get(f"class_{cls}")
         tests = rec.get("tests", []) or []
+        # FRC-CSX-VVK counts DISTINCT AUTOMATED methods, not raw test entries.
+        # Use the exact shared counter validate_sdr.py uses, and apply the same
+        # populated-vs-template rule, so this reviewer-facing report agrees with
+        # the authoritative validator by construction.
+        automated_methods, string_tests, _tot = count_automated_methods(tests)
+        is_populated = not any(
+            "TBD" in s for s in rec.get("implementation", []) or [])
+        effective_methods = (automated_methods if is_populated
+                             else max(automated_methods, len(tests)))
+        meets_minimum = (effective_methods >= min_methods
+                         if isinstance(min_methods, int) else None)
         nodes.append({
             "node_kind": "ksi",
             "ksi_id": kid,
@@ -216,7 +233,9 @@ def build_graph(cls):
             "verification": {
                 "methods": tests,
                 "minimum_required": min_methods,
-                "meets_minimum": (len(tests) >= min_methods) if isinstance(min_methods, int) else None,
+                "automated_methods": automated_methods,
+                "unclassified_string_tests": string_tests,
+                "meets_minimum": meets_minimum,
                 "measures_verification": ext.get("measures_verification", "TBD"),
                 "automation_verification": ext.get("automation_verification", "TBD"),
             },

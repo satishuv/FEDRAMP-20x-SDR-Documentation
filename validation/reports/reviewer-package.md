@@ -16,7 +16,7 @@ Assessor-facing summary generated from the assurance graph. It is not a complian
 ## Coverage (not compliance)
 - Rules with evidence: 0 of 158
 - KSIs with evidence: 0 of 41
-- KSIs meeting verification-method minimum: 3 of 41
+- KSIs meeting verification-method minimum: 0 of 41
 - Rules still in template TBD state: 155
 - KSIs still in template TBD state: 38
 - Nodes pending human review: 199
