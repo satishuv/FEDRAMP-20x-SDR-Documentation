@@ -53,7 +53,7 @@
 
 ## The problem
 
-FedRAMP 20x asks providers for a machine-readable, schema-valid Certification Package, not a stack of Word documents. At its center is the Security Decision Record (SDR), backed by automated verification: `FRC-CSX-VVK` calls for automated methods to persistently verify and validate each Key Security Indicator, with the obligation rising by class (`MAY` at A, `SHOULD` at B, `MUST` at C and D), and `FRC-CSX-VVR` asks for the same across the SDR itself. The initial package (`FRC-CSO-PKG`) also requires a Certification Package Overview, a real or example Ongoing Certification Report, and, for Class B/C, a Secure Configuration Guide.
+FedRAMP 20x asks providers for a machine-readable, schema-valid Certification Package, not a stack of Word documents. The deliverable is the whole package (`FRC-CSO-PKG`): a Security Decision Record (SDR), a Certification Package Overview, a real or example Ongoing Certification Report, and, for Class B/C, a Secure Configuration Guide, plus the event-driven incident, change, and vulnerability artifacts. The SDR is the anchor record inside that package, not the only deliverable. The whole package is backed by automated verification: `FRC-CSX-VVK` calls for automated methods to persistently verify and validate each Key Security Indicator, with the obligation rising by class (`MAY` at A, `SHOULD` at B, `MUST` at C and D), and `FRC-CSX-VVR` asks for the same across the SDR itself.
 
 A hand-maintained document set cannot satisfy that. It drifts from the requirement text the moment FedRAMP updates the dataset, it cannot be diffed, and it gives an assessor no way to trace a sentence back to the rule that demanded it.
 
