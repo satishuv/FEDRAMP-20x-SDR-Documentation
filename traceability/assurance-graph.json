@@ -6355,6 +6355,8 @@
    "verification": {
     "methods": [],
     "minimum_required": 1,
+    "automated_methods": 0,
+    "unclassified_string_tests": 0,
     "meets_minimum": false,
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided."
@@ -6401,7 +6403,9 @@
      "Example test 2: Config aggregator query confirms recorder status is recording in 100 percent of in-scope accounts (daily)."
     ],
     "minimum_required": 1,
-    "meets_minimum": true,
+    "automated_methods": 0,
+    "unclassified_string_tests": 2,
+    "meets_minimum": false,
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided."
    },
@@ -6444,6 +6448,8 @@
    "verification": {
     "methods": [],
     "minimum_required": 1,
+    "automated_methods": 0,
+    "unclassified_string_tests": 0,
     "meets_minimum": false,
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided."
@@ -6486,6 +6492,8 @@
    "verification": {
     "methods": [],
     "minimum_required": 1,
+    "automated_methods": 0,
+    "unclassified_string_tests": 0,
     "meets_minimum": false,
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided."
@@ -6526,6 +6534,8 @@
    "verification": {
     "methods": [],
     "minimum_required": 1,
+    "automated_methods": 0,
+    "unclassified_string_tests": 0,
     "meets_minimum": false,
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided."
@@ -6564,6 +6574,8 @@
    "verification": {
     "methods": [],
     "minimum_required": 1,
+    "automated_methods": 0,
+    "unclassified_string_tests": 0,
     "meets_minimum": false,
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided."
@@ -6603,6 +6615,8 @@
    "verification": {
     "methods": [],
     "minimum_required": 1,
+    "automated_methods": 0,
+    "unclassified_string_tests": 0,
     "meets_minimum": false,
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided."
@@ -6653,6 +6667,8 @@
    "verification": {
     "methods": [],
     "minimum_required": 1,
+    "automated_methods": 0,
+    "unclassified_string_tests": 0,
     "meets_minimum": false,
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided."
@@ -6688,6 +6704,8 @@
    "verification": {
     "methods": [],
     "minimum_required": 1,
+    "automated_methods": 0,
+    "unclassified_string_tests": 0,
     "meets_minimum": false,
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided."
@@ -6729,6 +6747,8 @@
    "verification": {
     "methods": [],
     "minimum_required": 1,
+    "automated_methods": 0,
+    "unclassified_string_tests": 0,
     "meets_minimum": false,
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided."
@@ -6768,6 +6788,8 @@
    "verification": {
     "methods": [],
     "minimum_required": 1,
+    "automated_methods": 0,
+    "unclassified_string_tests": 0,
     "meets_minimum": false,
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided."
@@ -6812,6 +6834,8 @@
    "verification": {
     "methods": [],
     "minimum_required": 1,
+    "automated_methods": 0,
+    "unclassified_string_tests": 0,
     "meets_minimum": false,
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided."
@@ -6857,6 +6881,8 @@
    "verification": {
     "methods": [],
     "minimum_required": 1,
+    "automated_methods": 0,
+    "unclassified_string_tests": 0,
     "meets_minimum": false,
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided."
@@ -6909,7 +6935,9 @@
      "Example test 2: CloudTrail Lake query for console login events without MFA returns zero rows (daily)."
     ],
     "minimum_required": 1,
-    "meets_minimum": true,
+    "automated_methods": 0,
+    "unclassified_string_tests": 2,
+    "meets_minimum": false,
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided."
    },
@@ -6979,6 +7007,8 @@
    "verification": {
     "methods": [],
     "minimum_required": 1,
+    "automated_methods": 0,
+    "unclassified_string_tests": 0,
     "meets_minimum": false,
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided."
@@ -7053,6 +7083,8 @@
    "verification": {
     "methods": [],
     "minimum_required": 1,
+    "automated_methods": 0,
+    "unclassified_string_tests": 0,
     "meets_minimum": false,
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided."
@@ -7096,6 +7128,8 @@
    "verification": {
     "methods": [],
     "minimum_required": 1,
+    "automated_methods": 0,
+    "unclassified_string_tests": 0,
     "meets_minimum": false,
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided."
@@ -7139,6 +7173,8 @@
    "verification": {
     "methods": [],
     "minimum_required": 1,
+    "automated_methods": 0,
+    "unclassified_string_tests": 0,
     "meets_minimum": false,
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided."
@@ -7179,6 +7215,8 @@
    "verification": {
     "methods": [],
     "minimum_required": 1,
+    "automated_methods": 0,
+    "unclassified_string_tests": 0,
     "meets_minimum": false,
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided."
@@ -7225,6 +7263,8 @@
    "verification": {
     "methods": [],
     "minimum_required": 1,
+    "automated_methods": 0,
+    "unclassified_string_tests": 0,
     "meets_minimum": false,
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided."
@@ -7266,6 +7306,8 @@
    "verification": {
     "methods": [],
     "minimum_required": 1,
+    "automated_methods": 0,
+    "unclassified_string_tests": 0,
     "meets_minimum": false,
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided."
@@ -7306,6 +7348,8 @@
    "verification": {
     "methods": [],
     "minimum_required": 1,
+    "automated_methods": 0,
+    "unclassified_string_tests": 0,
     "meets_minimum": false,
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided."
@@ -7352,6 +7396,8 @@
    "verification": {
     "methods": [],
     "minimum_required": 1,
+    "automated_methods": 0,
+    "unclassified_string_tests": 0,
     "meets_minimum": false,
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided."
@@ -7406,6 +7452,8 @@
    "verification": {
     "methods": [],
     "minimum_required": 1,
+    "automated_methods": 0,
+    "unclassified_string_tests": 0,
     "meets_minimum": false,
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided."
@@ -7449,6 +7497,8 @@
    "verification": {
     "methods": [],
     "minimum_required": 1,
+    "automated_methods": 0,
+    "unclassified_string_tests": 0,
     "meets_minimum": false,
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided."
@@ -7492,6 +7542,8 @@
    "verification": {
     "methods": [],
     "minimum_required": 1,
+    "automated_methods": 0,
+    "unclassified_string_tests": 0,
     "meets_minimum": false,
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided."
@@ -7527,6 +7579,8 @@
    "verification": {
     "methods": [],
     "minimum_required": 1,
+    "automated_methods": 0,
+    "unclassified_string_tests": 0,
     "meets_minimum": false,
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided."
@@ -7572,6 +7626,8 @@
    "verification": {
     "methods": [],
     "minimum_required": 1,
+    "automated_methods": 0,
+    "unclassified_string_tests": 0,
     "meets_minimum": false,
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided."
@@ -7620,6 +7676,8 @@
    "verification": {
     "methods": [],
     "minimum_required": 1,
+    "automated_methods": 0,
+    "unclassified_string_tests": 0,
     "meets_minimum": false,
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided."
@@ -7657,6 +7715,8 @@
    "verification": {
     "methods": [],
     "minimum_required": 1,
+    "automated_methods": 0,
+    "unclassified_string_tests": 0,
     "meets_minimum": false,
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided."
@@ -7699,6 +7759,8 @@
    "verification": {
     "methods": [],
     "minimum_required": 1,
+    "automated_methods": 0,
+    "unclassified_string_tests": 0,
     "meets_minimum": false,
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided."
@@ -7751,6 +7813,8 @@
    "verification": {
     "methods": [],
     "minimum_required": 1,
+    "automated_methods": 0,
+    "unclassified_string_tests": 0,
     "meets_minimum": false,
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided."
@@ -7789,6 +7853,8 @@
    "verification": {
     "methods": [],
     "minimum_required": 1,
+    "automated_methods": 0,
+    "unclassified_string_tests": 0,
     "meets_minimum": false,
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided."
@@ -7835,6 +7901,8 @@
    "verification": {
     "methods": [],
     "minimum_required": 1,
+    "automated_methods": 0,
+    "unclassified_string_tests": 0,
     "meets_minimum": false,
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided."
@@ -7883,6 +7951,8 @@
    "verification": {
     "methods": [],
     "minimum_required": 1,
+    "automated_methods": 0,
+    "unclassified_string_tests": 0,
     "meets_minimum": false,
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided."
@@ -7929,6 +7999,8 @@
    "verification": {
     "methods": [],
     "minimum_required": 1,
+    "automated_methods": 0,
+    "unclassified_string_tests": 0,
     "meets_minimum": false,
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided."
@@ -7976,6 +8048,8 @@
    "verification": {
     "methods": [],
     "minimum_required": 1,
+    "automated_methods": 0,
+    "unclassified_string_tests": 0,
     "meets_minimum": false,
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided."
@@ -8017,6 +8091,8 @@
    "verification": {
     "methods": [],
     "minimum_required": 1,
+    "automated_methods": 0,
+    "unclassified_string_tests": 0,
     "meets_minimum": false,
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided."
@@ -8062,6 +8138,8 @@
    "verification": {
     "methods": [],
     "minimum_required": 1,
+    "automated_methods": 0,
+    "unclassified_string_tests": 0,
     "meets_minimum": false,
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided."
@@ -8113,7 +8191,9 @@
      "Example test 2: EBS default encryption and S3 Block Public Access report enabled for every in-scope account (daily)."
     ],
     "minimum_required": 1,
-    "meets_minimum": true,
+    "automated_methods": 0,
+    "unclassified_string_tests": 2,
+    "meets_minimum": false,
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided."
    },
@@ -8156,6 +8236,8 @@
    "verification": {
     "methods": [],
     "minimum_required": 1,
+    "automated_methods": 0,
+    "unclassified_string_tests": 0,
     "meets_minimum": false,
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided."
