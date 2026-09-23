@@ -8,6 +8,56 @@ One project-specific convention: the pinned FedRAMP dataset version is recorded 
 
 No unreleased changes.
 
+## 1.3.1, 2026-09-23
+
+Pinned dataset: `2026.09.13.02`
+
+Audit-remediation patch release. Closes the KMT-layer audit and the detailed
+repo audit (F-01 through F-09) against the CR26 `2026.09.13.02` dataset. No
+dataset change and no architecture change; every fix tightens an existing gate
+or corrects a reviewer-facing report, verified against the pinned dataset and
+shipped CI-green with an adversarial or negative test that fails on the old code.
+
+Metric-engine truth and routing:
+
+- `OBSERVED` posture no longer counts as passing; a measured `0 / N` contributes
+  as a real negative observation rather than inflating a metric.
+- Explicit negative posture (`NONE` / `NOT_ENABLED`) is scored `(0, 1)` instead of
+  being dropped, so a disabled control cannot silently vanish from the denominator.
+- Metric routing is bound to an explicit per-KSI `metric_service_keys` allowlist
+  rather than substring-matching AWS service names in narrative prose, closing the
+  fan-out where an unrelated posture could accumulate history against a KSI.
+- Config-rule vocabulary is allowlist-checked and a bogus Aurora rule was removed.
+
+Verification-method binding (FRC-CSX-VVK):
+
+- Automated-method counting is set-based against the class minimum and counts only
+  distinct structured methods, not raw test strings.
+- Class C requires each declared automated method to be bound to observed per-method
+  telemetry; two declared but one bound blocks, rather than clearing existentially.
+  The binding stays active under the initial-certification MOT exception.
+- The reviewer-facing assurance graph now uses the exact same automated-method
+  counter as the authoritative validator (shared `verification_methods` module), so
+  `evidence-coverage.json` can no longer report the VVK minimum as met when the
+  validator says it is not.
+
+Class B scope and process/document KSIs:
+
+- The Class B optional-KSI scope (41 baseline, 5 optional excluded unless selected)
+  is unified across the builder, validator, scanner, assurance graph, and preflight
+  via a single `submitted_ksi_ids` resolver; an unknown optional selection now blocks.
+- The 11 document/process KSIs carry provider-deployed outcome-metric contracts rather
+  than pretending an AWS API can assess organizational-process effectiveness.
+
+Harness, supply chain, and reproducibility:
+
+- The readiness fixture suite generates into a temporary directory so a validate run
+  leaves the worktree clean.
+- The scanner treats legitimate JSON metadata citations as present, not drift.
+- `make install` and `setup.py` install from `requirements.txt` (including
+  `cryptography`), with a drift-guard test so the install list cannot silently omit a
+  pinned dependency.
+
 ## 1.3.0, 2026-09-20
 
 Pinned dataset: `2026.09.13.02`
