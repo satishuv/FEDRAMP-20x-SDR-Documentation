@@ -6,6 +6,12 @@ One project-specific convention: the pinned FedRAMP dataset version is recorded 
 
 ## Unreleased
 
+No unreleased changes.
+
+## 1.4.0, 2026-09-24
+
+Pinned dataset: `2026.09.13.02`
+
 Hard-mode audit remediation and an anti-circular-verification gate. Closes a
 ten-finding builder/adversarial audit (six High, four Medium) against the CR26
 `2026.09.13.02` dataset, adds two provider-integration features, and makes the
