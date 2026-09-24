@@ -37,6 +37,36 @@ def test_no_observation_yields_no_datapoint():
     assert am.datapoint_for_ksi(REGISTRY["ksis"]["KSI-A"], config("RULE_NOT_DEPLOYED"), {}) is None
 
 
+def test_f04_region_failure_not_hidden_by_another_region():
+    # Finding F04: a NON_COMPLIANT in us-east-1 must NOT be overwritten by a
+    # COMPLIANT in us-west-2. Both scopes count: 1 passing of 2 total.
+    facts = {"r1": [
+        {"rule": "r1", "compliance_type": "NON_COMPLIANT", "region": "us-east-1"},
+        {"rule": "r1", "compliance_type": "COMPLIANT", "region": "us-west-2"},
+    ]}
+    dp = am.datapoint_for_ksi(REGISTRY["ksis"]["KSI-A"], facts, {})
+    assert dp == {"passing": 1, "total": 2}, dp
+
+
+def test_f04_load_facts_retains_every_region_scope(tmp_path=None):
+    # load_facts must keep one fact per (rule, region, account), not last-wins.
+    import json
+    import tempfile
+    d = tempfile.mkdtemp()
+    for i, (region, ct) in enumerate([("us-east-1", "NON_COMPLIANT"),
+                                      ("us-west-2", "COMPLIANT")]):
+        with open(os.path.join(d, f"facts-{i}.json"), "w") as f:
+            json.dump({"facts": [{"rule": "r1", "compliance_type": ct,
+                                  "region": region}]}, f)
+    orig = am.FACTS_DIR
+    am.FACTS_DIR = d
+    try:
+        cbr, _ = am.load_facts()
+    finally:
+        am.FACTS_DIR = orig
+    assert isinstance(cbr["r1"], list) and len(cbr["r1"]) == 2, cbr
+
+
 def test_append_is_idempotent_per_day():
     hist = {}
     am.append_run(hist, REGISTRY, config("COMPLIANT"), {}, date(2026, 9, 6))

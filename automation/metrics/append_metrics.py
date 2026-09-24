@@ -62,19 +62,36 @@ def load(path, default=None):
 
 def load_facts():
     """Merge config-rule and posture facts from the store into per-KSI-relevant
-    signals. Returns (config_by_rule, posture_by_service)."""
+    signals. Returns (config_by_rule, posture_by_service).
+
+    config_by_rule maps a rule name to a LIST of that rule's facts, one per
+    (region[, account]) scope observed. Finding F04: keying by rule name alone
+    let a later region's file silently OVERWRITE an earlier region's result for
+    the same rule (files load in sorted order), so a us-east-1 NON_COMPLIANT
+    could vanish behind a us-west-2 COMPLIANT and the KSI read fully passing.
+    Retaining every scope's fact lets datapoint_for_ksi aggregate across scopes
+    (a failure in ANY scope counts) instead of last-writer-wins."""
     config_by_rule = {}
     posture_by_service = {}
     if not os.path.isdir(FACTS_DIR):
         return config_by_rule, posture_by_service
+    # De-duplicate identical (rule, region, account) observations so re-reading
+    # the same file, or two files for the same scope, does not double-count.
+    seen_scopes = {}
     for fn in sorted(os.listdir(FACTS_DIR)):
         if not fn.startswith("facts-") or not fn.endswith(".json"):
             continue
         store = load(os.path.join(FACTS_DIR, fn), {})
         for fact in store.get("facts", []):
-            config_by_rule[fact.get("rule")] = fact
+            rule = fact.get("rule")
+            scope = (rule, fact.get("region"), fact.get("account"))
+            # Latest file wins for the SAME exact scope; different scopes are
+            # all retained.
+            seen_scopes[scope] = fact
         for pf in store.get("posture_facts", []):
             posture_by_service.setdefault(pf.get("service"), []).append(pf)
+    for (rule, _region, _account), fact in seen_scopes.items():
+        config_by_rule.setdefault(rule, []).append(fact)
     return config_by_rule, posture_by_service
 
 
@@ -139,6 +156,28 @@ def _posture_score(pf):
     return None
 
 
+def _config_scope_score(facts):
+    """Aggregate a Config rule's per-scope facts (one per region/account) into
+    (passing, total) where each evaluated scope is one unit. Finding F04: a
+    NON_COMPLIANT in ANY scope must count as a failure and must NOT be hidden by
+    a COMPLIANT in another scope. ERROR/RULE_NOT_DEPLOYED/UNKNOWN scopes carry
+    no evaluated outcome and are skipped (not scored as failures). `facts` is
+    the list stored under config_by_rule[rule]; a bare dict is tolerated for
+    backward compatibility."""
+    if isinstance(facts, dict):
+        facts = [facts]
+    passing = 0
+    total = 0
+    for fact in facts or []:
+        ct = fact.get("compliance_type", "")
+        if ct.startswith("ERROR") or ct in ("RULE_NOT_DEPLOYED", "UNKNOWN", ""):
+            continue
+        total += 1
+        if ct in GOOD_CONFIG:
+            passing += 1
+    return passing, total
+
+
 def datapoint_for_ksi(ksi_entry, config_by_rule, posture_by_service):
     """One day's metric for a KSI: passing vs total observed automated checks.
     Returns None if nothing was observed (no datapoint rather than a zero, so a
@@ -148,15 +187,13 @@ def datapoint_for_ksi(ksi_entry, config_by_rule, posture_by_service):
     for check in ksi_entry.get("checks", []):
         if check.get("type") != "config_managed_rule":
             continue
-        fact = config_by_rule.get(check.get("target"))
-        if not fact:
+        facts = config_by_rule.get(check.get("target"))
+        if not facts:
             continue
-        ct = fact.get("compliance_type", "")
-        if ct.startswith("ERROR") or ct in ("RULE_NOT_DEPLOYED", "UNKNOWN", ""):
-            continue
-        total += 1
-        if ct in GOOD_CONFIG:
-            passing += 1
+        # F04: aggregate across every region/account scope, not last-writer-wins.
+        p, t = _config_scope_score(facts)
+        total += t
+        passing += p
     # Posture routing is by the EXPLICIT per-KSI allowlist (metric_service_keys),
     # NOT prose service-name matching. A posture service contributes to this KSI
     # only if its collector key is on the KSI's allowlist. A KSI with no allowlist
@@ -194,16 +231,17 @@ def per_metric_datapoints_for_ksi(ksi_entry, config_by_rule, posture_by_service)
         if check.get("type") != "config_managed_rule":
             continue
         target = check.get("target")
-        fact = config_by_rule.get(target)
-        if not fact:
+        facts = config_by_rule.get(target)
+        if not facts:
             continue
-        ct = fact.get("compliance_type", "")
-        if ct.startswith("ERROR") or ct in ("RULE_NOT_DEPLOYED", "UNKNOWN", ""):
+        # F04: aggregate across every observed region/account scope.
+        p, t = _config_scope_score(facts)
+        if t == 0:
             continue
         mid = check.get("check_id") or f"config:{target}"
         out[mid] = {
-            "passing": 1 if ct in GOOD_CONFIG else 0,
-            "total": 1,
+            "passing": p,
+            "total": t,
             "objective": check.get("description") or check.get("objective") or "",
             "source": f"AWS Config rule {target}",
         }
