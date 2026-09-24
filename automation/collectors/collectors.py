@@ -633,6 +633,7 @@ def collect_s3_data_protection(session, region):
         return [_fact("s3", "encryption", "NONE", "No S3 buckets in this account", region)]
     encrypted = 0
     checked = 0
+    unmeasured = 0
     for b in buckets:
         try:
             enc = s3.get_bucket_encryption(Bucket=b["Name"])
@@ -640,13 +641,31 @@ def collect_s3_data_protection(session, region):
             rules = enc.get("ServerSideEncryptionConfiguration", {}).get("Rules", [])
             if rules:
                 encrypted += 1
-        except Exception:  # noqa: BLE001 - one bucket read must not sink the run
-            checked += 1
+        except Exception as e:  # noqa: BLE001 - one bucket read must not sink the run
+            # F08: only a response that ESTABLISHES ABSENCE is a real negative.
+            # ServerSideEncryptionConfigurationNotFoundError means the bucket
+            # genuinely has no default encryption -> counts as evaluated (not
+            # encrypted). AccessDenied / throttling / any other error means we
+            # could NOT measure this bucket -> it is unmeasured, and must NOT be
+            # scored as a failure (that would turn an instrumentation gap into
+            # adverse control telemetry, contradicting the read-only trust
+            # boundary).
+            name = _client_error_name(e)
+            if "ServerSideEncryptionConfigurationNotFound" in name:
+                checked += 1  # evaluated: no encryption configured
+            else:
+                unmeasured += 1
             continue
+    if checked == 0:
+        # Nothing could be evaluated (e.g. all reads denied): report UNKNOWN, not
+        # a 0/0 or a false pass/fail.
+        return [_fact("s3", "encryption", "UNKNOWN",
+                      f"Could not evaluate encryption on any of {len(buckets)} "
+                      f"bucket(s) ({unmeasured} unmeasured)", region)]
     return [_fact("s3", "encryption", "OBSERVED",
                   f"{encrypted} of {checked} bucket(s) have default encryption "
-                  f"configured ({len(buckets)} total)", region,
-                  measured=encrypted, total=checked)]
+                  f"configured ({len(buckets)} total, {unmeasured} unmeasured)",
+                  region, measured=encrypted, total=checked)]
 
 
 def collect_data_retention(session, region):
