@@ -1976,23 +1976,33 @@ def cmd_preflight(args):
                             and _answered(t.get("method_id"))]
                 if declared:
                     metrics = entry.get("metrics")
-                    bound = [t for t in declared if t["method_id"] in metrics]
+                    # F02: identity is the DISTINCT method_id. Duplicate
+                    # declarations of the same method_id must not inflate either
+                    # the declared count or the bound count, and a method is only
+                    # BOUND if its per-method metric series actually carries
+                    # observations (a keyed-but-empty series is not telemetry).
+                    declared_ids = {t["method_id"] for t in declared}
+                    bound_ids = {
+                        mid for mid in declared_ids
+                        if isinstance(metrics.get(mid), dict)
+                        and (metrics[mid].get("series") or [])
+                    }
                     need = _vvk_min_by_ksi.get(kid, 2 if cls == "c" else 4)
-                    # Cannot require more bound than the KSI actually declares:
-                    # the count-minimum gate (validate_sdr) separately enforces
-                    # that enough methods are DECLARED. Here we bind whatever the
-                    # class minimum is, capped at the declared count so a KSI that
-                    # declares exactly the minimum is not impossible to satisfy.
-                    need = min(need, len(declared))
-                    if len(bound) < need:
+                    # Cannot require more bound than the KSI actually declares
+                    # (distinct): the count-minimum gate (validate_sdr) separately
+                    # enforces that enough DISTINCT methods are declared. Here we
+                    # bind the class minimum, capped at the distinct declared
+                    # count so a KSI that declares exactly the minimum is not
+                    # impossible to satisfy.
+                    need = min(need, len(declared_ids))
+                    if len(bound_ids) < need:
                         gaps.append(
-                            f"vvk_method_binding ({len(bound)} of {need} required "
-                            "automated method(s) bound to observed telemetry; "
+                            f"vvk_method_binding ({len(bound_ids)} of {need} required "
+                            "distinct automated method(s) bound to OBSERVED telemetry; "
                             "declared: "
-                            + ", ".join(sorted(t["method_id"] for t in declared)[:5])
+                            + ", ".join(sorted(declared_ids)[:5])
                             + "; bound: "
-                            + (", ".join(sorted(t["method_id"] for t in bound)[:5])
-                               or "none")
+                            + (", ".join(sorted(bound_ids)[:5]) or "none")
                             + ")")
         return gaps
 

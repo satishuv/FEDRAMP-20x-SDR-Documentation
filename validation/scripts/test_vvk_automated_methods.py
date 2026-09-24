@@ -48,10 +48,19 @@ def main():
     n, _s, _t = count_automated_methods([_auto("a"), _auto("a")])
     check("duplicate automated method_id counts once", n == 1)
 
-    # Duplicate automated (no id, same text): counts once.
-    dup = {"method": "identical text", "automated": True}
-    n, _s, _t = count_automated_methods([dict(dup), dict(dup)])
-    check("duplicate automated by text counts once", n == 1)
+    # F02: an automated entry with NO method_id is uncountable (it can never be
+    # bound to telemetry by the preflight binding gate, which keys on method_id).
+    # It is surfaced informationally (string_tests), not counted.
+    n, s, _t = count_automated_methods([{"method": "no id here", "automated": True}])
+    check("automated with no method_id counts 0 (F02)", n == 0 and s == 1)
+
+    # F02: two id-less automated entries with distinct text also count 0 - the
+    # old code counted them as 2 by text, which passed the count gate while the
+    # binding gate silently skipped them (the bypass).
+    n, _s, _t = count_automated_methods([
+        {"method": "alpha", "automated": True},
+        {"method": "beta", "automated": True}])
+    check("two id-less automated methods count 0 (F02 bypass closed)", n == 0)
 
     # Two DISTINCT automated methods: 2 -> satisfies Class C.
     n, _s, _t = count_automated_methods([_auto("a"), _auto("b")])

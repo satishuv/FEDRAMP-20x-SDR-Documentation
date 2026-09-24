@@ -20,13 +20,19 @@ def count_automated_methods(tests):
     automated/manual distinction, so this must run on the authoring source.
 
     Counting rules, deliberately strict so the gate proves the requirement and
-    is not satisfied by "there are two strings in an array":
+    is not satisfied by "there are two strings in an array" (or two id-less
+    automated blobs the binding gate can never bind):
       - Only structured entries (dicts) with automated == True count.
-      - Methods must be DISTINCT: identity is method_id if present, else the
-        normalized method/name/description text. Duplicates count once.
+      - A counted method MUST carry a method_id (finding F02). Identity is that
+        method_id; duplicates count once. An automated entry WITHOUT a method_id
+        cannot be bound to telemetry by the preflight binding gate (which keys on
+        method_id), so counting it here would let the count gate pass while the
+        binding gate silently skips it - the exact F02 bypass. Such id-less
+        automated entries are reported via `string_tests` (informational), not
+        counted as satisfying the automated minimum.
       - Plain-string entries do NOT count as automated (their automated-ness is
-        unknown once flattened); they are returned separately as `string_tests`
-        so a template-state record can still be reported informationally.
+        unknown once flattened); they are returned in `string_tests` so a
+        template-state record can still be reported informationally.
 
     Returns (automated_count, string_test_count, total_entries).
     """
@@ -43,8 +49,11 @@ def count_automated_methods(tests):
         if isinstance(t, dict) and t.get("automated") is True:
             ident = t.get("method_id")
             if not ident:
-                ident = str(t.get("method") or t.get("name")
-                            or t.get("description") or "").strip().lower()
+                # F02: an automated method with no method_id is uncountable and
+                # unbindable; surface it informationally, do not count it.
+                strings += 1
+                continue
+            ident = str(ident).strip().lower()
             if ident:
                 seen.add(ident)
     return len(seen), strings, total
