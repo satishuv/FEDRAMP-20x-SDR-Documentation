@@ -87,8 +87,28 @@ def test_inspector_active():
             {"scanStatus": {"statusCode": "INACTIVE"}},
         ]}})})
     fact = collectors.collect_inspector(sess, "us-east-1")[0]
-    assert fact["status"] == "ACTIVE"
-    assert "1 actively scanned of 2" in fact["detail"]
+    # F09: complete page (no nextToken) -> OBSERVED with the real fraction.
+    assert fact["status"] == "OBSERVED"
+    assert fact.get("measured") == 1 and fact.get("total") == 2, fact
+
+
+def test_f09_bounded_sample_is_partial_not_full_pass():
+    # The audit's case: 1 active of 100, with a nextToken (more unexamined).
+    # Must NOT become a 1/1 (100%) passing metric; it is a bounded partial
+    # sample that scores nothing.
+    resources = [{"scanStatus": {"statusCode": "ACTIVE"}}]
+    resources += [{"scanStatus": {"statusCode": "INACTIVE"}} for _ in range(99)]
+    sess = FakeSession({"inspector2": FakeClient(responses={
+        "list_coverage": {"coveredResources": resources, "nextToken": "more"}})})
+    fact = collectors.collect_inspector(sess, "us-east-1")[0]
+    assert fact["status"] == "OBSERVED_PARTIAL", fact
+    # No measured/total ratio -> the scorer skips it (no false 100%).
+    assert "measured" not in fact, fact
+    import sys as _s
+    _s.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(
+        os.path.abspath(__file__))), "metrics"))
+    import append_metrics as _am
+    assert _am._posture_score(fact) is None, "partial sample must not score"
 
 
 def test_guardduty_enabled():

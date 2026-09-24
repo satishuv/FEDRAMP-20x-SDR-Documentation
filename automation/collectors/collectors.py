@@ -195,12 +195,29 @@ def collect_inspector(session, region):
     except Exception as e:  # noqa: BLE001
         return [_fact("inspector2", "client", "ERROR", type(e).__name__, region)]
     try:
-        cov = insp.list_coverage(maxResults=100).get("coveredResources", [])
+        resp = insp.list_coverage(maxResults=100)
+        cov = resp.get("coveredResources", [])
+        more = bool(resp.get("nextToken"))
         active = sum(1 for c in cov if c.get("scanStatus", {}).get("statusCode") == "ACTIVE")
-        status = "ACTIVE" if active else ("COVERED_INACTIVE" if cov else "NO_COVERAGE")
-        return [_fact("inspector2", "coverage", status,
-                      f"{active} actively scanned of {len(cov)} covered resources "
-                      "(first page)", region)]
+        # F09: preserve the ACTUAL coverage fraction, not a binary ACTIVE that
+        # the scorer would turn into 1/1. 1 active of 100 covered must score
+        # 1/100, not 100%. When a nextToken is present the sample is bounded
+        # (more resources unexamined) -> mark the observation partial so it is
+        # NOT indistinguishable from complete boundary coverage.
+        if not cov:
+            return [_fact("inspector2", "coverage", "NO_COVERAGE",
+                          "No covered resources returned", region)]
+        if more:
+            # Bounded sample: report the enabling signal WITHOUT a full-coverage
+            # ratio (partial). It is telemetry that scanning is on for the
+            # sampled page, not a boundary-wide passing measure.
+            return [_fact("inspector2", "coverage", "OBSERVED_PARTIAL",
+                          f"{active} of {len(cov)} sampled resources actively "
+                          "scanned; more resources exist (bounded first-page "
+                          "sample, boundary coverage not measured)", region)]
+        return [_fact("inspector2", "coverage", "OBSERVED",
+                      f"{active} of {len(cov)} covered resources actively scanned",
+                      region, measured=active, total=len(cov))]
     except Exception as e:  # noqa: BLE001
         return [_fact("inspector2", "coverage", f"ERROR:{_client_error_name(e)}",
                       "Could not read Inspector coverage", region)]
