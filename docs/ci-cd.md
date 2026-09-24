@@ -46,8 +46,17 @@ No AWS account needed. Free-tier friendly.
 
 | Workflow | Trigger | What it does |
 |---|---|---|
-| `.github/workflows/validate.yml` | push, pull request | Runs the four gates, refuses a stale scanner check catalog, attaches the readiness report as a build artifact |
+| `.github/workflows/validate.yml` | push, pull request | Runs the four gates, the two anti-circular audit gates (below), refuses a stale scanner check catalog, attaches the readiness report as a build artifact |
 | `.github/workflows/drift-check.yml` | daily schedule | Hash-compares pinned FedRAMP sources against upstream, opens an issue on drift |
+
+### Anti-circular-verification audit gate
+
+The `audit-gate` job in `validate.yml` runs two independent checks that a green test suite alone cannot provide, both hard gates:
+
+- **Mutation runner** (`audit/mutation_tests.py`) re-introduces each closed defect into the production code and asserts its named regression test goes red. A surviving mutation means a test cannot detect the defect it claims to guard, and the build fails. When you fix a new defect, add a mutation entry and a ledger record (`audit/defect-ledger.json`); the runner skips a mutation whose target code is not present, so a fix on an unmerged branch never passes falsely.
+- **Requirements-differential oracle** (`audit/requirements_oracle.py`) derives the KSI universe and the Class-B-optional set from the raw pinned dataset with a traversal independent of the production applicability engine, then reconciles the two. Any discrepancy fails the build.
+
+The AWS CodeBuild release path (`RELEASE_MODE=true`) runs the same two checks, so the internal pipeline is not weaker than the public gate.
 
 Actions are pinned to full commit SHAs rather than tags, so a compromised or retagged upstream action cannot change what runs in your pipeline. Keep it that way when you add steps.
 

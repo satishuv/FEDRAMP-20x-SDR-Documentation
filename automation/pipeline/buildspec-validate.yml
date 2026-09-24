@@ -65,6 +65,10 @@ phases:
           python sdr.py validate
           echo "RELEASE_MODE: running the double-build reproducibility gate."
           python -c "import sdr; import sys; sys.exit(sdr.cmd_reproducibility())"
+          echo "RELEASE_MODE: running the anti-circular-verification audit gate."
+          python audit/requirements_oracle.py
+          python audit/mutation_tests.py
+          git diff --exit-code || { echo "FAIL. Mutation runner left the tree modified."; exit 1; }
         else
           python sdr.py validate --no-tests
         fi
