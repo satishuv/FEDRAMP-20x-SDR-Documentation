@@ -34,6 +34,18 @@ import sys
 import time
 
 BASE = os.path.dirname(os.path.abspath(__file__))
+
+
+def _utc_today():
+    """The single audit clock (finding F10). Collection (append_metrics) stamps
+    datapoints in UTC; preflight windows MUST use the SAME UTC calendar day, not
+    the host's local date. At UTC midnight a local-date preflight can judge a
+    genuinely-current UTC observation as future-dated, so the same code+fixture
+    passes in GitHub's UTC runner and fails on a local machine west of UTC. One
+    UTC clock removes that host-timezone dependence."""
+    import datetime as _d
+    return _d.datetime.now(_d.timezone.utc).date()
+
 SCRIPTS = os.path.join(BASE, "validation", "scripts")
 SDRSCAN = os.path.join(BASE, "automation", "sdrscan", "sdrscan.py")
 VALIDATION_REPORT = os.path.join(BASE, "validation", "reports", "validation-report.json")
@@ -1217,9 +1229,9 @@ def cmd_preflight(args):
             adate = ext.get("assessment_date")
             try:
                 when = _dt.date.fromisoformat(str(adate))
-                if when > _dt.date.today():
+                if when > _utc_today():
                     blockers.append(f"Class A: assessment_date is in the future: {adate}")
-                elif when < _months_before(_dt.date.today(), 12):
+                elif when < _months_before(_utc_today(), 12):
                     blockers.append(f"Class A: external assessment {adate} is "
                                     f"older than 12 months (FRC-CLA-ASF)")
             except ValueError:
@@ -1281,10 +1293,10 @@ def cmd_preflight(args):
         else:
             try:
                 when = _dt.date.fromisoformat(str(completed))
-                if when > _dt.date.today():
+                if when > _utc_today():
                     blockers.append(f"Class {cls.upper()}: FIA completed_at is in the future: {completed}")
                 else:
-                    today = _dt.date.today()
+                    today = _utc_today()
                     if when < _months_before(today, 9):  # older than 9 calendar months
                         blockers.append(f"Class {cls.upper()}: FedRAMP independent assessment "
                                         f"{completed} is older than 9 months; FRC-APP-USA "
@@ -1303,7 +1315,7 @@ def cmd_preflight(args):
                                 rd = _dt.date.fromisoformat(str(reviewed_at))
                                 # Valid, not in the future, and not before the
                                 # original assessment it claims to freshen.
-                                review_date_ok = (rd <= _dt.date.today() and rd >= when)
+                                review_date_ok = (rd <= _utc_today() and rd >= when)
                             except ValueError:
                                 review_date_ok = False
                         fresh_ok = (basis == "freshened"
@@ -1365,10 +1377,10 @@ def cmd_preflight(args):
         else:
             try:
                 _iv_when = _dt.date.fromisoformat(str(ivv_completed))
-                if _iv_when > _dt.date.today():
+                if _iv_when > _utc_today():
                     blockers.append(f"Class A: selected IVV-CSO-FIA completed_at is "
                                     f"in the future: {ivv_completed}")
-                elif _iv_when < _months_before(_dt.date.today(), 12):
+                elif _iv_when < _months_before(_utc_today(), 12):
                     blockers.append(f"Class A: selected IVV-CSO-FIA assessment "
                                     f"{ivv_completed} is older than 12 months; "
                                     "IVV-CSO-FIA requires an assessment at least once "
@@ -1409,7 +1421,7 @@ def cmd_preflight(args):
     mot_min_months = {"c": 6, "d": 18}.get(cls)
     if mot_min_months:
         import datetime as _d2
-        today = _d2.date.today()
+        today = _utc_today()
         mot_cutoff = _months_before(today, mot_min_months)
         # FRC-CSX-MOT applies to ALL KSIs. Class C/D resolve all 46.
         mot_ksis = {k.get("ksi_id") for k in ksi_profile.get("indicators", [])}
@@ -1620,8 +1632,8 @@ def cmd_preflight(args):
             import datetime as _dk5
             _hk = (history or {}).get("ksis", history) if isinstance(history, dict) else {}
             _hk = _hk if isinstance(_hk, dict) else {}
-            _cut5 = (_dk5.date.today() - _dk5.timedelta(days=365)).isoformat()
-            _today5 = _dk5.date.today().isoformat()
+            _cut5 = (_utc_today() - _dk5.timedelta(days=365)).isoformat()
+            _today5 = _utc_today().isoformat()
             _a_ksis = set(((class_profile.get("meta", {}) or {})
                            .get("class_a_ksis", {}) or {}).keys())
 
@@ -1858,8 +1870,8 @@ def cmd_preflight(args):
         series = entry.get("series") if isinstance(entry, dict) else entry
         if not isinstance(series, list):
             return []
-        _today = _dk.date.today().isoformat()
-        cutoff = (_dk.date.today() - _dk.timedelta(days=365)).isoformat()
+        _today = _utc_today().isoformat()
+        cutoff = (_utc_today() - _dk.timedelta(days=365)).isoformat()
         # Finding 12: bound the window at both ends. A future-dated observation
         # (date > today) is not a real historical measurement and must not count
         # toward the daily-data requirement.
@@ -1900,8 +1912,8 @@ def cmd_preflight(args):
             return ("kmt_per_metric (history shows multiple metrics but carries "
                     "no per-metric breakdown; SDR-CSX-KMT requires a summary of "
                     "each metric)")
-        cutoff = (_pm.date.today() - _pm.timedelta(days=365)).isoformat()
-        _today_pm = _pm.date.today().isoformat()
+        cutoff = (_utc_today() - _pm.timedelta(days=365)).isoformat()
+        _today_pm = _utc_today().isoformat()
         empty = []
         for mid, m in metrics.items():
             ms = m.get("series") if isinstance(m, dict) else None
@@ -1933,7 +1945,7 @@ def cmd_preflight(args):
         if not isinstance(series, list) or not series:
             return None  # no history to contradict ("where available")
         import datetime as _dc
-        today = _dc.date.today()
+        today = _utc_today()
         cut30 = (today - _dc.timedelta(days=29)).isoformat()
         y = today.year + (today.month - 1 - 12) // 12
         m = (today.month - 1 - 12) % 12 + 1
