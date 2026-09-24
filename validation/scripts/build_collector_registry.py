@@ -123,7 +123,10 @@ METRIC_SOURCE_MAP = {
     "config": ["KSI-CNA-IBP", "KSI-MLA-EVC", "KSI-SVC-EIS"],
     "wafv2": ["KSI-CNA-RVP"],
     "ec2": ["KSI-CNA-ULN"],
-    "iam": ["KSI-IAM-JIT"],
+    # F03: check-scoped so an unrelated IAM check (e.g. password_policy, which
+    # measures IAM-APM, not just-in-time authorization) cannot score IAM-JIT.
+    "iam:role_session_duration": ["KSI-IAM-JIT"],
+    "iam:long_lived_keys": ["KSI-IAM-JIT"],
     "guardduty": ["KSI-IAM-SUS"],
     "events": ["KSI-IAM-SUS", "KSI-SCR-MON"],
     "cloudtrail": ["KSI-MLA-OSM", "KSI-SVC-VRI"],
