@@ -82,13 +82,21 @@ def load_facts():
         if not fn.startswith("facts-") or not fn.endswith(".json"):
             continue
         store = load(os.path.join(FACTS_DIR, fn), {})
+        store_ts = (store.get("meta") or {}).get("collected_at")
         for fact in store.get("facts", []):
+            # F05: ensure an observation timestamp is present so the appender can
+            # tell a fresh measurement from a replayed stale one. Config facts
+            # carry collected_at; fall back to the store's meta timestamp.
+            if not fact.get("collected_at") and store_ts:
+                fact = {**fact, "collected_at": store_ts}
             rule = fact.get("rule")
             scope = (rule, fact.get("region"), fact.get("account"))
             # Latest file wins for the SAME exact scope; different scopes are
             # all retained.
             seen_scopes[scope] = fact
         for pf in store.get("posture_facts", []):
+            if not pf.get("collected_at") and store_ts:
+                pf = {**pf, "collected_at": store_ts}
             posture_by_service.setdefault(pf.get("service"), []).append(pf)
     for (rule, _region, _account), fact in seen_scopes.items():
         config_by_rule.setdefault(rule, []).append(fact)
@@ -341,16 +349,65 @@ def prune(series, today):
     return [p for p in series if datetime.fromisoformat(p["date"]).date() >= cutoff]
 
 
-def append_run(history, registry, config_by_rule, posture_by_service, today, cls="b"):
+def _obs_date(ts):
+    """Parse a fact's collected_at into a date, or None if unparseable."""
+    if not ts:
+        return None
+    try:
+        return datetime.fromisoformat(str(ts).replace("Z", "+00:00")).date()
+    except ValueError:
+        try:
+            return datetime.fromisoformat(str(ts)[:10]).date()
+        except ValueError:
+            return None
+
+
+def _ksi_observed_today(ksi_entry, config_by_rule, posture_by_service, today):
+    """True if ANY fact contributing to this KSI was actually OBSERVED on
+    `today` (finding F05). Prevents a stale/replayed fact (an old observation
+    re-read on a later run) from being stamped as a fresh datapoint and
+    manufacturing persistence/history it did not earn. A fact with no parseable
+    observation timestamp is treated as NOT fresh (fail-closed for replay)."""
+    for check in ksi_entry.get("checks", []):
+        if check.get("type") != "config_managed_rule":
+            continue
+        facts = config_by_rule.get(check.get("target"))
+        if isinstance(facts, dict):
+            facts = [facts]
+        for fact in facts or []:
+            if _obs_date(fact.get("collected_at")) == today:
+                return True
+    allowed = set(ksi_entry.get("metric_service_keys", []))
+    for svc_key in allowed:
+        for pf in posture_by_service.get(svc_key, []):
+            if _obs_date(pf.get("collected_at")) == today:
+                return True
+    return False
+
+
+def append_run(history, registry, config_by_rule, posture_by_service, today,
+               cls="b", require_fresh=False):
     """Append today's datapoint per KSI to the history and recompute summaries.
     One datapoint per KSI per calendar day; a second run the same day replaces
-    that day's point rather than duplicating it (idempotent per day)."""
+    that day's point rather than duplicating it (idempotent per day).
+
+    F05: when require_fresh is set (production main() sets it), a KSI datapoint
+    is recorded for `today` only if at least one contributing observation was
+    actually collected on `today`. This stops a replayed stale fact from
+    advancing the history/MOT clock with a measurement that never happened that
+    day. The library default is False so callers computing summaries over
+    explicitly-dated synthetic series are unaffected; the collection pipeline
+    (main) always enforces freshness."""
     date_str = today.isoformat()
     ksis = history.setdefault("ksis", {})
     appended = 0
     for kid, ksi_entry in registry.get("ksis", {}).items():
         dp = datapoint_for_ksi(ksi_entry, config_by_rule, posture_by_service)
         if dp is None:
+            continue
+        if require_fresh and not _ksi_observed_today(
+                ksi_entry, config_by_rule, posture_by_service, today):
+            # Stale/replayed observation only: do not manufacture a fresh point.
             continue
         entry = ksis.setdefault(kid, {"series": []})
         series = [p for p in entry["series"] if p["date"] != date_str]
@@ -408,6 +465,33 @@ def append_run(history, registry, config_by_rule, posture_by_service, today, cls
     return appended
 
 
+def load_history_safe(path):
+    """Load existing metric history, distinguishing three cases (finding F07):
+      - file ABSENT  -> ({}, None): a legitimate first run, start fresh.
+      - file PRESENT and valid history object -> (history, None).
+      - file PRESENT but unreadable / invalid JSON / wrong shape -> ({}, error):
+        the caller MUST abort rather than overwrite. The old code ran the file
+        through load(), which turned a JSON decode error into {} and then
+        rewrote a fresh one-day history over the corrupt (but real) durable
+        state - silent data loss. Corruption is not a first run.
+    """
+    if not os.path.exists(path):
+        return {}, None
+    try:
+        with open(path, encoding="utf-8") as f:
+            data = json.load(f)
+    except OSError as e:
+        return {}, f"metric history unreadable: {e}"
+    except ValueError as e:
+        return {}, f"metric history is not valid JSON: {e}"
+    if not isinstance(data, dict):
+        return {}, f"metric history root is {type(data).__name__}, expected object"
+    ksis = data.get("ksis")
+    if ksis is not None and not isinstance(ksis, dict):
+        return {}, "metric history 'ksis' is present but not an object"
+    return data, None
+
+
 def main():
     ap = argparse.ArgumentParser(
         description="Append one dated metric datapoint per KSI (SDR-CSX-KMT).")
@@ -426,11 +510,19 @@ def main():
 
     today = (datetime.fromisoformat(args.today).date() if args.today
              else datetime.now(timezone.utc).date())
-    history = load(HISTORY, {}) or {}
+    # F07: fail closed on a corrupt existing history rather than overwriting it.
+    history, hist_err = load_history_safe(HISTORY)
+    if hist_err:
+        print(f"FAIL: refusing to overwrite metric history - {hist_err}. "
+              "The existing durable history is present but not safely readable; "
+              "fix or restore it before appending (aborting to prevent data loss, "
+              "finding F07).")
+        return 1
     # Class drives the FRC-CSX-MOT window requirement (6 months at C, 18 at D).
     offering = load(os.path.join(BASE, "profiles", "common", "offering-profile.json"), {})
     cls = (offering.get("certification_class") or "b").lower()
-    appended = append_run(history, registry, config_by_rule, posture_by_service, today, cls)
+    appended = append_run(history, registry, config_by_rule, posture_by_service,
+                          today, cls, require_fresh=True)
 
     os.makedirs(os.path.dirname(HISTORY), exist_ok=True)
     with open(HISTORY, "w", encoding="utf-8", newline="\n") as f:
