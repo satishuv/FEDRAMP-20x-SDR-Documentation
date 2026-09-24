@@ -25,8 +25,8 @@
       "fix_commit": "PR #164",
       "regression_test": "validation/scripts/test_evidence_integrity.py::test_f01_unresolvable_source_under_required_signer_is_hard, ::test_f01_signed_but_unresolvable_source_is_hard, ::test_f01_unresolvable_source_without_required_signer_stays_finding",
       "mutation": "MUT-F01: move source-None soft return before signer check ; expect RED",
-      "mutation_verified": false,
-      "status": "CLOSED-PENDING-MERGE"
+      "mutation_verified": true,
+      "status": "CLOSED"
     },
     {
       "id": "AUD-F02",
@@ -38,8 +38,8 @@
       "fix_commit": "PR #165",
       "regression_test": "validation/scripts/test_vvk_automated_methods.py (id-less counts 0; duplicate counts once)",
       "mutation": "MUT-F02: count id-less automated by text; expect RED",
-      "mutation_verified": false,
-      "status": "CLOSED-PENDING-MERGE"
+      "mutation_verified": true,
+      "status": "CLOSED"
     },
     {
       "id": "AUD-F06",
@@ -51,8 +51,8 @@
       "fix_commit": "PR #166",
       "regression_test": "validation/scripts/test_mot_continuity.py (F06 leading-gap cases)",
       "mutation": "MUT-F06: drop leading-gap term; expect RED",
-      "mutation_verified": false,
-      "status": "CLOSED-PENDING-MERGE"
+      "mutation_verified": true,
+      "status": "CLOSED"
     },
     {
       "id": "AUD-F05",
@@ -64,8 +64,8 @@
       "fix_commit": "PR #167",
       "regression_test": "automation/metrics/test_append_metrics.py::test_f05_replayed_stale_fact_is_not_recorded_as_fresh, ::test_f05_fact_observed_today_is_recorded",
       "mutation": "MUT-F05: main() append_run require_fresh=False; expect RED",
-      "mutation_verified": false,
-      "status": "CLOSED-PENDING-MERGE"
+      "mutation_verified": true,
+      "status": "CLOSED"
     },
     {
       "id": "AUD-F07",
@@ -77,8 +77,61 @@
       "fix_commit": "PR #167",
       "regression_test": "automation/metrics/test_append_metrics.py::test_f07_corrupt_history_is_not_treated_as_first_run, ::test_f07_wrong_shape_history_is_rejected, ::test_f07_absent_history_is_a_clean_first_run",
       "mutation": "MUT-F07: load_history_safe returns ({}, None) on ValueError; expect RED",
-      "mutation_verified": false,
-      "status": "CLOSED-PENDING-MERGE"
+      "mutation_verified": true,
+      "status": "CLOSED"
+    },
+    {
+      "id": "AUD-F03",
+      "severity": "Medium",
+      "requirement": "SDR-CSX-KMT metric identity",
+      "component": "automation/metrics/append_metrics.py:datapoint_for_ksi,per_metric; validation/scripts/build_collector_registry.py:METRIC_SOURCE_MAP",
+      "description": "Posture facts routed by service only, so an unrelated same-service check (IAM password_policy) scored an unrelated KSI (KSI-IAM-JIT), and all a service's checks collapsed into one posture metric.",
+      "root_cause": "Routing key was service, not (service, check); registry keys were bare service.",
+      "fix_commit": "PR #169",
+      "regression_test": "automation/metrics/test_append_metrics.py::test_f03_check_scoped_key_rejects_wrong_check, ::test_f03_check_scoped_key_accepts_right_check, ::test_f03_per_metric_keys_are_per_check",
+      "mutation": "MUT-F03: drop the check_filter reject (if False); expect RED",
+      "mutation_verified": true,
+      "status": "CLOSED"
+    },
+    {
+      "id": "AUD-F08",
+      "severity": "Medium",
+      "requirement": "SDR-CSX-KSI evidence-outcome integrity",
+      "component": "automation/collectors/collectors.py:collect_s3_data_protection",
+      "description": "A blanket except incremented the evaluated denominator on ANY API failure (AccessDenied, throttling), turning an unmeasured bucket into a negative (not-encrypted) outcome.",
+      "root_cause": "Could not distinguish 'no encryption configured' (a real negative) from 'could not read' (unmeasured).",
+      "fix_commit": "PR #171",
+      "regression_test": "automation/collectors/test_collectors.py::test_f08_access_denied_is_unmeasured_not_negative, ::test_f08_no_encryption_configured_is_a_real_negative",
+      "mutation": "MUT-F08: count any error as evaluated; expect RED",
+      "mutation_verified": true,
+      "status": "CLOSED"
+    },
+    {
+      "id": "AUD-F09",
+      "severity": "Medium",
+      "requirement": "SDR-CSX-KSI coverage honesty",
+      "component": "automation/collectors/collectors.py:collect_inspector",
+      "description": "Inspector coverage read only the first page (maxResults=100) and emitted a binary ACTIVE scored 1/1, ignoring the nextToken so a 1-of-100 partial sample claimed full coverage.",
+      "root_cause": "Bounded sample reported as a complete result; nextToken (more resources) silently dropped.",
+      "fix_commit": "PR #172",
+      "regression_test": "automation/collectors/test_collectors.py::test_f09_bounded_sample_is_partial_not_full, ::test_inspector_active (updated to measured/total)",
+      "mutation": "MUT-F09: ignore the nextToken partial flag (if False); expect RED",
+      "mutation_verified": true,
+      "status": "CLOSED"
+    },
+    {
+      "id": "AUD-F10",
+      "severity": "Medium",
+      "requirement": "FRC-CSX-MOT / SDR-CSX-KMT clock consistency",
+      "component": "sdr.py:_utc_today + all preflight date windows",
+      "description": "Collection stamps datapoints in UTC while preflight used the host's local date.today(); at UTC midnight a current UTC observation could be judged future-dated, so the same code+fixture passed in CI (UTC) and failed on a machine west of UTC.",
+      "root_cause": "Two clocks: collection UTC, preflight local.",
+      "fix_commit": "PR #170",
+      "regression_test": "validation/scripts/test_utc_clock.py (asserts _utc_today() reads the UTC calendar day, not local)",
+      "mutation": "MUT-F10: _utc_today() -> date.today() local; expect RED",
+      "mutation_verified": true,
+      "status": "CLOSED",
+      "note": "First MUT-F10 (pointing at test_mot_continuity) SURVIVED audit cycle N -- that test never calls _utc_today(). Added a dedicated behavioral test (test_utc_clock.py) that makes UTC and local dates diverge; verified it goes RED under the mutation. This is the mutation harness catching a real test blind spot."
     }
   ]
 }

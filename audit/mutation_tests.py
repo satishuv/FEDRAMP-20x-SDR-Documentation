@@ -63,6 +63,11 @@ MUTATIONS = [
      '    except ValueError as e:\n        return {}, f"metric history is not valid JSON: {e}"',
      '    except ValueError as e:\n        return {}, None  # MUTATION',
      "automation/metrics/test_append_metrics.py"),
+    ("MUT-F02",
+     "validation/scripts/verification_methods.py",
+     "            if not ident:\n                # F02: an automated method with no method_id is uncountable and\n                # unbindable; surface it informationally, do not count it.\n                strings += 1\n                continue",
+     "            if not ident:\n                seen.add(str(id(t)))  # MUTATION count id-less automated\n                continue",
+     "validation/scripts/test_vvk_automated_methods.py"),
     ("MUT-F03",
      "automation/metrics/append_metrics.py",
      '            if check_filter and pf.get("check") != check_filter:\n                continue  # F03: check-scoped key rejects other checks',
@@ -82,7 +87,7 @@ MUTATIONS = [
      "sdr.py",
      "    return _d.datetime.now(_d.timezone.utc).date()",
      "    return _d.date.today()  # MUTATION local clock",
-     "validation/scripts/test_mot_continuity.py"),
+     "validation/scripts/test_utc_clock.py"),
 ]
 
 
