@@ -6,7 +6,67 @@ One project-specific convention: the pinned FedRAMP dataset version is recorded 
 
 ## Unreleased
 
-No unreleased changes.
+Hard-mode audit remediation and an anti-circular-verification gate. Closes a
+ten-finding builder/adversarial audit (six High, four Medium) against the CR26
+`2026.09.13.02` dataset, adds two provider-integration features, and makes the
+audit itself machine-enforced so a regression cannot silently return. No dataset
+change and no architecture change; every fix tightens an existing gate or
+corrects a reviewer-facing report, shipped CI-green with a regression that fails
+on the old code and a mutation that proves the regression can detect the defect.
+
+Metric-engine and evidence-outcome integrity:
+
+- History is keyed by `(rule, region, account)`, so a later region can no longer
+  overwrite an earlier region's result and hide a `NON_COMPLIANT` behind a
+  `COMPLIANT` (F04).
+- A stale fact replayed on a later run is no longer stamped as fresh; ingestion
+  time and observation time are kept distinct (F05).
+- Corrupt existing metric history is rejected rather than silently treated as a
+  first run and overwritten (F07).
+- Posture facts route by `(service, check)`, not service alone, so an unrelated
+  same-service check can no longer score an unrelated KSI, and each check keeps
+  its own metric identity (F03).
+- A collector permission error (AccessDenied, throttling) is recorded as
+  unmeasured, not as a negative outcome; only a genuine "no encryption
+  configured" API response counts as a real negative (F08).
+- A bounded Inspector sample with more pages available is reported as partial and
+  scores nothing, instead of claiming full coverage from the first 100 records
+  (F09).
+
+Signing, verification-method binding, and clock consistency:
+
+- Under a required signer, an unresolvable evidence source is a hard finding; the
+  soft-finding early return no longer precedes the signing check (F01).
+- Id-less automated verification methods are uncountable and unbindable rather
+  than counted by text; the count and binding gates share one identity (F02).
+- The metric-over-time continuity check measures the leading gap from the window
+  start, so a series clustered near today can no longer pass a long window (F06).
+- All preflight date windows read one UTC clock (`_utc_today()`) instead of the
+  host's local date, so the same code and fixture cannot pass in CI (UTC) and
+  fail on a machine west of UTC (F10).
+
+Provider-integration features:
+
+- `sdr.py init` is a plain-English offering-profile wizard (company, offering,
+  class, regions, contacts, URLs), scriptable with `--set` and validated, that
+  never mutates a tracked file.
+- A custom AWS Config-rule importer maps a provider's own rules to KSIs through a
+  gitignored `customer-config-rules.json` overlay with no code edit; the template
+  stays secret-free and the registry restores byte-for-byte when the overlay is
+  removed.
+
+Anti-circular-verification gate:
+
+- A mutation runner (`audit/mutation_tests.py`) re-introduces each of the ten
+  closed defects into production code and asserts its named regression test goes
+  red; a surviving mutation fails the build. It caught a real blind spot during
+  the audit: the first F10 regression never exercised the UTC clock, so a
+  dedicated behavioral test was added and verified to detect the mutation.
+- A requirements-differential oracle (`audit/requirements_oracle.py`) reconciles
+  an independent dataset traversal against the production applicability engine.
+- Both run as hard gates in GitHub Actions (`audit-gate`) and on the AWS
+  CodeBuild release path, and a permanent `audit/defect-ledger.json` records every
+  finding with its fix, regression test, and mutation.
 
 ## 1.3.1, 2026-09-23
 

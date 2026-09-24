@@ -4,6 +4,11 @@
 #   2. Refuse hand-edited generated files (regenerate-then-diff; docx excluded
 #      because its zip container embeds timestamps).
 #   3. validate_sdr.py must pass with 0 hard failures.
+# Plus two independent anti-circular-verification gates (audit-gate job):
+#   4. Mutation runner: every closed defect, re-introduced, must turn its
+#      regression test RED (a surviving mutation is a test-coverage hole).
+#   5. Requirements-differential oracle: an independent dataset traversal must
+#      reconcile exactly with the production applicability engine.
 # Actions are pinned to full commit SHAs for supply-chain integrity.
 name: validate-sdr
 
@@ -83,6 +88,40 @@ jobs:
         with:
           name: validation-reports
           path: validation/reports/
+
+  audit-gate:
+    # Anti-circular-verification gate. Two independent checks that a green test
+    # suite alone cannot provide:
+    #   1. Mutation runner (audit/mutation_tests.py): re-introduces each closed
+    #      defect into production code and asserts its named regression test goes
+    #      RED. A SURVIVING mutation means the test cannot detect the defect it
+    #      claims to guard -- a test-coverage hole -- and FAILS the check.
+    #   2. Requirements-differential oracle (audit/requirements_oracle.py):
+    #      derives the KSI universe / Class-B-optional set from the RAW pinned
+    #      dataset with an INDEPENDENT traversal and reconciles it against the
+    #      production applicability engine. Any discrepancy FAILS the check.
+    # Both are HARD GATES (no `|| true`). New defects need a new mutation entry;
+    # the runner SKIPs a mutation whose target code is absent, so a defect fixed
+    # on an unmerged branch does not falsely pass here.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: pip install --quiet -r requirements-ci.txt
+      - name: Requirements-differential oracle (HARD GATE)
+        run: python audit/requirements_oracle.py
+      - name: Mutation runner -- all closed defects must be killed (HARD GATE)
+        run: |
+          python audit/mutation_tests.py
+          # The runner restores every mutated file via `git checkout --`.
+          # Fail if the tree is left dirty (a mutation that did not restore).
+          git diff --exit-code || {
+            echo "FAIL. Mutation runner left the working tree modified."
+            exit 1
+          }
 
   security-scan:
     # Static security analysis of ALL executable Python (root, automation,
