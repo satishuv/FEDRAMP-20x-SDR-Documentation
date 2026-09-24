@@ -15,6 +15,8 @@ raw-evidence/
 customer-*/
 *-customer-*
 overrides/
+# Customer custom Config-rule overlay (their rule names are their data)
+automation/config-rules/customer-config-rules.json
 
 # Python caches
 __pycache__/
