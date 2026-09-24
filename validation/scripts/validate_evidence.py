@@ -155,8 +155,35 @@ def classify_entry(e, hash_fn=None, trusted_signer=None):
         return ("hard", f"malformed content hash {h!r} (expected 'sha256:<64 hex>')")
     if isinstance(loc, str) and loc.startswith("sdr://placeholder/"):
         return ("finding", "placeholder location (not yet real)")
+    # Finding F01: determine signing-required FIRST. If a trusted signer is
+    # pinned in signing-required mode, an entry whose source cannot be resolved
+    # (or whose signature is absent) must NOT degrade to a soft "unverifiable"
+    # finding - that is the exact bypass: delete source_fact + xEvidenceSignature
+    # and the required-signature gate below is never reached. Under a required
+    # signer, an unresolvable source is a HARD failure (we can verify neither the
+    # digest nor the signature), which is strictly worse than the unsigned-but-
+    # hashed downgrade already caught later.
+    signer_required = bool(trusted_signer and trusted_signer.get("public_key")
+                           and trusted_signer.get("required"))
+    sig_present = e.get("xEvidenceSignature") is not None
     source, kind = _resolve_source(e)
     if source is None:
+        if signer_required:
+            return ("hard", f"SIGNATURE REQUIRED BUT UNVERIFIABLE ({kind}) - a "
+                            "trusted evidence signer is pinned in signing-required "
+                            "mode (offering-profile.expected_evidence_signer), so "
+                            "every entry MUST carry verifiable signed content; an "
+                            "entry whose source cannot be resolved can verify "
+                            "neither its digest nor its signature (finding F01). "
+                            "Provide resolvable signed content or set "
+                            "expected_evidence_signer.signing_required=false.")
+        if sig_present:
+            # A signature is present but the source is gone: we cannot confirm the
+            # signature binds to real content. Fail closed rather than soft.
+            return ("hard", f"SIGNED EVIDENCE UNVERIFIABLE ({kind}) - the entry "
+                            "carries xEvidenceSignature but its source cannot be "
+                            "resolved, so the signature cannot be verified against "
+                            "content (finding F01, fail-closed).")
         return ("finding", f"integrity unverifiable ({kind}) - stored hash is "
                            "well-formed but no source to recompute")
     if hash_fn is None:
