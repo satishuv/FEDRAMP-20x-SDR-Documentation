@@ -247,6 +247,33 @@ def test_s3_data_protection_encryption():
     assert "2 of 2" in fact["detail"]
 
 
+def test_f08_access_denied_is_unknown_not_negative():
+    # F08: get_bucket_encryption denied on every bucket -> UNKNOWN, and NOT a
+    # 0/N failing metric (an instrumentation gap must not become adverse
+    # control telemetry).
+    s3 = FakeClient(
+        responses={"list_buckets": {"Buckets": [{"Name": "b1"}, {"Name": "b2"}]}},
+        errors={"get_bucket_encryption": FakeClientError("AccessDenied")})
+    fact = collectors.collect_s3_data_protection(
+        FakeSession({"s3": s3}), "us-east-1")[0]
+    assert fact["status"] == "UNKNOWN", fact
+    # No measured/total ratio was emitted (would score in the metric tally).
+    assert "measured" not in fact or fact.get("total", 0) == 0, fact
+
+
+def test_f08_genuine_absence_counts_as_evaluated_negative():
+    # A real ServerSideEncryptionConfigurationNotFoundError means the bucket has
+    # no default encryption -> a legitimate negative (evaluated), so 0 of 1.
+    s3 = FakeClient(
+        responses={"list_buckets": {"Buckets": [{"Name": "b1"}]}},
+        errors={"get_bucket_encryption": FakeClientError(
+            "ServerSideEncryptionConfigurationNotFoundError")})
+    fact = collectors.collect_s3_data_protection(
+        FakeSession({"s3": s3}), "us-east-1")[0]
+    assert fact["status"] == "OBSERVED" and fact.get("measured") == 0 \
+        and fact.get("total") == 1, fact
+
+
 def test_data_retention_lifecycle_and_ttl():
     s3 = FakeClient(responses={
         "list_buckets": {"Buckets": [{"Name": "b1"}]},
