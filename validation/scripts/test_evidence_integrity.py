@@ -266,6 +266,44 @@ def test_malformed_signature_block_is_hard():
     check("signature block missing fields -> hard", outcome == "hard")
 
 
+def test_f01_unresolvable_source_under_required_signer_is_hard():
+    # Finding F01: the bypass was to delete source_fact AND xEvidenceSignature,
+    # leaving a well-formed hash + an s3:// location that _resolve_source cannot
+    # read. That used to return a soft "unverifiable" finding BEFORE the
+    # signature-required check, so signing-required preflight still exited 0.
+    # Under a required pinned signer it must now be HARD.
+    _, pem = _make_keypair()
+    required_signer = {"public_key": pem, "key_arn": _TEST_ARN,
+                       "public_key_fingerprint": None, "required": True}
+    e = {"xEvidenceContentHash": "sha256:" + "a" * 64,
+         "evidenceLocation": "s3://bucket/key"}  # no source_fact, no signature
+    outcome, msg = ve.classify_entry(e, hash_fn=evidence_hash, trusted_signer=required_signer)
+    check("unresolvable source under REQUIRED signer -> hard (F01 bypass closed)",
+          outcome == "hard" and "REQUIRED BUT UNVERIFIABLE" in msg)
+
+
+def test_f01_signed_but_unresolvable_source_is_hard():
+    # A signature is present but the source is gone: cannot verify the signature
+    # binds to real content. Fail closed even without a required signer.
+    e = {"xEvidenceContentHash": "sha256:" + "a" * 64,
+         "evidenceLocation": "s3://bucket/key",
+         "xEvidenceSignature": {"algorithm": "ECDSA_SHA_256", "keyId": _TEST_ARN,
+                                "signedHash": "sha256:" + "a" * 64, "signature": "QUJD"}}
+    outcome, msg = ve.classify_entry(e, hash_fn=evidence_hash, trusted_signer=None)
+    check("signed entry with unresolvable source -> hard",
+          outcome == "hard" and "UNVERIFIABLE" in msg)
+
+
+def test_f01_unresolvable_source_without_required_signer_stays_finding():
+    # No over-block: with NO pinned/required signer and NO signature, an
+    # unresolvable source remains a soft readiness finding (opt-in signing).
+    e = {"xEvidenceContentHash": "sha256:" + "a" * 64,
+         "evidenceLocation": "s3://bucket/key"}
+    outcome, _ = ve.classify_entry(e, hash_fn=evidence_hash, trusted_signer=None)
+    check("unresolvable source, no signer, no signature -> finding (not over-blocked)",
+          outcome == "finding")
+
+
 def main():
     for t in (test_wrong_hash_over_resolvable_source_is_hard_fail,
               test_matching_hash_passes, test_missing_hash_helper_is_hard_fail_not_finding,
@@ -280,7 +318,10 @@ def main():
               test_fake_blob_signature_does_not_verify,
               test_fingerprint_pin_mismatch_is_hard,
               test_stale_signature_binding_is_hard,
-              test_malformed_signature_block_is_hard):
+              test_malformed_signature_block_is_hard,
+              test_f01_unresolvable_source_under_required_signer_is_hard,
+              test_f01_signed_but_unresolvable_source_is_hard,
+              test_f01_unresolvable_source_without_required_signer_stays_finding):
         print(t.__name__); t()
     print(f"\n{PASS}/{PASS + FAIL} passed")
     return 0 if FAIL == 0 else 1
