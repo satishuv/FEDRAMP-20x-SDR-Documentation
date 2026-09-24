@@ -83,6 +83,35 @@ def main():
     gmix, lmix, _mmix, _tmix = sdr.mot_continuity(mixed, today)
     check("100+ day mid-window gap is gappy", gmix is True and lmix > 45)
 
+    # Finding F06: LEADING-gap enforcement. window_start is the 6-month cutoff.
+    # A series that only STARTS near today (e.g. the in-window part is just the
+    # last two daily points) leaves nearly the whole window unobserved. Without
+    # window_start this passed; with it, the leading gap must trip.
+    cutoff = today - dt.timedelta(days=183)
+    recent_only = [today - dt.timedelta(days=1), today]
+    glead, llead, _ml, _tl = sdr.mot_continuity(recent_only, today, window_start=cutoff)
+    check("F06: in-window points only near today -> gappy (leading gap)",
+          glead is True and llead > 45)
+
+    # F06 no-over-block: a series that genuinely covers the window from the
+    # cutoff onward (daily from cutoff to today) is NOT gappy even with
+    # window_start enforced.
+    covered = [cutoff + dt.timedelta(days=i)
+               for i in range((today - cutoff).days + 1)]
+    gcov, _lc, _mc, _tc = sdr.mot_continuity(covered, today, window_start=cutoff)
+    check("F06: full-window daily coverage is NOT gappy (no over-block)",
+          gcov is False)
+
+    # F06 boundary: the classic three-point bypass [300d ago, yesterday, today]
+    # after the caller filters to >= cutoff leaves [yesterday, today]; with
+    # window_start the leading void from cutoff is measured -> gappy.
+    three_in_window = [d for d in [today - dt.timedelta(days=300),
+                                   today - dt.timedelta(days=1), today]
+                       if d >= cutoff]
+    g3, l3, _m3, _t3 = sdr.mot_continuity(three_in_window, today, window_start=cutoff)
+    check("F06: 300d-ago+two-recent (filtered) -> gappy via leading gap",
+          g3 is True and l3 > 45)
+
     print(f"\n{'PASS' if _fail == 0 else 'FAIL'}: mot_continuity ({_fail} failures)")
     return 1 if _fail else 0
 
