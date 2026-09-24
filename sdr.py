@@ -293,6 +293,7 @@ TEST_SUITE = [
     "validation/scripts/test_fedramp_time.py",
     "validation/scripts/test_mot_continuity.py",
     "validation/scripts/test_vvk_automated_methods.py",
+    "validation/scripts/test_init_wizard.py",
     "validation/scripts/test_assurance_graph_method_count.py",
     "validation/scripts/test_class_a_framework.py",
     "validation/scripts/test_class_a_applicable_scope.py",
@@ -624,6 +625,87 @@ def classify_evidence_freshness(observed_at, now, policy_days=DEFAULT_EVIDENCE_F
     if now <= hard_expiry:
         return "stale"
     return "expired"
+
+
+# Plain-English offering-profile wizard (Max's request): the offering profile
+# is the single customization file the generators read. Editing raw JSON by hand
+# is the most error-prone first step; `sdr.py init` asks plain questions and
+# writes a valid profile, leaving the deep assessment blocks untouched.
+INIT_QUESTIONS = [
+    ("organization_name", "What is your organization's legal name?"),
+    ("offering_name", "What is the cloud offering's name?"),
+    ("offering_abbreviation", "A short abbreviation for the offering (e.g. EPF)?"),
+    ("business_purpose", "In one sentence, what does the offering do?"),
+    ("service_model", "Service model (IaaS | PaaS | SaaS)?"),
+    ("deployment_model", "Deployment model (Public | Government-only | Hybrid)?"),
+    ("certification_class", "Certification class (a | b | c)?"),
+    ("primary_region", "Primary AWS region (e.g. us-east-1)?"),
+    ("dr_region", "Disaster-recovery region (e.g. us-west-2)?"),
+    ("security_contact", "Security point-of-contact email?"),
+    ("incident_contact", "Incident-reporting point-of-contact email?"),
+    ("trust_center_uri", "URL of your FedRAMP-compatible trust center (CDS-CSO-UTC)?"),
+    ("secure_config_guide_uri", "URL of your published Secure Configuration Guide (SCG-CSO-RSC)?"),
+]
+
+
+def cmd_init(args):
+    """Interactive (or scripted via --set key=value) offering-profile wizard.
+    Reads the existing profile, prompts for the plain-English fields, writes it
+    back. Non-destructive to fields it does not ask about; validates class."""
+    path = OFFERING_PROFILE
+    try:
+        with open(path, encoding="utf-8") as f:
+            profile = json.load(f)
+    except (OSError, ValueError) as e:
+        out(f"Could not read the offering profile at {path}: {e}")
+        return 1
+
+    overrides = {}
+    for item in (getattr(args, "set", None) or []):
+        if "=" not in item:
+            out(f"Ignoring malformed --set '{item}' (expected key=value).")
+            continue
+        k, _, v = item.partition("=")
+        overrides[k.strip()] = v.strip()
+
+    interactive = not overrides and not getattr(args, "non_interactive", False)
+    answers = {}
+    for key, prompt in INIT_QUESTIONS:
+        if key in overrides:
+            answers[key] = overrides[key]
+        elif interactive:
+            try:
+                current = profile.get(key, "")
+                shown = f" [{current}]" if current and not str(current).startswith("TBD") else ""
+                resp = input(f"{prompt}{shown} ").strip()
+            except EOFError:
+                resp = ""
+            if resp:
+                answers[key] = resp
+        # non-interactive with no override for this key: leave the profile as-is.
+
+    # Validate/normalize the certification class if it was answered.
+    if "certification_class" in answers:
+        cls = answers["certification_class"].strip().lower()
+        if cls not in ("a", "b", "c"):
+            out(f"'{cls}' is not a valid certification class (a|b|c). Aborting; "
+                "nothing was written.")
+            return 1
+        answers["certification_class"] = cls.upper() if False else cls
+
+    if not answers:
+        out("No values provided; the offering profile is unchanged.")
+        return 0
+
+    profile.update(answers)
+    with open(path, "w", encoding="utf-8", newline="\n") as f:
+        json.dump(profile, f, indent=1)
+        f.write("\n")
+    out(f"Wrote {len(answers)} field(s) to {os.path.relpath(path, BASE)}: "
+        f"{', '.join(sorted(answers))}.")
+    out("Next: `python sdr.py build` then `python sdr.py application-preflight` "
+        "to see what still blocks submission.")
+    return 0
 
 
 def cmd_build(args):
@@ -2574,6 +2656,13 @@ def build_parser():
     )
     sub = p.add_subparsers(dest="command")
 
+    init_p = sub.add_parser(
+        "init", help="fill the offering profile by answering plain questions")
+    init_p.add_argument("--non-interactive", action="store_true",
+                        help="do not prompt; only apply --set values")
+    init_p.add_argument("--set", action="append", metavar="KEY=VALUE",
+                        help="set a profile field non-interactively (repeatable)")
+
     sub.add_parser("build", help="regenerate every deliverable from the record store")
     val_p = sub.add_parser("validate", help="run the full gate + offline test suite (CI parity)")
     val_p.add_argument("--no-tests", action="store_true",
@@ -2618,6 +2707,7 @@ def main(argv=None):
         args.no_tests = False
     handlers = {
         "build": cmd_build,
+        "init": cmd_init,
         "validate": cmd_validate,
         "scan": cmd_scan,
         "all": cmd_all,
