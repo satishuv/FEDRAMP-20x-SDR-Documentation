@@ -892,7 +892,8 @@
     "AWS Step Functions"
    ],
    "metric_service_keys": [
-    "iam"
+    "iam:long_lived_keys",
+    "iam:role_session_duration"
    ],
    "checks": [
     {
