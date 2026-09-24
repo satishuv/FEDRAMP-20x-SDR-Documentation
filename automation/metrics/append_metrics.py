@@ -202,14 +202,20 @@ def datapoint_for_ksi(ksi_entry, config_by_rule, posture_by_service):
         p, t = _config_scope_score(facts)
         total += t
         passing += p
-    # Posture routing is by the EXPLICIT per-KSI allowlist (metric_service_keys),
-    # NOT prose service-name matching. A posture service contributes to this KSI
-    # only if its collector key is on the KSI's allowlist. A KSI with no allowlist
-    # (e.g. a document/process KSI) accrues no posture metric - closing the
-    # generic-service fan-out where unrelated posture manufactured KSI history.
+    # Posture routing is by the EXPLICIT per-KSI allowlist (metric_service_keys).
+    # An entry is either a bare service key ("iam") accepting ALL of that
+    # service's checks, or a check-scoped key ("iam:role_session_duration")
+    # accepting only that check. Finding F03: a bare service key let an
+    # UNRELATED check of a shared service score a KSI (e.g. IAM password_policy
+    # scoring KSI-IAM-JIT because both are service "iam"). Check-scoped keys let
+    # a KSI bind only the checks that actually measure its capability. A KSI with
+    # no allowlist (document/process KSI) accrues no posture metric.
     allowed = set(ksi_entry.get("metric_service_keys", []))
     for svc_key in allowed:
-        for pf in posture_by_service.get(svc_key, []):
+        service, _, check_filter = svc_key.partition(":")
+        for pf in posture_by_service.get(service, []):
+            if check_filter and pf.get("check") != check_filter:
+                continue  # F03: check-scoped key rejects other checks
             score = _posture_score(pf)
             if score is None:
                 continue
@@ -255,21 +261,32 @@ def per_metric_datapoints_for_ksi(ksi_entry, config_by_rule, posture_by_service)
         }
     allowed = set(ksi_entry.get("metric_service_keys", []))
     for svc_key in allowed:
-        svc_label = POSTURE_SERVICE_KEYS.get(svc_key, svc_key)
-        obs = posture_by_service.get(svc_key, [])
-        p = t = 0
-        for pf in obs:
+        service, _, check_filter = svc_key.partition(":")
+        svc_label = POSTURE_SERVICE_KEYS.get(service, service)
+        # F03: preserve per-CHECK metric identity. Group the service's observed
+        # facts by their check name and emit one metric per check, so distinct
+        # checks (e.g. iam password_policy vs role_session_duration) never
+        # collapse into a single posture:<service> number. A check-scoped key
+        # (service:check) only admits that check.
+        by_check = {}
+        for pf in posture_by_service.get(service, []):
+            chk = pf.get("check") or "posture"
+            if check_filter and chk != check_filter:
+                continue
             score = _posture_score(pf)
             if score is None:
                 continue
             sp, st = score
-            t += st
-            p += sp
-        if t:
-            out[f"posture:{svc_key}"] = {
+            acc = by_check.setdefault(chk, [0, 0])
+            acc[0] += sp
+            acc[1] += st
+        for chk, (p, t) in by_check.items():
+            if not t:
+                continue
+            out[f"posture:{service}:{chk}"] = {
                 "passing": p, "total": t,
-                "objective": f"Posture of {svc_label}",
-                "source": f"Security posture telemetry for {svc_label}",
+                "objective": f"Posture check {chk} of {svc_label}",
+                "source": f"Security posture telemetry for {svc_label} ({chk})",
             }
     return out
 
