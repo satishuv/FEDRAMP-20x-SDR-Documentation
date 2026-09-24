@@ -412,6 +412,37 @@ def test_f07_wrong_shape_history_is_rejected():
     assert err is not None and data == {}, (data, err)
 
 
+# --- F03: check-scoped posture routing -------------------------------------
+_JIT = {"metric_service_keys": ["iam:role_session_duration"], "checks": []}
+
+
+def test_f03_unrelated_check_does_not_score_check_scoped_ksi():
+    # An IAM password_policy fact must NOT score a KSI scoped to a different IAM
+    # check (the audit's KSI-IAM-JIT reproduction).
+    dp = am.datapoint_for_ksi(_JIT, {}, {"iam": [
+        {"service": "iam", "check": "password_policy", "status": "PRESENT"}]})
+    assert dp is None, dp
+
+
+def test_f03_matching_check_scores():
+    dp = am.datapoint_for_ksi(_JIT, {}, {"iam": [
+        {"service": "iam", "check": "role_session_duration",
+         "status": "OBSERVED", "measured": 2, "total": 5}]})
+    assert dp == {"passing": 2, "total": 5}, dp
+
+
+def test_f03_per_metric_keeps_per_check_identity():
+    ksi = {"metric_service_keys": ["s3"], "checks": []}
+    pm = am.per_metric_datapoints_for_ksi(ksi, {}, {"s3": [
+        {"service": "s3", "check": "encryption", "status": "OBSERVED",
+         "measured": 1, "total": 1},
+        {"service": "s3", "check": "public_access", "status": "OBSERVED",
+         "measured": 0, "total": 1}]})
+    assert "posture:s3:encryption" in pm and "posture:s3:public_access" in pm, pm
+    assert pm["posture:s3:encryption"]["passing"] == 1
+    assert pm["posture:s3:public_access"]["passing"] == 0
+
+
 def _run_all():
     tests = [v for k, v in sorted(globals().items())
              if k.startswith("test_") and callable(v)]
