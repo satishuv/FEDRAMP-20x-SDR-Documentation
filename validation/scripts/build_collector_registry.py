@@ -40,6 +40,50 @@ def load_known_config_rules():
     with open(KNOWN_RULES_FILE, encoding="utf-8") as f:
         return set(json.load(f).get("config_managed_rule_ids", []))
 
+
+# Optional customer overlay (Max's request): a provider with custom AWS Config
+# rules that are not referenced in the FedRAMP guidance prose can map them to
+# KSIs WITHOUT editing code. Drop a file at
+# automation/config-rules/customer-config-rules.json of the shape:
+#   {"KSI-CNA-MAT": [{"rule_name": "my-org-ingress-check",
+#                     "description": "custom ingress rule",
+#                     "type": "custom"}],
+#    ...}
+# Each entry becomes an additional config_managed_rule check on that KSI, and
+# its rule_name is trusted as a real rule (it is the customer's own deployed
+# rule, not a managed-rule-catalog token), so it bypasses the managed-rule
+# allowlist gate. The file is git-excluded in a real engagement (a customer's
+# rule names are their data); it is absent in the public template.
+CUSTOMER_RULES_FILE = os.path.join(
+    BASE, "automation", "config-rules", "customer-config-rules.json")
+
+
+def load_customer_rules():
+    """Return {ksi_id: [ {rule_name, description?, type?}, ... ]} or {} if no
+    overlay is present. Malformed entries are skipped with a warning rather than
+    aborting, so a typo in the customer file does not brick the build."""
+    if not os.path.exists(CUSTOMER_RULES_FILE):
+        return {}
+    try:
+        with open(CUSTOMER_RULES_FILE, encoding="utf-8") as f:
+            data = json.load(f)
+    except (OSError, ValueError) as e:
+        print(f"WARNING: could not read {CUSTOMER_RULES_FILE}: {e}; ignoring overlay.")
+        return {}
+    out = {}
+    for kid, entries in (data.items() if isinstance(data, dict) else []):
+        if not isinstance(entries, list):
+            continue
+        clean = []
+        for ent in entries:
+            if isinstance(ent, str):
+                clean.append({"rule_name": ent})
+            elif isinstance(ent, dict) and ent.get("rule_name"):
+                clean.append(ent)
+        if clean:
+            out[kid] = clean
+    return out
+
 # Service names recognized in guidance prose, longest match first.
 SERVICES = [
     "AWS IAM Identity Center", "AWS Identity and Access Management Access Analyzer",
@@ -124,6 +168,7 @@ def main():
         bucket_b = set(cls.get("bucket_b", {}).get("ksis", {}).keys())
     registry = {}
     total_rules = 0
+    customer_rules = load_customer_rules()  # Max's overlay: {ksi_id: [entries]}
     known_rules = load_known_config_rules()
     unknown_rule_tokens = {}
     for kid, e in sorted(smap["ksis"].items()):
@@ -200,6 +245,22 @@ def main():
                             "stale value is not passing."),
                     }
             checks.append(method_check)
+        # Max's overlay: append customer custom Config rules mapped to this KSI.
+        # Each is a real deployed rule the customer owns, so it is collectable
+        # now and trusted (not gated against the managed-rule allowlist).
+        for ent in customer_rules.get(kid, []):
+            checks.append({
+                "check_id": f"{kid}:custom:config:{ent['rule_name']}",
+                "type": "config_managed_rule",
+                "service": "AWS Config",
+                "target": ent["rule_name"],
+                "source": "verify",
+                "collectable_now": True,
+                "custom": True,
+                "description": ent.get("description",
+                                       f"Customer custom Config rule {ent['rule_name']}"),
+            })
+            total_rules += 1
         registry[kid] = {
             "name": e["name"],
             "family": e["family"],

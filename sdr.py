@@ -294,6 +294,7 @@ TEST_SUITE = [
     "validation/scripts/test_mot_continuity.py",
     "validation/scripts/test_vvk_automated_methods.py",
     "validation/scripts/test_init_wizard.py",
+    "validation/scripts/test_customer_config_rules.py",
     "validation/scripts/test_assurance_graph_method_count.py",
     "validation/scripts/test_class_a_framework.py",
     "validation/scripts/test_class_a_applicable_scope.py",
