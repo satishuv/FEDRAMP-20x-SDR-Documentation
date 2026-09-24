@@ -316,6 +316,57 @@ def test_append_run_records_mot_window():
     assert w["class"] == "C" and w["force"] == "MUST"
 
 
+def test_f05_replayed_stale_fact_is_not_recorded_as_fresh():
+    # Finding F05: a fact observed in the past, re-read on a later run, must NOT
+    # be stamped as a fresh datapoint under require_fresh (production path).
+    stale = {"r1": [{"rule": "r1", "compliance_type": "COMPLIANT",
+                     "collected_at": "2025-01-01T00:00:00Z"}]}
+    hist = {}
+    for d in (date(2026, 9, 23), date(2026, 9, 24)):
+        am.append_run(hist, REGISTRY, stale, {}, d, require_fresh=True)
+    series = hist.get("ksis", {}).get("KSI-A", {}).get("series", [])
+    assert series == [], f"replayed 2025 fact must not create 2026 points, got {series}"
+
+
+def test_f05_fact_observed_today_is_recorded():
+    # No over-block: a fact actually collected on the run day IS recorded.
+    fresh = {"r1": [{"rule": "r1", "compliance_type": "COMPLIANT",
+                     "collected_at": "2026-09-24T00:00:00Z"}]}
+    hist = {}
+    am.append_run(hist, REGISTRY, fresh, {}, date(2026, 9, 24), require_fresh=True)
+    series = hist["ksis"]["KSI-A"]["series"]
+    assert len(series) == 1 and series[0]["date"] == "2026-09-24"
+
+
+def test_f07_corrupt_history_is_not_treated_as_first_run():
+    # Finding F07: an existing but invalid-JSON history must NOT be silently
+    # read as {} (a first run) and then overwritten. load_history_safe returns
+    # an error the caller must honor.
+    import tempfile
+    fd = tempfile.mkdtemp()
+    p = os.path.join(fd, "metric-history.json")
+    with open(p, "w", encoding="utf-8") as f:
+        f.write("{ this is not valid json ")
+    data, err = am.load_history_safe(p)
+    assert err is not None and data == {}, (data, err)
+
+
+def test_f07_absent_history_is_a_clean_first_run():
+    import tempfile
+    p = os.path.join(tempfile.mkdtemp(), "metric-history.json")
+    data, err = am.load_history_safe(p)
+    assert err is None and data == {}, (data, err)
+
+
+def test_f07_wrong_shape_history_is_rejected():
+    import tempfile
+    p = os.path.join(tempfile.mkdtemp(), "metric-history.json")
+    with open(p, "w", encoding="utf-8") as f:
+        f.write("[1, 2, 3]")  # valid JSON, wrong root type
+    data, err = am.load_history_safe(p)
+    assert err is not None and data == {}, (data, err)
+
+
 def _run_all():
     tests = [v for k, v in sorted(globals().items())
              if k.startswith("test_") and callable(v)]
