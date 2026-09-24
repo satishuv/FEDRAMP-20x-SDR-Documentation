@@ -134,6 +134,19 @@
       "note": "First MUT-F10 (pointing at test_mot_continuity) SURVIVED audit cycle N -- that test never calls _utc_today(). Added a dedicated behavioral test (test_utc_clock.py) that makes UTC and local dates diverge; verified it goes RED under the mutation. This is the mutation harness catching a real test blind spot."
     },
     {
+      "id": "AUD-F11",
+      "severity": "Medium",
+      "requirement": "SDR-CSX-KMT / FRC-CSX-MOT clock consistency (submitted document)",
+      "component": "validation/scripts/build_sdr.py:_derive_daily_data,_window_summaries,_derive_per_metric",
+      "description": "The submitted SDR's dailyData series, 30-day/1-year window summaries, and per-metric daily series used the host's LOCAL date.today() as the window ceiling, while the collectors stamp every datapoint in UTC (datetime.now(timezone.utc)). On a host west of UTC near midnight, a genuine current-day UTC observation is dated after the lagging local 'today' and is silently dropped from the submitted document -- a silent under-report of measured coverage that is invisible in UTC CI. Same two-clock class as F10, which only fixed sdr.py:_utc_today() (preflight) and never touched the SDR builder.",
+      "root_cause": "Two clocks: collection UTC, SDR-builder window ceiling local. Found in the whole-repo adversarial audit (not among the recent-change set F01-F10; build_sdr.py had no dedicated clock coverage).",
+      "fix_commit": "this audit -- import sdr._utc_today() and route all three build_sdr window ceilings through it",
+      "regression_test": "validation/scripts/test_build_sdr_utc_window.py (injects a divergent local/UTC clock; asserts a current-day UTC datapoint survives _derive_daily_data / _window_summaries / _derive_per_metric)",
+      "mutation": "MUT-F11: revert the _derive_daily_data ceiling to date.today() local; expect RED",
+      "mutation_verified": true,
+      "status": "CLOSED"
+    },
+    {
       "id": "AUD-C01",
       "severity": "Concern",
       "requirement": "SDR-CSX-KSI (11 process/document KSIs) outcome-method labeling",

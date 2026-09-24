@@ -33,7 +33,7 @@ RECORDS = os.path.join(BASE, "sdr", "records", "records-store.json")
 # it has no side effects.
 if BASE not in sys.path:
     sys.path.insert(0, BASE)
-from sdr import submitted_ksi_ids  # noqa: E402
+from sdr import submitted_ksi_ids, _utc_today  # noqa: E402
 
 TBD = "TBD: Information has not been provided."
 
@@ -371,8 +371,14 @@ def _derive_daily_data(kid, metric_history):
     if not isinstance(series, list):
         return []
     import datetime as _dd
-    cutoff = (_dd.date.today() - _dd.timedelta(days=365)).isoformat()
-    _today = _dd.date.today().isoformat()
+    # F11: datapoints are UTC-stamped by the collectors (datetime.now(timezone.utc)),
+    # so the window ceiling MUST be the UTC calendar day. Using the host's local
+    # date.today() on a machine west of UTC drops a genuine current-day UTC
+    # observation from the submitted series near midnight (silent under-report,
+    # invisible in UTC CI). Same two-clock class as F10.
+    _u = _utc_today()
+    cutoff = (_u - _dd.timedelta(days=365)).isoformat()
+    _today = _u.isoformat()
     out = []
     for pt in series:
         if not isinstance(pt, dict):
@@ -416,7 +422,7 @@ def _window_summaries(daily_series):
     if not isinstance(daily_series, list) or not daily_series:
         return None, None
     import datetime as _ws
-    today = _ws.date.today()
+    today = _utc_today()  # F11: UTC ceiling, consistent with UTC-stamped datapoints
     cut30 = (today - _ws.timedelta(days=29)).isoformat()
     # 12 calendar months before today (month-clamped), matching append_metrics.
     y = today.year + (today.month - 1 - 12) // 12
@@ -444,8 +450,9 @@ def _derive_per_metric(kid, metric_history):
     if not isinstance(metrics, dict) or not metrics:
         return []
     import datetime as _dm
-    cutoff = (_dm.date.today() - _dm.timedelta(days=365)).isoformat()
-    _today_dm = _dm.date.today().isoformat()
+    _u_dm = _utc_today()  # F11: UTC ceiling, consistent with UTC-stamped datapoints
+    cutoff = (_u_dm - _dm.timedelta(days=365)).isoformat()
+    _today_dm = _u_dm.isoformat()
     out = []
     for mid in sorted(metrics):
         m = metrics[mid]

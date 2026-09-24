@@ -88,6 +88,11 @@ MUTATIONS = [
      "    return _d.datetime.now(_d.timezone.utc).date()",
      "    return _d.date.today()  # MUTATION local clock",
      "validation/scripts/test_utc_clock.py"),
+    ("MUT-F11",
+     "validation/scripts/build_sdr.py",
+     "    _u = _utc_today()\n    cutoff = (_u - _dd.timedelta(days=365)).isoformat()\n    _today = _u.isoformat()",
+     "    cutoff = (_dd.date.today() - _dd.timedelta(days=365)).isoformat()  # MUTATION local clock\n    _today = _dd.date.today().isoformat()",
+     "validation/scripts/test_build_sdr_utc_window.py"),
 ]
 
 
