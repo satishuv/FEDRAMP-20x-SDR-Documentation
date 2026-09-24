@@ -408,7 +408,7 @@ def load_json(path):
         return None
 
 
-def mot_continuity(window_dates, today, max_gap_days=45):
+def mot_continuity(window_dates, today, max_gap_days=45, window_start=None):
     """Assess whether an in-window metric series shows PERSISTENT validation,
     not just sufficient age. FRC-CSX-MOT requires "status from persistent
     validation over at least the past 6 months"; the age check elsewhere only
@@ -417,14 +417,23 @@ def mot_continuity(window_dates, today, max_gap_days=45):
 
     The rule does NOT mandate a fixed cadence, so this does not require a daily
     (or any specific) cadence. It flags a series as non-persistent when any gap
-    between consecutive observations, OR the trailing gap (newest point to
-    today), exceeds max_gap_days. The 45-day default accepts an honest weekly,
-    biweekly, or monthly (~30-day) cadence with the occasional miss, while
-    rejecting the hollow case (two points 6 months apart) and a quarter-long
-    silence. A median-scaled tolerance was deliberately avoided: with only a few
-    points a single huge gap becomes its own median and hides itself.
+    between consecutive observations, the LEADING gap (window start to the first
+    in-window observation), OR the trailing gap (newest point to today) exceeds
+    max_gap_days. The 45-day default accepts an honest weekly, biweekly, or
+    monthly (~30-day) cadence with the occasional miss, while rejecting the
+    hollow case (two points 6 months apart) and a quarter-long silence.
 
-    window_dates: iterable of datetime.date already filtered to >= cutoff.
+    Finding F06: WITHOUT the leading-gap check, a series like [300 days ago,
+    yesterday, today] evaluated against a 6-month window silently passed - the
+    300-days-ago point falls BEFORE the cutoff and is filtered out, leaving
+    [yesterday, today] whose internal and trailing gaps are tiny, so nearly the
+    entire required window was unobserved yet no gap was flagged. Measuring the
+    leading gap from window_start closes that: an in-window series that only
+    starts near `today` cannot claim coverage of the whole period.
+
+    window_dates: iterable of datetime.date already filtered to >= window_start.
+    window_start: the required window's start date (mot_cutoff). When provided,
+    the leading gap (window_start -> first observation) is enforced too.
     Returns (gappy: bool, largest_gap|None, median_gap|None, trailing_gap|None).
     A single (or zero) in-window point is not persistent validation -> gappy.
     """
@@ -437,7 +446,12 @@ def mot_continuity(window_dates, today, max_gap_days=45):
     median = ds[mid] if len(ds) % 2 else (ds[mid - 1] + ds[mid]) / 2
     largest = max(deltas)
     trailing = (today - win[-1]).days
-    gappy = largest > max_gap_days or trailing > max_gap_days
+    leading = (win[0] - window_start).days if window_start is not None else 0
+    gappy = (largest > max_gap_days or trailing > max_gap_days
+             or leading > max_gap_days)
+    # Surface the leading gap in `largest` when it dominates, so the reported
+    # number reflects the actual worst coverage hole (F06).
+    largest = max(largest, leading)
     return gappy, largest, round(median, 1), trailing
 
 
@@ -1447,7 +1461,8 @@ def cmd_preflight(args):
                 # This catches a hollow two-point series while accepting an
                 # honest weekly/monthly cadence with occasional misses.
                 win = sorted(d for d in dates if d >= mot_cutoff)
-                gappy_flag, largest, median, trailing_gap = mot_continuity(win, today)
+                gappy_flag, largest, median, trailing_gap = mot_continuity(
+                    win, today, window_start=mot_cutoff)
                 if gappy_flag:
                     gappy.append((kid, largest, median, trailing_gap))
             if missing:
