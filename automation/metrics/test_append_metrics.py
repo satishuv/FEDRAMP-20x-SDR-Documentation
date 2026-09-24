@@ -338,6 +338,51 @@ def test_f05_fact_observed_today_is_recorded():
     assert len(series) == 1 and series[0]["date"] == "2026-09-24"
 
 
+def test_f05_main_enforces_freshness_end_to_end():
+    # Covers the PRODUCTION path: main() must call append_run with
+    # require_fresh=True. Flipping that literal (mutation MUT-F05) must make this
+    # test fail. Drive main() with a temp facts store holding one STALE fact and
+    # a temp history; assert no datapoint was recorded for the run day.
+    import json as _json
+    import tempfile
+    import types as _types
+    d = tempfile.mkdtemp()
+    facts_dir = os.path.join(d, "facts")
+    os.makedirs(facts_dir)
+    # A registry with one config-rule KSI (KSI-A -> rule r1).
+    reg = {"meta": {"dataset_version": "test"}, "ksis": {
+        "KSI-A": {"metric_service_keys": [],
+                  "checks": [{"type": "config_managed_rule", "target": "r1"}]}}}
+    reg_path = os.path.join(d, "registry.json")
+    with open(reg_path, "w") as f:
+        _json.dump(reg, f)
+    # One STALE fact (observed a year before the run day).
+    with open(os.path.join(facts_dir, "facts-us-east-1.json"), "w") as f:
+        _json.dump({"meta": {"collected_at": "2025-09-24T00:00:00Z"},
+                    "facts": [{"rule": "r1", "compliance_type": "COMPLIANT",
+                               "region": "us-east-1",
+                               "collected_at": "2025-09-24T00:00:00Z"}]}, f)
+    hist_path = os.path.join(d, "metric-history.json")
+
+    orig = (am.FACTS_DIR, am.HISTORY, am.REGISTRY)
+    am.FACTS_DIR, am.HISTORY, am.REGISTRY = facts_dir, hist_path, reg_path
+    # Stub argparse so main() sees --today = the run day, not the stale date.
+    import argparse as _ap
+    real_parse = _ap.ArgumentParser.parse_args
+
+    def fake_parse(self, *a, **k):
+        return _types.SimpleNamespace(today="2026-09-24")
+    _ap.ArgumentParser.parse_args = fake_parse
+    try:
+        am.main()
+    finally:
+        am.FACTS_DIR, am.HISTORY, am.REGISTRY = orig
+        _ap.ArgumentParser.parse_args = real_parse
+    written = _json.load(open(hist_path)) if os.path.exists(hist_path) else {}
+    series = written.get("ksis", {}).get("KSI-A", {}).get("series", [])
+    assert series == [], f"main() must not record a stale replayed fact; got {series}"
+
+
 def test_f07_corrupt_history_is_not_treated_as_first_run():
     # Finding F07: an existing but invalid-JSON history must NOT be silently
     # read as {} (a first run) and then overwritten. load_history_safe returns
