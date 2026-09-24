@@ -132,6 +132,32 @@
       "mutation_verified": true,
       "status": "CLOSED",
       "note": "First MUT-F10 (pointing at test_mot_continuity) SURVIVED audit cycle N -- that test never calls _utc_today(). Added a dedicated behavioral test (test_utc_clock.py) that makes UTC and local dates diverge; verified it goes RED under the mutation. This is the mutation harness catching a real test blind spot."
+    },
+    {
+      "id": "AUD-C01",
+      "severity": "Concern",
+      "requirement": "SDR-CSX-KSI (11 process/document KSIs) outcome-method labeling",
+      "component": "validation/scripts/build_sdr.py (KSI security-outcome rendering); automation/metrics/append_metrics.py:mot_window",
+      "description": "Concern that a process/document KSI's outcome method could read as a false claim that an AWS API assesses organizational-process effectiveness.",
+      "root_cause": "Not a correctness defect. Reviewed against source: the outcome rendering already states the honest boundary. mot_window returns note 'Coverage of the persistent-validation window, not a pass/fail verdict', and the 11 document/process KSIs already carry provider-deployed outcome-metric contracts rather than API-asserted status (shipped in 1.3.1). No wording overclaims machine assessment of process effectiveness.",
+      "fix_commit": "n/a -- reviewed, no change",
+      "regression_test": "n/a (labeling, not behavior); the coverage-not-determination invariant is exercised by test_mot_continuity.py and test_submission_readiness.py",
+      "mutation": "n/a -- no behavioral defect to re-introduce",
+      "mutation_verified": false,
+      "status": "REVIEWED-NO-CHANGE"
+    },
+    {
+      "id": "AUD-C02",
+      "severity": "Concern",
+      "requirement": "SDR-CSX-KMT scheduled-path persistence labeling",
+      "component": "automation/metrics/append_metrics.py (scheduled-loop persistence)",
+      "description": "Concern that the scheduled collection/persistence path could imply an automated determination rather than durable coverage measurement.",
+      "root_cause": "Not a correctness defect. Reviewed against source: the persistence path is already labeled as coverage of the persistent-validation window (not a determination), and the durable per-KSI history restore in the CodeBuild path fails closed on any non-'missing' error so readiness is never evaluated against absent history. No wording claims the scheduled path produces a pass/fail verdict.",
+      "fix_commit": "n/a -- reviewed, no change",
+      "regression_test": "n/a (labeling, not behavior); persistence integrity is guarded by AUD-F05 and AUD-F07 regressions/mutations",
+      "mutation": "n/a -- no behavioral defect to re-introduce",
+      "mutation_verified": false,
+      "status": "REVIEWED-NO-CHANGE"
     }
   ]
 }
