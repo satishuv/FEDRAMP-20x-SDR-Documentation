@@ -1,0 +1,84 @@
+{
+  "schema": "sdr-audit-defect-ledger/v1",
+  "note": "Permanent ledger of audit findings. Never delete an entry; mark CLOSED. Each CLOSED entry MUST have a mutation test in audit/mutation_tests.py that re-introduces the defect and proves a named test goes red.",
+  "defects": [
+    {
+      "id": "AUD-F04",
+      "severity": "High",
+      "requirement": "SDR-CSX-KMT / MAS-CSO-IIR",
+      "component": "automation/metrics/append_metrics.py:load_facts,datapoint_for_ksi",
+      "description": "Config facts keyed by rule name only; a later region overwrote an earlier region's result (last-writer-wins), hiding a NON_COMPLIANT behind a COMPLIANT.",
+      "root_cause": "Insufficiently specific history key (rule, not rule+region+account).",
+      "fix_commit": "c23411c (PR #163)",
+      "regression_test": "automation/metrics/test_append_metrics.py::test_f04_region_failure_not_hidden_by_another_region, ::test_f04_load_facts_retains_every_region_scope",
+      "mutation": "MUT-F04: scope key -> (rule,) ; expect RED",
+      "mutation_verified": true,
+      "status": "CLOSED"
+    },
+    {
+      "id": "AUD-F01",
+      "severity": "High",
+      "requirement": "FRC-CSO-MRA / SDR-CSX-KSI (repo signing policy)",
+      "component": "validation/scripts/validate_evidence.py:classify_entry",
+      "description": "Under signing_required, an unresolvable source returned a soft finding BEFORE the signature-required check, so deleting source+signature bypassed the signing gate.",
+      "root_cause": "Ordering: soft-finding early return preceded the required-signer determination.",
+      "fix_commit": "PR #164",
+      "regression_test": "validation/scripts/test_evidence_integrity.py::test_f01_unresolvable_source_under_required_signer_is_hard, ::test_f01_signed_but_unresolvable_source_is_hard, ::test_f01_unresolvable_source_without_required_signer_stays_finding",
+      "mutation": "MUT-F01: move source-None soft return before signer check ; expect RED",
+      "mutation_verified": false,
+      "status": "CLOSED-PENDING-MERGE"
+    },
+    {
+      "id": "AUD-F02",
+      "severity": "High",
+      "requirement": "FRC-CSX-VVK",
+      "component": "validation/scripts/verification_methods.py:count_automated_methods; sdr.py vvk_method_binding",
+      "description": "Id-less automated entries counted by text (count gate) but were unbindable (binding gate skipped them); duplicate method_id inflated bound count; a keyed-but-empty series counted as bound.",
+      "root_cause": "Divergent identity between count and binding; list-based counting instead of distinct-id sets.",
+      "fix_commit": "PR #165",
+      "regression_test": "validation/scripts/test_vvk_automated_methods.py (id-less counts 0; duplicate counts once)",
+      "mutation": "MUT-F02: count id-less automated by text; expect RED",
+      "mutation_verified": false,
+      "status": "CLOSED-PENDING-MERGE"
+    },
+    {
+      "id": "AUD-F06",
+      "severity": "High",
+      "requirement": "FRC-CSX-MOT / FRD-PER",
+      "component": "sdr.py:mot_continuity + MOT caller",
+      "description": "Continuity check measured inter-point and trailing gaps but never the leading gap from the window start, so a series clustered near today passed a 6-month window.",
+      "root_cause": "Leading gap (window_start -> first observation) unmeasured.",
+      "fix_commit": "PR #166",
+      "regression_test": "validation/scripts/test_mot_continuity.py (F06 leading-gap cases)",
+      "mutation": "MUT-F06: drop leading-gap term; expect RED",
+      "mutation_verified": false,
+      "status": "CLOSED-PENDING-MERGE"
+    },
+    {
+      "id": "AUD-F05",
+      "severity": "High",
+      "requirement": "FRC-CSX-MOT / SDR-CSX-KMT",
+      "component": "automation/metrics/append_metrics.py:append_run (require_fresh)",
+      "description": "Facts stamped with the run date without checking observation time; a stale fact replayed on later runs manufactured fresh history.",
+      "root_cause": "Ingestion time conflated with observation time.",
+      "fix_commit": "PR #167",
+      "regression_test": "automation/metrics/test_append_metrics.py::test_f05_replayed_stale_fact_is_not_recorded_as_fresh, ::test_f05_fact_observed_today_is_recorded",
+      "mutation": "MUT-F05: main() append_run require_fresh=False; expect RED",
+      "mutation_verified": false,
+      "status": "CLOSED-PENDING-MERGE"
+    },
+    {
+      "id": "AUD-F07",
+      "severity": "High",
+      "requirement": "SDR-CSX-KMT persistence integrity",
+      "component": "automation/metrics/append_metrics.py:load_history_safe",
+      "description": "load() turned invalid JSON into {}, so a corrupt existing history was treated as a first run and overwritten.",
+      "root_cause": "No distinction between absent (first run) and corrupt existing history.",
+      "fix_commit": "PR #167",
+      "regression_test": "automation/metrics/test_append_metrics.py::test_f07_corrupt_history_is_not_treated_as_first_run, ::test_f07_wrong_shape_history_is_rejected, ::test_f07_absent_history_is_a_clean_first_run",
+      "mutation": "MUT-F07: load_history_safe returns ({}, None) on ValueError; expect RED",
+      "mutation_verified": false,
+      "status": "CLOSED-PENDING-MERGE"
+    }
+  ]
+}
