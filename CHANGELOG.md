@@ -6,7 +6,19 @@ One project-specific convention: the pinned FedRAMP dataset version is recorded 
 
 ## Unreleased
 
-No unreleased changes.
+Pinned dataset: `2026.09.13.02` (unchanged)
+
+- The mutation runner (`audit/mutation_tests.py`) now purges every
+  `__pycache__` before each mutated test run and forbids bytecode writes during
+  it, and restores each mutated file byte-exactly with verification. Python
+  trusts a cached `.pyc` when the source's size and mtime-in-seconds match; a
+  length-preserving mutation (MUT-F10, 50 to 50 characters) that landed in the
+  same second as a cache compiled from the original was therefore run as the
+  ORIGINAL bytecode, and the audit gate reported a false SURVIVED on `main`
+  (validate-sdr run 35993242564, twice). New `audit/test_mutation_runner.py`
+  arms that exact trap, proves a bare run is fooled by it, and asserts the
+  runner still kills the mutation; it is wired into the audit-gate job as a
+  hard gate. No framework behavior, rule, or dataset change.
 
 ## 1.4.0, 2026-09-24
 
