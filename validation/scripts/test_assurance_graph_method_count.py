@@ -1,4 +1,4 @@
-# Regression test for F-09: the reviewer-facing assurance graph / evidence
+﻿# Regression test for F-09: the reviewer-facing assurance graph / evidence
 # coverage report must count FRC-CSX-VVK automated methods identically to the
 # authoritative validator. A prior bug counted raw `tests` entries in the graph
 # (len(tests)) while the validator counted distinct AUTOMATED methods, so the
@@ -52,12 +52,22 @@ def main():
     n, s, _t = count_automated_methods(["a string test", "another string test"])
     check("two string tests -> 0 automated, 2 unclassified", n == 0 and s == 2)
 
-    if not (os.path.exists(GRAPH) and os.path.exists(COVERAGE)
-            and os.path.exists(KSI_RESULTS)):
+    if not (os.path.exists(GRAPH) and os.path.exists(COVERAGE)):
         print("  SKIP committed-artifact checks (generate the package first)")
         print(f"\n{'PASS' if _fail == 0 else 'FAIL'}: assurance graph method count "
               f"({_fail} failures)")
         return 1 if _fail else 0
+
+    # Regenerate the validator's report right here so this parity check reads
+    # the CURRENT validator's output, not whatever an earlier (possibly
+    # adversarial, tampering) test left on disk (AUD-F24).
+    import subprocess
+    subprocess.run([sys.executable, os.path.join(os.path.dirname(os.path.abspath(__file__)), "validate_sdr.py")],
+                   cwd=BASE, capture_output=True, text=True, timeout=600)
+    check("validator wrote ksi-test-results.json", os.path.exists(KSI_RESULTS))
+    if not os.path.exists(KSI_RESULTS):
+        print(f"\nFAIL: assurance graph method count ({_fail} failures)")
+        return 1
 
     graph = _load(GRAPH)
     coverage = _load(COVERAGE)
@@ -77,8 +87,16 @@ def main():
     # 4. Cross-report parity: the coverage report's
     #    ksis_meeting_verification_minimum must equal the number of KSI results
     #    the authoritative validator marks meets_test_minimum == True.
+    # The validator writes its per-KSI list under "results". This test once
+    # read a key that did not exist ("ksi_results"), so validator_met was
+    # always 0 and the parity check passed 0 == 0 while nothing met the
+    # minimum (RULE 7: an empty-vs-empty reconciliation is a false pass). Read
+    # the real key and refuse an empty result set.
+    results = ksi_results.get("results") or []
+    check(f"validator report carries a non-empty per-KSI result list (keys={sorted(ksi_results)})",
+          len(results) > 0)
     validator_met = sum(
-        1 for r in ksi_results.get("ksi_results", [])
+        1 for r in results
         if r.get("meets_test_minimum") is True)
     graph_met = sum(
         1 for n in ksi_nodes

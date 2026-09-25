@@ -75,7 +75,7 @@ jobs:
             exit 1
           }
           echo "Reproducibility gate: byte-identical across two builds."
-      - name: Validate (full gate + offline test suite, CI parity via sdr.py)
+      - name: Validate (full gate + A/B/C class matrix + offline test suite, CI parity via sdr.py)
         run: python sdr.py validate
       - name: Refuse a stale check catalog
         run: |

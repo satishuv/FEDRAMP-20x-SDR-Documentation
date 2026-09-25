@@ -2913,7 +2913,7 @@ Historical metrics, 30-day summary: TBD: Information has not been provided.
 Historical metrics, up to one year: TBD: Information has not been provided.
 Historical metrics, daily data (Class C): none available
 Historical metrics, daily data reference (optional): TBD: Information has not been provided.
-Tests: Example test 1: describe-trails confirms multi-region and log file validation are enabled and the trail is logging (every 6 hours).; Example test 2: Config aggregator query confirms recorder status is recording in 100 percent of in-scope accounts (daily).
+Tests: Example (reference architecture, replace with your real implementation): AWS Config managed rule multi-region-cloudtrail-enabled confirms an organization trail records management events in every region; pass requires COMPLIANT in every in-scope account. (automated, continuous (AWS Config evaluation), collected daily); Example (reference architecture, replace with your real implementation): AWS Config managed rule cloud-trail-log-file-validation-enabled confirms trail log-file integrity validation is on; pass requires COMPLIANT for every trail. (automated, continuous (AWS Config evaluation), collected daily)
 Owner: Example: Platform Engineering Lead
 
 2.3 KSI-CMT-RMV Redeploying vs Modifying
@@ -3212,7 +3212,7 @@ Historical metrics, 30-day summary: TBD: Information has not been provided.
 Historical metrics, up to one year: TBD: Information has not been provided.
 Historical metrics, daily data (Class C): none available
 Historical metrics, daily data reference (optional): TBD: Information has not been provided.
-Tests: Example test 1: config rule iam-user-no-passwords-or-keys returns COMPLIANT for all accounts (daily).; Example test 2: CloudTrail Lake query for console login events without MFA returns zero rows (daily).
+Tests: Example (reference architecture, replace with your real implementation): AWS Config managed rule mfa-enabled-for-iam-console-access confirms no console password exists without MFA; pass requires COMPLIANT in every in-scope account. (automated, continuous (AWS Config evaluation), collected daily); Example (reference architecture, replace with your real implementation): AWS Config managed rule root-account-mfa-enabled confirms the root user is MFA-protected; pass requires COMPLIANT in every in-scope account. (automated, continuous (AWS Config evaluation), collected daily)
 Owner: Example: Identity and Access Lead
 
 2.16 KSI-IAM-ELP Ensuring Least Privilege
@@ -3879,7 +3879,7 @@ Historical metrics, 30-day summary: TBD: Information has not been provided.
 Historical metrics, up to one year: TBD: Information has not been provided.
 Historical metrics, daily data (Class C): none available
 Historical metrics, daily data reference (optional): TBD: Information has not been provided.
-Tests: Example test 1: Config rules encrypted-volumes and rds-storage-encrypted are COMPLIANT for all resources (continuous).; Example test 2: EBS default encryption and S3 Block Public Access report enabled for every in-scope account (daily).
+Tests: Example (reference architecture, replace with your real implementation): AWS Config managed rule encrypted-volumes confirms every attached EBS volume is encrypted; pass requires COMPLIANT for all resources. (automated, continuous (AWS Config evaluation), collected daily); Example (reference architecture, replace with your real implementation): AWS Config managed rule s3-bucket-server-side-encryption-enabled confirms default encryption on every bucket; pass requires COMPLIANT for all buckets. (automated, continuous (AWS Config evaluation), collected daily)
 Owner: Example: Security Engineering Lead
 
 2.45 KSI-SVC-VCM Validating Communications

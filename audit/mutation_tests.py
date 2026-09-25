@@ -202,6 +202,21 @@ MUTATIONS = [
      "    if not 1 <= days <= MOT_MAX_GAP_DAYS_CEILING:\n        return None,",
      "    if False:  # MUTATION any tolerance accepted\n        return None,",
      "validation/scripts/test_mot_continuity.py"),
+    ("MUT-F22",
+     "audit/requirements_oracle.py",
+     "            if expected[rid].get(field) != actual[rid].get(field):",
+     "            if False:  # MUTATION field differences ignored",
+     "audit/test_requirements_oracle.py"),
+    ("MUT-F23",
+     "validation/scripts/validate_sdr.py",
+     '    cls = (os.environ.get("SDR_VALIDATE_CLASS") or active_cls).lower()',
+     '    cls = active_cls  # MUTATION always the active class',
+     "validation/scripts/test_validate_class_matrix.py"),
+    ("MUT-F24",
+     "validation/scripts/validate_sdr.py",
+     '        json.dump({"generated": stamp, "class": cls.upper(), "results": ksi_results}, f, indent=1)',
+     '        json.dump({"generated": stamp, "class": cls.upper(), "ksi_results": ksi_results}, f, indent=1)  # MUTATION',
+     "validation/scripts/test_assurance_graph_method_count.py"),
 ]
 
 

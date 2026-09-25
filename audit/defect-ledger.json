@@ -301,6 +301,45 @@
       "mutation": "MUT-F21: mot_max_gap_days accepts any integer (ceiling check disabled); expect RED",
       "mutation_verified": true,
       "status": "CLOSED"
+    },
+    {
+      "id": "AUD-F22",
+      "severity": "Medium",
+      "requirement": "FRR applicability (158 provider rules per class; Class A enumeration; force/timeframe variants)",
+      "component": "audit/requirements_oracle.py (FRR traversal, new); audit/test_requirements_oracle.py (new)",
+      "description": "The requirements-differential oracle was independent for KSIs only. The 158 FRRs, subset applicability, class-variant force/timeframes and the Class A enumeration were checked by build_applicability_decisions.py reusing build_profiles.py and test_applicability.py reconciling those outputs against each other: internal consistency, not an oracle.",
+      "root_cause": "The FRR side had no second derivation from the raw dataset.",
+      "fix_commit": "this PR -- the oracle walks FRR.<process>.data.<bucket>.<subset>.<RULE-ID> itself (subset applicability from the process info block; rev5 bucket excluded; Providers-affecting; CLA excluded at B/C; class-variant statement wins else top-level), derives the Class A set from the CLA subset plus the FRC-CLA-MFR/RFR/OFR enumerations with its own regex, and diffs rule set + force + statement + four timeframe fields against the committed class-a/b/c profiles; counts are pinned to the independently reconciled anchors 41/158/158 so an empty-vs-empty pass is impossible. Reconciled clean on the 2026.09.13.02 dataset.",
+      "regression_test": "audit/test_requirements_oracle.py (dropped rule, added rule, MUST->SHOULD, statement edit, timeframe edit, class-variant force swap, empty profile, Class A dropped rule; runs in the gate before the oracle)",
+      "mutation": "MUT-F22: reconcile_frr ignores per-field differences (if False); expect RED",
+      "mutation_verified": true,
+      "status": "CLOSED"
+    },
+    {
+      "id": "AUD-F23",
+      "severity": "Medium",
+      "requirement": "Validation of every supported class (A/B/C) the repository ships",
+      "component": "validation/scripts/validate_sdr.py (SDR_VALIDATE_CLASS); sdr.py:cmd_validate (class matrix); sdr/records/records-store.json (three example KSIs)",
+      "description": "CI regenerated the inactive classes' SDR artifacts but the authoritative validator ran only against the offering profile's class (B). Run against Class C for the first time, the committed template failed two MUST-level checks: KSI-CMT-LMC, KSI-IAM-APM and KSI-SVC-SIN are populated reference-architecture examples that carried two plain-string tests (zero automated methods) and no evidence, advisory at B, hard at C. The shipped Class C SDR was therefore not valid under the repository's own validator.",
+      "root_cause": "Single-class validation; example content authored to the Class B advisory bar.",
+      "fix_commit": "this PR -- validate_sdr.py honors SDR_VALIDATE_CLASS (reports for a non-active class go to the gitignored validation/reports/matrix/class-<x>/); `sdr.py validate` runs the validator for every inactive class; the three example records now declare two structured automated methods each, keyed by the registry check_ids real collectors produce, plus example evidence objects labeled as examples; all three classes regenerated",
+      "regression_test": "validation/scripts/test_validate_class_matrix.py (each inactive class validates clean, reports land in the matrix dir stamped with the class, the canonical report is untouched, cmd_validate drives the matrix)",
+      "mutation": "MUT-F23: validate_sdr.py ignores SDR_VALIDATE_CLASS and always validates the active class; expect RED",
+      "mutation_verified": true,
+      "status": "CLOSED"
+    },
+    {
+      "id": "AUD-F24",
+      "severity": "Medium",
+      "requirement": "FRC-CSX-VVK reviewer-facing parity (assurance graph vs validator)",
+      "component": "validation/scripts/test_assurance_graph_method_count.py; validation/scripts/validate_sdr.py report contract",
+      "description": "The parity test read the validator's per-KSI results under a key that does not exist (`ksi_results`; the validator writes `results`), so the validator side was always 0 and the test passed 0 == 0 for as long as no KSI met the minimum. It only failed once the example records met the minimum (graph 3 vs validator 0). RULE 7: an empty-vs-empty reconciliation is a false pass.",
+      "root_cause": "Unverified report key in a test; no non-empty guard.",
+      "fix_commit": "this PR -- the test reads `results`, refuses an empty result list, and test_validate_class_matrix.py pins the report contract",
+      "regression_test": "validation/scripts/test_assurance_graph_method_count.py (non-empty result list; coverage == validator == graph, now 3 == 3 == 3); validation/scripts/test_validate_class_matrix.py (results key non-empty)",
+      "mutation": "MUT-F24: validate_sdr.py writes the per-KSI list under `ksi_results` instead of `results`; expect RED",
+      "mutation_verified": true,
+      "status": "CLOSED"
     }
   ]
 }

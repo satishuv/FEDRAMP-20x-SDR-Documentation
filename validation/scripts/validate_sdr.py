@@ -247,7 +247,16 @@ def content_fidelity(cls, class_profile, sdr):
 
 def main():
     profile = load(os.path.join(BASE, "profiles", "common", "offering-profile.json"))
-    cls = profile["certification_class"].lower()
+    active_cls = profile["certification_class"].lower()
+    # AUD-F23: validate any supported class, not only the active one. The CI
+    # regenerates the inactive classes' SDR outputs but the authoritative
+    # validator ran only against the profile's class, so Class A/C artifacts had
+    # weaker checks. SDR_VALIDATE_CLASS mirrors build_sdr.py's SDR_BUILD_CLASS;
+    # when it names a class other than the active one, the reports go to a
+    # gitignored matrix directory so the committed canonical reports (which
+    # describe the active class) are untouched.
+    cls = (os.environ.get("SDR_VALIDATE_CLASS") or active_cls).lower()
+    reports_dir = REPORTS if cls == active_cls else os.path.join(REPORTS, "matrix", f"class-{cls}")
     if cls == "d":
         # Match build_sdr.py and build_docx.py: Class D is FedRAMP pending
         # (20x Program path coming in 2027, specifics set during the Phase 4
@@ -658,11 +667,11 @@ def main():
         check("sources_lock_consistency", True,
               "no sources.lock.json present (skipped)", hard=False)
 
-    os.makedirs(REPORTS, exist_ok=True)
-    with open(os.path.join(REPORTS, "validation-report.json"), "w",
+    os.makedirs(reports_dir, exist_ok=True)
+    with open(os.path.join(reports_dir, "validation-report.json"), "w",
               encoding="utf-8", newline="\n") as f:
         json.dump(report, f, indent=1)
-    with open(os.path.join(REPORTS, "ksi-test-results.json"), "w",
+    with open(os.path.join(reports_dir, "ksi-test-results.json"), "w",
               encoding="utf-8", newline="\n") as f:
         json.dump({"generated": stamp, "class": cls.upper(), "results": ksi_results}, f, indent=1)
 

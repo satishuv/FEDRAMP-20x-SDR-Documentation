@@ -6399,17 +6399,41 @@
    },
    "verification": {
     "methods": [
-     "Example test 1: describe-trails confirms multi-region and log file validation are enabled and the trail is logging (every 6 hours).",
-     "Example test 2: Config aggregator query confirms recorder status is recording in 100 percent of in-scope accounts (daily)."
+     {
+      "method_id": "KSI-CMT-LMC:verify:config:multi-region-cloudtrail-enabled",
+      "method": "Example (reference architecture, replace with your real implementation): AWS Config managed rule multi-region-cloudtrail-enabled confirms an organization trail records management events in every region; pass requires COMPLIANT in every in-scope account.",
+      "automated": true,
+      "cadence": "continuous (AWS Config evaluation), collected daily"
+     },
+     {
+      "method_id": "KSI-CMT-LMC:verify:config:cloud-trail-log-file-validation-enabled",
+      "method": "Example (reference architecture, replace with your real implementation): AWS Config managed rule cloud-trail-log-file-validation-enabled confirms trail log-file integrity validation is on; pass requires COMPLIANT for every trail.",
+      "automated": true,
+      "cadence": "continuous (AWS Config evaluation), collected daily"
+     }
     ],
     "minimum_required": 1,
-    "automated_methods": 0,
-    "unclassified_string_tests": 2,
-    "meets_minimum": false,
+    "automated_methods": 2,
+    "unclassified_string_tests": 0,
+    "meets_minimum": true,
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided."
    },
-   "evidence": [],
+   "evidence": [
+    {
+     "source": "multi-region-cloudtrail-enabled and cloud-trail-log-file-validation-enabled compliance, per account and region.",
+     "type": "Configuration",
+     "location": "s3://your-evidence-bucket/facts/ (example location, replace)",
+     "sha256": null,
+     "observed_at": null,
+     "evidence_id": "EV-unknown",
+     "freshness_status": "missing",
+     "fresh_until": null,
+     "expires_at": null,
+     "collection_status": "success",
+     "supersedes": null
+    }
+   ],
    "structural_linkage": {
     "result": "PRESENT",
     "checker": "deterministic-structural"
@@ -6931,17 +6955,41 @@
    },
    "verification": {
     "methods": [
-     "Example test 1: config rule iam-user-no-passwords-or-keys returns COMPLIANT for all accounts (daily).",
-     "Example test 2: CloudTrail Lake query for console login events without MFA returns zero rows (daily)."
+     {
+      "method_id": "KSI-IAM-APM:verify:config:mfa-enabled-for-iam-console-access",
+      "method": "Example (reference architecture, replace with your real implementation): AWS Config managed rule mfa-enabled-for-iam-console-access confirms no console password exists without MFA; pass requires COMPLIANT in every in-scope account.",
+      "automated": true,
+      "cadence": "continuous (AWS Config evaluation), collected daily"
+     },
+     {
+      "method_id": "KSI-IAM-APM:verify:config:root-account-mfa-enabled",
+      "method": "Example (reference architecture, replace with your real implementation): AWS Config managed rule root-account-mfa-enabled confirms the root user is MFA-protected; pass requires COMPLIANT in every in-scope account.",
+      "automated": true,
+      "cadence": "continuous (AWS Config evaluation), collected daily"
+     }
     ],
     "minimum_required": 1,
-    "automated_methods": 0,
-    "unclassified_string_tests": 2,
-    "meets_minimum": false,
+    "automated_methods": 2,
+    "unclassified_string_tests": 0,
+    "meets_minimum": true,
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided."
    },
-   "evidence": [],
+   "evidence": [
+    {
+     "source": "mfa-enabled-for-iam-console-access and root-account-mfa-enabled compliance, per account.",
+     "type": "Configuration",
+     "location": "s3://your-evidence-bucket/facts/ (example location, replace)",
+     "sha256": null,
+     "observed_at": null,
+     "evidence_id": "EV-unknown",
+     "freshness_status": "missing",
+     "fresh_until": null,
+     "expires_at": null,
+     "collection_status": "success",
+     "supersedes": null
+    }
+   ],
    "structural_linkage": {
     "result": "PRESENT",
     "checker": "deterministic-structural"
@@ -8187,17 +8235,41 @@
    },
    "verification": {
     "methods": [
-     "Example test 1: Config rules encrypted-volumes and rds-storage-encrypted are COMPLIANT for all resources (continuous).",
-     "Example test 2: EBS default encryption and S3 Block Public Access report enabled for every in-scope account (daily)."
+     {
+      "method_id": "KSI-SVC-SIN:verify:config:encrypted-volumes",
+      "method": "Example (reference architecture, replace with your real implementation): AWS Config managed rule encrypted-volumes confirms every attached EBS volume is encrypted; pass requires COMPLIANT for all resources.",
+      "automated": true,
+      "cadence": "continuous (AWS Config evaluation), collected daily"
+     },
+     {
+      "method_id": "KSI-SVC-SIN:verify:config:s3-bucket-server-side-encryption-enabled",
+      "method": "Example (reference architecture, replace with your real implementation): AWS Config managed rule s3-bucket-server-side-encryption-enabled confirms default encryption on every bucket; pass requires COMPLIANT for all buckets.",
+      "automated": true,
+      "cadence": "continuous (AWS Config evaluation), collected daily"
+     }
     ],
     "minimum_required": 1,
-    "automated_methods": 0,
-    "unclassified_string_tests": 2,
-    "meets_minimum": false,
+    "automated_methods": 2,
+    "unclassified_string_tests": 0,
+    "meets_minimum": true,
     "measures_verification": "TBD: Information has not been provided.",
     "automation_verification": "TBD: Information has not been provided."
    },
-   "evidence": [],
+   "evidence": [
+    {
+     "source": "encrypted-volumes and s3-bucket-server-side-encryption-enabled compliance, per account and region.",
+     "type": "Configuration",
+     "location": "s3://your-evidence-bucket/facts/ (example location, replace)",
+     "sha256": null,
+     "observed_at": null,
+     "evidence_id": "EV-unknown",
+     "freshness_status": "missing",
+     "fresh_until": null,
+     "expires_at": null,
+     "collection_status": "success",
+     "supersedes": null
+    }
+   ],
    "structural_linkage": {
     "result": "PRESENT",
     "checker": "deterministic-structural"

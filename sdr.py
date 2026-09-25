@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """One entry point for the whole Security Decision Record (SDR) pipeline.
 
 Nothing here does any work of its own. `sdr.py validate` runs the same
@@ -310,6 +310,7 @@ TEST_SUITE = [
     "validation/scripts/test_init_wizard.py",
     "validation/scripts/test_customer_config_rules.py",
     "validation/scripts/test_assurance_graph_method_count.py",
+    "validation/scripts/test_validate_class_matrix.py",
     "validation/scripts/test_class_a_framework.py",
     "validation/scripts/test_class_a_applicable_scope.py",
     "validation/scripts/test_class_b_optional_ksi_scope.py",
@@ -793,6 +794,32 @@ def cmd_validate(args):
         code = run(os.path.join(BASE, rel), label=label)
         if code != 0:
             failures.append(rel)
+
+    # AUD-F23: the committed repository ships Class A, B and C artifacts, so the
+    # authoritative validator must hold for EVERY supported class, not only the
+    # one the offering profile selects. Run validate_sdr.py against each inactive
+    # class via SDR_VALIDATE_CLASS (reports go to the gitignored matrix dir).
+    out()
+    out("Class matrix (A/B/C validated independently)")
+    out(RULE)
+    active = (current_class() or "b").lower()
+    for cls in ("a", "b", "c"):
+        if cls == active:
+            continue
+        env = dict(os.environ, SDR_VALIDATE_CLASS=cls)
+        started = time.monotonic()
+        proc = subprocess.run([sys.executable,
+                               os.path.join(BASE, "validation", "scripts", "validate_sdr.py")],
+                              cwd=BASE, env=env, capture_output=True, text=True)
+        elapsed = time.monotonic() - started
+        tail = [ln for ln in (proc.stdout or "").splitlines() if ln.startswith("FAIL:")]
+        if proc.returncode == 0:
+            out(f"OK. validate_sdr.py class {cls.upper()} ({elapsed:.1f}s)")
+        else:
+            out(f"FAIL. validate_sdr.py class {cls.upper()} exited {proc.returncode} ({elapsed:.1f}s)")
+            for ln in tail[:6]:
+                out("    " + ln)
+            failures.append(f"validation/scripts/validate_sdr.py (class {cls.upper()})")
 
     run_tests = not getattr(args, "no_tests", False)
     if run_tests:
