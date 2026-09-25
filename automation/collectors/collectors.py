@@ -84,7 +84,8 @@ def _now():
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
 
 
-def _fact(service, check, status, detail, region, measured=None, total=None):
+def _fact(service, check, status, detail, region, measured=None, total=None,
+          scope_total=None, unknown_total=None, partial=False):
     """Uniform posture-fact shape. status is a short machine token; detail is
     a human-readable, non-sensitive summary. Never include ARNs of principals,
     account IDs, or finding bodies that could carry sensitive specifics.
@@ -96,7 +97,21 @@ def _fact(service, check, status, detail, region, measured=None, total=None):
     observation that something was measured is not the same as the measured
     thing being in good posture). For a count where MORE is worse (e.g. failed
     findings, drifted stacks), set measured to the GOOD count (total - bad) so
-    the fraction still reads as "fraction in good posture"."""
+    the fraction still reads as "fraction in good posture".
+
+    Coverage (AUD-F15 / AUD-F17). `total` is what was EVALUATED. It is not the
+    same as what is IN SCOPE: a per-resource read can be denied or throttled,
+    and a listing can be cut short. So a ratio fact also carries
+      scope_total     resources the collector enumerated (the denominator that
+                      matters to an assessor),
+      evaluated_total the same value as `total`, named for what it is,
+      unknown_total   scope_total - evaluated_total: enumerated but NOT
+                      evaluated (read failed, so posture unknown), and
+      partial         True when the enumeration itself was incomplete (page
+                      cap hit), in which case status is OBSERVED_PARTIAL.
+    The metric engine refuses to score a partial fact and refuses a fact whose
+    evaluated coverage is below policy, so 10 readable of 50 in scope can never
+    become a 100 percent pass, and 1 evaluated of 100 cannot either."""
     f = {
         "service": service,
         "check": check,
@@ -108,7 +123,111 @@ def _fact(service, check, status, detail, region, measured=None, total=None):
     if measured is not None and total is not None:
         f["measured"] = measured
         f["total"] = total
+        f["evaluated_total"] = total
+    if scope_total is not None:
+        f["scope_total"] = scope_total
+        evaluated = total if total is not None else 0
+        f["unknown_total"] = (unknown_total if unknown_total is not None
+                              else max(scope_total - evaluated, 0))
+    if partial:
+        f["partial"] = True
     return f
+
+
+def _ratio_fact(service, check, region, good, evaluated, scope, partial,
+                unit, condition):
+    """Build the standard ratio fact for `good` of `evaluated` <unit>s that
+    <condition>, out of `scope` enumerated, honestly labeled:
+      - partial enumeration        -> OBSERVED_PARTIAL, NO ratio (never scored)
+      - nothing evaluated          -> UNKNOWN (never scored; not a 0/0 pass)
+      - otherwise                  -> OBSERVED with the ratio + coverage."""
+    unknown = max(scope - evaluated, 0)
+    if partial:
+        return _fact(service, check, "OBSERVED_PARTIAL",
+                     f"Enumeration incomplete (page cap); {good} of {evaluated} "
+                     f"{unit}(s) {condition} among {scope}+ seen, {unknown} "
+                     "unreadable. Bounded sample, not scorable.", region,
+                     scope_total=scope, unknown_total=unknown, partial=True)
+    if evaluated == 0:
+        return _fact(service, check, "UNKNOWN",
+                     f"Could not evaluate any of {scope} {unit}(s) "
+                     f"({unknown} unreadable)", region)
+    return _fact(service, check, "OBSERVED",
+                 f"{good} of {evaluated} {unit}(s) {condition} "
+                 f"({scope} in scope, {unknown} unreadable)", region,
+                 measured=good, total=evaluated, scope_total=scope,
+                 unknown_total=unknown)
+
+
+# Pagination (AUD-F15). Every AWS list/describe call that can page is walked to
+# the end. A botocore paginator is used when the client has one; otherwise the
+# response's continuation token is followed by name. MAX_PAGES bounds a runaway
+# (a fake or a service that never stops handing out tokens): hitting it marks
+# the result PARTIAL, and a partial enumeration is never scored.
+MAX_PAGES = 200
+
+# (response token key, request parameter) pairs, in detection order. Ops whose
+# response key does not name the request parameter pass token_in explicitly.
+_TOKEN_PAIRS = (
+    ("NextToken", "NextToken"),
+    ("nextToken", "nextToken"),
+    ("NextMarker", "NextMarker"),
+    ("LastEvaluatedTableName", "ExclusiveStartTableName"),
+    ("NextContinuationToken", "ContinuationToken"),
+    ("ContinuationToken", "ContinuationToken"),
+    ("Marker", "Marker"),
+)
+
+
+def _paginate(client, op, key, token_in=None, **kwargs):
+    """Return (items, partial) for a paged list/describe operation.
+
+    items is the concatenation of response[key] over every page; partial is True
+    only when MAX_PAGES was reached with a continuation token still present.
+    Raises whatever the client raises on the FIRST page (the caller labels the
+    fact ERROR); a failure on a LATER page is reported as partial rather than
+    discarding the pages already read, so the caller never scores it."""
+    can = getattr(client, "can_paginate", None)
+    has_paginator = False
+    if callable(can):
+        try:
+            has_paginator = can(op) is True
+        except Exception:  # noqa: BLE001 - a fake/stub client is not botocore
+            has_paginator = False
+    if has_paginator:
+        items = []
+        pages = 0
+        for page in client.get_paginator(op).paginate(**kwargs):
+            items.extend(page.get(key, []) or [])
+            pages += 1
+            if pages >= MAX_PAGES:
+                return items, True
+        return items, False
+    method = getattr(client, op)
+    items = []
+    params = dict(kwargs)
+    for _page in range(MAX_PAGES):
+        resp = method(**params) or {}
+        items.extend(resp.get(key, []) or [])
+        token = None
+        param = None
+        if token_in:
+            for out_key, _ in _TOKEN_PAIRS:
+                if resp.get(out_key):
+                    token, param = resp[out_key], token_in
+                    break
+        else:
+            for out_key, in_key in _TOKEN_PAIRS:
+                if resp.get(out_key):
+                    token, param = resp[out_key], in_key
+                    break
+        # IAM-style: Marker is only valid while IsTruncated is true.
+        if token is not None and param == "Marker" and resp.get("IsTruncated") is False:
+            token = None
+        if token is None:
+            return items, False
+        params[param] = token
+    return items, True
 
 
 def _client_error_name(exc):
@@ -164,7 +283,7 @@ def collect_access_analyzer(session, region):
     except Exception as e:  # noqa: BLE001
         return [_fact("accessanalyzer", "client", "ERROR", type(e).__name__, region)]
     try:
-        analyzers = aa.list_analyzers(type="ACCOUNT").get("analyzers", [])
+        analyzers, _ = _paginate(aa, "list_analyzers", "analyzers", type="ACCOUNT")
     except Exception as e:  # noqa: BLE001
         return [_fact("accessanalyzer", "analyzer", f"ERROR:{_client_error_name(e)}",
                       "Could not list Access Analyzers", region)]
@@ -175,12 +294,24 @@ def collect_access_analyzer(session, region):
                        f"{len(analyzers)} analyzer(s) configured", region))
     arn = analyzers[0].get("arn")
     try:
-        findings = aa.list_findings(
-            analyzerArn=arn,
-            filter={"status": {"eq": ["ACTIVE"]}}).get("findings", [])
-        facts.append(_fact("accessanalyzer", "active_findings", "OBSERVED",
-                           f"{len(findings)} active finding(s) on first analyzer "
-                           "(first page)", region))
+        findings, more = _paginate(
+            aa, "list_findings", "findings",
+            analyzerArn=arn, filter={"status": {"eq": ["ACTIVE"]}})
+        active = len(findings)
+        if more:
+            facts.append(_fact("accessanalyzer", "active_findings", "OBSERVED_PARTIAL",
+                               f"{active}+ active finding(s) on first analyzer; "
+                               "enumeration incomplete, not scorable", region,
+                               partial=True))
+        else:
+            # AUD-F16: the least-privilege signal is the ABSENCE of active
+            # findings, scored as a binary (1 of 1 when none remain). Analyzer
+            # PRESENCE above is deliberately not a metric; a KSI routes
+            # accessanalyzer:active_findings, never the whole service.
+            facts.append(_fact("accessanalyzer", "active_findings", "OBSERVED",
+                               f"{active} active finding(s) on first analyzer "
+                               "(all pages)", region,
+                               measured=1 if active == 0 else 0, total=1))
     except Exception as e:  # noqa: BLE001
         facts.append(_fact("accessanalyzer", "active_findings",
                            f"ERROR:{_client_error_name(e)}",
@@ -195,29 +326,28 @@ def collect_inspector(session, region):
     except Exception as e:  # noqa: BLE001
         return [_fact("inspector2", "client", "ERROR", type(e).__name__, region)]
     try:
-        resp = insp.list_coverage(maxResults=100)
-        cov = resp.get("coveredResources", [])
-        more = bool(resp.get("nextToken"))
+        cov, more = _paginate(insp, "list_coverage", "coveredResources", maxResults=100)
         active = sum(1 for c in cov if c.get("scanStatus", {}).get("statusCode") == "ACTIVE")
         # F09: preserve the ACTUAL coverage fraction, not a binary ACTIVE that
         # the scorer would turn into 1/1. 1 active of 100 covered must score
-        # 1/100, not 100%. When a nextToken is present the sample is bounded
-        # (more resources unexamined) -> mark the observation partial so it is
-        # NOT indistinguishable from complete boundary coverage.
+        # 1/100, not 100%. AUD-F15: every page is now read; `more` is True
+        # only when the page cap was hit with resources still unexamined, and
+        # that bounded sample is marked partial so it is NOT indistinguishable
+        # from complete boundary coverage.
         if not cov:
             return [_fact("inspector2", "coverage", "NO_COVERAGE",
                           "No covered resources returned", region)]
         if more:
             # Bounded sample: report the enabling signal WITHOUT a full-coverage
             # ratio (partial). It is telemetry that scanning is on for the
-            # sampled page, not a boundary-wide passing measure.
+            # sampled resources, not a boundary-wide passing measure.
             return [_fact("inspector2", "coverage", "OBSERVED_PARTIAL",
                           f"{active} of {len(cov)} sampled resources actively "
-                          "scanned; more resources exist (bounded first-page "
-                          "sample, boundary coverage not measured)", region)]
+                          "scanned; more resources exist (bounded sample, "
+                          "boundary coverage not measured)", region, partial=True)]
         return [_fact("inspector2", "coverage", "OBSERVED",
                       f"{active} of {len(cov)} covered resources actively scanned",
-                      region, measured=active, total=len(cov))]
+                      region, measured=active, total=len(cov), scope_total=len(cov))]
     except Exception as e:  # noqa: BLE001
         return [_fact("inspector2", "coverage", f"ERROR:{_client_error_name(e)}",
                       "Could not read Inspector coverage", region)]
@@ -230,7 +360,7 @@ def collect_guardduty(session, region):
     except Exception as e:  # noqa: BLE001
         return [_fact("guardduty", "client", "ERROR", type(e).__name__, region)]
     try:
-        ids = gd.list_detectors().get("DetectorIds", [])
+        ids, _ = _paginate(gd, "list_detectors", "DetectorIds")
     except Exception as e:  # noqa: BLE001
         return [_fact("guardduty", "detector", f"ERROR:{_client_error_name(e)}",
                       "Could not list GuardDuty detectors", region)]
@@ -256,7 +386,7 @@ def collect_backup(session, region):
         return [_fact("backup", "client", "ERROR", type(e).__name__, region)]
     facts = []
     try:
-        plans = bk.list_backup_plans().get("BackupPlansList", [])
+        plans, _ = _paginate(bk, "list_backup_plans", "BackupPlansList")
         facts.append(_fact("backup", "plans",
                            "PRESENT" if plans else "NONE",
                            f"{len(plans)} backup plan(s)", region))
@@ -264,10 +394,11 @@ def collect_backup(session, region):
         facts.append(_fact("backup", "plans", f"ERROR:{_client_error_name(e)}",
                            "Could not list backup plans", region))
     try:
-        protected = bk.list_protected_resources().get("Results", [])
-        facts.append(_fact("backup", "protected_resources", "OBSERVED",
-                           f"{len(protected)} protected resource(s) (first page)",
-                           region))
+        protected, more = _paginate(bk, "list_protected_resources", "Results")
+        facts.append(_fact("backup", "protected_resources",
+                           "OBSERVED_PARTIAL" if more else "OBSERVED",
+                           f"{len(protected)}{'+' if more else ''} protected "
+                           "resource(s)", region, partial=more))
     except Exception as e:  # noqa: BLE001
         facts.append(_fact("backup", "protected_resources",
                            f"ERROR:{_client_error_name(e)}",
@@ -277,13 +408,16 @@ def collect_backup(session, region):
 
 def collect_kms(session, region):
     """KMS: fraction of customer keys with automatic rotation enabled.
-    Reports an aggregate, not individual key identifiers."""
+    Reports an aggregate, not individual key identifiers. Walks every page of
+    keys (AUD-F15) and counts keys whose rotation status could not be read as
+    unknown, not as evaluated (AUD-F17)."""
     try:
         kms = session.client("kms")
     except Exception as e:  # noqa: BLE001
         return [_fact("kms", "client", "ERROR", type(e).__name__, region)]
     try:
-        keys = kms.list_keys(Limit=1000).get("Keys", [])
+        # KMS returns NextMarker/Truncated and takes Marker on the request.
+        keys, more = _paginate(kms, "list_keys", "Keys", token_in="Marker", Limit=1000)
     except Exception as e:  # noqa: BLE001
         return [_fact("kms", "keys", f"ERROR:{_client_error_name(e)}",
                       "Could not list KMS keys", region)]
@@ -298,11 +432,10 @@ def collect_kms(session, region):
             checked += 1
             if r.get("KeyRotationEnabled"):
                 rotating += 1
-        except Exception:  # noqa: BLE001 - AWS-managed keys reject this call; skip
+        except Exception:  # noqa: BLE001 - AWS-managed keys reject this call; unknown
             continue
-    return [_fact("kms", "key_rotation", "OBSERVED",
-                  f"{rotating} of {checked} customer keys have automatic "
-                  "rotation enabled", region, measured=rotating, total=checked)]
+    return [_ratio_fact("kms", "key_rotation", region, rotating, checked, len(keys),
+                        more, "customer key", "have automatic rotation enabled")]
 
 
 def collect_config(session, region):
@@ -334,7 +467,7 @@ def collect_config(session, region):
     # 2. How many resources has Config discovered? This is the 400-service
     #    breadth expressed as one number: every recorded resource, all services.
     try:
-        counts = cfg.get_discovered_resource_counts().get("resourceCounts", [])
+        counts, _ = _paginate(cfg, "get_discovered_resource_counts", "resourceCounts")
         total = sum(c.get("count", 0) for c in counts)
         facts.append(_fact("config", "discovered_resources", "OBSERVED",
                            f"{total} resources across {len(counts)} resource "
@@ -343,17 +476,23 @@ def collect_config(session, region):
         facts.append(_fact("config", "discovered_resources",
                            f"ERROR:{_client_error_name(e)}",
                            "Could not read discovered resource counts", region))
-    # 3. Rule compliance tally (aggregate, not per-rule bodies).
+    # 3. Rule compliance tally (aggregate, not per-rule bodies). Every page
+    #    (AUD-F15); evaluated = rules with a definite COMPLIANT/NON_COMPLIANT,
+    #    INSUFFICIENT_DATA/NOT_APPLICABLE are in scope but unknown.
     try:
-        rules = cfg.describe_compliance_by_config_rule().get(
-            "ComplianceByConfigRules", [])
+        rules, more = _paginate(cfg, "describe_compliance_by_config_rule",
+                                "ComplianceByConfigRules")
         compliant = sum(1 for r in rules
                         if r.get("Compliance", {}).get("ComplianceType") == "COMPLIANT")
         noncompliant = sum(1 for r in rules
                            if r.get("Compliance", {}).get("ComplianceType") == "NON_COMPLIANT")
-        facts.append(_fact("config", "rule_compliance", "OBSERVED",
-                           f"{compliant} compliant, {noncompliant} non-compliant "
-                           f"of {len(rules)} rule(s) (first page)", region))
+        if not rules:
+            facts.append(_fact("config", "rule_compliance", "NONE",
+                               "No Config rules evaluated in this region", region))
+        else:
+            facts.append(_ratio_fact("config", "rule_compliance", region, compliant,
+                                     compliant + noncompliant, len(rules), more,
+                                     "rule", "report COMPLIANT"))
     except Exception as e:  # noqa: BLE001
         facts.append(_fact("config", "rule_compliance",
                            f"ERROR:{_client_error_name(e)}",
@@ -378,16 +517,23 @@ def collect_cloudtrail(session, region):
                       "No CloudTrail trails visible in this region", region)]
     multiregion = sum(1 for t in trails if t.get("IsMultiRegionTrail"))
     logging_on = 0
+    checked = 0
     for t in trails:
         try:
             st = ct.get_trail_status(Name=t.get("TrailARN") or t.get("Name"))
+            checked += 1
             if st.get("IsLogging"):
                 logging_on += 1
         except Exception:  # noqa: BLE001 - status of one trail must not sink the rest
             continue
     return [_fact("cloudtrail", "trails", "OBSERVED",
                   f"{len(trails)} trail(s), {multiregion} multi-region, "
-                  f"{logging_on} actively logging", region)]
+                  f"{logging_on} of {checked} readable actively logging "
+                  f"({len(trails) - checked} status unreadable)", region,
+                  measured=logging_on, total=checked, scope_total=len(trails))
+            if checked else
+            _fact("cloudtrail", "trails", "UNKNOWN",
+                  f"{len(trails)} trail(s); no trail status readable", region)]
 
 
 def collect_s3(session, region):
@@ -399,7 +545,7 @@ def collect_s3(session, region):
     except Exception as e:  # noqa: BLE001
         return [_fact("s3", "client", "ERROR", type(e).__name__, region)]
     try:
-        buckets = s3.list_buckets().get("Buckets", [])
+        buckets, more = _paginate(s3, "list_buckets", "Buckets")
     except Exception as e:  # noqa: BLE001
         return [_fact("s3", "buckets", f"ERROR:{_client_error_name(e)}",
                       "Could not list S3 buckets", region)]
@@ -415,12 +561,17 @@ def collect_s3(session, region):
             if all(pab.get(k) for k in ("BlockPublicAcls", "IgnorePublicAcls",
                                         "BlockPublicPolicy", "RestrictPublicBuckets")):
                 blocked += 1
-        except Exception:  # noqa: BLE001 - one bucket's ACL read must not sink the run
-            checked += 1
+        except Exception as e:  # noqa: BLE001 - one bucket's read must not sink the run
+            # AUD-F17: only a response that ESTABLISHES absence is evaluated.
+            # NoSuchPublicAccessBlockConfiguration means the bucket genuinely has
+            # no block (evaluated, not blocked). AccessDenied / throttling means
+            # the posture is UNKNOWN, and an unknown must not sit in the
+            # denominator as a failure nor vanish from scope.
+            if "NoSuchPublicAccessBlockConfiguration" in _client_error_name(e):
+                checked += 1
             continue
-    return [_fact("s3", "public_access_block", "OBSERVED",
-                  f"{blocked} of {checked} buckets fully block public access "
-                  f"({len(buckets)} total)", region, measured=blocked, total=checked)]
+    return [_ratio_fact("s3", "public_access_block", region, blocked, checked,
+                        len(buckets), more, "bucket", "fully block public access")]
 
 
 def collect_iam(session, region):
@@ -472,7 +623,7 @@ def collect_cfn_drift(session, region):
     except Exception as e:  # noqa: BLE001
         return [_fact("cloudformation", "client", "ERROR", type(e).__name__, region)]
     try:
-        stacks = cf.list_stacks().get("StackSummaries", [])
+        stacks, more = _paginate(cf, "list_stacks", "StackSummaries")
     except Exception as e:  # noqa: BLE001
         return [_fact("cloudformation", "stacks", f"ERROR:{_client_error_name(e)}",
                       "Could not list CloudFormation stacks", region)]
@@ -484,9 +635,15 @@ def collect_cfn_drift(session, region):
                   if s.get("DriftInformation", {}).get("StackDriftStatus") == "DRIFTED")
     in_sync = sum(1 for s in active
                   if s.get("DriftInformation", {}).get("StackDriftStatus") == "IN_SYNC")
-    return [_fact("cloudformation", "drift", "OBSERVED",
-                  f"{drifted} drifted, {in_sync} in sync of {len(active)} "
-                  "active stack(s)", region, measured=in_sync, total=len(active))]
+    # AUD-F17: a stack whose drift status is NOT_CHECKED/UNKNOWN is in scope but
+    # not evaluated; it must not count as in sync nor vanish from the scope.
+    fact = _ratio_fact("cloudformation", "drift", region, in_sync, drifted + in_sync,
+                       len(active), more, "active stack", "in sync (not drifted)")
+    if fact["status"] == "OBSERVED":
+        fact["detail"] = (f"{drifted} drifted, {in_sync} in sync of {len(active)} "
+                          f"active stack(s) ({len(active) - drifted - in_sync} "
+                          "drift status not checked)")
+    return [fact]
 
 
 def collect_config_conformance(session, region):
@@ -497,7 +654,7 @@ def collect_config_conformance(session, region):
     except Exception as e:  # noqa: BLE001
         return [_fact("config", "conformance_client", "ERROR", type(e).__name__, region)]
     try:
-        packs = cfg.describe_conformance_packs().get("ConformancePackDetails", [])
+        packs, more = _paginate(cfg, "describe_conformance_packs", "ConformancePackDetails")
     except Exception as e:  # noqa: BLE001
         return [_fact("config", "conformance_packs", f"ERROR:{_client_error_name(e)}",
                       "Could not describe conformance packs", region)]
@@ -518,9 +675,8 @@ def collect_config_conformance(session, region):
                 compliant += 1
         except Exception:  # noqa: BLE001 - one pack's summary must not sink the run
             continue
-    facts.append(_fact("config", "conformance_compliance", "OBSERVED",
-                       f"{compliant} of {checked} pack(s) reporting COMPLIANT",
-                       region, measured=compliant, total=checked))
+    facts.append(_ratio_fact("config", "conformance_compliance", region, compliant,
+                             checked, len(packs), more, "pack", "reporting COMPLIANT"))
     return facts
 
 
@@ -532,7 +688,9 @@ def collect_waf(session, region):
     except Exception as e:  # noqa: BLE001
         return [_fact("wafv2", "client", "ERROR", type(e).__name__, region)]
     try:
-        acls = waf.list_web_acls(Scope="REGIONAL").get("WebACLs", [])
+        # WAFv2 has no botocore paginator; it pages with NextMarker in and out.
+        acls, more = _paginate(waf, "list_web_acls", "WebACLs", token_in="NextMarker",
+                               Scope="REGIONAL")
     except Exception as e:  # noqa: BLE001
         return [_fact("wafv2", "web_acls", f"ERROR:{_client_error_name(e)}",
                       "Could not list WAF web ACLs", region)]
@@ -540,17 +698,18 @@ def collect_waf(session, region):
         return [_fact("wafv2", "web_acls", "NONE",
                       "No regional WAF web ACLs in this region", region)]
     associated = 0
+    checked = 0
     for a in acls:
         try:
             res = waf.list_resources_for_web_acl(WebACLArn=a["ARN"]).get(
                 "ResourceArns", [])
+            checked += 1
             if res:
                 associated += 1
         except Exception:  # noqa: BLE001
             continue
-    return [_fact("wafv2", "web_acls", "OBSERVED",
-                  f"{associated} of {len(acls)} web ACL(s) associated with a "
-                  "resource", region, measured=associated, total=len(acls))]
+    return [_ratio_fact("wafv2", "web_acls", region, associated, checked, len(acls),
+                        more, "web ACL", "associated with a resource")]
 
 
 def collect_network_segmentation(session, region):
@@ -563,22 +722,25 @@ def collect_network_segmentation(session, region):
         return [_fact("ec2", "client", "ERROR", type(e).__name__, region)]
     facts = []
     try:
-        sgs = ec2.describe_security_groups().get("SecurityGroups", [])
+        sgs, more = _paginate(ec2, "describe_security_groups", "SecurityGroups")
         open_ingress = 0
         for sg in sgs:
             for perm in sg.get("IpPermissions", []):
                 if any(r.get("CidrIp") == "0.0.0.0/0" for r in perm.get("IpRanges", [])):
                     open_ingress += 1
                     break
-        facts.append(_fact("ec2", "security_groups", "OBSERVED",
-                           f"{len(sgs)} security group(s), {open_ingress} with "
-                           "an open (0.0.0.0/0) inbound rule", region,
-                           measured=len(sgs) - open_ingress, total=len(sgs)))
+        fact = _ratio_fact("ec2", "security_groups", region, len(sgs) - open_ingress,
+                           len(sgs), len(sgs), more, "security group",
+                           "without an open (0.0.0.0/0) inbound rule")
+        if fact["status"] == "OBSERVED":
+            fact["detail"] = (f"{len(sgs)} security group(s), {open_ingress} with "
+                              "an open (0.0.0.0/0) inbound rule")
+        facts.append(fact)
     except Exception as e:  # noqa: BLE001
         facts.append(_fact("ec2", "security_groups", f"ERROR:{_client_error_name(e)}",
                            "Could not describe security groups", region))
     try:
-        acls = ec2.describe_network_acls().get("NetworkAcls", [])
+        acls, _ = _paginate(ec2, "describe_network_acls", "NetworkAcls")
         facts.append(_fact("ec2", "network_acls", "OBSERVED",
                            f"{len(acls)} network ACL(s)", region))
     except Exception as e:  # noqa: BLE001
@@ -607,7 +769,8 @@ def collect_cloudtrail_integrity(session, region):
     validated = sum(1 for t in trails if t.get("LogFileValidationEnabled"))
     return [_fact("cloudtrail", "log_validation", "OBSERVED",
                   f"{validated} of {len(trails)} trail(s) have log-file "
-                  "validation enabled", region, measured=validated, total=len(trails))]
+                  "validation enabled", region, measured=validated, total=len(trails),
+                  scope_total=len(trails))]
 
 
 def collect_ecr_integrity(session, region):
@@ -619,7 +782,7 @@ def collect_ecr_integrity(session, region):
     except Exception as e:  # noqa: BLE001
         return [_fact("ecr", "client", "ERROR", type(e).__name__, region)]
     try:
-        repos = ecr.describe_repositories().get("repositories", [])
+        repos, more = _paginate(ecr, "describe_repositories", "repositories")
     except Exception as e:  # noqa: BLE001
         return [_fact("ecr", "repositories", f"ERROR:{_client_error_name(e)}",
                       "Could not describe ECR repositories", region)]
@@ -628,9 +791,12 @@ def collect_ecr_integrity(session, region):
                       "No ECR repositories in this region", region)]
     immutable = sum(1 for r in repos
                     if r.get("imageTagMutability") == "IMMUTABLE")
-    return [_fact("ecr", "image_immutability", "OBSERVED",
-                  f"{immutable} of {len(repos)} repositor(y/ies) enforce "
-                  "immutable image tags", region, measured=immutable, total=len(repos))]
+    fact = _ratio_fact("ecr", "image_immutability", region, immutable, len(repos),
+                       len(repos), more, "repository", "enforce immutable image tags")
+    if fact["status"] == "OBSERVED":
+        fact["detail"] = (f"{immutable} of {len(repos)} repositor(y/ies) enforce "
+                          "immutable image tags")
+    return [fact]
 
 
 def collect_s3_data_protection(session, region):
@@ -642,7 +808,7 @@ def collect_s3_data_protection(session, region):
     except Exception as e:  # noqa: BLE001
         return [_fact("s3", "data_protection_client", "ERROR", type(e).__name__, region)]
     try:
-        buckets = s3.list_buckets().get("Buckets", [])
+        buckets, more = _paginate(s3, "list_buckets", "Buckets")
     except Exception as e:  # noqa: BLE001
         return [_fact("s3", "encryption", f"ERROR:{_client_error_name(e)}",
                       "Could not list S3 buckets", region)]
@@ -673,16 +839,24 @@ def collect_s3_data_protection(session, region):
             else:
                 unmeasured += 1
             continue
+    if more:
+        return [_fact("s3", "encryption", "OBSERVED_PARTIAL",
+                      f"Bucket enumeration incomplete; {encrypted} of {checked} "
+                      "evaluated bucket(s) encrypted. Not scorable.", region,
+                      scope_total=len(buckets), unknown_total=unmeasured, partial=True)]
     if checked == 0:
         # Nothing could be evaluated (e.g. all reads denied): report UNKNOWN, not
         # a 0/0 or a false pass/fail.
         return [_fact("s3", "encryption", "UNKNOWN",
                       f"Could not evaluate encryption on any of {len(buckets)} "
                       f"bucket(s) ({unmeasured} unmeasured)", region)]
+    # AUD-F17: scope_total/unknown_total let the metric engine refuse a
+    # confident pass built on 1 readable bucket of 100 (coverage policy).
     return [_fact("s3", "encryption", "OBSERVED",
                   f"{encrypted} of {checked} bucket(s) have default encryption "
                   f"configured ({len(buckets)} total, {unmeasured} unmeasured)",
-                  region, measured=encrypted, total=checked)]
+                  region, measured=encrypted, total=checked,
+                  scope_total=len(buckets), unknown_total=unmeasured)]
 
 
 def collect_data_retention(session, region):
@@ -691,7 +865,7 @@ def collect_data_retention(session, region):
     facts = []
     try:
         s3 = session.client("s3")
-        buckets = s3.list_buckets().get("Buckets", [])
+        buckets, more = _paginate(s3, "list_buckets", "Buckets")
         with_lifecycle = 0
         checked = 0
         for b in buckets:
@@ -700,30 +874,42 @@ def collect_data_retention(session, region):
                 checked += 1
                 if lc.get("Rules"):
                     with_lifecycle += 1
-            except Exception:  # noqa: BLE001 - NoSuchLifecycleConfiguration is normal
-                checked += 1
+            except Exception as e:  # noqa: BLE001 - NoSuchLifecycleConfiguration is normal
+                # AUD-F17: NoSuchLifecycleConfiguration ESTABLISHES absence
+                # (evaluated, no policy); any other error is unknown posture.
+                if "NoSuchLifecycleConfiguration" in _client_error_name(e):
+                    checked += 1
                 continue
-        facts.append(_fact("s3", "lifecycle", "OBSERVED",
-                           f"{with_lifecycle} of {checked} bucket(s) have a "
-                           "lifecycle policy", region))
+        if buckets:
+            facts.append(_ratio_fact("s3", "lifecycle", region, with_lifecycle, checked,
+                                     len(buckets), more, "bucket",
+                                     "have a lifecycle policy"))
+        else:
+            facts.append(_fact("s3", "lifecycle", "NONE", "No S3 buckets in this account",
+                               region))
     except Exception as e:  # noqa: BLE001
         facts.append(_fact("s3", "lifecycle", f"ERROR:{_client_error_name(e)}",
                            "Could not read S3 lifecycle posture", region))
     try:
         ddb = session.client("dynamodb")
-        tables = ddb.list_tables().get("TableNames", [])
+        tables, more = _paginate(ddb, "list_tables", "TableNames")
         ttl_on = 0
+        checked = 0
         for t in tables:
             try:
                 d = ddb.describe_time_to_live(TableName=t)
+                checked += 1
                 if d.get("TimeToLiveDescription", {}).get(
                         "TimeToLiveStatus") == "ENABLED":
                     ttl_on += 1
             except Exception:  # noqa: BLE001
                 continue
-        facts.append(_fact("dynamodb", "ttl", "OBSERVED",
-                           f"{ttl_on} of {len(tables)} table(s) have TTL enabled",
-                           region))
+        if tables:
+            facts.append(_ratio_fact("dynamodb", "ttl", region, ttl_on, checked,
+                                     len(tables), more, "table", "have TTL enabled"))
+        else:
+            facts.append(_fact("dynamodb", "ttl", "NONE", "No DynamoDB tables in this region",
+                               region))
     except Exception as e:  # noqa: BLE001
         facts.append(_fact("dynamodb", "ttl", f"ERROR:{_client_error_name(e)}",
                            "Could not read DynamoDB TTL posture", region))
@@ -738,10 +924,28 @@ def collect_siem_posture(session, region):
     try:
         ct = session.client("cloudtrail")
         trails = ct.describe_trails().get("trailList", [])
-        multiregion = sum(1 for t in trails if t.get("IsMultiRegionTrail"))
-        facts.append(_fact("cloudtrail", "siem_capture", "OBSERVED",
-                           f"{len(trails)} trail(s), {multiregion} multi-region",
-                           region))
+        multiregion = [t for t in trails if t.get("IsMultiRegionTrail")]
+        # AUD-F18: this route feeds KSI-MLA-OSM, so it must carry a scorable
+        # measure or prefill would declare a method that can never bind. The
+        # SIEM-capture signal is binary: at least one multi-region trail is
+        # actively logging (1 of 1), else 0 of 1. Status reads that fail leave
+        # the trail out of the count (unknown), never counted as logging.
+        capturing = 0
+        for t in multiregion:
+            try:
+                st = ct.get_trail_status(Name=t.get("TrailARN") or t.get("Name"))
+                if st.get("IsLogging"):
+                    capturing += 1
+            except Exception:  # noqa: BLE001 - unknown status is not "logging"
+                continue
+        if not trails:
+            facts.append(_fact("cloudtrail", "siem_capture", "NONE",
+                               "No CloudTrail trails visible in this region", region))
+        else:
+            facts.append(_fact("cloudtrail", "siem_capture", "OBSERVED",
+                               f"{len(trails)} trail(s), {len(multiregion)} multi-region, "
+                               f"{capturing} multi-region actively logging", region,
+                               measured=1 if capturing else 0, total=1))
     except Exception as e:  # noqa: BLE001
         facts.append(_fact("cloudtrail", "siem_capture",
                            f"ERROR:{_client_error_name(e)}",
@@ -773,30 +977,48 @@ def collect_iam_jit(session, region):
         return [_fact("iam", "jit_client", "ERROR", type(e).__name__, region)]
     facts = []
     try:
-        roles = iam.list_roles().get("Roles", [])
+        roles, more = _paginate(iam, "list_roles", "Roles")
         long_session = sum(1 for r in roles
                            if (r.get("MaxSessionDuration") or 3600) > 3600)
-        facts.append(_fact("iam", "role_session_duration", "OBSERVED",
-                           f"{long_session} of {len(roles)} role(s) allow a "
-                           "session longer than 1 hour", region))
+        if roles:
+            fact = _ratio_fact("iam", "role_session_duration", region,
+                               len(roles) - long_session, len(roles), len(roles), more,
+                               "role", "cap sessions at 1 hour")
+            if fact["status"] == "OBSERVED":
+                fact["detail"] = (f"{long_session} of {len(roles)} role(s) allow a "
+                                  "session longer than 1 hour")
+            facts.append(fact)
+        else:
+            facts.append(_fact("iam", "role_session_duration", "NONE",
+                               "No IAM roles", region))
     except Exception as e:  # noqa: BLE001
         facts.append(_fact("iam", "role_session_duration",
                            f"ERROR:{_client_error_name(e)}",
                            "Could not list IAM roles", region))
     try:
-        users = iam.list_users().get("Users", [])
+        users, more = _paginate(iam, "list_users", "Users")
         with_keys = 0
+        checked = 0
         for u in users:
             try:
-                keys = iam.list_access_keys(UserName=u["UserName"]).get(
-                    "AccessKeyMetadata", [])
+                keys, _ = _paginate(iam, "list_access_keys", "AccessKeyMetadata",
+                                    UserName=u["UserName"])
+                checked += 1
                 if keys:
                     with_keys += 1
-            except Exception:  # noqa: BLE001
+            except Exception:  # noqa: BLE001 - AUD-F17: unreadable user is unknown
                 continue
-        facts.append(_fact("iam", "long_lived_keys", "OBSERVED",
-                           f"{with_keys} of {len(users)} user(s) have a "
-                           "long-lived access key", region))
+        if users:
+            fact = _ratio_fact("iam", "long_lived_keys", region, checked - with_keys,
+                               checked, len(users), more, "user",
+                               "have no long-lived access key")
+            if fact["status"] == "OBSERVED":
+                fact["detail"] = (f"{with_keys} of {checked} user(s) have a "
+                                  f"long-lived access key ({len(users)} users, "
+                                  f"{len(users) - checked} unreadable)")
+            facts.append(fact)
+        else:
+            facts.append(_fact("iam", "long_lived_keys", "NONE", "No IAM users", region))
     except Exception as e:  # noqa: BLE001
         facts.append(_fact("iam", "long_lived_keys",
                            f"ERROR:{_client_error_name(e)}",
@@ -811,7 +1033,7 @@ def collect_iam_response_wiring(session, region):
     facts = []
     try:
         gd = session.client("guardduty")
-        ids = gd.list_detectors().get("DetectorIds", [])
+        ids, _ = _paginate(gd, "list_detectors", "DetectorIds")
         facts.append(_fact("guardduty", "response_detector",
                            "ENABLED" if ids else "NONE",
                            f"{len(ids)} GuardDuty detector(s) present", region))
@@ -821,11 +1043,18 @@ def collect_iam_response_wiring(session, region):
                            "Could not list GuardDuty detectors", region))
     try:
         ev = session.client("events")
-        rules = ev.list_rules().get("Rules", [])
+        rules, more = _paginate(ev, "list_rules", "Rules")
         enabled = sum(1 for r in rules if r.get("State") == "ENABLED")
-        facts.append(_fact("events", "response_rules", "OBSERVED",
-                           f"{enabled} of {len(rules)} EventBridge rule(s) "
-                           "enabled to route events", region))
+        if rules:
+            fact = _ratio_fact("events", "response_rules", region, enabled, len(rules),
+                               len(rules), more, "EventBridge rule", "enabled")
+            if fact["status"] == "OBSERVED":
+                fact["detail"] = (f"{enabled} of {len(rules)} EventBridge rule(s) "
+                                  "enabled to route events")
+            facts.append(fact)
+        else:
+            facts.append(_fact("events", "response_rules", "NONE",
+                               "No EventBridge rules to route events", region))
     except Exception as e:  # noqa: BLE001
         facts.append(_fact("events", "response_rules",
                            f"ERROR:{_client_error_name(e)}",
@@ -842,7 +1071,8 @@ def collect_pipeline_gates(session, region):
     except Exception as e:  # noqa: BLE001
         return [_fact("codepipeline", "client", "ERROR", type(e).__name__, region)]
     try:
-        names = [p["name"] for p in cp.list_pipelines().get("pipelines", [])]
+        pipelines, more = _paginate(cp, "list_pipelines", "pipelines")
+        names = [p["name"] for p in pipelines]
     except Exception as e:  # noqa: BLE001
         return [_fact("codepipeline", "pipelines", f"ERROR:{_client_error_name(e)}",
                       "Could not list CodePipelines", region)]
@@ -860,11 +1090,15 @@ def collect_pipeline_gates(session, region):
                                   for s in pl.get("stages", []))
             if any(k in stage_text for k in gate_keywords):
                 with_gate += 1
-        except Exception:  # noqa: BLE001
+        except Exception:  # noqa: BLE001 - AUD-F17: unreadable pipeline is unknown
             continue
-    return [_fact("codepipeline", "pipeline_gates", "OBSERVED",
-                  f"{with_gate} of {checked} pipeline(s) include an approval or "
-                  "test/scan stage", region)]
+    fact = _ratio_fact("codepipeline", "pipeline_gates", region, with_gate, checked,
+                       len(names), more, "pipeline", "include an approval or test/scan stage")
+    if fact["status"] == "OBSERVED":
+        fact["detail"] = (f"{with_gate} of {checked} pipeline(s) include an approval or "
+                          f"test/scan stage ({len(names)} pipelines, "
+                          f"{len(names) - checked} unreadable)")
+    return [fact]
 
 
 def collect_supply_chain_scanning(session, region):
@@ -905,7 +1139,7 @@ def collect_restore_testing(session, region):
         return [_fact("backup", "restore_testing_client", "ERROR",
                       type(e).__name__, region)]
     try:
-        plans = bk.list_restore_testing_plans().get("RestoreTestingPlans", [])
+        plans, _ = _paginate(bk, "list_restore_testing_plans", "RestoreTestingPlans")
     except Exception as e:  # noqa: BLE001
         return [_fact("backup", "restore_testing", f"ERROR:{_client_error_name(e)}",
                       "Could not list restore-testing plans", region)]

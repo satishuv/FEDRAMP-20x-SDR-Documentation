@@ -61,6 +61,10 @@ except Exception as exc:  # fail loud: silent unrouted telemetry is the failure
         "an empty routing map that would silently drop posture telemetry: "
         + str(exc)
     )
+# AUD-F18: the SAME identity the metric engine keys per-method history by and
+# the VVK binding gate compares. Prefill writes it as each test's method_id.
+sys.path.insert(0, os.path.join(BASE, "automation", "metrics"))
+from method_ids import config_method_id, posture_method_id, parse_service_key  # noqa: E402
 
 
 def load(path, default=None):
@@ -116,15 +120,25 @@ def config_facts_for_ksi(ksi_entry, config_by_rule):
 
 
 def posture_facts_for_ksi(ksi_entry, posture_by_service):
-    """Posture facts whose service key is in this KSI's EXPLICIT
+    """Posture facts whose (service, check) is in this KSI's EXPLICIT
     `metric_service_keys` allowlist. This is the same per-KSI binding the metric
     engine uses (introduced to stop generic AWS posture fanning out to a KSI by
     prose service-name mention); prefill must honor it too, or it would author
-    telemetry the metric layer refuses to score. Skips ERROR/None-status facts
-    so only real observations pre-fill. An empty allowlist means no posture
-    routes to this KSI (its evidence comes from its config-rule methods)."""
-    allow = set(ksi_entry.get("metric_service_keys") or [])
-    unknown = allow - set(KNOWN_SERVICE_KEYS)
+    telemetry the metric layer refuses to score. AUD-F16: every entry is
+    check-scoped ("service:check"); a bare service key is refused. Skips
+    ERROR/None/partial facts so only real, complete observations pre-fill. An
+    empty allowlist means no posture routes to this KSI (its evidence comes from
+    its config-rule methods)."""
+    allow = list(ksi_entry.get("metric_service_keys") or [])
+    routes = []
+    for key in allow:
+        service, check = parse_service_key(key)
+        if not check:
+            raise RuntimeError(
+                f"{ksi_entry.get('ksi_id') or 'KSI'} metric_service_keys entry "
+                f"{key!r} routes a whole service; entries must be service:check")
+        routes.append((service, check))
+    unknown = {s for s, _ in routes} - set(KNOWN_SERVICE_KEYS)
     if unknown:
         raise RuntimeError(
             f"{ksi_entry.get('ksi_id') or 'KSI'} metric_service_keys names "
@@ -132,11 +146,14 @@ def posture_facts_for_ksi(ksi_entry, posture_by_service):
             "service registry; a typo here would silently route no posture. "
             "Fix the key or register the service.")
     out = []
-    for svc_key in allow:
-        for pf in posture_by_service.get(svc_key, []):
+    for service, check in routes:
+        for pf in posture_by_service.get(service, []):
+            if pf.get("check") != check:
+                continue
             status = pf.get("status", "")
-            if status.startswith("ERROR") or status in ("NONE", "NO_COVERAGE",
-                                                         "NOT_ENABLED", "NO_KEYS"):
+            if (status.startswith("ERROR") or pf.get("partial") is True
+                    or status in ("NONE", "NO_COVERAGE", "NOT_ENABLED", "NO_KEYS",
+                                  "OBSERVED_PARTIAL", "UNKNOWN")):
                 continue
             out.append(pf)
     return out
@@ -153,23 +170,45 @@ def prefill_ksi(kid, record, ksi_entry, config_by_rule, posture_by_service):
 
     changed = False
 
-    # tests: append a dated automated-method line per backing fact, only if the
-    # tests list is still empty/template.
+    # tests: propose one STRUCTURED automated method per backing fact, only if
+    # the tests list is still empty/template. AUD-F18: plain strings counted as
+    # ZERO automated methods to the FRC-CSX-VVK validator and could never bind
+    # to telemetry, so the real collector -> prefill -> preflight path never
+    # reached Class C readiness; only the hand-wired sample did. Each record
+    # carries automated:true and a method_id that is EXACTLY the key the metric
+    # engine writes the per-method series under (config: the registry check_id;
+    # posture: posture:<service>:<check>), so the binding gate finds it.
     if is_tbd(record.get("tests", [])):
         new_tests = []
         for check, fact in cfg:
-            new_tests.append(
-                f"Automated (collector): AWS Config rule `{check['target']}` "
-                f"reported {fact['compliance_type']} on {fact['collected_at']} "
-                f"({check['source']} method). Provenance: {check['check_id']}.")
+            new_tests.append({
+                "method_id": config_method_id(check),
+                "method": (f"Automated (collector): AWS Config rule `{check['target']}` "
+                           f"evaluated continuously ({check['source']} method); last "
+                           f"observed {fact['compliance_type']} on {fact['collected_at']}."),
+                "automated": True,
+                "cadence": "continuous (AWS Config evaluation; collected each run)",
+                "source": "AWS Config",
+                "provenance": check["check_id"],
+                "last_observed": fact["collected_at"],
+            })
         for pf in posture:
-            new_tests.append(
-                f"Automated (collector): {pf['service']}.{pf['check']} = "
-                f"{pf['status']} on {pf['collected_at']}. {pf['detail']}.")
+            new_tests.append({
+                "method_id": posture_method_id(pf["service"], pf["check"]),
+                "method": (f"Automated (collector): read-only {pf['service']}.{pf['check']} "
+                           f"posture check; last observed {pf['status']} on "
+                           f"{pf['collected_at']}. {pf['detail']}."),
+                "automated": True,
+                "cadence": "each collector run (scheduled)",
+                "source": KNOWN_SERVICE_KEYS.get(pf["service"], pf["service"]),
+                "provenance": f"{pf['service']}.{pf['check']}",
+                "last_observed": pf["collected_at"],
+            })
         if new_tests:
             record["tests"] = new_tests
             changed = True
-            notes.append(f"{kid}: filled {len(new_tests)} test line(s) from facts")
+            notes.append(f"{kid}: filled {len(new_tests)} structured automated "
+                         "method(s) from facts")
 
     # evidence: append schema-valid evidence OBJECTS, only if still empty. The
     # official SDR schema requires ksiEvidence items to be objects with an

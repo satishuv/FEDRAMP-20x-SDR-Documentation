@@ -1,4 +1,4 @@
-# Offline tests for the deterministic fact-to-field pre-fill. No AWS account
+﻿# Offline tests for the deterministic fact-to-field pre-fill. No AWS account
 # and no files needed: the prefill_ksi function is exercised directly with
 # synthetic registry entries, facts, and records. Run:
 #   python automation/prefill/test_prefill.py
@@ -45,14 +45,19 @@ def test_config_fact_prefills_tests_and_evidence():
     rec = blank_ksi_record()
     changed, notes = pf.prefill_ksi("KSI-CMT-LMC", rec, ksi_entry, config_by_rule, {})
     assert changed
-    assert len(rec["tests"]) == 1 and "cloudtrail-enabled" in rec["tests"][0]
+    # AUD-F18: a STRUCTURED automated method whose method_id is EXACTLY the
+    # registry check_id the metric engine keys the per-method series by.
+    assert len(rec["tests"]) == 1 and isinstance(rec["tests"][0], dict), rec["tests"]
+    t = rec["tests"][0]
+    assert t["method_id"] == "KSI-CMT-LMC:verify:config:cloudtrail-enabled"
+    assert t["automated"] is True and "cloudtrail-enabled" in t["method"]
+    assert "COMPLIANT" in t["method"]
     assert len(rec["evidence"]) == 1
-    assert "COMPLIANT" in rec["tests"][0]
 
 
 def test_posture_fact_prefills():
     # Routing is by the EXPLICIT metric_service_keys allowlist, not prose services.
-    ksi_entry = {"services": ["Amazon GuardDuty"], "metric_service_keys": ["guardduty"],
+    ksi_entry = {"services": ["Amazon GuardDuty"], "metric_service_keys": ["guardduty:detector"],
                  "checks": []}
     posture = {"guardduty": [{"service": "guardduty", "check": "detector",
                               "status": "ENABLED", "detail": "Detector status ENABLED",
@@ -61,14 +66,18 @@ def test_posture_fact_prefills():
     rec = blank_ksi_record()
     changed, _ = pf.prefill_ksi("KSI-INR-XXX", rec, ksi_entry, {}, posture)
     assert changed
-    assert any("guardduty.detector = ENABLED" in t for t in rec["tests"])
+    # AUD-F18: method_id is the metric engine's posture key for this check.
+    assert [t["method_id"] for t in rec["tests"]] == ["posture:guardduty:detector"]
+    assert all(t["automated"] is True for t in rec["tests"])
+    assert any("guardduty.detector" in t["method"] and "ENABLED" in t["method"]
+               for t in rec["tests"])
 
 
 def test_securityhub_posture_prefills_with_collector_service_name():
     # The collector emits service="securityhub" (not "security_hub"). This
     # proves the downstream mapping uses the collector's real name, so the
     # telemetry is not silently dropped (regression for the service-name drift).
-    ksi_entry = {"services": ["AWS Security Hub"], "metric_service_keys": ["securityhub"],
+    ksi_entry = {"services": ["AWS Security Hub"], "metric_service_keys": ["securityhub:enabled"],
                  "checks": []}
     posture = {"securityhub": [{"service": "securityhub", "check": "enabled",
                                 "status": "ENABLED", "detail": "Security Hub ENABLED",
@@ -77,7 +86,7 @@ def test_securityhub_posture_prefills_with_collector_service_name():
     rec = blank_ksi_record()
     changed, _ = pf.prefill_ksi("KSI-MLA-XXX", rec, ksi_entry, {}, posture)
     assert changed, "a securityhub posture fact must prefill an AWS Security Hub KSI"
-    assert any("securityhub.enabled = ENABLED" in t for t in rec["tests"])
+    assert [t["method_id"] for t in rec["tests"]] == ["posture:securityhub:enabled"]
 
 
 def test_prose_services_alone_does_not_route_posture():
@@ -99,7 +108,7 @@ def test_prose_services_alone_does_not_route_posture():
 
 def test_unknown_metric_service_key_fails_loud():
     # A typo'd allowlist key would silently route nothing; it must raise instead.
-    ksi_entry = {"services": [], "metric_service_keys": ["guarddutyy"], "checks": []}
+    ksi_entry = {"services": [], "metric_service_keys": ["guarddutyy:detector"], "checks": []}
     posture = {"guardduty": [{"service": "guardduty", "check": "detector",
                               "status": "ENABLED", "detail": "ENABLED",
                               "collected_at": "t", "region": "x"}]}

@@ -210,6 +210,84 @@
       "mutation": "MUT-F14: reconcile_ledger returns [] before checking; expect RED",
       "mutation_verified": true,
       "status": "CLOSED"
+    },
+    {
+      "id": "AUD-F15",
+      "severity": "Critical",
+      "requirement": "SDR-CSX-KMT / FRC-CSX-VVK (Class C telemetry truth)",
+      "component": "automation/collectors/collectors.py (every list/describe call); append_metrics._posture_score",
+      "description": "Most AWS list/describe calls read ONE page (KMS list_keys, CloudFormation list_stacks, Config conformance packs and rule compliance, WAF web ACLs, EC2 security groups, ECR repositories, IAM users/roles/access keys, CodePipeline pipelines, DynamoDB tables, Backup resources, Access Analyzer findings), and several of them produced measured/total ratios from page 1 alone, so a favorable first page could become a boundary-wide passing metric. Only Inspector had the OBSERVED_PARTIAL safeguard.",
+      "root_cause": "No shared pagination helper; each collector called the API once.",
+      "fix_commit": "this PR -- _paginate() walks every page (botocore paginator when present, continuation token by name otherwise, KMS/WAF marker names handled explicitly) with a page cap; hitting the cap yields OBSERVED_PARTIAL with NO ratio, and the metric engine refuses to score any fact with status OBSERVED_PARTIAL or partial:true",
+      "regression_test": "automation/collectors/test_collectors.py::test_f15_kms_walks_every_page_of_keys, ::test_f15_runaway_pagination_is_partial_not_scored, ::test_f15_ecr_and_cloudformation_read_all_pages; automation/metrics/test_append_metrics.py::test_f15_partial_flag_never_scores_even_with_a_ratio",
+      "mutation": "MUT-F15: _paginate returns after the first page regardless of token; expect RED",
+      "mutation_verified": true,
+      "status": "CLOSED"
+    },
+    {
+      "id": "AUD-F16",
+      "severity": "High",
+      "requirement": "SDR-CSX-KMT metric identity (a metric measures the KSI it is attached to)",
+      "component": "validation/scripts/build_collector_registry.py:METRIC_SOURCE_MAP; append_metrics._route; prefill_from_facts.posture_facts_for_ksi; method_ids.py (new)",
+      "description": "METRIC_SOURCE_MAP routed WHOLE services to KSIs, so every good-looking fact of that service scored the KSI. Concretely Access Analyzer PRESENT (1/1) improved KSI-IAM-ELP while the analyzer's active findings were open and unscored; generic S3 facts fed data-removal, generic Backup facts fed recovery TESTING, CloudTrail SIEM-capture fed resource INTEGRITY, broad Config facts fed several KSIs.",
+      "root_cause": "Service-level routing granularity; F03 had introduced check-scoped keys only for IAM.",
+      "fix_commit": "this PR -- every route is service:check; a bare service key is refused by the metric engine, by prefill, and by append_metrics.main; accessanalyzer:active_findings is a scored binary (zero active findings) and analyzer presence is not a metric; recovery testing routes backup:restore_testing only; data removal routes s3:lifecycle and dynamodb:ttl only; integrity routes cloudtrail:log_validation and ecr:image_immutability only",
+      "regression_test": "automation/metrics/test_append_metrics.py::test_f16_bare_service_key_is_refused, ::test_f16_analyzer_presence_cannot_lift_elp_while_findings_are_open, ::test_f16_real_registry_has_no_bare_service_routes; automation/prefill/test_binding_e2e.py (every route names a collector-emitted check); automation/collectors/test_collectors.py::test_f16_access_analyzer_active_findings_is_the_scored_signal",
+      "mutation": "MUT-F16: _route accepts a bare service key (if False); expect RED",
+      "mutation_verified": true,
+      "status": "CLOSED"
+    },
+    {
+      "id": "AUD-F17",
+      "severity": "High",
+      "requirement": "SDR-CSX-KMT / FRC-CSX-VVK (telemetry completeness)",
+      "component": "automation/collectors/collectors.py per-resource loops; _fact coverage fields; append_metrics._posture_score/_coverage_gap",
+      "description": "Per-resource loops did `except: continue`, so an unreadable resource vanished from the denominator: 50 in scope, 10 readable, all 10 pass read as 10/10 = 100 percent. S3 encryption tracked `unmeasured` in text only, so 1 encrypted readable bucket + 99 AccessDenied buckets still scored 1/1. collect_s3 public-access counted ANY exception as evaluated-not-blocked, turning a denied read into adverse telemetry.",
+      "root_cause": "Facts carried only measured/total (evaluated) with no scope or unknown count, and no coverage policy separate from the pass ratio.",
+      "fix_commit": "this PR -- facts carry scope_total / evaluated_total / unknown_total; a fact whose evaluated coverage is below MIN_EVALUATED_COVERAGE (0.95, project policy; offering may tighten via telemetry_min_coverage) is withheld from scoring (never scored as a failure) and named in the datapoint's coverage_gaps; the datapoint carries aggregate coverage; only a response that establishes absence (NoSuchPublicAccessBlockConfiguration, NoSuchLifecycleConfiguration) is evaluated",
+      "regression_test": "automation/metrics/test_append_metrics.py::test_f17_low_evaluated_coverage_is_not_a_confident_pass, ::test_f17_one_readable_bucket_of_100_does_not_score, ::test_f17_full_coverage_scores_and_carries_coverage, ::test_f17_no_scope_info_still_scores_legacy_facts; automation/collectors/test_collectors.py::test_f17_kms_unreadable_key_is_unknown_not_dropped_from_scope, ::test_f17_s3_public_access_denied_is_unknown_not_a_failure, ::test_f17_all_reads_denied_is_unknown_not_a_pass",
+      "mutation": "MUT-F17: _posture_score ignores evaluated coverage (if False); expect RED",
+      "mutation_verified": true,
+      "status": "CLOSED"
+    },
+    {
+      "id": "AUD-F18",
+      "severity": "High",
+      "requirement": "FRC-CSX-VVK method-to-telemetry binding on the REAL pipeline",
+      "component": "automation/prefill/prefill_from_facts.py:prefill_ksi; automation/metrics/method_ids.py (new); append_metrics per_metric_datapoints_for_ksi",
+      "description": "The collector -> prefill -> Class C readiness path was not end-to-end. Prefill wrote plain-string tests, which the hardened VVK validator counts as ZERO automated methods; the metric engine keyed per-method history by its own ids; only the hand-wired Class C sample bound. Nothing tested that the two halves used one identity.",
+      "root_cause": "Two independently derived identity strings and a prefill output shape the validator does not count.",
+      "fix_commit": "this PR -- method_ids.py defines config_method_id (registry check_id) and posture_method_id (posture:<service>:<check>); the metric engine keys per-method series by them; prefill emits structured {method_id, method, automated:true, cadence, source, provenance, last_observed} records using the same functions; cloudtrail:siem_capture became a scorable binary because the e2e test proved it declared a method that could never bind",
+      "regression_test": "automation/prefill/test_binding_e2e.py (real collectors with fake AWS clients -> real registry -> append_run -> prefill_ksi -> count_automated_methods; every prefilled method_id keys a non-empty series); automation/prefill/test_prefill.py (structured shape)",
+      "mutation": "MUT-F18: prefill writes its own method_id scheme (<service>-collector); expect RED",
+      "mutation_verified": true,
+      "status": "CLOSED"
+    },
+    {
+      "id": "AUD-F19",
+      "severity": "High",
+      "requirement": "FRC-CSX-MOT persistent validation (history must not lose runs)",
+      "component": "automation/metrics/append_metrics.py:append_run",
+      "description": "append_run deleted the existing point for date == today before writing the new one, so a morning failure followed by an evening pass left only the pass in history. Destructive within the day for a record described as persistent validation.",
+      "root_cause": "Idempotency-per-day implemented as replace-last-writer-wins.",
+      "fix_commit": "this PR -- every run is appended as an immutable timestamped observation under the KSI (retention-pruned); the day's series point is the conservative rollup of that day's runs (WORST passing fraction) with runs/min_fraction/max_fraction recorded; per-metric series roll up the same way",
+      "regression_test": "automation/metrics/test_append_metrics.py::test_f19_morning_failure_survives_evening_pass, ::test_f19_evening_failure_after_morning_pass_also_reads_as_failure, ::test_f19_single_run_day_is_unchanged_in_meaning, ::test_f19_observations_are_pruned_with_retention",
+      "mutation": "MUT-F19: _roll_into_series ignores the existing same-day point (existing = None); expect RED",
+      "mutation_verified": true,
+      "status": "CLOSED"
+    },
+    {
+      "id": "AUD-F20",
+      "severity": "High",
+      "requirement": "FRC-CSX-MOT persistent validation (durable history lost updates)",
+      "component": "automation/pipeline/buildspec-collect.yml; automation/metrics/publish_history.py (new)",
+      "description": "The scheduled build did GET metric-history.json -> modify locally -> PUT the same key with no compare-and-swap. Two overlapping runs could both read version N and whichever uploaded last silently discarded the other's datapoints; S3 versioning kept the bytes recoverable but nothing noticed.",
+      "root_cause": "Blind overwrite of a shared aggregate object.",
+      "fix_commit": "this PR -- publish_history.py restores with the object's ETag and publishes with If-Match (If-None-Match:* on first run); a 412 returns exit 3 and the buildspec re-runs restore -> append -> publish (bounded); every run's observations are archived append-only under metrics/observations/<date>/<run>.json with If-None-Match:* (an existing record for the same run id is kept, never overwritten)",
+      "regression_test": "automation/metrics/test_publish_history.py (fake S3 with conditional-write semantics: first-run create-only, uncontended IfMatch, contended race returns 3 and the winner is untouched, retry keeps the immutable record, restore fails closed on non-404)",
+      "mutation": "MUT-F20: publish issues an unconditional PUT (no IfMatch/IfNoneMatch); expect RED",
+      "mutation_verified": true,
+      "status": "CLOSED"
     }
   ]
 }

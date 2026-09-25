@@ -156,7 +156,7 @@
     "IAM"
    ],
    "metric_service_keys": [
-    "cloudformation"
+    "cloudformation:drift"
    ],
    "checks": [
     {
@@ -261,7 +261,7 @@
     "Amazon ECR"
    ],
    "metric_service_keys": [
-    "codepipeline"
+    "codepipeline:pipeline_gates"
    ],
    "checks": [
     {
@@ -361,7 +361,7 @@
     "AWS CloudFormation"
    ],
    "metric_service_keys": [
-    "cloudformation"
+    "cloudformation:drift"
    ],
    "checks": [
     {
@@ -400,7 +400,7 @@
     "AWS Config"
    ],
    "metric_service_keys": [
-    "config"
+    "config:conformance_compliance"
    ],
    "checks": [
     {
@@ -625,7 +625,7 @@
     "AWS Shield"
    ],
    "metric_service_keys": [
-    "wafv2"
+    "wafv2:web_acls"
    ],
    "checks": [
     {
@@ -667,7 +667,7 @@
     "Amazon VPC"
    ],
    "metric_service_keys": [
-    "ec2"
+    "ec2:security_groups"
    ],
    "checks": [
     {
@@ -836,7 +836,7 @@
     "AWS Organizations"
    ],
    "metric_service_keys": [
-    "accessanalyzer"
+    "accessanalyzer:active_findings"
    ],
    "checks": [
     {
@@ -1002,8 +1002,8 @@
     "Amazon SNS"
    ],
    "metric_service_keys": [
-    "events",
-    "guardduty"
+    "events:response_rules",
+    "guardduty:response_detector"
    ],
    "checks": [
     {
@@ -1296,7 +1296,8 @@
     "AWS CodeBuild"
    ],
    "metric_service_keys": [
-    "config"
+    "config:conformance_compliance",
+    "config:rule_compliance"
    ],
    "checks": [
     {
@@ -1400,9 +1401,8 @@
     "Amazon S3"
    ],
    "metric_service_keys": [
-    "cloudtrail",
-    "s3",
-    "securityhub"
+    "cloudtrail:siem_capture",
+    "securityhub:siem_aggregation"
    ],
    "checks": [
     {
@@ -1675,7 +1675,7 @@
     "AWS CodeBuild"
    ],
    "metric_service_keys": [
-    "codepipeline"
+    "codepipeline:pipeline_gates"
    ],
    "checks": [
     {
@@ -1964,7 +1964,7 @@
     "Amazon VPC"
    ],
    "metric_service_keys": [
-    "backup"
+    "backup:restore_testing"
    ],
    "checks": [
     {
@@ -2009,7 +2009,8 @@
     "Amazon ECR"
    ],
    "metric_service_keys": [
-    "inspector2"
+    "inspector2:coverage",
+    "inspector2:scanning_status"
    ],
    "checks": [
     {
@@ -2053,8 +2054,8 @@
     "Amazon SNS"
    ],
    "metric_service_keys": [
-    "events",
-    "inspector2"
+    "inspector2:coverage",
+    "inspector2:scanning_status"
    ],
    "checks": [
     {
@@ -2098,7 +2099,7 @@
     "AWS CloudFormation"
    ],
    "metric_service_keys": [
-    "cloudformation"
+    "cloudformation:drift"
    ],
    "checks": [
     {
@@ -2204,7 +2205,7 @@
     "Amazon Inspector"
    ],
    "metric_service_keys": [
-    "config"
+    "config:rule_compliance"
    ],
    "checks": [
     {
@@ -2249,8 +2250,9 @@
     "Amazon VPC"
    ],
    "metric_service_keys": [
-    "kms",
-    "s3"
+    "kms:key_rotation",
+    "s3:encryption",
+    "s3:public_access_block"
    ],
    "checks": [
     {
@@ -2295,9 +2297,8 @@
     "Amazon S3"
    ],
    "metric_service_keys": [
-    "backup",
-    "dynamodb",
-    "s3"
+    "dynamodb:ttl",
+    "s3:lifecycle"
    ],
    "checks": [
     {
@@ -2465,8 +2466,8 @@
     "Amazon ECR"
    ],
    "metric_service_keys": [
-    "cloudtrail",
-    "ecr"
+    "cloudtrail:log_validation",
+    "ecr:image_immutability"
    ],
    "checks": [
     {
