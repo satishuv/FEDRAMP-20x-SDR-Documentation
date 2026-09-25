@@ -113,6 +113,8 @@ jobs:
         run: pip install --quiet -r requirements-ci.txt
       - name: Requirements-differential oracle (HARD GATE)
         run: python audit/requirements_oracle.py
+      - name: Mutation runner self-test -- stale bytecode cannot fake a kill (HARD GATE)
+        run: python audit/test_mutation_runner.py
       - name: Mutation runner -- all closed defects must be killed (HARD GATE)
         run: |
           python audit/mutation_tests.py
