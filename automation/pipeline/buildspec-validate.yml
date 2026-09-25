@@ -19,7 +19,7 @@ phases:
     runtime-versions:
       python: 3.12
     commands:
-      - pip install --quiet -r requirements-ci.txt
+      - pip install --quiet --require-hashes -r requirements.lock
   build:
     commands:
       # RESTORE the durable per-KSI metric history BEFORE build/validate/preflight.

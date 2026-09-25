@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 """Assert the publication pipeline hard-gates submission readiness.
 
 The publish path is Validate -> Collect -> Human Approval -> Publish. The

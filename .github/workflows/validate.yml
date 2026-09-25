@@ -36,7 +36,7 @@ jobs:
         with:
           python-version: "3.12"
       - name: Install dependencies
-        run: pip install --quiet -r requirements-ci.txt
+        run: pip install --quiet --require-hashes -r requirements.lock
       - name: Regenerate all deliverables
         run: |
           # Full build regenerates the ACTIVE class (per the offering profile).
@@ -117,7 +117,7 @@ jobs:
         with:
           python-version: "3.12"
       - name: Install dependencies
-        run: pip install --quiet -r requirements-ci.txt
+        run: pip install --quiet --require-hashes -r requirements.lock
       # The step list lives in audit/release_gate.py so this job, the AWS
       # RELEASE_MODE build, and `sdr.py release` cannot drift apart (AUD-F12).
       - name: Audit section of the release gate (HARD GATE)

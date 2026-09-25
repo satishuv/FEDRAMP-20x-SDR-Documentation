@@ -1,4 +1,4 @@
-﻿# Offline tests for the metric-history appender. Exercises append_run directly
+# Offline tests for the metric-history appender. Exercises append_run directly
 # with synthetic registry/facts, no files or account. Run:
 #   python automation/metrics/test_append_metrics.py
 

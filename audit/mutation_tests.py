@@ -217,6 +217,11 @@ MUTATIONS = [
      '        json.dump({"generated": stamp, "class": cls.upper(), "results": ksi_results}, f, indent=1)',
      '        json.dump({"generated": stamp, "class": cls.upper(), "ksi_results": ksi_results}, f, indent=1)  # MUTATION',
      "validation/scripts/test_assurance_graph_method_count.py"),
+    ("MUT-F25",
+     "validation/scripts/build_sbom.py",
+     "    lock = _parse_lock(LOCK)",
+     "    lock = None  # MUTATION ignore the committed lock",
+     "validation/scripts/test_lock_closure.py"),
 ]
 
 

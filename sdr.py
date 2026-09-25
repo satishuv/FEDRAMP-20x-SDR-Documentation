@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 """One entry point for the whole Security Decision Record (SDR) pipeline.
 
 Nothing here does any work of its own. `sdr.py validate` runs the same
@@ -311,6 +311,7 @@ TEST_SUITE = [
     "validation/scripts/test_customer_config_rules.py",
     "validation/scripts/test_assurance_graph_method_count.py",
     "validation/scripts/test_validate_class_matrix.py",
+    "validation/scripts/test_lock_closure.py",
     "validation/scripts/test_class_a_framework.py",
     "validation/scripts/test_class_a_applicable_scope.py",
     "validation/scripts/test_class_b_optional_ksi_scope.py",

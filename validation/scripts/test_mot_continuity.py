@@ -1,4 +1,4 @@
-﻿# Offline tests for the FRC-CSX-MOT continuity (persistent-validation) helper.
+# Offline tests for the FRC-CSX-MOT continuity (persistent-validation) helper.
 #
 # The MOT age check proves the oldest datapoint reaches back far enough. That is
 # necessary but not sufficient: a series of [6-months-ago, today] passes the age
