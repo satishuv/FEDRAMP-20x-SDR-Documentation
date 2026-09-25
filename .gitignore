@@ -90,3 +90,6 @@ automation/collectors/testdata/*.json
 # AI narrative-draft sidecar is a proposed copy derived from account facts;
 # it is a review artifact, never the source of truth. Not committed.
 sdr/records/records-store.ai-draft.json
+
+# Bandit report written by audit/release_gate.py (uploaded as a CI artifact).
+bandit-report.txt

@@ -171,6 +171,45 @@
       "mutation": "n/a -- no behavioral defect to re-introduce",
       "mutation_verified": false,
       "status": "REVIEWED-NO-CHANGE"
+    },
+    {
+      "id": "AUD-F12",
+      "severity": "Critical",
+      "requirement": "Release governance (docs/versioning.md; FRC-CSO-MRA record integrity)",
+      "component": ".github/workflows/validate.yml; automation/pipeline/buildspec-validate.yml; sdr.py:cmd_release; audit/release_gate.py (new)",
+      "description": "There was no single definition of release-ready. GitHub required only the `validate` status check on main, so a red audit-gate or security-scan did not block a merge; the AWS RELEASE_MODE build ran the mutation runner and oracle but not Bandit; `sdr.py release` ran neither. v1.4.0 (commit c7d43bd) was published while its audit-gate was red (MUT-F10 survived, 9 killed / 1 survived) and its release notes claimed 10 killed / 0 survived; the tag was unsigned although docs/versioning.md requires a signed tag, and no assets (manifest, attestation, SBOM) were attached.",
+      "root_cause": "Three executors each owned their own step list; the only enforced one was the weakest.",
+      "fix_commit": "this PR -- audit/release_gate.py holds the one step list (audit: oracle, runner self-test, runner, tree-clean; security: Bandit); CI jobs, RELEASE_MODE, and cmd_release all execute it; a `release-gate` aggregate job (needs all three, if: always()) is the single required status check on main; release.yml refuses unsigned or mismatched tags, re-runs the whole gate on the tagged commit, and attaches manifest + attestation + SBOM + bundle; cmd_release now instructs `git tag -s`. v1.4.0 is superseded, not moved.",
+      "regression_test": "automation/pipeline/test_release_gate.py (AUD-F12 block: definition completeness, CI aggregate wiring, RELEASE_MODE parity, cmd_release parity, signed-tag release workflow)",
+      "mutation": "MUT-F12: drop the mutation-runner step from release_gate.SECTIONS['audit']; expect RED",
+      "mutation_verified": true,
+      "status": "CLOSED"
+    },
+    {
+      "id": "AUD-F13",
+      "severity": "High",
+      "requirement": "Anti-circular-verification gate integrity",
+      "component": "audit/mutation_tests.py:run",
+      "description": "A mutation whose target text was absent was reported SKIP, and skips did not fail the gate. A harmless refactor of a guarded line therefore silently disarmed the protection for a closed defect while the ledger still said mutation_verified: the gate failed open on refactoring.",
+      "root_cause": "SKIP was designed for a defect fixed on an unmerged branch and treated as benign; it is indistinguishable from a disarmed mutation.",
+      "fix_commit": "this PR -- any skipped mutation fails the gate; the two honest resolutions are retargeting the mutation or running on the branch that carries the fix",
+      "regression_test": "audit/test_mutation_runner.py::F13 (a mutation with an absent target makes run() exit non-zero)",
+      "mutation": "MUT-F13: `if skipped:` -> `if False:` in run(); expect RED",
+      "mutation_verified": true,
+      "status": "CLOSED"
+    },
+    {
+      "id": "AUD-F14",
+      "severity": "High",
+      "requirement": "Anti-circular-verification gate integrity (ledger truth)",
+      "component": "audit/mutation_tests.py:reconcile_ledger (new)",
+      "description": "Nothing checked that a CLOSED + mutation_verified ledger entry corresponded to an executed, killed runner mutation, so the ledger could claim a mutation the runner did not contain (this happened once before: a MUT-F02 was ledgered before it existed), and a runner mutation could exist with no ledger entry.",
+      "root_cause": "Ledger and runner were two hand-maintained lists with no reconciliation.",
+      "fix_commit": "this PR -- run() reconciles: every CLOSED + mutation_verified defect maps to exactly one runner entry whose outcome this run was 'killed', and every runner entry maps to such a defect; any disagreement fails the gate",
+      "regression_test": "audit/test_mutation_runner.py::F14 (missing runner entry, unledgered mutation, survived/skipped outcome, duplicate ids, and the real ledger vs real runner structural agreement)",
+      "mutation": "MUT-F14: reconcile_ledger returns [] before checking; expect RED",
+      "mutation_verified": true,
+      "status": "CLOSED"
     }
   ]
 }

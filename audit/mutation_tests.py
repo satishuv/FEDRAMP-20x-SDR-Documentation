@@ -12,8 +12,15 @@ left clean.
 
     python audit/mutation_tests.py
 
-Mutations that require code only present on an unmerged branch are SKIPPED with a
-notice (run them on that branch).
+A mutation whose target text is not present on this commit is reported SKIP and
+SKIP FAILS THE GATE (AUD-F13). The earlier behaviour let a skip pass, which meant
+a harmless refactor that changed the target text silently switched off the
+protection for a closed defect while the ledger still said mutation_verified. A
+skip now has exactly two honest resolutions: retarget the mutation to the
+refactored code, or (if the defect is on an unmerged branch) run the gate on that
+branch. The runner also cross-checks the defect ledger: every CLOSED,
+mutation_verified defect must map to exactly one runner entry, every runner
+entry must map to such a defect, and each must be KILLED, or the gate fails.
 
 Bytecode cache. Python validates a cached `__pycache__/*.pyc` by source SIZE and
 source mtime in WHOLE SECONDS only. A mutation whose replacement has the same
@@ -27,6 +34,7 @@ before each mutated test run and forbids pyc writes during it
 (PYTHONDONTWRITEBYTECODE), so a test can only ever exercise the source on disk.
 `-B` alone is NOT enough: it stops writing pycs but still READS a stale one.
 """
+import json
 import os
 import shutil
 import subprocess
@@ -51,14 +59,19 @@ def _read_bytes(p):
 
 
 def _restore(rel, original_bytes=None):
-    """Put the committed source back. When the caller saved the original bytes,
-    write them back FIRST: `git checkout --` trusts its stat cache, and a
-    size-preserving mutation that lands in the original's mtime second can look
-    unchanged to it and be left in place. Then verify, loudly."""
+    """Put the pre-mutation source back. The saved original bytes are the
+    authoritative restore: writing them back returns the file to EXACTLY what it
+    was, committed or not. `git checkout --` is only the fallback when no bytes
+    were saved or the write-back somehow did not take: on a tree with
+    uncommitted edits (a developer running the self-test locally) a blind
+    checkout would replace those edits with HEAD, which is data loss, not a
+    restore. Verify loudly either way."""
     path = os.path.join(BASE, rel)
     if original_bytes is not None:
         with open(path, "wb") as f:
             f.write(original_bytes)
+        if _read_bytes(path) == original_bytes:
+            return
     subprocess.run(["git", "checkout", "--", rel], cwd=BASE,
                    capture_output=True, text=True)
     if original_bytes is not None and _read_bytes(path) != original_bytes:
@@ -139,6 +152,21 @@ MUTATIONS = [
      "    _u = _utc_today()\n    cutoff = (_u - _dd.timedelta(days=365)).isoformat()\n    _today = _u.isoformat()",
      "    cutoff = (_dd.date.today() - _dd.timedelta(days=365)).isoformat()  # MUTATION local clock\n    _today = _dd.date.today().isoformat()",
      "validation/scripts/test_build_sdr_utc_window.py"),
+    ("MUT-F12",
+     "audit/release_gate.py",
+     '        ("mutation-runner",\n         [sys.executable, "audit/mutation_tests.py"]),\n',
+     '        # MUTATION: mutation runner dropped from the release gate\n',
+     "automation/pipeline/test_release_gate.py"),
+    ("MUT-F13",
+     "audit/mutation_tests.py",
+     "    if skipped:\n        # AUD-F13",
+     "    if False:  # MUTATION skips pass\n        # AUD-F13",
+     "audit/test_mutation_runner.py"),
+    ("MUT-F14",
+     "audit/mutation_tests.py",
+     "    problems = []\n    runner_ids = [m[0] for m in mutations]",
+     "    return []  # MUTATION ledger never reconciled\n    runner_ids = [m[0] for m in mutations]",
+     "audit/test_mutation_runner.py"),
 ]
 
 
@@ -167,18 +195,106 @@ def run_one(mid, rel, find, repl, test):
     return "survived"
 
 
-def run():
+LEDGER = os.path.join(BASE, "audit", "defect-ledger.json")
+
+
+def _ledger_mutation_ids(ledger):
+    """Return {mutation_id: defect_id} for every CLOSED defect the ledger claims
+    is mutation_verified. The ledger's `mutation` field is free text that starts
+    with the runner id ("MUT-F04: scope key -> ..."); the id is the first token
+    up to the colon. A CLOSED + mutation_verified defect with no parseable id is
+    itself a ledger defect and is reported under the empty id."""
+    out = {}
+    for d in (ledger or {}).get("defects", []):
+        if d.get("status") != "CLOSED" or d.get("mutation_verified") is not True:
+            continue
+        text = str(d.get("mutation") or "")
+        mid = text.split(":", 1)[0].strip()
+        if not mid.startswith("MUT-"):
+            mid = ""
+        out.setdefault(mid, []).append(d.get("id"))
+    return out
+
+
+def reconcile_ledger(outcomes, mutations=None, ledger=None):
+    """Cross-check the ledger against what the runner actually executed.
+
+    outcomes: {mutation_id: 'killed'|'survived'|'skipped'} from this run.
+    Returns a list of problem strings; empty means the ledger and the runner
+    agree and every claimed mutation was executed and killed. The invariant:
+    CLOSED + mutation_verified  <=>  exactly one runner entry, executed, KILLED.
+    """
+    mutations = MUTATIONS if mutations is None else mutations
+    if ledger is None:
+        with open(LEDGER, encoding="utf-8") as f:
+            ledger = json.load(f)
+    problems = []
+    runner_ids = [m[0] for m in mutations]
+    counts = {}
+    for mid in runner_ids:
+        counts[mid] = counts.get(mid, 0) + 1
+    for mid, n in counts.items():
+        if n > 1:
+            problems.append(f"{mid}: {n} runner entries share one id (must be exactly one)")
+    claimed = _ledger_mutation_ids(ledger)
+    for mid, defect_ids in sorted(claimed.items()):
+        if not mid:
+            problems.append(f"{defect_ids}: CLOSED + mutation_verified but no MUT- id in "
+                            "the `mutation` field")
+            continue
+        if mid not in counts:
+            problems.append(f"{mid}: ledger says mutation_verified for {defect_ids} but the "
+                            "runner has no such mutation (false claim)")
+            continue
+        outcome = outcomes.get(mid)
+        if outcome != "killed":
+            problems.append(f"{mid}: ledger says mutation_verified for {defect_ids} but this "
+                            f"run's outcome was {outcome!r} (must be 'killed')")
+    for mid in counts:
+        if mid not in claimed:
+            problems.append(f"{mid}: runner entry has no CLOSED + mutation_verified ledger "
+                            "defect (unledgered mutation)")
+    return problems
+
+
+def gate_verdict(survived, skipped, problems):
+    """The gate's exit code from the three failure classes. Pure, so each rule
+    is testable on its own: survivors fail (coverage hole), skips fail
+    (AUD-F13: the mutation did not run), ledger problems fail (AUD-F14)."""
+    rc = 0
+    if survived:
+        print("FAIL: surviving mutations mean the regression tests are insufficient.")
+        rc = 1
+    if skipped:
+        # AUD-F13: a skip is a mutation that did NOT run. Passing here would let
+        # a refactor silently disarm a closed defect's protection.
+        print("FAIL: skipped mutations did not execute: " + ", ".join(skipped)
+              + ". Retarget them to the current code (or run on the branch that "
+                "carries the defect fix).")
+        rc = 1
+    if problems:
+        print("FAIL: defect ledger and mutation runner disagree:")
+        for p in problems:
+            print("  - " + p)
+        rc = 1
+    return rc
+
+
+def run(mutations=None, ledger=None):
+    mutations = MUTATIONS if mutations is None else mutations
     survived, killed, skipped = [], [], []
-    for mid, rel, find, repl, test in MUTATIONS:
+    outcomes = {}
+    for mid, rel, find, repl, test in mutations:
         outcome = run_one(mid, rel, find, repl, test)
+        outcomes[mid] = outcome
         {"killed": killed, "survived": survived, "skipped": skipped}[outcome].append(mid)
     print("\n--- mutation summary ---")
     print(f"killed={len(killed)} survived={len(survived)} skipped={len(skipped)}")
-    if survived:
-        print("FAIL: surviving mutations mean the regression tests are insufficient.")
-        return 1
-    print("All present mutations detected. Skipped ones must run on their branch.")
-    return 0
+    problems = reconcile_ledger(outcomes, mutations=mutations, ledger=ledger)
+    rc = gate_verdict(survived, skipped, problems)
+    if rc == 0:
+        print("All mutations executed and detected; ledger reconciled.")
+    return rc
 
 
 if __name__ == "__main__":
