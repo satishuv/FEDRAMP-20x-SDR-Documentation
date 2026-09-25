@@ -1,11 +1,13 @@
-# Offline tests for the FRC-CSX-MOT continuity (persistent-validation) helper.
+﻿# Offline tests for the FRC-CSX-MOT continuity (persistent-validation) helper.
 #
 # The MOT age check proves the oldest datapoint reaches back far enough. That is
 # necessary but not sufficient: a series of [6-months-ago, today] passes the age
 # check yet is not "status from persistent validation over at least the past 6
-# months". mot_continuity() bounds the largest gap (and the trailing gap) using
-# a cadence DERIVED from the series itself, so it does not impose a FedRAMP
-# cadence the rule does not state.
+# months". mot_continuity() bounds the largest gap (and the leading/trailing
+# gaps) against an explicit REPOSITORY POLICY tolerance (sdr.mot_max_gap_days:
+# default 45 days, offering-declared override reviewable by the assessor). The
+# rule states no cadence and no maximum gap; the observed median cadence is
+# reported for context, never used as the bound.
 #
 # Run: python validation/scripts/test_mot_continuity.py
 
@@ -111,6 +113,36 @@ def main():
     g3, l3, _m3, _t3 = sdr.mot_continuity(three_in_window, today, window_start=cutoff)
     check("F06: 300d-ago+two-recent (filtered) -> gappy via leading gap",
           g3 is True and l3 > 45)
+
+    # --- AUD-F21: the tolerance is explicit project policy with a bounded,
+    #     reviewable offering override; never presented as a FedRAMP figure.
+    d, src = sdr.mot_max_gap_days({})
+    check("F21: no declaration -> project default 45 from project-default",
+          d == sdr.MOT_MAX_GAP_DAYS_DEFAULT == 45 and src == "project-default")
+    d, src = sdr.mot_max_gap_days({"mot_max_gap_days": 14})
+    check("F21: declared 14 -> 14 from offering-profile",
+          d == 14 and src == "offering-profile")
+    d, src = sdr.mot_max_gap_days({"mot_max_gap_days": "30"})
+    check("F21: declared as a numeric string is accepted", d == 30)
+    d, src = sdr.mot_max_gap_days({"mot_max_gap_days": 400})
+    check("F21: a tolerance above the ceiling is INVALID, not accepted",
+          d is None and src.startswith("invalid"))
+    d, src = sdr.mot_max_gap_days({"mot_max_gap_days": 0})
+    check("F21: zero is invalid", d is None)
+    d, src = sdr.mot_max_gap_days({"mot_max_gap_days": "weekly"})
+    check("F21: a non-integer is invalid", d is None and "not an integer" in src)
+    # The declared tolerance actually drives mot_continuity: a steady 20-day
+    # cadence across the whole window is fine at 45 but gappy at 14.
+    series = [cutoff + dt.timedelta(days=20 * i) for i in range(10)] + [today]
+    g45, _l, _m, _t = sdr.mot_continuity(series, today, max_gap_days=45, window_start=cutoff)
+    g14, _l, _m, _t = sdr.mot_continuity(series, today, max_gap_days=14, window_start=cutoff)
+    check("F21: declared tolerance changes the verdict (45 ok, 14 gappy)",
+          g45 is False and g14 is True)
+    src_text = open(os.path.join(BASE, "sdr.py"), encoding="utf-8").read()
+    check("F21: preflight passes the policy tolerance to mot_continuity",
+          "max_gap_days=mot_gap_days" in src_text)
+    check("F21: preflight messages call the tolerance a project policy",
+          "a project policy, not a FedRAMP figure" in src_text)
 
     print(f"\n{'PASS' if _fail == 0 else 'FAIL'}: mot_continuity ({_fail} failures)")
     return 1 if _fail else 0

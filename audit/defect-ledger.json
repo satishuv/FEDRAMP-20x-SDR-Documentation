@@ -288,6 +288,19 @@
       "mutation": "MUT-F20: publish issues an unconditional PUT (no IfMatch/IfNoneMatch); expect RED",
       "mutation_verified": true,
       "status": "CLOSED"
+    },
+    {
+      "id": "AUD-F21",
+      "severity": "Medium",
+      "requirement": "FRC-CSX-MOT (Class C: status from persistent validation over at least the past 6 months)",
+      "component": "sdr.py:mot_continuity, cmd_preflight MOT block; mot_max_gap_days (new)",
+      "description": "The 45-day maximum-gap continuity check was hard-coded and presented in blocker text as if it were the FedRAMP requirement; FedRAMP states no cadence and no maximum gap. The nearby comment claimed an adaptive tolerance of max(4x median, 45 days) that the code never applied, so the documented behavior and the enforced behavior disagreed.",
+      "root_cause": "Repository policy embedded as a literal with no name, no override path, and a stale comment.",
+      "fix_commit": "this PR -- MOT_MAX_GAP_DAYS_DEFAULT (45) and MOT_MAX_GAP_DAYS_CEILING (90) are named policy; mot_max_gap_days(offering) honors an offering-profile `mot_max_gap_days` (integer 1..90, assessor-reviewable) and reports an invalid value, which preflight turns into a blocker instead of silently defaulting; every MOT message names the tolerance and its source as a project policy, not a FedRAMP figure; the false 4x-median comment is removed",
+      "regression_test": "validation/scripts/test_mot_continuity.py (F21 block: default, override, numeric string, above-ceiling invalid, zero invalid, non-integer invalid, tolerance drives the verdict, preflight wiring and wording)",
+      "mutation": "MUT-F21: mot_max_gap_days accepts any integer (ceiling check disabled); expect RED",
+      "mutation_verified": true,
+      "status": "CLOSED"
     }
   ]
 }

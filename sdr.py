@@ -424,7 +424,41 @@ def load_json(path):
         return None
 
 
-def mot_continuity(window_dates, today, max_gap_days=45, window_start=None):
+# FRC-CSX-MOT continuity tolerance (AUD-F21). PROJECT POLICY, NOT A FEDRAMP
+# NUMBER: the dataset says Class C MUST provide status "from persistent
+# validation over at least the past 6 months" (18 at D) and mandates no cadence
+# and no maximum gap. This repository turns "persistent" into a checkable bound:
+# no gap between consecutive observations, nor the leading or trailing gap, may
+# exceed MOT_MAX_GAP_DAYS_DEFAULT days. 45 accepts an honest weekly, biweekly or
+# monthly cadence with the occasional miss while rejecting a hollow two-point
+# series and a quarter-long silence. A provider may declare a different
+# tolerance in the offering profile (`mot_max_gap_days`), reviewable by the
+# assessor, bounded above by MOT_MAX_GAP_DAYS_CEILING because a gap of a quarter
+# or more inside a six-month window is not persistence under any reading.
+MOT_MAX_GAP_DAYS_DEFAULT = 45
+MOT_MAX_GAP_DAYS_CEILING = 90
+
+
+def mot_max_gap_days(offering):
+    """The continuity tolerance in force: the offering profile's
+    `mot_max_gap_days` when declared and valid (integer, 1..ceiling), else the
+    project default. Returns (days, source) where source is 'offering-profile'
+    or 'project-default'; an invalid declaration is reported as
+    ('invalid', ...) so preflight can block rather than silently default."""
+    raw = (offering or {}).get("mot_max_gap_days")
+    if raw is None or raw == "":
+        return MOT_MAX_GAP_DAYS_DEFAULT, "project-default"
+    try:
+        days = int(raw)
+    except (TypeError, ValueError):
+        return None, f"invalid ({raw!r} is not an integer)"
+    if not 1 <= days <= MOT_MAX_GAP_DAYS_CEILING:
+        return None, f"invalid ({days} is outside 1..{MOT_MAX_GAP_DAYS_CEILING})"
+    return days, "offering-profile"
+
+
+def mot_continuity(window_dates, today, max_gap_days=MOT_MAX_GAP_DAYS_DEFAULT,
+                   window_start=None):
     """Assess whether an in-window metric series shows PERSISTENT validation,
     not just sufficient age. FRC-CSX-MOT requires "status from persistent
     validation over at least the past 6 months"; the age check elsewhere only
@@ -435,9 +469,11 @@ def mot_continuity(window_dates, today, max_gap_days=45, window_start=None):
     (or any specific) cadence. It flags a series as non-persistent when any gap
     between consecutive observations, the LEADING gap (window start to the first
     in-window observation), OR the trailing gap (newest point to today) exceeds
-    max_gap_days. The 45-day default accepts an honest weekly, biweekly, or
+    max_gap_days. max_gap_days is REPOSITORY POLICY (see mot_max_gap_days), not
+    a FedRAMP figure: the default accepts an honest weekly, biweekly, or
     monthly (~30-day) cadence with the occasional miss, while rejecting the
-    hollow case (two points 6 months apart) and a quarter-long silence.
+    hollow case (two points 6 months apart) and a quarter-long silence. The
+    observed median cadence is REPORTED alongside, not used to set the bound.
 
     Finding F06: WITHOUT the leading-gap check, a series like [300 days ago,
     yesterday, today] evaluated against a 6-month window silently passed - the
@@ -1179,6 +1215,8 @@ def cmd_preflight(args):
         "evidence_freshness_policy_days", "expected_evidence_signer",
         # AUD-F17: offering may TIGHTEN the telemetry evaluated-coverage floor.
         "telemetry_min_coverage",
+        # AUD-F21: assessor-reviewable FRC-CSX-MOT continuity tolerance (days).
+        "mot_max_gap_days",
     }
     REQUIRED_FIELDS = [
         "organization_name", "offering_name", "offering_abbreviation",
@@ -1450,6 +1488,16 @@ def cmd_preflight(args):
         import datetime as _d2
         today = _utc_today()
         mot_cutoff = _months_before(today, mot_min_months)
+        # AUD-F21: the continuity tolerance in force. Project policy with a
+        # bounded, assessor-reviewable offering override; an invalid declared
+        # value is a blocker, never a silent fall-back to the default.
+        mot_gap_days, mot_gap_source = mot_max_gap_days(offering)
+        if mot_gap_days is None:
+            blockers.append(f"Class {cls.upper()}: offering profile mot_max_gap_days is "
+                            f"{mot_gap_source}; declare an integer 1..{MOT_MAX_GAP_DAYS_CEILING} "
+                            f"or remove it to use the project default "
+                            f"({MOT_MAX_GAP_DAYS_DEFAULT} days)")
+            mot_gap_days, mot_gap_source = MOT_MAX_GAP_DAYS_DEFAULT, "project-default"
         # FRC-CSX-MOT applies to ALL KSIs. Class C/D resolve all 46.
         mot_ksis = {k.get("ksi_id") for k in ksi_profile.get("indicators", [])}
         # Initial-certification exception: if the service has not operated with
@@ -1523,12 +1571,12 @@ def cmd_preflight(args):
                 if isinstance(entry, dict):
                     return entry.get("series") or []
                 return entry if isinstance(entry, list) else []
-            # "Current" = at least one observation within the last 45 days AND
-            # not in the future (a generous bound over a daily/weekly/monthly
-            # cadence). A six-month-old lone datapoint is NOT current; a
+            # "Current" = at least one observation within the continuity
+            # tolerance (project policy, see mot_max_gap_days) AND not in the
+            # future. A six-month-old lone datapoint is NOT current; a
             # future-dated datapoint is not a real observation and must not
             # satisfy the gate either.
-            recent_cutoff = (today - _dm.timedelta(days=45)).isoformat()
+            recent_cutoff = (today - _dm.timedelta(days=mot_gap_days)).isoformat()
             today_iso = today.isoformat()
 
             def _has_recent(entry):
@@ -1541,8 +1589,10 @@ def cmd_preflight(args):
             if missing_now:
                 blockers.append(f"Class {cls.upper()}: initial-certification MOT exception is "
                                 f"recorded, but {len(missing_now)} KSI(s) have no CURRENT "
-                                "validation datapoint (within the last 45 days); the mechanisms "
-                                "must be operational and producing data now (FRC-CSX-MOT)")
+                                f"validation datapoint (within the last {mot_gap_days} days, "
+                                f"the continuity tolerance from {mot_gap_source}, a project "
+                                "policy rather than a FedRAMP figure); the mechanisms must be "
+                                "operational and producing data now (FRC-CSX-MOT)")
         elif not history:
             blockers.append(f"Class {cls.upper()}: no KSI metric history found (FRC-CSX-MOT "
                             f"MUST: {'6' if cls == 'c' else '18'} months for ALL KSIs, OR a "
@@ -1577,14 +1627,16 @@ def cmd_preflight(args):
                 # observations WITHIN the window.
                 #
                 # The rule does NOT mandate a fixed cadence (e.g. daily), so we
-                # do not impose one: we derive the provider's OWN cadence from
-                # the observed median inter-observation gap and flag only gaps
-                # that exceed a generous tolerance (max(4x median, 45 days)).
+                # do not impose one. What we bound is the largest gap, against
+                # the continuity tolerance from mot_max_gap_days (REPOSITORY
+                # POLICY, default 45 days, offering-declared override reviewable
+                # by the assessor; AUD-F21). The observed median cadence is
+                # reported in the blocker for context, not used as the bound.
                 # This catches a hollow two-point series while accepting an
                 # honest weekly/monthly cadence with occasional misses.
                 win = sorted(d for d in dates if d >= mot_cutoff)
                 gappy_flag, largest, median, trailing_gap = mot_continuity(
-                    win, today, window_start=mot_cutoff)
+                    win, today, max_gap_days=mot_gap_days, window_start=mot_cutoff)
                 if gappy_flag:
                     gappy.append((kid, largest, median, trailing_gap))
             if missing:
@@ -1606,8 +1658,10 @@ def cmd_preflight(args):
                     f"{'6' if cls == 'c' else '18'} months but the series is not "
                     f"CONTINUOUS across the window - FRC-CSX-MOT requires status "
                     f"from persistent validation, not one old datapoint plus a "
-                    f"recent one ({detail}). Fill the gaps or record an "
-                    f"initial-certification exception.")
+                    f"recent one ({detail}; tolerance {mot_gap_days}d from "
+                    f"{mot_gap_source}, a project policy, not a FedRAMP figure). "
+                    f"Fill the gaps, declare a reviewed mot_max_gap_days in the "
+                    f"offering profile, or record an initial-certification exception.")
 
             # Summary-vs-history correlation: the SDR states per-KSI narrative
             # metric summaries (historical_metrics.last_30_days / up_to_one_year)

@@ -59,6 +59,43 @@ keyless signing per your organization's policy). Verify with
 this repository. A GitHub Release created from a signed tag carries the
 signature badge.
 
+## The release gate is one gate
+
+Release-ready has exactly one definition, `audit/release_gate.py`, and every
+path that can produce a release executes it:
+
+- GitHub Actions runs its sections as the `audit-gate` and `security-scan` jobs
+  beside `validate`, and a `release-gate` job that depends on all three (and
+  runs even when one failed) is the single required status check on `main`.
+- The AWS CodeBuild `RELEASE_MODE=true` build runs `python audit/release_gate.py
+  audit security` after the full validate and reproducibility gates.
+- `python sdr.py release` runs the same sections between validation and the
+  reproducibility check, so a local release cannot pass while CI would be red.
+
+The audit section is the requirements-differential oracle, the mutation-runner
+self-test, the mutation runner (a surviving OR skipped mutation fails, and the
+defect ledger must reconcile with the runner), and a tree-clean check. The
+security section is Bandit at medium-or-higher severity and confidence.
+
+## Publishing a release
+
+Push the signed tag. `.github/workflows/release.yml` then:
+
+1. refuses a lightweight or unsigned tag, and a tag whose name is not the
+   committed manifest's `release_tag` (bump `FRAMEWORK_VERSION` in
+   `validation/scripts/build_release_manifest.py`, rebuild and commit first);
+2. re-runs the whole validate workflow on the tagged commit;
+3. writes the release attestation and assembles the active-class bundle from
+   exactly the fingerprinted set, and attaches the manifest, the attestation,
+   the SBOM and the bundle to the GitHub Release (creating it if needed).
+
+A release without those assets, or from a tag that skipped the gate, is not a
+release of this framework. `v1.4.0-cr26-2026.09.13.02` predates this workflow:
+it was published by hand while its audit-gate was red, from an unsigned tag,
+with no assets, and its notes overstated the mutation result. It is superseded
+by the next version and deliberately left in place (never moved or force-pushed);
+its release notes carry a correction.
+
 ## Software bill of materials (SBOM)
 
 Every build emits a deterministic CycloneDX SBOM at `artifacts/sbom.cdx.json`,

@@ -127,8 +127,18 @@ Filled in, at Class C, for a hypothetical offering. This is a synthetic example,
   ],
   "assessment": ["TBD: Independent assessment has not been performed."],
   "tests": [
-    "Test 1: The daily wildcard-policy scan across all in-scope production accounts. Pass requires zero findings. Runs daily at 0600 UTC.",
-    "Test 2: The weekly unused-permission comparison. Pass requires no grant unused for more than 90 days without an open remediation ticket. Runs weekly."
+    {
+      "method_id": "KSI-IAM-ELP:verify:config:iam-policy-no-statements-with-admin-access",
+      "method": "Daily wildcard-policy scan across all in-scope production accounts (AWS Config managed rule). Pass requires zero findings. Runs daily at 0600 UTC.",
+      "automated": true,
+      "cadence": "daily"
+    },
+    {
+      "method_id": "posture:accessanalyzer:active_findings",
+      "method": "Weekly unused-permission comparison via IAM Access Analyzer. Pass requires no active unused-access finding older than 90 days without an open remediation ticket.",
+      "automated": true,
+      "cadence": "weekly"
+    }
   ],
   "evidence": [
     {
@@ -162,7 +172,7 @@ Filled in, at Class C, for a hypothetical offering. This is a synthetic example,
 }
 ```
 
-Note what makes this defensible. The pass condition is a number a machine can evaluate. The failure response names who is paged and how fast. The known limitation admits an exclusion and says how it is compensated. There are two tests because Class C requires two. And `assessment` is still `TBD`, because no assessor has looked, and claiming otherwise would be the one unrecoverable mistake in the whole file.
+Note what makes this defensible. The pass condition is a number a machine can evaluate. The failure response names who is paged and how fast. The known limitation admits an exclusion and says how it is compensated. The two tests are structured records, not sentences: FRC-CSX-VVK at Class C requires at least two AUTOMATED verification methods, and the validator counts only entries with `"automated": true` and a distinct `method_id`. Two plain strings count as zero. The `method_id` is not decorative either: package-preflight binds each declared method to the per-method metric series in `metric-history.json` that carries the same id, so use the id the collectors produce (a registry `check_id` for an AWS Config rule, `posture:<service>:<check>` for a collector posture check, exactly as `prefill_from_facts.py` writes them). A method with an id nothing measures is declared but unbound and does not satisfy the gate. And `assessment` is still `TBD`, because no assessor has looked, and claiming otherwise would be the one unrecoverable mistake in the whole file.
 
 ## After each pass
 
