@@ -14,8 +14,21 @@ left clean.
 
 Mutations that require code only present on an unmerged branch are SKIPPED with a
 notice (run them on that branch).
+
+Bytecode cache. Python validates a cached `__pycache__/*.pyc` by source SIZE and
+source mtime in WHOLE SECONDS only. A mutation whose replacement has the same
+length as the text it replaces (MUT-F10 is exactly 50 -> 50 characters) leaves
+the size unchanged, so if an earlier step compiled the ORIGINAL module and the
+mutated file lands in the same wall-clock second, the interpreter loads the
+original bytecode and the regression "passes" against unmutated code. That is a
+false SURVIVED that has nothing to do with the test. CI hit it on main twice
+(validate-sdr run 35993242564). The runner therefore purges every __pycache__
+before each mutated test run and forbids pyc writes during it
+(PYTHONDONTWRITEBYTECODE), so a test can only ever exercise the source on disk.
+`-B` alone is NOT enough: it stops writing pycs but still READS a stale one.
 """
 import os
+import shutil
 import subprocess
 import sys
 
@@ -32,9 +45,42 @@ def _write(p, s):
         f.write(s)
 
 
-def _restore(rel):
+def _read_bytes(p):
+    with open(p, "rb") as f:
+        return f.read()
+
+
+def _restore(rel, original_bytes=None):
+    """Put the committed source back. When the caller saved the original bytes,
+    write them back FIRST: `git checkout --` trusts its stat cache, and a
+    size-preserving mutation that lands in the original's mtime second can look
+    unchanged to it and be left in place. Then verify, loudly."""
+    path = os.path.join(BASE, rel)
+    if original_bytes is not None:
+        with open(path, "wb") as f:
+            f.write(original_bytes)
     subprocess.run(["git", "checkout", "--", rel], cwd=BASE,
                    capture_output=True, text=True)
+    if original_bytes is not None and _read_bytes(path) != original_bytes:
+        raise RuntimeError(f"restore of {rel} failed: working tree still differs "
+                           "from the saved original")
+
+
+def _purge_bytecode(root=BASE):
+    """Remove every __pycache__ under root so no cached bytecode can stand in
+    for the source on disk. .git is skipped; nothing there is ours to touch."""
+    for dirpath, dirnames, _files in os.walk(root):
+        if ".git" in dirnames:
+            dirnames.remove(".git")
+        if "__pycache__" in dirnames:
+            shutil.rmtree(os.path.join(dirpath, "__pycache__"), ignore_errors=True)
+            dirnames.remove("__pycache__")
+
+
+def _no_bytecode_env():
+    env = dict(os.environ)
+    env["PYTHONDONTWRITEBYTECODE"] = "1"
+    return env
 
 
 MUTATIONS = [
@@ -96,27 +142,36 @@ MUTATIONS = [
 ]
 
 
+def run_one(mid, rel, find, repl, test):
+    """Apply one mutation, run its regression test against the source on disk,
+    restore. Returns 'killed', 'survived' or 'skipped'."""
+    path = os.path.join(BASE, rel)
+    original_bytes = _read_bytes(path)
+    src = _read(path)
+    if find not in src:
+        print(f"SKIP {mid}: target code not present on this commit")
+        return "skipped"
+    _write(path, src.replace(find, repl, 1))
+    try:
+        # No cached bytecode may answer for the mutated source (see module doc).
+        _purge_bytecode()
+        r = subprocess.run([sys.executable, test], cwd=BASE, env=_no_bytecode_env(),
+                           capture_output=True, text=True, timeout=1800)
+    finally:
+        _restore(rel, original_bytes)
+        _purge_bytecode()
+    if r.returncode != 0:
+        print(f"KILLED {mid}: mutation detected (test red, rc={r.returncode})")
+        return "killed"
+    print(f"SURVIVED {mid}: NOT DETECTED -- test-coverage DEFECT")
+    return "survived"
+
+
 def run():
     survived, killed, skipped = [], [], []
     for mid, rel, find, repl, test in MUTATIONS:
-        path = os.path.join(BASE, rel)
-        src = _read(path)
-        if find not in src:
-            skipped.append(mid)
-            print(f"SKIP {mid}: target code not present on this commit")
-            continue
-        _write(path, src.replace(find, repl, 1))
-        try:
-            r = subprocess.run([sys.executable, test], cwd=BASE,
-                               capture_output=True, text=True, timeout=1800)
-        finally:
-            _restore(rel)
-        if r.returncode != 0:
-            killed.append(mid)
-            print(f"KILLED {mid}: mutation detected (test red, rc={r.returncode})")
-        else:
-            survived.append(mid)
-            print(f"SURVIVED {mid}: NOT DETECTED -- test-coverage DEFECT")
+        outcome = run_one(mid, rel, find, repl, test)
+        {"killed": killed, "survived": survived, "skipped": skipped}[outcome].append(mid)
     print("\n--- mutation summary ---")
     print(f"killed={len(killed)} survived={len(survived)} skipped={len(skipped)}")
     if survived:
