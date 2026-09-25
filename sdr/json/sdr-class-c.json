@@ -4964,10 +4964,17 @@
     "TBD: Independent assessment has not been performed."
    ],
    "ksiTests": [
-    "Example test 1: describe-trails confirms multi-region and log file validation are enabled and the trail is logging (every 6 hours).",
-    "Example test 2: Config aggregator query confirms recorder status is recording in 100 percent of in-scope accounts (daily)."
+    "Example (reference architecture, replace with your real implementation): AWS Config managed rule multi-region-cloudtrail-enabled confirms an organization trail records management events in every region; pass requires COMPLIANT in every in-scope account. (automated, continuous (AWS Config evaluation), collected daily)",
+    "Example (reference architecture, replace with your real implementation): AWS Config managed rule cloud-trail-log-file-validation-enabled confirms trail log-file integrity validation is on; pass requires COMPLIANT for every trail. (automated, continuous (AWS Config evaluation), collected daily)"
    ],
-   "ksiEvidence": [],
+   "ksiEvidence": [
+    {
+     "evidenceType": "Configuration",
+     "evidenceDescription": "Example (reference architecture, replace with your real evidence): AWS Config compliance results for the CloudTrail rules above, exported daily by the read-only collector to the evidence store.",
+     "evidenceText": "multi-region-cloudtrail-enabled and cloud-trail-log-file-validation-enabled compliance, per account and region.",
+     "evidenceLocation": "s3://your-evidence-bucket/facts/ (example location, replace)"
+    }
+   ],
    "providerExtensions": {
     "ksiName": "Logging Changes",
     "family": "CMT",
@@ -5461,10 +5468,17 @@
     "TBD: Independent assessment has not been performed."
    ],
    "ksiTests": [
-    "Example test 1: config rule iam-user-no-passwords-or-keys returns COMPLIANT for all accounts (daily).",
-    "Example test 2: CloudTrail Lake query for console login events without MFA returns zero rows (daily)."
+    "Example (reference architecture, replace with your real implementation): AWS Config managed rule mfa-enabled-for-iam-console-access confirms no console password exists without MFA; pass requires COMPLIANT in every in-scope account. (automated, continuous (AWS Config evaluation), collected daily)",
+    "Example (reference architecture, replace with your real implementation): AWS Config managed rule root-account-mfa-enabled confirms the root user is MFA-protected; pass requires COMPLIANT in every in-scope account. (automated, continuous (AWS Config evaluation), collected daily)"
    ],
-   "ksiEvidence": [],
+   "ksiEvidence": [
+    {
+     "evidenceType": "Configuration",
+     "evidenceDescription": "Example (reference architecture, replace with your real evidence): AWS Config compliance results for the IAM MFA rules above, exported daily by the read-only collector to the evidence store.",
+     "evidenceText": "mfa-enabled-for-iam-console-access and root-account-mfa-enabled compliance, per account.",
+     "evidenceLocation": "s3://your-evidence-bucket/facts/ (example location, replace)"
+    }
+   ],
    "providerExtensions": {
     "ksiName": "Adopting Passwordless Methods",
     "family": "IAM",
@@ -6566,10 +6580,17 @@
     "TBD: Independent assessment has not been performed."
    ],
    "ksiTests": [
-    "Example test 1: Config rules encrypted-volumes and rds-storage-encrypted are COMPLIANT for all resources (continuous).",
-    "Example test 2: EBS default encryption and S3 Block Public Access report enabled for every in-scope account (daily)."
+    "Example (reference architecture, replace with your real implementation): AWS Config managed rule encrypted-volumes confirms every attached EBS volume is encrypted; pass requires COMPLIANT for all resources. (automated, continuous (AWS Config evaluation), collected daily)",
+    "Example (reference architecture, replace with your real implementation): AWS Config managed rule s3-bucket-server-side-encryption-enabled confirms default encryption on every bucket; pass requires COMPLIANT for all buckets. (automated, continuous (AWS Config evaluation), collected daily)"
    ],
-   "ksiEvidence": [],
+   "ksiEvidence": [
+    {
+     "evidenceType": "Configuration",
+     "evidenceDescription": "Example (reference architecture, replace with your real evidence): AWS Config compliance results for the encryption rules above, exported daily by the read-only collector to the evidence store.",
+     "evidenceText": "encrypted-volumes and s3-bucket-server-side-encryption-enabled compliance, per account and region.",
+     "evidenceLocation": "s3://your-evidence-bucket/facts/ (example location, replace)"
+    }
+   ],
    "providerExtensions": {
     "ksiName": "Securing Information",
     "family": "SVC",

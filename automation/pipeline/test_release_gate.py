@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """Assert the publication pipeline hard-gates submission readiness.
 
 The publish path is Validate -> Collect -> Human Approval -> Publish. The
@@ -311,8 +311,9 @@ def main():
     rg = importlib.util.module_from_spec(spec_rg); spec_rg.loader.exec_module(rg)
     audit_steps = [name for name, _argv in rg.SECTIONS.get("audit", [])]
     security_steps = [name for name, _argv in rg.SECTIONS.get("security", [])]
-    for required in ("requirements-oracle", "mutation-runner-selftest",
-                     "mutation-runner", "tree-clean-after-mutation"):
+    for required in ("requirements-oracle-selftest", "requirements-oracle",
+                     "mutation-runner-selftest", "mutation-runner",
+                     "tree-clean-after-mutation"):
         check(f"release gate audit section includes {required}",
               required in audit_steps)
     check("release gate security section includes bandit",

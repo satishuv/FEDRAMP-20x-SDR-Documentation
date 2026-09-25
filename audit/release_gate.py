@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """The ONE release gate (audit finding AUD-F12).
 
 Before this module existed there were three different definitions of
@@ -43,6 +43,8 @@ BANDIT_REPORT = "bandit-report.txt"  # gitignored; CI uploads it as an artifact
 # Ordered (step name, argv). argv is relative to the repository root.
 SECTIONS = {
     "audit": [
+        ("requirements-oracle-selftest",
+         [sys.executable, "audit/test_requirements_oracle.py"]),
         ("requirements-oracle",
          [sys.executable, "audit/requirements_oracle.py"]),
         ("mutation-runner-selftest",

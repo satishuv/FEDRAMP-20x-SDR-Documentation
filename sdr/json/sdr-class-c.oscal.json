@@ -5941,8 +5941,113 @@
        }
       }
      }
+    ],
+    "observations": [
+     {
+      "uuid": "12f3f6f2-43ac-56e9-8b82-6be2a312d6a4",
+      "title": "KSI-CMT-LMC observation 1",
+      "description": "Example (reference architecture, replace with your real evidence): AWS Config compliance results for the CloudTrail rules above, exported daily by the read-only collector to the evidence store.",
+      "methods": [
+       "EXAMINE"
+      ],
+      "relevant-evidence": [
+       {
+        "href": "#d76ef518-8850-5885-aeb8-b1110537587f",
+        "description": "Example (reference architecture, replace with your real evidence): AWS Config compliance results for the CloudTrail rules above, exported daily by the read-only collector to the evidence store."
+       }
+      ]
+     },
+     {
+      "uuid": "14e11a1c-b075-598a-849c-3e18513c2be6",
+      "title": "KSI-IAM-APM observation 1",
+      "description": "Example (reference architecture, replace with your real evidence): AWS Config compliance results for the IAM MFA rules above, exported daily by the read-only collector to the evidence store.",
+      "methods": [
+       "EXAMINE"
+      ],
+      "relevant-evidence": [
+       {
+        "href": "#267d6e67-d8ef-5146-9de7-ddb42cd83716",
+        "description": "Example (reference architecture, replace with your real evidence): AWS Config compliance results for the IAM MFA rules above, exported daily by the read-only collector to the evidence store."
+       }
+      ]
+     },
+     {
+      "uuid": "e91e3990-d302-56d5-8bc8-40fc76e38bf2",
+      "title": "KSI-SVC-SIN observation 1",
+      "description": "Example (reference architecture, replace with your real evidence): AWS Config compliance results for the encryption rules above, exported daily by the read-only collector to the evidence store.",
+      "methods": [
+       "EXAMINE"
+      ],
+      "relevant-evidence": [
+       {
+        "href": "#13a54c77-4b7f-589b-a3dd-5f29dfd3666a",
+        "description": "Example (reference architecture, replace with your real evidence): AWS Config compliance results for the encryption rules above, exported daily by the read-only collector to the evidence store."
+       }
+      ]
+     }
     ]
    }
-  ]
+  ],
+  "back-matter": {
+   "resources": [
+    {
+     "uuid": "d76ef518-8850-5885-aeb8-b1110537587f",
+     "title": "KSI-CMT-LMC evidence 1",
+     "description": "Example (reference architecture, replace with your real evidence): AWS Config compliance results for the CloudTrail rules above, exported daily by the read-only collector to the evidence store.",
+     "props": [
+      {
+       "name": "type",
+       "value": "configuration"
+      }
+     ],
+     "rlinks": [
+      {
+       "href": "s3://your-evidence-bucket/facts/ (example location, replace)"
+      }
+     ],
+     "citation": {
+      "text": "multi-region-cloudtrail-enabled and cloud-trail-log-file-validation-enabled compliance, per account and region."
+     }
+    },
+    {
+     "uuid": "267d6e67-d8ef-5146-9de7-ddb42cd83716",
+     "title": "KSI-IAM-APM evidence 1",
+     "description": "Example (reference architecture, replace with your real evidence): AWS Config compliance results for the IAM MFA rules above, exported daily by the read-only collector to the evidence store.",
+     "props": [
+      {
+       "name": "type",
+       "value": "configuration"
+      }
+     ],
+     "rlinks": [
+      {
+       "href": "s3://your-evidence-bucket/facts/ (example location, replace)"
+      }
+     ],
+     "citation": {
+      "text": "mfa-enabled-for-iam-console-access and root-account-mfa-enabled compliance, per account."
+     }
+    },
+    {
+     "uuid": "13a54c77-4b7f-589b-a3dd-5f29dfd3666a",
+     "title": "KSI-SVC-SIN evidence 1",
+     "description": "Example (reference architecture, replace with your real evidence): AWS Config compliance results for the encryption rules above, exported daily by the read-only collector to the evidence store.",
+     "props": [
+      {
+       "name": "type",
+       "value": "configuration"
+      }
+     ],
+     "rlinks": [
+      {
+       "href": "s3://your-evidence-bucket/facts/ (example location, replace)"
+      }
+     ],
+     "citation": {
+      "text": "encrypted-volumes and s3-bucket-server-side-encryption-enabled compliance, per account and region."
+     }
+    }
+   ]
+  }
  }
 }
