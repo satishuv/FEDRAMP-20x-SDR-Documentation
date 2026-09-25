@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """Class-matrix validation (AUD-F23) and validator report contract (AUD-F24).
 
 The repository ships Class A, B and C artifacts but the authoritative validator
@@ -43,7 +43,12 @@ def main():
     canon = os.path.join(REPORTS, "validation-report.json")
     canon_before = open(canon, "rb").read() if os.path.exists(canon) else None
 
+    import shutil
     for cls in inactive:
+        # Start from nothing: a stale matrix report from an earlier run must not
+        # be able to satisfy the checks below (that is how a validator that
+        # ignored the override once slipped past this test).
+        shutil.rmtree(os.path.join(REPORTS, "matrix", f"class-{cls}"), ignore_errors=True)
         env = dict(os.environ, SDR_VALIDATE_CLASS=cls)
         r = subprocess.run([sys.executable, os.path.join(HERE, "validate_sdr.py")],
                            cwd=BASE, env=env, capture_output=True, text=True, timeout=600)

@@ -257,6 +257,9 @@ def main():
     # describe the active class) are untouched.
     cls = (os.environ.get("SDR_VALIDATE_CLASS") or active_cls).lower()
     reports_dir = REPORTS if cls == active_cls else os.path.join(REPORTS, "matrix", f"class-{cls}")
+    # Tests may redirect the reports entirely (SDR_REPORTS_DIR) so a test-driven
+    # run never rewrites the committed canonical reports.
+    reports_dir = os.environ.get("SDR_REPORTS_DIR") or reports_dir
     if cls == "d":
         # Match build_sdr.py and build_docx.py: Class D is FedRAMP pending
         # (20x Program path coming in 2027, specifics set during the Phase 4

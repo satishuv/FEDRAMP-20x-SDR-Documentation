@@ -60,18 +60,23 @@ def main():
 
     # Regenerate the validator's report right here so this parity check reads
     # the CURRENT validator's output, not whatever an earlier (possibly
-    # adversarial, tampering) test left on disk (AUD-F24).
+    # adversarial, tampering) test left on disk (AUD-F24). Written to a temp
+    # directory so the committed canonical reports are never rewritten by a test.
     import subprocess
+    import tempfile
+    tmp_reports = tempfile.mkdtemp(prefix="sdr-parity-")
     subprocess.run([sys.executable, os.path.join(os.path.dirname(os.path.abspath(__file__)), "validate_sdr.py")],
-                   cwd=BASE, capture_output=True, text=True, timeout=600)
-    check("validator wrote ksi-test-results.json", os.path.exists(KSI_RESULTS))
-    if not os.path.exists(KSI_RESULTS):
+                   cwd=BASE, env=dict(os.environ, SDR_REPORTS_DIR=tmp_reports),
+                   capture_output=True, text=True, timeout=600)
+    fresh_results = os.path.join(tmp_reports, "ksi-test-results.json")
+    check("validator wrote ksi-test-results.json", os.path.exists(fresh_results))
+    if not os.path.exists(fresh_results):
         print(f"\nFAIL: assurance graph method count ({_fail} failures)")
         return 1
 
     graph = _load(GRAPH)
     coverage = _load(COVERAGE)
-    ksi_results = _load(KSI_RESULTS)
+    ksi_results = _load(fresh_results)
 
     ksi_nodes = [n for n in graph.get("nodes", []) if n.get("node_kind") == "ksi"]
 
