@@ -1,4 +1,4 @@
-# Offline tests for the metric-history appender. Exercises append_run directly
+﻿# Offline tests for the metric-history appender. Exercises append_run directly
 # with synthetic registry/facts, no files or account. Run:
 #   python automation/metrics/test_append_metrics.py
 
@@ -12,7 +12,7 @@ import append_metrics as am  # noqa: E402
 REGISTRY = {"meta": {"dataset_version": "test"}, "ksis": {
     "KSI-A": {"services": ["AWS Config"], "metric_service_keys": [],
               "checks": [{"type": "config_managed_rule", "target": "r1"}]},
-    "KSI-B": {"services": ["Amazon GuardDuty"], "metric_service_keys": ["guardduty"],
+    "KSI-B": {"services": ["Amazon GuardDuty"], "metric_service_keys": ["guardduty:detector"],
               "checks": []},
 }}
 
@@ -97,8 +97,12 @@ def test_posture_datapoint_for_guardduty_ksi():
 # count. OBSERVED must score ONLY through a structured measured/total ratio; a
 # bare OBSERVED with no ratio must contribute nothing to passing OR total.
 
+_CHECK_FOR = {"kms": "key_rotation", "securityhub": "enabled", "guardduty": "detector",
+              "cloudformation": "drift", "s3": "encryption"}
+
+
 def _posture(service, status, measured=None, total=None):
-    pf = {"service": service, "check": "c", "status": status}
+    pf = {"service": service, "check": _CHECK_FOR.get(service, "c"), "status": status}
     if measured is not None:
         pf["measured"] = measured
     if total is not None:
@@ -108,13 +112,13 @@ def _posture(service, status, measured=None, total=None):
 
 def test_observed_zero_ratio_scores_zero_not_pass():
     # 0 of 50 keys rotating, collected as OBSERVED, must be 0/50, never a pass.
-    kms_ksi = {"metric_service_keys": ["kms"], "checks": []}
+    kms_ksi = {"metric_service_keys": ["kms:key_rotation"], "checks": []}
     dp = am.datapoint_for_ksi(kms_ksi, {}, _posture("kms", "OBSERVED", 0, 50))
     assert dp == {"passing": 0, "total": 50}, dp
 
 
 def test_observed_full_ratio_scores_full():
-    kms_ksi = {"metric_service_keys": ["kms"], "checks": []}
+    kms_ksi = {"metric_service_keys": ["kms:key_rotation"], "checks": []}
     dp = am.datapoint_for_ksi(kms_ksi, {}, _posture("kms", "OBSERVED", 50, 50))
     assert dp == {"passing": 50, "total": 50}, dp
 
@@ -122,7 +126,7 @@ def test_observed_full_ratio_scores_full():
 def test_bare_observed_without_ratio_is_not_a_datapoint():
     # A count-only OBSERVED (e.g. "25 failed findings") carries no evaluated
     # outcome: it must not become 1/1 passing and must not inflate the total.
-    kms_ksi = {"metric_service_keys": ["kms"], "checks": []}
+    kms_ksi = {"metric_service_keys": ["kms:key_rotation"], "checks": []}
     dp = am.datapoint_for_ksi(kms_ksi, {}, _posture("kms", "OBSERVED"))
     assert dp is None, dp
 
@@ -160,7 +164,7 @@ def test_no_resource_states_skip_not_fail():
 
 def test_negative_posture_enters_datapoint_as_failing():
     # A routed collector reporting NOT_ENABLED must count as 0/1, not disappear.
-    ksi = {"metric_service_keys": ["securityhub"], "checks": []}
+    ksi = {"metric_service_keys": ["securityhub:enabled"], "checks": []}
     dp = am.datapoint_for_ksi(ksi, {}, _posture("securityhub", "NOT_ENABLED"))
     assert dp == {"passing": 0, "total": 1}, dp
 
@@ -169,7 +173,7 @@ def test_negative_does_not_get_masked_by_a_positive_sibling():
     # F-04 core: one source ENABLED (1/1) and another NOT_ENABLED (0/1) on the
     # same KSI must aggregate to 1/2, NOT 1/1 (the old drop-the-negative bug
     # made a known failure invisible so the KSI read fully passing).
-    ksi = {"metric_service_keys": ["guardduty", "securityhub"], "checks": []}
+    ksi = {"metric_service_keys": ["guardduty:detector", "securityhub:enabled"], "checks": []}
     posture = {
         "guardduty": [{"service": "guardduty", "check": "detector", "status": "ENABLED"}],
         "securityhub": [{"service": "securityhub", "check": "enabled", "status": "NOT_ENABLED"}],
@@ -198,9 +202,9 @@ def test_no_allowlist_means_no_posture_metric():
 
 def test_posture_routes_only_to_allowlisted_service():
     # A KSI allowlisted for cloudformation must NOT pick up unrelated s3 posture.
-    eis_ksi = {"metric_service_keys": ["cloudformation"], "checks": []}
+    eis_ksi = {"metric_service_keys": ["cloudformation:drift"], "checks": []}
     posture = {
-        "cloudformation": [{"service": "cloudformation", "status": "OBSERVED",
+        "cloudformation": [{"service": "cloudformation", "check": "drift", "status": "OBSERVED",
                             "measured": 8, "total": 10}],
         "s3": [{"service": "s3", "status": "OBSERVED", "measured": 0, "total": 100}],
     }
@@ -432,7 +436,7 @@ def test_f03_matching_check_scores():
 
 
 def test_f03_per_metric_keeps_per_check_identity():
-    ksi = {"metric_service_keys": ["s3"], "checks": []}
+    ksi = {"metric_service_keys": ["s3:encryption", "s3:public_access"], "checks": []}
     pm = am.per_metric_datapoints_for_ksi(ksi, {}, {"s3": [
         {"service": "s3", "check": "encryption", "status": "OBSERVED",
          "measured": 1, "total": 1},
@@ -441,6 +445,165 @@ def test_f03_per_metric_keeps_per_check_identity():
     assert "posture:s3:encryption" in pm and "posture:s3:public_access" in pm, pm
     assert pm["posture:s3:encryption"]["passing"] == 1
     assert pm["posture:s3:public_access"]["passing"] == 0
+
+
+# --- AUD-F16: never route a whole service ------------------------------------
+
+def test_f16_bare_service_key_is_refused():
+    ksi = {"metric_service_keys": ["accessanalyzer"], "checks": []}
+    raised = False
+    try:
+        am.datapoint_for_ksi(ksi, {}, {"accessanalyzer": [
+            {"service": "accessanalyzer", "check": "analyzer", "status": "PRESENT"}]})
+    except ValueError:
+        raised = True
+    assert raised, "a bare service key must be refused, not widened to every check"
+
+
+def test_f16_analyzer_presence_cannot_lift_elp_while_findings_are_open():
+    # The audit case: analyzer PRESENT (1/1) must not improve least privilege
+    # when active findings say it is failing. Routed by the real check only.
+    ksi = {"metric_service_keys": ["accessanalyzer:active_findings"], "checks": []}
+    posture = {"accessanalyzer": [
+        {"service": "accessanalyzer", "check": "analyzer", "status": "PRESENT"},
+        {"service": "accessanalyzer", "check": "active_findings", "status": "OBSERVED",
+         "measured": 0, "total": 1}]}
+    dp = am.datapoint_for_ksi(ksi, {}, posture)
+    assert dp["passing"] == 0 and dp["total"] == 1, dp
+
+
+def test_f16_real_registry_has_no_bare_service_routes():
+    import json as _j
+    reg = _j.load(open(os.path.join(am.BASE, "automation", "collectors", "registry.json"),
+                       encoding="utf-8"))
+    from method_ids import bare_service_keys
+    assert bare_service_keys(reg) == [], bare_service_keys(reg)
+
+
+# --- AUD-F15 / AUD-F17: partial enumeration and low coverage never score ----
+
+def test_f15_partial_flag_never_scores_even_with_a_ratio():
+    pf = {"service": "kms", "check": "key_rotation", "status": "OBSERVED",
+          "measured": 10, "total": 10, "scope_total": 10, "partial": True}
+    assert am._posture_score(pf) is None
+    pf2 = {"service": "kms", "check": "key_rotation", "status": "OBSERVED_PARTIAL",
+           "measured": 10, "total": 10}
+    assert am._posture_score(pf2) is None
+
+
+def test_f17_low_evaluated_coverage_is_not_a_confident_pass():
+    # 10 readable of 50 in scope, all 10 pass: NOT 100%. Withheld, and the gap
+    # is recorded on the datapoint so it is visible rather than silent.
+    ksi = {"metric_service_keys": ["kms:key_rotation"], "checks": []}
+    pf = {"service": "kms", "check": "key_rotation", "status": "OBSERVED",
+          "measured": 10, "total": 10, "evaluated_total": 10,
+          "scope_total": 50, "unknown_total": 40}
+    assert am._posture_score(pf) is None
+    dp = am.datapoint_for_ksi(ksi, {}, {"kms": [pf]})
+    assert dp is None, dp  # nothing else scored -> no datapoint, not a pass
+    # With a second, fully covered metric the KSI still gets a point, and the
+    # withheld one is named in coverage_gaps.
+    ksi2 = {"metric_service_keys": ["kms:key_rotation", "s3:encryption"], "checks": []}
+    ok = {"service": "s3", "check": "encryption", "status": "OBSERVED",
+          "measured": 3, "total": 4, "evaluated_total": 4, "scope_total": 4,
+          "unknown_total": 0}
+    dp2 = am.datapoint_for_ksi(ksi2, {}, {"kms": [pf], "s3": [ok]})
+    assert dp2["passing"] == 3 and dp2["total"] == 4, dp2
+    assert dp2["scope_total"] == 4 and dp2["evaluated_total"] == 4, dp2
+    assert any("posture:kms:key_rotation" in g and "coverage 10/50" in g
+               for g in dp2["coverage_gaps"]), dp2
+
+
+def test_f17_one_readable_bucket_of_100_does_not_score():
+    pf = {"service": "s3", "check": "encryption", "status": "OBSERVED",
+          "measured": 1, "total": 1, "evaluated_total": 1,
+          "scope_total": 100, "unknown_total": 99}
+    assert am._posture_score(pf) is None
+
+
+def test_f17_full_coverage_scores_and_carries_coverage():
+    ksi = {"metric_service_keys": ["kms:key_rotation"], "checks": []}
+    pf = {"service": "kms", "check": "key_rotation", "status": "OBSERVED",
+          "measured": 48, "total": 50, "evaluated_total": 50,
+          "scope_total": 50, "unknown_total": 0}
+    dp = am.datapoint_for_ksi(ksi, {}, {"kms": [pf]})
+    assert dp["passing"] == 48 and dp["total"] == 50
+    assert dp["scope_total"] == 50 and dp["unknown_total"] == 0
+    assert "coverage_gaps" not in dp
+
+
+def test_f17_no_scope_info_still_scores_legacy_facts():
+    # Older facts / binary checks carry no scope; they keep scoring as before.
+    pf = {"service": "kms", "check": "key_rotation", "status": "OBSERVED",
+          "measured": 2, "total": 2}
+    assert am._posture_score(pf) == (2, 2)
+
+
+# --- AUD-F19: same-day runs are never destructive ---------------------------
+
+def _reg_one(kid="KSI-X"):
+    return {"ksis": {kid: {"metric_service_keys": ["kms:key_rotation"], "checks": []}},
+            "meta": {"dataset_version": "t"}}
+
+
+def _kms(measured, total, at):
+    return {"kms": [{"service": "kms", "check": "key_rotation", "status": "OBSERVED",
+                     "measured": measured, "total": total, "collected_at": at}]}
+
+
+def test_f19_morning_failure_survives_evening_pass():
+    today = date(2026, 9, 25)
+    h = {}
+    am.append_run(h, _reg_one(), {}, _kms(0, 10, "2026-09-25T06:00:00+00:00"), today,
+                  observed_at="2026-09-25T06:00:00+00:00")
+    am.append_run(h, _reg_one(), {}, _kms(10, 10, "2026-09-25T18:00:00+00:00"), today,
+                  observed_at="2026-09-25T18:00:00+00:00")
+    e = h["ksis"]["KSI-X"]
+    assert len(e["series"]) == 1, e["series"]
+    pt = e["series"][0]
+    # Conservative rollup: the day reads as the WORST run.
+    assert pt["passing"] == 0 and pt["total"] == 10, pt
+    assert pt["runs"] == 2 and pt["min_fraction"] == 0.0 and pt["max_fraction"] == 1.0, pt
+    # Both runs are preserved verbatim as immutable observations.
+    assert [o["observed_at"] for o in e["observations"]] == [
+        "2026-09-25T06:00:00+00:00", "2026-09-25T18:00:00+00:00"]
+    assert [o["passing"] for o in e["observations"]] == [0, 10]
+    # Per-metric series rolls up the same way.
+    m = e["metrics"]["posture:kms:key_rotation"]["series"][0]
+    assert m["passing"] == 0 and m["runs"] == 2, m
+
+
+def test_f19_evening_failure_after_morning_pass_also_reads_as_failure():
+    today = date(2026, 9, 25)
+    h = {}
+    am.append_run(h, _reg_one(), {}, _kms(10, 10, "2026-09-25T06:00:00+00:00"), today,
+                  observed_at="2026-09-25T06:00:00+00:00")
+    am.append_run(h, _reg_one(), {}, _kms(3, 10, "2026-09-25T18:00:00+00:00"), today,
+                  observed_at="2026-09-25T18:00:00+00:00")
+    pt = h["ksis"]["KSI-X"]["series"][0]
+    assert pt["passing"] == 3 and pt["runs"] == 2, pt
+
+
+def test_f19_single_run_day_is_unchanged_in_meaning():
+    today = date(2026, 9, 25)
+    h = {}
+    am.append_run(h, _reg_one(), {}, _kms(7, 10, "2026-09-25T06:00:00+00:00"), today,
+                  observed_at="2026-09-25T06:00:00+00:00")
+    pt = h["ksis"]["KSI-X"]["series"][0]
+    assert pt["passing"] == 7 and pt["total"] == 10 and pt["runs"] == 1
+    assert am.summarize(h["ksis"]["KSI-X"]["series"])["avg_passing_fraction"] == 0.7
+
+
+def test_f19_observations_are_pruned_with_retention():
+    old = date(2025, 1, 1)
+    h = {}
+    am.append_run(h, _reg_one(), {}, _kms(1, 1, "2025-01-01T06:00:00+00:00"), old,
+                  observed_at="2025-01-01T06:00:00+00:00")
+    later = date(2026, 9, 25)
+    am.append_run(h, _reg_one(), {}, _kms(1, 1, "2026-09-25T06:00:00+00:00"), later,
+                  observed_at="2026-09-25T06:00:00+00:00")
+    obs = h["ksis"]["KSI-X"]["observations"]
+    assert [o["date"] for o in obs] == ["2026-09-25"], obs
 
 
 def _run_all():

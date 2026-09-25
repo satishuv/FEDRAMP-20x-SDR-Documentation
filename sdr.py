@@ -285,6 +285,8 @@ TEST_SUITE = [
     "automation/ai/test_review_overclaim.py",
     "automation/ai/test_suggest_ksi_mapping.py",
     "automation/metrics/test_append_metrics.py",
+    "automation/metrics/test_publish_history.py",
+    "automation/prefill/test_binding_e2e.py",
     "automation/metrics/test_metric_history_longitudinal.py",
     "automation/metrics/test_per_metric_series.py",
     "validation/scripts/test_kmt_summary_derivation.py",
@@ -1175,6 +1177,8 @@ def cmd_preflight(args):
         "materials_item_schema", "note",
         "selected_optional_rules", "_selected_optional_rules_note",
         "evidence_freshness_policy_days", "expected_evidence_signer",
+        # AUD-F17: offering may TIGHTEN the telemetry evaluated-coverage floor.
+        "telemetry_min_coverage",
     }
     REQUIRED_FIELDS = [
         "organization_name", "offering_name", "offering_abbreviation",

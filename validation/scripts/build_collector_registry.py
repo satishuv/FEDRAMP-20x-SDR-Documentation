@@ -117,27 +117,52 @@ RULE_PAT = re.compile(r"`([a-z0-9][a-z0-9-]*)`")
 # therefore accrues no automated metric history from generic posture.
 #
 # Service keys MUST match automation/collectors/service_registry.py exactly.
+#
+# AUD-F16: every key is CHECK-SCOPED ("service:check"). A bare service key
+# routed every fact of that service, so a good-looking unrelated check lifted a
+# KSI: Access Analyzer PRESENT (1/1) improved KSI-IAM-ELP while the analyzer's
+# active findings (the actual least-privilege signal) were open; generic S3
+# encryption fed data-removal; generic Backup plans fed recovery TESTING; a
+# CloudTrail SIEM-capture count fed resource INTEGRITY. The check names are the
+# collectors' `_fact(service, check, ...)` names; method_ids.assert_check_scoped
+# refuses a registry with any bare key, and test_collector_registry_routes
+# asserts every route names a check a collector actually emits.
 METRIC_SOURCE_MAP = {
-    "cloudformation": ["KSI-CNA-EIS", "KSI-SVC-ACM", "KSI-CMT-RMV"],
-    "codepipeline": ["KSI-CMT-VTD", "KSI-PIY-RSD"],
-    "config": ["KSI-CNA-IBP", "KSI-MLA-EVC", "KSI-SVC-EIS"],
-    "wafv2": ["KSI-CNA-RVP"],
-    "ec2": ["KSI-CNA-ULN"],
+    # intended-state / immutable-redeploy signal: stack drift status
+    "cloudformation:drift": ["KSI-CNA-EIS", "KSI-SVC-ACM", "KSI-CMT-RMV"],
+    # test/approval stages present in delivery pipelines
+    "codepipeline:pipeline_gates": ["KSI-CMT-VTD", "KSI-PIY-RSD"],
+    # codified-baseline compliance (conformance packs) and rule compliance
+    "config:conformance_compliance": ["KSI-CNA-IBP", "KSI-MLA-EVC"],
+    "config:rule_compliance": ["KSI-MLA-EVC", "KSI-SVC-EIS"],
+    "wafv2:web_acls": ["KSI-CNA-RVP"],
+    "ec2:security_groups": ["KSI-CNA-ULN"],
     # F03: check-scoped so an unrelated IAM check (e.g. password_policy, which
     # measures IAM-APM, not just-in-time authorization) cannot score IAM-JIT.
     "iam:role_session_duration": ["KSI-IAM-JIT"],
     "iam:long_lived_keys": ["KSI-IAM-JIT"],
-    "guardduty": ["KSI-IAM-SUS"],
-    "events": ["KSI-IAM-SUS", "KSI-SCR-MON"],
-    "cloudtrail": ["KSI-MLA-OSM", "KSI-SVC-VRI"],
-    "securityhub": ["KSI-MLA-OSM"],
-    "s3": ["KSI-MLA-OSM", "KSI-SVC-PRR", "KSI-SVC-RUD"],
-    "backup": ["KSI-RPL-TRC", "KSI-SVC-RUD"],
-    "inspector2": ["KSI-SCR-MIT", "KSI-SCR-MON"],
-    "kms": ["KSI-SVC-PRR"],
-    "dynamodb": ["KSI-SVC-RUD"],
-    "ecr": ["KSI-SVC-VRI"],
-    "accessanalyzer": ["KSI-IAM-ELP"],
+    # least privilege is measured by the ABSENCE of active Access Analyzer
+    # findings, never by the analyzer merely existing
+    "accessanalyzer:active_findings": ["KSI-IAM-ELP"],
+    "guardduty:response_detector": ["KSI-IAM-SUS"],
+    "events:response_rules": ["KSI-IAM-SUS"],
+    "cloudtrail:siem_capture": ["KSI-MLA-OSM"],
+    "securityhub:siem_aggregation": ["KSI-MLA-OSM"],
+    # resource integrity: log-file validation and immutable image tags
+    "cloudtrail:log_validation": ["KSI-SVC-VRI"],
+    "ecr:image_immutability": ["KSI-SVC-VRI"],
+    # residual risk / exposure: encryption at rest, public access blocked, key rotation
+    "kms:key_rotation": ["KSI-SVC-PRR"],
+    "s3:encryption": ["KSI-SVC-PRR"],
+    "s3:public_access_block": ["KSI-SVC-PRR"],
+    # removal of unwanted data: lifecycle expiry and TTL, not encryption
+    "s3:lifecycle": ["KSI-SVC-RUD"],
+    "dynamodb:ttl": ["KSI-SVC-RUD"],
+    # recovery TESTING is a restore-testing plan, not the existence of backups
+    "backup:restore_testing": ["KSI-RPL-TRC"],
+    # supply-chain scanning coverage and enablement
+    "inspector2:coverage": ["KSI-SCR-MIT", "KSI-SCR-MON"],
+    "inspector2:scanning_status": ["KSI-SCR-MIT", "KSI-SCR-MON"],
 }
 
 

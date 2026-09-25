@@ -51,6 +51,12 @@ except Exception as exc:  # fail loud: unrouted telemetry is the failure to prev
 
 RETAIN_DAYS = 400  # a little over a year, so "up to the past year" is covered
 
+# AUD-F18: one identity for a metric across the metric engine, prefill, and the
+# VVK binding gate. Same directory as this module.
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from method_ids import (  # noqa: E402
+    config_method_id, posture_method_id, parse_service_key, assert_check_scoped)
+
 
 def load(path, default=None):
     try:
@@ -127,13 +133,40 @@ BAD_POSTURE = {"NOT_ENABLED", "NOT_CONFIGURED", "NONE", "DISABLED", "INACTIVE",
 # outcome -> skip, do NOT score as a failure.
 NO_RESOURCE = {"NO_KEYS", "NO_REPOS", "NO_STACKS"}
 
+# AUD-F17: minimum EVALUATED coverage for a ratio fact to score. A collector
+# that could read 10 of 50 in-scope resources (AccessDenied on the rest) may
+# report 10/10 = 100 percent; that is a statement about the readable tenth, not
+# about the control. Below this fraction the fact is treated as unmeasured for
+# scoring (never as a failure: unknown coverage is not adverse telemetry) and
+# the gap is surfaced in the datapoint's coverage fields. Project policy, not a
+# FedRAMP number; an offering may tighten it via the OFFERING profile's
+# `telemetry_min_coverage` (0 < x <= 1) which the collection pipeline passes in.
+MIN_EVALUATED_COVERAGE = 0.95
 
-def _posture_score(pf):
+
+def _coverage(pf):
+    """(scope_total, evaluated_total, unknown_total) for a fact, or None when
+    the fact carries no scope information (older facts / binary checks)."""
+    scope = pf.get("scope_total")
+    if scope is None:
+        return None
+    evaluated = pf.get("evaluated_total", pf.get("total")) or 0
+    unknown = pf.get("unknown_total")
+    if unknown is None:
+        unknown = max(scope - evaluated, 0)
+    return scope, evaluated, unknown
+
+
+def _posture_score(pf, min_coverage=MIN_EVALUATED_COVERAGE):
     """Score one posture fact as (passing, total) contribution, or None to skip.
 
     - ERROR / UNKNOWN statuses: skip (unmeasured, not an evaluated outcome).
+    - OBSERVED_PARTIAL or partial:true (AUD-F15): skip. The enumeration was cut
+      short, so no ratio over it describes the boundary.
     - No-resource statuses (NO_KEYS/NO_REPOS/NO_STACKS): skip (nothing to
       evaluate; not a failure).
+    - Evaluated coverage below policy (AUD-F17): skip. A ratio over the readable
+      subset must not become a confident pass for the whole scope.
     - A structured ratio (measured/total): use it directly - this is the real
       fraction in good posture (e.g. 0 of 50 keys rotating = 0/50, NOT a pass).
     - A binary good status in GOOD_POSTURE: 1 of 1.
@@ -146,12 +179,19 @@ def _posture_score(pf):
     status = pf.get("status", "")
     if status.startswith("ERROR") or status == "UNKNOWN":
         return None
+    if status == "OBSERVED_PARTIAL" or pf.get("partial") is True:
+        return None
     if status in NO_RESOURCE:
         return None
     if "measured" in pf and "total" in pf:
         total = pf.get("total") or 0
         if total <= 0:
             return None
+        cov = _coverage(pf)
+        if cov is not None:
+            scope, evaluated, _unknown = cov
+            if scope > 0 and (evaluated / scope) < min_coverage:
+                return None
         return (pf.get("measured") or 0, total)
     if status in GOOD_POSTURE:
         return (1, 1)
@@ -162,6 +202,36 @@ def _posture_score(pf):
     # evaluated pass or fail - carries no outcome, so it is neither passing
     # nor a denominator.
     return None
+
+
+def _coverage_gap(pf, min_coverage=MIN_EVALUATED_COVERAGE):
+    """A short reason when a ratio fact was withheld from scoring for coverage
+    reasons (partial enumeration or evaluated coverage below policy), else None.
+    Recorded on the datapoint so the gap is visible, not silent."""
+    if pf.get("status") == "OBSERVED_PARTIAL" or pf.get("partial") is True:
+        return "partial-enumeration"
+    cov = _coverage(pf)
+    if cov is None or "measured" not in pf:
+        return None
+    scope, evaluated, _unknown = cov
+    if scope > 0 and (evaluated / scope) < min_coverage:
+        return f"coverage {evaluated}/{scope} below {min_coverage:g}"
+    return None
+
+
+def _route(ksi_entry):
+    """The KSI's posture routes as (service, check) pairs. AUD-F16: every entry
+    must be check-scoped; a bare service key would score every fact of that
+    service, so it is refused loudly rather than silently widened."""
+    routes = []
+    for key in ksi_entry.get("metric_service_keys", []) or []:
+        service, check = parse_service_key(key)
+        if not check:
+            raise ValueError(
+                f"metric_service_keys entry {key!r} routes a whole service; "
+                "use service:check (see automation/metrics/method_ids.py)")
+        routes.append((service, check))
+    return routes
 
 
 def _config_scope_score(facts):
@@ -186,12 +256,21 @@ def _config_scope_score(facts):
     return passing, total
 
 
-def datapoint_for_ksi(ksi_entry, config_by_rule, posture_by_service):
+def datapoint_for_ksi(ksi_entry, config_by_rule, posture_by_service,
+                      min_coverage=MIN_EVALUATED_COVERAGE):
     """One day's metric for a KSI: passing vs total observed automated checks.
     Returns None if nothing was observed (no datapoint rather than a zero, so a
-    day the collector could not see a service is not recorded as a failure)."""
+    day the collector could not see a service is not recorded as a failure).
+
+    The datapoint also carries coverage (AUD-F17): scope_total / evaluated_total
+    / unknown_total summed over the ratio facts that scored, and coverage_gaps
+    naming any routed fact withheld from scoring because its enumeration was
+    partial or its evaluated coverage fell below policy. passing/total are
+    unchanged in meaning, so every existing consumer still reads them."""
     passing = 0
     total = 0
+    scope_total = evaluated_total = unknown_total = 0
+    gaps = []
     for check in ksi_entry.get("checks", []):
         if check.get("type") != "config_managed_rule":
             continue
@@ -202,32 +281,45 @@ def datapoint_for_ksi(ksi_entry, config_by_rule, posture_by_service):
         p, t = _config_scope_score(facts)
         total += t
         passing += p
-    # Posture routing is by the EXPLICIT per-KSI allowlist (metric_service_keys).
-    # An entry is either a bare service key ("iam") accepting ALL of that
-    # service's checks, or a check-scoped key ("iam:role_session_duration")
-    # accepting only that check. Finding F03: a bare service key let an
-    # UNRELATED check of a shared service score a KSI (e.g. IAM password_policy
-    # scoring KSI-IAM-JIT because both are service "iam"). Check-scoped keys let
-    # a KSI bind only the checks that actually measure its capability. A KSI with
-    # no allowlist (document/process KSI) accrues no posture metric.
-    allowed = set(ksi_entry.get("metric_service_keys", []))
-    for svc_key in allowed:
-        service, _, check_filter = svc_key.partition(":")
+    # Posture routing is by the EXPLICIT per-KSI allowlist (metric_service_keys),
+    # every entry check-scoped ("service:check"), AUD-F16. Finding F03 showed a
+    # bare service key let an UNRELATED check of a shared service score a KSI
+    # (IAM password_policy scoring KSI-IAM-JIT); AUD-F16 showed the same shape
+    # let Access Analyzer PRESENT lift KSI-IAM-ELP while active findings were
+    # open. A KSI with no allowlist (document/process KSI) accrues no posture
+    # metric.
+    for service, check_filter in _route(ksi_entry):
         for pf in posture_by_service.get(service, []):
             if check_filter and pf.get("check") != check_filter:
                 continue  # F03: check-scoped key rejects other checks
-            score = _posture_score(pf)
+            score = _posture_score(pf, min_coverage)
             if score is None:
+                gap = _coverage_gap(pf, min_coverage)
+                if gap:
+                    gaps.append(f"{posture_method_id(service, pf.get('check'))}: {gap}")
                 continue
             p, t = score
             total += t
             passing += p
+            cov = _coverage(pf)
+            if cov is not None:
+                scope_total += cov[0]
+                evaluated_total += cov[1]
+                unknown_total += cov[2]
     if total == 0:
         return None
-    return {"passing": passing, "total": total}
+    dp = {"passing": passing, "total": total}
+    if scope_total or gaps:
+        dp["scope_total"] = scope_total
+        dp["evaluated_total"] = evaluated_total
+        dp["unknown_total"] = unknown_total
+    if gaps:
+        dp["coverage_gaps"] = sorted(gaps)
+    return dp
 
 
-def per_metric_datapoints_for_ksi(ksi_entry, config_by_rule, posture_by_service):
+def per_metric_datapoints_for_ksi(ksi_entry, config_by_rule, posture_by_service,
+                                  min_coverage=MIN_EVALUATED_COVERAGE):
     """One day's metric PER METRIC for a KSI, preserving each metric's identity
     (finding 3). FedRAMP SDR-CSX-KMT says "Summary of EACH metric", but the
     aggregate datapoint_for_ksi collapses every check/service into a single
@@ -235,10 +327,12 @@ def per_metric_datapoints_for_ksi(ksi_entry, config_by_rule, posture_by_service)
 
     Returns {metric_id: {"passing": p, "total": t, "objective": str, "source": str}}
     for every metric that was actually observed that day, or {} if none. A
-    metric is one config-managed rule (keyed by its check_id) or one observed
-    posture service (keyed by "posture:<service>"). The KSI-level aggregate
-    remains the sum of these, so existing consumers are unchanged; this is the
-    per-metric breakdown emitted ALONGSIDE the aggregate, never replacing it.
+    metric is one config-managed rule (keyed by config_method_id) or one
+    observed posture check (keyed by posture_method_id). Those two functions in
+    method_ids.py are the SAME identity prefill writes into a structured test's
+    method_id and the VVK binding gate compares (AUD-F18), so the real
+    collector -> prefill -> preflight path binds. The KSI-level aggregate remains
+    the sum of these; this is emitted ALONGSIDE the aggregate, never replacing it.
     """
     out = {}
     for check in ksi_entry.get("checks", []):
@@ -252,16 +346,14 @@ def per_metric_datapoints_for_ksi(ksi_entry, config_by_rule, posture_by_service)
         p, t = _config_scope_score(facts)
         if t == 0:
             continue
-        mid = check.get("check_id") or f"config:{target}"
+        mid = config_method_id(check)
         out[mid] = {
             "passing": p,
             "total": t,
             "objective": check.get("description") or check.get("objective") or "",
             "source": f"AWS Config rule {target}",
         }
-    allowed = set(ksi_entry.get("metric_service_keys", []))
-    for svc_key in allowed:
-        service, _, check_filter = svc_key.partition(":")
+    for service, check_filter in _route(ksi_entry):
         svc_label = POSTURE_SERVICE_KEYS.get(service, service)
         # F03: preserve per-CHECK metric identity. Group the service's observed
         # facts by their check name and emit one metric per check, so distinct
@@ -273,7 +365,7 @@ def per_metric_datapoints_for_ksi(ksi_entry, config_by_rule, posture_by_service)
             chk = pf.get("check") or "posture"
             if check_filter and chk != check_filter:
                 continue
-            score = _posture_score(pf)
+            score = _posture_score(pf, min_coverage)
             if score is None:
                 continue
             sp, st = score
@@ -283,7 +375,7 @@ def per_metric_datapoints_for_ksi(ksi_entry, config_by_rule, posture_by_service)
         for chk, (p, t) in by_check.items():
             if not t:
                 continue
-            out[f"posture:{service}:{chk}"] = {
+            out[posture_method_id(service, chk)] = {
                 "passing": p, "total": t,
                 "objective": f"Posture check {chk} of {svc_label}",
                 "source": f"Security posture telemetry for {svc_label} ({chk})",
@@ -402,11 +494,65 @@ def _ksi_observed_today(ksi_entry, config_by_rule, posture_by_service, today):
     return False
 
 
+def _fraction(p):
+    return (p.get("passing") or 0) / p["total"] if p.get("total") else None
+
+
+def merge_daily_point(existing, new):
+    """Fold a second same-day observation into the day's rollup WITHOUT losing
+    the first (AUD-F19). The rollup is CONSERVATIVE: the day's passing/total
+    are those of the WORST observed run (lowest passing fraction), so a morning
+    failure followed by an evening pass reads as the failure, never as the pass.
+    The rollup also records runs, min_fraction and max_fraction so an assessor
+    can see that the day was not uniform. Coverage fields follow the worst run.
+    `existing` may be None (first observation of the day)."""
+    if existing is None:
+        out = dict(new)
+        out["runs"] = 1
+        f = _fraction(new)
+        out["min_fraction"] = out["max_fraction"] = round(f, 4) if f is not None else None
+        return out
+    f_old = _fraction(existing)
+    f_new = _fraction(new)
+    worst = existing if (f_old is not None and (f_new is None or f_old <= f_new)) else new
+    out = {k: v for k, v in worst.items()
+           if k not in ("runs", "min_fraction", "max_fraction")}
+    out["date"] = existing.get("date") or new.get("date")
+    out["runs"] = (existing.get("runs") or 1) + 1
+    fr = [x for x in (existing.get("min_fraction"), existing.get("max_fraction"),
+                      f_old, f_new) if x is not None]
+    out["min_fraction"] = round(min(fr), 4) if fr else None
+    out["max_fraction"] = round(max(fr), 4) if fr else None
+    return out
+
+
+def _roll_into_series(series, point, today):
+    """Return series with `point` folded into its date's rollup (worst-of),
+    sorted and pruned. Never drops an earlier same-day observation."""
+    date_str = point["date"]
+    existing = next((p for p in series if p["date"] == date_str), None)
+    rest = [p for p in series if p["date"] != date_str]
+    rest.append(merge_daily_point(existing, point))
+    rest.sort(key=lambda p: p["date"])
+    return prune(rest, today)
+
+
+def prune_observations(observations, today):
+    cutoff = (today - timedelta(days=RETAIN_DAYS)).isoformat()
+    return [o for o in observations if (o.get("observed_at") or "")[:10] >= cutoff]
+
+
 def append_run(history, registry, config_by_rule, posture_by_service, today,
-               cls="b", require_fresh=False):
+               cls="b", require_fresh=False, observed_at=None,
+               min_coverage=MIN_EVALUATED_COVERAGE):
     """Append today's datapoint per KSI to the history and recompute summaries.
-    One datapoint per KSI per calendar day; a second run the same day replaces
-    that day's point rather than duplicating it (idempotent per day).
+    One ROLLUP per KSI per calendar day. A second run the same day does NOT
+    replace the first (AUD-F19): every run is appended as an immutable,
+    timestamped observation under the KSI's `observations`, and the day's
+    series point is the conservative rollup of all of that day's runs (worst
+    passing fraction, with runs/min/max recorded). Per-metric series roll up the
+    same way (runs/min/max, no per-metric observation log, which would be
+    unbounded).
 
     F05: when require_fresh is set (production main() sets it), a KSI datapoint
     is recorded for `today` only if at least one contributing observation was
@@ -414,12 +560,17 @@ def append_run(history, registry, config_by_rule, posture_by_service, today,
     advancing the history/MOT clock with a measurement that never happened that
     day. The library default is False so callers computing summaries over
     explicitly-dated synthetic series are unaffected; the collection pipeline
-    (main) always enforces freshness."""
+    (main) always enforces freshness.
+
+    observed_at: ISO timestamp for this run's observations (default: now, UTC).
+    Injectable so tests are deterministic."""
     date_str = today.isoformat()
+    if observed_at is None:
+        observed_at = datetime.now(timezone.utc).isoformat(timespec="seconds")
     ksis = history.setdefault("ksis", {})
     appended = 0
     for kid, ksi_entry in registry.get("ksis", {}).items():
-        dp = datapoint_for_ksi(ksi_entry, config_by_rule, posture_by_service)
+        dp = datapoint_for_ksi(ksi_entry, config_by_rule, posture_by_service, min_coverage)
         if dp is None:
             continue
         if require_fresh and not _ksi_observed_today(
@@ -427,10 +578,12 @@ def append_run(history, registry, config_by_rule, posture_by_service, today,
             # Stale/replayed observation only: do not manufacture a fresh point.
             continue
         entry = ksis.setdefault(kid, {"series": []})
-        series = [p for p in entry["series"] if p["date"] != date_str]
-        series.append({"date": date_str, **dp})
-        series.sort(key=lambda p: p["date"])
-        entry["series"] = prune(series, today)
+        # Immutable run-level record first: this is what the rollup is derived
+        # from and what a reviewer replays when the rollup is questioned.
+        obs = entry.setdefault("observations", [])
+        obs.append({"observed_at": observed_at, "date": date_str, **dp})
+        entry["observations"] = prune_observations(obs, today)
+        entry["series"] = _roll_into_series(entry["series"], {"date": date_str, **dp}, today)
         appended += 1
         # Recompute the SDR-CSX-KMT summaries. Storage keeps RETAIN_DAYS (~400)
         # of history, but each summary MUST slice the retained series to the
@@ -455,15 +608,15 @@ def append_run(history, registry, config_by_rule, posture_by_service, today,
         # series, 30-day and 1-year summaries, objective, and source, sliced to
         # the same exact windows. The KSI aggregate remains the sum, so every
         # existing consumer is unchanged.
-        pm = per_metric_datapoints_for_ksi(ksi_entry, config_by_rule, posture_by_service)
+        pm = per_metric_datapoints_for_ksi(ksi_entry, config_by_rule, posture_by_service,
+                                           min_coverage)
         metrics = entry.setdefault("metrics", {})
         for mid, mdp in pm.items():
             m = metrics.setdefault(mid, {"series": []})
-            m_series = [p for p in m["series"] if p["date"] != date_str]
-            m_series.append({"date": date_str,
-                             "passing": mdp["passing"], "total": mdp["total"]})
-            m_series.sort(key=lambda p: p["date"])
-            m["series"] = prune(m_series, today)
+            m["series"] = _roll_into_series(
+                m["series"],
+                {"date": date_str, "passing": mdp["passing"], "total": mdp["total"]},
+                today)
             m["objective"] = mdp.get("objective", "")
             m["source"] = mdp.get("source", "")
             m["last_30_days"] = summarize(
@@ -472,12 +625,15 @@ def append_run(history, registry, config_by_rule, posture_by_service, today,
                 [p for p in m["series"] if p["date"] >= year_start])
     history["meta"] = {
         "last_run": date_str,
+        "last_observed_at": observed_at,
         "retain_days": RETAIN_DAYS,
+        "min_evaluated_coverage": min_coverage,
         "dataset_version": registry.get("meta", {}).get("dataset_version"),
         "note": ("Per-KSI daily metric history for SDR-CSX-KMT. A datapoint is "
                  "passing vs total observed automated checks that day, a metric, "
-                 "not a compliance verdict. Git-excluded: derives from a real "
-                 "account."),
+                 "not a compliance verdict. A day with several runs keeps every "
+                 "run under `observations` and rolls up to the WORST run. "
+                 "Git-excluded: derives from a real account."),
     }
     return appended
 
@@ -520,6 +676,12 @@ def main():
     if registry is None:
         print("Could not load the collector registry.")
         return 2
+    # AUD-F16: refuse to run against a registry that routes whole services.
+    try:
+        assert_check_scoped(registry)
+    except ValueError as e:
+        print(f"FAIL: {e}")
+        return 2
     config_by_rule, posture_by_service = load_facts()
     if not config_by_rule and not posture_by_service:
         print("No facts found in automation/facts/. Run the collector first.")
@@ -538,8 +700,17 @@ def main():
     # Class drives the FRC-CSX-MOT window requirement (6 months at C, 18 at D).
     offering = load(os.path.join(BASE, "profiles", "common", "offering-profile.json"), {})
     cls = (offering.get("certification_class") or "b").lower()
+    # AUD-F17: an offering may TIGHTEN the evaluated-coverage policy, never
+    # loosen it below the project floor.
+    min_cov = MIN_EVALUATED_COVERAGE
+    try:
+        declared = float(offering.get("telemetry_min_coverage") or 0)
+    except (TypeError, ValueError):
+        declared = 0.0
+    if MIN_EVALUATED_COVERAGE < declared <= 1.0:
+        min_cov = declared
     appended = append_run(history, registry, config_by_rule, posture_by_service,
-                          today, cls, require_fresh=True)
+                          today, cls, require_fresh=True, min_coverage=min_cov)
 
     os.makedirs(os.path.dirname(HISTORY), exist_ok=True)
     with open(HISTORY, "w", encoding="utf-8", newline="\n") as f:

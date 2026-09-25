@@ -445,6 +445,137 @@ def test_bucket_versioning_client_error():
     assert fact["status"].startswith("ERROR:")
 
 
+# --- AUD-F15: every page is read; a truncated enumeration is never scored ----
+
+class PagedFakeClient(FakeClient):
+    """Like FakeClient, but a method named in `pages` returns successive
+    responses on successive calls (the last page repeats), and a per-call
+    error map may raise for a specific argument value (per-resource denial)."""
+    def __init__(self, responses=None, errors=None, pages=None, arg_errors=None):
+        super().__init__(responses, errors)
+        self._pages = {k: list(v) for k, v in (pages or {}).items()}
+        self._arg_errors = arg_errors or {}
+        self.calls = []
+
+    def __getattr__(self, name):
+        def method(**kwargs):
+            self.calls.append((name, dict(kwargs)))
+            if name in self._errors:
+                raise self._errors[name]
+            for k, v in kwargs.items():
+                if (name, k, v) in self._arg_errors:
+                    raise self._arg_errors[(name, k, v)]
+            if name in self._pages:
+                pages = self._pages[name]
+                return pages.pop(0) if len(pages) > 1 else pages[0]
+            return self._responses.get(name, {})
+        return method
+
+
+def test_f15_kms_walks_every_page_of_keys():
+    # Three keys across two pages (KMS pages with NextMarker/Truncated and takes
+    # Marker). A first-page-only read would report 2 of 2; the truth is 3 of 3.
+    kms = PagedFakeClient(
+        pages={"list_keys": [
+            {"Keys": [{"KeyId": "k1"}, {"KeyId": "k2"}], "NextMarker": "m1", "Truncated": True},
+            {"Keys": [{"KeyId": "k3"}], "Truncated": False}]},
+        responses={"get_key_rotation_status": {"KeyRotationEnabled": True}})
+    fact = collectors.collect_kms(FakeSession({"kms": kms}), "us-east-1")[0]
+    assert fact["status"] == "OBSERVED", fact
+    assert fact["measured"] == 3 and fact["total"] == 3, fact
+    assert fact["scope_total"] == 3 and fact["unknown_total"] == 0, fact
+    # The second call carried the marker back as the request parameter KMS wants.
+    assert any(c[0] == "list_keys" and c[1].get("Marker") == "m1" for c in kms.calls), kms.calls
+    assert "partial" not in fact
+
+
+def test_f15_runaway_pagination_is_partial_not_scored():
+    # A client that always hands back a token (never terminates) hits the page
+    # cap; the fact is OBSERVED_PARTIAL with no ratio and never scores.
+    kms = FakeClient(responses={
+        "list_keys": {"Keys": [{"KeyId": "k"}], "NextMarker": "again", "Truncated": True},
+        "get_key_rotation_status": {"KeyRotationEnabled": True}})
+    fact = collectors.collect_kms(FakeSession({"kms": kms}), "us-east-1")[0]
+    assert fact["status"] == "OBSERVED_PARTIAL" and fact.get("partial") is True, fact
+    assert "measured" not in fact, fact
+    sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(
+        os.path.abspath(__file__))), "metrics"))
+    import append_metrics as _am
+    assert _am._posture_score(fact) is None
+
+
+def test_f15_ecr_and_cloudformation_read_all_pages():
+    ecr = PagedFakeClient(pages={"describe_repositories": [
+        {"repositories": [{"imageTagMutability": "IMMUTABLE"}], "nextToken": "n"},
+        {"repositories": [{"imageTagMutability": "MUTABLE"}]}]})
+    fact = collectors.collect_ecr_integrity(FakeSession({"ecr": ecr}), "us-east-1")[0]
+    assert (fact["measured"], fact["total"]) == (1, 2), fact
+    cf = PagedFakeClient(pages={"list_stacks": [
+        {"StackSummaries": [{"StackStatus": "CREATE_COMPLETE",
+                             "DriftInformation": {"StackDriftStatus": "IN_SYNC"}}],
+         "NextToken": "n"},
+        {"StackSummaries": [{"StackStatus": "CREATE_COMPLETE",
+                             "DriftInformation": {"StackDriftStatus": "DRIFTED"}}]}]})
+    fact = collectors.collect_cfn_drift(FakeSession({"cloudformation": cf}), "us-east-1")[0]
+    assert (fact["measured"], fact["total"]) == (1, 2), fact
+
+
+# --- AUD-F17: unreadable resources stay in scope as unknown, not vanish -----
+
+def test_f17_kms_unreadable_key_is_unknown_not_dropped_from_scope():
+    denied = FakeClientError("AccessDeniedException")
+    kms = PagedFakeClient(
+        responses={"list_keys": {"Keys": [{"KeyId": "k1"}, {"KeyId": "k2"}, {"KeyId": "k3"}]},
+                   "get_key_rotation_status": {"KeyRotationEnabled": True}},
+        arg_errors={("get_key_rotation_status", "KeyId", "k3"): denied})
+    fact = collectors.collect_kms(FakeSession({"kms": kms}), "us-east-1")[0]
+    assert fact["status"] == "OBSERVED"
+    assert fact["measured"] == 2 and fact["total"] == 2, fact
+    assert fact["scope_total"] == 3 and fact["evaluated_total"] == 2 \
+        and fact["unknown_total"] == 1, fact
+
+
+def test_f17_s3_public_access_denied_is_unknown_not_a_failure():
+    # Before: any exception counted the bucket as evaluated-and-not-blocked, so
+    # an AccessDenied read became adverse telemetry. Now only a confirmed
+    # absent block is evaluated; denial is unknown.
+    denied = FakeClientError("AccessDenied")
+    absent = FakeClientError("NoSuchPublicAccessBlockConfiguration")
+    s3 = PagedFakeClient(
+        responses={"list_buckets": {"Buckets": [{"Name": "a"}, {"Name": "b"}, {"Name": "c"}]},
+                   "get_public_access_block": {"PublicAccessBlockConfiguration": {
+                       "BlockPublicAcls": True, "IgnorePublicAcls": True,
+                       "BlockPublicPolicy": True, "RestrictPublicBuckets": True}}},
+        arg_errors={("get_public_access_block", "Bucket", "b"): denied,
+                    ("get_public_access_block", "Bucket", "c"): absent})
+    fact = collectors.collect_s3(FakeSession({"s3": s3}), "us-east-1")[0]
+    # a blocked (evaluated), b unknown, c evaluated-not-blocked
+    assert fact["measured"] == 1 and fact["total"] == 2, fact
+    assert fact["scope_total"] == 3 and fact["unknown_total"] == 1, fact
+
+
+def test_f17_all_reads_denied_is_unknown_not_a_pass():
+    denied = FakeClientError("AccessDeniedException")
+    kms = FakeClient(responses={"list_keys": {"Keys": [{"KeyId": "k1"}]}},
+                     errors={"get_key_rotation_status": denied})
+    fact = collectors.collect_kms(FakeSession({"kms": kms}), "us-east-1")[0]
+    assert fact["status"] == "UNKNOWN" and "measured" not in fact, fact
+
+
+def test_f16_access_analyzer_active_findings_is_the_scored_signal():
+    sess = FakeSession({"accessanalyzer": FakeClient(responses={
+        "list_analyzers": {"analyzers": [{"arn": "a1"}]},
+        "list_findings": {"findings": [{"id": "f1"}]}})})
+    by = facts_by_check(collectors.collect_access_analyzer(sess, "us-east-1"))
+    assert by["analyzer"]["status"] == "PRESENT" and "measured" not in by["analyzer"]
+    assert (by["active_findings"]["measured"], by["active_findings"]["total"]) == (0, 1)
+    sess2 = FakeSession({"accessanalyzer": FakeClient(responses={
+        "list_analyzers": {"analyzers": [{"arn": "a1"}]},
+        "list_findings": {"findings": []}})})
+    by2 = facts_by_check(collectors.collect_access_analyzer(sess2, "us-east-1"))
+    assert (by2["active_findings"]["measured"], by2["active_findings"]["total"]) == (1, 1)
+
+
 def _run_all():
     tests = [v for k, v in sorted(globals().items())
              if k.startswith("test_") and callable(v)]
