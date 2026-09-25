@@ -8,6 +8,111 @@ One project-specific convention: the pinned FedRAMP dataset version is recorded 
 
 Pinned dataset: `2026.09.13.02` (unchanged)
 
+No unreleased changes.
+
+## 1.5.0, 2026-09-25
+
+Pinned dataset: `2026.09.13.02` (unchanged)
+
+Release governance and telemetry truth. A twenty-finding review of the
+`1.4.0` release concluded that the FedRAMP interpretation (the A/B/C rule
+profiles reconcile exactly against the raw CR26 dataset; the 46-KSI catalog and
+the five optional-at-B indicators are right) was no longer the weak point, and
+that the evidence truth model and release governance were. This release fixes
+the governance and telemetry findings (review items 1 through 10, 13 and 14) and
+supersedes `1.4.0`. No dataset change; no change to any rule statement, force,
+timeframe or KSI applicability.
+
+Release governance:
+
+- One release gate. `audit/release_gate.py` is the single definition of the
+  audit and security sections; the CI `audit-gate` and `security-scan` jobs, the
+  AWS `RELEASE_MODE` build and `python sdr.py release` all execute it. A new
+  `release-gate` aggregate job depends on `validate`, `audit-gate` and
+  `security-scan`, runs even when one failed, and is the single required status
+  check on `main`. Before this, only `validate` was required, so a red
+  audit-gate did not block a merge, and `sdr.py release` ran neither the audit
+  gate nor Bandit (AUD-F12).
+- Tag-driven publication. `.github/workflows/release.yml` refuses a lightweight
+  or unsigned tag and a tag that does not equal the committed manifest's
+  `release_tag`, re-runs the whole validate workflow on the tagged commit, and
+  attaches the release manifest, the release attestation, the SBOM and the
+  active-class bundle as release assets. `sdr.py release` now instructs
+  `git tag -s`, matching `docs/versioning.md`.
+- Mutation gate integrity. A skipped mutation (target text absent) now fails
+  the gate instead of passing it, so a refactor cannot silently disarm a closed
+  defect's protection (AUD-F13). The runner reconciles the defect ledger: every
+  CLOSED, mutation-verified defect must map to exactly one executed, killed
+  mutation and every mutation to such a defect (AUD-F14). The verdict is a pure
+  function so each rule is tested in isolation, and restore writes the saved
+  original bytes back rather than `git checkout`-ing over a dirty local tree.
+
+Telemetry truth model (Class C metrics):
+
+- Pagination. Every AWS list/describe call walks every page (botocore paginator
+  when one exists, continuation token by name otherwise); a page-cap hit yields
+  `OBSERVED_PARTIAL` with no ratio and is never scored (AUD-F15). Previously KMS,
+  CloudFormation, Config, WAF, EC2, ECR, IAM, CodePipeline, DynamoDB, Backup and
+  Access Analyzer read one page, several of them into a measured/total ratio.
+- Coverage. Ratio facts carry `scope_total`, `evaluated_total` and
+  `unknown_total`; unreadable resources stay in scope as unknown instead of
+  vanishing from the denominator. A fact whose evaluated coverage is below the
+  project floor (`MIN_EVALUATED_COVERAGE` = 0.95; an offering may tighten it via
+  `telemetry_min_coverage`) is withheld from scoring, never scored as a
+  failure, and named in the datapoint's `coverage_gaps`; the datapoint carries
+  aggregate coverage. Only a response that establishes absence
+  (`NoSuchPublicAccessBlockConfiguration`, `NoSuchLifecycleConfiguration`) is
+  evaluated (AUD-F17).
+- Routing by check. Every `METRIC_SOURCE_MAP` route is `service:check`; a bare
+  service key is refused by the metric engine, prefill and `append_metrics`.
+  Least privilege is measured by `accessanalyzer:active_findings` (a scored
+  binary: zero active findings), never by analyzer presence; recovery testing
+  routes `backup:restore_testing` only; data removal routes `s3:lifecycle` and
+  `dynamodb:ttl`; resource integrity routes `cloudtrail:log_validation` and
+  `ecr:image_immutability` (AUD-F16). The collector registry is regenerated.
+- Non-destructive history. A second run on the same day no longer replaces the
+  first. Every run is appended as an immutable timestamped observation under
+  the KSI (retention-pruned) and the day's series point is the conservative
+  rollup of that day's runs (worst passing fraction) with `runs`,
+  `min_fraction` and `max_fraction`; per-metric series roll up the same way
+  (AUD-F19).
+- Compare-and-swap publish. `automation/metrics/publish_history.py` replaces
+  the blind `aws s3 cp` down/up of `metric-history.json`: restore remembers the
+  ETag, publish uses `If-Match` (`If-None-Match: *` on first run), a 412 exits 3
+  and the collect buildspec retries restore, append, publish a bounded number
+  of times. Every run's observations are archived append-only under
+  `metrics/observations/<date>/<run>.json` (AUD-F20).
+- Real method binding. `automation/metrics/method_ids.py` is the one identity
+  for a verification method (registry `check_id` for a Config rule,
+  `posture:<service>:<check>` for a collector check). The metric engine keys
+  per-method series by it and `prefill_from_facts.py` now emits structured
+  `{method_id, method, automated: true, cadence, ...}` records with it, so the
+  real collector -> history -> prefill -> preflight path binds; plain-string
+  tests counted as zero automated methods. A new end-to-end test drives the
+  production code through fake AWS clients and asserts every prefilled method
+  binds; it caught `cloudtrail:siem_capture` declaring a method that could
+  never bind, which is now a scorable binary (AUD-F18).
+- The FRC-CSX-MOT continuity tolerance is explicit project policy.
+  `mot_max_gap_days` (default 45 days, ceiling 90) is documented as a repository
+  bound, not a FedRAMP figure, is declarable in the offering profile for
+  assessor review (an invalid value blocks rather than silently defaulting), and
+  every preflight message names it as such. The comment that claimed a
+  4x-median adaptive tolerance the code never applied is gone (AUD-F21).
+- The implementation guide's worked Class C example now uses the structured
+  automated-method shape the validator counts and explains `method_id`
+  binding; the two plain strings it showed counted as zero methods.
+
+Correction to the `1.4.0` record: the `1.4.0` release notes state a mutation
+suite result of 10 killed / 0 survived. The CI run on the release commit
+(`c7d43bd`) reported 9 killed / 1 survived (MUT-F10, the stale-bytecode false
+survivor fixed in the entry below) and its audit-gate was red when the release
+was published; the tag was unsigned and no assets were attached. The 10/0
+figure came from local clean-room runs, not from the release commit's CI. The
+release is left in place and superseded; its GitHub release notes carry the same
+correction.
+
+Post-`1.4.0` fixes folded into this release:
+
 - The mutation runner (`audit/mutation_tests.py`) now purges every
   `__pycache__` before each mutated test run and forbids bytecode writes during
   it, and restores each mutated file byte-exactly with verification. Python
@@ -19,6 +124,8 @@ Pinned dataset: `2026.09.13.02` (unchanged)
   arms that exact trap, proves a bare run is fooled by it, and asserts the
   runner still kills the mutation; it is wired into the audit-gate job as a
   hard gate. No framework behavior, rule, or dataset change.
+- The submitted SDR's daily-data window ceilings use the UTC calendar day, the
+  same clock the collectors stamp datapoints with (F11, PR #178).
 
 ## 1.4.0, 2026-09-24
 

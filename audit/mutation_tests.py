@@ -197,6 +197,11 @@ MUTATIONS = [
      '    if etag:\n        params["IfMatch"] = etag\n    else:\n        params["IfNoneMatch"] = "*"',
      '    if False:  # MUTATION unconditional overwrite\n        params["IfMatch"] = etag',
      "automation/metrics/test_publish_history.py"),
+    ("MUT-F21",
+     "sdr.py",
+     "    if not 1 <= days <= MOT_MAX_GAP_DAYS_CEILING:\n        return None,",
+     "    if False:  # MUTATION any tolerance accepted\n        return None,",
+     "validation/scripts/test_mot_continuity.py"),
 ]
 
 
