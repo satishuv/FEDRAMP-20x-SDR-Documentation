@@ -1,0 +1,103 @@
+# Release publication (AUD-F12 / AUD-F15). Runs when a release tag is pushed.
+#
+# Why a workflow: v1.4.0 was published by hand from a commit whose audit-gate
+# was red, with an unsigned tag (docs/versioning.md requires a signed one), and
+# with no assets, so the release-only attestation that binds the manifest hash
+# to the exact source commit was never publicly attached. Every one of those is
+# a step a human can skip; this workflow cannot.
+#
+# Order:
+#   1. verify-tag   the tag is annotated AND carries a signature block, and its
+#                   name equals the committed release manifest's release_tag
+#                   (tag <-> version identity). Fails closed on any mismatch.
+#   2. gate         the WHOLE validate workflow (validate + audit-gate +
+#                   security-scan + the aggregate release-gate) re-run on the
+#                   exact tagged commit.
+#   3. publish      build the release attestation (binds the deterministic
+#                   manifest hash to this commit/tree; refuses a dirty tree),
+#                   assemble the active-class bundle from exactly the
+#                   fingerprinted set, and attach manifest + attestation + SBOM
+#                   + bundle to the GitHub Release. Creates the release if the
+#                   tag has none, otherwise attaches to the existing one.
+#
+# Signature verification here is structural (a signature block is present); the
+# cryptographic verification against the maintainer's public key is done by
+# consumers with `git tag -v`, as docs/versioning.md describes. The workflow
+# holds no signing key.
+name: release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+
+jobs:
+  verify-tag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+        with:
+          fetch-depth: 0
+      - name: Tag must be annotated, signed, and equal the manifest's release_tag
+        env:
+          TAG: ${{ github.ref_name }}
+        run: |
+          set -e
+          kind=$(git cat-file -t "refs/tags/$TAG")
+          if [ "$kind" != "tag" ]; then
+            echo "FAIL. $TAG is a lightweight tag (object type: $kind). Releases need an annotated, signed tag: git tag -s $TAG -m '...'"
+            exit 1
+          fi
+          if ! git cat-file -p "refs/tags/$TAG" | grep -qE 'BEGIN (PGP|SSH) SIGNATURE'; then
+            echo "FAIL. $TAG carries no signature. docs/versioning.md requires a signed release tag (git tag -s)."
+            exit 1
+          fi
+          manifest_tag=$(python3 -c "import json;print(json.load(open('artifacts/release-manifest.json')).get('release_tag',''))")
+          if [ "$manifest_tag" != "$TAG" ]; then
+            echo "FAIL. Tag $TAG does not match the committed release manifest's release_tag ($manifest_tag)."
+            echo "Bump FRAMEWORK_VERSION in validation/scripts/build_release_manifest.py, rebuild, commit, then tag."
+            exit 1
+          fi
+          echo "Tag $TAG: annotated, signed, matches release manifest."
+
+  gate:
+    needs: verify-tag
+    uses: ./.github/workflows/validate.yml
+
+  publish:
+    needs: [verify-tag, gate]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: pip install --quiet -r requirements-ci.txt
+      - name: Build release attestation and bundle from the tagged commit
+        run: |
+          set -e
+          python validation/scripts/build_release_attestation.py
+          python validation/scripts/assemble_release_bundle.py
+          (cd artifacts && zip -qr "release-bundle-${GITHUB_REF_NAME}.zip" release-bundle)
+          ls -la artifacts/release-manifest.json artifacts/release-attestation.json artifacts/sbom.cdx.json "artifacts/release-bundle-${GITHUB_REF_NAME}.zip"
+      - name: Publish release with assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          set -e
+          assets="artifacts/release-manifest.json artifacts/release-attestation.json artifacts/sbom.cdx.json artifacts/release-bundle-${TAG}.zip"
+          notes="Release ${TAG}. Full gate (validate, audit-gate, security-scan, release-gate) re-run on the tagged commit in this workflow run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}. Assets: the deterministic release manifest, the release attestation binding that manifest's hash to commit ${GITHUB_SHA}, the SBOM, and the active-class bundle assembled from exactly the fingerprinted artifact set. See CHANGELOG.md for the change list. Build-provenance record, not a compliance determination."
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "Release $TAG exists; attaching assets."
+            gh release upload "$TAG" $assets --clobber
+          else
+            gh release create "$TAG" --verify-tag --title "$TAG" --notes "$notes" $assets
+          fi

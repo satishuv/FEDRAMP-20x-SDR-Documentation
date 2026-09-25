@@ -120,6 +120,66 @@ def main():
           outcome == "killed", f"outcome={outcome}")
     check("tree restored byte-exactly", mt._read_bytes(path) == original_bytes)
 
+    # --- AUD-F13: a SKIPPED mutation must FAIL the gate, not pass it. -----------
+    # A mutation whose target text is absent never executes. run_one returns
+    # 'skipped' before touching the file, so this is side-effect free.
+    absent = ("MUT-SELFTEST-ABSENT", rel,
+              "# this exact text is not present in sdr.py anywhere at all",
+              "# MUTATION", test)
+    synthetic_ledger = {"defects": [
+        {"id": "AUD-SELFTEST", "status": "CLOSED", "mutation_verified": True,
+         "mutation": "MUT-SELFTEST-ABSENT: absent target; expect RED"}]}
+    rc_skip = mt.run(mutations=[absent], ledger=synthetic_ledger)
+    check("F13: a skipped mutation fails the gate end-to-end (rc != 0)", rc_skip != 0,
+          f"rc={rc_skip}")
+    # Isolated rule: a skip alone (no survivors, no ledger problems) must fail.
+    check("F13: gate_verdict fails on a skip alone",
+          mt.gate_verdict([], ["MUT-X"], []) != 0)
+    check("F13 control: gate_verdict passes with nothing wrong",
+          mt.gate_verdict([], [], []) == 0)
+    check("F13 control: gate_verdict fails on a survivor alone",
+          mt.gate_verdict(["MUT-X"], [], []) != 0)
+    check("F14: gate_verdict fails on a ledger problem alone",
+          mt.gate_verdict([], [], ["x"]) != 0)
+
+    # --- AUD-F14: the ledger must reconcile with what the runner executed. -----
+    def problems(outcomes, mutations, ledger):
+        return mt.reconcile_ledger(outcomes, mutations=mutations, ledger=ledger)
+
+    one = [("MUT-X", "sdr.py", "a", "b", "t.py")]
+    ledger_x = {"defects": [{"id": "AUD-X", "status": "CLOSED",
+                             "mutation_verified": True,
+                             "mutation": "MUT-X: something; expect RED"}]}
+    check("F14: killed + ledgered + single entry reconciles clean",
+          problems({"MUT-X": "killed"}, one, ledger_x) == [])
+    check("F14: ledger claims a mutation the runner does not contain -> problem",
+          any("no such mutation" in p for p in problems(
+              {}, [], ledger_x)))
+    check("F14: runner entry with no ledger defect -> problem (unledgered)",
+          any("unledgered" in p for p in problems(
+              {"MUT-X": "killed"}, one, {"defects": []})))
+    check("F14: ledgered mutation that survived -> problem",
+          any("must be 'killed'" in p for p in problems(
+              {"MUT-X": "survived"}, one, ledger_x)))
+    check("F14: ledgered mutation that was skipped -> problem",
+          any("must be 'killed'" in p for p in problems(
+              {"MUT-X": "skipped"}, one, ledger_x)))
+    check("F14: duplicate runner ids -> problem",
+          any("exactly one" in p for p in problems(
+              {"MUT-X": "killed"}, one + one, ledger_x)))
+    check("F14: REVIEWED-NO-CHANGE entries are not required to have a mutation",
+          problems({"MUT-X": "killed"}, one, {"defects": ledger_x["defects"] + [
+              {"id": "AUD-C0", "status": "REVIEWED-NO-CHANGE",
+               "mutation_verified": False, "mutation": "n/a"}]}) == [])
+    # The REAL ledger and the REAL runner list must agree structurally (every
+    # claimed id has exactly one entry, every entry is claimed) before any run.
+    with open(mt.LEDGER, encoding="utf-8") as f:
+        real_ledger = __import__("json").load(f)
+    structural = [p for p in problems(
+        {m[0]: "killed" for m in mt.MUTATIONS}, mt.MUTATIONS, real_ledger)]
+    check("F14: real ledger and real runner list agree structurally",
+          structural == [], "; ".join(structural))
+
     print(f"\n{'PASS' if _fail == 0 else 'FAIL'}: mutation_runner ({_fail} failures)")
     return 1 if _fail else 0
 

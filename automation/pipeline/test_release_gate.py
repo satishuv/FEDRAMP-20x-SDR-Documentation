@@ -302,6 +302,92 @@ def main():
     check("manifest source_commit stays null (not mutated by release)",
           (manifest.get("source_provenance", {}) or {}).get("source_commit") is None)
 
+    # ---- AUD-F12: ONE release gate, three executors, one definition. ---------
+    # (a) The definition itself must carry every anti-circular step. This is
+    #     the MUT-F12 target: dropping the mutation runner from the audit
+    #     section must turn this red.
+    spec_rg = importlib.util.spec_from_file_location(
+        "release_gate", os.path.join(BASE, "audit", "release_gate.py"))
+    rg = importlib.util.module_from_spec(spec_rg); spec_rg.loader.exec_module(rg)
+    audit_steps = [name for name, _argv in rg.SECTIONS.get("audit", [])]
+    security_steps = [name for name, _argv in rg.SECTIONS.get("security", [])]
+    for required in ("requirements-oracle", "mutation-runner-selftest",
+                     "mutation-runner", "tree-clean-after-mutation"):
+        check(f"release gate audit section includes {required}",
+              required in audit_steps)
+    check("release gate security section includes bandit",
+          "bandit" in security_steps)
+    check("release gate refuses an unknown section (fails closed, not silently empty)",
+          rg.run(["no-such-section"]) != 0)
+    # Every argv must name an existing script or a module the gate can run.
+    for section, steps in rg.SECTIONS.items():
+        for name, argv in steps:
+            target = next((a for a in argv if a.endswith(".py")), None)
+            if target:
+                check(f"release gate step {section}/{name} targets an existing script",
+                      os.path.exists(os.path.join(BASE, target)))
+
+    # (b) GitHub Actions: audit-gate and security-scan jobs execute the shared
+    #     definition, and ONE aggregate job depends on all three sections and
+    #     runs even when a dependency failed (a skipped required check blocks
+    #     nothing).
+    wf = open(os.path.join(BASE, ".github", "workflows", "validate.yml"),
+              encoding="utf-8").read()
+    jobs = re.split(r'^\s{2}(?=[a-z][a-z-]*:\s*$)', wf, flags=re.MULTILINE)
+    job_text = {j.split(":", 1)[0].strip(): j for j in jobs if re.match(r'[a-z][a-z-]*:\s*$', j.split("\n", 1)[0])}
+    check("CI has an audit-gate job that runs the shared release gate (audit)",
+          "release_gate.py audit" in job_text.get("audit-gate", ""))
+    check("CI has a security-scan job that runs the shared release gate (security)",
+          "release_gate.py security" in job_text.get("security-scan", ""))
+    agg = job_text.get("release-gate", "")
+    check("CI has a release-gate aggregate job", bool(agg))
+    needs = re.search(r'needs:\s*\[([^\]]*)\]', agg)
+    needs_set = {n.strip() for n in needs.group(1).split(",")} if needs else set()
+    check("release-gate needs validate + audit-gate + security-scan",
+          needs_set == {"validate", "audit-gate", "security-scan"})
+    check("release-gate runs even when a dependency failed (if: always())",
+          re.search(r'if:\s*always\(\)', agg) is not None)
+    check("release-gate fails unless every section result is success",
+          '!= "success"' in agg and "exit 1" in agg)
+    check("validate workflow is callable by the release workflow (workflow_call)",
+          re.search(r'^\s+workflow_call:', wf, re.MULTILINE) is not None)
+
+    # (c) AWS RELEASE_MODE executes the same definition.
+    check("RELEASE_MODE build runs the shared release gate (audit + security)",
+          "release_gate.py audit security" in rel_branch)
+
+    # (d) `sdr.py release` executes the same definition and instructs a SIGNED
+    #     tag (docs/versioning.md), not a plain unsigned one.
+    sdr_src = open(os.path.join(BASE, "sdr.py"), encoding="utf-8").read()
+    m_rel_fn = re.search(r'^def cmd_release\(.*?(?=^def )', sdr_src, re.MULTILINE | re.DOTALL)
+    rel_fn = m_rel_fn.group(0) if m_rel_fn else ""
+    check("sdr.py release runs the shared release gate (audit + security)",
+          "release_gate.py" in rel_fn and '["audit", "security"]' in rel_fn)
+    check("sdr.py release runs the gate BEFORE the reproducibility check",
+          0 < rel_fn.find("release_gate.py") < rel_fn.find("cmd_reproducibility()"))
+    check("sdr.py release instructs a signed tag (git tag -s)",
+          "git tag -s" in rel_fn)
+    check("sdr.py release no longer instructs a plain unsigned tag",
+          re.search(r'To tag: git tag \{', rel_fn) is None)
+
+    # (e) Tag-driven release workflow: refuses unsigned tags, re-runs the whole
+    #     gate on the tagged commit, attaches manifest + attestation + SBOM.
+    rw_path = os.path.join(BASE, ".github", "workflows", "release.yml")
+    rw = open(rw_path, encoding="utf-8").read() if os.path.exists(rw_path) else ""
+    check("release workflow exists and triggers on v* tags",
+          'tags: ["v*"]' in rw)
+    check("release workflow refuses a tag without a signature block",
+          "SIGNATURE" in rw and "exit 1" in rw)
+    check("release workflow refuses a tag that does not match the manifest release_tag",
+          "release_tag" in rw)
+    check("release workflow re-runs the full validate workflow on the tag",
+          "uses: ./.github/workflows/validate.yml" in rw)
+    check("release workflow attaches manifest, attestation and SBOM as assets",
+          "release-manifest.json" in rw and "release-attestation.json" in rw
+          and "sbom.cdx.json" in rw and "gh release" in rw)
+    check("release workflow publish job needs the gate",
+          re.search(r'needs:\s*\[verify-tag,\s*gate\]', rw) is not None)
+
     print(f"\n{passed}/{passed + failed} release-gate checks passed")
     return 0 if failed == 0 else 1
 

@@ -6,9 +6,13 @@
 #   3. validate_sdr.py must pass with 0 hard failures.
 # Plus two independent anti-circular-verification gates (audit-gate job):
 #   4. Mutation runner: every closed defect, re-introduced, must turn its
-#      regression test RED (a surviving mutation is a test-coverage hole).
+#      regression test RED (a surviving OR skipped mutation fails).
 #   5. Requirements-differential oracle: an independent dataset traversal must
 #      reconcile exactly with the production applicability engine.
+# Plus Bandit (security-scan job). The audit and security step lists are
+# defined ONCE in audit/release_gate.py and shared with the AWS RELEASE_MODE
+# build and `sdr.py release`. The `release-gate` job aggregates all three and
+# is the single required status check on main (AUD-F12).
 # Actions are pinned to full commit SHAs for supply-chain integrity.
 name: validate-sdr
 
@@ -16,6 +20,9 @@ on:
   push:
     branches: [main]
   pull_request:
+  # The release workflow (release.yml) calls this whole workflow on a tag so a
+  # published release has re-run the identical gate on the exact tagged commit.
+  workflow_call:
 
 permissions:
   contents: read
@@ -111,19 +118,10 @@ jobs:
           python-version: "3.12"
       - name: Install dependencies
         run: pip install --quiet -r requirements-ci.txt
-      - name: Requirements-differential oracle (HARD GATE)
-        run: python audit/requirements_oracle.py
-      - name: Mutation runner self-test -- stale bytecode cannot fake a kill (HARD GATE)
-        run: python audit/test_mutation_runner.py
-      - name: Mutation runner -- all closed defects must be killed (HARD GATE)
-        run: |
-          python audit/mutation_tests.py
-          # The runner restores every mutated file via `git checkout --`.
-          # Fail if the tree is left dirty (a mutation that did not restore).
-          git diff --exit-code || {
-            echo "FAIL. Mutation runner left the working tree modified."
-            exit 1
-          }
+      # The step list lives in audit/release_gate.py so this job, the AWS
+      # RELEASE_MODE build, and `sdr.py release` cannot drift apart (AUD-F12).
+      - name: Audit section of the release gate (HARD GATE)
+        run: python audit/release_gate.py audit
 
   security-scan:
     # Static security analysis of ALL executable Python (root, automation,
@@ -142,24 +140,47 @@ jobs:
           python-version: "3.12"
       - name: Install bandit
         run: pip install --quiet bandit==1.8.6
-      - name: Bandit static analysis (all executable Python, HARD GATE)
-        run: |
-          # Report medium-or-higher severity at medium-or-higher confidence
-          # across the whole tree (tests/data excluded, B101 assert skipped).
-          # A finding is a hard failure (no `|| true`); the report is still
-          # written for the artifact upload below.
-          bandit -r . \
-            --exclude ./automation/collectors/testdata,./.git \
-            --skip B101 \
-            --severity-level medium --confidence-level medium \
-            --format txt --output bandit-report.txt
-          echo "Bandit scan passed (no medium+ findings)."
+      - name: Security section of the release gate (Bandit, HARD GATE)
+        # Argument list lives in audit/release_gate.py (one definition for
+        # CI, the AWS release build, and sdr.py release). The report is
+        # written for the artifact upload below; a finding fails the step.
+        run: python audit/release_gate.py security
       - name: Upload bandit report
         if: always()
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
         with:
           name: bandit-security-report
           path: bandit-report.txt
+
+  release-gate:
+    # THE ONE REQUIRED STATUS CHECK on main (AUD-F12). Succeeds only when every
+    # section above succeeded. Requiring this single job means a merge can never
+    # land with a red audit-gate or security-scan behind a green validate, which
+    # is how v1.4.0 was released from a commit whose mutation gate was red.
+    # `if: always()` makes this job run (and FAIL) even when a dependency
+    # failed or was cancelled; without it the job would be skipped and a
+    # skipped required check blocks nothing.
+    needs: [validate, audit-gate, security-scan]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Every gate section must have succeeded
+        env:
+          VALIDATE: ${{ needs.validate.result }}
+          AUDIT: ${{ needs.audit-gate.result }}
+          SECURITY: ${{ needs.security-scan.result }}
+        run: |
+          echo "validate=$VALIDATE audit-gate=$AUDIT security-scan=$SECURITY"
+          rc=0
+          for pair in "validate:$VALIDATE" "audit-gate:$AUDIT" "security-scan:$SECURITY"; do
+            job="${pair%%:*}"; result="${pair#*:}"
+            if [ "$result" != "success" ]; then
+              echo "FAIL. Release gate section '$job' result: $result"
+              rc=1
+            fi
+          done
+          if [ "$rc" -ne 0 ]; then exit 1; fi
+          echo "release-gate: PASS (validate, audit-gate, security-scan all succeeded)."
 
 
 

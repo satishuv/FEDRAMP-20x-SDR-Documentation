@@ -947,14 +947,19 @@ def cmd_reproducibility():
 
 def cmd_release(args):
     """Produce and report a release: build, run the FULL validation gate and
-    test suite, verify reproducibility, hard-run package-preflight, then print
-    the tag.
+    test suite, run the audit and security sections of the ONE release gate,
+    verify reproducibility, hard-run package-preflight, then print the tag.
 
-    Runs the same validation suite CI runs (via cmd_validate) AND a local
-    double-build reproducibility check AND package-preflight as a HARD gate, so
-    `release` verifies what it claims and refuses to prepare a release for a
-    package that package-preflight would reject. Always runs the full test suite
-    (no --no-tests escape). Does not tag git or publish anything.
+    Runs the same validation suite CI runs (via cmd_validate) AND the identical
+    audit/security step list CI and the AWS RELEASE_MODE build run
+    (audit/release_gate.py: oracle, mutation-runner self-test, mutation runner,
+    tree-clean, Bandit) AND a local double-build reproducibility check AND
+    package-preflight as a HARD gate, so `release` verifies what it claims and
+    refuses to prepare a release for a package any of those would reject. Before
+    AUD-F12 this command skipped the audit gate and Bandit, so a local release
+    could pass while CI's audit-gate was red (v1.4.0 shipped that way). Always
+    runs the full test suite (no --no-tests escape). Does not tag git or publish
+    anything.
     """
     # A release is not allowed to skip its own tests.
     args.no_tests = False
@@ -966,6 +971,16 @@ def cmd_release(args):
     code = cmd_validate(args)
     if code != 0:
         out("Validation gate failed; not releasable.")
+        return code
+    # AUD-F12: the audit and security sections of the ONE release gate, from
+    # the same definition CI and the AWS RELEASE_MODE build execute. Run before
+    # the reproducibility check so a mutation the runner failed to restore is
+    # caught by the gate's own tree-clean step rather than confusing the
+    # double-build comparison.
+    out()
+    code = run(os.path.join(BASE, "audit", "release_gate.py"), ["audit", "security"])
+    if code != 0:
+        out("Release gate (audit/security sections) failed; not releasable.")
         return code
     out()
     code = cmd_reproducibility()
@@ -1023,7 +1038,15 @@ def cmd_release(args):
         "passing release gate means well-formed, consistent, and verified "
         "reproducible (double-build byte-identical, checked just now); "
         "certification is an accredited assessor and authorizing-body decision.")
-    out(f"To tag: git tag {manifest.get('release_tag', '<tag>') if manifest else '<tag>'}")
+    tag = manifest.get('release_tag', '<tag>') if manifest else '<tag>'
+    # docs/versioning.md requires a SIGNED release tag; a plain `git tag` here
+    # (the pre-AUD-F12 instruction) contradicted that policy, and v1.4.0 shipped
+    # unsigned. The release workflow refuses to publish from an unsigned tag.
+    out(f"To tag (signed, per docs/versioning.md): "
+        f"git tag -s {tag} -m \"FedRAMP 20x SDR framework {tag}\"")
+    out(f"Then: git push origin {tag}  -- the release workflow re-runs the full "
+        "gate on the tag and attaches manifest, attestation, and SBOM as release "
+        "assets.")
     return 0
 
 
