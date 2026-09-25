@@ -1,4 +1,4 @@
-﻿# Regression test for F-09: the reviewer-facing assurance graph / evidence
+# Regression test for F-09: the reviewer-facing assurance graph / evidence
 # coverage report must count FRC-CSX-VVK automated methods identically to the
 # authoritative validator. A prior bug counted raw `tests` entries in the graph
 # (len(tests)) while the validator counted distinct AUTOMATED methods, so the

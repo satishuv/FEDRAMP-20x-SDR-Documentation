@@ -1,4 +1,4 @@
-﻿# Offline tests for the deterministic fact-to-field pre-fill. No AWS account
+# Offline tests for the deterministic fact-to-field pre-fill. No AWS account
 # and no files needed: the prefill_ksi function is exercised directly with
 # synthetic registry entries, facts, and records. Run:
 #   python automation/prefill/test_prefill.py

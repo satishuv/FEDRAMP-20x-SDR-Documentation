@@ -19,8 +19,9 @@ lock: ## Resolve a fully-hashed requirements.lock, then rebuild the SBOM from it
 	@echo "Resolving the full dependency closure with hashes into requirements.lock."
 	@echo "Run this in a CLEAN environment with network access (not the offline"
 	@echo "build sandbox), so the resolved versions are correct and complete."
-	$(PYTHON) -m piptools compile --generate-hashes --strip-extras \
-		--output-file requirements.lock requirements.txt requirements-ci.txt
+	uv pip compile requirements.txt requirements-ci.txt --generate-hashes \
+		--python-platform linux --python-version 3.12 --no-header \
+		--output-file requirements.lock
 	$(PYTHON) validation/scripts/build_sbom.py
 	@echo "requirements.lock written and SBOM regenerated from the resolved closure."
 	@echo "Commit requirements.lock and the regenerated artifacts/sbom.cdx.json together."

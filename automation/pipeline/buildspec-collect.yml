@@ -11,7 +11,7 @@ phases:
       python: 3.12
     commands:
       # Pinned to match the repository's CI dependency set (reproducible builds).
-      - pip install --quiet -r requirements-ci.txt
+      - pip install --quiet --require-hashes -r requirements.lock
   build:
     commands:
       # 1. Collect today's read-only facts.

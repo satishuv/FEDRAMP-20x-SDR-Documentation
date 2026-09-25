@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 """The ONE release gate (audit finding AUD-F12).
 
 Before this module existed there were three different definitions of

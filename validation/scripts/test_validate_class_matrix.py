@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 """Class-matrix validation (AUD-F23) and validator report contract (AUD-F24).
 
 The repository ships Class A, B and C artifacts but the authoritative validator

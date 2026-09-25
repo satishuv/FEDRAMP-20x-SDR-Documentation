@@ -98,6 +98,16 @@ Telemetry truth model (Class C metrics):
   assessor review (an invalid value blocks rather than silently defaulting), and
   every preflight message names it as such. The comment that claimed a
   4x-median adaptive tolerance the code never applied is gone (AUD-F21).
+- Supply chain: `requirements.lock` is a resolver-generated (uv, linux/py3.12),
+  fully hashed 27-package closure of `requirements.txt` + `requirements-ci.txt`;
+  every workflow and buildspec installs with `pip install --require-hashes -r
+  requirements.lock`, and the SBOM is now that resolved closure with per-package
+  hashes (AUD-F25). The requirements oracle independently re-derives the per-class
+  FRR set, force, statement and timeframes and the enumerated Class A set from the
+  raw dataset (41 / 158 / 158, reconciled clean; AUD-F22); `sdr.py validate` runs
+  the authoritative validator for every supported class, which surfaced and
+  fixed three example KSIs that were invalid at Class C (AUD-F23); a parity test
+  that compared 0 against 0 now reads the real report key (AUD-F24).
 - The implementation guide's worked Class C example now uses the structured
   automated-method shape the validator counts and explains `method_id`
   binding; the two plain strings it showed counted as zero methods.
@@ -410,7 +420,7 @@ Pinned dataset: `2026.07.14.01`
 - Compliance CAUTION banner at the top of the README: the framework is not a compliance audit bot, no generated output is compliant or guarantees FedRAMP 20x compliance, every generated statement must be independently verified by a qualified human, and AI output is advisory only.
 - Continuous-integration wiring for the AI-module boundary suites and the Config custom-rule handler tests.
 - Caching of the AWS Automated Security Helper install in the security-scan job, keyed to the pinned version.
-- `automation/storage/provision_store.py`: a deploy-time provisioner for the durable metric-history/facts store. It creates an in-boundary S3 bucket in the provider's own account and enables bucket versioning (optionally Object Lock/WORM and a lifecycle retention). Safety-additive and idempotent — it never suspends versioning, deletes anything, or moves a status — with a DEPLOY guide and 12 offline tests wired into continuous integration.
+- `automation/storage/provision_store.py`: a deploy-time provisioner for the durable metric-history/facts store. It creates an in-boundary S3 bucket in the provider's own account and enables bucket versioning (optionally Object Lock/WORM and a lifecycle retention). Safety-additive and idempotent â€” it never suspends versioning, deletes anything, or moves a status â€” with a DEPLOY guide and 12 offline tests wired into continuous integration.
 - `docs/getting-started.md` and `docs/automation.md`: an "Adoption models" note (greenfield vs brownfield, adoption-model-agnostic) and a "Persistence and retention" note recording the 20x retention windows (KSI metric history up to one year per `SDR-CSX-KMT`; 12 months for `SCN-CSO-HIS`; 6 months for `CDS-TRC-ACL`) and clarifying that a seven-year immutable bucket is a provider policy choice, not a 20x requirement.
 - Read-only `collect_bucket_versioning` collector (the read-side complement to the store provisioner): reports whether the durable store bucket has versioning enabled, as tamper-resistance/recovery telemetry. `s3:GetBucketVersioning` added to the read-only allowlist; 5 offline tests (collector suite now 37).
 - `automation/config-rules/deploy/`: a deterministic generator (`generate_templates.py`) that emits both a CloudFormation template and a CDK-in-Python app for the 11 provider-deployed Config custom rules from the manifest, so the deploy artifacts never drift from it; 7 offline tests. The generated role is read-only on the evidence bucket; a COMPLIANT result stays telemetry, not a determination.

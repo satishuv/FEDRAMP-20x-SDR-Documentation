@@ -130,7 +130,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          pip install --quiet -r requirements-ci.txt
+          pip install --quiet --require-hashes -r requirements.lock
           cp references/fedramp-consolidated-rules.json /tmp/dataset-old.json
           # Fetch to temp files with --fail so an HTTP error cannot overwrite the
           # canonical pinned files with an error page; validate JSON parses before

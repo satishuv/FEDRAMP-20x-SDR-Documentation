@@ -340,6 +340,19 @@
       "mutation": "MUT-F24: validate_sdr.py writes the per-KSI list under `ksi_results` instead of `results`; expect RED",
       "mutation_verified": true,
       "status": "CLOSED"
+    },
+    {
+      "id": "AUD-F25",
+      "severity": "Medium",
+      "requirement": "Supply-chain reproducibility of the framework's own build (SBOM closure; KSI-SCR by analogy)",
+      "component": "requirements.lock (new); Makefile lock target; every CI workflow and buildspec install step; validation/scripts/build_sbom.py (consumer); validation/scripts/test_lock_closure.py (new)",
+      "description": "Top-level Python dependencies were pinned and Actions were SHA-pinned, but there was no committed hash-locked transitive closure: CI installed with plain `pip -r requirements-ci.txt`, so transitive packages resolved to whatever the index served on the day, and the SBOM honestly admitted it enumerated only the direct pins.",
+      "root_cause": "The lock-aware SBOM mechanism existed (`make lock`) but no lock had ever been produced by a resolver; generating one from an installed environment would have been wrong (dev/test packages, drifted versions), so it was deferred.",
+      "fix_commit": "this PR -- requirements.lock resolved by uv (a real resolver run against the index, not the installed environment) for the linux/py3.12 CI target from requirements.txt + requirements-ci.txt with --generate-hashes: 27 packages, every one hashed; every workflow and buildspec installs with `pip install --require-hashes -r requirements.lock`; the Makefile lock target uses the same uv invocation; the SBOM is now the resolved closure with hashes (27 components, scope resolved-closure-with-hashes), fingerprinted by the release manifest",
+      "regression_test": "validation/scripts/test_lock_closure.py (lock present and hashed; every direct pin at the same version in the lock; SBOM rebuilt in-process equals the committed SBOM and covers every lock package with hashes; every installer uses --require-hashes -r requirements.lock)",
+      "mutation": "MUT-F25: build_sbom ignores the committed lock (lock = None); expect RED",
+      "mutation_verified": true,
+      "status": "CLOSED"
     }
   ]
 }
