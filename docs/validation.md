@@ -178,11 +178,18 @@ To record when your content actually changed, set `sdr_last_updated` in `profile
 
 FedRAMP updates schema files in place without renaming them, so a pinned copy can silently go stale. Two mechanisms catch it.
 
-The scheduled drift check hash-compares the pinned dataset and both official schemas against the live copies daily, and opens an issue on any change. In this repository it runs as `.github/workflows/drift-check.yml`; the AWS reference implements the same thing on an EventBridge schedule.
+The scheduled drift check hash-compares the pinned dataset, its rules schema, all nine official document schemas, and the FedRAMP `2026-markdown` changelog against the live copies daily, and opens an issue naming every drifted source. In this repository it runs as `.github/workflows/drift-check.yml`; the AWS reference implements the same thing on an EventBridge schedule. A download failure fails the run without filing a drift issue, so an issue always means upstream really changed.
 
 For automated agent sessions, a SessionStart hook reads the dataset, both schemas, the dataset's own JSON schema, FedRAMP's `AGENTS.md`, and the published rules page at the start of every session, and reports whether the pinned copies still match.
 
-When drift is reported: re-pin the changed source, rebuild everything, and read the diff. A wording change in a requirement statement can change what your record needs to say, so this is a review step rather than a mechanical update.
+When drift is reported: re-pin the changed source, rebuild everything, and read the diff. A wording change in a requirement statement can change what your record needs to say, so this is a review step rather than a mechanical update. A dataset drift opens a regenerate-and-review PR automatically; a schema or changelog drift is issue-only and is adopted by hand:
+
+1. Read the upstream change first (diff the live file against the pinned copy, and check whether anything new is *required*). Only the human reading decides whether the package content must change.
+2. Copy the live file byte-for-byte over its pinned path under `artifacts/schemas/official/` (or `references/`). Never edit a pinned copy.
+3. Update the expected `$schemaVersion` in `EXPECTED_SCHEMAS` (`validation/scripts/validate_sdr.py`), so the version guard asserts the version you adopted rather than the one you left behind.
+4. Run `python validation/scripts/update_sources_lock.py --verified-on YYYY-MM-DD`. It refreshes every pinned entry's sha256 and schema version from the files on disk and stamps the date you verified them against upstream. Never hand-edit a hash in `references/sources.lock.json`; add a `notes` line describing the upstream change instead.
+5. `python sdr.py build` then `python sdr.py validate`. The build regenerates the release manifest's schema fingerprints; the validator's `pinned_schema_version_guard`, `sources_lock_consistency` and the CPO/OCR schema checks prove the adoption is coherent.
+6. Record the adoption in `CHANGELOG.md` under Unreleased, and re-run the drift workflow (`workflow_dispatch`) on the merged main to confirm it is green again.
 
 ## Continuous integration
 
