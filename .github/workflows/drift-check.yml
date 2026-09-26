@@ -46,7 +46,14 @@ jobs:
             else
               echo "$NAME: CHANGED upstream (live $LIVE vs pinned $LOCAL)"
               DRIFT="$DRIFT $NAME;"
-              [ "$NAME" = "CR26-dataset" ] && DATASET_CHANGED=1
+              # Plain `if`, never `[ test ] && var=1`: under `set -e` a false
+              # test as the function's last command makes check() return 1,
+              # which aborts the whole step on the FIRST non-dataset drift.
+              # That hid four schema drifts behind one on 2026-09-26 and left
+              # the drift output empty for the issue step.
+              if [ "$NAME" = "CR26-dataset" ]; then
+                DATASET_CHANGED=1
+              fi
             fi
           }
           check "CR26-dataset" "https://raw.githubusercontent.com/FedRAMP/rules/main/fedramp-consolidated-rules.json" "references/fedramp-consolidated-rules.json"
@@ -105,7 +112,11 @@ jobs:
             git push
           fi
       - name: Open an issue on drift
-        if: failure()
+        # Only when the check step recorded drift. A download failure (exit 2)
+        # or any other abort leaves `drift` empty and must fail the run WITHOUT
+        # filing an issue that claims upstream changed (issue #188 was such an
+        # empty-titled false report).
+        if: failure() && steps.check.outputs.drift != ''
         env:
           GH_TOKEN: ${{ github.token }}
           DRIFT: ${{ steps.check.outputs.drift }}
