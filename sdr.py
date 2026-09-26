@@ -312,6 +312,7 @@ TEST_SUITE = [
     "validation/scripts/test_assurance_graph_method_count.py",
     "validation/scripts/test_validate_class_matrix.py",
     "validation/scripts/test_lock_closure.py",
+    "validation/scripts/test_update_sources_lock.py",
     "validation/scripts/test_class_a_framework.py",
     "validation/scripts/test_class_a_applicable_scope.py",
     "validation/scripts/test_class_b_optional_ksi_scope.py",

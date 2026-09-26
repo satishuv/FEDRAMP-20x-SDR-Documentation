@@ -332,23 +332,23 @@ def main():
         },
         COMMON_SCHEMA: {
             "$id": "https://fedramp.gov/schemas/fedramp-common-definitions-schema-2026-06-24.json",
-            "$schemaVersion": "0.3.0",
+            "$schemaVersion": "0.4.0",
         },
         os.path.join(SCHEMA_DIR, "fedramp-certification-package-overview-schema-2026-06-24.json"): {
             "$id": "https://fedramp.gov/schemas/fedramp-certification-package-overview-schema-2026-06-24.json",
-            "$schemaVersion": "0.1.4",
+            "$schemaVersion": "0.1.6",
         },
         os.path.join(SCHEMA_DIR, "fedramp-ongoing-certification-report-schema-2026-06-24.json"): {
             "$id": "https://fedramp.gov/schemas/fedramp-ongoing-certification-report-schema-2026-06-24.json",
-            "$schemaVersion": "0.2.0",
+            "$schemaVersion": "0.2.1",
         },
         os.path.join(SCHEMA_DIR, "fedramp-incident-report-schema-2026-06-24.json"): {
             "$id": "https://fedramp.gov/schemas/fedramp-incident-report-schema-2026-06-24.json",
-            "$schemaVersion": "0.2.0",
+            "$schemaVersion": "0.2.1",
         },
         os.path.join(SCHEMA_DIR, "fedramp-significant-change-notifications-schema-2026-06-24.json"): {
             "$id": "https://fedramp.gov/schemas/fedramp-significant-change-notifications-schema-2026-06-24.json",
-            "$schemaVersion": "0.1.2",
+            "$schemaVersion": "0.1.3",
         },
         os.path.join(SCHEMA_DIR, "fedramp-accepted-vulnerability-info-schema-2026-06-24.json"): {
             "$id": "https://fedramp.gov/schemas/fedramp-accepted-vulnerability-info-schema-2026-06-24.json",

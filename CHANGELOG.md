@@ -8,7 +8,40 @@ One project-specific convention: the pinned FedRAMP dataset version is recorded 
 
 Pinned dataset: `2026.09.13.02` (unchanged)
 
-No unreleased changes.
+Upstream schema adoption (no dataset change; no rule statement, force,
+timeframe or KSI applicability changed):
+
+- Adopted the September 2026 in-place updates to five official FedRAMP JSON
+  schemas, verified byte-for-byte against fedramp.gov on 2026-09-26:
+  common-definitions `0.3.0 -> 0.4.0` (adds a reusable
+  `$defs/contactInformation` object), Certification Package Overview
+  `0.1.4 -> 0.1.6` (adds an OPTIONAL top-level `advisors` array), and
+  version-string-only bumps to Ongoing Certification Report `0.2.0 -> 0.2.1`,
+  Incident Report `0.2.0 -> 0.2.1` and Significant Change Notification
+  `0.1.2 -> 0.1.3`. Nothing required was added, so every previously valid
+  document stays valid; the generated CPO and OCR re-validate against the new
+  schemas. `pinned_schema_version_guard`, `references/sources.lock.json` and the
+  release manifest now carry the new versions and hashes. The SDR schema
+  (`1.1.1`), the CR26 dataset and rules schema, and the VER-family schemas are
+  unchanged upstream.
+- `update_sources_lock.py` now refreshes EVERY pinned entry from the file on
+  disk (sha256, and `$schemaVersion` for JSON schemas), fails closed on a
+  missing pinned file, and stamps `verified_current_on` only when the caller
+  asserts `--verified-on`. A schema adoption is therefore a copy plus one
+  command, never a hand-edited hash. Tests in
+  `validation/scripts/test_update_sources_lock.py`.
+
+Fixed:
+
+- Daily drift check aborted on the first non-dataset drift. In `check()`, the
+  line `[ "$NAME" = "CR26-dataset" ] && DATASET_CHANGED=1` was the function's
+  last command, so under `set -e` any drifted source other than the dataset made
+  `check()` return 1 and killed the step. The 2026-09-26 run reported only the
+  common-definitions drift, never reached the remaining seven sources or the
+  changelog check, and filed issue #188 with an empty title because the `drift`
+  output was never written. Replaced with a plain `if`; the issue step now runs
+  only when the check step actually recorded drift, so a download failure fails
+  the run without filing a false "sources changed" issue.
 
 ## 1.5.0, 2026-09-25
 
